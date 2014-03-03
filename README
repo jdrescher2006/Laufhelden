@@ -1,5 +1,5 @@
-Rena - Track recorder
-=====================
+Rena - Track recorder for Sailfish OS
+=====================================
 
 Rena is short of "reittinauhuri" (finnish, meaning track recorder). Rena records your track when you walk, run, cycle or practise any other outdoor activity. It uses positioning capabilities of your phone, ie. GPS and GLONASS in case of Jolla.
 Tracks are saved in GPX format for compatibility between various applications and services.
