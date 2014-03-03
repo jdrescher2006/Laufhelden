@@ -1,0 +1,30 @@
+Name: harbour-rena
+Summary: Rena - Track recorder
+Version: 0.0.1
+Release: 1
+Group: Qt/Qt
+URL: http://example.org/
+License: GPL
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description: |-
+  Rena records your track when you walk, run, cycle or practise any other outdoor activity. It uses positioning capabilities of your phone, ie. GPS and GLONASS in case of Jolla.
+Configure: none
+Builder: qtc5
+PkgConfigBR:
+- Qt5Quick
+- Qt5Qml
+- Qt5Core
+- sailfishapp >= 0.0.10
+Requires:
+- sailfishsilica-qt5 >= 0.10.9
+Files:
+- '%{_bindir}'
+- '%{_datadir}/%{name}/qml'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- /usr/bin
+- /usr/share/harbour-rena
+- /usr/share/applications
+- /usr/share/icons/hicolor/86x86/apps
+PkgBR: []
