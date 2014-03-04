@@ -44,6 +44,7 @@ Page {
         delegate: ListItem {
             id: listItem
             width: parent.width
+            height: Theme.itemSizeMedium
             Label {
                 id: nameLabel
                 x: Theme.paddingLarge
