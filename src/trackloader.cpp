@@ -22,6 +22,7 @@
 #include <QFile>
 #include <QGeoCoordinate>
 #include <QDebug>
+#include <qmath.h>
 #include "trackloader.h"
 
 TrackLoader::TrackLoader(QObject *parent) :
@@ -146,6 +147,8 @@ void TrackLoader::load() {
             emit timeChanged();
         }
     }
+
+    emit routeChanged();
 }
 
 QString TrackLoader::filename() const {
@@ -225,6 +228,14 @@ uint TrackLoader::duration() {
 }
 
 QString TrackLoader::durationStr() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return QString();
+    }
+
     uint hours = m_duration / (60*60);
     uint minutes = (m_duration - hours*60*60) / 60;
     uint seconds = m_duration - hours*60*60 - minutes*60;
@@ -273,4 +284,69 @@ qreal TrackLoader::pace() {
         return 0;
     }
     return m_pace;
+}
+
+int TrackLoader::routePointCount() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_points.size();
+}
+
+QGeoCoordinate TrackLoader::routePointAt(int index) {
+    return QGeoCoordinate(m_points.at(index).latitude,
+                          m_points.at(index).longitude,
+                          m_points.at(index).elevation);
+}
+
+int TrackLoader::fitZoomLevel(int width, int height) {
+    if(m_points.size() < 2) {
+        return 13; // TODO: proper value
+    }
+    qreal minLat, maxLat, minLon, maxLon;
+    minLat = maxLat = m_points.at(0).latitude;
+    minLon = maxLon = m_points.at(0).longitude;
+    for(int i=1;i<m_points.size();i++) {
+        if(m_points.at(i).latitude < minLat) {
+            minLat = m_points.at(i).latitude;
+        } else if(m_points.at(i).latitude > maxLat) {
+            maxLat = m_points.at(i).latitude;
+        }
+        if(m_points.at(i).longitude < minLon) {
+            minLon = m_points.at(i).longitude;
+        } else if(m_points.at(i).longitude > maxLon) {
+            maxLon = m_points.at(i).longitude;
+        }
+    }
+
+    m_center = QGeoCoordinate((minLat+maxLat)/2, (minLon+maxLon)/2);
+    qreal coord, pixel;
+    qreal routeAR = (maxLat-minLat)/(maxLon-minLon);
+    qreal windowAR = (qreal)width/(qreal)height;
+    if(routeAR > windowAR ) {
+        // Width limits
+        coord = maxLat-minLat;
+        pixel = width;
+    } else {
+        // height limits
+        coord = maxLon-minLon;
+        pixel = height;
+    }
+    int z=0;
+    while(z<18) {
+        qreal coordWindow = (180.0/qPow(2,z)) * (pixel/256.0); // 256 is default size of the tile
+        if(coordWindow < (1.2 * coord)) { // 1.2 -> 10% margin on all sides
+            break;
+        }
+        z++;
+    }
+    return z;
+}
+
+QGeoCoordinate TrackLoader::center() {
+    return m_center;
 }

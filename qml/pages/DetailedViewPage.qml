@@ -20,25 +20,53 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtLocation 5.0
+import QtPositioning 5.0
 import TrackLoader 1.0
 
 Page {
     id: detailPage
     property string filename
 
+    function setMapViewport() {
+        routeMap.zoomLevel = trackLoader.fitZoomLevel(routeMap.width, routeMap.height);
+        routeMap.center = trackLoader.center();
+    }
+
     TrackLoader {
         id: trackLoader
         filename: detailPage.filename
+        onRouteChanged: {
+            var routeLength = trackLoader.routePointCount();
+            var routePoints = [];
+            for(var i=0;i<routeLength;i++) {
+                routePoints.push(trackLoader.routePointAt(i));
+            }
+            routeLine.path = routePoints;
+            routeMap.addMapItem(routeLine);
+            //routeMap.fitViewportToMapItems(); // Not working
+            setMapViewport(); // Workaround for above
+        }
+    }
+
+    MapPolyline {
+        id: routeLine
+        line.color: "red"
+        line.width: 5
+        smooth: true
     }
 
     SilicaFlickable {
         anchors.fill: parent
         Column {
             width: parent.width
+            spacing: Theme.paddingLarge
             PageHeader {
+                id: header
                 title: trackLoader.name==="" ? "Unnamed track" : trackLoader.name
             }
             Grid {
+                id: gridContainer
                 x: Theme.paddingLarge
                 width: parent.width
                 spacing: Theme.paddingLarge
@@ -129,6 +157,41 @@ Page {
                     id: paceData
                     width: descriptionData.width
                     text: trackLoader.pace.toFixed(1) + " min/km"
+                }
+            }
+            Map {
+                id: routeMap
+                width: parent.width
+                height: detailPage.height - header.height - gridContainer.height - 2*Theme.paddingLarge
+                zoomLevel: 13
+                clip: true
+                gesture.enabled: false
+                plugin: Plugin {
+                    name: "osm"
+                }
+                // Following definition of map center does not work without QtPositioning!?
+                center {
+                    latitude: 60.20
+                    longitude: 24.67
+                }
+                onHeightChanged: setMapViewport()
+                onWidthChanged: setMapViewport()
+
+                MapQuickItem {
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    sourceItem: Rectangle {
+                        color: "white"
+                        opacity: 0.6
+                        width: contributionLabel.width
+                        height: contributionLabel.height
+                            Label {
+                                id: contributionLabel
+                                font.pixelSize: Theme.fontSizeTiny
+                                color: "black"
+                                text: "(C) OpenStreetMap contributors"
+                        }
+                    }
                 }
             }
         }

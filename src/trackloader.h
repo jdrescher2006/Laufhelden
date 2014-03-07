@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QDateTime>
+#include <QGeoCoordinate>
 #include <QXmlStreamReader>
 
 class TrackLoader : public QObject
@@ -52,6 +53,12 @@ public:
     qreal distance();
     qreal speed();
     qreal pace();
+    Q_INVOKABLE int routePointCount();
+    Q_INVOKABLE QGeoCoordinate routePointAt(int index);
+
+    // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
+    Q_INVOKABLE int fitZoomLevel(int width, int height);
+    Q_INVOKABLE QGeoCoordinate center();
 
 signals:
     void filenameChanged();
@@ -62,6 +69,7 @@ signals:
     void distanceChanged();
     void speedChanged();
     void paceChanged();
+    void routeChanged();
 
 public slots:
 
@@ -92,6 +100,7 @@ private:
     qreal m_distance;
     qreal m_speed;
     qreal m_pace;
+    QGeoCoordinate m_center;
 };
 
 #endif // TRACKLOADER_H

@@ -9,7 +9,7 @@
 TARGET = harbour-rena
 
 CONFIG += sailfishapp
-QT += positioning concurrent
+QT += positioning location concurrent
 
 SOURCES += src/harbour-rena.cpp \
     src/trackrecorder.cpp \
