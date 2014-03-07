@@ -94,7 +94,7 @@ Page {
             }
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: (recorder.distance/1000).toFixed(2) + " km"
+                text: (recorder.distance/1000).toFixed(3) + " km"
                 font.pixelSize: Theme.fontSizeHuge
             }
             Label {
