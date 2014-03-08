@@ -34,6 +34,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(bool tracking READ isTracking WRITE setIsTracking NOTIFY isTrackingChanged)
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY isEmptyChanged)
     Q_PROPERTY(bool applicationActive READ applicationActive WRITE setApplicationActive NOTIFY applicationActiveChanged)
+    Q_PROPERTY(QGeoCoordinate currentPosition READ currentPosition NOTIFY currentPositionChanged)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);
@@ -50,6 +51,7 @@ public:
     bool isEmpty() const;
     bool applicationActive() const;
     void setApplicationActive(bool active);
+    QGeoCoordinate currentPosition() const;
 
 signals:
     void accuracyChanged();
@@ -59,6 +61,7 @@ signals:
     void isTrackingChanged();
     void isEmptyChanged();
     void applicationActiveChanged();
+    void currentPositionChanged();
 
 public slots:
     void positionUpdated(const QGeoPositionInfo &newPos);
@@ -67,6 +70,7 @@ private:
     QGeoPositionInfoSource *m_posSrc;
     qreal m_accuracy;
     QList<QGeoPositionInfo> m_points;
+    QGeoCoordinate m_currentPosition;
     qreal m_distance;
     bool m_tracking;
     bool m_isEmpty;

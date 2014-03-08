@@ -59,6 +59,9 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
     }
     emit accuracyChanged();
 
+    m_currentPosition = newPos.coordinate();
+    emit currentPositionChanged();
+
     if(newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) &&
             (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0)) {
         return;
@@ -287,4 +290,8 @@ void TrackRecorder::setApplicationActive(bool active) {
     }
 
     emit applicationActiveChanged();
+}
+
+QGeoCoordinate TrackRecorder::currentPosition() const {
+    return m_currentPosition;
 }
