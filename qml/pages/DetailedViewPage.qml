@@ -163,7 +163,7 @@ Page {
                 id: routeMap
                 width: parent.width
                 height: detailPage.height - header.height - gridContainer.height - 2*Theme.paddingLarge
-                zoomLevel: 13
+                zoomLevel: 1
                 clip: true
                 gesture.enabled: false
                 plugin: Plugin {
@@ -171,8 +171,8 @@ Page {
                 }
                 // Following definition of map center does not work without QtPositioning!?
                 center {
-                    latitude: 60.20
-                    longitude: 24.67
+                    latitude: 0
+                    longitude: 0
                 }
                 onHeightChanged: setMapViewport()
                 onWidthChanged: setMapViewport()
