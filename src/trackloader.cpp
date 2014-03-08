@@ -338,8 +338,9 @@ int TrackLoader::fitZoomLevel(int width, int height) {
     }
     int z=0;
     while(z<18) {
-        qreal coordWindow = (180.0/qPow(2,z)) * (pixel/256.0); // 256 is default size of the tile
-        if(coordWindow < (1.2 * coord)) { // 1.2 -> 10% margin on all sides
+        qreal coordWindow = (180.0/qPow(2,z)) * qCos(m_center.latitude()*M_PI/180)
+                * (pixel/256.0); // 256 is default size of the tile
+        if(coordWindow < coord) {
             break;
         }
         z++;
