@@ -20,16 +20,12 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtLocation 5.0
+import QtPositioning 5.0
 
 
 Page {
     id: page
-
-    onStatusChanged: {
-        if (status === PageStatus.Active) {
-            pageStack.pushAttached(Qt.resolvedUrl("HistoryPage.qml"), {})
-        }
-    }
 
     function showSaveDialog() {
         var dialog = pageStack.push(Qt.resolvedUrl("SaveDialog.qml"));
@@ -38,6 +34,51 @@ Page {
             recorder.exportGpx(dialog.name, dialog.description);
             recorder.clearTrack();  // TODO: Make sure save was successful?
         })
+    }
+
+    function setMapZoom() {
+        var windowPixels;
+        if(map.width < map.height) {
+            windowPixels = map.width;
+        } else {
+            windowPixels = map.height;
+        }
+        var z=0;
+        while(z<16) {
+            // Earth diameter in WGS-84: 40075.016686 km
+            // Tile size: 256 pixels
+            var windowLength = (40075016.686 / 256.0)
+                    * Math.cos(recorder.currentPosition.latitude*Math.PI/180)
+                    / Math.pow(2,z) * windowPixels;
+            //console.log(z+": "+windowLength);
+            if(windowLength < (2*recorder.accuracy)) {
+                z--;
+                break;
+            }
+            z++;
+        }
+        //console.log(windowPixels+" "+windowLength+" "+2*recorder.accuracy+" "+z);
+        map.zoomLevel = z;
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Active) {
+            pageStack.pushAttached(Qt.resolvedUrl("HistoryPage.qml"), {})
+        }
+    }
+
+    Component.onCompleted: {
+        map.addMapItem(positionMarker);
+    }
+
+    MapCircle {
+        id: positionMarker
+        center: recorder.currentPosition
+        radius: recorder.accuracy
+        color: "blue"
+        border.color: "blue"
+        opacity: 0.3
+        onRadiusChanged: setMapZoom()
     }
 
     SilicaFlickable {
@@ -85,29 +126,63 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
+                id: header
                 title: "Rena"
             }
             Label {
+                id: stateLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.tracking ? qsTr("Recording") : qsTr("Stopped")
                 font.pixelSize: Theme.fontSizeLarge
             }
             Label {
+                id: distanceLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: (recorder.distance/1000).toFixed(3) + " km"
                 font.pixelSize: Theme.fontSizeHuge
             }
             Label {
+                id: timeLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.time
                 font.pixelSize: Theme.fontSizeHuge
             }
             Label {
+                id: accuracyLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.accuracy < 0 ? "No position" :
                                               (recorder.accuracy < 30
                                                ? qsTr("Accuracy: ") + recorder.accuracy.toFixed(1) + "m"
                                                : qsTr("Accuracy too low: ") + recorder.accuracy.toFixed(1) + "m")
+            }
+            Map {
+                id: map
+                width: parent.width
+                height: page.height - header.height - stateLabel.height - distanceLabel.height - timeLabel.height - accuracyLabel.height - 5*Theme.paddingLarge
+                zoomLevel: 15
+                clip: true
+                gesture.enabled: false
+                plugin: Plugin {
+                    name: "osm"
+                }
+                center: recorder.currentPosition
+
+                MapQuickItem {
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    sourceItem: Rectangle {
+                        color: "white"
+                        opacity: 0.6
+                        width: contributionLabel.width
+                        height: contributionLabel.height
+                            Label {
+                                id: contributionLabel
+                                font.pixelSize: Theme.fontSizeTiny
+                                color: "black"
+                                text: "(C) OpenStreetMap contributors"
+                        }
+                    }
+                }
             }
         }
     }
