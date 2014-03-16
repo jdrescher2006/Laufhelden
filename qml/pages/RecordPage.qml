@@ -43,21 +43,12 @@ Page {
         } else {
             windowPixels = map.height;
         }
-        var z=0;
-        while(z<16) {
-            // Earth diameter in WGS-84: 40075.016686 km
-            // Tile size: 256 pixels
-            var windowLength = (40075016.686 / 256.0)
-                    * Math.cos(recorder.currentPosition.latitude*Math.PI/180)
-                    / Math.pow(2,z) * windowPixels;
-            //console.log(z+": "+windowLength);
-            if(windowLength < (2*recorder.accuracy)) {
-                z--;
-                break;
-            }
-            z++;
-        }
-        //console.log(windowPixels+" "+windowLength+" "+2*recorder.accuracy+" "+z);
+        var latCor = Math.cos(recorder.currentPosition.latitude*Math.PI/180);
+        // Earth equator length in WGS-84: 40075.016686 km
+        // Tile size: 256 pixels
+        var innerFunction = windowPixels/256.0 * 40075016.686/(2*recorder.accuracy) * latCor
+        // 2 base logarithm is ln(x)/ln(2)
+        var z = Math.floor(Math.log(innerFunction) / Math.log(2));
         map.zoomLevel = z;
     }
 

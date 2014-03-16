@@ -336,15 +336,9 @@ int TrackLoader::fitZoomLevel(int width, int height) {
         coord = maxLon-minLon;
         pixel = height;
     }
-    int z=0;
-    while(z<18) {
-        qreal coordWindow = (180.0/qPow(2,z)) * qCos(m_center.latitude()*M_PI/180)
-                * (pixel/256.0); // 256 is default size of the tile
-        if(coordWindow < coord) {
-            break;
-        }
-        z++;
-    }
+
+    // log2(x) = ln(x)/ln(2)
+    int z = qFloor(qLn(pixel/256.0 * 360.0/coord * qCos(m_center.latitude()*M_PI/180))/qLn(2));
     return z;
 }
 
