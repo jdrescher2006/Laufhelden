@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QGeoPositionInfoSource>
+#include <QTimer>
 
 class TrackRecorder : public QObject
 {
@@ -65,8 +66,10 @@ signals:
 
 public slots:
     void positionUpdated(const QGeoPositionInfo &newPos);
+    void autoSave();
 
 private:
+    void loadAutoSave();
     QGeoPositionInfoSource *m_posSrc;
     qreal m_accuracy;
     QList<QGeoPositionInfo> m_points;
@@ -75,6 +78,8 @@ private:
     bool m_tracking;
     bool m_isEmpty;
     bool m_applicationActive;
+    int m_autoSavePosition;
+    QTimer m_autoSaveTimer;
     };
 
 #endif // TRACKRECORDER_H

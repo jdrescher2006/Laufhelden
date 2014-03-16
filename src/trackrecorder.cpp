@@ -34,6 +34,15 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_tracking = false;
     m_isEmpty = true;
     m_applicationActive = true;
+    m_autoSavePosition = 0;
+
+    // Load autosaved track if left from previous session
+    loadAutoSave();
+
+    // Setup periodic autosave
+    m_autoSaveTimer.setInterval(60000);
+    connect(&m_autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSave()));
+    m_autoSaveTimer.start();
 
     m_posSrc = QGeoPositionInfoSource::createDefaultSource(0);
         if (m_posSrc) {
@@ -48,7 +57,7 @@ TrackRecorder::TrackRecorder(QObject *parent) :
 
 TrackRecorder::~TrackRecorder() {
     qDebug()<<"TrackRecorder destructor";
-    exportGpx();    // Panic autosave
+    autoSave();
 }
 
 void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
@@ -191,6 +200,9 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     if(file.error()) {
         qDebug()<<"Error in writing to a file";
         qDebug()<<file.errorString();
+    } else {
+        QDir renaDir = QDir(homeDir + "/" + subDir);
+        renaDir.remove("Autosave");
     }
 }
 
@@ -198,6 +210,12 @@ void TrackRecorder::clearTrack() {
     m_points.clear();
     m_distance = 0;
     m_isEmpty = true;
+
+    QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    QString subDir = "Rena";
+    QDir renaDir = QDir(homeDir + "/" + subDir);
+    renaDir.remove("Autosave");
+
     emit distanceChanged();
     emit timeChanged();
     emit isEmptyChanged();
@@ -294,4 +312,140 @@ void TrackRecorder::setApplicationActive(bool active) {
 
 QGeoCoordinate TrackRecorder::currentPosition() const {
     return m_currentPosition;
+}
+
+void TrackRecorder::autoSave() {
+    QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    QString subDir = "Rena";
+    QString filename = "Autosave";
+    QDir home = QDir(homeDir);
+
+    if(m_points.size() < 1) {
+        // Nothing to save
+        return;
+    }
+
+    qDebug()<<"Autosaving";
+
+    if(!home.exists(subDir)) {
+        qDebug()<<"Directory does not exist, creating";
+        if(home.mkdir(subDir)) {
+            qDebug()<<"Directory created";
+        } else {
+            qDebug()<<"Directory creation failed, aborting";
+            return;
+        }
+    }
+    QFile file;
+    file.setFileName(homeDir + "/" + subDir + "/" + filename);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+        qDebug()<<"File opening failed, aborting";
+        return;
+    }
+    QTextStream stream(&file);
+    stream.setRealNumberPrecision(15);
+
+    while(m_autoSavePosition < m_points.size()) {
+        stream<<m_points.at(m_autoSavePosition).coordinate().latitude();
+        stream<<" ";
+        stream<<m_points.at(m_autoSavePosition).coordinate().longitude();
+        stream<<" ";
+        stream<<m_points.at(m_autoSavePosition).timestamp().toUTC().toString(Qt::ISODate);
+        stream<<" ";
+        if(m_points.at(m_autoSavePosition).coordinate().type() == QGeoCoordinate::Coordinate3D) {
+            stream<<m_points.at(m_autoSavePosition).coordinate().altitude();
+            stream<<" ";
+        } else {
+            stream<<"nan ";
+        }
+        stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::Direction);
+        stream<<" ";
+        stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::GroundSpeed);
+        stream<<" ";
+        stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::VerticalSpeed);
+        stream<<" ";
+        stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::MagneticVariation);
+        stream<<" ";
+        stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::HorizontalAccuracy);
+        stream<<" ";
+        stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::VerticalAccuracy);
+        stream<<'\n';
+        m_autoSavePosition++;
+    }
+    stream.flush();
+    file.close();
+}
+
+void TrackRecorder::loadAutoSave() {
+    QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    QString subDir = "Rena";
+    QString filename = "Autosave";
+    QFile file;
+    file.setFileName(homeDir + "/" + subDir + "/" + filename);
+    if(!file.exists()) {
+        qDebug()<<"No autosave found";
+        return;
+    }
+
+    qDebug()<<"Loading autosave";
+
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug()<<"File opening failed, aborting";
+        return;
+    }
+    QTextStream stream(&file);
+
+    while(!stream.atEnd()) {
+        QGeoPositionInfo point;
+        qreal lat, lon, alt, temp;
+        QString timeStr;
+        stream>>lat>>lon>>timeStr>>alt;
+        point.setCoordinate(QGeoCoordinate(lat, lon, alt));
+        point.setTimestamp(QDateTime::fromString(timeStr,Qt::ISODate));
+        stream>>temp;
+        if(temp == temp) {  // If value is not nan
+            point.setAttribute(QGeoPositionInfo::Direction, temp);
+        }
+        stream>>temp;
+        if(temp == temp) {
+            point.setAttribute(QGeoPositionInfo::GroundSpeed, temp);
+        }
+        stream>>temp;
+        if(temp == temp) {
+            point.setAttribute(QGeoPositionInfo::VerticalSpeed, temp);
+        }
+        stream>>temp;
+        if(temp == temp) {
+            point.setAttribute(QGeoPositionInfo::MagneticVariation, temp);
+        }
+        stream>>temp;
+        if(temp == temp) {
+            point.setAttribute(QGeoPositionInfo::HorizontalAccuracy, temp);
+        }
+        stream>>temp;
+        if(temp == temp) {
+            point.setAttribute(QGeoPositionInfo::VerticalAccuracy, temp);
+        }
+        stream.readLine(); // Read rest of the line, if any
+        m_points.append(point);
+    }
+    m_autoSavePosition = m_points.size();
+    file.close();
+
+    qDebug()<<m_autoSavePosition<<"track points loaded";
+
+    emit pointsChanged();
+    emit timeChanged();
+
+    if(m_points.size() > 1) {
+        for(int i=1;i<m_points.size();i++) {
+            m_distance += m_points.at(i-1).coordinate().distanceTo(m_points.at(i).coordinate());
+        }
+        emit distanceChanged();
+        }
+
+    if(!m_points.isEmpty()) {
+        m_isEmpty = false;
+        emit isEmptyChanged();
+    }
 }
