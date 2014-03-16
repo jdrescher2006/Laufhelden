@@ -45,14 +45,14 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_autoSaveTimer.start();
 
     m_posSrc = QGeoPositionInfoSource::createDefaultSource(0);
-        if (m_posSrc) {
-            m_posSrc->setUpdateInterval(1000);
-            connect(m_posSrc, SIGNAL(positionUpdated(QGeoPositionInfo)),
-                    this, SLOT(positionUpdated(QGeoPositionInfo)));
-            m_posSrc->startUpdates();
-        } else {
-            qDebug()<<"Failed initializing PositionInfoSource";
-        }
+    if (m_posSrc) {
+        m_posSrc->setUpdateInterval(1000);
+        connect(m_posSrc, SIGNAL(positionUpdated(QGeoPositionInfo)),
+                this, SLOT(positionUpdated(QGeoPositionInfo)));
+        m_posSrc->startUpdates();
+    } else {
+        qDebug()<<"Failed initializing PositionInfoSource";
+    }
 }
 
 TrackRecorder::~TrackRecorder() {
@@ -74,7 +74,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
     if(newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) &&
             (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0)) {
         return;
-}
+    }
 
     if(m_tracking) {
         m_points.append(newPos);
@@ -90,7 +90,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
             m_distance += m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
             emit distanceChanged();
-            }
+        }
     }
 }
 
@@ -442,7 +442,7 @@ void TrackRecorder::loadAutoSave() {
             m_distance += m_points.at(i-1).coordinate().distanceTo(m_points.at(i).coordinate());
         }
         emit distanceChanged();
-        }
+    }
 
     if(!m_points.isEmpty()) {
         m_isEmpty = false;
