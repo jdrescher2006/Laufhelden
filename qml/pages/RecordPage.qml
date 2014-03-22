@@ -37,20 +37,31 @@ Page {
     }
 
     function setMapViewport() {
-        var windowPixels;
-        if(map.width < map.height) {
-            windowPixels = map.width;
-        } else {
-            windowPixels = map.height;
+        if(recorder.accuracy < 0 && recorder.points < 1) {
+            return;
         }
-        var latCor = Math.cos(recorder.currentPosition.latitude*Math.PI/180);
-        // Earth equator length in WGS-84: 40075.016686 km
-        // Tile size: 256 pixels
-        var innerFunction = windowPixels/256.0 * 40075016.686/(2*recorder.accuracy) * latCor
-        // 2 base logarithm is ln(x)/ln(2)
-        var accuracyZoom = Math.min(map.maximumZoomLevel, Math.floor(Math.log(innerFunction) / Math.log(2)));
+
+        var accuracyZoom;
+        if(recorder.accuracy > 0) {
+            var windowPixels;
+            if(map.width < map.height) {
+                windowPixels = map.width;
+            } else {
+                windowPixels = map.height;
+            }
+            var latCor = Math.cos(recorder.currentPosition.latitude*Math.PI/180);
+            // Earth equator length in WGS-84: 40075.016686 km
+            // Tile size: 256 pixels
+            var innerFunction = windowPixels/256.0 * 40075016.686/(2*recorder.accuracy) * latCor
+            // 2 base logarithm is ln(x)/ln(2)
+            accuracyZoom = Math.min(map.maximumZoomLevel, Math.floor(Math.log(innerFunction) / Math.log(2)));
+        } else {
+            accuracyZoom = map.maximumZoomLevel;
+        }
+
         var routeZoom = Math.min(map.maximumZoomLevel, recorder.fitZoomLevelToRoute(map.width, map.height));
-        if(accuracyZoom <= routeZoom) {
+
+        if(accuracyZoom <= routeZoom && recorder.accuracy > 0) {
             map.zoomLevel = accuracyZoom;
             map.center = recorder.currentPosition;
         } else {
@@ -171,13 +182,16 @@ Page {
                 id: map
                 width: parent.width
                 height: page.height - header.height - stateLabel.height - distanceLabel.height - timeLabel.height - accuracyLabel.height - 5*Theme.paddingLarge
-                zoomLevel: 15
                 clip: true
                 gesture.enabled: false
                 plugin: Plugin {
                     name: "osm"
                 }
-                center: recorder.currentPosition
+                center {
+                    latitude: 0.0
+                    longitude: 0.0
+                }
+                zoomLevel: minimumZoomLevel
 
                 MapQuickItem {
                     anchors.right: parent.right
