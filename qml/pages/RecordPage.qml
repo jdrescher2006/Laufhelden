@@ -36,7 +36,7 @@ Page {
         })
     }
 
-    function setMapZoom() {
+    function setMapViewport() {
         var windowPixels;
         if(map.width < map.height) {
             windowPixels = map.width;
@@ -48,8 +48,20 @@ Page {
         // Tile size: 256 pixels
         var innerFunction = windowPixels/256.0 * 40075016.686/(2*recorder.accuracy) * latCor
         // 2 base logarithm is ln(x)/ln(2)
-        var z = Math.floor(Math.log(innerFunction) / Math.log(2));
-        map.zoomLevel = z;
+        var accuracyZoom = Math.min(map.maximumZoomLevel, Math.floor(Math.log(innerFunction) / Math.log(2)));
+        var routeZoom = Math.min(map.maximumZoomLevel, recorder.fitZoomLevelToRoute(map.width, map.height));
+        if(accuracyZoom <= routeZoom) {
+            map.zoomLevel = accuracyZoom;
+            map.center = recorder.currentPosition;
+        } else {
+            map.zoomLevel = routeZoom;
+            map.center = recorder.routeCenter();
+        }
+    }
+
+    function newRoutePoint(coordinate) {
+        routeLine.addCoordinate(coordinate);
+        setMapViewport();
     }
 
     onStatusChanged: {
@@ -59,7 +71,9 @@ Page {
     }
 
     Component.onCompleted: {
+        recorder.newRoutePoint.connect(newRoutePoint);
         map.addMapItem(positionMarker);
+        map.addMapItem(routeLine);
     }
 
     MapCircle {
@@ -69,7 +83,14 @@ Page {
         color: "blue"
         border.color: "blue"
         opacity: 0.3
-        onRadiusChanged: setMapZoom()
+        onRadiusChanged: setMapViewport()
+    }
+
+    MapPolyline {
+        id: routeLine
+        line.color: "red"
+        line.width: 5
+        smooth: true
     }
 
     SilicaFlickable {

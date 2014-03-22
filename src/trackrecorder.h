@@ -54,6 +54,10 @@ public:
     void setApplicationActive(bool active);
     QGeoCoordinate currentPosition() const;
 
+    // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
+    Q_INVOKABLE int fitZoomLevelToRoute(int width, int height);
+    Q_INVOKABLE QGeoCoordinate routeCenter();
+
 signals:
     void accuracyChanged();
     void pointsChanged();
@@ -63,6 +67,7 @@ signals:
     void isEmptyChanged();
     void applicationActiveChanged();
     void currentPositionChanged();
+    void newRoutePoint(QGeoCoordinate coordinate);
 
 public slots:
     void positionUpdated(const QGeoPositionInfo &newPos);
@@ -75,6 +80,10 @@ private:
     QList<QGeoPositionInfo> m_points;
     QGeoCoordinate m_currentPosition;
     qreal m_distance;
+    qreal m_minLat;
+    qreal m_maxLat;
+    qreal m_minLon;
+    qreal m_maxLon;
     bool m_tracking;
     bool m_isEmpty;
     bool m_applicationActive;

@@ -23,6 +23,7 @@
 #include <QSaveFile>
 #include <QXmlStreamWriter>
 #include <QDebug>
+#include <qmath.h>
 #include "trackrecorder.h"
 
 TrackRecorder::TrackRecorder(QObject *parent) :
@@ -82,6 +83,8 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
         emit timeChanged();
         if(m_isEmpty) {
             m_isEmpty = false;
+            m_minLat = m_maxLat = newPos.coordinate().latitude();
+            m_minLon = m_maxLon = newPos.coordinate().longitude();
             emit isEmptyChanged();
         }
 
@@ -90,7 +93,18 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
             m_distance += m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
             emit distanceChanged();
+            if(newPos.coordinate().latitude() < m_minLat) {
+                m_minLat = newPos.coordinate().latitude();
+            } else if(newPos.coordinate().latitude() > m_maxLat) {
+                m_maxLat = newPos.coordinate().latitude();
+            }
+            if(newPos.coordinate().longitude() < m_minLon) {
+                m_minLon = newPos.coordinate().longitude();
+            } else if(newPos.coordinate().longitude() > m_maxLon) {
+                m_maxLon = newPos.coordinate().longitude();
+            }
         }
+        emit newRoutePoint(newPos.coordinate());
     }
 }
 
@@ -314,6 +328,33 @@ QGeoCoordinate TrackRecorder::currentPosition() const {
     return m_currentPosition;
 }
 
+int TrackRecorder::fitZoomLevelToRoute(int width, int height) {
+    if(m_points.size() < 2) {
+        return 20; // TODO: proper value
+    }
+
+    qreal coord, pixel;
+    qreal routeAR = (m_maxLat-m_minLat)/(m_maxLon-m_minLon);
+    qreal windowAR = (qreal)width/(qreal)height;
+    if(routeAR > windowAR ) {
+        // Width limits
+        coord = m_maxLat-m_minLat;
+        pixel = width;
+    } else {
+        // height limits
+        coord = m_maxLon-m_minLon;
+        pixel = height;
+    }
+
+    // log2(x) = ln(x)/ln(2)
+    int z = qFloor(qLn(pixel/256.0 * 360.0/coord * qCos((m_minLat+m_maxLat)/2*M_PI/180))/qLn(2));
+    return z;
+}
+
+QGeoCoordinate TrackRecorder::routeCenter() {
+    return QGeoCoordinate((m_minLat+m_maxLat)/2, (m_minLon+m_maxLon)/2);
+}
+
 void TrackRecorder::autoSave() {
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Rena";
@@ -428,6 +469,22 @@ void TrackRecorder::loadAutoSave() {
         }
         stream.readLine(); // Read rest of the line, if any
         m_points.append(point);
+        if(m_points.size() > 1) {
+            if(point.coordinate().latitude() < m_minLat) {
+                m_minLat = point.coordinate().latitude();
+            } else if(point.coordinate().latitude() > m_maxLat) {
+                m_maxLat = point.coordinate().latitude();
+            }
+            if(point.coordinate().longitude() < m_minLon) {
+                m_minLon = point.coordinate().longitude();
+            } else if(point.coordinate().longitude() > m_maxLon) {
+                m_maxLon = point.coordinate().longitude();
+            }
+        } else {
+            m_minLat = m_maxLat = point.coordinate().latitude();
+            m_minLon = m_maxLon = point.coordinate().longitude();
+        }
+        emit newRoutePoint(point.coordinate());
     }
     m_autoSavePosition = m_points.size();
     file.close();
