@@ -57,10 +57,17 @@ Page {
     }
 
     SilicaFlickable {
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: routeMap.top
+        }
+        clip: true
+        contentHeight: header.height + gridContainer.height + Theme.paddingLarge
+        VerticalScrollDecorator {}
         Column {
             width: parent.width
-            spacing: Theme.paddingLarge
             PageHeader {
                 id: header
                 title: trackLoader.name==="" ? "Unnamed track" : trackLoader.name
@@ -71,6 +78,9 @@ Page {
                 width: parent.width
                 spacing: Theme.paddingLarge
                 columns: 2
+                Behavior on opacity {
+                    NumberAnimation { duration: 200 }
+                }
 
                 Label {
                     id: descriptionLabel
@@ -159,40 +169,59 @@ Page {
                     text: trackLoader.pace.toFixed(1) + " min/km"
                 }
             }
-            Map {
-                id: routeMap
-                width: parent.width
-                height: detailPage.height - header.height - gridContainer.height - 2*Theme.paddingLarge
-                zoomLevel: 1
-                clip: true
-                gesture.enabled: false
-                plugin: Plugin {
-                    name: "osm"
-                }
-                // Following definition of map center does not work without QtPositioning!?
-                center {
-                    latitude: 0
-                    longitude: 0
-                }
-                onHeightChanged: setMapViewport()
-                onWidthChanged: setMapViewport()
+        }
+    }
+    Map {
+        id: routeMap
+        width: parent.width
+        height: width*3/4
+        anchors.bottom: parent.bottom
+        zoomLevel: 1
+        clip: true
+        gesture.enabled: false
+        plugin: Plugin {
+            name: "osm"
+        }
+        // Following definition of map center does not work without QtPositioning!?
+        center {
+            latitude: 0
+            longitude: 0
+        }
+        onHeightChanged: setMapViewport()
+        onWidthChanged: setMapViewport()
+        Behavior on height {
+            NumberAnimation { duration: 200}
+        }
 
-                MapQuickItem {
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    sourceItem: Rectangle {
-                        color: "white"
-                        opacity: 0.6
-                        width: contributionLabel.width
-                        height: contributionLabel.height
-                            Label {
-                                id: contributionLabel
-                                font.pixelSize: Theme.fontSizeTiny
-                                color: "black"
-                                text: "(C) OpenStreetMap contributors"
-                        }
-                    }
+        MapQuickItem {
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            sourceItem: Rectangle {
+                color: "white"
+                opacity: 0.6
+                width: contributionLabel.width
+                height: contributionLabel.height
+                    Label {
+                        id: contributionLabel
+                        font.pixelSize: Theme.fontSizeTiny
+                        color: "black"
+                        text: "(C) OpenStreetMap contributors"
                 }
+            }
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                routeMap.gesture.enabled = !routeMap.gesture.enabled;
+                if(routeMap.gesture.enabled) {
+                    gridContainer.opacity = 0.0;
+                } else {
+                    gridContainer.opacity = 1.0;
+                }
+                routeMap.height = routeMap.gesture.enabled
+                        ? detailPage.height
+                        : routeMap.width*3/4;
+                detailPage.backNavigation = !routeMap.gesture.enabled;
             }
         }
     }
