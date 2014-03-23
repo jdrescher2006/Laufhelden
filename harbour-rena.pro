@@ -25,7 +25,8 @@ OTHER_FILES += qml/harbour-rena.qml \
     qml/pages/SaveDialog.qml \
     qml/pages/HistoryPage.qml \
     qml/pages/DetailedViewPage.qml \
-    qml/pages/AboutPage.qml
+    qml/pages/AboutPage.qml \
+    qml/pages/ConfirmClearDialog.qml
 
 HEADERS += \
     src/trackrecorder.h \

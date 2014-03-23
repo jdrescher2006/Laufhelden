@@ -36,6 +36,15 @@ Page {
         })
     }
 
+    function showClearConfirmation() {
+        var dialog = pageStack.push(Qt.resolvedUrl("ConfirmClearDialog.qml"));
+        dialog.accepted.connect(function() {
+            console.log("Starting new tracking");
+            recorder.clearTrack();
+            recorder.tracking = true;
+        })
+    }
+
     function setMapViewport() {
         if(recorder.accuracy < 0 && recorder.points < 1) {
             return;
@@ -116,8 +125,7 @@ Page {
                 text: qsTr("Start new recording")
                 visible: !recorder.tracking
                 onClicked: {
-                    recorder.clearTrack();
-                    recorder.tracking = true;
+                    showClearConfirmation();
                 }
             }
             MenuItem {
