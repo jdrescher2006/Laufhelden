@@ -33,6 +33,7 @@ Page {
             console.log("Saving track");
             recorder.exportGpx(dialog.name, dialog.description);
             recorder.clearTrack();  // TODO: Make sure save was successful?
+            routeLine.path = [];
         })
     }
 
@@ -41,6 +42,7 @@ Page {
         dialog.accepted.connect(function() {
             console.log("Starting new tracking");
             recorder.clearTrack();
+            routeLine.path = [];
             recorder.tracking = true;
         })
     }
