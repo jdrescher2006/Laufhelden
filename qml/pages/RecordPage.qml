@@ -93,7 +93,11 @@ Page {
     Component.onCompleted: {
         recorder.newRoutePoint.connect(newRoutePoint);
         map.addMapItem(positionMarker);
+        for(var i=0;i<recorder.points;i++) {
+            routeLine.addCoordinate(recorder.trackPointAt(i));
+        }
         map.addMapItem(routeLine);
+        setMapViewport();
     }
 
     MapCircle {

@@ -328,6 +328,10 @@ QGeoCoordinate TrackRecorder::currentPosition() const {
     return m_currentPosition;
 }
 
+QGeoCoordinate TrackRecorder::trackPointAt(int index) {
+    return m_points.at(index).coordinate();
+}
+
 int TrackRecorder::fitZoomLevelToRoute(int width, int height) {
     if(m_points.size() < 2) {
         return 20; // TODO: proper value

@@ -53,6 +53,7 @@ public:
     bool applicationActive() const;
     void setApplicationActive(bool active);
     QGeoCoordinate currentPosition() const;
+    Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevelToRoute(int width, int height);
