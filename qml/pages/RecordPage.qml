@@ -129,7 +129,11 @@ Page {
                 text: qsTr("Start new recording")
                 visible: !recorder.tracking
                 onClicked: {
-                    showClearConfirmation();
+                    if(!recorder.isEmpty) {
+                        showClearConfirmation();
+                    } else {
+                        recorder.tracking = true;
+                    }
                 }
             }
             MenuItem {
