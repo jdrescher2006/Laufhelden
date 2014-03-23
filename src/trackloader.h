@@ -53,8 +53,8 @@ public:
     qreal distance();
     qreal speed();
     qreal pace();
-    Q_INVOKABLE int routePointCount();
-    Q_INVOKABLE QGeoCoordinate routePointAt(int index);
+    Q_INVOKABLE int trackPointCount();
+    Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);
@@ -69,7 +69,7 @@ signals:
     void distanceChanged();
     void speedChanged();
     void paceChanged();
-    void routeChanged();
+    void trackChanged();
 
 public slots:
 

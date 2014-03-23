@@ -56,8 +56,8 @@ public:
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
-    Q_INVOKABLE int fitZoomLevelToRoute(int width, int height);
-    Q_INVOKABLE QGeoCoordinate routeCenter();
+    Q_INVOKABLE int fitZoomLevelToTrack(int width, int height);
+    Q_INVOKABLE QGeoCoordinate trackCenter();
 
 signals:
     void accuracyChanged();
@@ -68,7 +68,7 @@ signals:
     void isEmptyChanged();
     void applicationActiveChanged();
     void currentPositionChanged();
-    void newRoutePoint(QGeoCoordinate coordinate);
+    void newTrackPoint(QGeoCoordinate coordinate);
 
 public slots:
     void positionUpdated(const QGeoPositionInfo &newPos);

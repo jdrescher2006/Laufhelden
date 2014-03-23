@@ -29,28 +29,28 @@ Page {
     property string filename
 
     function setMapViewport() {
-        routeMap.zoomLevel = trackLoader.fitZoomLevel(routeMap.width, routeMap.height);
-        routeMap.center = trackLoader.center();
+        trackMap.zoomLevel = trackLoader.fitZoomLevel(trackMap.width, trackMap.height);
+        trackMap.center = trackLoader.center();
     }
 
     TrackLoader {
         id: trackLoader
         filename: detailPage.filename
-        onRouteChanged: {
-            var routeLength = trackLoader.routePointCount();
-            var routePoints = [];
-            for(var i=0;i<routeLength;i++) {
-                routePoints.push(trackLoader.routePointAt(i));
+        onTrackChanged: {
+            var trackLength = trackLoader.trackPointCount();
+            var trackPoints = [];
+            for(var i=0;i<trackLength;i++) {
+                trackPoints.push(trackLoader.trackPointAt(i));
             }
-            routeLine.path = routePoints;
-            routeMap.addMapItem(routeLine);
-            //routeMap.fitViewportToMapItems(); // Not working
+            trackLine.path = trackPoints;
+            trackMap.addMapItem(trackLine);
+            //trackMap.fitViewportToMapItems(); // Not working
             setMapViewport(); // Workaround for above
         }
     }
 
     MapPolyline {
-        id: routeLine
+        id: trackLine
         line.color: "red"
         line.width: 5
         smooth: true
@@ -61,7 +61,7 @@ Page {
             top: parent.top
             left: parent.left
             right: parent.right
-            bottom: routeMap.top
+            bottom: trackMap.top
         }
         clip: true
         contentHeight: header.height + gridContainer.height + Theme.paddingLarge
@@ -172,7 +172,7 @@ Page {
         }
     }
     Map {
-        id: routeMap
+        id: trackMap
         width: parent.width
         height: width*3/4
         anchors.bottom: parent.bottom
@@ -212,16 +212,16 @@ Page {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                routeMap.gesture.enabled = !routeMap.gesture.enabled;
-                if(routeMap.gesture.enabled) {
+                trackMap.gesture.enabled = !trackMap.gesture.enabled;
+                if(trackMap.gesture.enabled) {
                     gridContainer.opacity = 0.0;
                 } else {
                     gridContainer.opacity = 1.0;
                 }
-                routeMap.height = routeMap.gesture.enabled
+                trackMap.height = trackMap.gesture.enabled
                         ? detailPage.height
-                        : routeMap.width*3/4;
-                detailPage.backNavigation = !routeMap.gesture.enabled;
+                        : trackMap.width*3/4;
+                detailPage.backNavigation = !trackMap.gesture.enabled;
             }
         }
     }

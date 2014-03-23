@@ -148,7 +148,7 @@ void TrackLoader::load() {
         }
     }
 
-    emit routeChanged();
+    emit trackChanged();
 }
 
 QString TrackLoader::filename() const {
@@ -286,7 +286,7 @@ qreal TrackLoader::pace() {
     return m_pace;
 }
 
-int TrackLoader::routePointCount() {
+int TrackLoader::trackPointCount() {
     if(!m_loaded && !m_error) {
         load();
     }
@@ -297,7 +297,7 @@ int TrackLoader::routePointCount() {
     return m_points.size();
 }
 
-QGeoCoordinate TrackLoader::routePointAt(int index) {
+QGeoCoordinate TrackLoader::trackPointAt(int index) {
     return QGeoCoordinate(m_points.at(index).latitude,
                           m_points.at(index).longitude,
                           m_points.at(index).elevation);
@@ -325,9 +325,9 @@ int TrackLoader::fitZoomLevel(int width, int height) {
 
     m_center = QGeoCoordinate((minLat+maxLat)/2, (minLon+maxLon)/2);
     qreal coord, pixel;
-    qreal routeAR = (maxLat-minLat)/(maxLon-minLon);
+    qreal trackAR = (maxLat-minLat)/(maxLon-minLon);
     qreal windowAR = (qreal)width/(qreal)height;
-    if(routeAR > windowAR ) {
+    if(trackAR > windowAR ) {
         // Width limits
         coord = maxLat-minLat;
         pixel = width;

@@ -104,7 +104,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
                 m_maxLon = newPos.coordinate().longitude();
             }
         }
-        emit newRoutePoint(newPos.coordinate());
+        emit newTrackPoint(newPos.coordinate());
     }
 }
 
@@ -332,15 +332,15 @@ QGeoCoordinate TrackRecorder::trackPointAt(int index) {
     return m_points.at(index).coordinate();
 }
 
-int TrackRecorder::fitZoomLevelToRoute(int width, int height) {
+int TrackRecorder::fitZoomLevelToTrack(int width, int height) {
     if(m_points.size() < 2) {
         return 20; // TODO: proper value
     }
 
     qreal coord, pixel;
-    qreal routeAR = (m_maxLat-m_minLat)/(m_maxLon-m_minLon);
+    qreal trackAR = (m_maxLat-m_minLat)/(m_maxLon-m_minLon);
     qreal windowAR = (qreal)width/(qreal)height;
-    if(routeAR > windowAR ) {
+    if(trackAR > windowAR ) {
         // Width limits
         coord = m_maxLat-m_minLat;
         pixel = width;
@@ -355,7 +355,7 @@ int TrackRecorder::fitZoomLevelToRoute(int width, int height) {
     return z;
 }
 
-QGeoCoordinate TrackRecorder::routeCenter() {
+QGeoCoordinate TrackRecorder::trackCenter() {
     return QGeoCoordinate((m_minLat+m_maxLat)/2, (m_minLon+m_maxLon)/2);
 }
 
@@ -488,7 +488,7 @@ void TrackRecorder::loadAutoSave() {
             m_minLat = m_maxLat = point.coordinate().latitude();
             m_minLon = m_maxLon = point.coordinate().longitude();
         }
-        emit newRoutePoint(point.coordinate());
+        emit newTrackPoint(point.coordinate());
     }
     m_autoSavePosition = m_points.size();
     file.close();

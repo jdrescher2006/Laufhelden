@@ -33,7 +33,7 @@ Page {
             console.log("Saving track");
             recorder.exportGpx(dialog.name, dialog.description);
             recorder.clearTrack();  // TODO: Make sure save was successful?
-            routeLine.path = [];
+            trackLine.path = [];
         })
     }
 
@@ -42,7 +42,7 @@ Page {
         dialog.accepted.connect(function() {
             console.log("Starting new tracking");
             recorder.clearTrack();
-            routeLine.path = [];
+            trackLine.path = [];
             recorder.tracking = true;
         })
     }
@@ -70,19 +70,19 @@ Page {
             accuracyZoom = map.maximumZoomLevel;
         }
 
-        var routeZoom = Math.min(map.maximumZoomLevel, recorder.fitZoomLevelToRoute(map.width, map.height));
+        var trackZoom = Math.min(map.maximumZoomLevel, recorder.fitZoomLevelToTrack(map.width, map.height));
 
-        if(accuracyZoom <= routeZoom && recorder.accuracy > 0) {
+        if(accuracyZoom <= trackZoom && recorder.accuracy > 0) {
             map.zoomLevel = accuracyZoom;
             map.center = recorder.currentPosition;
         } else {
-            map.zoomLevel = routeZoom;
-            map.center = recorder.routeCenter();
+            map.zoomLevel = trackZoom;
+            map.center = recorder.trackCenter();
         }
     }
 
-    function newRoutePoint(coordinate) {
-        routeLine.addCoordinate(coordinate);
+    function newTrackPoint(coordinate) {
+        trackLine.addCoordinate(coordinate);
         setMapViewport();
     }
 
@@ -93,12 +93,12 @@ Page {
     }
 
     Component.onCompleted: {
-        recorder.newRoutePoint.connect(newRoutePoint);
+        recorder.newTrackPoint.connect(newTrackPoint);
         map.addMapItem(positionMarker);
         for(var i=0;i<recorder.points;i++) {
-            routeLine.addCoordinate(recorder.trackPointAt(i));
+            trackLine.addCoordinate(recorder.trackPointAt(i));
         }
-        map.addMapItem(routeLine);
+        map.addMapItem(trackLine);
         setMapViewport();
     }
 
@@ -113,7 +113,7 @@ Page {
     }
 
     MapPolyline {
-        id: routeLine
+        id: trackLine
         line.color: "red"
         line.width: 5
         smooth: true
