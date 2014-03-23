@@ -152,6 +152,27 @@ QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int 
     }
 }
 
+bool HistoryModel::removeTrack(int index) {
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Rena";
+    QDir dir = QDir(dirName);
+    if(!dir.exists()) {
+        qDebug()<<"Directory doesn't exist";
+        return false;
+    }
+    QString filename = m_trackList.at(index).filename;
+    bool success = dir.remove(filename);
+    if(success) {
+        beginRemoveRows(QModelIndex(), index, index);
+        m_trackList.removeAt(index);
+        endRemoveRows();
+        qDebug()<<"Removed:"<<filename;
+        return true;
+    } else {
+        qDebug()<<"Removing failed:"<<filename;
+        return false;
+    }
+}
+
 void HistoryModel::newTrackData(int num) {
     TrackItem data = trackLoading.resultAt(num);
     qDebug()<<"Finished loading"<<data.filename;

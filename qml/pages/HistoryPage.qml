@@ -44,7 +44,18 @@ Page {
         delegate: ListItem {
             id: listItem
             width: parent.width
-            height: Theme.itemSizeMedium
+            ListView.onRemove: animateRemoval()
+            menu: ContextMenu {
+                MenuItem {
+                    text: qsTr("Remove")
+                    onClicked: remorseAction(qsTr("Removing"), listItem.deleteTrack)
+                }
+            }
+
+            function deleteTrack() {
+                historyModel.removeTrack(index);
+            }
+
             Label {
                 id: nameLabel
                 x: Theme.paddingLarge
