@@ -333,20 +333,21 @@ QGeoCoordinate TrackRecorder::trackPointAt(int index) {
 }
 
 int TrackRecorder::fitZoomLevelToTrack(int width, int height) {
-    if(m_points.size() < 2) {
-        return 20; // TODO: proper value
+    if(m_points.size() < 2 || width < 1 || height < 1) {
+        // One point track or zero size map
+        return 20;
     }
 
     qreal coord, pixel;
-    qreal trackAR = (m_maxLat-m_minLat)/(m_maxLon-m_minLon);
+    qreal trackAR = (m_maxLon-m_minLon)/(m_maxLat-m_minLat);
     qreal windowAR = (qreal)width/(qreal)height;
     if(trackAR > windowAR ) {
         // Width limits
-        coord = m_maxLat-m_minLat;
+        coord = m_maxLon-m_minLon;
         pixel = width;
     } else {
         // height limits
-        coord = m_maxLon-m_minLon;
+        coord = m_maxLat-m_minLat;
         pixel = height;
     }
 

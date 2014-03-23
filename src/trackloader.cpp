@@ -304,7 +304,8 @@ QGeoCoordinate TrackLoader::trackPointAt(int index) {
 }
 
 int TrackLoader::fitZoomLevel(int width, int height) {
-    if(m_points.size() < 2) {
+    if(m_points.size() < 2 || width < 1 || height < 1) {
+        // One point track or zero size map
         return 20;
     }
     qreal minLat, maxLat, minLon, maxLon;
@@ -325,15 +326,15 @@ int TrackLoader::fitZoomLevel(int width, int height) {
 
     m_center = QGeoCoordinate((minLat+maxLat)/2, (minLon+maxLon)/2);
     qreal coord, pixel;
-    qreal trackAR = (maxLat-minLat)/(maxLon-minLon);
+    qreal trackAR = (maxLon-minLon)/(maxLat-minLat);
     qreal windowAR = (qreal)width/(qreal)height;
     if(trackAR > windowAR ) {
         // Width limits
-        coord = maxLat-minLat;
+        coord = maxLon-minLon;
         pixel = width;
     } else {
         // height limits
-        coord = maxLon-minLon;
+        coord = maxLat-minLat;
         pixel = height;
     }
 
