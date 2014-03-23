@@ -26,6 +26,7 @@ import TrackLoader 1.0
 
 Page {
     id: detailPage
+    allowedOrientations: Orientation.Portrait
     property string filename
 
     function setMapViewport() {
@@ -175,7 +176,7 @@ Page {
     Map {
         id: trackMap
         width: parent.width
-        height: width*3/4
+        height: trackMap.gesture.enabled ? detailPage.height : trackMap.width*3/4;
         anchors.bottom: parent.bottom
         zoomLevel: 1
         clip: true
@@ -216,12 +217,11 @@ Page {
                 trackMap.gesture.enabled = !trackMap.gesture.enabled;
                 if(trackMap.gesture.enabled) {
                     gridContainer.opacity = 0.0;
+                    //detailPage.allowedOrientations = Orientation.All;
                 } else {
                     gridContainer.opacity = 1.0;
+                    //detailPage.allowedOrientations = Orientation.Portrait;
                 }
-                trackMap.height = trackMap.gesture.enabled
-                        ? detailPage.height
-                        : trackMap.width*3/4;
                 detailPage.backNavigation = !trackMap.gesture.enabled;
             }
         }
