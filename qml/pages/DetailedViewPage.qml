@@ -29,7 +29,8 @@ Page {
     property string filename
 
     function setMapViewport() {
-        trackMap.zoomLevel = trackLoader.fitZoomLevel(trackMap.width, trackMap.height);
+        trackMap.zoomLevel = Math.min(trackMap.maximumZoomLevel,
+                                      trackLoader.fitZoomLevel(trackMap.width, trackMap.height));
         trackMap.center = trackLoader.center();
     }
 

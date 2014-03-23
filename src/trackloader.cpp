@@ -305,7 +305,7 @@ QGeoCoordinate TrackLoader::trackPointAt(int index) {
 
 int TrackLoader::fitZoomLevel(int width, int height) {
     if(m_points.size() < 2) {
-        return 13; // TODO: proper value
+        return 20;
     }
     qreal minLat, maxLat, minLon, maxLon;
     minLat = maxLat = m_points.at(0).latitude;
