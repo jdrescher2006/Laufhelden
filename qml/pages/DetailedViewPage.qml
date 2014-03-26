@@ -178,7 +178,6 @@ Page {
         width: parent.width
         height: trackMap.gesture.enabled ? detailPage.height : trackMap.width*3/4;
         anchors.bottom: parent.bottom
-        zoomLevel: 1
         clip: true
         gesture.enabled: false
         plugin: Plugin {
@@ -189,6 +188,7 @@ Page {
             latitude: 0
             longitude: 0
         }
+        zoomLevel: minimumZoomLevel
         onHeightChanged: setMapViewport()
         onWidthChanged: setMapViewport()
         Behavior on height {
