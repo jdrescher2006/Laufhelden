@@ -95,7 +95,8 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 text: speed
             }
-            onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"), {filename: filename})
+            onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
+                                      {filename: filename, name: name})
         }
     }
 }

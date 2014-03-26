@@ -28,6 +28,7 @@ Page {
     id: detailPage
     allowedOrientations: Orientation.Portrait
     property string filename
+    property string name
 
     function setMapViewport() {
         trackMap.zoomLevel = Math.min(trackMap.maximumZoomLevel,
@@ -35,9 +36,14 @@ Page {
         trackMap.center = trackLoader.center();
     }
 
+    onStatusChanged: {
+        if (status === PageStatus.Active) {
+            trackLoader.filename = filename;
+        }
+    }
+
     TrackLoader {
         id: trackLoader
-        filename: detailPage.filename
         onTrackChanged: {
             var trackLength = trackLoader.trackPointCount();
             var trackPoints = [];
@@ -72,7 +78,7 @@ Page {
             width: parent.width
             PageHeader {
                 id: header
-                title: trackLoader.name==="" ? "Unnamed track" : trackLoader.name
+                title: name==="" ? "Unnamed track" : name
             }
             Grid {
                 id: gridContainer
