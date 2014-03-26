@@ -55,6 +55,10 @@ Page {
             //trackMap.fitViewportToMapItems(); // Not working
             setMapViewport(); // Workaround for above
         }
+        onLoadedChanged: {
+            gridContainer.opacity = 1.0
+            trackMap.opacity = 1.0
+        }
     }
 
     MapPolyline {
@@ -62,6 +66,12 @@ Page {
         line.color: "red"
         line.width: 5
         smooth: true
+    }
+
+    BusyIndicator {
+        anchors.centerIn: detailPage
+        running: !trackLoader.loaded
+        size: BusyIndicatorSize.Large
     }
 
     SilicaFlickable {
@@ -86,6 +96,7 @@ Page {
                 width: parent.width
                 spacing: Theme.paddingLarge
                 columns: 2
+                opacity: 0.2
                 Behavior on opacity {
                     NumberAnimation { duration: 200 }
                 }
@@ -197,8 +208,12 @@ Page {
         zoomLevel: minimumZoomLevel
         onHeightChanged: setMapViewport()
         onWidthChanged: setMapViewport()
+        opacity: 0.1
         Behavior on height {
-            NumberAnimation { duration: 200}
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on opacity {
+            NumberAnimation { duration: 200 }
         }
 
         MapQuickItem {

@@ -66,6 +66,7 @@ void TrackLoader::load() {
 
     // Loading considered succeeded at this point
     m_loaded = true;
+    emit loadedChanged();
 
     while(xml.readNextStartElement()) {
         if(xml.name() == "metadata") {
@@ -284,6 +285,10 @@ qreal TrackLoader::pace() {
         return 0;
     }
     return m_pace;
+}
+
+bool TrackLoader::loaded() {
+    return m_loaded;
 }
 
 int TrackLoader::trackPointCount() {

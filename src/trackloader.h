@@ -39,6 +39,7 @@ class TrackLoader : public QObject
     Q_PROPERTY(qreal distance READ distance NOTIFY distanceChanged)
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
+    Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
 
 public:
     explicit TrackLoader(QObject *parent = 0);
@@ -53,6 +54,7 @@ public:
     qreal distance();
     qreal speed();
     qreal pace();
+    bool loaded();
     Q_INVOKABLE int trackPointCount();
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
@@ -69,6 +71,7 @@ signals:
     void distanceChanged();
     void speedChanged();
     void paceChanged();
+    void loadedChanged();
     void trackChanged();
 
 public slots:
