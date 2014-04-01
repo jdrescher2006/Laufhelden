@@ -110,6 +110,7 @@ Page {
         border.color: "blue"
         opacity: 0.3
         onRadiusChanged: setMapViewport()
+        onCenterChanged: setMapViewport()
     }
 
     MapPolyline {
