@@ -65,9 +65,11 @@ Page {
             }
             Label {
                 anchors.horizontalCenter: column.horizontalCenter
+                width: parent.width - 2*Theme.paddingLarge
                 horizontalAlignment: Text.AlignHCenter
-                text: qsTr("Distributed under the terms of the<br>GNU General Public License")
+                text: qsTr("Distributed under the terms of the GNU General Public License")
                 font.pixelSize: Theme.fontSizeExtraSmall
+                wrapMode: Text.Wrap
             }
         }
     }
