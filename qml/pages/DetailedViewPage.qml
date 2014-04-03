@@ -89,6 +89,9 @@ Page {
             PageHeader {
                 id: header
                 title: name==="" ? "Unnamed track" : name
+                Behavior on opacity {
+                    FadeAnimation {}
+                }
             }
             Grid {
                 id: gridContainer
@@ -98,7 +101,7 @@ Page {
                 columns: 2
                 opacity: 0.2
                 Behavior on opacity {
-                    NumberAnimation { duration: 200 }
+                    FadeAnimation {}
                 }
 
                 Label {
@@ -213,7 +216,7 @@ Page {
             NumberAnimation { duration: 200 }
         }
         Behavior on opacity {
-            NumberAnimation { duration: 200 }
+            FadeAnimation {}
         }
         Behavior on zoomLevel {
             NumberAnimation { duration: 200 }
@@ -247,9 +250,11 @@ Page {
                 trackMap.gesture.enabled = !trackMap.gesture.enabled;
                 if(trackMap.gesture.enabled) {
                     gridContainer.opacity = 0.0;
+                    header.opacity = 0.0;
                     //detailPage.allowedOrientations = Orientation.All;
                 } else {
                     gridContainer.opacity = 1.0;
+                    header.opacity = 1.0;
                     //detailPage.allowedOrientations = Orientation.Portrait;
                 }
                 detailPage.backNavigation = !trackMap.gesture.enabled;
