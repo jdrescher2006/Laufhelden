@@ -111,6 +111,15 @@ Page {
         opacity: 0.3
         onRadiusChanged: setMapViewport()
         onCenterChanged: setMapViewport()
+        Behavior on radius {
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on center.latitude {
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on center.longitude {
+            NumberAnimation { duration: 200 }
+        }
     }
 
     MapPolyline {
@@ -211,6 +220,15 @@ Page {
                     longitude: 0.0
                 }
                 zoomLevel: minimumZoomLevel
+                Behavior on zoomLevel {
+                    NumberAnimation { duration: 200 }
+                }
+                Behavior on center.latitude {
+                    NumberAnimation { duration: 200 }
+                }
+                Behavior on center.longitude {
+                    NumberAnimation { duration: 200 }
+                }
 
                 MapQuickItem {
                     anchors.right: parent.right

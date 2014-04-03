@@ -215,6 +215,15 @@ Page {
         Behavior on opacity {
             NumberAnimation { duration: 200 }
         }
+        Behavior on zoomLevel {
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on center.latitude {
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on center.longitude {
+            NumberAnimation { duration: 200 }
+        }
 
         MapQuickItem {
             anchors.right: parent.right
