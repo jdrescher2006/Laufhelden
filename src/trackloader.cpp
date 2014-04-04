@@ -331,20 +331,26 @@ int TrackLoader::fitZoomLevel(int width, int height) {
 
     m_center = QGeoCoordinate((minLat+maxLat)/2, (minLon+maxLon)/2);
     qreal coord, pixel;
-    qreal trackAR = (maxLon-minLon)/(maxLat-minLat);
+    qreal trackMinX = (minLon + 180) / 360;
+    qreal trackMaxX = (maxLon + 180) / 360;
+    qreal trackMinY = sqrt(1-qLn(minLat*M_PI/180 + 1/qCos(minLat*M_PI/180))/M_PI);
+    qreal trackMaxY = sqrt(1-qLn(maxLat*M_PI/180 + 1/qCos(maxLat*M_PI/180))/M_PI);
+
+    qreal trackAR = qAbs((trackMaxX - trackMinX) / (trackMaxY - trackMinY));
     qreal windowAR = (qreal)width/(qreal)height;
     if(trackAR > windowAR ) {
         // Width limits
-        coord = maxLon-minLon;
+        coord = qAbs(trackMaxX - trackMinX);
         pixel = width;
     } else {
         // height limits
-        coord = maxLat-minLat;
+        coord = qAbs(trackMaxY - trackMinY);
         pixel = height;
     }
 
     // log2(x) = ln(x)/ln(2)
-    int z = qFloor(qLn(pixel/256.0 * 360.0/coord * qCos(m_center.latitude()*M_PI/180))/qLn(2));
+    int z = qFloor(qLn(pixel/256.0 * 1.0/coord * qCos(m_center.latitude()*M_PI/180))
+                   / qLn(2)) + 1;
     return z;
 }
 
