@@ -124,6 +124,7 @@ Page {
 
     MapPolyline {
         id: trackLine
+        visible: path.length > 1
         line.color: "red"
         line.width: 5
         smooth: true
