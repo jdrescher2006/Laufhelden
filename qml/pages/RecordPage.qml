@@ -114,8 +114,16 @@ Page {
         color: "blue"
         border.color: "blue"
         opacity: 0.3
-        onRadiusChanged: setMapViewport()
-        onCenterChanged: setMapViewport()
+        onRadiusChanged: {
+            if(!map.gesture.enabled) {  // When not browsing the map
+                setMapViewport()
+            }
+        }
+        onCenterChanged: {
+            if(!map.gesture.enabled) {  // When not browsing the map
+                setMapViewport()
+            }
+        }
         Behavior on radius {
             NumberAnimation { duration: 200 }
         }
