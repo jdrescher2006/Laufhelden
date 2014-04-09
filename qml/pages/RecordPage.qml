@@ -74,9 +74,12 @@ Page {
 
         if(accuracyZoom <= trackZoom && recorder.accuracy > 0) {
             map.zoomLevel = accuracyZoom;
-            map.center = recorder.currentPosition;
         } else {
             map.zoomLevel = trackZoom;
+        }
+        if(recorder.isEmpty) {
+            map.center = recorder.currentPosition;
+        } else {
             map.center = recorder.trackCenter();
         }
     }
