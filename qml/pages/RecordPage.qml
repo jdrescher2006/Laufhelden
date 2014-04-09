@@ -23,7 +23,6 @@ import Sailfish.Silica 1.0
 import QtLocation 5.0
 import QtPositioning 5.0
 
-
 Page {
     id: page
 
@@ -86,7 +85,10 @@ Page {
 
     function newTrackPoint(coordinate) {
         trackLine.addCoordinate(coordinate);
-        setMapViewport();
+        if(!map.gesture.enabled) {
+            // Set viewport only when not browsing
+            setMapViewport();
+        }
     }
 
     onStatusChanged: {
@@ -134,9 +136,14 @@ Page {
     }
 
     SilicaFlickable {
-        anchors.fill: parent
+        id: flickable
+        anchors.top: page.top
+        anchors.bottom: map.top
+        anchors.left: page.left
+        anchors.right: page.right
 
         PullDownMenu {
+            id: menu
             MenuItem {
                 text: qsTr("About Rena")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
@@ -195,12 +202,18 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: (recorder.distance/1000).toFixed(3) + " km"
                 font.pixelSize: Theme.fontSizeHuge
+                Behavior on opacity {
+                    FadeAnimation {}
+                }
             }
             Label {
                 id: timeLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.time
                 font.pixelSize: Theme.fontSizeHuge
+                Behavior on opacity {
+                    FadeAnimation {}
+                }
             }
             Label {
                 id: accuracyLabel
@@ -209,47 +222,79 @@ Page {
                                               (recorder.accuracy < 30
                                                ? qsTr("Accuracy: ") + recorder.accuracy.toFixed(1) + "m"
                                                : qsTr("Accuracy too low: ") + recorder.accuracy.toFixed(1) + "m")
+                Behavior on opacity {
+                    FadeAnimation {}
+                }
             }
-            Map {
-                id: map
-                width: parent.width
-                height: page.height - header.height - stateLabel.height - distanceLabel.height - timeLabel.height - accuracyLabel.height - 5*Theme.paddingLarge
-                clip: true
-                gesture.enabled: false
-                plugin: Plugin {
-                    name: "osm"
-                }
-                center {
-                    latitude: 0.0
-                    longitude: 0.0
-                }
-                zoomLevel: minimumZoomLevel
-                Behavior on zoomLevel {
-                    NumberAnimation { duration: 200 }
-                }
-                Behavior on center.latitude {
-                    NumberAnimation { duration: 200 }
-                }
-                Behavior on center.longitude {
-                    NumberAnimation { duration: 200 }
-                }
+        }
+    }
+    Map {
+        id: map
+        width: parent.width
+        height: map.gesture.enabled
+                ? (page.height - header.height - stateLabel.height -2*Theme.paddingLarge)
+                : width * 3/4
+                  //: (page.height - header.height - stateLabel.height - distanceLabel.height - timeLabel.height - accuracyLabel.height - 5*Theme.paddingLarge)
+        anchors.bottom: parent.bottom
+        clip: true
+        gesture.enabled: false
+        plugin: Plugin {
+            name: "osm"
+        }
+        center {
+            latitude: 0.0
+            longitude: 0.0
+        }
+        zoomLevel: minimumZoomLevel
+        onHeightChanged: setMapViewport()
+        onWidthChanged: setMapViewport()
+        Behavior on height {
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on zoomLevel {
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on center.latitude {
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on center.longitude {
+            NumberAnimation { duration: 200 }
+        }
 
-                MapQuickItem {
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    sourceItem: Rectangle {
-                        color: "white"
-                        opacity: 0.6
-                        width: contributionLabel.width
-                        height: contributionLabel.height
-                            Label {
-                                id: contributionLabel
-                                font.pixelSize: Theme.fontSizeTiny
-                                color: "black"
-                                text: "(C) OpenStreetMap contributors"
-                        }
-                    }
+        MapQuickItem {
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            sourceItem: Rectangle {
+                color: "white"
+                opacity: 0.6
+                width: contributionLabel.width
+                height: contributionLabel.height
+                Label {
+                    id: contributionLabel
+                    font.pixelSize: Theme.fontSizeTiny
+                    color: "black"
+                    text: "(C) OpenStreetMap contributors"
                 }
+            }
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                map.gesture.enabled = !map.gesture.enabled;
+                if(map.gesture.enabled) {
+                    distanceLabel.opacity = 0.0;
+                    timeLabel.opacity = 0.0;
+                    accuracyLabel.opacity = 0.0;
+                    //page.allowedOrientations = Orientation.All;
+                } else {
+                    distanceLabel.opacity = 1.0;
+                    timeLabel.opacity = 1.0;
+                    accuracyLabel.opacity = 1.0;
+                    //page.allowedOrientations = Orientation.All;
+                }
+                page.forwardNavigation = !map.gesture.enabled;
+                flickable.interactive = !map.gesture.enabled;
+                menu.visible = !map.gesture.enabled;
             }
         }
     }
