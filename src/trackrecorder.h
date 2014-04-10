@@ -56,7 +56,7 @@ public:
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
-    Q_INVOKABLE int fitZoomLevelToTrack(int width, int height);
+    Q_INVOKABLE int fitZoomLevel(int width, int height);
     Q_INVOKABLE QGeoCoordinate trackCenter();
 
 signals:

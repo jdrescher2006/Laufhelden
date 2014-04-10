@@ -332,18 +332,24 @@ QGeoCoordinate TrackRecorder::trackPointAt(int index) {
     return m_points.at(index).coordinate();
 }
 
-int TrackRecorder::fitZoomLevelToTrack(int width, int height) {
+int TrackRecorder::fitZoomLevel(int width, int height) {
     if(m_points.size() < 2 || width < 1 || height < 1) {
         // One point track or zero size map
         return 20;
     }
 
-    qreal coord, pixel;
-    qreal trackMinX = (m_minLon + 180) / 360;
-    qreal trackMaxX = (m_maxLon + 180) / 360;
-    qreal trackMinY = sqrt(1-qLn(m_minLat*M_PI/180 + 1/qCos(m_minLat*M_PI/180))/M_PI);
-    qreal trackMaxY = sqrt(1-qLn(m_maxLat*M_PI/180 + 1/qCos(m_maxLat*M_PI/180))/M_PI);
+    // Keep also current position in view
+    qreal minLon = qMin(m_minLon, (qreal)m_currentPosition.longitude());
+    qreal maxLon = qMax(m_maxLon, (qreal)m_currentPosition.longitude());
+    qreal minLat = qMin(m_minLat, (qreal)m_currentPosition.latitude());
+    qreal maxLat = qMax(m_maxLat, (qreal)m_currentPosition.latitude());
 
+    qreal trackMinX = (minLon + 180) / 360;
+    qreal trackMaxX = (maxLon + 180) / 360;
+    qreal trackMinY = sqrt(1-qLn(minLat*M_PI/180 + 1/qCos(minLat*M_PI/180))/M_PI);
+    qreal trackMaxY = sqrt(1-qLn(maxLat*M_PI/180 + 1/qCos(maxLat*M_PI/180))/M_PI);
+
+    qreal coord, pixel;
     qreal trackAR = qAbs((trackMaxX - trackMinX) / (trackMaxY - trackMinY));
     qreal windowAR = (qreal)width/(qreal)height;
     if(trackAR > windowAR ) {
@@ -363,7 +369,13 @@ int TrackRecorder::fitZoomLevelToTrack(int width, int height) {
 }
 
 QGeoCoordinate TrackRecorder::trackCenter() {
-    return QGeoCoordinate((m_minLat+m_maxLat)/2, (m_minLon+m_maxLon)/2);
+    // Keep also current position in view
+    qreal minLon = qMin(m_minLon, (qreal)m_currentPosition.longitude());
+    qreal maxLon = qMax(m_maxLon, (qreal)m_currentPosition.longitude());
+    qreal minLat = qMin(m_minLat, (qreal)m_currentPosition.latitude());
+    qreal maxLat = qMax(m_maxLat, (qreal)m_currentPosition.latitude());
+
+    return QGeoCoordinate((minLat+maxLat)/2, (minLon+maxLon)/2);
 }
 
 void TrackRecorder::autoSave() {

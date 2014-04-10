@@ -69,7 +69,7 @@ Page {
             accuracyZoom = map.maximumZoomLevel;
         }
 
-        var trackZoom = Math.min(map.maximumZoomLevel, recorder.fitZoomLevelToTrack(map.width, map.height));
+        var trackZoom = Math.min(map.maximumZoomLevel, recorder.fitZoomLevel(map.width, map.height));
 
         if(accuracyZoom <= trackZoom && recorder.accuracy > 0) {
             map.zoomLevel = accuracyZoom;
