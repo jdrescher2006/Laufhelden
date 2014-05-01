@@ -32,6 +32,7 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_error = false;
     m_name = "";
     m_speed = 0;
+    m_maxSpeed = 0;
     m_pace = 0;
     m_duration = 0;
     m_distance = 0;
@@ -134,8 +135,12 @@ void TrackLoader::load() {
             QGeoCoordinate first(m_points.at(i-1).latitude,m_points.at(i-1).longitude);
             QGeoCoordinate second(m_points.at(i).latitude,m_points.at(i).longitude);
             m_distance += first.distanceTo(second);
+            if(m_points.at(i).groundSpeed > m_maxSpeed) {
+                m_maxSpeed = m_points.at(i).groundSpeed;
+            }
         }
         emit distanceChanged();
+        emit maxSpeedChanged();
         m_speed = m_distance / m_duration;
         emit speedChanged();
         m_pace = m_duration / m_distance * 1000 / 60;
@@ -274,6 +279,17 @@ qreal TrackLoader::speed() {
         return 0;
     }
     return m_speed;
+}
+
+qreal TrackLoader::maxSpeed() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_maxSpeed;
 }
 
 qreal TrackLoader::pace() {

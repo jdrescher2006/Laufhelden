@@ -177,6 +177,22 @@ Page {
                     text: (trackLoader.speed*3.6).toFixed(1) + " km/h"
                 }
                 Label {
+                    height:maxSpeedData.height
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignBottom
+                    id: maxSpeedLabel
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: "Maximum speed:"
+                }
+                Label {
+                    id: maxSpeedData
+                    width: descriptionData.width
+                    text: trackLoader.maxSpeed>0
+                          ? (trackLoader.maxSpeed*3.6).toFixed(1) + " km/h"
+                          : "-"
+                }
+                Label {
                     width: avgSpeedLabel.width
                     height:paceData.height
                     horizontalAlignment: Text.AlignRight

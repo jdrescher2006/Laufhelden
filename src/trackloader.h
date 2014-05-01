@@ -38,6 +38,7 @@ class TrackLoader : public QObject
     Q_PROPERTY(QString durationStr READ durationStr NOTIFY durationChanged)
     Q_PROPERTY(qreal distance READ distance NOTIFY distanceChanged)
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
+    Q_PROPERTY(qreal maxSpeed READ maxSpeed NOTIFY maxSpeedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
     Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
 
@@ -53,6 +54,7 @@ public:
     QString durationStr();
     qreal distance();
     qreal speed();
+    qreal maxSpeed();
     qreal pace();
     bool loaded();
     Q_INVOKABLE int trackPointCount();
@@ -70,6 +72,7 @@ signals:
     void durationChanged();
     void distanceChanged();
     void speedChanged();
+    void maxSpeedChanged();
     void paceChanged();
     void loadedChanged();
     void trackChanged();
@@ -102,6 +105,7 @@ private:
     uint m_duration;
     qreal m_distance;
     qreal m_speed;
+    qreal m_maxSpeed;
     qreal m_pace;
     QGeoCoordinate m_center;
 };
