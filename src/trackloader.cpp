@@ -100,7 +100,7 @@ void TrackLoader::load() {
                                         if(xml.name() == "dir") {
                                             point.direction = xml.readElementText().toDouble();
                                         } else if(xml.name() == "g_spd") {
-                                            point.direction = xml.readElementText().toDouble();
+                                            point.groundSpeed = xml.readElementText().toDouble();
                                         } else if(xml.name() == "v_spd") {
                                             point.verticalSpeed = xml.readElementText().toDouble();
                                         } else if(xml.name() == "m_var") {
