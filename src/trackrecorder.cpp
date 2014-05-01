@@ -335,7 +335,11 @@ QGeoCoordinate TrackRecorder::currentPosition() const {
 }
 
 QGeoCoordinate TrackRecorder::trackPointAt(int index) {
-    return m_points.at(index).coordinate();
+    if(index < m_points.length()) {
+        return m_points.at(index).coordinate();
+    } else {
+        return QGeoCoordinate();
+    }
 }
 
 int TrackRecorder::fitZoomLevel(int width, int height) {
