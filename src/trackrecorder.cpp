@@ -50,6 +50,8 @@ TrackRecorder::TrackRecorder(QObject *parent) :
         m_posSrc->setUpdateInterval(1000);
         connect(m_posSrc, SIGNAL(positionUpdated(QGeoPositionInfo)),
                 this, SLOT(positionUpdated(QGeoPositionInfo)));
+        connect(m_posSrc, SIGNAL(error(QGeoPositionInfoSource::Error)),
+                this, SLOT(positioningError(QGeoPositionInfoSource::Error)));
         m_posSrc->startUpdates();
     } else {
         qDebug()<<"Failed initializing PositionInfoSource";
@@ -106,6 +108,10 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
         }
         emit newTrackPoint(newPos.coordinate());
     }
+}
+
+void TrackRecorder::positioningError(QGeoPositionInfoSource::Error error) {
+    qDebug()<<"Positioning error:"<<error;
 }
 
 void TrackRecorder::exportGpx(QString name, QString desc) {

@@ -72,6 +72,7 @@ signals:
 
 public slots:
     void positionUpdated(const QGeoPositionInfo &newPos);
+    void positioningError(QGeoPositionInfoSource::Error error);
     void autoSave();
 
 private:
