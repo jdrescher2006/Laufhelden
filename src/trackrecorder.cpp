@@ -52,7 +52,7 @@ TrackRecorder::TrackRecorder(QObject *parent) :
                 this, SLOT(positionUpdated(QGeoPositionInfo)));
         connect(m_posSrc, SIGNAL(error(QGeoPositionInfoSource::Error)),
                 this, SLOT(positioningError(QGeoPositionInfoSource::Error)));
-        m_posSrc->startUpdates();
+        // Position updates are started/stopped in setIsTracking(...)
     } else {
         qDebug()<<"Failed initializing PositionInfoSource";
     }
