@@ -41,7 +41,7 @@ Page {
             Label {
                 anchors.horizontalCenter: column.horizontalCenter
                 text: "Track recorder"
-                font.pixelSize: Theme.fontSizeExtraMedium
+                font.pixelSize: Theme.fontSizeMedium
             }
             Label {
                 anchors.horizontalCenter: column.horizontalCenter
@@ -54,7 +54,14 @@ Page {
             }
             Label {
                 anchors.horizontalCenter: column.horizontalCenter
-                text: "<a href=\"https://github.com/Simoma/rena\">https://github.com/Simoma/rena</a>"
+                textFormat: Text.RichText
+                text: "<style type='text/css'>
+                        a:link{color:"+Theme.highlightColor+"; }
+                        a:visited{color:"+Theme.highlightColor+"}
+                    </style>
+                    <a href=\"https://github.com/Simoma/rena\">
+                        https://github.com/Simoma/rena
+                    </a>"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 onLinkActivated: Qt.openUrlExternally(link)
             }
