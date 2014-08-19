@@ -100,10 +100,13 @@ Page {
     Component.onCompleted: {
         recorder.newTrackPoint.connect(newTrackPoint);
         map.addMapItem(positionMarker);
+        console.log("RecordPage: Plotting track line");
         for(var i=0;i<recorder.points;i++) {
             trackLine.addCoordinate(recorder.trackPointAt(i));
         }
+        console.log("RecordPage: Appending track line to map");
         map.addMapItem(trackLine);
+        console.log("RecordPage: Setting map viewport");
         setMapViewport();
     }
 
