@@ -251,6 +251,10 @@ Page {
         gesture.enabled: false
         plugin: Plugin {
             name: "osm"
+            PluginParameter {
+                name: "useragent"
+                value: "Rena/0.0.7 (Sailfish)"
+            }
         }
         center {
             latitude: 0.0
