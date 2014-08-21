@@ -253,7 +253,9 @@ Page {
             name: "osm"
             PluginParameter {
                 name: "useragent"
-                value: "Rena/0.0.7 (Sailfish)"
+                // TODO: make user agent from variable work
+                //value: appUserAgent
+                value: "Rena/0.0.7-dev (Sailfish)"
             }
         }
         center {
