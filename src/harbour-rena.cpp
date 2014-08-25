@@ -29,6 +29,7 @@
 #include "trackrecorder.h"
 #include "historymodel.h"
 #include "trackloader.h"
+#include "settings.h"
 
 
 int main(int argc, char *argv[]) {
@@ -46,6 +47,7 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<TrackRecorder>("TrackRecorder", 1, 0, "TrackRecorder");
     qmlRegisterType<HistoryModel>("HistoryModel", 1, 0, "HistoryModel");
     qmlRegisterType<TrackLoader>("TrackLoader", 1, 0, "TrackLoader");
+    qmlRegisterType<Settings>("Settings", 1, 0, "Settings");
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());

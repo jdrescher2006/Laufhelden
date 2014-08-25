@@ -36,6 +36,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY isEmptyChanged)
     Q_PROPERTY(bool applicationActive READ applicationActive WRITE setApplicationActive NOTIFY applicationActiveChanged)
     Q_PROPERTY(QGeoCoordinate currentPosition READ currentPosition NOTIFY currentPositionChanged)
+    Q_PROPERTY(int updateInterval READ updateInterval WRITE setUpdateInterval NOTIFY updateIntervalChanged)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);
@@ -53,6 +54,8 @@ public:
     bool applicationActive() const;
     void setApplicationActive(bool active);
     QGeoCoordinate currentPosition() const;
+    int updateInterval() const;
+    void setUpdateInterval(int updateInterval);
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
@@ -68,6 +71,7 @@ signals:
     void isEmptyChanged();
     void applicationActiveChanged();
     void currentPositionChanged();
+    void updateIntervalChanged();
     void newTrackPoint(QGeoCoordinate coordinate);
 
 public slots:

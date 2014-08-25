@@ -21,7 +21,8 @@ QT += positioning location concurrent
 SOURCES += src/harbour-rena.cpp \
     src/trackrecorder.cpp \
     src/historymodel.cpp \
-    src/trackloader.cpp
+    src/trackloader.cpp \
+    src/settings.cpp
 
 OTHER_FILES += qml/harbour-rena.qml \
     qml/cover/CoverPage.qml \
@@ -33,10 +34,12 @@ OTHER_FILES += qml/harbour-rena.qml \
     qml/pages/HistoryPage.qml \
     qml/pages/DetailedViewPage.qml \
     qml/pages/AboutPage.qml \
-    qml/pages/ConfirmClearDialog.qml
+    qml/pages/ConfirmClearDialog.qml \
+    qml/pages/SettingsPage.qml
 
 HEADERS += \
     src/trackrecorder.h \
     src/historymodel.h \
-    src/trackloader.h
+    src/trackloader.h \
+    src/settings.h
 

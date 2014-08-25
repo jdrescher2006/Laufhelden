@@ -160,6 +160,10 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
+            MenuItem {
                 text: qsTr("Start new recording")
                 visible: !recorder.tracking
                 onClicked: {
@@ -205,7 +209,12 @@ Page {
             Label {
                 id: stateLabel
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: recorder.tracking ? qsTr("Recording") : qsTr("Stopped")
+                text: recorder.tracking ?
+                          settings.updateInterval===1000 ? qsTr("Recording")
+                                                         : qsTr("Recording - ")
+                                                           + settings.updateInterval/1000
+                                                           + " s interval"
+                        : qsTr("Stopped")
                 font.pixelSize: Theme.fontSizeLarge
             }
             Label {

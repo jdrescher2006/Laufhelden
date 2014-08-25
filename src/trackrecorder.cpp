@@ -54,7 +54,7 @@ TrackRecorder::TrackRecorder(QObject *parent) :
                 this, SLOT(positioningError(QGeoPositionInfoSource::Error)));
         // Position updates are started/stopped in setIsTracking(...)
     } else {
-        qDebug()<<"Failed initializing PositionInfoSource";
+        qDebug()<<"Failed initializing PositionInfoSource!";
     }
 }
 
@@ -332,6 +332,20 @@ void TrackRecorder::setApplicationActive(bool active) {
 
 QGeoCoordinate TrackRecorder::currentPosition() const {
     return m_currentPosition;
+}
+
+int TrackRecorder::updateInterval() const {
+    return m_posSrc->updateInterval();
+}
+
+void TrackRecorder::setUpdateInterval(int updateInterval) {
+    if(!m_posSrc) {
+        qDebug()<<"Can't set update interval, position source not initialized!";
+        return;
+    }
+    m_posSrc->setUpdateInterval(updateInterval);
+    qDebug()<<"Setting update interval to"<<updateInterval<<"msec";
+    emit updateIntervalChanged();
 }
 
 QGeoCoordinate TrackRecorder::trackPointAt(int index) {

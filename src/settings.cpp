@@ -18,24 +18,19 @@
     along with Rena.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Sailfish.Silica 1.0
-import Settings 1.0
-import TrackRecorder 1.0
-import "pages"
+#include "settings.h"
 
-ApplicationWindow {
-    id: appWindow
-    initialPage: Component { RecordPage { } }
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+Settings::Settings(QObject *parent) :
+    QObject(parent)
+{
+    m_settings = new QSettings("Simom", "Rena");
+}
 
-    Settings {
-        id: settings
-    }
+int Settings::updateInterval() const {
+    return m_settings->value("positioning/updateInterval", 1000).toInt();
+}
 
-    TrackRecorder {
-        id: recorder
-        applicationActive: appWindow.applicationActive
-        updateInterval: settings.updateInterval
-    }
+void Settings::setUpdateInterval(int updateInterval) {
+    m_settings->setValue("positioning/updateInterval", updateInterval);
+    emit updateIntervalChanged();
 }
