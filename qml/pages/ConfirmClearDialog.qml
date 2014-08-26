@@ -19,6 +19,6 @@ Dialog {
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Theme.fontSizeHuge
-        color: Theme.secondaryColor
+        color: Theme.highlightColor
     }
 }
