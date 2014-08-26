@@ -264,7 +264,7 @@ Page {
                 name: "useragent"
                 // TODO: make user agent from variable work
                 //value: appUserAgent
-                value: "Rena/0.0.7-dev (Sailfish)"
+                value: "Rena/0.0.7 (Sailfish)"
             }
         }
         center {

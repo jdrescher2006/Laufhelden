@@ -10,7 +10,7 @@ TARGET = harbour-rena
 
 # Application version
 VERSION = 0.0.7
-VERSION_SUFFIX = -dev
+VERSION_SUFFIX =
 
 # Define the preprocessor macro to get the application version in our application.
 DEFINES += APP_VERSION=\\\"$$VERSION\\\" APP_VERSION_SUFFIX=\\\"$$VERSION_SUFFIX\\\"
