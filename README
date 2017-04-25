@@ -1,12 +1,18 @@
-Rena - Track recorder for Sailfish OS
-=====================================
+Laufhelden
+==========
 
-Rena is short of "reittinauhuri" (finnish, meaning track recorder). Rena records your track when you walk, run, cycle or practise any other outdoor activity. It uses positioning capabilities of your phone, ie. GPS and GLONASS in case of Jolla.
-Tracks are saved in GPX format for compatibility between various applications and services.
+Laufhelden is a sport tracking application for Sailfosh OS. Laufhelden is german, meaning run heros.
+Planned features are:
+- recording tracks
+- view recorded track and show statistics
+- save track as GPX file
+- connecting to bluetooth heart rate device
+- connecting to a Pebble watch to show data while training
+- sending recorded tracks via email
 
-Distributed under the terms of the GNU General Public License
+This application orginates from a fork of Rena by Simoma: https://github.com/Simoma/rena
 
-Binaries are currently located in OpenRepos: https://openrepos.net/content/simom/rena
 
-Copyright 2014 Simo Mattila
-simo.h.mattila@gmail.com
+License: GNU General Public License (GNU GPLv3)
+
+Copyright 2016 Jens Drescher
