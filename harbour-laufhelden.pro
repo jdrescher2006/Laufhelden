@@ -45,5 +45,6 @@ HEADERS += \
     src/trackloader.h \
     src/settings.h
 
-DISTFILES +=
+DISTFILES += \
+    qml/cd_logo.jpg
 

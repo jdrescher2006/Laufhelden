@@ -54,11 +54,11 @@ Page
                 onClicked:
                 {
                     if (iCountWhtRbbt == 1)
-                        fncShowMessage(1,"First iteration: At the earliest drawing of the fractal curve, few clues to the underlying mathematical structure will be seen.<br>Ian Malcolm", 6000);
+                        fncShowMessage(1,"The whole thing goes: The future's not set. There's no fate but what we make for ourselves.<br>John Connor", 6000);
                     else if (iCountWhtRbbt == 2)
-                        fncShowMessage(1,"Second iteration: With subsequent drawings of the fractal curve, sudden changes may appear.<br>Ian Malcolm", 6000);
+                        fncShowMessage(1,"And it would die, to protect him. In an insane world, it was the sanest choice.<br>Sarah Connor", 6000);
                     else if (iCountWhtRbbt == 3)
-                        fncShowMessage(1,"Third iteration: Details emerge more clearly as the fractal curve is redrawn.<br>Ian Malcolm", 6000);
+                        fncShowMessage(1,"I know now why you cry but it's something that I can never do.<br>T-800", 6000);
                     else if (iCountWhtRbbt == 4)
                         fncShowMessage(1,"Fourth iteration: Inevitably, underlying instabilities begin to appear.<br>Ian Malcolm", 6000);
                     else if (iCountWhtRbbt == 5)
@@ -73,7 +73,7 @@ Page
                         fncShowMessage(0,"loading whte_rbt.obj to sailfish device, please wait...", 3000);
                     else if (iCountWhtRbbt == 10)
                     {
-                        fncShowMessage(4,"Developed by Integrated Computer Systems, Inc. Cambridge Mass<br>Project Supervisor: Dennis Nedry<br>Chief Programmer: Mike Backes<br>\u00A9 Jurassic Parc Inc. All Rights Reserved", 16000);
+                        fncShowMessage(4,"Developed by Cyberdyne Systems, 18144 El Camino Real, Sunnyvale, California<br>Project Supervisor: Dennis Nedry<br>Chief Programmer: Mike Backes<br>\u00A9 Jurassic Parc Inc. All Rights Reserved", 16000);
                         iCountWhtRbbt = 0;
                     }
 
