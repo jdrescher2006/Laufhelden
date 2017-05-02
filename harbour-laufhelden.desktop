@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=harbour-laufhelden
+Exec=harbour-laufhelden
+Name=Laufhelden
+Name[de_DE]=Laufhelden

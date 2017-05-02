@@ -26,7 +26,7 @@ CoverBackground {
         id: label
         anchors.centerIn: parent
         anchors.verticalCenterOffset: -parent.height * 2/5
-        text: "Rena"
+        text: "Laufhelden"
         font.pixelSize: 120
         font.bold: true
         opacity: 0.2
