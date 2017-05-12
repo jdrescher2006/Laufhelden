@@ -106,7 +106,7 @@ Page {
 
                 Label {
                     id: descriptionLabel
-                    width: avgSpeedLabel.width
+                    width: hearRateLabel.width
                     height:descriptionData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
@@ -121,7 +121,7 @@ Page {
                     wrapMode: Text.WordWrap
                 }
                 Label {
-                    width: avgSpeedLabel.width
+                    width: hearRateLabel.width
                     height:timeData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
@@ -135,7 +135,7 @@ Page {
                     text: trackLoader.timeStr
                 }
                 Label {
-                    width: avgSpeedLabel.width
+                    width: hearRateLabel.width
                     height:durationData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
@@ -149,7 +149,7 @@ Page {
                     text: trackLoader.durationStr
                 }
                 Label {
-                    width: avgSpeedLabel.width
+                    width: hearRateLabel.width
                     height:distanceData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
@@ -193,7 +193,7 @@ Page {
                           : "-"
                 }
                 Label {
-                    width: avgSpeedLabel.width
+                    width: hearRateLabel.width
                     height:paceData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
@@ -205,6 +205,21 @@ Page {
                     id: paceData
                     width: descriptionData.width
                     text: trackLoader.pace.toFixed(1) + " min/km"
+                }
+
+                Label {
+                    id: hearRateLabel
+                    height:heartRateData.height
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignBottom
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: "Average heart rate:"                    
+                }
+                Label {
+                    id: heartRateData
+                    width: descriptionData.width
+                    text: trackLoader.heartRate.toFixed(1) + " bpm"
                 }
             }
         }
@@ -218,6 +233,12 @@ Page {
         gesture.enabled: false
         plugin: Plugin {
             name: "osm"
+            PluginParameter
+            {
+                name: "useragent"                
+                value: "Laufhelden/0.0.1 (SailfishOS)"
+            }
+            PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
         }
         // Following definition of map center does not work without QtPositioning!?
         center {

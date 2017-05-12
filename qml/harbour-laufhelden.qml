@@ -23,7 +23,7 @@ import "pages"
 
 ApplicationWindow {
     id: appWindow
-    initialPage: Component { RecordPage { } }
+    initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
     Settings {

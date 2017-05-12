@@ -46,5 +46,6 @@ HEADERS += \
     src/settings.h
 
 DISTFILES += \
-    qml/cd_logo.jpg
+    qml/cd_logo.jpg \
+    qml/pages/MainPage.qml
 

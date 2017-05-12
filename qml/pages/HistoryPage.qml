@@ -22,41 +22,60 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import HistoryModel 1.0
 
-Page {
+Page
+{
     id: historyPage
 
-    HistoryModel {
+    HistoryModel
+    {
         id: historyModel
     }
 
-    SilicaListView {
+    SilicaListView
+    {
         id: historyList
         VerticalScrollDecorator {}
-        ViewPlaceholder {
+        ViewPlaceholder
+        {
             enabled: historyList.count === 0
             text: qsTr("No earlier tracks")
         }
         anchors.fill: parent
         model: historyModel
-        header: PageHeader {
-            title: qsTr("History")
+        header: PageHeader
+        {
+            title: qsTr("Welcome to OBDFish")
         }
-        delegate: ListItem {
+        Label
+        {
+            id: id_LBL_WorkoutCount
+            x: Theme.paddingLarge
+            truncationMode: TruncationMode.Fade
+            text: qsTr("Workouts: ") + historyModel.rowCount();
+            color: Theme.highlightColor
+        }
+        Separator {color: Theme.highlightColor; width: parent.width;}
+        delegate: ListItem
+        {
             id: listItem
             width: parent.width
             ListView.onRemove: animateRemoval()
-            menu: ContextMenu {
-                MenuItem {
+            menu: ContextMenu
+            {
+                MenuItem
+                {
                     text: qsTr("Remove")
                     onClicked: remorseAction(qsTr("Removing"), listItem.deleteTrack)
                 }
             }
 
-            function deleteTrack() {
+            function deleteTrack()
+            {
                 historyModel.removeTrack(index);
             }
 
-            Label {
+            Label
+            {
                 id: nameLabel
                 x: Theme.paddingLarge
                 width: parent.width - dateLabel.width - 2*Theme.paddingLarge
@@ -65,7 +84,8 @@ Page {
                 text: name==="" ? "(Unnamed track)" : name
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
-            Label {
+            Label
+            {
                 id: dateLabel
                 anchors.top: parent.top
                 anchors.right: parent.right
@@ -73,21 +93,24 @@ Page {
                 text: date
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
-            Label {
+            Label
+            {
                 anchors.top: nameLabel.bottom
                 x: Theme.paddingLarge
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
                 text: distance
             }
-            Label {
+            Label
+            {
                 anchors.top: nameLabel.bottom
                 x: (parent.width - width) / 2
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
                 text: duration
             }
-            Label {
+            Label
+            {
                 anchors.top: nameLabel.bottom
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.paddingLarge

@@ -258,14 +258,15 @@ Page {
         anchors.bottom: parent.bottom
         clip: true
         gesture.enabled: false
-        plugin: Plugin {
+        plugin: Plugin
+        {
             name: "osm"
-            PluginParameter {
-                name: "useragent"
-                // TODO: make user agent from variable work
-                //value: appUserAgent
-                value: "Rena/0.0.8 (Sailfish)"
+            PluginParameter
+            {
+                name: "useragent"                
+                value: "Laufhelden/0.0.1 (SailfishOS)"
             }
+            PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
         }
         center {
             latitude: 0.0

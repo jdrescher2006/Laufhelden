@@ -36,6 +36,8 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_pace = 0;
     m_duration = 0;
     m_distance = 0;
+    m_heartRate = 0;
+    m_heartRatePoints = 0;
 }
 
 void TrackLoader::load() {
@@ -88,28 +90,65 @@ void TrackLoader::load() {
                     while(xml.readNextStartElement()) {
                         if(xml.name() == "trkpt") {
                             TrackPoint point;
+
+                            point.elevation = 0;
+                            point.direction = 0;
+                            point.groundSpeed = 0;
+                            point.verticalSpeed = 0;
+                            point.magneticVariation = 0;
+                            point.horizontalAccuracy = 0;
+                            point.verticalAccuracy = 0;
+                            point.heartrate = 0;
+
                             point.latitude = xml.attributes().value("lat").toDouble();
                             point.longitude = xml.attributes().value("lon").toDouble();
+
                             while(xml.readNextStartElement()) {
                                 if(xml.name() == "time") {
                                     point.time = QDateTime::fromString(xml.readElementText(),Qt::ISODate);
                                 } else if(xml.name() == "ele") {
                                     point.elevation = xml.readElementText().toDouble();
                                 } else if(xml.name() == "extensions") {
-                                    while(xml.readNextStartElement()) {
-                                        if(xml.name() == "dir") {
+                                    while(xml.readNextStartElement())
+                                    {                                        
+                                        if(xml.name() == "dir")
+                                        {
                                             point.direction = xml.readElementText().toDouble();
-                                        } else if(xml.name() == "g_spd") {
+                                        }
+                                        else if(xml.name() == "g_spd")
+                                        {
                                             point.groundSpeed = xml.readElementText().toDouble();
-                                        } else if(xml.name() == "v_spd") {
+                                        }
+                                        else if(xml.name() == "v_spd")
+                                        {
                                             point.verticalSpeed = xml.readElementText().toDouble();
-                                        } else if(xml.name() == "m_var") {
+                                        }
+                                        else if(xml.name() == "m_var")
+                                        {
                                             point.magneticVariation = xml.readElementText().toDouble();
-                                        } else if(xml.name() == "h_acc") {
+                                        }
+                                        else if(xml.name() == "h_acc")
+                                        {
                                             point.horizontalAccuracy = xml.readElementText().toDouble();
-                                        } else if(xml.name() == "v_acc") {
+                                        }
+                                        else if(xml.name() == "v_acc")
+                                        {
                                             point.verticalAccuracy = xml.readElementText().toDouble();
                                         }
+                                        else if(xml.name() == "TrackPointExtension")
+                                        {
+                                            while(xml.readNextStartElement())
+                                            {
+                                                if(xml.name() == "hr")
+                                                {
+                                                    point.heartrate = xml.readElementText().toInt();
+                                                }
+                                                else
+                                                    xml.skipCurrentElement();
+                                            }
+                                        }
+                                        else
+                                            xml.skipCurrentElement();
                                     }
                                 }
                             }
@@ -123,7 +162,8 @@ void TrackLoader::load() {
         }
     }
 
-    if(m_points.size() > 1) {
+    if(m_points.size() > 1)
+    {
         QDateTime firstTime(m_points.at(0).time);
         QDateTime secondTime(m_points.at(m_points.size()-1).time);
         m_duration = firstTime.secsTo(secondTime);
@@ -131,12 +171,19 @@ void TrackLoader::load() {
         m_time = firstTime.toLocalTime();
         emit timeChanged();
         m_distance = 0;
-        for(int i=1;i<m_points.size();i++) {
+        for(int i=1;i<m_points.size();i++)
+        {
             QGeoCoordinate first(m_points.at(i-1).latitude,m_points.at(i-1).longitude);
             QGeoCoordinate second(m_points.at(i).latitude,m_points.at(i).longitude);
             m_distance += first.distanceTo(second);
             if(m_points.at(i).groundSpeed > m_maxSpeed) {
                 m_maxSpeed = m_points.at(i).groundSpeed;
+            }
+            //If this point has a heart rate
+            if (m_points.at(i).heartrate > 0)
+            {
+                m_heartRatePoints++;
+                m_heartRate += m_points.at(i).heartrate;
             }
         }
         emit distanceChanged();
@@ -144,7 +191,9 @@ void TrackLoader::load() {
         m_speed = m_distance / m_duration;
         emit speedChanged();
         m_pace = m_duration / m_distance * 1000 / 60;
-        emit paceChanged();
+        emit paceChanged();        
+        m_heartRate = m_heartRate / m_heartRatePoints;
+        emit heartRateChanged();
     } else {
         qDebug()<<"Not enough trackpoints to calculate duration, distance and speed";
         if(m_points.size() > 0) {
@@ -302,6 +351,19 @@ qreal TrackLoader::pace() {
     }
     return m_pace;
 }
+
+qreal TrackLoader::heartRate() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_heartRate;
+}
+
+
 
 bool TrackLoader::loaded() {
     return m_loaded;
