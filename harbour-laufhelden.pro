@@ -17,12 +17,15 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\" APP_VERSION_SUFFIX=\\\"$$VERSION_SUFFIX
 
 CONFIG += sailfishapp
 QT += positioning location concurrent
+QT += bluetooth
 
 SOURCES += src/harbour-laufhelden.cpp \
     src/trackrecorder.cpp \
     src/historymodel.cpp \
     src/trackloader.cpp \
-    src/settings.cpp
+    src/settings.cpp \
+    src/bluetoothconnection.cpp \
+    src/bluetoothdata.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -43,9 +46,12 @@ HEADERS += \
     src/trackrecorder.h \
     src/historymodel.h \
     src/trackloader.h \
-    src/settings.h
+    src/settings.h \
+    src/bluetoothconnection.h \
+    src/bluetoothdata.h
 
 DISTFILES += \
     qml/cd_logo.jpg \
-    qml/pages/MainPage.qml
+    qml/pages/MainPage.qml \
+    qml/pages/BTConnectPage.qml
 

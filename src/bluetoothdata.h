@@ -15,29 +15,37 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef BLUETOOTHDATA
+#define BLUETOOTHDATA
 
 #include <QObject>
-#include <QSettings>
+#include <QBluetoothSocket>
+#include <QBluetoothAddress>
 
-class Settings : public QObject
+class BluetoothData : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int updateInterval READ updateInterval
-               WRITE setUpdateInterval NOTIFY updateIntervalChanged)
 public:
-    explicit Settings(QObject *parent = 0);
-    int updateInterval() const;
-    void setUpdateInterval(int updateInterval);
-
-signals:
-    void updateIntervalChanged();
-
-public slots:
-
+    explicit BluetoothData(QObject *parent = 0);
+    ~BluetoothData();    
+    Q_INVOKABLE void connect(QString address, int port);
+    Q_INVOKABLE void sendHex(QString sString);
+    Q_INVOKABLE void disconnect();
+private slots:
+    void readData();
+    void connected();
+    void disconnected();
+    void error(QBluetoothSocket::SocketError errorCode);
 private:
-    QSettings *m_settings;
+    QBluetoothSocket *_socket;
+    int _port;
+    qint64 write(QByteArray data);
+signals:
+    void sigReadDataReady(QString sData);
+    void sigConnected();
+    void sigDisconnected();
+    void sigError(QString sError);
 };
 
-#endif // SETTINGS_H
+
+#endif // BLUETOOTHDATA

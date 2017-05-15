@@ -73,7 +73,7 @@ Page
                         fncShowMessage(0,"loading whte_rbt.obj to sailfish device, please wait...", 3000);
                     else if (iCountWhtRbbt == 10)
                     {
-                        fncShowMessage(4,"Developed by Cyberdyne Systems, 18144 El Camino Real, Sunnyvale, California<br>Project Supervisor: Dennis Nedry<br>Chief Programmer: Mike Backes<br>\u00A9 Jurassic Parc Inc. All Rights Reserved", 16000);
+                        fncShowMessage(4,"Developed by Cyberdyne Systems, 18144 El Camino Real, Sunnyvale, California<br>Project Supervisor: Dennis Nedry<br>Chief Programmer: Mike Backes<br>\u00A9 Cyberdyne Systems Inc. All Rights Reserved", 16000);
                         iCountWhtRbbt = 0;
                     }
 

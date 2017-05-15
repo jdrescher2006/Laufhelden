@@ -15,19 +15,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "settings.h"
+#ifndef BLUETOOTHCONNECTION
+#define BLUETOOTHCONNECTION
 
-Settings::Settings(QObject *parent) :
-    QObject(parent)
+#include <QObject>
+#include <QBluetoothDeviceDiscoveryAgent>
+
+class BluetoothConnection : public QObject
 {
-    m_settings = new QSettings("Simom", "Rena");
-}
+    Q_OBJECT
+public:
+    explicit BluetoothConnection(QObject *parent = 0);
+    ~BluetoothConnection();
+    Q_INVOKABLE void vStartDeviceDiscovery();
+    Q_INVOKABLE void vStopDeviceDiscovery();       
+private:
+    QBluetoothDeviceDiscoveryAgent *discoveryAgent;
+private slots:
+    void vDeviceDiscovered(const QBluetoothDeviceInfo &device);
+    void vDiscoveryFinished();
+signals:
+    void deviceFound(QString sName, QString sAddress);
+};
 
-int Settings::updateInterval() const {
-    return m_settings->value("positioning/updateInterval", 1000).toInt();
-}
-
-void Settings::setUpdateInterval(int updateInterval) {
-    m_settings->setValue("positioning/updateInterval", updateInterval);
-    emit updateIntervalChanged();
-}
+#endif // BLUETOOTHCONNECTION

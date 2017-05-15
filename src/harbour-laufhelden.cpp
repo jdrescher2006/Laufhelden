@@ -27,6 +27,8 @@
 #include "historymodel.h"
 #include "trackloader.h"
 #include "settings.h"
+#include "bluetoothconnection.h"
+#include "bluetoothdata.h"
 
 
 int main(int argc, char *argv[]) {
@@ -45,6 +47,8 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<HistoryModel>("HistoryModel", 1, 0, "HistoryModel");
     qmlRegisterType<TrackLoader>("TrackLoader", 1, 0, "TrackLoader");
     qmlRegisterType<Settings>("Settings", 1, 0, "Settings");
+    qmlRegisterType<BluetoothConnection,1>("bluetoothconnection", 1, 0, "BluetoothConnection");
+    qmlRegisterType<BluetoothData,1>("bluetoothdata", 1, 0, "BluetoothData");
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());

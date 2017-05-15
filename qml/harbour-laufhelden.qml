@@ -19,20 +19,30 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Settings 1.0
 import TrackRecorder 1.0
+import bluetoothconnection 1.0
+import bluetoothdata 1.0
 import "pages"
 
-ApplicationWindow {
+ApplicationWindow
+{
     id: appWindow
     initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
-    Settings {
-        id: settings
-    }
+    //Define global variables
+    property bool bConnected: false;
 
-    TrackRecorder {
+    //Init C++ classes, libraries
+    BluetoothConnection{ id: id_BluetoothConnection }
+    BluetoothData{ id: id_BluetoothData }
+    Settings{ id: settings }
+    TrackRecorder
+    {
         id: recorder
         applicationActive: appWindow.applicationActive
         updateInterval: settings.updateInterval
     }
+
+    allowedOrientations: Orientation.All
+    _defaultPageOrientations: Orientation.All
 }
