@@ -60,6 +60,11 @@ Page
             }
             MenuItem
             {
+                text: qsTr("Heart rate device")
+                onClicked: pageStack.push(Qt.resolvedUrl("BTConnectPage.qml"))
+            }
+            MenuItem
+            {
                 text: qsTr("Start new workout")
                 onClicked: pageStack.push(Qt.resolvedUrl("RecordPage.qml"))
             }

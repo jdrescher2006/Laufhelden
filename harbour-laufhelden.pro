@@ -34,7 +34,6 @@ OTHER_FILES += qml/harbour-laufhelden.qml \
     harbour-laufhelden.desktop \
     qml/pages/RecordPage.qml \
     qml/pages/SaveDialog.qml \
-    qml/pages/HistoryPage.qml \
     qml/pages/DetailedViewPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/ConfirmClearDialog.qml \
@@ -53,5 +52,12 @@ HEADERS += \
 DISTFILES += \
     qml/cd_logo.jpg \
     qml/pages/MainPage.qml \
-    qml/pages/BTConnectPage.qml
+    qml/pages/BTConnectPage.qml \
+    qml/tools/Messagebox.qml \
+    qml/icon-lock-error.png \
+    qml/icon-lock-info.png \
+    qml/icon-lock-ok.png \
+    qml/icon-lock-warning.png \
+    qml/laufhelden.png \
+    qml/pages/SharedResources.js
 

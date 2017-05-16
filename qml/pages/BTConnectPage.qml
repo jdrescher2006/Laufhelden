@@ -1,9 +1,10 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "SharedResources.js" as SharedResources
 
 
 Page {
-    id: page
+    id: pageBTConnectPage
 
     property bool bFirstPage: true    
     property string sHeartRateHexString: ""
@@ -16,9 +17,7 @@ Page {
         {
             bFirstPage = false
 
-            //SharedResources.fncAddDevice("Neuer Adapter v2.1", "88:18:56:68:98:EB");
-            //SharedResources.fncAddDevice("Alter Adapter v1.5", "98:76:54:32:10:00");
-            SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
+            //SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
             id_LV_Devices.model = SharedResources.fncGetDevicesNumber();
         }
     }
@@ -91,22 +90,21 @@ Page {
         }
         onSigConnected:
         {            
-            fncViewMessage("info", "Connected");
+            fncShowMessage(2,"Connected", 4000);
             bConnected = true;
 
-            pageStack.pushAttached(Qt.resolvedUrl("SecondPage.qml"));
-            //pageStack.navigateForward();
+
         }
         onSigDisconnected:
         {
-            fncViewMessage("info", "Disconnected");
+            fncShowMessage(1,"Disconnected", 4000);
             sHeartRate = "";
             sBatteryLevel = "";
             bConnected = false;
         }
         onSigError:
         {
-            fncViewMessage("error", "Error: " + sError);
+            fncShowMessage(3,"Error: " + sError, 10000);
         }
     }
 
@@ -116,13 +114,6 @@ Page {
     {
         anchors.fill: parent
 
-        // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Show Page 2")
-                onClicked: pageStack.push(Qt.resolvedUrl("SecondPage.qml"))
-            }
-        }
 
         contentHeight: column.height
 
@@ -130,14 +121,14 @@ Page {
         {
             id: column
 
-            width: page.width
+            width: pageBTConnectPage.width
             spacing: Theme.paddingLarge
             PageHeader {
-                title: qsTr("Laufhelden")
+                title: qsTr("Connect heart rate device")
             }            
             Button
             {
-                text: "Start scanning for BT devices..."
+                text: "Start scanning for devices..."
                 onClicked:
                 {
                     SharedResources.fncDeleteDevices();
@@ -146,7 +137,7 @@ Page {
             }
             Button
             {
-                text: "Stop scanning for BT devices..."
+                text: "Stop scanning for devices..."
                 onClicked:
                 {
                     id_BluetoothConnection.vStopDeviceDiscovery();
@@ -175,7 +166,7 @@ Page {
 
             SectionHeader
             {
-                text: "Found Bluetooth devices:"
+                text: "Found bluetooth devices:"
             }
             SilicaListView
             {

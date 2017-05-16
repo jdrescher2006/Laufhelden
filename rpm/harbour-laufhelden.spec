@@ -25,10 +25,12 @@ Requires:   qt5-plugin-geoservices-osm >= 5.1.0
 Requires:   qt5-qtlocation >= 5.1.0
 Requires:   qt5-qtdeclarative-import-location >= 5.1.0
 Requires:   qt5-qtdeclarative-import-positioning >= 5.1.0
+Requires:   qt5-qtconnectivity-qtbluetooth >= 5.2.0
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5Bluetooth)
 BuildRequires:  desktop-file-utils
 
 %description

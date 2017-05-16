@@ -49,31 +49,23 @@ Page
                 {
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectFit
-                    source: "../obdfish.png"
+                    source: "../laufhelden.png"
                 }
                 onClicked:
                 {
                     if (iCountWhtRbbt == 1)
-                        fncShowMessage(1,"The whole thing goes: The future's not set. There's no fate but what we make for ourselves.<br>John Connor", 6000);
+                        fncShowMessage(1,"The future's not set. There's no fate but what we make for ourselves.<br>John Connor", 6000);
                     else if (iCountWhtRbbt == 2)
                         fncShowMessage(1,"And it would die, to protect him. In an insane world, it was the sanest choice.<br>Sarah Connor", 6000);
                     else if (iCountWhtRbbt == 3)
                         fncShowMessage(1,"I know now why you cry but it's something that I can never do.<br>T-800", 6000);
                     else if (iCountWhtRbbt == 4)
-                        fncShowMessage(1,"Fourth iteration: Inevitably, underlying instabilities begin to appear.<br>Ian Malcolm", 6000);
-                    else if (iCountWhtRbbt == 5)
-                        fncShowMessage(1,"Fifth iteration: Flaws in the system will now become severe.<br>Ian Malcolm", 6000);
-                    else if (iCountWhtRbbt == 6)
-                        fncShowMessage(1,"Sixth iteration: System recovery may prove impossible.<br>Ian Malcolm", 6000);
-                    else if (iCountWhtRbbt == 7)
-                        fncShowMessage(1,"Seventh iteration: Increasingly, the mathematics will demand the courage to face its implications.<br>Ian Malcolm", 6000);
-                    else if (iCountWhtRbbt == 8)
                         fncShowMessage(3,"STOP NOW or system will crash!!!", 6000);
-                    else if (iCountWhtRbbt == 9)
-                        fncShowMessage(0,"loading whte_rbt.obj to sailfish device, please wait...", 3000);
-                    else if (iCountWhtRbbt == 10)
+                    else if (iCountWhtRbbt == 5)
+                        fncShowMessage(0,"Skynet is now searching for viruses on your system, please wait...", 3000);
+                    else if (iCountWhtRbbt == 6)
                     {
-                        fncShowMessage(4,"Developed by Cyberdyne Systems, 18144 El Camino Real, Sunnyvale, California<br>Project Supervisor: Dennis Nedry<br>Chief Programmer: Mike Backes<br>\u00A9 Cyberdyne Systems Inc. All Rights Reserved", 16000);
+                        fncShowMessage(4,"Developed by Cyberdyne Systems, 18144 El Camino Real, Sunnyvale, California<br>Project Supervisor: Miles Dyson<br>Chief Programmer: Jens Drescher<br>\u00A9 Cyberdyne Systems Inc. All Rights Reserved", 16000);
                         iCountWhtRbbt = 0;
                     }
 
@@ -93,7 +85,7 @@ Page
                 wrapMode: Text.WordWrap
                 maximumLineCount: 2
                 horizontalAlignment: Text.AlignHCenter
-                text: qsTr("OBD ELM327 car diagnostic reader application for Sailfish OS")
+                text: qsTr("Sport tracker application for Sailfish OS")
             }
             Item
             {
@@ -119,7 +111,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Date: ") + "01.02.2017";
+                text: qsTr("Date: ") + "16.05.2017";
             }
             Label
             {
@@ -144,7 +136,7 @@ Page
             {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
-                property string urlstring: "https://github.com/jdrescher2006/OBDFish"
+                property string urlstring: "https://github.com/jdrescher2006/Laufhelden"
                 text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
                 onLinkActivated: Qt.openUrlExternally(link)
             }
@@ -164,7 +156,7 @@ Page
             {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
-                property string urlstring: "https://github.com/jdrescher2006/OBDFish/issues"
+                property string urlstring: "https://github.com/jdrescher2006/Laufhelden/issues"
                 text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
                 onLinkActivated: Qt.openUrlExternally(link)
             }
