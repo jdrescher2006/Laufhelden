@@ -59,5 +59,6 @@ DISTFILES += \
     qml/icon-lock-ok.png \
     qml/icon-lock-warning.png \
     qml/laufhelden.png \
-    qml/pages/SharedResources.js
+    qml/pages/SharedResources.js \
+    qml/heart.png
 
