@@ -36,6 +36,7 @@ private slots:
     void vDiscoveryFinished();
 signals:
     void deviceFound(QString sName, QString sAddress);
+    void scanFinished();
 };
 
 #endif // BLUETOOTHCONNECTION

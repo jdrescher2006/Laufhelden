@@ -31,6 +31,7 @@ ApplicationWindow
 
     //Define global variables
     property bool bConnected: false;
+    property bool bConnecting: false;
 
     //Init C++ classes, libraries
     BluetoothConnection{ id: id_BluetoothConnection }

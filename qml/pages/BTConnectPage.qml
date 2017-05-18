@@ -6,7 +6,11 @@ import "SharedResources.js" as SharedResources
 Page {
     id: pageBTConnectPage
 
-    property bool bFirstPage: true    
+    property bool bFirstPage: true
+    property bool bBluetoothScanning: false
+    property int iScannedDevicesCount: 0
+    property string sConnectingBTDevice: ""
+    property string sActiveBTDevice: ""
     property string sHeartRateHexString: ""
     property string sHeartRate: ""
     property string sBatteryLevel: ""
@@ -17,7 +21,11 @@ Page {
         {
             bFirstPage = false
 
+            //DEBUG START
             //SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
+            //DEBUG ENDE
+
+
             id_LV_Devices.model = SharedResources.fncGetDevicesNumber();
         }
     }
@@ -28,8 +36,13 @@ Page {
         onDeviceFound:
         {
             //Add device to data array
-            SharedResources.fncAddDevice(sName, sAddress);
-            id_LV_Devices.model = SharedResources.fncGetDevicesNumber();
+            SharedResources.fncAddDevice(sName, sAddress);            
+            id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
+        }
+        onScanFinished:
+        {
+            //Scan is finished now
+            bBluetoothScanning = false;
         }
     }
     Connections
@@ -64,7 +77,10 @@ Page {
             var iCheckByte = parseInt(sHeartRateHexString.substr(4,2), 16);
             console.log("iCheckByte: " + iCheckByte);
             if (iCheckByte !== (255 - iPacketLength))
+            {
+                console.log("Check byte is not valid!");
                 return; //Check byte is not valid
+            }
             //Check sequence valid
             var iSequenceValid = parseInt(sHeartRateHexString.substr(6,2), 16);
             console.log("iSequenceValid: " + iSequenceValid);
@@ -82,7 +98,11 @@ Page {
             console.log("iHeartRate: " + iHeartRate);
 
             sHeartRate = iHeartRate.toString();
-            sBatteryLevel = iBattery.toString();
+
+            var sTemp = ((100/15) * iBattery).toString();
+            if (sTemp.indexOf(".") != -1)
+                sTemp = sTemp.substring(0, sTemp.indexOf("."));
+            sBatteryLevel = sTemp + "%";
 
             //Extraction was successful here. Reset message text var.
             sHeartRateHexString = "";
@@ -91,15 +111,15 @@ Page {
         onSigConnected:
         {            
             fncShowMessage(2,"Connected", 4000);
-            bConnected = true;
-
-
+            bConnected = true;            
+            sActiveBTDevice = sConnectingBTDevice;
         }
         onSigDisconnected:
         {
             fncShowMessage(1,"Disconnected", 4000);
             sHeartRate = "";
             sBatteryLevel = "";
+            sActiveBTDevice = "";
             bConnected = false;
         }
         onSigError:
@@ -123,50 +143,95 @@ Page {
 
             width: pageBTConnectPage.width
             spacing: Theme.paddingLarge
-            PageHeader {
+            PageHeader
+            {
                 title: qsTr("Connect heart rate device")
-            }            
+            }
+
+            SectionHeader
+            {
+                text: qsTr("Scan for Bluetooth devices...")
+                visible: !bBluetoothScanning && !bConnecting && !bConnected
+            }
             Button
             {
-                text: "Start scanning for devices..."
+                width: parent.width
+                text: qsTr("Start Scanning...")
+                visible: !bBluetoothScanning && !bConnecting && !bConnected
                 onClicked:
                 {
+                    bBluetoothScanning = true;
                     SharedResources.fncDeleteDevices();
+                    id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
                     id_BluetoothConnection.vStartDeviceDiscovery();
+                }
+                Image
+                {
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: "image://theme/icon-m-bluetooth"
                 }
             }
             Button
             {
-                text: "Stop scanning for devices..."
+                width: parent.width
+                text: qsTr("Cancel")
+                visible: bBluetoothScanning
                 onClicked:
                 {
                     id_BluetoothConnection.vStopDeviceDiscovery();
                 }
+                Image
+                {
+                    source: "image://theme/icon-m-sync"
+                    anchors.verticalCenter: parent.verticalCenter
+                    smooth: true
+                    NumberAnimation on rotation
+                    {
+                      running: bBluetoothScanning
+                      from: 0
+                      to: 360
+                      loops: Animation.Infinite
+                      duration: 2000
+                    }
+                }
             }
+
+
             Button
             {
                 text: "Disconnect"
                 onClicked:
                 {
-                    id_BluetoothData.disconnect();
+                    id_BluetoothData.disconnect();                    
                 }
-            }                                 
+            }
+
+            SectionHeader
+            {
+                text: qsTr("Active BT device")
+            }
+            Label
+            {
+                width: parent.width;
+                text: sActiveBTDevice;
+            }
             Label
             {
                 width: parent.width;
                 id: id_LBL_HeartRate;
-                text: "Heart Rate: " + sHeartRate;
+                text: qsTr("Heart Rate: ") + sHeartRate;
             }
             Label
             {
                 width: parent.width;
                 id: id_LBL_Battery;
-                text: "Battery Level: " + sBatteryLevel;
+                text: qsTr("Battery Level: ") + sBatteryLevel;
             }
 
             SectionHeader
             {
-                text: "Found bluetooth devices:"
+                text: qsTr("Found BT devices (press to connect):")
+                visible: (iScannedDevicesCount > 0 &&  !bConnected && !bConnecting)
             }
             SilicaListView
             {
@@ -175,6 +240,7 @@ Page {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: parent.height / 3
+                visible: (iScannedDevicesCount > 0 &&  !bConnected && !bConnecting)
 
                 delegate: BackgroundItem
                 {
@@ -190,8 +256,8 @@ Page {
                     onClicked:
                     {
                         console.log("Clicked " + index);
+                        sConnectingBTDevice = SharedResources.fncGetDeviceBTName(index) + ", " + SharedResources.fncGetDeviceBTAddress(index);
                         id_BluetoothData.connect(SharedResources.fncGetDeviceBTAddress(index), 1);
-
                     }
                 }
                 VerticalScrollDecorator {}

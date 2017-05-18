@@ -68,5 +68,5 @@ void BluetoothConnection::vDeviceDiscovered(const QBluetoothDeviceInfo &device)
 
 void BluetoothConnection::vDiscoveryFinished()
 {
-    qDebug() << "Scanning finished";
+    emit this->scanFinished();
 }
