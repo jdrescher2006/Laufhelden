@@ -38,6 +38,8 @@ class TrackLoader : public QObject
     Q_PROPERTY(qreal maxSpeed READ maxSpeed NOTIFY maxSpeedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
     Q_PROPERTY(qreal heartRate READ heartRate NOTIFY heartRateChanged)
+    Q_PROPERTY(uint heartRateMin READ heartRateMin NOTIFY heartRateMinChanged)
+    Q_PROPERTY(uint heartRateMax READ heartRateMax NOTIFY heartRateMaxChanged)
     Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
 
 public:
@@ -55,6 +57,8 @@ public:
     qreal maxSpeed();
     qreal pace();
     qreal heartRate();
+    uint heartRateMin();
+    uint heartRateMax();
     bool loaded();
     Q_INVOKABLE int trackPointCount();
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
@@ -76,6 +80,8 @@ signals:
     void loadedChanged();
     void trackChanged();
     void heartRateChanged();
+    void heartRateMinChanged();
+    void heartRateMaxChanged();
 
 public slots:
 
@@ -110,6 +116,8 @@ private:
     qreal m_pace;
     qreal m_heartRate;
     qreal m_heartRatePoints;
+    uint m_heartRateMin;
+    uint m_heartRateMax;
     QGeoCoordinate m_center;
 };
 

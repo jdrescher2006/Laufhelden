@@ -21,10 +21,10 @@ URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-laufhelden.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
-Requires:   qt5-plugin-geoservices-osm >= 5.1.0
-Requires:   qt5-qtlocation >= 5.1.0
-Requires:   qt5-qtdeclarative-import-location >= 5.1.0
-Requires:   qt5-qtdeclarative-import-positioning >= 5.1.0
+Requires:   qt5-plugin-geoservices-osm >= 5.2.0
+Requires:   qt5-qtlocation >= 5.2.0
+Requires:   qt5-qtdeclarative-import-location >= 5.2.0
+Requires:   qt5-qtdeclarative-import-positioning >= 5.2.0
 Requires:   qt5-qtconnectivity-qtbluetooth >= 5.2.0
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)

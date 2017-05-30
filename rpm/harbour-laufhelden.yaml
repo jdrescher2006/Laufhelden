@@ -19,10 +19,10 @@ PkgConfigBR:
 - Qt5Bluetooth
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
-- qt5-plugin-geoservices-osm >= 5.1.0
-- qt5-qtlocation >= 5.1.0
-- qt5-qtdeclarative-import-location >= 5.1.0
-- qt5-qtdeclarative-import-positioning >= 5.1.0
+- qt5-plugin-geoservices-osm >= 5.2.0
+- qt5-qtlocation >= 5.2.0
+- qt5-qtdeclarative-import-location >= 5.2.0
+- qt5-qtdeclarative-import-positioning >= 5.2.0
 - qt5-qtconnectivity-qtbluetooth >= 5.2.0
 Files:
   - '%{_bindir}'

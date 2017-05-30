@@ -204,7 +204,7 @@ Page {
                 Label {
                     id: paceData
                     width: descriptionData.width
-                    text: trackLoader.pace.toFixed(1) + " min/km"
+                    text: trackLoader.pace.toFixed(2) + " min/km"
                 }
 
                 Label {
@@ -214,13 +214,13 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Average heart rate:"                    
+                    text: "Heart rate Min/Max/Ø:"
                 }
                 Label {
                     id: heartRateData
                     width: descriptionData.width
-                    text: trackLoader.heartRate.toFixed(1) + " bpm"
-                }
+                    text: trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
+                }                                
             }
         }
     }

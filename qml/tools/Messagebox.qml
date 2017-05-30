@@ -87,7 +87,7 @@ BackgroundItem
         {
             idRectangleColor.color = "#F9D440";
             idImageIcon.visible = true;
-            idImageIcon.source = "../jp_logo.png"
+            idImageIcon.source = "../cd_logo.jpg"
         }
     }
 

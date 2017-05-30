@@ -35,6 +35,8 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_distance = 0;
     m_heartRate = 0;
     m_heartRatePoints = 0;
+    m_heartRateMin = 9999999;
+    m_heartRateMax = 0;
 }
 
 void TrackLoader::load() {
@@ -181,8 +183,15 @@ void TrackLoader::load() {
             {
                 m_heartRatePoints++;
                 m_heartRate += m_points.at(i).heartrate;
+
+                if (m_points.at(i).heartrate > m_heartRateMax)
+                    m_heartRateMax = m_points.at(i).heartrate;
+                if (m_points.at(i).heartrate < m_heartRateMin)
+                    m_heartRateMin = m_points.at(i).heartrate;
             }
         }
+        emit heartRateMinChanged();
+        emit heartRateMaxChanged();
         emit distanceChanged();
         emit maxSpeedChanged();
         m_speed = m_distance / m_duration;
@@ -360,7 +369,27 @@ qreal TrackLoader::heartRate() {
     return m_heartRate;
 }
 
+uint TrackLoader::heartRateMin() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_heartRateMin;
+}
 
+uint TrackLoader::heartRateMax() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_heartRateMax;
+}
 
 bool TrackLoader::loaded() {
     return m_loaded;
