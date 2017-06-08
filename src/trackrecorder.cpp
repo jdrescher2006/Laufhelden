@@ -33,6 +33,7 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_isEmpty = true;
     m_applicationActive = true;
     m_autoSavePosition = 0;
+    iCurrentHeartRate = 0;
 
     // Load autosaved track if left from previous session
     loadAutoSave();
@@ -78,6 +79,8 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
 
     if(m_tracking) {
         m_points.append(newPos);
+        m_heartrate.append(this->iCurrentHeartRate);
+
         emit pointsChanged();
         emit timeChanged();
         if(m_isEmpty) {
@@ -225,6 +228,7 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
 
 void TrackRecorder::clearTrack() {
     m_points.clear();
+    m_heartrate.clear();
     m_distance = 0;
     m_isEmpty = true;
 
@@ -549,4 +553,11 @@ void TrackRecorder::loadAutoSave() {
         m_isEmpty = false;
         emit isEmptyChanged();
     }
+}
+
+void TrackRecorder::vSetCurrentHeartRate(uint heartRate)
+{
+    this->iCurrentHeartRate = heartRate;
+
+    return;
 }

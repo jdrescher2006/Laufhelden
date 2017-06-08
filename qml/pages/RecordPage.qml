@@ -24,9 +24,27 @@ import QtPositioning 5.0
 Page {
     id: page
 
-    function showSaveDialog() {
+    property bool bRecordPage: true
+
+    onStatusChanged:
+    {
+        if (status === PageStatus.Active && bRecordPage)
+        {
+            bRecordPage = false
+
+           //Connect to HRM device if we have a BT address
+            if (sHRMAddress !== "")
+            {
+                id_BluetoothData.connect(SharedResources.fncGetDeviceBTAddress(index), 1);
+            }          
+        }
+    }
+
+    function showSaveDialog()
+    {
         var dialog = pageStack.push(Qt.resolvedUrl("SaveDialog.qml"));
-        dialog.accepted.connect(function() {
+        dialog.accepted.connect(function()
+        {
             console.log("Saving track");
             recorder.exportGpx(dialog.name, dialog.description);
             recorder.clearTrack();  // TODO: Make sure save was successful?
@@ -89,13 +107,8 @@ Page {
         }
     }
 
-    onStatusChanged: {
-        if (status === PageStatus.Active) {
-            pageStack.pushAttached(Qt.resolvedUrl("HistoryPage.qml"), {})
-        }
-    }
-
-    Component.onCompleted: {
+    Component.onCompleted:
+    {
         recorder.newTrackPoint.connect(newTrackPoint);
         map.addMapItem(positionMarker);
         console.log("RecordPage: Plotting track line");
@@ -162,7 +175,7 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
             MenuItem {
-                text: qsTr("Start new recording")
+                text: qsTr("Start workout!")
                 visible: !recorder.tracking
                 onClicked: {
                     if(!recorder.isEmpty) {
@@ -238,8 +251,16 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.accuracy < 0 ? "No position" :
                                               (recorder.accuracy < 30
-                                               ? qsTr("Accuracy: ") + recorder.accuracy.toFixed(1) + "m"
+                                               ? sHeartRate + recorder.accuracy.toFixed(1) + "m"
                                                : qsTr("Accuracy too low: ") + recorder.accuracy.toFixed(1) + "m")
+                Behavior on opacity {
+                    FadeAnimation {}
+                }
+            }
+            Label {
+                id: heartrateLabel
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: sHeartRate + qsTr(" bpm")
                 Behavior on opacity {
                     FadeAnimation {}
                 }

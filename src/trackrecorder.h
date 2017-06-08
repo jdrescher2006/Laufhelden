@@ -40,6 +40,7 @@ public:
     ~TrackRecorder();
     Q_INVOKABLE void exportGpx(QString name="", QString desc="");
     Q_INVOKABLE void clearTrack();
+    Q_INVOKABLE void vSetCurrentHeartRate(uint heartRate);
 
     qreal accuracy() const;
     int points() const;
@@ -81,6 +82,7 @@ private:
     QGeoPositionInfoSource *m_posSrc;
     qreal m_accuracy;
     QList<QGeoPositionInfo> m_points;
+    QList<uint> m_heartrate;
     QGeoCoordinate m_currentPosition;
     qreal m_distance;
     qreal m_minLat;
@@ -92,6 +94,7 @@ private:
     bool m_applicationActive;
     int m_autoSavePosition;
     QTimer m_autoSaveTimer;
+    uint iCurrentHeartRate;
     };
 
 #endif // TRACKRECORDER_H

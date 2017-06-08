@@ -30,8 +30,13 @@ ApplicationWindow
     id: appWindow
 
     //Define global variables
-    property bool bConnected: false;
-    property bool bConnecting: false;
+    property bool bHRMConnected: false;
+    property bool bHRMConnecting: false;
+    property string sHeartRateHexString: ""
+    property string sHeartRate: ""
+    property string sBatteryLevel: ""
+    property string sHRMAddress: ""
+    property string sActiveBTDevice: ""
 
     //Init C++ classes, libraries
     BluetoothConnection{ id: id_BluetoothConnection }
@@ -42,6 +47,92 @@ ApplicationWindow
         id: recorder
         applicationActive: appWindow.applicationActive
         updateInterval: settings.updateInterval
+    }
+
+    //These are connections to c++ events
+    Connections
+    {
+        target: id_BluetoothData        
+        onSigReadDataReady:     //This is called from C++ if there is data via bluetooth
+        {
+            //Check received data
+            sHeartRateHexString = sHeartRateHexString + sData.toLowerCase();
+
+            console.log("sHeartRateHexString: " + sHeartRateHexString);
+
+            //Minimum length Polar packets is 8 bytes
+            if (sHeartRateHexString.length < 16)
+                return;
+
+            //Search for header byte, must always be 0xfe
+            if (sHeartRateHexString.indexOf("fe") !== -1)
+            {
+                //Cut off everything left of fe
+              sHeartRateHexString = sHeartRateHexString.substr((sHeartRateHexString.indexOf("fe")));
+            }
+            else
+                return; //No header byte found
+            //Check if packet is at correct length
+            var iPacketLength = parseInt(sHeartRateHexString.substr(2,2), 16);
+            console.log("iPacketLength: " + iPacketLength);
+            if (sHeartRateHexString.length < (iPacketLength * 2))
+                return; //Packet has is not big enough
+            //Check check byte, 255 - packet length
+            var iCheckByte = parseInt(sHeartRateHexString.substr(4,2), 16);
+            console.log("iCheckByte: " + iCheckByte);
+            if (iCheckByte !== (255 - iPacketLength))
+            {
+                console.log("Check byte is not valid!");
+                return; //Check byte is not valid
+            }
+            //Check sequence valid
+            var iSequenceValid = parseInt(sHeartRateHexString.substr(6,2), 16);
+            console.log("iSequenceValid: " + iSequenceValid);
+            if (iSequenceValid >= 16)
+                return; //Sequence valid byte is not valid
+
+            //Check status byte
+            var iStatus = parseInt(sHeartRateHexString.substr(8,2), 16);
+            console.log("iStatus: " + iStatus);
+            //Check battery state
+            var iBattery = parseInt(sHeartRateHexString.substr(8,1), 16);
+            console.log("iBattery: " + iBattery);
+            //Extract heart rate
+            var iHeartRate = parseInt(sHeartRateHexString.substr(10,2), 16);
+            console.log("iHeartRate: " + iHeartRate);
+
+            sHeartRate = iHeartRate.toString();
+
+            var sTemp = ((100/15) * iBattery).toString();
+            if (sTemp.indexOf(".") != -1)
+                sTemp = sTemp.substring(0, sTemp.indexOf("."));
+            sBatteryLevel = sTemp + "%";
+
+            //Extraction was successful here. Reset message text var.
+            sHeartRateHexString = "";
+
+            //Send heart rate to trackrecorderiHeartRate so that it can be included into the gpx file.
+            recorder.vSetCurrentHeartRate(iHeartRate);
+        }
+        onSigConnected:
+        {
+            fncShowMessage(2,"Connected", 4000);
+            bHRMConnected = true;
+            sActiveBTDevice = sConnectingBTDevice;      //PROBLEM HIER!!!
+        }
+        onSigDisconnected:
+        {
+            fncShowMessage(1,"Disconnected", 4000);
+            sHeartRate = "";
+            sBatteryLevel = "";
+            sActiveBTDevice = "";
+            bHRMConnected = false;
+            recorder.vSetCurrentHeartRate(0);
+        }
+        onSigError:
+        {
+            fncShowMessage(3,"Error: " + sError, 10000);
+        }
     }
 
 
