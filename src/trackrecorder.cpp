@@ -121,7 +121,7 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
         return; // Nothing to save
     }
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-    QString subDir = "Rena";
+    QString subDir = "Laufhelden";
     QString filename;
     if(!name.isEmpty()) {
         filename = m_points.at(0).timestamp().toUTC().toString(Qt::ISODate)
@@ -157,7 +157,7 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     xml.writeDefaultNamespace("http://www.topografix.com/GPX/1/1");
     xml.writeStartElement("gpx");
     xml.writeAttribute("version", "1.1");
-    xml.writeAttribute("Creator", "Rena for Sailfish");
+    xml.writeAttribute("Creator", "Laufhelden app for Sailfish");
 
     if(!name.isEmpty() || !desc.isEmpty()) {
         xml.writeStartElement("metadata");
@@ -205,6 +205,14 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
         if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalAccuracy)) {
             xml.writeTextElement("v_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalAccuracy), 'g', 15));
         }
+
+        if(m_heartrate.count() > 0)
+        {
+            xml.writeStartElement("gpxtpx:TrackPointExtension");
+            xml.writeTextElement("gpxtpx:hr", QString::number(m_heartrate.at(i), 'g', 15));
+            xml.writeEndElement(); // gpxtpx:TrackPointExtension
+        }
+
         xml.writeEndElement(); // extensions
 
         xml.writeEndElement(); // trkpt
@@ -233,7 +241,7 @@ void TrackRecorder::clearTrack() {
     m_isEmpty = true;
 
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-    QString subDir = "Rena";
+    QString subDir = "Laufhelden";
     QDir renaDir = QDir(homeDir + "/" + subDir);
     renaDir.remove("Autosave");
 
@@ -405,7 +413,7 @@ QGeoCoordinate TrackRecorder::trackCenter() {
 
 void TrackRecorder::autoSave() {
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-    QString subDir = "Rena";
+    QString subDir = "Laufhelden";
     QString filename = "Autosave";
     QDir home = QDir(homeDir);
 
@@ -467,7 +475,7 @@ void TrackRecorder::autoSave() {
 
 void TrackRecorder::loadAutoSave() {
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-    QString subDir = "Rena";
+    QString subDir = "Laufhelden";
     QString filename = "Autosave";
     QFile file;
     file.setFileName(homeDir + "/" + subDir + "/" + filename);

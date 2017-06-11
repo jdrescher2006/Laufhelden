@@ -32,11 +32,18 @@ Page {
         {
             bRecordPage = false
 
-           //Connect to HRM device if we have a BT address
-            if (sHRMAddress !== "")
+           //Connect to HRM device if we have a BT address and HRM device should be used
+            if (sHRMAddress !== "" && bHRMuseDevice)
             {
-                id_BluetoothData.connect(SharedResources.fncGetDeviceBTAddress(index), 1);
+                id_BluetoothData.connect(sHRMAddress, 1);
             }          
+        }
+        if (status === PageStatus.Inactive)
+        {
+            if (bHRMConnected) {id_BluetoothData.disconnect();}
+
+            sHeartRate: ""
+            sBatteryLevel: ""
         }
     }
 
@@ -164,12 +171,10 @@ Page {
         anchors.left: page.left
         anchors.right: page.right
 
-        PullDownMenu {
+        PullDownMenu
+        {
             id: menu
-            MenuItem {
-                text: qsTr("About Rena")
-                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
+
             MenuItem {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
@@ -215,7 +220,7 @@ Page {
             spacing: Theme.paddingLarge
             PageHeader {
                 id: header
-                title: "Rena"
+                title: "Laufhelden"
             }
             Label {
                 id: stateLabel
@@ -257,11 +262,14 @@ Page {
                     FadeAnimation {}
                 }
             }
-            Label {
+            Label
+            {
                 id: heartrateLabel
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: sHeartRate + qsTr(" bpm")
-                Behavior on opacity {
+                visible: sHRMAddress !== "" && bHRMuseDevice
+                text: sHeartRate + qsTr(" bpm, ") + sBatteryLevel + " %"
+                Behavior on opacity
+                {
                     FadeAnimation {}
                 }
             }

@@ -150,7 +150,7 @@ QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int 
 }
 
 bool HistoryModel::removeTrack(int index) {
-    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Rena";
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
     QDir dir = QDir(dirName);
     if(!dir.exists()) {
         qDebug()<<"Directory doesn't exist";
@@ -188,7 +188,7 @@ void HistoryModel::readDirectory() {
         trackLoading.waitForFinished();
     }
 
-    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Rena";
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
     QDir dir = QDir(dirName);
     if(!dir.exists()) {
         qDebug()<<"Directory doesn't exist, nothing to read";

@@ -31,12 +31,16 @@ ApplicationWindow
 
     //Define global variables
     property bool bHRMConnected: false;
-    property bool bHRMConnecting: false;
-    property string sHeartRateHexString: ""
+    property bool bHRMConnecting: false;    
+    property bool bHRMuseDevice: true;
     property string sHeartRate: ""
     property string sBatteryLevel: ""
     property string sHRMAddress: ""
     property string sActiveBTDevice: ""
+
+    //These are private variables
+    property string sHeartRateHexString: ""
+
 
     //Init C++ classes, libraries
     BluetoothConnection{ id: id_BluetoothConnection }
@@ -54,9 +58,9 @@ ApplicationWindow
     {
         target: id_BluetoothData        
         onSigReadDataReady:     //This is called from C++ if there is data via bluetooth
-        {
+        {            
             //Check received data
-            sHeartRateHexString = sHeartRateHexString + sData.toLowerCase();
+              sHeartRateHexString = sHeartRateHexString + sData.toLowerCase();
 
             console.log("sHeartRateHexString: " + sHeartRateHexString);
 
@@ -101,31 +105,32 @@ ApplicationWindow
             var iHeartRate = parseInt(sHeartRateHexString.substr(10,2), 16);
             console.log("iHeartRate: " + iHeartRate);
 
-            sHeartRate = iHeartRate.toString();
-
             var sTemp = ((100/15) * iBattery).toString();
             if (sTemp.indexOf(".") != -1)
                 sTemp = sTemp.substring(0, sTemp.indexOf("."));
-            sBatteryLevel = sTemp + "%";
 
             //Extraction was successful here. Reset message text var.
             sHeartRateHexString = "";
 
             //Send heart rate to trackrecorderiHeartRate so that it can be included into the gpx file.
-            recorder.vSetCurrentHeartRate(iHeartRate);
+            if (recorder.applicationActive)
+                recorder.vSetCurrentHeartRate(iHeartRate);
+
+            sHeartRate = iHeartRate.toString();
+            sBatteryLevel = sTemp;
         }
         onSigConnected:
         {
             fncShowMessage(2,"Connected", 4000);
             bHRMConnected = true;
-            sActiveBTDevice = sConnectingBTDevice;      //PROBLEM HIER!!!
+            //sActiveBTDevice = sConnectingBTDevice;      //PROBLEM HIER!!!
         }
         onSigDisconnected:
         {
             fncShowMessage(1,"Disconnected", 4000);
-            sHeartRate = "";
-            sBatteryLevel = "";
-            sActiveBTDevice = "";
+            //sHeartRate = "";
+           // sBatteryLevel = "";
+            //sActiveBTDevice = "";
             bHRMConnected = false;
             recorder.vSetCurrentHeartRate(0);
         }

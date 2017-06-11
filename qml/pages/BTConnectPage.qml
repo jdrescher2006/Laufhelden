@@ -10,9 +10,6 @@ Page {
     property bool bBluetoothScanning: false
     property int iScannedDevicesCount: 0
     property string sConnectingBTDevice: ""    
-    property string sHeartRateHexString: ""
-    property string sHeartRate: ""
-    property string sBatteryLevel: ""
 
     onStatusChanged:
     {       
@@ -20,13 +17,23 @@ Page {
         {
             bFirstPage = false
 
+            console.log("BTPage");
+
             //DEBUG START
-            //SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
+            SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
             //DEBUG ENDE
 
-            id_LV_Devices.model = SharedResources.fncGetDevicesNumber();
+            id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
+        }
+        if (status === PageStatus.Inactive)
+        {
+            if (bHRMConnected) {id_BluetoothData.disconnect();}
+
+            sHeartRate: ""
+            sBatteryLevel: ""
         }
     }
+
 
     Connections
     {
@@ -36,6 +43,8 @@ Page {
             //Add device to data array
             SharedResources.fncAddDevice(sName, sAddress);
             id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
+
+            console.log(iScannedDevicesCount.toString());
         }
         onScanFinished:
         {
@@ -133,15 +142,17 @@ Page {
             }
             Label
             {
+                visible: bHRMConnected
                 width: parent.width;
                 id: id_LBL_HeartRate;
-                text: qsTr("Heart Rate: ") + sHeartRate;
+                text: qsTr("Heart Rate: ") + sHeartRate + qsTr(" bpm");
             }
             Label
             {
+                visible: bHRMConnected
                 width: parent.width;
                 id: id_LBL_Battery;
-                text: qsTr("Battery Level: ") + sBatteryLevel;
+                text: qsTr("Battery Level: ") + sBatteryLevel + " %";
             }
 
             SectionHeader
@@ -172,8 +183,11 @@ Page {
                     onClicked:
                     {
                         console.log("Clicked " + index);
+                        if (bBluetoothScanning)
+                            return;
                         sConnectingBTDevice = SharedResources.fncGetDeviceBTName(index) + ", " + SharedResources.fncGetDeviceBTAddress(index);
                         id_BluetoothData.connect(SharedResources.fncGetDeviceBTAddress(index), 1);
+                        sHRMAddress = SharedResources.fncGetDeviceBTAddress(index);
                     }
                 }
                 VerticalScrollDecorator {}

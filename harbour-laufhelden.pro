@@ -60,5 +60,6 @@ DISTFILES += \
     qml/icon-lock-warning.png \
     qml/laufhelden.png \
     qml/pages/SharedResources.js \
-    qml/heart.png
+    qml/heart.png \
+    qml/tools/JSTools.js
 

@@ -45,7 +45,7 @@ void TrackLoader::load() {
         //qDebug()<<"No filename set";
         return;
     }
-    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Rena";
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
     QString fullFilename = dirName + "/" + m_filename;
     QFile file(fullFilename);
 
