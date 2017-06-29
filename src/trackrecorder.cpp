@@ -80,6 +80,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
     if(m_tracking) {
         m_points.append(newPos);
         m_heartrate.append(this->iCurrentHeartRate);
+        this->iCurrentHeartRate = -1;
 
         emit pointsChanged();
         emit timeChanged();
@@ -156,8 +157,11 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     xml.writeStartDocument();
     xml.writeDefaultNamespace("http://www.topografix.com/GPX/1/1");
     xml.writeStartElement("gpx");
+    xml.writeAttribute("xsi:schemaLocation", "http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd");
     xml.writeAttribute("version", "1.1");
-    xml.writeAttribute("Creator", "Laufhelden app for Sailfish");
+    xml.writeAttribute("Creator", "Laufhelden");
+    xml.writeAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+    xml.writeAttribute("xmlns:gpxtpx", "http://www.garmin.com/xmlschemas/TrackPointExtension/v1");
 
     if(!name.isEmpty() || !desc.isEmpty()) {
         xml.writeStartElement("metadata");
@@ -169,6 +173,14 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
         }
         xml.writeEndElement(); // metadata
     }
+
+    xml.writeStartElement("extensions");
+    xml.writeStartElement("meerun");
+    xml.writeAttribute("activity", "running");
+    xml.writeAttribute("autoPause", "true");
+    xml.writeEndElement(); // meerun
+    xml.writeEndElement(); // extensions
+
 
     xml.writeStartElement("trk");
     xml.writeStartElement("trkseg");
@@ -206,7 +218,7 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
             xml.writeTextElement("v_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalAccuracy), 'g', 15));
         }
 
-        if(m_heartrate.count() > 0)
+        if(m_heartrate.count() > 0 && m_heartrate.at(i) != -1)
         {
             xml.writeStartElement("gpxtpx:TrackPointExtension");
             xml.writeTextElement("gpxtpx:hr", QString::number(m_heartrate.at(i), 'g', 15));

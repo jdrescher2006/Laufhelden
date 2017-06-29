@@ -132,7 +132,7 @@ ApplicationWindow
            // sBatteryLevel = "";
             //sActiveBTDevice = "";
             bHRMConnected = false;
-            recorder.vSetCurrentHeartRate(0);
+            recorder.vSetCurrentHeartRate(-1);
         }
         onSigError:
         {
