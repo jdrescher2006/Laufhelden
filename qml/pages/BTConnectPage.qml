@@ -23,7 +23,7 @@ Page {
             SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
             //DEBUG ENDE
 
-            id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
+            id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();            
         }
         if (status === PageStatus.Inactive)
         {

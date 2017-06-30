@@ -30,16 +30,20 @@ Page {
     {
         if (status === PageStatus.Active && bRecordPage)
         {
-            bRecordPage = false
+            bRecordPage = false;
 
            //Connect to HRM device if we have a BT address and HRM device should be used
             if (sHRMAddress !== "" && bHRMuseDevice)
             {
                 id_BluetoothData.connect(sHRMAddress, 1);
             }          
+
+            bRecordDialogRunning = true;
         }
         if (status === PageStatus.Inactive)
         {
+            bRecordDialogRunning = false;
+
             if (bHRMConnected) {id_BluetoothData.disconnect();}
 
             sHeartRate: ""

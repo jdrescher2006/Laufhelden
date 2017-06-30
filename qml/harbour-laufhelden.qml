@@ -30,12 +30,14 @@ ApplicationWindow
     id: appWindow
 
     //Define global variables
-    property bool bHRMConnected: false;
-    property bool bHRMConnecting: false;    
-    property bool bHRMuseDevice: true;
+    property bool bHRMConnected: false
+    property bool bHRMConnecting: false
+    property bool bHRMuseDevice: true
+    property bool bReconnectHRMDevice: false
+    property bool bRecordDialogRunning: false
     property string sHeartRate: ""
     property string sBatteryLevel: ""
-    property string sHRMAddress: ""
+    property string sHRMAddress: "00:22:D0:02:2F:54"
     property string sActiveBTDevice: ""
 
     //These are private variables
@@ -133,6 +135,11 @@ ApplicationWindow
             //sActiveBTDevice = "";
             bHRMConnected = false;
             recorder.vSetCurrentHeartRate(-1);
+
+            //if record dialog is opened, try to reconnect to HRM device
+            if (bRecordDialogRunning)
+                bReconnectHRMDevice = true;
+
         }
         onSigError:
         {
@@ -174,6 +181,23 @@ ApplicationWindow
         width: Math.abs(rotationSensor.angle) == 90 ? parent.height : parent.width
         Behavior on rotation { SmoothedAnimation { duration: 500 } }
         Behavior on width { SmoothedAnimation { duration: 500 } }
+    }
+
+    Timer
+    {
+        //This is called if the connection to the HRM device is broken
+        id: timReconnectHRMdevice
+        interval: 2000
+        running: bReconnectHRMDevice
+        repeat: false
+        onTriggered:
+        {
+            console.log("Timer for HRM reconnection is running.");
+
+            id_BluetoothData.connect(sHRMAddress, 1);
+
+            bReconnectHRMDevice = false;
+        }
     }
 
 
