@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Jens Drescher, Germany
+ * Copyright (C) 2017 Jens Drescher, Germany
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -148,3 +148,25 @@ function fncGetDeviceBTAddress(iIndex)
 }
 
 /*--------------END scanned bluetooth adapters--------------*/
+
+
+
+/*--------------START workout table --------------*/
+
+var arrayWorkoutTypes =
+[
+    { name: "running", labeltext: qsTr("Running"), icon: "../workouticons/running.png" },
+    { name: "biking", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png" },
+    { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png" },
+    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" }
+]
+
+//Create lookup table for workout types.
+//This is a helper table to easier access the workout type table.
+var arrayLookupWorkoutTableByName = {};
+for (var i = 0; i < arrayWorkoutTypes.length; i++)
+{
+    arrayLookupWorkoutTableByName[arrayWorkoutTypes[i].name] = arrayWorkoutTypes[i];
+}
+
+/*--------------END workout table --------------*/

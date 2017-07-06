@@ -1,0 +1,12 @@
+ToDo for first release to openrepos:
+- bluetooth data logging function
+- compatibility with new HRM belt
+- new icons
+- all workout types from meerun
+- Cover dialog
+
+
+
+ToDo:
+- choose metrics, km/miles
+- 

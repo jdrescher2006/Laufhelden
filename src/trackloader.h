@@ -28,6 +28,7 @@ class TrackLoader : public QObject
     Q_OBJECT
     Q_PROPERTY(QString filename READ filename WRITE setFilename NOTIFY filenameChanged)
     Q_PROPERTY(QString name READ name NOTIFY nameChanged)
+    Q_PROPERTY(QString workout READ workout NOTIFY workoutChanged)
     Q_PROPERTY(QString description READ description NOTIFY descriptionChanged)
     Q_PROPERTY(QDateTime time READ time NOTIFY timeChanged)
     Q_PROPERTY(QString timeStr READ timeStr NOTIFY timeChanged)
@@ -47,6 +48,7 @@ public:
     QString filename() const;
     void setFilename(QString filename);
     QString name();
+    QString workout();
     QString description();
     QDateTime time();
     QString timeStr();
@@ -70,6 +72,7 @@ public:
 signals:
     void filenameChanged();
     void nameChanged();
+    void workoutChanged();
     void descriptionChanged();
     void timeChanged();
     void durationChanged();
@@ -107,6 +110,7 @@ private:
     bool m_error;
     QString m_filename;
     QString m_name;
+    QString m_workout;
     QString m_description;
     QDateTime m_time;
     uint m_duration;

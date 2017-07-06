@@ -33,6 +33,7 @@ TrackItem loadTrack(TrackItem track) {
     TrackLoader loader;
     loader.setFilename(data.filename);
     data.name = loader.name();
+    data.workout = loader.workout();
     data.time = loader.time();
     data.duration = loader.duration();
     data.distance = loader.distance();
@@ -59,6 +60,7 @@ QHash<int, QByteArray> HistoryModel::roleNames() const {
     QHash<int, QByteArray> roles;
     roles[Qt::DisplayRole] = "name";
     roles[FilenameRole] = "filename";
+    roles[WorkoutRole] = "workout";
     roles[ReadyRole] = "ready";
     roles[DateRole] = "date";
     roles[DurationRole] = "duration";
@@ -91,6 +93,9 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const {
     }
     if(role == FilenameRole) {
         return m_trackList.at(index.row()).filename;
+    }
+    if(role == WorkoutRole) {
+        return m_trackList.at(index.row()).workout;
     }
     if(role == DateRole) {
         if(!m_trackList.at(index.row()).ready) {
@@ -205,6 +210,7 @@ void HistoryModel::readDirectory() {
         item.filename = entries.at(i);
         item.ready = false;
         item.name = item.filename;
+        item.workout = "";
         item.time = QDateTime();
         item.duration = 0;
         item.distance = 0;

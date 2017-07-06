@@ -9,7 +9,6 @@ Page {
     property bool bFirstPage: true
     property bool bBluetoothScanning: false
     property int iScannedDevicesCount: 0
-    property string sConnectingBTDevice: ""    
 
     onStatusChanged:
     {       
@@ -20,7 +19,7 @@ Page {
             console.log("BTPage");
 
             //DEBUG START
-            SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
+            //SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
             //DEBUG ENDE
 
             id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();            
@@ -70,18 +69,18 @@ Page {
             spacing: Theme.paddingLarge
             PageHeader
             {
-                title: qsTr("Connect heart rate device")
+                title: qsTr("Heart rate monitor")
             }
 
             SectionHeader
             {
-                text: qsTr("Scan for Bluetooth devices...")
+                text: qsTr("Scan for Bluetooth devices")
                 visible: !bBluetoothScanning && !bHRMConnecting && !bHRMConnected
             }
             Button
             {
                 width: parent.width
-                text: qsTr("Start Scanning...")
+                text: qsTr("Start scanning...")
                 visible: !bBluetoothScanning && !bHRMConnecting && !bHRMConnected
                 onClicked:
                 {
@@ -99,7 +98,7 @@ Page {
             Button
             {
                 width: parent.width
-                text: qsTr("Cancel")
+                text: qsTr("Cancel scanning")
                 visible: bBluetoothScanning
                 onClicked:
                 {
@@ -121,24 +120,16 @@ Page {
                 }
             }
 
-
-            Button
-            {
-                text: "Disconnect"
-                onClicked:
-                {
-                    id_BluetoothData.disconnect();                    
-                }
-            }
+            Separator { color: Theme.highlightColor; width: parent.width; }
 
             SectionHeader
             {
-                text: qsTr("Active BT device")
+                text: qsTr("Current BT device")
             }
             Label
             {
                 width: parent.width;
-                text: sActiveBTDevice;
+                text: sHRMAddress === "" ? qsTr("None") : sHRMDeviceName + ", " + sHRMAddress
             }
             Label
             {
@@ -154,6 +145,29 @@ Page {
                 id: id_LBL_Battery;
                 text: qsTr("Battery Level: ") + sBatteryLevel + " %";
             }
+
+            Button
+            {
+                text: "Connect"
+                width: parent.width
+                visible: !bHRMConnected && !bHRMConnecting && sHRMAddress !== ""
+                onClicked:
+                {
+                    id_BluetoothData.connect(sHRMAddress, 1);
+                }
+            }
+            Button
+            {
+                text: "Disconnect"
+                width: parent.width
+                visible: bHRMConnected && !bHRMConnecting && sHRMAddress !== ""
+                onClicked:
+                {
+                    id_BluetoothData.disconnect();                    
+                }
+            }
+
+            Separator { color: Theme.highlightColor; width: parent.width; }
 
             SectionHeader
             {
@@ -182,12 +196,15 @@ Page {
                     }
                     onClicked:
                     {
-                        console.log("Clicked " + index);
                         if (bBluetoothScanning)
                             return;
-                        sConnectingBTDevice = SharedResources.fncGetDeviceBTName(index) + ", " + SharedResources.fncGetDeviceBTAddress(index);
-                        id_BluetoothData.connect(SharedResources.fncGetDeviceBTAddress(index), 1);
                         sHRMAddress = SharedResources.fncGetDeviceBTAddress(index);
+                        sHRMDeviceName = SharedResources.fncGetDeviceBTName(index);
+
+                        //Save the new device to settings
+                        settings.hrmdevice = sHRMAddress + "," + sHRMDeviceName;
+
+                        id_BluetoothData.connect(SharedResources.fncGetDeviceBTAddress(index), 1);                        
                     }
                 }
                 VerticalScrollDecorator {}

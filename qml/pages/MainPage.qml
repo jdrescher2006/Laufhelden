@@ -18,6 +18,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import HistoryModel 1.0
+import "SharedResources.js" as SharedResources
 
 Page
 {
@@ -32,6 +33,19 @@ Page
         {
             bMainPage = false;
 
+            //Read settings to QML variables
+            var sTemp = settings.hrmdevice;
+            sTemp = sTemp.split(',');
+            if (sTemp.length === 2)
+            {
+                sHRMAddress = sTemp[0];
+                sHRMDeviceName = sTemp[1];
+            }
+            else
+            {
+                sHRMAddress = "";
+                sHRMDeviceName = "";
+            }
         }
     }
 
@@ -57,16 +71,11 @@ Page
             {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-            }
-            MenuItem
-            {
-                text: qsTr("Heart rate device")
-                onClicked: pageStack.push(Qt.resolvedUrl("BTConnectPage.qml"))
-            }
+            }            
             MenuItem
             {
                 text: qsTr("Start new workout")
-                onClicked: pageStack.push(Qt.resolvedUrl("RecordPage.qml"))
+                onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
             }
         }
 
@@ -118,10 +127,21 @@ Page
                         historyModel.removeTrack(index);
                     }
 
+
+                    Image
+                    {
+                        id: workoutImage                        
+                        anchors.top: parent.top
+                        anchors.topMargin: Theme.paddingMedium
+                        x: Theme.paddingSmall
+                        width: Theme.paddingMedium * 3
+                        height: Theme.paddingMedium * 3
+                        source: workout==="" ? "" : SharedResources.arrayLookupWorkoutTableByName[workout].icon
+                    }
                     Label
                     {
                         id: nameLabel
-                        x: Theme.paddingLarge
+                        x: Theme.paddingLarge * 2
                         width: parent.width - dateLabel.width - 2*Theme.paddingLarge
                         anchors.top: parent.top
                         truncationMode: TruncationMode.Fade
@@ -133,14 +153,14 @@ Page
                         id: dateLabel
                         anchors.top: parent.top
                         anchors.right: parent.right
-                        anchors.rightMargin: Theme.paddingLarge
+                        anchors.rightMargin: Theme.paddingSmall
                         text: date
                         color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                     }
                     Label
                     {
                         anchors.top: nameLabel.bottom
-                        x: Theme.paddingLarge
+                        x: Theme.paddingLarge * 2
                         color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeSmall
                         text: distance
@@ -157,7 +177,7 @@ Page
                     {
                         anchors.top: nameLabel.bottom
                         anchors.right: parent.right
-                        anchors.rightMargin: Theme.paddingLarge
+                        anchors.rightMargin: Theme.paddingSmall
                         color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeSmall
                         text: speed

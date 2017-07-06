@@ -24,25 +24,29 @@ import QtPositioning 5.0
 Page {
     id: page
 
+    allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All;
+
     property bool bRecordPage: true
 
     onStatusChanged:
     {
+        //console.log("onStatusChanged record page: " + status.toString());
+
         if (status === PageStatus.Active && bRecordPage)
         {
             bRecordPage = false;
 
            //Connect to HRM device if we have a BT address and HRM device should be used
-            if (sHRMAddress !== "" && bHRMuseDevice)
-            {
+            if (sHRMAddress !== "" && settings.useHRMdevice)
+            {              
                 id_BluetoothData.connect(sHRMAddress, 1);
-            }          
+            }
 
-            bRecordDialogRunning = true;
+            bRecordDialogRequestHRM = true;
         }
         if (status === PageStatus.Inactive)
         {
-            bRecordDialogRunning = false;
+            bRecordDialogRequestHRM = false;
 
             if (bHRMConnected) {id_BluetoothData.disconnect();}
 
@@ -215,6 +219,28 @@ Page {
                 }
             }
         }
+        PushUpMenu
+        {
+            id: menuUP
+
+            MenuItem {
+                text: qsTr("Disconnect HRM")
+                onClicked:
+                {
+                    bRecordDialogRequestHRM = false;
+                    id_BluetoothData.disconnect();
+                }
+            }
+            MenuItem {
+                text: qsTr("Reconnect HRM")
+                onClicked:
+                {
+                     id_BluetoothData.connect(sHRMAddress, 1);
+                    bRecordDialogRequestHRM = true;
+                }
+
+            }
+        }
 
         contentHeight: column.height
 
@@ -269,9 +295,9 @@ Page {
             Label
             {
                 id: heartrateLabel
-                anchors.horizontalCenter: parent.horizontalCenter
-                visible: sHRMAddress !== "" && bHRMuseDevice
-                text: sHeartRate + qsTr(" bpm, ") + sBatteryLevel + " %"
+                anchors.horizontalCenter: parent.horizontalCenter                
+                visible: sHRMAddress !== "" && settings.useHRMdevice
+                text: sHeartRate + qsTr(" bpm, ") + sBatteryLevel + " %, Conn: " + bHRMConnected.toString();
                 Behavior on opacity
                 {
                     FadeAnimation {}

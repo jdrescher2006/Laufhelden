@@ -28,6 +28,7 @@ struct TrackItem {
     QString filename;
     bool ready;
     QString name;
+    QString workout;
     QDateTime time;
     int duration;
     qreal distance;
@@ -41,6 +42,7 @@ public:
     enum HistoryRoles {
         FilenameRole = Qt::UserRole + 1,
         ReadyRole,
+        WorkoutRole,
         DateRole,
         DurationRole,
         DistanceRole,

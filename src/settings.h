@@ -24,12 +24,27 @@
 class Settings : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int updateInterval READ updateInterval
-               WRITE setUpdateInterval NOTIFY updateIntervalChanged)
+    Q_PROPERTY(int updateInterval READ updateInterval WRITE setUpdateInterval NOTIFY updateIntervalChanged)
+    Q_PROPERTY(QString hrmdevice READ hrmdevice WRITE setHrmdevice)
+    Q_PROPERTY(bool recordPagePortrait READ recordPagePortrait WRITE setRecordPagePortrait)
+    Q_PROPERTY(QString workoutType READ workoutType WRITE setWorkoutType)
+    Q_PROPERTY(bool useHRMdevice READ useHRMdevice WRITE setUseHRMdevice)
 public:
     explicit Settings(QObject *parent = 0);
     int updateInterval() const;
     void setUpdateInterval(int updateInterval);
+
+    QString hrmdevice() const;
+    void setHrmdevice(QString hrmdevice);
+
+    bool recordPagePortrait() const;
+    void setRecordPagePortrait(bool recordPagePortrait);
+
+    QString workoutType() const;
+    void setWorkoutType(QString workoutType);
+
+    bool useHRMdevice() const;
+    void setUseHRMdevice(bool useHRMdevice);
 
 signals:
     void updateIntervalChanged();

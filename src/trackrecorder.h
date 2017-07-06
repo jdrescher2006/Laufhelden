@@ -34,6 +34,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(bool applicationActive READ applicationActive WRITE setApplicationActive NOTIFY applicationActiveChanged)
     Q_PROPERTY(QGeoCoordinate currentPosition READ currentPosition NOTIFY currentPositionChanged)
     Q_PROPERTY(int updateInterval READ updateInterval WRITE setUpdateInterval NOTIFY updateIntervalChanged)
+    Q_PROPERTY(QString workoutType READ workoutType WRITE setWorkoutType)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);
@@ -54,6 +55,9 @@ public:
     QGeoCoordinate currentPosition() const;
     int updateInterval() const;
     void setUpdateInterval(int updateInterval);
+    QString workoutType() const;
+    void setWorkoutType(QString workoutType);
+
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
@@ -95,6 +99,7 @@ private:
     int m_autoSavePosition;
     QTimer m_autoSaveTimer;
     uint iCurrentHeartRate;
+    QString sWorkoutType;
     };
 
 #endif // TRACKRECORDER_H

@@ -34,6 +34,7 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_applicationActive = true;
     m_autoSavePosition = 0;
     iCurrentHeartRate = 0;
+    sWorkoutType = "running";
 
     // Load autosaved track if left from previous session
     loadAutoSave();
@@ -163,23 +164,31 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     xml.writeAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
     xml.writeAttribute("xmlns:gpxtpx", "http://www.garmin.com/xmlschemas/TrackPointExtension/v1");
 
-    if(!name.isEmpty() || !desc.isEmpty()) {
-        xml.writeStartElement("metadata");
-        if(!name.isEmpty()) {
-            xml.writeTextElement("name", name);
-        }
-        if(!desc.isEmpty()) {
-            xml.writeTextElement("desc", desc);
-        }
-        xml.writeEndElement(); // metadata
-    }
+    xml.writeStartElement("metadata");
 
-    xml.writeStartElement("extensions");
-    xml.writeStartElement("meerun");
-    xml.writeAttribute("activity", "running");
-    xml.writeAttribute("autoPause", "true");
-    xml.writeEndElement(); // meerun
-    xml.writeEndElement(); // extensions
+        xml.writeTextElement("name", name);
+        xml.writeTextElement("desc", desc);
+
+        xml.writeStartElement("extensions");
+            xml.writeStartElement("meerun");
+                xml.writeAttribute("uid", "1c53fb3a34cd468a");
+                xml.writeAttribute("activity", this->sWorkoutType);
+                xml.writeAttribute("filtered", "false");
+                xml.writeAttribute("interval", "1");
+                xml.writeAttribute("elevationCorrected", "false");
+                xml.writeAttribute("manualPause", "true");
+                xml.writeAttribute("autoPause", "false");
+                xml.writeAttribute("autoPauseSensitivity", "medium");
+                xml.writeAttribute("gpsPause", "false");
+                xml.writeAttribute("createLapOnPause", "false");
+            xml.writeEndElement(); // meerun
+        xml.writeEndElement(); // extensions
+
+    xml.writeEndElement(); // metadata
+
+
+
+
 
 
     xml.writeStartElement("trk");
@@ -580,4 +589,13 @@ void TrackRecorder::vSetCurrentHeartRate(uint heartRate)
     this->iCurrentHeartRate = heartRate;
 
     return;
+}
+
+QString TrackRecorder::workoutType() const
+{
+    return this->sWorkoutType;
+}
+void TrackRecorder::setWorkoutType(QString workoutType)
+{
+    this->sWorkoutType = workoutType;
 }

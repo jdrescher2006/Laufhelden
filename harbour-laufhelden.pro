@@ -61,5 +61,10 @@ DISTFILES += \
     qml/laufhelden.png \
     qml/pages/SharedResources.js \
     qml/heart.png \
-    qml/tools/JSTools.js
+    qml/tools/JSTools.js \
+    qml/pages/PreRecordPage.qml \
+    qml/workouticons/biking.png \
+    qml/workouticons/mountainBiking.png \
+    qml/workouticons/running.png \
+    qml/workouticons/walking.png
 

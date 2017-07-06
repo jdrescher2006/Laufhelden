@@ -161,6 +161,7 @@ Page {
                     text: (trackLoader.distance/1000).toFixed(2) + " km"
                 }
                 Label {
+                    width: hearRateLabel.width
                     height:speedData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
@@ -175,7 +176,8 @@ Page {
                     text: (trackLoader.speed*3.6).toFixed(1) + " km/h"
                 }
                 Label {
-                    height:maxSpeedData.height
+                    width: hearRateLabel.width
+                    height:maxSpeedData.height                    
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
                     id: maxSpeedLabel

@@ -30,18 +30,21 @@ ApplicationWindow
     id: appWindow
 
     //Define global variables
-    property bool bHRMConnected: false
+
+    //*** HRM Start ***
+    property bool bHRMConnected: false          //the connection state to the HRM device
     property bool bHRMConnecting: false
-    property bool bHRMuseDevice: true
-    property bool bReconnectHRMDevice: false
-    property bool bRecordDialogRunning: false
+    property bool bReconnectHRMDevice: false    //HRM device has lost connection, reconnect
+    property bool bRecordDialogRequestHRM: false
     property string sHeartRate: ""
-    property string sBatteryLevel: ""
-    property string sHRMAddress: "00:22:D0:02:2F:54"
-    property string sActiveBTDevice: ""
+    property string sBatteryLevel: ""    
+    property string sHRMAddress: ""
+    property string sHRMDeviceName: ""
+    property string sHeartRateHexString: ""
+    //*** HRM End ***
 
     //These are private variables
-    property string sHeartRateHexString: ""
+
 
 
     //Init C++ classes, libraries
@@ -123,27 +126,25 @@ ApplicationWindow
         }
         onSigConnected:
         {
-            fncShowMessage(2,"Connected", 4000);
+            fncShowMessage(2,"HRM Connected", 4000);
             bHRMConnected = true;
-            //sActiveBTDevice = sConnectingBTDevice;      //PROBLEM HIER!!!
         }
         onSigDisconnected:
         {
-            fncShowMessage(1,"Disconnected", 4000);
-            //sHeartRate = "";
-           // sBatteryLevel = "";
-            //sActiveBTDevice = "";
+            fncShowMessage(1,"HRM Disconnected", 4000);
+            sHeartRate = "";
+            sBatteryLevel = "";
             bHRMConnected = false;
             recorder.vSetCurrentHeartRate(-1);
 
             //if record dialog is opened, try to reconnect to HRM device
-            if (bRecordDialogRunning)
+            if (bRecordDialogRequestHRM)
                 bReconnectHRMDevice = true;
 
         }
         onSigError:
         {
-            fncShowMessage(3,"Error: " + sError, 10000);
+            fncShowMessage(3,"HRM Error: " + sError, 10000);
         }
     }
 

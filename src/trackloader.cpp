@@ -28,6 +28,7 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_loaded = false;
     m_error = false;
     m_name = "";
+    m_workout = "";
     m_speed = 0;
     m_maxSpeed = 0;
     m_pace = 0;
@@ -70,94 +71,128 @@ void TrackLoader::load() {
     m_loaded = true;
     emit loadedChanged();
 
-    while(xml.readNextStartElement()) {
-        if(xml.name() == "metadata") {
-            while(xml.readNextStartElement()) {
-                if(xml.name() == "name") {
-                    m_name = xml.readElementText();
-                    emit nameChanged();
-                } else if(xml.name() == "desc") {
-                    m_description = xml.readElementText();
-                    emit descriptionChanged();
-                } else {
-                    xml.skipCurrentElement();
+    while(!xml.atEnd())
+    {
+        while(xml.readNextStartElement())
+        {
+            if(xml.name() == "metadata")
+            {
+                while(xml.readNextStartElement())
+                {
+                    if(xml.name() == "name")
+                    {
+                        m_name = xml.readElementText();
+                        emit nameChanged();
+                    }
+                    else if(xml.name() == "desc")
+                    {
+                        m_description = xml.readElementText();
+                        emit descriptionChanged();
+                    }
+                    else if(xml.name() == "extensions")
+                    {
+                        while(xml.readNextStartElement())
+                        {
+                            if(xml.name() == "meerun")
+                            {
+                                m_workout = xml.attributes().value("activity").toString();
+                                emit workoutChanged();
+                            }
+                            else
+                            {
+                                xml.skipCurrentElement();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        xml.skipCurrentElement();
+                    }
                 }
             }
-        } else if(xml.name() == "trk") {
-            while(xml.readNextStartElement()) {
-                if(xml.name() == "trkseg") {
-                    while(xml.readNextStartElement()) {
-                        if(xml.name() == "trkpt") {
-                            TrackPoint point;
+            else if(xml.name() == "trk")
+            {
+                while(xml.readNextStartElement())
+                {
+                    if(xml.name() == "trkseg")
+                    {
+                        while(xml.readNextStartElement())
+                        {
+                            if(xml.name() == "trkpt")
+                            {
+                                TrackPoint point;
 
-                            point.elevation = 0;
-                            point.direction = 0;
-                            point.groundSpeed = 0;
-                            point.verticalSpeed = 0;
-                            point.magneticVariation = 0;
-                            point.horizontalAccuracy = 0;
-                            point.verticalAccuracy = 0;
-                            point.heartrate = 0;
+                                point.elevation = 0;
+                                point.direction = 0;
+                                point.groundSpeed = 0;
+                                point.verticalSpeed = 0;
+                                point.magneticVariation = 0;
+                                point.horizontalAccuracy = 0;
+                                point.verticalAccuracy = 0;
+                                point.heartrate = 0;
 
-                            point.latitude = xml.attributes().value("lat").toDouble();
-                            point.longitude = xml.attributes().value("lon").toDouble();
+                                point.latitude = xml.attributes().value("lat").toDouble();
+                                point.longitude = xml.attributes().value("lon").toDouble();
 
-                            while(xml.readNextStartElement()) {
-                                if(xml.name() == "time") {
-                                    point.time = QDateTime::fromString(xml.readElementText(),Qt::ISODate);
-                                } else if(xml.name() == "ele") {
-                                    point.elevation = xml.readElementText().toDouble();
-                                } else if(xml.name() == "extensions") {
-                                    while(xml.readNextStartElement())
-                                    {                                        
-                                        if(xml.name() == "dir")
+                                while(xml.readNextStartElement()) {
+                                    if(xml.name() == "time") {
+                                        point.time = QDateTime::fromString(xml.readElementText(),Qt::ISODate);
+                                    } else if(xml.name() == "ele") {
+                                        point.elevation = xml.readElementText().toDouble();
+                                    } else if(xml.name() == "extensions") {
+                                        while(xml.readNextStartElement())
                                         {
-                                            point.direction = xml.readElementText().toDouble();
-                                        }
-                                        else if(xml.name() == "g_spd")
-                                        {
-                                            point.groundSpeed = xml.readElementText().toDouble();
-                                        }
-                                        else if(xml.name() == "v_spd")
-                                        {
-                                            point.verticalSpeed = xml.readElementText().toDouble();
-                                        }
-                                        else if(xml.name() == "m_var")
-                                        {
-                                            point.magneticVariation = xml.readElementText().toDouble();
-                                        }
-                                        else if(xml.name() == "h_acc")
-                                        {
-                                            point.horizontalAccuracy = xml.readElementText().toDouble();
-                                        }
-                                        else if(xml.name() == "v_acc")
-                                        {
-                                            point.verticalAccuracy = xml.readElementText().toDouble();
-                                        }
-                                        else if(xml.name() == "TrackPointExtension")
-                                        {
-                                            while(xml.readNextStartElement())
+                                            if(xml.name() == "dir")
                                             {
-                                                if(xml.name() == "hr")
-                                                {
-                                                    point.heartrate = xml.readElementText().toInt();
-                                                }
-                                                else
-                                                    xml.skipCurrentElement();
+                                                point.direction = xml.readElementText().toDouble();
                                             }
+                                            else if(xml.name() == "g_spd")
+                                            {
+                                                point.groundSpeed = xml.readElementText().toDouble();
+                                            }
+                                            else if(xml.name() == "v_spd")
+                                            {
+                                                point.verticalSpeed = xml.readElementText().toDouble();
+                                            }
+                                            else if(xml.name() == "m_var")
+                                            {
+                                                point.magneticVariation = xml.readElementText().toDouble();
+                                            }
+                                            else if(xml.name() == "h_acc")
+                                            {
+                                                point.horizontalAccuracy = xml.readElementText().toDouble();
+                                            }
+                                            else if(xml.name() == "v_acc")
+                                            {
+                                                point.verticalAccuracy = xml.readElementText().toDouble();
+                                            }
+                                            else if(xml.name() == "TrackPointExtension")
+                                            {
+                                                while(xml.readNextStartElement())
+                                                {
+                                                    if(xml.name() == "hr")
+                                                    {
+                                                        point.heartrate = xml.readElementText().toInt();
+                                                    }
+                                                    else
+                                                        xml.skipCurrentElement();
+                                                }
+                                            }
+                                            else
+                                                xml.skipCurrentElement();
                                         }
-                                        else
-                                            xml.skipCurrentElement();
                                     }
                                 }
+                                m_points.append(point);
                             }
-                            m_points.append(point);
                         }
                     }
                 }
             }
-        } else {
-            xml.skipCurrentElement();
+            else
+            {
+                xml.skipCurrentElement();
+            }
         }
     }
 
@@ -239,6 +274,17 @@ QString TrackLoader::name() {
         return QString();
     }
     return m_name;
+}
+
+QString TrackLoader::workout() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return QString();
+    }
+    return m_workout;
 }
 
 QString TrackLoader::description() {
