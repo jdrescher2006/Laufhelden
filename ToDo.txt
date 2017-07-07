@@ -3,10 +3,15 @@ ToDo for first release to openrepos:
 - compatibility with new HRM belt
 - new icons
 - all workout types from meerun
-- Cover dialog
+- cover dialog
+- speed indicator for record page
 
 
 
 ToDo:
 - choose metrics, km/miles
 - 
+
+
+Bugs:
+- after a new workout is recorded it is not viewed on main page
