@@ -5,7 +5,7 @@ ToDo for first release to openrepos:
 - all workout types from meerun
 - cover dialog
 - speed indicator for record page
-
+- record page must keep screen on (configurable)
 
 
 ToDo:
@@ -15,3 +15,4 @@ ToDo:
 
 Bugs:
 - after a new workout is recorded it is not viewed on main page
+- autosave file might not get deleted after a trainign session
