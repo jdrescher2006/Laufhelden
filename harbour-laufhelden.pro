@@ -66,5 +66,6 @@ DISTFILES += \
     qml/workouticons/biking.png \
     qml/workouticons/mountainBiking.png \
     qml/workouticons/running.png \
-    qml/workouticons/walking.png
+    qml/workouticons/walking.png \
+    qml/tools/ScreenBlank.qml
 

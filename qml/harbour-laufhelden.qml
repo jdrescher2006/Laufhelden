@@ -201,6 +201,16 @@ ApplicationWindow
         }
     }
 
+    function fncEnableScreenBlank(bEnableScreenBlank)
+    {
+        screenblank.enabled = bEnableScreenBlank;
+    }
+
+    ScreenBlank
+    {
+        id: screenblank
+    }
+
 
     initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")

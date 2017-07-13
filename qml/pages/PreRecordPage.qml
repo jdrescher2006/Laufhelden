@@ -45,6 +45,7 @@ Page {
         cmbWorkout.currentIndex = SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType);
 
         txtswUseHRMdevice.checked = settings.useHRMdevice;
+        txtswRecordPagePreventScreenBlank.checked = settings.disableScreenBlanking;
 
         bLockOnCompleted = false;
     }
@@ -122,6 +123,22 @@ Page {
                     if (!bLockOnCompleted)
                         settings.useHRMdevice = checked;
                 }                
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            TextSwitch
+            {
+                id: txtswRecordPagePreventScreenBlank
+                text: qsTr("Disable screen blanking")
+                description: qsTr("Disbale screen blanking when recording.")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.disableScreenBlanking = checked;
+                }
             }
         }
     }

@@ -28,6 +28,8 @@ TrackRecorder::TrackRecorder(QObject *parent) :
 {
     qDebug()<<"TrackRecorder constructor";
     m_distance = 0.0;
+    m_speed = 0.0;
+    m_pace = 0.0;
     m_accuracy = -1;
     m_tracking = false;
     m_isEmpty = true;
@@ -92,19 +94,55 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             emit isEmptyChanged();
         }
 
-        if(m_points.size() > 1) {
+        if(m_points.size() > 1)
+        {
             // Next line triggers following compiler warning?
             // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
-            m_distance += m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
+
+            //Calculate distance in meter [m]
+            qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
+            qDebug()<<"Distance :"<<rCurrentDistance;
+            m_distance += rCurrentDistance;
             emit distanceChanged();
-            if(newPos.coordinate().latitude() < m_minLat) {
+
+            //Fill distance array. Save the last few values to have a better speed/pace calculation.
+            if (m_distancearray.length() == 7)
+                m_distancearray.removeFirst();
+            m_distancearray.append(rCurrentDistance);
+
+            rCurrentDistance = 0.0;
+            //Calculate distance over the last few gps points
+            for(int i=0 ; i < m_distancearray.length(); i++)
+            {
+                rCurrentDistance += m_distancearray[i];
+            }
+            qDebug()<<"Added distance: "<<rCurrentDistance;
+            qDebug()<<"Update interval:"<<updateInterval();
+
+            //Calculate speed in [km/h]
+            m_speed = (rCurrentDistance / 1000.0) / (((updateInterval() * m_distancearray.length()) / 1000) / 3600.0);
+            qDebug()<<"Speed:"<<m_speed;
+            emit speedChanged();
+
+            //Calculate pace in [min/km]
+            m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);
+            qDebug()<<"Pace:"<<m_pace;
+            emit paceChanged();
+
+
+
+            if(newPos.coordinate().latitude() < m_minLat)
+            {
                 m_minLat = newPos.coordinate().latitude();
-            } else if(newPos.coordinate().latitude() > m_maxLat) {
+            } else if(newPos.coordinate().latitude() > m_maxLat)
+            {
                 m_maxLat = newPos.coordinate().latitude();
             }
-            if(newPos.coordinate().longitude() < m_minLon) {
+            if(newPos.coordinate().longitude() < m_minLon)
+            {
                 m_minLon = newPos.coordinate().longitude();
-            } else if(newPos.coordinate().longitude() > m_maxLon) {
+            } else if(newPos.coordinate().longitude() > m_maxLon)
+            {
                 m_maxLon = newPos.coordinate().longitude();
             }
         }
@@ -125,13 +163,18 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Laufhelden";
     QString filename;
-    if(!name.isEmpty()) {
+
+    filename = m_points.at(0).timestamp().toLocalTime().toString() + " - " + sWorkoutType + ".pgx";
+
+    /*
+    if(!sWorkoutType.isEmpty()) {
         filename = m_points.at(0).timestamp().toUTC().toString(Qt::ISODate)
-                + " - " + name + ".gpx";
+                + " - " + sWorkoutType + ".gpx";
     } else {
         filename = m_points.at(0).timestamp().toUTC().toString(Qt::ISODate)
                 + ".gpx";
     }
+    */
     qDebug()<<"File:"<<homeDir<<"/"<<subDir<<"/"<<filename;
 
     QDir home = QDir(homeDir);
@@ -185,10 +228,6 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
         xml.writeEndElement(); // extensions
 
     xml.writeEndElement(); // metadata
-
-
-
-
 
 
     xml.writeStartElement("trk");
@@ -282,6 +321,22 @@ int TrackRecorder::points() const {
 
 qreal TrackRecorder::distance() const {
     return m_distance;
+}
+
+qreal TrackRecorder::speed() const {
+    return m_speed;
+}
+
+qreal TrackRecorder::pace() const {
+    return m_pace;
+}
+
+QString TrackRecorder::startingDateTime() const
+{
+    if(m_points.size() < 2)
+        return "";
+    else
+        return m_points.at(0).timestamp().toLocalTime().toString();
 }
 
 QString TrackRecorder::time() const {

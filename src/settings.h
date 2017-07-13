@@ -29,6 +29,7 @@ class Settings : public QObject
     Q_PROPERTY(bool recordPagePortrait READ recordPagePortrait WRITE setRecordPagePortrait)
     Q_PROPERTY(QString workoutType READ workoutType WRITE setWorkoutType)
     Q_PROPERTY(bool useHRMdevice READ useHRMdevice WRITE setUseHRMdevice)
+    Q_PROPERTY(bool disableScreenBlanking READ disableScreenBlanking WRITE setDisableScreenBlanking)
 public:
     explicit Settings(QObject *parent = 0);
     int updateInterval() const;
@@ -45,6 +46,9 @@ public:
 
     bool useHRMdevice() const;
     void setUseHRMdevice(bool useHRMdevice);
+
+    bool disableScreenBlanking() const;
+    void setDisableScreenBlanking(bool disableScreenBlanking);
 
 signals:
     void updateIntervalChanged();

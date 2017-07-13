@@ -68,3 +68,14 @@ void Settings::setUseHRMdevice(bool useHRMdevice)
 {
      m_settings->setValue("recordsettings/useHRMdevice", useHRMdevice);
 }
+
+bool Settings::disableScreenBlanking() const
+{
+    return m_settings->value("recordsettings/disableScreenBlanking", false).toBool();
+}
+void Settings::setDisableScreenBlanking(bool disableScreenBlanking)
+{
+     m_settings->setValue("recordsettings/disableScreenBlanking", disableScreenBlanking);
+}
+
+

@@ -82,7 +82,6 @@ Page
         Column
         {
             id: id_Column_FirstCol
-
             width: parent.width
             spacing: Theme.paddingLarge
             PageHeader
@@ -106,7 +105,7 @@ Page
                 model: historyModel
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: parent.height / 2
+                height: parent.height / 1.5 //weird factor here, I don't understand...
 
                 delegate: ListItem
                 {

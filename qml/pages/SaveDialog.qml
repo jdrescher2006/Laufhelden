@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "SharedResources.js" as SharedResources
 
 Dialog {
     id: saveDialog
@@ -43,7 +43,7 @@ Dialog {
             focus: true
             label: qsTr("Name")
             placeholderText: qsTr("Name")
-            text: ""
+            text: recorder.startingDateTime + " - " + SharedResources.arrayLookupWorkoutTableByName[settings.workoutType].labeltext
             EnterKey.enabled: true
             EnterKey.iconSource: "image://theme/icon-m-enter-next"
             EnterKey.onClicked: descriptionField.focus = true

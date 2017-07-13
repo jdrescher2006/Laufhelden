@@ -28,6 +28,8 @@ class TrackRecorder : public QObject
     Q_PROPERTY(qreal accuracy READ accuracy NOTIFY accuracyChanged)
     Q_PROPERTY(int points READ points NOTIFY pointsChanged)
     Q_PROPERTY(qreal distance READ distance NOTIFY distanceChanged)
+    Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
+    Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
     Q_PROPERTY(QString time READ time NOTIFY timeChanged)
     Q_PROPERTY(bool tracking READ isTracking WRITE setIsTracking NOTIFY isTrackingChanged)
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY isEmptyChanged)
@@ -46,6 +48,8 @@ public:
     qreal accuracy() const;
     int points() const;
     qreal distance() const;
+    qreal speed() const;
+    qreal pace() const;
     QString time() const;
     bool isTracking() const;
     void setIsTracking(bool tracking);
@@ -57,6 +61,7 @@ public:
     void setUpdateInterval(int updateInterval);
     QString workoutType() const;
     void setWorkoutType(QString workoutType);
+    QString startingDateTime() const;
 
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
@@ -68,6 +73,8 @@ signals:
     void accuracyChanged();
     void pointsChanged();
     void distanceChanged();
+    void speedChanged();
+    void paceChanged();
     void timeChanged();
     void isTrackingChanged();
     void isEmptyChanged();
@@ -87,8 +94,11 @@ private:
     qreal m_accuracy;
     QList<QGeoPositionInfo> m_points;
     QList<uint> m_heartrate;
+    QList<qreal> m_distancearray;
     QGeoCoordinate m_currentPosition;
     qreal m_distance;
+    qreal m_speed;
+    qreal m_pace;
     qreal m_minLat;
     qreal m_maxLat;
     qreal m_minLon;

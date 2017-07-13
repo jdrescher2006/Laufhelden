@@ -36,6 +36,10 @@ Page {
         {
             bRecordPage = false;
 
+            //If this page is shown, prevent screen from going blank
+            if (settings.disableScreenBlanking)
+                fncEnableScreenBlank(true);
+
            //Connect to HRM device if we have a BT address and HRM device should be used
             if (sHRMAddress !== "" && settings.useHRMdevice)
             {              
@@ -45,8 +49,11 @@ Page {
             bRecordDialogRequestHRM = true;
         }
         if (status === PageStatus.Inactive)
-        {
+        {            
             bRecordDialogRequestHRM = false;
+
+            if (settings.disableScreenBlanking)
+                fncEnableScreenBlank(false);
 
             if (bHRMConnected) {id_BluetoothData.disconnect();}
 
@@ -244,15 +251,18 @@ Page {
 
         contentHeight: column.height
 
-        Column {
+        Column
+        {
             id: column
             width: page.width
             spacing: Theme.paddingLarge
-            PageHeader {
+            PageHeader
+            {
                 id: header
                 title: "Laufhelden"
             }
-            Label {
+            Label
+            {
                 id: stateLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.tracking ?
@@ -263,7 +273,8 @@ Page {
                         : qsTr("Stopped")
                 font.pixelSize: Theme.fontSizeLarge
             }
-            Label {
+            Label
+            {
                 id: distanceLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: (recorder.distance/1000).toFixed(3) + " km"
@@ -272,7 +283,8 @@ Page {
                     FadeAnimation {}
                 }
             }
-            Label {
+            Label
+            {
                 id: timeLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.time
@@ -281,13 +293,24 @@ Page {
                     FadeAnimation {}
                 }
             }
-            Label {
+            Label
+            {
                 id: accuracyLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.accuracy < 0 ? "No position" :
                                               (recorder.accuracy < 30
                                                ? sHeartRate + recorder.accuracy.toFixed(1) + "m"
                                                : qsTr("Accuracy too low: ") + recorder.accuracy.toFixed(1) + "m")
+                Behavior on opacity {
+                    FadeAnimation {}
+                }
+            }
+            Label
+            {
+                id: speedLabel
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: recorder.speed.toFixed(1) + "km/h / " + recorder.pace.toFixed(1) + "min/km"
+                font.pixelSize: Theme.fontSizeHuge
                 Behavior on opacity {
                     FadeAnimation {}
                 }

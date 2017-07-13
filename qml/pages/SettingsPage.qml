@@ -95,7 +95,7 @@ Page {
                     if (!bLockOnCompleted)
                         settings.recordPagePortrait = checked;
                 }                
-            }
+            }            
         }
     }
 }

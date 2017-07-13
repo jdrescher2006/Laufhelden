@@ -1,18 +1,42 @@
 ToDo for first release to openrepos:
 - bluetooth data logging function
 - compatibility with new HRM belt
-- new icons
+- translation to german language
 - all workout types from meerun
-- cover dialog
-- speed indicator for record page
-- record page must keep screen on (configurable)
+- cover dialog needs complete workover
+- implement autopause
+- alert system:
+	- vibration alert / sound alert
+	- make sound file configurable or changeable
+	- alert thresholds:
+		- heart rate upper and lower each with hysteresis
+		- speed upper and lower each with hysteresis
 
 
-ToDo:
+ToDo on the long run:
 - choose metrics, km/miles
-- 
+- new workout icons
+- voice announcements
+- pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
+- ability to pause runnig music when doing voice announcements
 
 
 Bugs:
 - after a new workout is recorded it is not viewed on main page
-- autosave file might not get deleted after a trainign session
+- autosave file might not get deleted after a training session
+	complete autosave mechanism must be checked. There are UI problems with this also.
+
+
+
+Completed:
+- record page must keep screen on (configurable)
+- mainpage list does not fit to height of page
+- speed indicator for record page
+- filename:
+	use the local date&time as well as workout
+- name:
+	use the textbox text from the savedialog.
+	make a text presiction, bring local date&time as well as workout to the text box on start dialog
+- description:
+	use the textbox text from the savedialog.
+	Make no prediction and leave text box empty on start dialog.
