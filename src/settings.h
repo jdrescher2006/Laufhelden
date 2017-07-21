@@ -30,6 +30,10 @@ class Settings : public QObject
     Q_PROPERTY(QString workoutType READ workoutType WRITE setWorkoutType)
     Q_PROPERTY(bool useHRMdevice READ useHRMdevice WRITE setUseHRMdevice)
     Q_PROPERTY(bool disableScreenBlanking READ disableScreenBlanking WRITE setDisableScreenBlanking)
+    Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)
+    Q_PROPERTY(QString pulseThreshold READ pulseThreshold WRITE setPulseThreshold)
+    Q_PROPERTY(bool pulseThresholdEnable READ pulseThresholdEnable WRITE setPulseThresholdEnable)
+
 public:
     explicit Settings(QObject *parent = 0);
     int updateInterval() const;
@@ -49,6 +53,15 @@ public:
 
     bool disableScreenBlanking() const;
     void setDisableScreenBlanking(bool disableScreenBlanking);
+
+    bool showMapRecordPage() const;
+    void setShowMapRecordPage(bool showMapRecordPage);
+
+    bool pulseThresholdEnable() const;
+    void setPulseThresholdEnable(bool pulseThresholdEnable);
+
+    QString pulseThreshold() const;
+    void setPulseThreshold(QString pulseThreshold);
 
 signals:
     void updateIntervalChanged();

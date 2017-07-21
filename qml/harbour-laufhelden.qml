@@ -53,7 +53,8 @@ ApplicationWindow
     Settings{ id: settings }
     TrackRecorder
     {
-        id: recorder
+        id: recorder        
+        //We want the app to continue recording the track even when in background!
         applicationActive: appWindow.applicationActive
         updateInterval: settings.updateInterval
     }
@@ -63,7 +64,15 @@ ApplicationWindow
     {
         target: id_BluetoothData        
         onSigReadDataReady:     //This is called from C++ if there is data via bluetooth
-        {            
+        {
+            //Protocol -1 undefined, 0 Polar, 1 Zephyr HxM
+            var iProtocol = -1;
+            var iHeartRate = -1;
+            var iBattery = -1;
+            var sTemp = -1;
+
+
+
             //Check received data
               sHeartRateHexString = sHeartRateHexString + sData.toLowerCase();
 
@@ -73,53 +82,77 @@ ApplicationWindow
             if (sHeartRateHexString.length < 16)
                 return;
 
-            //Search for header byte, must always be 0xfe
-            if (sHeartRateHexString.indexOf("fe") !== -1)
+            //Search for header byte(s)
+            if (sHeartRateHexString.indexOf("fe") !== -1)   //POLAR
             {
                 //Cut off everything left of fe
-              sHeartRateHexString = sHeartRateHexString.substr((sHeartRateHexString.indexOf("fe")));
+                iProtocol = 0;
+                sHeartRateHexString = sHeartRateHexString.substr((sHeartRateHexString.indexOf("fe")));
+            }
+            else if (sHeartRateHexString.indexOf("0226") !== -1) //ZEPHYR
+            {
+                iProtocol = 1;
+                sHeartRateHexString = sHeartRateHexString.substr((sHeartRateHexString.indexOf("0226")));
             }
             else
-                return; //No header byte found
-            //Check if packet is at correct length
-            var iPacketLength = parseInt(sHeartRateHexString.substr(2,2), 16);
-            console.log("iPacketLength: " + iPacketLength);
-            if (sHeartRateHexString.length < (iPacketLength * 2))
-                return; //Packet has is not big enough
-            //Check check byte, 255 - packet length
-            var iCheckByte = parseInt(sHeartRateHexString.substr(4,2), 16);
-            console.log("iCheckByte: " + iCheckByte);
-            if (iCheckByte !== (255 - iPacketLength))
             {
-                console.log("Check byte is not valid!");
-                return; //Check byte is not valid
+                iProtocol = -1;
+                return; //No header byte found
             }
-            //Check sequence valid
-            var iSequenceValid = parseInt(sHeartRateHexString.substr(6,2), 16);
-            console.log("iSequenceValid: " + iSequenceValid);
-            if (iSequenceValid >= 16)
-                return; //Sequence valid byte is not valid
 
-            //Check status byte
-            var iStatus = parseInt(sHeartRateHexString.substr(8,2), 16);
-            console.log("iStatus: " + iStatus);
-            //Check battery state
-            var iBattery = parseInt(sHeartRateHexString.substr(8,1), 16);
-            console.log("iBattery: " + iBattery);
-            //Extract heart rate
-            var iHeartRate = parseInt(sHeartRateHexString.substr(10,2), 16);
-            console.log("iHeartRate: " + iHeartRate);
+            console.log("Protocol found: " + iProtocol);
 
-            var sTemp = ((100/15) * iBattery).toString();
-            if (sTemp.indexOf(".") != -1)
-                sTemp = sTemp.substring(0, sTemp.indexOf("."));
+            if (iProtocol === 0)
+            {
+                //Check if packet is at correct length
+                var iPacketLength = parseInt(sHeartRateHexString.substr(2,2), 16);
+                console.log("iPacketLength: " + iPacketLength);
+                if (sHeartRateHexString.length < (iPacketLength * 2))
+                    return; //Packet has is not big enough
+                //Check check byte, 255 - packet length
+                var iCheckByte = parseInt(sHeartRateHexString.substr(4,2), 16);
+                console.log("iCheckByte: " + iCheckByte);
+                if (iCheckByte !== (255 - iPacketLength))
+                {
+                    console.log("Check byte is not valid!");
+                    return; //Check byte is not valid
+                }
+                //Check sequence valid
+                var iSequenceValid = parseInt(sHeartRateHexString.substr(6,2), 16);
+                console.log("iSequenceValid: " + iSequenceValid);
+                if (iSequenceValid >= 16)
+                    return; //Sequence valid byte is not valid
+
+                //Check status byte
+                var iStatus = parseInt(sHeartRateHexString.substr(8,2), 16);
+                console.log("iStatus: " + iStatus);
+                //Check battery state
+                iBattery = parseInt(sHeartRateHexString.substr(8,1), 16);
+                console.log("iBattery: " + iBattery);
+                //Extract heart rate
+                iHeartRate = parseInt(sHeartRateHexString.substr(10,2), 16);
+                console.log("iHeartRate: " + iHeartRate);
+
+                sTemp = ((100/15) * iBattery).toString();
+                if (sTemp.indexOf(".") != -1)
+                    sTemp = sTemp.substring(0, sTemp.indexOf("."));
+            }
+            if (iProtocol === 1)
+            {
+                //Check if packet is at correct length
+                var iPacketLength = parseInt(sHeartRateHexString.substr(4,2), 16);
+                console.log("iPacketLength: " + iPacketLength);
+
+                iHeartRate = parseInt(sHeartRateHexString.substr(16,2), 16);
+                console.log("iHeartRate: " + iHeartRate);
+
+            }
 
             //Extraction was successful here. Reset message text var.
             sHeartRateHexString = "";
 
             //Send heart rate to trackrecorderiHeartRate so that it can be included into the gpx file.
-            if (recorder.applicationActive)
-                recorder.vSetCurrentHeartRate(iHeartRate);
+            recorder.vSetCurrentHeartRate(iHeartRate);
 
             sHeartRate = iHeartRate.toString();
             sBatteryLevel = sTemp;

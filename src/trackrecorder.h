@@ -37,6 +37,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(QGeoCoordinate currentPosition READ currentPosition NOTIFY currentPositionChanged)
     Q_PROPERTY(int updateInterval READ updateInterval WRITE setUpdateInterval NOTIFY updateIntervalChanged)
     Q_PROPERTY(QString workoutType READ workoutType WRITE setWorkoutType)
+    Q_PROPERTY(QString startingDateTime READ startingDateTime)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);

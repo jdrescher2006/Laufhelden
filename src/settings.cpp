@@ -77,5 +77,29 @@ void Settings::setDisableScreenBlanking(bool disableScreenBlanking)
 {
      m_settings->setValue("recordsettings/disableScreenBlanking", disableScreenBlanking);
 }
+bool Settings::showMapRecordPage() const
+{
+    return m_settings->value("recordsettings/showMapRecordPage", true).toBool();
+}
+void Settings::setShowMapRecordPage(bool showMapRecordPage)
+{
+     m_settings->setValue("recordsettings/showMapRecordPage", showMapRecordPage);
+}
+QString Settings::pulseThreshold() const
+{
+        return m_settings->value("recordsettings/pulseThreshold", "50,60,100,120").toString();
+}
+void Settings::setPulseThreshold(QString pulseThreshold)
+{
+    m_settings->setValue("recordsettings/pulseThreshold", pulseThreshold);
+}
+bool Settings::pulseThresholdEnable() const
+{
+    return m_settings->value("recordsettings/pulseThresholdEnable", false).toBool();
+}
+void Settings::setPulseThresholdEnable(bool pulseThresholdEnable)
+{
+     m_settings->setValue("recordsettings/pulseThresholdEnable", pulseThresholdEnable);
+}
 
 

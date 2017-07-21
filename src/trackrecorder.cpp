@@ -164,7 +164,7 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     QString subDir = "Laufhelden";
     QString filename;
 
-    filename = m_points.at(0).timestamp().toLocalTime().toString() + " - " + sWorkoutType + ".pgx";
+    filename = m_points.at(0).timestamp().toLocalTime().toString() + " - " + sWorkoutType + ".gpx";
 
     /*
     if(!sWorkoutType.isEmpty()) {
@@ -302,8 +302,8 @@ void TrackRecorder::clearTrack() {
 
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Laufhelden";
-    QDir renaDir = QDir(homeDir + "/" + subDir);
-    renaDir.remove("Autosave");
+    QDir appDir = QDir(homeDir + "/" + subDir);
+    appDir.remove("Autosave");
 
     emit distanceChanged();
     emit timeChanged();

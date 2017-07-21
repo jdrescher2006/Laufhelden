@@ -5,8 +5,20 @@ ToDo for first release to openrepos:
 - all workout types from meerun
 - cover dialog needs complete workover
 - implement autopause
+- record page workover
+	- choose what to display on the fields
+	- add more data to view
+		- current, minimum, maximum height (gps)
+		- up/down travelled height
+		- energy kcal
+		- average speed/tempo
+		- speed/tempo of last 100m/1km
+		- top speed/tempo
+		- average, minimum, maximum heart rate 
+		- pause time
 - alert system:
 	- vibration alert / sound alert
+	- send vibration also to pebble via dbus call provided by rockpool
 	- make sound file configurable or changeable
 	- alert thresholds:
 		- heart rate upper and lower each with hysteresis
@@ -14,11 +26,14 @@ ToDo for first release to openrepos:
 
 
 ToDo on the long run:
+- support workouts without gps e.g. indoor activities
 - choose metrics, km/miles
 - new workout icons
 - voice announcements
 - pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
 - ability to pause runnig music when doing voice announcements
+- use scout server as map tile provider (wait for Jolla dudes introducing QT5.6 to SFOS)
+- introduce lap function
 
 
 Bugs:

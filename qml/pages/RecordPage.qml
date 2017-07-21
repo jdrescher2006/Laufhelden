@@ -20,6 +20,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtLocation 5.0
 import QtPositioning 5.0
+import QtMultimedia 5.0 as Media
+import "../tools"
 
 Page {
     id: page
@@ -27,6 +29,8 @@ Page {
     allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All;
 
     property bool bRecordPage: true
+    property bool bShowMap: settings.showMapRecordPage
+    property int iLastHeartRate: -1
 
     onStatusChanged:
     {
@@ -46,7 +50,7 @@ Page {
                 id_BluetoothData.connect(sHRMAddress, 1);
             }
 
-            bRecordDialogRequestHRM = true;
+            bRecordDialogRequestHRM = true;            
         }
         if (status === PageStatus.Inactive)
         {            
@@ -121,11 +125,62 @@ Page {
         }
     }
 
-    function newTrackPoint(coordinate) {
+    function newTrackPoint(coordinate)
+    {
         trackLine.addCoordinate(coordinate);
-        if(!map.gesture.enabled) {
+        if(!map.gesture.enabled)
+        {
             // Set viewport only when not browsing
             setMapViewport();
+        }
+
+        //Check if we triggered a threshold
+        if (settings.pulseThresholdEnable && sHeartRate != "" && sHeartRate != -1)
+        {
+            //Parse pulse value to int
+            var iHeartrate = parseInt(sHeartRate);
+
+            var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
+
+            if (iHeartrate === NaN || iHeartrateThresholds.length !== 4)
+                return;
+
+            //These are the thresholds:
+            // [0] bottom threshold
+            // [1] bottom hysteresis
+            // [2] top threshold
+            // [3] top hysteresis
+
+            //These are the areas:
+            //-1 start value undefined
+            // 0 under bottom threshold
+            // 1 inbetween thresholds
+            // 2 over top threshod
+
+
+            //This is first start condition.
+            if (iLastHeartRate === -1)
+            {
+                iLastHeartRate = iHeartrate;
+                return;
+            }
+
+            //Check if we are over the upper threshold and was not there the last time.
+            if (iLastHeartRate < iHeartrateThresholds[2] && iHeartrate >= iHeartrateThresholds[2])
+            {
+                //Now we need to alert that we are over the top threshold
+
+            }
+
+            //Check if we are under the upper threshold
+
+            //Check if we are over the under threshold
+
+            //Check if we are under the under threshold
+
+
+            //playSoundEffect.source = "../audio/catch-action.wav";
+            //playSoundEffect.play();
         }
     }
 
@@ -143,13 +198,23 @@ Page {
         setMapViewport();
     }
 
-    MapCircle {
+    Media.SoundEffect
+    {
+        id: playSoundEffect
+        source: "../audio/catch-action.wav"
+        volume: 1.0; //Full 1.0
+    }
+
+    MapCircle
+    {
         id: positionMarker
         center: recorder.currentPosition
-        radius: recorder.accuracy
+        //radius: recorder.accuracy
+        radius: 1000
         color: "blue"
         border.color: "blue"
-        opacity: 0.3
+        //opacity: 0.3
+        opacity: 1.0
         onRadiusChanged: {
             if(!map.gesture.enabled) {  // When not browsing the map
                 setMapViewport()
@@ -182,7 +247,7 @@ Page {
     SilicaFlickable {
         id: flickable
         anchors.top: page.top
-        anchors.bottom: map.top
+        anchors.bottom: bShowMap ? map.top : page.bottom
         anchors.left: page.left
         anchors.right: page.right
 
@@ -230,7 +295,17 @@ Page {
         {
             id: menuUP
 
-            MenuItem {
+
+            MenuItem
+            {
+                text: recorder.tracking ? qsTr("Pause workout") : qsTr("Continue workout")
+                onClicked:
+                {
+                    recorder.tracking = !recorder.tracking;
+                }
+            }
+            MenuItem
+            {
                 text: qsTr("Disconnect HRM")
                 onClicked:
                 {
@@ -238,14 +313,23 @@ Page {
                     id_BluetoothData.disconnect();
                 }
             }
-            MenuItem {
+            MenuItem
+            {
                 text: qsTr("Reconnect HRM")
                 onClicked:
                 {
                      id_BluetoothData.connect(sHRMAddress, 1);
                     bRecordDialogRequestHRM = true;
                 }
-
+            }
+            MenuItem
+            {
+                text: bShowMap ? qsTr("Hide Map") : qsTr("Show Map")
+                onClicked:
+                {
+                    bShowMap = !bShowMap;
+                    settings.showMapRecordPage = bShowMap;
+                }
             }
         }
 
@@ -277,8 +361,8 @@ Page {
             {
                 id: distanceLabel
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: (recorder.distance/1000).toFixed(3) + " km"
-                font.pixelSize: Theme.fontSizeHuge
+                text: (recorder.distance/1000).toFixed(1) + " km"
+                font.pixelSize: Theme.fontSizeLarge
                 Behavior on opacity {
                     FadeAnimation {}
                 }
@@ -288,7 +372,7 @@ Page {
                 id: timeLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.time
-                font.pixelSize: Theme.fontSizeHuge
+                font.pixelSize: Theme.fontSizeLarge
                 Behavior on opacity {
                     FadeAnimation {}
                 }
@@ -310,7 +394,7 @@ Page {
                 id: speedLabel
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: recorder.speed.toFixed(1) + "km/h / " + recorder.pace.toFixed(1) + "min/km"
-                font.pixelSize: Theme.fontSizeHuge
+                font.pixelSize: Theme.fontSizeLarge
                 Behavior on opacity {
                     FadeAnimation {}
                 }
@@ -338,6 +422,7 @@ Page {
         anchors.bottom: parent.bottom
         clip: true
         gesture.enabled: false
+        visible: bShowMap
         plugin: Plugin
         {
             name: "osm"
@@ -346,7 +431,7 @@ Page {
                 name: "useragent"                
                 value: "Laufhelden/0.0.1 (SailfishOS)"
             }
-            PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
+            //PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
         }
         center {
             latitude: 0.0
