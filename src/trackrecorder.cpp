@@ -285,16 +285,22 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     xml.writeEndDocument();
 
     file.commit();
-    if(file.error()) {
+    file.flush();
+
+    if(file.error())
+    {
         qDebug()<<"Error in writing to a file";
         qDebug()<<file.errorString();
-    } else {
+    } else
+    {
+        qDebug()<<"GPX file successfully written";
         QDir renaDir = QDir(homeDir + "/" + subDir);
         renaDir.remove("Autosave");
-    }
+    }    
 }
 
-void TrackRecorder::clearTrack() {
+void TrackRecorder::clearTrack()
+{
     m_points.clear();
     m_heartrate.clear();
     m_distance = 0;

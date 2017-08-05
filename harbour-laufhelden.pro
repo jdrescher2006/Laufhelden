@@ -25,7 +25,8 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/trackloader.cpp \
     src/settings.cpp \
     src/bluetoothconnection.cpp \
-    src/bluetoothdata.cpp
+    src/bluetoothdata.cpp \
+    src/logwriter.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -34,6 +35,7 @@ OTHER_FILES += qml/harbour-laufhelden.qml \
     harbour-laufhelden.desktop \
     qml/pages/RecordPage.qml \
     qml/pages/SaveDialog.qml \
+    translations/*.ts \
     qml/pages/DetailedViewPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/ConfirmClearDialog.qml \
@@ -41,13 +43,16 @@ OTHER_FILES += qml/harbour-laufhelden.qml \
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
+TRANSLATIONS += translations/harbour-laufhelden-de.ts
+
 HEADERS += \
     src/trackrecorder.h \
     src/historymodel.h \
     src/trackloader.h \
     src/settings.h \
     src/bluetoothconnection.h \
-    src/bluetoothdata.h
+    src/bluetoothdata.h \
+    src/logwriter.h
 
 DISTFILES += \
     qml/cd_logo.jpg \
@@ -69,5 +74,6 @@ DISTFILES += \
     qml/workouticons/walking.png \
     qml/tools/ScreenBlank.qml \
     qml/pages/catch-action.wav \
-    qml/audio/catch-action.wav
+    qml/audio/catch-action.wav \
+    rpm/harbour-laufhelden.changes
 

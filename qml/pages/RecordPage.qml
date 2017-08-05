@@ -28,32 +28,56 @@ Page {
 
     allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All;
 
-    property bool bRecordPage: true
+    //If not tracking and we have no data, going back is possible
+    backNavigation: (!recorder.tracking && recorder.isEmpty)
+
     property bool bShowMap: settings.showMapRecordPage
     property int iLastHeartRate: -1
+    property bool bLockFirstPageLoad: true
 
     onStatusChanged:
     {
-        //console.log("onStatusChanged record page: " + status.toString());
-
-        if (status === PageStatus.Active && bRecordPage)
+        //This is loaded only the first time the page is displayed
+        if (status === PageStatus.Active && bLockFirstPageLoad)
         {
-            bRecordPage = false;
+            bLockFirstPageLoad = false;
+            console.log("First Active RecordPage");
+
+            recorder.newTrackPoint.connect(newTrackPoint);
+            map.addMapItem(positionMarker);
+            console.log("RecordPage: Plotting track line");
+            for(var i=0;i<recorder.points;i++) {
+                trackLine.addCoordinate(recorder.trackPointAt(i));
+            }
+            console.log("RecordPage: Appending track line to map");
+            map.addMapItem(trackLine);
+            console.log("RecordPage: Setting map viewport");
+            setMapViewport();
+
+            //Connect to HRM device if we have a BT address and HRM device should be used
+             if (sHRMAddress !== "" && settings.useHRMdevice)
+             {
+                 id_BluetoothData.connect(sHRMAddress, 1);
+             }
+
+             bRecordDialogRequestHRM = true;
+        }
+
+        //This is loaded everytime the page is displayed
+        if (status === PageStatus.Active)
+        {
+            console.log("RecordPage active");
+            console.log("vMainPageObject: " + vMainPageObject.toString());
 
             //If this page is shown, prevent screen from going blank
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
-
-           //Connect to HRM device if we have a BT address and HRM device should be used
-            if (sHRMAddress !== "" && settings.useHRMdevice)
-            {              
-                id_BluetoothData.connect(sHRMAddress, 1);
-            }
-
-            bRecordDialogRequestHRM = true;            
         }
+
         if (status === PageStatus.Inactive)
         {            
+            console.log("RecordPage inactive");
+
             bRecordDialogRequestHRM = false;
 
             if (settings.disableScreenBlanking)
@@ -71,10 +95,25 @@ Page {
         var dialog = pageStack.push(Qt.resolvedUrl("SaveDialog.qml"));
         dialog.accepted.connect(function()
         {
-            console.log("Saving track");
+            console.log("Saving workout");
             recorder.exportGpx(dialog.name, dialog.description);
             recorder.clearTrack();  // TODO: Make sure save was successful?
             trackLine.path = [];
+
+            //Mainpage must load history data to get this new workout in the list
+            bLoadHistoryData = true;
+
+            //We must return here to the mainpage.            
+            pageStack.pop(vMainPageObject, PageStackAction.Immediate);
+        })
+        dialog.rejected.connect(function()
+        {
+            console.log("Cancel workout");
+            recorder.clearTrack();
+            trackLine.path = [];
+
+            //We must return here to the mainpage.
+            pageStack.pop(vMainPageObject, PageStackAction.Immediate);
         })
     }
 
@@ -88,8 +127,10 @@ Page {
         })
     }
 
-    function setMapViewport() {
-        if(recorder.accuracy < 0 && recorder.points < 1) {
+    function setMapViewport()
+    {
+        if(recorder.accuracy < 0 && recorder.points < 1)
+        {
             return;
         }
 
@@ -127,6 +168,8 @@ Page {
 
     function newTrackPoint(coordinate)
     {
+        //console.log("Position: " + recorder.currentPosition);
+
         trackLine.addCoordinate(coordinate);
         if(!map.gesture.enabled)
         {
@@ -182,21 +225,7 @@ Page {
             //playSoundEffect.source = "../audio/catch-action.wav";
             //playSoundEffect.play();
         }
-    }
-
-    Component.onCompleted:
-    {
-        recorder.newTrackPoint.connect(newTrackPoint);
-        map.addMapItem(positionMarker);
-        console.log("RecordPage: Plotting track line");
-        for(var i=0;i<recorder.points;i++) {
-            trackLine.addCoordinate(recorder.trackPointAt(i));
-        }
-        console.log("RecordPage: Appending track line to map");
-        map.addMapItem(trackLine);
-        console.log("RecordPage: Setting map viewport");
-        setMapViewport();
-    }
+    }    
 
     Media.SoundEffect
     {
@@ -209,12 +238,12 @@ Page {
     {
         id: positionMarker
         center: recorder.currentPosition
-        //radius: recorder.accuracy
-        radius: 1000
+        radius: recorder.accuracy
         color: "blue"
-        border.color: "blue"
-        //opacity: 0.3
-        opacity: 1.0
+        border.color: "white"
+        opacity: 0.3
+        //opacity: 1.0
+        /* this comes from Rena but was not working there either
         onRadiusChanged: {
             if(!map.gesture.enabled) {  // When not browsing the map
                 setMapViewport()
@@ -224,16 +253,19 @@ Page {
             if(!map.gesture.enabled) {  // When not browsing the map
                 setMapViewport()
             }
-        }
-        Behavior on radius {
+        }        
+        Behavior on radius
+        {
             NumberAnimation { duration: 200 }
         }
-        Behavior on center.latitude {
+        Behavior on center.latitude
+        {
             NumberAnimation { duration: 200 }
         }
-        Behavior on center.longitude {
+        Behavior on center.longitude
+        {
             NumberAnimation { duration: 200 }
-        }
+        }*/
     }
 
     MapPolyline {
@@ -255,37 +287,38 @@ Page {
         {
             id: menu
 
-            MenuItem {
+            MenuItem
+            {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
-            MenuItem {
-                text: qsTr("Start workout!")
-                visible: !recorder.tracking
-                onClicked: {
-                    if(!recorder.isEmpty) {
-                        showClearConfirmation();
-                    } else {
-                        recorder.tracking = true;
-                    }
-                }
+            MenuItem
+            {
+                text: qsTr("Start workout")
+                visible: !recorder.tracking && recorder.isEmpty
+                onClicked: recorder.tracking = true;
             }
-            MenuItem {
-                text: qsTr("Continue recording")
-                visible: !recorder.tracking && !recorder.isEmpty
-                onClicked: recorder.tracking = true
+            MenuItem
+            {
+                text: qsTr("Continue workout")
+                visible: !recorder.tracking && !recorder.isEmpty                                
+                onClicked: recorder.tracking = true;
             }
-            MenuItem {
-                text: qsTr("Save track")
-                visible: !recorder.tracking && !recorder.isEmpty
-                onClicked: showSaveDialog()
+            MenuItem
+            {
+                text: qsTr("Pause workout")
+                visible: recorder.tracking && !recorder.isEmpty
+                onClicked: recorder.tracking = false;
             }
-            MenuItem {
-                text: qsTr("Stop recording")
-                visible: recorder.tracking
-                onClicked: {
+            MenuItem
+            {
+                text: qsTr("End workout")
+                visible: recorder.tracking || !recorder.isEmpty
+                onClicked:
+                {
                     recorder.tracking = false;
-                    if(!recorder.isEmpty) {
+                    if(!recorder.isEmpty)
+                    {
                         showSaveDialog();
                     }
                 }
@@ -293,35 +326,8 @@ Page {
         }
         PushUpMenu
         {
-            id: menuUP
+            id: menuUP            
 
-
-            MenuItem
-            {
-                text: recorder.tracking ? qsTr("Pause workout") : qsTr("Continue workout")
-                onClicked:
-                {
-                    recorder.tracking = !recorder.tracking;
-                }
-            }
-            MenuItem
-            {
-                text: qsTr("Disconnect HRM")
-                onClicked:
-                {
-                    bRecordDialogRequestHRM = false;
-                    id_BluetoothData.disconnect();
-                }
-            }
-            MenuItem
-            {
-                text: qsTr("Reconnect HRM")
-                onClicked:
-                {
-                     id_BluetoothData.connect(sHRMAddress, 1);
-                    bRecordDialogRequestHRM = true;
-                }
-            }
             MenuItem
             {
                 text: bShowMap ? qsTr("Hide Map") : qsTr("Show Map")
@@ -331,6 +337,26 @@ Page {
                     settings.showMapRecordPage = bShowMap;
                 }
             }
+            MenuItem
+            {
+                text: qsTr("Disconnect HRM")
+                visible: (sHRMAddress !== "" && settings.useHRMdevice)
+                onClicked:
+                {
+                    bRecordDialogRequestHRM = false;
+                    id_BluetoothData.disconnect();
+                }
+            }
+            MenuItem
+            {
+                text: qsTr("Reconnect HRM")
+                visible: (sHRMAddress !== "" && settings.useHRMdevice)
+                onClicked:
+                {
+                    id_BluetoothData.connect(sHRMAddress, 1);
+                    bRecordDialogRequestHRM = true;
+                }
+            }            
         }
 
         contentHeight: column.height
@@ -339,12 +365,7 @@ Page {
         {
             id: column
             width: page.width
-            spacing: Theme.paddingLarge
-            PageHeader
-            {
-                id: header
-                title: "Laufhelden"
-            }
+            spacing: Theme.paddingLarge           
             Label
             {
                 id: stateLabel
@@ -381,7 +402,7 @@ Page {
             {
                 id: accuracyLabel
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: recorder.accuracy < 0 ? "No position" :
+                text: recorder.accuracy < 0 ? qsTr("No position") :
                                               (recorder.accuracy < 30
                                                ? sHeartRate + recorder.accuracy.toFixed(1) + "m"
                                                : qsTr("Accuracy too low: ") + recorder.accuracy.toFixed(1) + "m")
@@ -416,7 +437,7 @@ Page {
         id: map
         width: parent.width
         height: map.gesture.enabled
-                ? (page.height - header.height - stateLabel.height -2*Theme.paddingLarge)
+                ? (page.height - stateLabel.height -2*Theme.paddingLarge)
                 : width * 3/4
                   //: (page.height - header.height - stateLabel.height - distanceLabel.height - timeLabel.height - accuracyLabel.height - 5*Theme.paddingLarge)
         anchors.bottom: parent.bottom
@@ -429,7 +450,7 @@ Page {
             PluginParameter
             {
                 name: "useragent"                
-                value: "Laufhelden/0.0.1 (SailfishOS)"
+                value: "Laufhelden(SailfishOS)"
             }
             //PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
         }
@@ -484,7 +505,7 @@ Page {
                     accuracyLabel.opacity = 1.0;
                     //page.allowedOrientations = Orientation.All;
                 }
-                page.forwardNavigation = !map.gesture.enabled;
+                //page.forwardNavigation = !map.gesture.enabled;
                 flickable.interactive = !map.gesture.enabled;
                 menu.visible = !map.gesture.enabled;
             }

@@ -19,24 +19,17 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "SharedResources.js" as SharedResources
 
-Page {
+Page
+{
     id: page
 
-    property bool bPushPreRecordPage: true
     property variant arComboboxStringArray : []
     property bool bLockOnCompleted : true;
 
-    onStatusChanged:
-    {
-        if (status == PageStatus.Active && bPushPreRecordPage)
-        {
-            bPushPreRecordPage = false            
-        }
-    }
     Component.onCompleted:
     {
         bLockOnCompleted = true;
-
+        
         //console.log("Eins: " + settings.workoutType);
         //console.log("Zwei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
         //console.log("Drei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }));
@@ -44,7 +37,11 @@ Page {
         //This is a crazy thing, but at least it returns the index :-)
         cmbWorkout.currentIndex = SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType);
 
-        txtswUseHRMdevice.checked = settings.useHRMdevice;
+        if (sHRMAddress === "")
+            txtswUseHRMdevice.checked = false;
+        else
+            txtswUseHRMdevice.checked = settings.useHRMdevice;
+
         txtswRecordPagePreventScreenBlank.checked = settings.disableScreenBlanking;
 
         bLockOnCompleted = false;
@@ -118,6 +115,7 @@ Page {
                 id: txtswUseHRMdevice
                 text: qsTr("Use HRM device")
                 description: qsTr("Use heart rate monitor in this workout.")
+                enabled: (sHRMAddress !== "")
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted)

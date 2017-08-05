@@ -29,6 +29,7 @@
 #include "settings.h"
 #include "bluetoothconnection.h"
 #include "bluetoothdata.h"
+#include "logwriter.h"
 
 
 int main(int argc, char *argv[]) {
@@ -49,6 +50,7 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<Settings>("Settings", 1, 0, "Settings");
     qmlRegisterType<BluetoothConnection,1>("bluetoothconnection", 1, 0, "BluetoothConnection");
     qmlRegisterType<BluetoothData,1>("bluetoothdata", 1, 0, "BluetoothData");
+    qmlRegisterType<LogWriter,1>("logwriter", 1, 0, "LogWriter");
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());

@@ -25,10 +25,13 @@
 TrackItem loadTrack(TrackItem track) {
     TrackItem data = track;
     qDebug()<<"Loading"<<data.filename;
-    if(data.ready) {
+
+    if(data.ready)
+    {
         qDebug()<<"Already has data:"<<data.filename;
         return data;
     }
+
     data.ready = true;
     TrackLoader loader;
     loader.setFilename(data.filename);
@@ -47,7 +50,7 @@ HistoryModel::HistoryModel(QObject *parent) :
     qDebug()<<"HistoryModel constructor";
     connect(&trackLoading, SIGNAL(resultReadyAt(int)), SLOT(newTrackData(int)));
     connect(&trackLoading, SIGNAL(finished()), SLOT(loadingFinished()));
-    readDirectory();
+    //readDirectory();
 }
 
 HistoryModel::~HistoryModel() {
@@ -183,8 +186,10 @@ void HistoryModel::newTrackData(int num) {
     emit dataChanged(index, index);
 }
 
-void HistoryModel::loadingFinished() {
+void HistoryModel::loadingFinished()
+{
     qDebug()<<"Data loading finished";
+    emit this->sigLoadingFinished();
 }
 
 void HistoryModel::readDirectory() {
@@ -204,7 +209,25 @@ void HistoryModel::readDirectory() {
     dir.setNameFilters(QStringList("*.gpx"));
     QStringList entries = dir.entryList();
 
-    for(int i=0;i<entries.size();i++) {
+    for(int i=0;i<entries.size();i++)
+    {
+        //Check if we already have an item with the current filename
+        bool bAlreadyHaveItem = false;
+        //qDebug()<<"CurrentFilename: "<<entries.at(i);
+        for(int j=0;j<m_trackList.length();j++)
+        {
+            //qDebug()<<"Filename["<<j<<"]: "<<m_trackList.at(j).filename;
+
+            if (m_trackList.at(j).filename == entries.at(i))
+            {
+                //qDebug()<<"Found by loop!";
+                bAlreadyHaveItem = true;
+                break;
+            }
+        }
+        if (bAlreadyHaveItem)
+            continue;
+
         TrackItem item;
         item.id = i;
         item.filename = entries.at(i);
@@ -215,6 +238,7 @@ void HistoryModel::readDirectory() {
         item.duration = 0;
         item.distance = 0;
         item.speed = 0;
+
         m_trackList.append(item);
     }
     trackLoading.setFuture(QtConcurrent::mapped(m_trackList, loadTrack));

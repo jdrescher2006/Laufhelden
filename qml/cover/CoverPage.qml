@@ -18,49 +18,58 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-CoverBackground {
-    Label {
-        id: label
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: -parent.height * 2/5
-        text: "Laufhelden"
-        font.pixelSize: 120
-        font.bold: true
+CoverBackground
+{   
+    Image
+    {
+        anchors.margins: Theme.paddingMedium
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.right: parent.right
+        fillMode: Image.PreserveAspectFit
         opacity: 0.2
-
-        transform: Rotation {
-            origin.x: label.width / 2
-            origin.y: label.height / 2
-            angle:-10
-        }
+        source: "../laufhelden.png"
     }
 
-    Column {
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: -parent.height / 12
-        Label {
+    Column
+    {
+        anchors.top: parent.top
+        width: parent.width
+        Label
+        {
             anchors.horizontalCenter: parent.horizontalCenter
             text: recorder.tracking ? qsTr("Recording") : qsTr("Stopped")
+            font.pixelSize: Theme.fontSizeLarge
         }
-        Label {
+        Label
+        {
             anchors.horizontalCenter: parent.horizontalCenter
             text: (recorder.distance/1000).toFixed(2) + " km"
-            font.pixelSize: Theme.fontSizeHuge
+            font.pixelSize: Theme.fontSizeMedium
         }
-        Label {
+        Label
+        {
             anchors.horizontalCenter: parent.horizontalCenter
             text: recorder.time
             font.pixelSize: Theme.fontSizeMedium
         }
+        Label
+        {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: sHeartRate + qsTr(" bpm")
+            //visible: sHRMAddress !== "" && settings.useHRMdevice
+            font.pixelSize: Theme.fontSizeMedium
+        }
     }
 
-    CoverActionList {
+    CoverActionList
+    {
         id: coverAction
-        CoverAction {
+        enabled: recorder.tracking || !recorder.isEmpty
+        CoverAction
+        {
             iconSource: recorder.tracking ? "image://theme/icon-cover-pause" : "image://theme/icon-cover-play"
             onTriggered: recorder.tracking = !recorder.tracking
         }
     }
 }
-
-

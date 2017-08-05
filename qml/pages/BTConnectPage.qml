@@ -6,15 +6,15 @@ import "SharedResources.js" as SharedResources
 Page {
     id: pageBTConnectPage
 
-    property bool bFirstPage: true
+    property bool bLockFirstPageLoad: true
     property bool bBluetoothScanning: false
     property int iScannedDevicesCount: 0
 
     onStatusChanged:
     {       
-        if (status === PageStatus.Active && bFirstPage)
+        if (status === PageStatus.Active && bLockFirstPageLoad)
         {
-            bFirstPage = false
+            bLockFirstPageLoad = false;
 
             console.log("BTPage");
 

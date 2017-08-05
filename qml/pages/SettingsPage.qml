@@ -24,33 +24,34 @@ Page {
     id: page
 
     property bool bLockOnCompleted : false;
-    property bool bPushSettingsPage: true
+    property bool bLockFirstPageLoad: true
 
     onStatusChanged:
     {
-        if (status == PageStatus.Active && bPushSettingsPage)
+        //This is loaded only the first time the page is displayed
+        if (status === PageStatus.Active && bLockFirstPageLoad)
         {
-            bPushSettingsPage = false
+            bLockOnCompleted = true;
+
+            bLockFirstPageLoad = false;
+            console.log("First Active SettingsPage");
+
+            id_TextSwitch_RecordPagePortrait.checked = settings.recordPagePortrait;
+            id_TextSwitch_LogFile.checked = settings.enableLogFile;
+
             pageStack.pushAttached(Qt.resolvedUrl("BTConnectPage.qml"));
+
+            bLockOnCompleted = false;
+        }
+
+        //This is loaded everytime the page is displayed
+        if (status === PageStatus.Active)
+        {
+            console.log("Active SettingsPage");
+
         }
     }
 
-    Component.onCompleted:
-    {
-        bLockOnCompleted = true;
-
-        if(settings.updateInterval <= 1000) updateIntervalMenu.currentIndex = 0;
-        else if(settings.updateInterval <= 2000) updateIntervalMenu.currentIndex = 1;
-        else if(settings.updateInterval <= 5000) updateIntervalMenu.currentIndex = 2;
-        else if(settings.updateInterval <= 10000) updateIntervalMenu.currentIndex = 3;
-        else if(settings.updateInterval <= 15000) updateIntervalMenu.currentIndex = 4;
-        else if(settings.updateInterval <= 30000) updateIntervalMenu.currentIndex = 5;
-        else updateIntervalMenu.currentIndex = 6;
-
-        id_TextSwitch_RecordPagePortrait.checked = settings.recordPagePortrait;
-
-        bLockOnCompleted = false;
-    }
 
     SilicaFlickable
     {
@@ -65,26 +66,7 @@ Page {
             PageHeader
             {
                 title: qsTr("General settings")
-            }
-            ComboBox
-            {
-                id: updateIntervalMenu
-                label: qsTr("Track point interval")
-                menu: ContextMenu {
-                    MenuItem { text: qsTr("1 s (default)"); onClicked: settings.updateInterval = 1000; }
-                    MenuItem { text: qsTr("2 s"); onClicked: settings.updateInterval = 2000; }
-                    MenuItem { text: qsTr("5 s"); onClicked: settings.updateInterval = 5000; }
-                    MenuItem { text: qsTr("10 s"); onClicked: settings.updateInterval = 10000; }
-                    MenuItem { text: qsTr("15 s"); onClicked: settings.updateInterval = 15000; }
-                    MenuItem { text: qsTr("30 s"); onClicked: settings.updateInterval = 30000; }
-                    MenuItem { text: qsTr("1 minute"); onClicked: settings.updateInterval = 60000; }
-                }
-            }
-            Separator
-            {
-                color: Theme.highlightColor
-                width: parent.width
-            }
+            }                        
             TextSwitch
             {
                 id: id_TextSwitch_RecordPagePortrait
@@ -95,7 +77,23 @@ Page {
                     if (!bLockOnCompleted)
                         settings.recordPagePortrait = checked;
                 }                
-            }            
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_LogFile
+                text: qsTr("Write log file")
+                description: qsTr("File: $HOME/Laufhelden/log.txt")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.enableLogFile = checked;
+                }
+            }
         }
     }
 }

@@ -56,15 +56,16 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     Q_INVOKABLE bool removeTrack(int index);
+    Q_INVOKABLE void readDirectory();
 
 signals:
+    void sigLoadingFinished();
 
 public slots:
     void newTrackData(int num);
     void loadingFinished();
 
-private:
-    void readDirectory();
+private:    
     QList<TrackItem> m_trackList;
     QFutureWatcher<TrackItem> trackLoading;
 

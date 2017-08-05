@@ -20,7 +20,7 @@
 Settings::Settings(QObject *parent) :
     QObject(parent)
 {
-    m_settings = new QSettings("jdrescher", "Laufhelden");
+    m_settings = new QSettings("harbour-laufhelden", "harbour-laufhelden");
 }
 
 int Settings::updateInterval() const
@@ -100,6 +100,14 @@ bool Settings::pulseThresholdEnable() const
 void Settings::setPulseThresholdEnable(bool pulseThresholdEnable)
 {
      m_settings->setValue("recordsettings/pulseThresholdEnable", pulseThresholdEnable);
+}
+bool Settings::enableLogFile() const
+{
+    return m_settings->value("generalsettings/enableLogFile", false).toBool();
+}
+void Settings::setEnableLogFile(bool enableLogFile)
+{
+     m_settings->setValue("generalsettings/enableLogFile", enableLogFile);
 }
 
 

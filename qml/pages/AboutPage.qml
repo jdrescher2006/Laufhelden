@@ -41,26 +41,26 @@ Page
             {
                 title: qsTr("About Laufhelden")
             }
-            Button
+            MouseArea
             {
+                width : parent.width /1.8
+                height: parent.width / 1.8
                 anchors.horizontalCenter: parent.horizontalCenter
-                height: 256
                 Image
                 {
                     anchors.fill: parent
-                    fillMode: Image.PreserveAspectFit
                     source: "../laufhelden.png"
                 }
                 onClicked:
                 {
                     if (iCountWhtRbbt == 1)
-                        fncShowMessage(1,"The future's not set. There's no fate but what we make for ourselves.<br>John Connor", 6000);
+                        fncShowMessage(1,"The future's not set. There's no fate but what we make for ourselves.<br>John Connor", 8000);
                     else if (iCountWhtRbbt == 2)
-                        fncShowMessage(1,"And it would die, to protect him. In an insane world, it was the sanest choice.<br>Sarah Connor", 6000);
+                        fncShowMessage(1,"And it would die, to protect him. In an insane world, it was the sanest choice.<br>Sarah Connor", 8000);
                     else if (iCountWhtRbbt == 3)
-                        fncShowMessage(1,"I know now why you cry but it's something that I can never do.<br>T-800", 6000);
+                        fncShowMessage(1,"I know now why you cry but it's something that I can never do.<br>T-800", 8000);
                     else if (iCountWhtRbbt == 4)
-                        fncShowMessage(3,"STOP NOW or system will crash!!!", 6000);
+                        fncShowMessage(3,"STOP NOW or system will crash!!!", 8000);
                     else if (iCountWhtRbbt == 5)
                         fncShowMessage(0,"Skynet is now searching for viruses on your system, please wait...", 3000);
                     else if (iCountWhtRbbt == 6)

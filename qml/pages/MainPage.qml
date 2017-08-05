@@ -17,21 +17,26 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import HistoryModel 1.0
 import "SharedResources.js" as SharedResources
 
 Page
 {
-    id: id_page_mainpage
+    id: mainPage
 
-    property bool bMainPage: true
-
+    property bool bLockFirstPageLoad: true
 
     onStatusChanged:
-    {       
-        if (status === PageStatus.Active && bMainPage)
+    {
+        //This is loaded only the first time the page is displayed
+        if (status === PageStatus.Active && bLockFirstPageLoad)
         {
-            bMainPage = false;
+            bLockFirstPageLoad = false;
+            console.log("First Active MainPage");
+
+            //Init log file. Save first string.
+            //if (settings.enableLogFile) id_LogWriter.vWriteStart("Version: " + Qt.application.version + "\r\n" + "Date: " + Date() + "\r\n-------------------------------\r\n");
+            //id_LogWriter.vWriteStart("Version: " + Qt.application.version + "\r\n" + "Date: " + Date() + "\r\n-------------------------------\r\n");
+            //id_LogWriter.vWriteData("Test Eintrag..." + "\r\n");
 
             //Read settings to QML variables
             var sTemp = settings.hrmdevice;
@@ -47,17 +52,43 @@ Page
                 sHRMDeviceName = "";
             }
         }
+
+        //This is loaded everytime the page is displayed
+        if (status === PageStatus.Active)
+        {
+            console.log("Active MainPage");
+
+            //Save the object of this page for back jumps
+            vMainPageObject = pageStack.currentPage;
+            console.log("vMainPageObject: " + vMainPageObject.toString());
+
+
+            //Load history model. TODO: we should have a waiter here.
+            if (bLoadHistoryData)
+            {
+                id_HistoryModel.readDirectory();
+                bLoadHistoryData = false;
+            }
+        }
     }
 
-    HistoryModel
+
+    Connections
     {
-        id: historyModel
+        target: id_HistoryModel
+        onSigLoadingFinished:     //This is called from C++ if the loading of the GPX files is ready
+        {            
+            historyList.model = undefined;
+            historyList.model = id_HistoryModel;            
+        }
     }
 
-    SilicaFlickable
+    SilicaListView
     {
         anchors.fill: parent
-        contentHeight: id_Column_FirstCol.height + Theme.paddingLarge;
+
+        id: historyList
+        model: id_HistoryModel
 
         PullDownMenu
         {
@@ -71,21 +102,31 @@ Page
             {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-            }            
+            }
             MenuItem
             {
                 text: qsTr("Start new workout")
                 onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
             }
+            MenuItem
+            {
+                text: "Test"
+                onClicked:
+                {
+                    id_HistoryModel.readDirectory();
+                }
+            }
         }
 
-        Column
+        header: Column
         {
-            id: id_Column_FirstCol
-            width: parent.width
-            spacing: Theme.paddingLarge
-            PageHeader
-            {
+            spacing: Theme.paddingLarge;
+            anchors {
+                left: parent.left;
+                right: parent.right;
+            }
+
+            PageHeader {
                 title: qsTr("Welcome to Laufhelden")
             }
 
@@ -97,94 +138,93 @@ Page
                 text: historyList.count === 0 ? qsTr("No earlier workouts") : qsTr("Workouts: ") + (historyList.count).toString();
                 color: Theme.highlightColor
             }
-            Separator {color: Theme.highlightColor; width: parent.width;}
 
-            SilicaListView
+            Separator
             {
-                id: historyList
-                model: historyModel
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: parent.height / 1.5 //weird factor here, I don't understand...
-
-                delegate: ListItem
-                {
-                    id: listItem
-                    width: parent.width
-                    ListView.onRemove: animateRemoval()
-                    menu: ContextMenu
-                    {
-                        MenuItem
-                        {
-                            text: qsTr("Remove workout")
-                            onClicked: remorseAction(qsTr("Removing workout..."), listItem.deleteTrack)
-                        }
-                    }
-
-                    function deleteTrack()
-                    {
-                        historyModel.removeTrack(index);
-                    }
-
-
-                    Image
-                    {
-                        id: workoutImage                        
-                        anchors.top: parent.top
-                        anchors.topMargin: Theme.paddingMedium
-                        x: Theme.paddingSmall
-                        width: Theme.paddingMedium * 3
-                        height: Theme.paddingMedium * 3
-                        source: workout==="" ? "" : SharedResources.arrayLookupWorkoutTableByName[workout].icon
-                    }
-                    Label
-                    {
-                        id: nameLabel
-                        x: Theme.paddingLarge * 2
-                        width: parent.width - dateLabel.width - 2*Theme.paddingLarge
-                        anchors.top: parent.top
-                        truncationMode: TruncationMode.Fade
-                        text: name==="" ? "(Unnamed track)" : name
-                        color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    }
-                    Label
-                    {
-                        id: dateLabel
-                        anchors.top: parent.top
-                        anchors.right: parent.right
-                        anchors.rightMargin: Theme.paddingSmall
-                        text: date
-                        color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    }
-                    Label
-                    {
-                        anchors.top: nameLabel.bottom
-                        x: Theme.paddingLarge * 2
-                        color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                        font.pixelSize: Theme.fontSizeSmall
-                        text: distance
-                    }
-                    Label
-                    {
-                        anchors.top: nameLabel.bottom
-                        x: (parent.width - width) / 2
-                        color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                        font.pixelSize: Theme.fontSizeSmall
-                        text: duration
-                    }
-                    Label
-                    {
-                        anchors.top: nameLabel.bottom
-                        anchors.right: parent.right
-                        anchors.rightMargin: Theme.paddingSmall
-                        color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                        font.pixelSize: Theme.fontSizeSmall
-                        text: speed
-                    }
-                    onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
-                                              {filename: filename, name: name})
+                color: Theme.highlightColor;
+                anchors {
+                    left: parent.left;
+                    right: parent.right;
                 }
             }
+        }
+
+        delegate: ListItem
+        {
+            id: listItem
+            width: parent.width
+            ListView.onRemove: animateRemoval()
+            menu: ContextMenu
+            {
+                MenuItem
+                {
+                    text: qsTr("Remove workout")
+                    onClicked: remorseAction(qsTr("Removing workout..."), listItem.deleteTrack)
+                }
+            }
+
+            function deleteTrack()
+            {
+                id_HistoryModel.removeTrack(index);
+            }
+
+
+            Image
+            {
+                id: workoutImage
+                anchors.top: parent.top
+                anchors.topMargin: Theme.paddingMedium
+                x: Theme.paddingSmall
+                width: Theme.paddingMedium * 3
+                height: Theme.paddingMedium * 3
+                source: workout==="" ? "" : SharedResources.arrayLookupWorkoutTableByName[workout].icon
+            }
+            Label
+            {
+                id: nameLabel
+                x: Theme.paddingLarge * 2
+                width: parent.width - dateLabel.width - 2*Theme.paddingLarge
+                anchors.top: parent.top
+                truncationMode: TruncationMode.Fade
+                text: name==="" ? "(Unnamed track)" : name
+                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+            }
+            Label
+            {
+                id: dateLabel
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.paddingSmall
+                text: date
+                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+            }
+            Label
+            {
+                anchors.top: nameLabel.bottom
+                x: Theme.paddingLarge * 2
+                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                text: distance
+            }
+            Label
+            {
+                anchors.top: nameLabel.bottom
+                x: (parent.width - width) / 2
+                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                text: duration
+            }
+            Label
+            {
+                anchors.top: nameLabel.bottom
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.paddingSmall
+                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                text: speed
+            }
+            onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
+                                      {filename: filename, name: name})
         }
     }
 }

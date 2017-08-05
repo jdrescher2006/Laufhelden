@@ -1,11 +1,14 @@
 ToDo for first release to openrepos:
+- search for all "Rena" and replace
+- Style first page list view like in meerun
 - bluetooth data logging function
-- compatibility with new HRM belt
 - translation to german language
-- all workout types from meerun
+- support all workout types from meerun
 - cover dialog needs complete workover
+	- remove app name, add app icon
 - implement autopause
-- record page workover
+- save pause time to gpx file. Look in Meerun gpx file where to save pause data.
+- record page workover	
 	- choose what to display on the fields
 	- add more data to view
 		- current, minimum, maximum height (gps)
@@ -26,6 +29,9 @@ ToDo for first release to openrepos:
 
 
 ToDo on the long run:
+- check if bluetooth is active. If not, switch it on.
+- introduce configurable lock page (LCD mode, AMOLED mode)
+- Record page: replace menu items (stop, pause, continue, start) with buttons
 - support workouts without gps e.g. indoor activities
 - choose metrics, km/miles
 - new workout icons
@@ -34,18 +40,33 @@ ToDo on the long run:
 - ability to pause runnig music when doing voice announcements
 - use scout server as map tile provider (wait for Jolla dudes introducing QT5.6 to SFOS)
 - introduce lap function
+- CRC check for Zephyr HxM data packets
+- BLE heart rate devices support (currently waiting for kimmoli to bring this to OPX)
+- Waiter for mainpage while histroy data (GPX files) is loading
 
 
 Bugs:
-- after a new workout is recorded it is not viewed on main page
+- compiler issue, comparison between signed and unsigned
+- [W] unknown:167 - file:///usr/share/harbour-laufhelden/qml/pages/RecordPage.qml:167: TypeError: Cannot call method 'addCoordinate' of undefined
+- write to log file is not working, strange no error or something...
+- fix mapcircle on recordpage
+- sometimes, maybe if app is left on cover view or even in background, screen on is not longer working
+- GPS starts with app start. Make it start with recordpage.
 - autosave file might not get deleted after a training session
-	complete autosave mechanism must be checked. There are UI problems with this also.
+	- complete autosave mechanism must be checked. There are UI problems with this also.
+	- if autosave is there on start on app, ask user if to resume workout
 
 
 
 Completed:
-- record page must keep screen on (configurable)
+- In PreRecordPage, disable HRM option if there is no HRM device address
+- In RecordPage, disable HRM optiion if there is no HRM device address
+- On recordpage: if the map is maximized, there is a forward jump enabled to prerecordpage. This is a bug!
+- Set useragent for map and app settings file to beter values
+- solved issue with backjumping to mainpage. Problem was, pagestack.currentpage gives null within Component.onCompleted. Don't use this anymore!!!
 - mainpage list does not fit to height of page
+- after a new workout is recorded it is not viewed on main page
+- record page must keep screen on (configurable)
 - speed indicator for record page
 - filename:
 	use the local date&time as well as workout
@@ -55,3 +76,4 @@ Completed:
 - description:
 	use the textbox text from the savedialog.
 	Make no prediction and leave text box empty on start dialog.
+- compatibility with new HRM belt
