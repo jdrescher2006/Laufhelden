@@ -87,19 +87,19 @@ void Settings::setShowMapRecordPage(bool showMapRecordPage)
 }
 QString Settings::pulseThreshold() const
 {
-        return m_settings->value("recordsettings/pulseThreshold", "50,60,100,120").toString();
+        return m_settings->value("recordsettings/pulseThreshold", "110,160,3,3").toString();
 }
 void Settings::setPulseThreshold(QString pulseThreshold)
 {
     m_settings->setValue("recordsettings/pulseThreshold", pulseThreshold);
 }
-bool Settings::pulseThresholdEnable() const
+bool Settings::pulseThresholdUpperEnable() const
 {
-    return m_settings->value("recordsettings/pulseThresholdEnable", false).toBool();
+    return m_settings->value("recordsettings/pulseThresholdUpperEnable", false).toBool();
 }
-void Settings::setPulseThresholdEnable(bool pulseThresholdEnable)
+void Settings::setPulseThresholdUpperEnable(bool pulseThresholdUpperEnable)
 {
-     m_settings->setValue("recordsettings/pulseThresholdEnable", pulseThresholdEnable);
+     m_settings->setValue("recordsettings/pulseThresholdUpperEnable", pulseThresholdUpperEnable);
 }
 bool Settings::enableLogFile() const
 {

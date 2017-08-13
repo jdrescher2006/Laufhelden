@@ -32,7 +32,7 @@ class Settings : public QObject
     Q_PROPERTY(bool disableScreenBlanking READ disableScreenBlanking WRITE setDisableScreenBlanking)
     Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)
     Q_PROPERTY(QString pulseThreshold READ pulseThreshold WRITE setPulseThreshold)
-    Q_PROPERTY(bool pulseThresholdEnable READ pulseThresholdEnable WRITE setPulseThresholdEnable)
+    Q_PROPERTY(bool pulseThresholdUpperEnable READ pulseThresholdUpperEnable WRITE setPulseThresholdUpperEnable)
     Q_PROPERTY(bool enableLogFile READ enableLogFile WRITE setEnableLogFile)
 
 public:
@@ -58,8 +58,8 @@ public:
     bool showMapRecordPage() const;
     void setShowMapRecordPage(bool showMapRecordPage);
 
-    bool pulseThresholdEnable() const;
-    void setPulseThresholdEnable(bool pulseThresholdEnable);
+    bool pulseThresholdUpperEnable() const;
+    void setPulseThresholdUpperEnable(bool pulseThresholdUpperEnable);
 
     QString pulseThreshold() const;
     void setPulseThreshold(QString pulseThreshold);

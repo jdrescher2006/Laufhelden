@@ -30,6 +30,8 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_distance = 0.0;
     m_speed = 0.0;
     m_pace = 0.0;
+    m_speedaverage = 0.0;
+    m_paceaverage = 0.0;
     m_accuracy = -1;
     m_tracking = false;
     m_isEmpty = true;
@@ -129,7 +131,21 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             qDebug()<<"Pace:"<<m_pace;
             emit paceChanged();
 
+            //Calculate workout time
+            QDateTime first = m_points.at(0).timestamp();
+            QDateTime last = m_points.at(m_points.size()-1).timestamp();
+            qint64 iWorkoutTimeSec = first.secsTo(last);
 
+
+            //Calculate average speed
+            m_speedaverage = (m_distance / 1000.0) / (iWorkoutTimeSec / 3600.0);
+            qDebug()<<"AVG speed:"<<m_speedaverage;
+            emit speedaverageChanged();
+
+            //Calculate average pace
+            m_paceaverage = (iWorkoutTimeSec / 60.0) / (m_distance / 1000.0);
+            qDebug()<<"AVG pace:"<<m_paceaverage;
+            emit paceaverageChanged();
 
             if(newPos.coordinate().latitude() < m_minLat)
             {
@@ -335,6 +351,14 @@ qreal TrackRecorder::speed() const {
 
 qreal TrackRecorder::pace() const {
     return m_pace;
+}
+
+qreal TrackRecorder::speedaverage() const {
+    return m_speedaverage;
+}
+
+qreal TrackRecorder::paceaverage() const {
+    return m_paceaverage;
 }
 
 QString TrackRecorder::startingDateTime() const

@@ -74,6 +74,9 @@ DISTFILES += \
     qml/workouticons/walking.png \
     qml/tools/ScreenBlank.qml \
     qml/pages/catch-action.wav \
-    qml/audio/catch-action.wav \
-    rpm/harbour-laufhelden.changes
+    rpm/harbour-laufhelden.changes \
+    qml/audio/hr_normal.wav \
+    qml/audio/hr_toohigh.wav \
+    qml/audio/hr_toolow.wav \
+    qml/pages/ThresholdSettingsPage.qml
 

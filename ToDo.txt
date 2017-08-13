@@ -1,6 +1,9 @@
 ToDo for first release to openrepos:
+- 
+- mainpage needs a progressbar.
+- names of workouts still not good. Workouts are not sorted properly due to this.
 - search for all "Rena" and replace
-- Style first page list view like in meerun
+- Style first page list view like in meerun (upper part of page should not scroll)
 - bluetooth data logging function
 - translation to german language
 - support all workout types from meerun
@@ -46,6 +49,7 @@ ToDo on the long run:
 
 
 Bugs:
+- if two (or more) workouts per day are recorded, there is a view problem on mainpage. This is probably due to same filename.
 - compiler issue, comparison between signed and unsigned
 - [W] unknown:167 - file:///usr/share/harbour-laufhelden/qml/pages/RecordPage.qml:167: TypeError: Cannot call method 'addCoordinate' of undefined
 - write to log file is not working, strange no error or something...
@@ -59,6 +63,7 @@ Bugs:
 
 
 Completed:
+- if recordpage is left, HRM is disconnected. Disconnect only if workout ends!
 - In PreRecordPage, disable HRM option if there is no HRM device address
 - In RecordPage, disable HRM optiion if there is no HRM device address
 - On recordpage: if the map is maximized, there is a forward jump enabled to prerecordpage. This is a bug!

@@ -107,15 +107,7 @@ Page
             {
                 text: qsTr("Start new workout")
                 onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
-            }
-            MenuItem
-            {
-                text: "Test"
-                onClicked:
-                {
-                    id_HistoryModel.readDirectory();
-                }
-            }
+            }            
         }
 
         header: Column

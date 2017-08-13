@@ -69,118 +69,7 @@ ApplicationWindow
         target: id_BluetoothData        
         onSigReadDataReady:     //This is called from C++ if there is data via bluetooth
         {
-            var sHeartRateTemp = 0;
-            var sBatteryLevelTemp = 0;
-            var iPacketLength = 0;
-
-            //Save received data to packet string. This must be done because a packet is not always consistent.
-            sHeartRateHexString = sHeartRateHexString + sData.toLowerCase();
-
-            console.log("sHeartRateHexString: " + sHeartRateHexString);
-
-            //Search for vaid telegrams
-            //Check for Zephyr control characters start and enddelimiter
-            console.log("Header: " + sHeartRateHexString.substr(0,4));
-            console.log("Enddelimiter: " + sHeartRateHexString.substr(sHeartRateHexString.length - 2));
-
-            if (sHeartRateHexString.substr(0,4).indexOf("0226") !== -1 && sHeartRateHexString.substr(sHeartRateHexString.length-2).indexOf("03") !== -1)
-            {
-                //This should be a Zyphyr packet
-
-                console.log("Valid Zepyhr HxM data packet found!");
-
-                //Extract length
-                iPacketLength = parseInt(sHeartRateHexString.substr(4,2),16);
-                console.log("Length: " + iPacketLength.toString());
-
-                //Extract CRC
-                var sCRC = sHeartRateHexString.substr(-4);
-                sCRC = sCRC.substr(0,2);
-                console.log("CRC: " + sCRC);
-
-                //Extract heart rate data
-                sHeartRateHexString = sHeartRateHexString.substring(6,sHeartRateHexString.length - 4);
-
-                console.log("HR data: " + sHeartRateHexString);
-                console.log("HR data length: " + sHeartRateHexString.length);
-
-                //Check if length match is given
-                if (sHeartRateHexString.length !== (iPacketLength*2))
-                {
-                    console.log("Length does not match, scrap packet!");
-                    sHeartRateHexString = "";
-                    return;
-                }
-
-                //Check if data is valid by CRC
-                //Man the example is in C )-: do it later...
-
-                //Extract battery level
-                sBatteryLevelTemp = (parseInt(sHeartRateHexString.substr(16,2),16)).toString();
-                console.log("Battery level: " + sBatteryLevelTemp);
-
-                //Extract heart rate at byte 12
-                sHeartRateTemp = (parseInt(sHeartRateHexString.substr(18,2),16)).toString();
-                console.log("Heartrate: " + sHeartRateTemp);
-
-                //If we found a valid packet, delete the packet memory string
-                sHeartRateHexString = "";
-            }
-            else if (sHeartRateHexString.substr(0,2).indexOf("fe") !== -1)
-            {
-                //This should be a POLAR packet
-
-                //Check if packet is at correct length
-                iPacketLength = parseInt(sHeartRateHexString.substr(2,2), 16);
-                console.log("iPacketLength: " + iPacketLength);
-                if (sHeartRateHexString.length < (iPacketLength * 2))
-                {
-                    sHeartRateHexString = "";
-                    return; //Packet is not big enough
-                }
-                //Check check byte, 255 - packet length
-                var iCheckByte = parseInt(sHeartRateHexString.substr(4,2), 16);
-                console.log("iCheckByte: " + iCheckByte);
-                if (iCheckByte !== (255 - iPacketLength))
-                {
-                    sHeartRateHexString = "";
-                    console.log("Check byte is not valid!");
-                    return; //Check byte is not valid
-                }
-                //Check sequence valid
-                var iSequenceValid = parseInt(sHeartRateHexString.substr(6,2), 16);
-                console.log("iSequenceValid: " + iSequenceValid);
-                if (iSequenceValid >= 16)
-                {
-                    sHeartRateHexString = "";
-                    return; //Sequence valid byte is not valid
-                }
-
-                //Check status byte
-                var iStatus = parseInt(sHeartRateHexString.substr(8,2), 16);
-                console.log("iStatus: " + iStatus);
-                //Check battery state
-                sBatteryLevelTemp = parseInt(sHeartRateHexString.substr(8,1), 16);
-                console.log("iBattery: " + sBatteryLevelTemp);
-                //Extract heart rate
-                sHeartRateTemp = (parseInt(sHeartRateHexString.substr(10,2), 16)).toString();
-                console.log("HeartRateTemp: " + sHeartRateTemp);
-
-                var sTemp = ((100/15) * sBatteryLevelTemp).toString();
-                if (sTemp.indexOf(".") != -1)
-                    sTemp = sTemp.substring(0, sTemp.indexOf("."));
-                sBatteryLevelTemp = sTemp;
-
-                //Extraction was successful here. Reset message text var.
-                sHeartRateHexString = "";
-            }
-
-
-            //Send heart rate to trackrecorderiHeartRate so that it can be included into the gpx file.
-            recorder.vSetCurrentHeartRate(parseInt(sHeartRateTemp));
-
-            sHeartRate = sHeartRateTemp;
-            sBatteryLevel = sBatteryLevelTemp;
+            fncCheckHeartrate(sData);
         }
         onSigConnected:
         {
@@ -204,6 +93,143 @@ ApplicationWindow
         {
             fncShowMessage(3,"HRM Error: " + sError, 10000);
         }
+    }
+
+    function fncCheckHeartrate(sData)
+    {
+        var sHeartRateTemp = 0;
+        var sBatteryLevelTemp = 0;
+        var iPacketLength = 0;
+
+        //Save received data to packet string. This must be done because a packet is not always consistent.
+        sHeartRateHexString = sHeartRateHexString + sData.toLowerCase();
+
+        console.log("sHeartRateHexString: " + sHeartRateHexString);
+
+        //Check for minimal length
+        if (sHeartRateHexString.length < 8)
+        {
+            console.log("Packet is too small!");
+            return;
+        }
+
+        //Search for vaid telegrams
+        //Check for Zephyr control characters start and enddelimiter
+        console.log("Header: " + sHeartRateHexString.substr(0,4));
+        console.log("Enddelimiter: " + sHeartRateHexString.substr(sHeartRateHexString.length - 2));
+
+        if (sHeartRateHexString.substr(0,4).indexOf("0226") !== -1 && sHeartRateHexString.substr(sHeartRateHexString.length-2).indexOf("03") !== -1)
+        {
+            //This should be a Zyphyr packet
+
+            console.log("Valid Zepyhr HxM data packet found!");
+
+            //Extract length
+            iPacketLength = parseInt(sHeartRateHexString.substr(4,2),16);
+            console.log("Length: " + iPacketLength.toString());
+
+            //Extract CRC
+            var sCRC = sHeartRateHexString.substr(-4);
+            sCRC = sCRC.substr(0,2);
+            console.log("CRC: " + sCRC);
+
+            //Extract heart rate data
+            sHeartRateHexString = sHeartRateHexString.substring(6,sHeartRateHexString.length - 4);
+
+            console.log("HR data: " + sHeartRateHexString);
+            console.log("HR data length: " + sHeartRateHexString.length);
+
+            //Check if length match is given
+            if (sHeartRateHexString.length !== (iPacketLength*2))
+            {
+                console.log("Length does not match, scrap packet!");
+                sHeartRateHexString = "";
+                return;
+            }
+
+            //Check if data is valid by CRC
+            //Man the example is in C )-: do it later...
+
+            //Extract battery level
+            sBatteryLevelTemp = (parseInt(sHeartRateHexString.substr(16,2),16)).toString();
+            console.log("Battery level: " + sBatteryLevelTemp);
+
+            //Extract heart rate at byte 12
+            sHeartRateTemp = (parseInt(sHeartRateHexString.substr(18,2),16)).toString();
+            console.log("Heartrate: " + sHeartRateTemp);
+
+            //If we found a valid packet, delete the packet memory string
+            sHeartRateHexString = "";
+        }
+        else if (sHeartRateHexString.substr(0,2).indexOf("fe") !== -1)
+        {
+            //This should be a POLAR packet
+
+            //Check if packet is at correct length
+            iPacketLength = parseInt(sHeartRateHexString.substr(2,2), 16);
+            console.log("iPacketLength: " + iPacketLength);
+            if (sHeartRateHexString.length < (iPacketLength * 2))
+            {
+                sHeartRateHexString = "";
+                return; //Packet is not big enough
+            }
+            //Check check byte, 255 - packet length
+            var iCheckByte = parseInt(sHeartRateHexString.substr(4,2), 16);
+            console.log("iCheckByte: " + iCheckByte);
+            if (iCheckByte !== (255 - iPacketLength))
+            {
+                sHeartRateHexString = "";
+                console.log("Check byte is not valid!");
+                return; //Check byte is not valid
+            }
+            //Check sequence valid
+            var iSequenceValid = parseInt(sHeartRateHexString.substr(6,2), 16);
+            console.log("iSequenceValid: " + iSequenceValid);
+            if (iSequenceValid >= 16)
+            {
+                sHeartRateHexString = "";
+                return; //Sequence valid byte is not valid
+            }
+
+            //Check status byte
+            var iStatus = parseInt(sHeartRateHexString.substr(8,2), 16);
+            console.log("iStatus: " + iStatus);
+            //Check battery state
+            sBatteryLevelTemp = parseInt(sHeartRateHexString.substr(8,1), 16);
+            console.log("iBattery: " + sBatteryLevelTemp);
+            //Extract heart rate
+            sHeartRateTemp = (parseInt(sHeartRateHexString.substr(10,2), 16)).toString();
+            console.log("HeartRateTemp: " + sHeartRateTemp);
+
+            var sTemp = ((100/15) * sBatteryLevelTemp).toString();
+            if (sTemp.indexOf(".") != -1)
+                sTemp = sTemp.substring(0, sTemp.indexOf("."));
+            sBatteryLevelTemp = sTemp;
+
+            //Extraction was successful here. Reset message text var.
+            //Only kill the bytes for this packet. There might be more bytes after this packet.
+            if (sHeartRateHexString.length > (iPacketLength * 2))
+            {
+                sHeartRateHexString = sHeartRateHexString.substring((iPacketLength * 2));
+                console.log("Found additional data: " + sHeartRateHexString);
+                fncCheckHeartrate("");
+            }
+            else
+                sHeartRateHexString = "";
+        }
+        else
+        {
+            //We have a strange start delimiter. Kill data...
+            console.log("Strange data found. Kill data.");
+            sHeartRateHexString = "";
+        }
+
+
+        //Send heart rate to trackrecorderiHeartRate so that it can be included into the gpx file.
+        recorder.vSetCurrentHeartRate(parseInt(sHeartRateTemp));
+
+        sHeartRate = sHeartRateTemp;
+        sBatteryLevel = sBatteryLevelTemp;
     }
 
 

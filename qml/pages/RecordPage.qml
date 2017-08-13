@@ -21,9 +21,11 @@ import Sailfish.Silica 1.0
 import QtLocation 5.0
 import QtPositioning 5.0
 import QtMultimedia 5.0 as Media
+import QtFeedback 5.0
 import "../tools"
 
-Page {
+Page
+{
     id: page
 
     allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All;
@@ -32,8 +34,12 @@ Page {
     backNavigation: (!recorder.tracking && recorder.isEmpty)
 
     property bool bShowMap: settings.showMapRecordPage
-    property int iLastHeartRate: -1
+    property int iLastHeartRateArea: -1
+    property int iHRAboveTopCounter: 0
+    property int iHRBelowTopCounter: 0
     property bool bLockFirstPageLoad: true
+    property int iButtonLoop : 4
+    property bool bEndLoop: false;
 
     onStatusChanged:
     {
@@ -76,18 +82,55 @@ Page {
 
         if (status === PageStatus.Inactive)
         {            
-            console.log("RecordPage inactive");
-
-            bRecordDialogRequestHRM = false;
+            console.log("RecordPage inactive");            
 
             if (settings.disableScreenBlanking)
-                fncEnableScreenBlank(false);
-
-            if (bHRMConnected) {id_BluetoothData.disconnect();}
-
-            sHeartRate: ""
-            sBatteryLevel: ""
+                fncEnableScreenBlank(false);                    
         }
+    }
+
+    Timer
+    {
+        id: idTimerButtonLoop
+        interval: 1000;
+        repeat: (iButtonLoop<4 && iButtonLoop>0)
+        running: (iButtonLoop<4 && iButtonLoop>0)
+        onTriggered:
+        {
+            //Cancel end operation
+            if (bEndLoop)
+            {
+                iButtonLoop = 4;
+                return;
+            }
+
+            iButtonLoop-=1;
+
+            if (iButtonLoop===0)
+            {
+                iButtonLoop = 4;
+
+                bRecordDialogRequestHRM = false;
+
+                if (bHRMConnected) {id_BluetoothData.disconnect();}
+
+                sHeartRate: ""
+                sBatteryLevel: ""
+
+                recorder.tracking = false;
+                if(!recorder.isEmpty)
+                {
+                    showSaveDialog();
+                }
+            }
+        }
+    }
+
+    HapticsEffect
+    {
+        id: vibrateEffect
+        intensity: 1
+        duration: 200
     }
 
     function showSaveDialog()
@@ -169,6 +212,7 @@ Page {
     function newTrackPoint(coordinate)
     {
         //console.log("Position: " + recorder.currentPosition);
+        console.log("newTrackPoint");
 
         trackLine.addCoordinate(coordinate);
         if(!map.gesture.enabled)
@@ -177,60 +221,92 @@ Page {
             setMapViewport();
         }
 
-        //Check if we triggered a threshold
-        if (settings.pulseThresholdEnable && sHeartRate != "" && sHeartRate != -1)
+        //Now process the thresholds. Make some checks.
+        if (sHeartRate === "" || sHeartRate === "-1")
         {
-            //Parse pulse value to int
-            var iHeartrate = parseInt(sHeartRate);
-
-            var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
-
-            if (iHeartrate === NaN || iHeartrateThresholds.length !== 4)
-                return;
-
-            //These are the thresholds:
-            // [0] bottom threshold
-            // [1] bottom hysteresis
-            // [2] top threshold
-            // [3] top hysteresis
-
-            //These are the areas:
-            //-1 start value undefined
-            // 0 under bottom threshold
-            // 1 inbetween thresholds
-            // 2 over top threshod
-
-
-            //This is first start condition.
-            if (iLastHeartRate === -1)
-            {
-                iLastHeartRate = iHeartrate;
-                return;
-            }
-
-            //Check if we are over the upper threshold and was not there the last time.
-            if (iLastHeartRate < iHeartrateThresholds[2] && iHeartrate >= iHeartrateThresholds[2])
-            {
-                //Now we need to alert that we are over the top threshold
-
-            }
-
-            //Check if we are under the upper threshold
-
-            //Check if we are over the under threshold
-
-            //Check if we are under the under threshold
-
-
-            //playSoundEffect.source = "../audio/catch-action.wav";
-            //playSoundEffect.play();
+            return;
         }
+        //Parse pulse value to int
+        var iHeartrate = parseInt(sHeartRate);
+
+        //Extract heart rate thresholds
+        //[0] bottom threshold
+        //[1] top threshold
+        //[2] bottom threshold trigger counter
+        //[3] top threshold trigger counter
+        var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
+
+        if (iHeartrateThresholds.length !== 4)
+            return;
+
+        //parse thresholds to int
+        iHeartrateThresholds[0] = parseInt(iHeartrateThresholds[0]);
+        iHeartrateThresholds[1] = parseInt(iHeartrateThresholds[1]);
+        iHeartrateThresholds[2] = parseInt(iHeartrateThresholds[2]);
+        iHeartrateThresholds[3] = parseInt(iHeartrateThresholds[3]);
+
+        //Check heart rate area.
+        //-1 not defined, start value
+        // 0 below lower threshold
+        // 1 between lower and upper threshold (good area)
+        // 2 above upper threshold
+        /*
+        if (iLastHeartRateArea === -1)
+        {
+            if (iHeartrate <= iHeartrateThresholds[0])
+                iLastHeartRateArea = 0;
+            else if (iHeartrate > iHeartrateThresholds[0] && iHeartrate < iHeartrateThresholds[1])
+                iLastHeartRateArea = 1;
+            else if (iHeartrate >= iHeartrateThresholds[1])
+                iLastHeartRateArea = 2;
+        }*/
+
+        if (settings.pulseThresholdUpperEnable)
+        {
+            //First condition: detect a break from below through the upper threshold
+            if (iLastHeartRateArea != 2 && iHeartrate >= iHeartrateThresholds[1])
+            {
+                //Ok the threshold was triggered. Check how often in a row that was the case.
+                if (iHRAboveTopCounter >= iHeartrateThresholds[3])
+                {
+                    iHRAboveTopCounter = 0;
+                    iLastHeartRateArea = 2;
+
+                    playSoundEffect.source = "../audio/hr_toohigh.wav";
+                    playSoundEffect.play();
+                }
+                else
+                    iHRAboveTopCounter+=1;
+            }
+            //Second condition: detect a break from above through the upper threshold
+            else if(iLastHeartRateArea == 2 && iHeartrate < iHeartrateThresholds[1])
+            {
+                //Ok the threshold was triggered. Check how often in a row that was the case.
+                if (iHRBelowTopCounter >= iHeartrateThresholds[3])
+                {
+                    iHRBelowTopCounter = 0;
+                    iLastHeartRateArea = 1;
+
+                    playSoundEffect.source = "../audio/hr_normal.wav";
+                    playSoundEffect.play();
+                }
+                else
+                    iHRBelowTopCounter+=1;
+            }
+            else
+            {
+                //OK, the threshold was not triggered. Reset the trigger counters.
+                iHRAboveTopCounter = 0;
+                iHRBelowTopCounter = 0;
+            }
+        }        
     }    
 
     Media.SoundEffect
     {
         id: playSoundEffect
-        source: "../audio/catch-action.wav"
+        //source: "../audio/catch-action.wav"
+        source: "../audio/hr_toohigh.wav"
         volume: 1.0; //Full 1.0
     }
 
@@ -241,9 +317,9 @@ Page {
         radius: recorder.accuracy
         color: "blue"
         border.color: "white"
+        border.width: 6
         opacity: 0.3
-        //opacity: 1.0
-        /* this comes from Rena but was not working there either
+        /* this stuff comes from Rena but was not working there either
         onRadiusChanged: {
             if(!map.gesture.enabled) {  // When not browsing the map
                 setMapViewport()
@@ -291,38 +367,7 @@ Page {
             {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-            }
-            MenuItem
-            {
-                text: qsTr("Start workout")
-                visible: !recorder.tracking && recorder.isEmpty
-                onClicked: recorder.tracking = true;
-            }
-            MenuItem
-            {
-                text: qsTr("Continue workout")
-                visible: !recorder.tracking && !recorder.isEmpty                                
-                onClicked: recorder.tracking = true;
-            }
-            MenuItem
-            {
-                text: qsTr("Pause workout")
-                visible: recorder.tracking && !recorder.isEmpty
-                onClicked: recorder.tracking = false;
-            }
-            MenuItem
-            {
-                text: qsTr("End workout")
-                visible: recorder.tracking || !recorder.isEmpty
-                onClicked:
-                {
-                    recorder.tracking = false;
-                    if(!recorder.isEmpty)
-                    {
-                        showSaveDialog();
-                    }
-                }
-            }
+            }           
         }
         PushUpMenu
         {
@@ -356,28 +401,62 @@ Page {
                     id_BluetoothData.connect(sHRMAddress, 1);
                     bRecordDialogRequestHRM = true;
                 }
-            }            
+            }
+            MenuItem
+            {
+                text: "Test"
+                onClicked:
+                {
+                    playSoundEffect.play();
+                }
+            }
         }
 
-        contentHeight: column.height
+        contentHeight: column.height + Theme.paddingLarge
+
+        Rectangle
+        {
+            visible: iButtonLoop < 4
+            z: 2
+            color: "steelblue"
+            width: parent.width
+            height: parent.height/3
+            anchors.centerIn: parent
+            Label
+            {
+                color: "white"
+                text: qsTr("hold button for: ") + iButtonLoop.toString() + "s";
+                font.pixelSize: Theme.fontSizeMedium
+                anchors.centerIn: parent
+            }
+        }
 
         Column
         {
             id: column
             width: page.width
-            spacing: Theme.paddingLarge           
-            Label
+            spacing: Theme.paddingLarge
+
+            Row
             {
-                id: stateLabel
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: recorder.tracking ?
-                          settings.updateInterval===1000 ? qsTr("Recording")
-                                                         : qsTr("Recording - ")
-                                                           + settings.updateInterval/1000
-                                                           + " s interval"
-                        : qsTr("Stopped")
-                font.pixelSize: Theme.fontSizeLarge
+                anchors.right: parent.right
+                GlassItem
+                {
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: recorder.tracking ? "red" : (recorder.isEmpty ? "green" : "orange")
+                    falloffRadius: 0.15
+                    radius: 1.0
+                    cache: false
+                }
+                Label
+                {
+                    anchors.verticalCenter: parent.verticalCenter
+                    id: stateLabel
+                    text: recorder.tracking ? qsTr("Recording") : (recorder.isEmpty ? qsTr("Stopped") : qsTr("Paused"))
+                    font.pixelSize: Theme.fontSizeLarge
+                }
             }
+
             Label
             {
                 id: distanceLabel
@@ -401,10 +480,10 @@ Page {
             Label
             {
                 id: accuracyLabel
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenter: parent.horizontalCenter                
                 text: recorder.accuracy < 0 ? qsTr("No position") :
                                               (recorder.accuracy < 30
-                                               ? sHeartRate + recorder.accuracy.toFixed(1) + "m"
+                                               ? qsTr("Accuracy: ") + recorder.accuracy.toFixed(1) + "m"
                                                : qsTr("Accuracy too low: ") + recorder.accuracy.toFixed(1) + "m")
                 Behavior on opacity {
                     FadeAnimation {}
@@ -422,6 +501,16 @@ Page {
             }
             Label
             {
+                id: avgspeedLabel
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: recorder.speedaverage.toFixed(1) + "⌀ km/h / " + recorder.paceaverage.toFixed(1) + "⌀ min/km"
+                font.pixelSize: Theme.fontSizeLarge
+                Behavior on opacity {
+                    FadeAnimation {}
+                }
+            }
+            Label
+            {
                 id: heartrateLabel
                 anchors.horizontalCenter: parent.horizontalCenter                
                 visible: sHRMAddress !== "" && settings.useHRMdevice
@@ -431,7 +520,94 @@ Page {
                     FadeAnimation {}
                 }
             }
-        }
+            Row
+            {
+                id: row
+                width: parent.width
+                spacing: Theme.paddingMedium
+                Rectangle
+                {
+
+                    width: ((parent.width/2) - (Theme.paddingMedium/2))
+                    height: parent.width/8
+                    color: recorder.isEmpty ? "dimgrey" : "lightsalmon"
+                    border.color: recorder.isEmpty ? "grey" : "white"
+                    border.width: 2
+                    radius: 10
+                    Image
+                    {
+                        height: parent.height
+                        anchors.left: parent.left
+                        fillMode: Image.PreserveAspectFit
+                        source: recorder.tracking ? "image://theme/icon-l-pause" : "image://theme/icon-l-play"
+                    }
+                    Label
+                    {
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.paddingMedium
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pixelSize: Theme.fontSizeLarge
+                        color: recorder.isEmpty ? "grey" : "white"
+                        text: recorder.tracking ? qsTr("Pause") : qsTr("Continue")
+                    }
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        enabled: !recorder.isEmpty //pause or continue only if workout was really started
+                        onClicked:
+                        {
+                            recorder.tracking = !recorder.tracking;
+                        }
+                    }
+                }
+                Rectangle
+                {
+                    width: ((parent.width/2) - (Theme.paddingMedium/2))
+                    height: parent.width/8
+                    color: !recorder.tracking && recorder.isEmpty ? "#389632" : "salmon"
+                    border.color: "white"
+                    border.width: 2
+                    radius: 10
+                    Image
+                    {
+                        height: parent.height
+                        anchors.left: parent.left
+                        fillMode: Image.PreserveAspectFit
+                        source: !recorder.tracking && recorder.isEmpty ? "image://theme/icon-l-add" :  "image://theme/icon-l-clear"
+                    }
+                    Label
+                    {
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.paddingMedium
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pixelSize: Theme.fontSizeLarge
+                        color: "white"
+                        text: !recorder.tracking && recorder.isEmpty ? qsTr("Start") : qsTr("End")
+                    }
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        onPressed:
+                        {
+                            if (!recorder.tracking && recorder.isEmpty)
+                            {
+                                //This is starting workout
+                                recorder.tracking = true;
+                            }
+                            else
+                            {
+                                bEndLoop = false;
+                                iButtonLoop = 3;
+                            }
+                        }
+                        onReleased:
+                        {
+                            bEndLoop = true;
+                        }
+                    }
+                }
+            }
+        }      
     }
     Map {
         id: map

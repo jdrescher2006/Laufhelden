@@ -24,7 +24,12 @@ Page {
     id: page
 
     property bool bLockOnCompleted : false;
-    property bool bLockFirstPageLoad: true
+    property bool bLockFirstPageLoad: true;
+    property int iHRUpperTreshold: 170;
+    property int iHRLowerTreshold: 120;
+    property int iHRUpperCounter: 3;
+    property int iHRLowerCounter: 3;
+
 
     onStatusChanged:
     {
@@ -34,12 +39,21 @@ Page {
             bLockOnCompleted = true;
 
             bLockFirstPageLoad = false;
-            console.log("First Active SettingsPage");
+            console.log("First Active ThresholdSettingsPage");
 
-            id_TextSwitch_RecordPagePortrait.checked = settings.recordPagePortrait;
-            id_TextSwitch_LogFile.checked = settings.enableLogFile;
+            id_TextSwitch_UpperHRThreshold.checked = settings.pulseThresholdUpperEnable;
 
-            pageStack.pushAttached(Qt.resolvedUrl("ThresholdSettingsPage.qml"));
+            var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
+
+            //parse thresholds to int
+            iHRLowerTreshold = parseInt(iHeartrateThresholds[0]);
+            iHRUpperTreshold = parseInt(iHeartrateThresholds[1]);
+            iHRLowerCounter = parseInt(iHeartrateThresholds[2]);
+            iHRUpperCounter = parseInt(iHeartrateThresholds[3]);
+
+            id_Slider_UpperHRThreshold.value = iHRUpperTreshold;
+
+            pageStack.pushAttached(Qt.resolvedUrl("BTConnectPage.qml"));
 
             bLockOnCompleted = false;
         }
@@ -47,7 +61,7 @@ Page {
         //This is loaded everytime the page is displayed
         if (status === PageStatus.Active)
         {
-            console.log("Active SettingsPage");
+            console.log("Active ThresholdSettingsPage");
 
         }
     }
@@ -65,33 +79,36 @@ Page {
             spacing: Theme.paddingLarge
             PageHeader
             {
-                title: qsTr("General settings")
+                title: qsTr("Threshold settings")
             }                        
             TextSwitch
             {
-                id: id_TextSwitch_RecordPagePortrait
-                text: qsTr("Record page portrait")
-                description: qsTr("Keep record page in portrait mode.")
+                id: id_TextSwitch_UpperHRThreshold
+                text: qsTr("Upper heart rate limit")
+                description: qsTr("Alarm if limit is exceeded.")
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted)
-                        settings.recordPagePortrait = checked;
+                        settings.pulseThresholdUpperEnable = checked;
                 }                
             }
-            Separator
+            Slider
             {
-                color: Theme.highlightColor
+                id: id_Slider_UpperHRThreshold
                 width: parent.width
-            }
-            TextSwitch
-            {
-                id: id_TextSwitch_LogFile
-                text: qsTr("Write log file")
-                description: qsTr("File: $HOME/Laufhelden/log.txt")
-                onCheckedChanged:
+                anchors.horizontalCenter: parent.horizontalCenter
+                valueText: value.toFixed(0) + qsTr("bpm")
+                label: qsTr("Upper heart rate limit")
+                minimumValue: 20
+                maximumValue: 240
+                onValueChanged:
                 {
                     if (!bLockOnCompleted)
-                        settings.enableLogFile = checked;
+                    {
+                        iHRUpperTreshold = value.toFixed(0);
+                        var sSaveString = iHRLowerTreshold.toString() + "," + iHRUpperTreshold.toString() + "," + iHRLowerCounter.toString() + "," + iHRUpperCounter.toString();
+                        settings.pulseThreshold = sSaveString;
+                    }
                 }
             }
         }
