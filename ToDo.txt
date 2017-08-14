@@ -32,6 +32,7 @@ ToDo for first release to openrepos:
 
 
 ToDo on the long run:
+- Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on.
 - introduce configurable lock page (LCD mode, AMOLED mode)
 - Record page: replace menu items (stop, pause, continue, start) with buttons
@@ -49,20 +50,24 @@ ToDo on the long run:
 
 
 Bugs:
-- if two (or more) workouts per day are recorded, there is a view problem on mainpage. This is probably due to same filename.
+- after bt scan and finding new HRM device, not able to connect. First need to restart app.
+- sometimes there is a view problem on mainpage after a completed workout.
 - compiler issue, comparison between signed and unsigned
-- [W] unknown:167 - file:///usr/share/harbour-laufhelden/qml/pages/RecordPage.qml:167: TypeError: Cannot call method 'addCoordinate' of undefined
 - write to log file is not working, strange no error or something...
-- fix mapcircle on recordpage
 - sometimes, maybe if app is left on cover view or even in background, screen on is not longer working
 - GPS starts with app start. Make it start with recordpage.
 - autosave file might not get deleted after a training session
 	- complete autosave mechanism must be checked. There are UI problems with this also.
 	- if autosave is there on start on app, ask user if to resume workout
+	- bring HRM values to autosave file
 
 
 
 Completed:
+- fix mapcircle on recordpage
+- [W] unknown:167 - file:///usr/share/harbour-laufhelden/qml/pages/RecordPage.qml:167: TypeError: Cannot call method 'addCoordinate' of undefined
+- if a workout is cancelled before it could start properly (bad GPS), the HRM is also disconnected and you have to wait 3 seconds.
+	This is a bigger thing. Maybe disable button if GPS is not online? That would also solve the problem!
 - if recordpage is left, HRM is disconnected. Disconnect only if workout ends!
 - In PreRecordPage, disable HRM option if there is no HRM device address
 - In RecordPage, disable HRM optiion if there is no HRM device address

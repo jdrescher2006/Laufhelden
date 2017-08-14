@@ -261,6 +261,11 @@ Page
                 iLastHeartRateArea = 2;
         }*/
 
+        console.log("pulseThresholdUpperEnable: " + settings.pulseThresholdUpperEnable.toString());
+        console.log("iLastHeartRateArea: " + iLastHeartRateArea.toString());
+        console.log("iHRAboveTopCounter: " + iHRAboveTopCounter.toString());
+        console.log("iHeartrateThresholds[1]: " + iHeartrateThresholds[1].toString());
+
         if (settings.pulseThresholdUpperEnable)
         {
             //First condition: detect a break from below through the upper threshold
@@ -564,8 +569,9 @@ Page
                 {
                     width: ((parent.width/2) - (Theme.paddingMedium/2))
                     height: parent.width/8
-                    color: !recorder.tracking && recorder.isEmpty ? "#389632" : "salmon"
-                    border.color: "white"
+                    //color: !recorder.tracking && recorder.isEmpty ? "#389632" : "salmon"
+                    color: (recorder.isEmpty && recorder.accuracy >= 30) ? "dimgrey" : (!recorder.tracking && recorder.isEmpty ? "#389632" : "salmon")
+                    border.color: (recorder.isEmpty && recorder.accuracy >= 30) ? "grey" : "white"
                     border.width: 2
                     radius: 10
                     Image
@@ -581,7 +587,7 @@ Page
                         anchors.rightMargin: Theme.paddingMedium
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: Theme.fontSizeLarge
-                        color: "white"
+                        color: (recorder.isEmpty && recorder.accuracy >= 30) ? "grey" : "white"
                         text: !recorder.tracking && recorder.isEmpty ? qsTr("Start") : qsTr("End")
                     }
                     MouseArea
@@ -591,8 +597,12 @@ Page
                         {
                             if (!recorder.tracking && recorder.isEmpty)
                             {
-                                //This is starting workout
-                                recorder.tracking = true;
+                                //Check accuracy
+                                if (recorder.accuracy < 30)
+                                {
+                                    //Start workout
+                                    recorder.tracking = true;
+                                }
                             }
                             else
                             {
