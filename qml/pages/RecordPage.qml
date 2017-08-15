@@ -34,9 +34,23 @@ Page
     backNavigation: (!recorder.tracking && recorder.isEmpty)
 
     property bool bShowMap: settings.showMapRecordPage
+
     property int iLastHeartRateArea: -1
     property int iHRAboveTopCounter: 0
     property int iHRBelowTopCounter: 0
+    property int iHRAboveBottomCounter: 0
+    property int iHRBelowBottomCounter: 0
+
+    property int iLastPaceArea: -1
+    property int iPaceAboveTopCounter: 0
+    property int iPaceBelowTopCounter: 0
+    property int iPaceAboveBottomCounter: 0
+    property int iPaceBelowBottomCounter: 0
+    property real iPaceTopThreshold: 6.5        //DEBUG
+    property real iPaceBottomThreshold: 5.5     //DEBUG
+    property int iPaceAboveTopValue: 3        //DEBUG
+    property int iPaceBelowBottomValue: 3        //DEBUG
+
     property bool bLockFirstPageLoad: true
     property int iButtonLoop : 4
     property bool bEndLoop: false;
@@ -221,6 +235,13 @@ Page
             setMapViewport();
         }
 
+        fncHRThreshold();
+
+        fncPaceThreshold();
+    }    
+
+    function fncHRThreshold()
+    {
         //Now process the thresholds. Make some checks.
         if (sHeartRate === "" || sHeartRate === "-1")
         {
@@ -229,7 +250,7 @@ Page
         //Parse pulse value to int
         var iHeartrate = parseInt(sHeartRate);
 
-        //Extract heart rate thresholds
+        //Extract heart rate thresholds from string
         //[0] bottom threshold
         //[1] top threshold
         //[2] bottom threshold trigger counter
@@ -245,21 +266,11 @@ Page
         iHeartrateThresholds[2] = parseInt(iHeartrateThresholds[2]);
         iHeartrateThresholds[3] = parseInt(iHeartrateThresholds[3]);
 
-        //Check heart rate area.
+        //Heart rate areas:
         //-1 not defined, start value
         // 0 below lower threshold
         // 1 between lower and upper threshold (good area)
         // 2 above upper threshold
-        /*
-        if (iLastHeartRateArea === -1)
-        {
-            if (iHeartrate <= iHeartrateThresholds[0])
-                iLastHeartRateArea = 0;
-            else if (iHeartrate > iHeartrateThresholds[0] && iHeartrate < iHeartrateThresholds[1])
-                iLastHeartRateArea = 1;
-            else if (iHeartrate >= iHeartrateThresholds[1])
-                iLastHeartRateArea = 2;
-        }*/
 
         console.log("pulseThresholdUpperEnable: " + settings.pulseThresholdUpperEnable.toString());
         console.log("iLastHeartRateArea: " + iLastHeartRateArea.toString());
@@ -304,8 +315,99 @@ Page
                 iHRAboveTopCounter = 0;
                 iHRBelowTopCounter = 0;
             }
-        }        
-    }    
+        }
+
+        if (settings.pulseThresholdBottomEnable)
+        {
+            //First condition: detect a break from above through the bottom threshold
+            if (iLastHeartRateArea >= 1 && iHeartrate <= iHeartrateThresholds[0])
+            {
+                //Ok the threshold was triggered. Check how often in a row that was the case.
+                if (iHRBelowBottomCounter >= iHeartrateThresholds[2])
+                {
+                    iHRBelowBottomCounter = 0;
+                    iLastHeartRateArea = 0;
+
+                    playSoundEffect.source = "../audio/hr_toolow.wav";
+                    playSoundEffect.play();
+                }
+                else
+                    iHRBelowBottomCounter+=1;
+            }
+            //Second condition: detect a break from below through the bottom threshold
+            else if(iLastHeartRateArea == 0 && iHeartrate > iHeartrateThresholds[0])
+            {
+                //Ok the threshold was triggered. Check how often in a row that was the case.
+                if (iHRAboveBottomCounter >= iHeartrateThresholds[2])
+                {
+                    iHRAboveBottomCounter = 0;
+                    iLastHeartRateArea = 1;
+
+                    playSoundEffect.source = "../audio/hr_normal.wav";
+                    playSoundEffect.play();
+                }
+                else
+                    iHRAboveBottomCounter+=1;
+            }
+            else
+            {
+                //OK, the threshold was not triggered. Reset the trigger counters.
+                iHRAboveBottomCounter = 0;
+                iHRBelowBottomCounter = 0;
+            }
+        }
+    }
+
+    function fncPaceThreshold()
+    {
+        //recorder.pace.toFixed(1);
+
+        //Pace areas:
+        //-1 not defined, start value
+        // 0 below lower threshold
+        // 1 between lower and upper threshold (good area)
+        // 2 above upper threshold
+
+        if (false)
+        {
+            //First condition: detect a break from below through the upper threshold
+            if (iLastPaceArea != 2 && recorder.pace.toFixed(1) >= iPaceTopThreshold)
+            {
+                //Ok the threshold was triggered. Check how often in a row that was the case.
+                if (iPaceAboveTopCounter >= iPaceAboveTopValue)
+                {
+                    iPaceAboveTopCounter = 0;
+                    iLastPaceArea = 2;
+
+                    playSoundEffect.source = "../audio/hr_toohigh.wav";
+                    playSoundEffect.play();
+                }
+                else
+                    iPaceAboveTopCounter+=1;
+            }
+            //Second condition: detect a break from above through the upper threshold
+            else if(iLastPaceArea == 2 && recorder.pace.toFixed(1) < iPaceTopThreshold)
+            {
+                //Ok the threshold was triggered. Check how often in a row that was the case.
+                if (iPaceBelowTopCounter >= iPaceAboveTopValue)
+                {
+                    iPaceBelowTopCounter = 0;
+                    iLastPaceArea = 1;
+
+                    playSoundEffect.source = "../audio/hr_normal.wav";
+                    playSoundEffect.play();
+                }
+                else
+                    iPaceBelowTopCounter+=1;
+            }
+            else
+            {
+                //OK, the threshold was not triggered. Reset the trigger counters.
+                iPaceAboveTopCounter = 0;
+                iPaceBelowTopCounter = 0;
+            }
+        }
+    }
 
     Media.SoundEffect
     {

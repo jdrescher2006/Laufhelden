@@ -42,6 +42,7 @@ Page {
             console.log("First Active ThresholdSettingsPage");
 
             id_TextSwitch_UpperHRThreshold.checked = settings.pulseThresholdUpperEnable;
+            id_TextSwitch_BottomHRThreshold.checked = settings.pulseThresholdBottomEnable;
 
             var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
 
@@ -52,6 +53,7 @@ Page {
             iHRUpperCounter = parseInt(iHeartrateThresholds[3]);
 
             id_Slider_UpperHRThreshold.value = iHRUpperTreshold;
+            id_Slider_BottomHRThreshold.value = iHRUpperTreshold;
 
             pageStack.pushAttached(Qt.resolvedUrl("BTConnectPage.qml"));
 
@@ -106,6 +108,36 @@ Page {
                     if (!bLockOnCompleted)
                     {
                         iHRUpperTreshold = value.toFixed(0);
+                        var sSaveString = iHRLowerTreshold.toString() + "," + iHRUpperTreshold.toString() + "," + iHRLowerCounter.toString() + "," + iHRUpperCounter.toString();
+                        settings.pulseThreshold = sSaveString;
+                    }
+                }
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_BottomHRThreshold
+                text: qsTr("Lower heart rate limit")
+                description: qsTr("Alarm if limit is exceeded.")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.pulseThresholdBottomEnable = checked;
+                }
+            }
+            Slider
+            {
+                id: id_Slider_BottomHRThreshold
+                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+                valueText: value.toFixed(0) + qsTr("bpm")
+                label: qsTr("Lower heart rate limit")
+                minimumValue: 20
+                maximumValue: 240
+                onValueChanged:
+                {
+                    if (!bLockOnCompleted)
+                    {
+                        iHRLowerTreshold = value.toFixed(0);
                         var sSaveString = iHRLowerTreshold.toString() + "," + iHRUpperTreshold.toString() + "," + iHRLowerCounter.toString() + "," + iHRUpperCounter.toString();
                         settings.pulseThreshold = sSaveString;
                     }

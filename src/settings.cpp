@@ -101,6 +101,14 @@ void Settings::setPulseThresholdUpperEnable(bool pulseThresholdUpperEnable)
 {
      m_settings->setValue("recordsettings/pulseThresholdUpperEnable", pulseThresholdUpperEnable);
 }
+bool Settings::pulseThresholdBottomEnable() const
+{
+    return m_settings->value("recordsettings/pulseThresholdBottomEnable", false).toBool();
+}
+void Settings::setPulseThresholdBottomEnable(bool pulseThresholdBottomEnable)
+{
+     m_settings->setValue("recordsettings/pulseThresholdBottomEnable", pulseThresholdBottomEnable);
+}
 bool Settings::enableLogFile() const
 {
     return m_settings->value("generalsettings/enableLogFile", false).toBool();
