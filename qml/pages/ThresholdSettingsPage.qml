@@ -53,7 +53,7 @@ Page {
             iHRUpperCounter = parseInt(iHeartrateThresholds[3]);
 
             id_Slider_UpperHRThreshold.value = iHRUpperTreshold;
-            id_Slider_BottomHRThreshold.value = iHRUpperTreshold;
+            id_Slider_BottomHRThreshold.value = iHRLowerTreshold;
 
             pageStack.pushAttached(Qt.resolvedUrl("BTConnectPage.qml"));
 

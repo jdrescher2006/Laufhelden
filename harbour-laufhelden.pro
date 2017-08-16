@@ -78,5 +78,8 @@ DISTFILES += \
     qml/audio/hr_normal.wav \
     qml/audio/hr_toohigh.wav \
     qml/audio/hr_toolow.wav \
-    qml/pages/ThresholdSettingsPage.qml
+    qml/pages/ThresholdSettingsPage.qml \
+    qml/audio/pace_normal.wav \
+    qml/audio/pace_toohigh.wav \
+    qml/audio/pace_toolow.wav
 

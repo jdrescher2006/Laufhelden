@@ -379,7 +379,7 @@ Page
                     iPaceAboveTopCounter = 0;
                     iLastPaceArea = 2;
 
-                    playSoundEffect.source = "../audio/hr_toohigh.wav";
+                    playSoundEffect.source = "../audio/pace_toohigh.wav";
                     playSoundEffect.play();
                 }
                 else
@@ -394,7 +394,7 @@ Page
                     iPaceBelowTopCounter = 0;
                     iLastPaceArea = 1;
 
-                    playSoundEffect.source = "../audio/hr_normal.wav";
+                    playSoundEffect.source = "../audio/pace_normal.wav";
                     playSoundEffect.play();
                 }
                 else
