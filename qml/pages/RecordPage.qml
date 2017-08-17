@@ -21,7 +21,6 @@ import Sailfish.Silica 1.0
 import QtLocation 5.0
 import QtPositioning 5.0
 import QtMultimedia 5.0 as Media
-import QtFeedback 5.0
 import "../tools"
 
 Page
@@ -45,11 +44,7 @@ Page
     property int iPaceAboveTopCounter: 0
     property int iPaceBelowTopCounter: 0
     property int iPaceAboveBottomCounter: 0
-    property int iPaceBelowBottomCounter: 0
-    property real iPaceTopThreshold: 6.5        //DEBUG
-    property real iPaceBottomThreshold: 5.5     //DEBUG
-    property int iPaceAboveTopValue: 3        //DEBUG
-    property int iPaceBelowBottomValue: 3        //DEBUG
+    property int iPaceBelowBottomCounter: 0    
 
     property bool bLockFirstPageLoad: true
     property int iButtonLoop : 4
@@ -138,14 +133,7 @@ Page
                 }
             }
         }
-    }
-
-    HapticsEffect
-    {
-        id: vibrateEffect
-        intensity: 1
-        duration: 200
-    }
+    }   
 
     function showSaveDialog()
     {
@@ -288,6 +276,8 @@ Page
                     iHRAboveTopCounter = 0;
                     iLastHeartRateArea = 2;
 
+                    mediaPlayerControl.pause();
+
                     playSoundEffect.source = "../audio/hr_toohigh.wav";
                     playSoundEffect.play();
                 }
@@ -302,6 +292,8 @@ Page
                 {
                     iHRBelowTopCounter = 0;
                     iLastHeartRateArea = 1;
+
+                    mediaPlayerControl.pause();
 
                     playSoundEffect.source = "../audio/hr_normal.wav";
                     playSoundEffect.play();
@@ -320,13 +312,15 @@ Page
         if (settings.pulseThresholdBottomEnable)
         {
             //First condition: detect a break from above through the bottom threshold
-            if (iLastHeartRateArea >= 1 && iHeartrate <= iHeartrateThresholds[0])
+            if (iLastHeartRateArea != 0 && iHeartrate <= iHeartrateThresholds[0])
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
                 if (iHRBelowBottomCounter >= iHeartrateThresholds[2])
                 {
                     iHRBelowBottomCounter = 0;
                     iLastHeartRateArea = 0;
+
+                    mediaPlayerControl.pause();
 
                     playSoundEffect.source = "../audio/hr_toolow.wav";
                     playSoundEffect.play();
@@ -342,6 +336,8 @@ Page
                 {
                     iHRAboveBottomCounter = 0;
                     iLastHeartRateArea = 1;
+
+                    mediaPlayerControl.pause();
 
                     playSoundEffect.source = "../audio/hr_normal.wav";
                     playSoundEffect.play();
@@ -359,8 +355,22 @@ Page
     }
 
     function fncPaceThreshold()
-    {
-        //recorder.pace.toFixed(1);
+    {                      
+        //Extract pace thresholds from string
+        //[0] bottom threshold
+        //[1] top threshold
+        //[2] bottom threshold trigger counter
+        //[3] top threshold trigger counter
+        var fPaceThresholds = settings.paceThreshold.toString().split(",");
+
+        if (fPaceThresholds.length !== 4)
+            return;
+
+        //parse thresholds to float
+        fPaceThresholds[0] = parseFloat(fPaceThresholds[0]);
+        fPaceThresholds[1] = parseFloat(fPaceThresholds[1]);
+        fPaceThresholds[2] = parseFloat(fPaceThresholds[2]);
+        fPaceThresholds[3] = parseFloat(fPaceThresholds[3]);
 
         //Pace areas:
         //-1 not defined, start value
@@ -368,31 +378,37 @@ Page
         // 1 between lower and upper threshold (good area)
         // 2 above upper threshold
 
-        if (false)
+        if (settings.paceThresholdUpperEnable)      //Speed is too slow
         {
             //First condition: detect a break from below through the upper threshold
-            if (iLastPaceArea != 2 && recorder.pace.toFixed(1) >= iPaceTopThreshold)
+            if (iLastPaceArea != 2 && recorder.pace.toFixed(1) >= fPaceThresholds[1])
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceAboveTopCounter >= iPaceAboveTopValue)
+                if (iPaceAboveTopCounter >= fPaceThresholds[3])
                 {
                     iPaceAboveTopCounter = 0;
-                    iLastPaceArea = 2;
+                    iLastPaceArea = 2;                    
 
-                    playSoundEffect.source = "../audio/pace_toohigh.wav";
+                    mediaPlayerControl.pause();
+
+                    playSoundEffect.source = "../audio/pace_toolow.wav";
                     playSoundEffect.play();
+
+                    fncVibrate(3, 500);
                 }
                 else
                     iPaceAboveTopCounter+=1;
             }
             //Second condition: detect a break from above through the upper threshold
-            else if(iLastPaceArea == 2 && recorder.pace.toFixed(1) < iPaceTopThreshold)
+            else if(iLastPaceArea == 2 && recorder.pace.toFixed(1) < fPaceThresholds[1])
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceBelowTopCounter >= iPaceAboveTopValue)
+                if (iPaceBelowTopCounter >= fPaceThresholds[3])
                 {
                     iPaceBelowTopCounter = 0;
                     iLastPaceArea = 1;
+
+                    mediaPlayerControl.pause();
 
                     playSoundEffect.source = "../audio/pace_normal.wav";
                     playSoundEffect.play();
@@ -407,14 +423,69 @@ Page
                 iPaceBelowTopCounter = 0;
             }
         }
+
+        if (settings.pulseThresholdBottomEnable)    //Speed is too fast
+        {
+            //First condition: detect a break from above through the bottom threshold
+            if (iLastPaceArea != 0 && recorder.pace.toFixed(1) <= fPaceThresholds[0])
+            {
+                //Ok the threshold was triggered. Check how often in a row that was the case.
+                if (iPaceBelowBottomCounter >= fPaceThresholds[2])
+                {
+                    iPaceBelowBottomCounter = 0;
+                    iLastPaceArea = 0;
+
+                    mediaPlayerControl.pause();
+
+                    playSoundEffect.source = "../audio/pace_toohigh.wav";
+                    playSoundEffect.play();
+
+                    fncVibrate(3, 200);
+                }
+                else
+                    iPaceBelowBottomCounter+=1;
+            }
+            //Second condition: detect a break from below through the bottom threshold
+            else if(iLastPaceArea == 0 && recorder.pace.toFixed(1) > fPaceThresholds[0])
+            {
+                //Ok the threshold was triggered. Check how often in a row that was the case.
+                if (iPaceAboveBottomCounter >= fPaceThresholds[2])
+                {
+                    iPaceAboveBottomCounter = 0;
+                    iLastPaceArea = 1;
+
+                    mediaPlayerControl.pause();
+
+                    playSoundEffect.source = "../audio/pace_normal.wav";
+                    playSoundEffect.play();
+                }
+                else
+                    iPaceAboveBottomCounter+=1;
+            }
+            else
+            {
+                //OK, the threshold was not triggered. Reset the trigger counters.
+                iPaceAboveBottomCounter = 0;
+                iPaceBelowBottomCounter = 0;
+            }
+        }
+
+
     }
 
     Media.SoundEffect
     {
         id: playSoundEffect
-        //source: "../audio/catch-action.wav"
         source: "../audio/hr_toohigh.wav"
-        volume: 1.0; //Full 1.0
+        volume: 1.0; //Full 1.0        
+        onPlayingChanged:
+        {
+            console.log("onPlayingChanged: " + playing);
+            if (playing === false)
+            {
+                mediaPlayerControl.resume();
+            }
+        }
     }
 
     MapCircle
@@ -514,7 +585,12 @@ Page
                 text: "Test"
                 onClicked:
                 {
+                    mediaPlayerControl.pause();
+
+                    playSoundEffect.source = "../audio/pace_toolow.wav";
                     playSoundEffect.play();
+
+                    fncVibrate(3, 500);
                 }
             }
         }

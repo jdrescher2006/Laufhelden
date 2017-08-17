@@ -81,5 +81,6 @@ DISTFILES += \
     qml/pages/ThresholdSettingsPage.qml \
     qml/audio/pace_normal.wav \
     qml/audio/pace_toohigh.wav \
-    qml/audio/pace_toolow.wav
+    qml/audio/pace_toolow.wav \
+    qml/tools/MediaPlayerControl.qml
 

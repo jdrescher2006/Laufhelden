@@ -26,6 +26,7 @@ import bluetoothdata 1.0
 import logwriter 1.0
 import "pages"
 import "tools"
+import QtFeedback 5.0
 
 ApplicationWindow
 {
@@ -45,8 +46,9 @@ ApplicationWindow
     property string sHeartRateHexString: ""
     //*** HRM End ***
 
-    property var vMainPageObject    //this is used for back jumps (pop) to the MainPage
-    property bool bLoadHistoryData: true  //this is set on record page after a workout, to have mainpage load GPX files
+    property var vMainPageObject            //this is used for back jumps (pop) to the MainPage
+    property bool bLoadHistoryData: true    //this is set on record page after a workout, to have mainpage load GPX files
+    property int iVibrationCounter: 0       //this is used for the vibration function
 
 
     //Init C++ classes, libraries
@@ -285,6 +287,50 @@ ApplicationWindow
         }
     }
 
+    Timer
+    {
+        //This is called if the connection to the HRM device is broken
+        id: timVibrationTimer
+        interval: 1000
+        running: iVibrationCounter > 0
+        repeat: iVibrationCounter > 0
+        onTriggered:
+        {
+            vibrateEffect.start();
+            iVibrationCounter--;
+        }
+    }
+
+    //iVibrationCount: amount of vibrations in series
+    //iVibrationSpeed: duration of vibrations and pause between the vibrations
+    function fncVibrate(iVibrationCount, iVibrationDuration)
+    {
+        //if there is a vibration process running, return
+        if (iVibrationCounter !== 0 || iVibrationCount === 0 || iVibrationDuration === 0)
+            return;
+
+        vibrateEffect.duration = iVibrationDuration;
+        timVibrationTimer.interval = (iVibrationDuration * 2);
+
+        //Start first vibration
+        vibrateEffect.start();
+
+        iVibrationCount--;
+
+        if (iVibrationCount === 0)
+            return;
+
+        //Start timer because we need some more vibrations
+        iVibrationCounter = iVibrationCount;
+    }
+
+    HapticsEffect
+    {
+        id: vibrateEffect
+        intensity: 1
+        duration: 200
+    }
+
     function fncEnableScreenBlank(bEnableScreenBlank)
     {
         screenblank.enabled = bEnableScreenBlank;
@@ -295,6 +341,10 @@ ApplicationWindow
         id: screenblank
     }
 
+    MediaPlayerControl
+    {
+       id: mediaPlayerControl
+    }
 
     initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")

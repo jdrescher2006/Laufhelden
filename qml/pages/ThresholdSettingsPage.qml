@@ -25,10 +25,16 @@ Page {
 
     property bool bLockOnCompleted : false;
     property bool bLockFirstPageLoad: true;
+
     property int iHRUpperTreshold: 170;
     property int iHRLowerTreshold: 120;
     property int iHRUpperCounter: 3;
     property int iHRLowerCounter: 3;
+
+    property real iPaceUpperTreshold: 7.1;
+    property real iPaceLowerTreshold: 4.9;
+    property int iPaceUpperCounter: 4;
+    property int iPaceLowerCounter: 4;
 
 
     onStatusChanged:
@@ -54,6 +60,22 @@ Page {
 
             id_Slider_UpperHRThreshold.value = iHRUpperTreshold;
             id_Slider_BottomHRThreshold.value = iHRLowerTreshold;
+
+
+            id_TextSwitch_UpperPaceThreshold.checked = settings.paceThresholdUpperEnable;
+            id_TextSwitch_BottomPaceThreshold.checked = settings.paceThresholdBottomEnable;
+
+            var iPaceThresholds = settings.paceThreshold.toString().split(",");
+
+            //parse thresholds to int
+            iPaceLowerTreshold = parseFloat(iPaceThresholds[0]);
+            iPaceUpperTreshold = parseFloat(iPaceThresholds[1]);
+            iPaceLowerCounter = parseFloat(iPaceThresholds[2]);
+            iPaceUpperCounter = parseFloat(iPaceThresholds[3]);
+
+            id_Slider_UpperPaceThreshold.value = iPaceUpperTreshold;
+            id_Slider_BottomPaceThreshold.value = iPaceLowerTreshold;
+
 
             pageStack.pushAttached(Qt.resolvedUrl("BTConnectPage.qml"));
 
@@ -140,6 +162,71 @@ Page {
                         iHRLowerTreshold = value.toFixed(0);
                         var sSaveString = iHRLowerTreshold.toString() + "," + iHRUpperTreshold.toString() + "," + iHRLowerCounter.toString() + "," + iHRUpperCounter.toString();
                         settings.pulseThreshold = sSaveString;
+                    }
+                }
+            }
+            Separator
+            {
+                color: Theme.highlightColor;
+                anchors { left: parent.left; right: parent.right; }
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_UpperPaceThreshold
+                text: qsTr("Upper pace limit")
+                description: qsTr("Alarm if limit is exceeded.")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.paceThresholdUpperEnable = checked;
+                }
+            }
+            Slider
+            {
+                id: id_Slider_UpperPaceThreshold
+                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+                valueText: value.toFixed(1) + qsTr("min/km")
+                label: qsTr("Upper pace limit")
+                minimumValue: 0.1
+                maximumValue: 50.0
+                onValueChanged:
+                {
+                    if (!bLockOnCompleted)
+                    {
+                        iPaceUpperTreshold = value.toFixed(1);
+                        var sSaveString = iPaceLowerTreshold.toString() + "," + iPaceUpperTreshold.toString() + "," + iPaceLowerCounter.toString() + "," + iPaceUpperCounter.toString();
+                        settings.paceThreshold = sSaveString;
+                    }
+                }
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_BottomPaceThreshold
+                text: qsTr("Lower pace limit")
+                description: qsTr("Alarm if limit is exceeded.")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.paceThresholdBottomEnable = checked;
+                }
+            }
+            Slider
+            {
+                id: id_Slider_BottomPaceThreshold
+                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+                valueText: value.toFixed(1) + qsTr("min/km")
+                label: qsTr("Lower pace limit")
+                minimumValue: 0.1
+                maximumValue: 50.0
+                onValueChanged:
+                {
+                    if (!bLockOnCompleted)
+                    {
+                        iPaceLowerTreshold = value.toFixed(1);
+                        var sSaveString = iPaceLowerTreshold.toString() + "," + iPaceUpperTreshold.toString() + "," + iPaceLowerCounter.toString() + "," + iPaceUpperCounter.toString();
+                        settings.paceThreshold = sSaveString;
                     }
                 }
             }

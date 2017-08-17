@@ -109,6 +109,30 @@ void Settings::setPulseThresholdBottomEnable(bool pulseThresholdBottomEnable)
 {
      m_settings->setValue("recordsettings/pulseThresholdBottomEnable", pulseThresholdBottomEnable);
 }
+QString Settings::paceThreshold() const
+{
+        return m_settings->value("recordsettings/paceThreshold", "4.5,6.3,3,3").toString();
+}
+void Settings::setPaceThreshold(QString paceThreshold)
+{
+    m_settings->setValue("recordsettings/paceThreshold", paceThreshold);
+}
+bool Settings::paceThresholdUpperEnable() const
+{
+    return m_settings->value("recordsettings/paceThresholdUpperEnable", false).toBool();
+}
+void Settings::setPaceThresholdUpperEnable(bool paceThresholdUpperEnable)
+{
+     m_settings->setValue("recordsettings/paceThresholdUpperEnable", paceThresholdUpperEnable);
+}
+bool Settings::paceThresholdBottomEnable() const
+{
+    return m_settings->value("recordsettings/paceThresholdBottomEnable", false).toBool();
+}
+void Settings::setPaceThresholdBottomEnable(bool paceThresholdBottomEnable)
+{
+     m_settings->setValue("recordsettings/paceThresholdBottomEnable", paceThresholdBottomEnable);
+}
 bool Settings::enableLogFile() const
 {
     return m_settings->value("generalsettings/enableLogFile", false).toBool();
