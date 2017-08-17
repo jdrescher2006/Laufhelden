@@ -20,7 +20,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtLocation 5.0
 import QtPositioning 5.0
-import QtMultimedia 5.0 as Media
 import "../tools"
 
 Page
@@ -473,21 +472,6 @@ Page
 
     }
 
-    Media.SoundEffect
-    {
-        id: playSoundEffect
-        source: "../audio/hr_toohigh.wav"
-        volume: 1.0; //Full 1.0        
-        onPlayingChanged:
-        {
-            console.log("onPlayingChanged: " + playing);
-            if (playing === false)
-            {
-                mediaPlayerControl.resume();
-            }
-        }
-    }
-
     MapCircle
     {
         id: positionMarker
@@ -587,10 +571,10 @@ Page
                 {
                     mediaPlayerControl.pause();
 
-                    playSoundEffect.source = "../audio/pace_toolow.wav";
+                    playSoundEffect.source = "../audio/hlvb.wav";
                     playSoundEffect.play();
 
-                    fncVibrate(3, 500);
+                    fncVibrate(1, 100);
                 }
             }
         }

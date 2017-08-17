@@ -27,6 +27,7 @@ import logwriter 1.0
 import "pages"
 import "tools"
 import QtFeedback 5.0
+import QtMultimedia 5.0 as Media
 
 ApplicationWindow
 {
@@ -344,6 +345,21 @@ ApplicationWindow
     MediaPlayerControl
     {
        id: mediaPlayerControl
+    }
+
+    Media.SoundEffect
+    {
+        id: playSoundEffect
+        source: "audio/hr_toohigh.wav"
+        volume: 1.0; //Full 1.0
+        onPlayingChanged:
+        {
+            //console.log("onPlayingChanged: " + playing);
+            if (playing === false)
+            {
+                mediaPlayerControl.resume();
+            }
+        }
     }
 
     initialPage: Component { MainPage { } }

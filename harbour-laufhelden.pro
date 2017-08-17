@@ -82,5 +82,6 @@ DISTFILES += \
     qml/audio/pace_normal.wav \
     qml/audio/pace_toohigh.wav \
     qml/audio/pace_toolow.wav \
-    qml/tools/MediaPlayerControl.qml
+    qml/tools/MediaPlayerControl.qml \
+    qml/audio/hlvb.wav
 
