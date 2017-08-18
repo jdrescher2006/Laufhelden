@@ -35,7 +35,7 @@ ToDo on the long run:
 - view diagrams on the statistics page. See app "Rush Hour" which is on openrepos.
 - make volume of audio messages adjustable
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
-- check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master)
+- check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
 - introduce configurable lock page (LCD mode, AMOLED mode)
 - Record page: replace menu items (stop, pause, continue, start) with buttons
 - support workouts without gps e.g. indoor activities

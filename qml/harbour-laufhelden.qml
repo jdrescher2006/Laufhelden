@@ -50,6 +50,7 @@ ApplicationWindow
     property var vMainPageObject            //this is used for back jumps (pop) to the MainPage
     property bool bLoadHistoryData: true    //this is set on record page after a workout, to have mainpage load GPX files
     property int iVibrationCounter: 0       //this is used for the vibration function
+    property bool bPlayerPlaying: false     //this is used if playing music needs to be resumed after audio output
 
 
     //Init C++ classes, libraries

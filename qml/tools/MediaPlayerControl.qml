@@ -20,33 +20,30 @@ import org.nemomobile.dbus 2.0
 
 Item
 {
-    id: mediePlayerControl
+    id: mediaPlayerControl
     property var services:
     [
         "org.mpris.MediaPlayer2.jolla-mediaplayer",        
     ]
 
     function pause()
-    {
-        mediePlayerControl.services.forEach(function(el, i)
-        {
-            dbbusInterface.service = el;
-            dbbusInterface.call('Pause', undefined);
-        });
+    {        
+        interfaceDBUS.call('Pause', undefined);
     }
 
     function resume()
+    {       
+        interfaceDBUS.call('Play', undefined);
+    }
+
+    function getPlayerStatus()
     {
-        mediePlayerControl.services.forEach(function(el, i)
-        {
-            dbbusInterface.service = el;
-            dbbusInterface.call('Play', undefined);
-        });
+        return interfaceDBUS.getProperty('PlaybackStatus');
     }
 
     DBusInterface
     {
-        id:dbbusInterface
+        id: interfaceDBUS
         service: 'org.mpris.MediaPlayer2.jolla-mediaplayer'
         path: '/org/mpris/MediaPlayer2'
         iface: 'org.mpris.MediaPlayer2.Player'
