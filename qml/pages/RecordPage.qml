@@ -46,7 +46,7 @@ Page
     property int iPaceBelowBottomCounter: 0    
 
     property bool bLockFirstPageLoad: true
-    property int iButtonLoop : 4
+    property int iButtonLoop : 3
     property bool bEndLoop: false;
 
     onStatusChanged:
@@ -101,14 +101,14 @@ Page
     {
         id: idTimerButtonLoop
         interval: 1000;
-        repeat: (iButtonLoop<4 && iButtonLoop>0)
-        running: (iButtonLoop<4 && iButtonLoop>0)
+        repeat: (iButtonLoop<3 && iButtonLoop>0)
+        running: (iButtonLoop<3 && iButtonLoop>0)
         onTriggered:
         {
             //Cancel end operation
             if (bEndLoop)
             {
-                iButtonLoop = 4;
+                iButtonLoop = 3;
                 return;
             }
 
@@ -116,7 +116,7 @@ Page
 
             if (iButtonLoop===0)
             {
-                iButtonLoop = 4;
+                iButtonLoop = 3;
 
                 bRecordDialogRequestHRM = false;
 
@@ -273,12 +273,9 @@ Page
                 if (iHRAboveTopCounter >= iHeartrateThresholds[3])
                 {
                     iHRAboveTopCounter = 0;
-                    iLastHeartRateArea = 2;
+                    iLastHeartRateArea = 2;                    
 
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/hr_toohigh.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/hr_toohigh.wav");
                 }
                 else
                     iHRAboveTopCounter+=1;
@@ -290,12 +287,9 @@ Page
                 if (iHRBelowTopCounter >= iHeartrateThresholds[3])
                 {
                     iHRBelowTopCounter = 0;
-                    iLastHeartRateArea = 1;
+                    iLastHeartRateArea = 1;                    
 
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/hr_normal.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/hr_normal.wav");
                 }
                 else
                     iHRBelowTopCounter+=1;
@@ -319,10 +313,7 @@ Page
                     iHRBelowBottomCounter = 0;
                     iLastHeartRateArea = 0;
 
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/hr_toolow.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/hr_toolow.wav");
                 }
                 else
                     iHRBelowBottomCounter+=1;
@@ -336,10 +327,7 @@ Page
                     iHRAboveBottomCounter = 0;
                     iLastHeartRateArea = 1;
 
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/hr_normal.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/hr_normal.wav");
                 }
                 else
                     iHRAboveBottomCounter+=1;
@@ -388,10 +376,7 @@ Page
                     iPaceAboveTopCounter = 0;
                     iLastPaceArea = 2;                    
 
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/pace_toolow.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/pace_toolow.wav");
 
                     fncVibrate(3, 500);
                 }
@@ -405,12 +390,9 @@ Page
                 if (iPaceBelowTopCounter >= fPaceThresholds[3])
                 {
                     iPaceBelowTopCounter = 0;
-                    iLastPaceArea = 1;
+                    iLastPaceArea = 1;                 
 
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/pace_normal.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/pace_normal.wav");
                 }
                 else
                     iPaceBelowTopCounter+=1;
@@ -434,10 +416,7 @@ Page
                     iPaceBelowBottomCounter = 0;
                     iLastPaceArea = 0;
 
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/pace_toohigh.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/pace_toohigh.wav");
 
                     fncVibrate(3, 200);
                 }
@@ -453,10 +432,7 @@ Page
                     iPaceAboveBottomCounter = 0;
                     iLastPaceArea = 1;
 
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/pace_normal.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/pace_normal.wav");
                 }
                 else
                     iPaceAboveBottomCounter+=1;
@@ -569,10 +545,7 @@ Page
                 text: "Test"
                 onClicked:
                 {
-                    mediaPlayerControl.pause();
-
-                    playSoundEffect.source = "../audio/hlvb.wav";
-                    playSoundEffect.play();
+                    fncPlaySound("audio/pace_normal.wav");
 
                     fncVibrate(1, 100);
                 }
@@ -583,7 +556,7 @@ Page
 
         Rectangle
         {
-            visible: iButtonLoop < 4
+            visible: iButtonLoop < 3
             z: 2
             color: "steelblue"
             width: parent.width
@@ -769,7 +742,7 @@ Page
                             else
                             {
                                 bEndLoop = false;
-                                iButtonLoop = 3;
+                                iButtonLoop = 2;
                             }
                         }
                         onReleased:

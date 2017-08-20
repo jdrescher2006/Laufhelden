@@ -66,8 +66,8 @@ Page
                     else if (iCountWhtRbbt == 6)
                     {
                         fncShowMessage(4,"Developed by Cyberdyne Systems, 18144 El Camino Real, Sunnyvale, California<br>Project Supervisor: Miles Dyson<br>Chief Programmer: Jens Drescher<br>\u00A9 Cyberdyne Systems Inc. All Rights Reserved", 16000);
-                        playSoundEffect.source = "../audio/hlvb.wav";
-                        playSoundEffect.play();
+
+                        fncPlaySound("audio/hlvb.wav");
                         iCountWhtRbbt = 0;
                     }
 

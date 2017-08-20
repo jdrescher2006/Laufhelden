@@ -28,8 +28,8 @@ Page
 
     Component.onCompleted:
     {
-        bLockOnCompleted = true;
-        
+        bLockOnCompleted = true;               
+
         //console.log("Eins: " + settings.workoutType);
         //console.log("Zwei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
         //console.log("Drei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }));
@@ -45,6 +45,18 @@ Page
         txtswRecordPagePreventScreenBlank.checked = settings.disableScreenBlanking;
 
         bLockOnCompleted = false;
+    }
+
+    onStatusChanged:
+    {
+        if (status === PageStatus.Active)
+        {
+            if (bHRMConnected)
+            {
+                bRecordDialogRequestHRM = false;
+                id_BluetoothData.disconnect();
+            }
+        }
     }
 
     SilicaFlickable

@@ -236,9 +236,9 @@ Page {
             PluginParameter
             {
                 name: "useragent"                
-                value: "Laufhelden/0.0.1 (SailfishOS)"
+                value: "Laufhelden(SailfishOS)"
             }
-            PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
+            //PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
         }
         // Following definition of map center does not work without QtPositioning!?
         center {

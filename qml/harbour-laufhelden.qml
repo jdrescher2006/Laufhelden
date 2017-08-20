@@ -50,7 +50,7 @@ ApplicationWindow
     property var vMainPageObject            //this is used for back jumps (pop) to the MainPage
     property bool bLoadHistoryData: true    //this is set on record page after a workout, to have mainpage load GPX files
     property int iVibrationCounter: 0       //this is used for the vibration function
-    property bool bPlayerPlaying: false     //this is used if playing music needs to be resumed after audio output
+    property bool bPlayerWasPlaying: false     //this is used if playing music needs to be resumed after audio output
 
 
     //Init C++ classes, libraries
@@ -356,11 +356,26 @@ ApplicationWindow
         onPlayingChanged:
         {
             //console.log("onPlayingChanged: " + playing);
-            if (playing === false)
+            if (playing === false && bPlayerWasPlaying)
             {
                 mediaPlayerControl.resume();
             }
         }
+    }
+
+    function fncPlaySound(sFile)
+    {
+        //detect if SFOS music player is currently playing
+        if (mediaPlayerControl.getPlayerStatus() === "Playing")
+        {
+            bPlayerWasPlaying = true;
+            mediaPlayerControl.pause();
+        }
+        else
+            bPlayerWasPlaying = false;
+
+        playSoundEffect.source = sFile;
+        playSoundEffect.play();
     }
 
     initialPage: Component { MainPage { } }

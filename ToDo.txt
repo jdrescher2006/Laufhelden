@@ -52,6 +52,8 @@ ToDo on the long run:
 
 
 Bugs:
+- Start button on recordpage is green if accuracy says "No position"
+- if HRM is active and record page is left and then opened again, we get a BT error.
 - music is paused and resumed even when no music is played. Detect first if music is playing!
 - after bt scan and finding new HRM device, not able to connect. First need to restart app.
 - sometimes there is a view problem on mainpage after a completed workout.
