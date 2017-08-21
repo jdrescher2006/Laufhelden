@@ -24,6 +24,9 @@ Page
     id: mainPage
 
     property bool bLockFirstPageLoad: true
+    property int iLoadFileGPX: 0
+    property int iGPXFiles: 100
+    property bool bLoadingFiles: false
 
     onStatusChanged:
     {
@@ -63,9 +66,11 @@ Page
             console.log("vMainPageObject: " + vMainPageObject.toString());
 
 
-            //Load history model. TODO: we should have a waiter here.
+            //Load history model.
             if (bLoadHistoryData)
             {
+                bLoadingFiles = true;
+
                 id_HistoryModel.readDirectory();
                 bLoadHistoryData = false;
             }
@@ -80,6 +85,18 @@ Page
         {            
             historyList.model = undefined;
             historyList.model = id_HistoryModel;            
+
+            bLoadingFiles = false;
+        }
+        onDataChanged:     //This is called from C++ if the loading of one GPX file is ready
+        {
+            console.log("Track loading finished!!!");
+            iLoadFileGPX++;
+        }
+        onSigAmountGPXFiles:
+        {
+            console.log("Amount of tracks: " + iAmountGPXFiles.toString());
+            iGPXFiles = iAmountGPXFiles;
         }
     }
 
@@ -129,6 +146,17 @@ Page
                 truncationMode: TruncationMode.Fade
                 text: historyList.count === 0 ? qsTr("No earlier workouts") : qsTr("Workouts: ") + (historyList.count).toString();
                 color: Theme.highlightColor
+                visible: !bLoadingFiles
+            }
+            ProgressBar
+            {
+                id: progressBarWaitLoadGPX
+                width: parent.width
+                maximumValue: iGPXFiles
+                valueText: value + " " + qsTr("of") + " " + iGPXFiles
+                label: qsTr("Loading GPX files...")
+                value: iLoadFileGPX
+                visible: bLoadingFiles
             }
 
             Separator

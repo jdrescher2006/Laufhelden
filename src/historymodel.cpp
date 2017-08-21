@@ -28,7 +28,7 @@ TrackItem loadTrack(TrackItem track) {
 
     if(data.ready)
     {
-        qDebug()<<"Already has data:"<<data.filename;
+        qDebug()<<"Already has data:"<<data.filename;        
         return data;
     }
 
@@ -208,6 +208,8 @@ void HistoryModel::readDirectory() {
     dir.setSorting(QDir::Name | QDir::Reversed);
     dir.setNameFilters(QStringList("*.gpx"));
     QStringList entries = dir.entryList();
+
+    emit this->sigAmountGPXFiles(entries.size());
 
     for(int i=0;i<entries.size();i++)
     {

@@ -60,6 +60,7 @@ public:
 
 signals:
     void sigLoadingFinished();
+    void sigAmountGPXFiles(int iAmountGPXFiles);
 
 public slots:
     void newTrackData(int num);

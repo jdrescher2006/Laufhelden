@@ -80,12 +80,40 @@ Page
         //This is loaded everytime the page is displayed
         if (status === PageStatus.Active)
         {
-            console.log("RecordPage active");
-            console.log("vMainPageObject: " + vMainPageObject.toString());
+            console.log("RecordPage active");            
 
             //If this page is shown, prevent screen from going blank
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
+
+            var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
+            var iPaceThresholds = settings.paceThreshold.toString().split(",");
+
+            if (iHeartrateThresholds.length === 6)
+            {
+                //parse to bool
+                bHRUpperThresholdEnable = (iHeartrateThresholds[0] === "true");
+                bHRLowerThresholdEnable = (iHeartrateThresholds[1] === "true");
+
+                //parse thresholds to int
+                iHRLowerTreshold = parseInt(iHeartrateThresholds[2]);
+                iHRUpperTreshold = parseInt(iHeartrateThresholds[3]);
+                iHRLowerCounter = parseInt(iHeartrateThresholds[4]);
+                iHRUpperCounter = parseInt(iHeartrateThresholds[5]);
+            }
+
+            if (iPaceThresholds.length === 6)
+            {
+                //parse to bool
+                bPaceUpperThresholdEnable = (iPaceThresholds[0] === "true");
+                bPaceLowerThresholdEnable = (iPaceThresholds[1] === "true");
+
+                //parse thresholds to int
+                iPaceLowerTreshold = parseFloat(iPaceThresholds[2]);
+                iPaceUpperTreshold = parseFloat(iPaceThresholds[3]);
+                iPaceLowerCounter = parseFloat(iPaceThresholds[4]);
+                iPaceUpperCounter = parseFloat(iPaceThresholds[5]);
+            }
         }
 
         if (status === PageStatus.Inactive)
@@ -235,23 +263,10 @@ Page
             return;
         }
         //Parse pulse value to int
-        var iHeartrate = parseInt(sHeartRate);
+        var iHeartrate = parseInt(sHeartRate);       
 
-        //Extract heart rate thresholds from string
-        //[0] bottom threshold
-        //[1] top threshold
-        //[2] bottom threshold trigger counter
-        //[3] top threshold trigger counter
-        var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
-
-        if (iHeartrateThresholds.length !== 4)
+        if (iHeartrate === 0)
             return;
-
-        //parse thresholds to int
-        iHeartrateThresholds[0] = parseInt(iHeartrateThresholds[0]);
-        iHeartrateThresholds[1] = parseInt(iHeartrateThresholds[1]);
-        iHeartrateThresholds[2] = parseInt(iHeartrateThresholds[2]);
-        iHeartrateThresholds[3] = parseInt(iHeartrateThresholds[3]);
 
         //Heart rate areas:
         //-1 not defined, start value
@@ -259,18 +274,13 @@ Page
         // 1 between lower and upper threshold (good area)
         // 2 above upper threshold
 
-        console.log("pulseThresholdUpperEnable: " + settings.pulseThresholdUpperEnable.toString());
-        console.log("iLastHeartRateArea: " + iLastHeartRateArea.toString());
-        console.log("iHRAboveTopCounter: " + iHRAboveTopCounter.toString());
-        console.log("iHeartrateThresholds[1]: " + iHeartrateThresholds[1].toString());
-
-        if (settings.pulseThresholdUpperEnable)
+        if (bHRUpperThresholdEnable)
         {
             //First condition: detect a break from below through the upper threshold
-            if (iLastHeartRateArea != 2 && iHeartrate >= iHeartrateThresholds[1])
+            if (iLastHeartRateArea != 2 && iHeartrate >= iHRUpperTreshold)
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iHRAboveTopCounter >= iHeartrateThresholds[3])
+                if (iHRAboveTopCounter >= iHRUpperCounter)
                 {
                     iHRAboveTopCounter = 0;
                     iLastHeartRateArea = 2;                    
@@ -281,10 +291,10 @@ Page
                     iHRAboveTopCounter+=1;
             }
             //Second condition: detect a break from above through the upper threshold
-            else if(iLastHeartRateArea == 2 && iHeartrate < iHeartrateThresholds[1])
+            else if(iLastHeartRateArea == 2 && iHeartrate < iHRUpperTreshold)
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iHRBelowTopCounter >= iHeartrateThresholds[3])
+                if (iHRBelowTopCounter >= iHRUpperCounter)
                 {
                     iHRBelowTopCounter = 0;
                     iLastHeartRateArea = 1;                    
@@ -302,13 +312,13 @@ Page
             }
         }
 
-        if (settings.pulseThresholdBottomEnable)
+        if (bHRLowerThresholdEnable)
         {
             //First condition: detect a break from above through the bottom threshold
-            if (iLastHeartRateArea != 0 && iHeartrate <= iHeartrateThresholds[0])
+            if (iLastHeartRateArea != 0 && iHeartrate <= iHRLowerTreshold)
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iHRBelowBottomCounter >= iHeartrateThresholds[2])
+                if (iHRBelowBottomCounter >= iHRLowerCounter)
                 {
                     iHRBelowBottomCounter = 0;
                     iLastHeartRateArea = 0;
@@ -319,10 +329,10 @@ Page
                     iHRBelowBottomCounter+=1;
             }
             //Second condition: detect a break from below through the bottom threshold
-            else if(iLastHeartRateArea == 0 && iHeartrate > iHeartrateThresholds[0])
+            else if(iLastHeartRateArea == 0 && iHeartrate > iHRLowerTreshold)
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iHRAboveBottomCounter >= iHeartrateThresholds[2])
+                if (iHRAboveBottomCounter >= iHRLowerCounter)
                 {
                     iHRAboveBottomCounter = 0;
                     iLastHeartRateArea = 1;
@@ -342,36 +352,20 @@ Page
     }
 
     function fncPaceThreshold()
-    {                      
-        //Extract pace thresholds from string
-        //[0] bottom threshold
-        //[1] top threshold
-        //[2] bottom threshold trigger counter
-        //[3] top threshold trigger counter
-        var fPaceThresholds = settings.paceThreshold.toString().split(",");
-
-        if (fPaceThresholds.length !== 4)
-            return;
-
-        //parse thresholds to float
-        fPaceThresholds[0] = parseFloat(fPaceThresholds[0]);
-        fPaceThresholds[1] = parseFloat(fPaceThresholds[1]);
-        fPaceThresholds[2] = parseFloat(fPaceThresholds[2]);
-        fPaceThresholds[3] = parseFloat(fPaceThresholds[3]);
-
+    {                            
         //Pace areas:
         //-1 not defined, start value
         // 0 below lower threshold
         // 1 between lower and upper threshold (good area)
         // 2 above upper threshold
 
-        if (settings.paceThresholdUpperEnable)      //Speed is too slow
+        if (bPaceUpperThresholdEnable)      //Speed is too slow
         {
             //First condition: detect a break from below through the upper threshold
-            if (iLastPaceArea != 2 && recorder.pace.toFixed(1) >= fPaceThresholds[1])
+            if (iLastPaceArea != 2 && recorder.pace.toFixed(1) >= iPaceUpperTreshold)
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceAboveTopCounter >= fPaceThresholds[3])
+                if (iPaceAboveTopCounter >= iPaceUpperCounter)
                 {
                     iPaceAboveTopCounter = 0;
                     iLastPaceArea = 2;                    
@@ -384,10 +378,10 @@ Page
                     iPaceAboveTopCounter+=1;
             }
             //Second condition: detect a break from above through the upper threshold
-            else if(iLastPaceArea == 2 && recorder.pace.toFixed(1) < fPaceThresholds[1])
+            else if(iLastPaceArea == 2 && recorder.pace.toFixed(1) < iPaceUpperTreshold)
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceBelowTopCounter >= fPaceThresholds[3])
+                if (iPaceBelowTopCounter >= iPaceUpperCounter)
                 {
                     iPaceBelowTopCounter = 0;
                     iLastPaceArea = 1;                 
@@ -405,13 +399,13 @@ Page
             }
         }
 
-        if (settings.pulseThresholdBottomEnable)    //Speed is too fast
+        if (bPaceLowerThresholdEnable)    //Speed is too fast
         {
             //First condition: detect a break from above through the bottom threshold
-            if (iLastPaceArea != 0 && recorder.pace.toFixed(1) <= fPaceThresholds[0])
+            if (iLastPaceArea != 0 && recorder.pace.toFixed(1) <= iPaceLowerTreshold)
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceBelowBottomCounter >= fPaceThresholds[2])
+                if (iPaceBelowBottomCounter >= iPaceLowerCounter)
                 {
                     iPaceBelowBottomCounter = 0;
                     iLastPaceArea = 0;
@@ -424,10 +418,10 @@ Page
                     iPaceBelowBottomCounter+=1;
             }
             //Second condition: detect a break from below through the bottom threshold
-            else if(iLastPaceArea == 0 && recorder.pace.toFixed(1) > fPaceThresholds[0])
+            else if(iLastPaceArea == 0 && recorder.pace.toFixed(1) > iPaceLowerTreshold)
             {
                 //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceAboveBottomCounter >= fPaceThresholds[2])
+                if (iPaceAboveBottomCounter >= iPaceLowerCounter)
                 {
                     iPaceAboveBottomCounter = 0;
                     iLastPaceArea = 1;

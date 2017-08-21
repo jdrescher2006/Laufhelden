@@ -87,51 +87,19 @@ void Settings::setShowMapRecordPage(bool showMapRecordPage)
 }
 QString Settings::pulseThreshold() const
 {
-        return m_settings->value("recordsettings/pulseThreshold", "110,160,3,3").toString();
+        return m_settings->value("recordsettings/pulseThreshold", "false,false,110,160,3,3").toString();
 }
 void Settings::setPulseThreshold(QString pulseThreshold)
 {
     m_settings->setValue("recordsettings/pulseThreshold", pulseThreshold);
 }
-bool Settings::pulseThresholdUpperEnable() const
-{
-    return m_settings->value("recordsettings/pulseThresholdUpperEnable", false).toBool();
-}
-void Settings::setPulseThresholdUpperEnable(bool pulseThresholdUpperEnable)
-{
-     m_settings->setValue("recordsettings/pulseThresholdUpperEnable", pulseThresholdUpperEnable);
-}
-bool Settings::pulseThresholdBottomEnable() const
-{
-    return m_settings->value("recordsettings/pulseThresholdBottomEnable", false).toBool();
-}
-void Settings::setPulseThresholdBottomEnable(bool pulseThresholdBottomEnable)
-{
-     m_settings->setValue("recordsettings/pulseThresholdBottomEnable", pulseThresholdBottomEnable);
-}
 QString Settings::paceThreshold() const
 {
-        return m_settings->value("recordsettings/paceThreshold", "4.5,6.3,3,3").toString();
+        return m_settings->value("recordsettings/paceThreshold", "false,false,4.5,6.3,3,3").toString();
 }
 void Settings::setPaceThreshold(QString paceThreshold)
 {
     m_settings->setValue("recordsettings/paceThreshold", paceThreshold);
-}
-bool Settings::paceThresholdUpperEnable() const
-{
-    return m_settings->value("recordsettings/paceThresholdUpperEnable", false).toBool();
-}
-void Settings::setPaceThresholdUpperEnable(bool paceThresholdUpperEnable)
-{
-     m_settings->setValue("recordsettings/paceThresholdUpperEnable", paceThresholdUpperEnable);
-}
-bool Settings::paceThresholdBottomEnable() const
-{
-    return m_settings->value("recordsettings/paceThresholdBottomEnable", false).toBool();
-}
-void Settings::setPaceThresholdBottomEnable(bool paceThresholdBottomEnable)
-{
-     m_settings->setValue("recordsettings/paceThresholdBottomEnable", paceThresholdBottomEnable);
 }
 bool Settings::enableLogFile() const
 {

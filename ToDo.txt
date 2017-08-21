@@ -1,6 +1,7 @@
 ToDo for first release to openrepos:
-- 
-- mainpage needs a progressbar.
+- Alerts/thresholds:
+	- implement profiles
+	- save one data string per profile, including profile name
 - names of workouts still not good. Workouts are not sorted properly due to this.
 - search for all "Rena" and replace
 - Style first page list view like in meerun (upper part of page should not scroll)
@@ -24,7 +25,7 @@ ToDo for first release to openrepos:
 		- pause time
 - alert system:
 	- vibration alert / sound alert
-	- send vibration also to pebble via dbus call provided by rockpool
+	- send vibration also to pebble via dbus call provided by rockpool (does not exist. Have to do this myself?)
 	- make sound file configurable or changeable
 	- alert thresholds:
 		- heart rate upper and lower each with hysteresis
@@ -43,12 +44,10 @@ ToDo on the long run:
 - new workout icons
 - voice announcements
 - pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
-- ability to pause runnig music when doing voice announcements
 - use scout server as map tile provider (wait for Jolla dudes introducing QT5.6 to SFOS)
 - introduce lap function
 - CRC check for Zephyr HxM data packets
 - BLE heart rate devices support (currently waiting for kimmoli to bring this to OPX)
-- Waiter for mainpage while histroy data (GPX files) is loading
 
 
 Bugs:
@@ -69,6 +68,7 @@ Bugs:
 
 
 Completed:
+- mainpage needs a progressbar.
 - pause music if audio message is played
 - fix mapcircle on recordpage
 - [W] unknown:167 - file:///usr/share/harbour-laufhelden/qml/pages/RecordPage.qml:167: TypeError: Cannot call method 'addCoordinate' of undefined

@@ -31,12 +31,8 @@ class Settings : public QObject
     Q_PROPERTY(bool useHRMdevice READ useHRMdevice WRITE setUseHRMdevice)
     Q_PROPERTY(bool disableScreenBlanking READ disableScreenBlanking WRITE setDisableScreenBlanking)
     Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)
-    Q_PROPERTY(QString pulseThreshold READ pulseThreshold WRITE setPulseThreshold)
-    Q_PROPERTY(bool pulseThresholdUpperEnable READ pulseThresholdUpperEnable WRITE setPulseThresholdUpperEnable)
-    Q_PROPERTY(bool pulseThresholdBottomEnable READ pulseThresholdBottomEnable WRITE setPulseThresholdBottomEnable)    
-    Q_PROPERTY(QString paceThreshold READ paceThreshold WRITE setPaceThreshold)
-    Q_PROPERTY(bool paceThresholdUpperEnable READ paceThresholdUpperEnable WRITE setPaceThresholdUpperEnable)
-    Q_PROPERTY(bool paceThresholdBottomEnable READ paceThresholdBottomEnable WRITE setPaceThresholdBottomEnable)
+    Q_PROPERTY(QString pulseThreshold READ pulseThreshold WRITE setPulseThreshold)    
+    Q_PROPERTY(QString paceThreshold READ paceThreshold WRITE setPaceThreshold)    
     Q_PROPERTY(bool enableLogFile READ enableLogFile WRITE setEnableLogFile)
 
 public:
@@ -60,22 +56,10 @@ public:
     void setDisableScreenBlanking(bool disableScreenBlanking);
 
     bool showMapRecordPage() const;
-    void setShowMapRecordPage(bool showMapRecordPage);
-
-    bool pulseThresholdUpperEnable() const;
-    void setPulseThresholdUpperEnable(bool pulseThresholdUpperEnable);
-
-    bool pulseThresholdBottomEnable() const;
-    void setPulseThresholdBottomEnable(bool pulseThresholdBottomEnable);
+    void setShowMapRecordPage(bool showMapRecordPage);   
 
     QString pulseThreshold() const;
-    void setPulseThreshold(QString pulseThreshold);
-
-    bool paceThresholdUpperEnable() const;
-    void setPaceThresholdUpperEnable(bool paceThresholdUpperEnable);
-
-    bool paceThresholdBottomEnable() const;
-    void setPaceThresholdBottomEnable(bool paceThresholdBottomEnable);
+    void setPulseThreshold(QString pulseThreshold);    
 
     QString paceThreshold() const;
     void setPaceThreshold(QString paceThreshold);

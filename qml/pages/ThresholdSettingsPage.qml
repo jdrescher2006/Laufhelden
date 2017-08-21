@@ -26,16 +26,17 @@ Page {
     property bool bLockOnCompleted : false;
     property bool bLockFirstPageLoad: true;
 
-    property int iHRUpperTreshold: 170;
-    property int iHRLowerTreshold: 120;
-    property int iHRUpperCounter: 3;
-    property int iHRLowerCounter: 3;
+    function fncSaveHRValues()
+    {
+        var sSaveString = bHRUpperThresholdEnable.toString() + "," + bHRLowerThresholdEnable.toString() + "," + iHRLowerTreshold.toString() + "," + iHRUpperTreshold.toString() + "," + iHRLowerCounter.toString() + "," + iHRUpperCounter.toString();
+        settings.pulseThreshold = sSaveString;
+    }
 
-    property real iPaceUpperTreshold: 7.1;
-    property real iPaceLowerTreshold: 4.9;
-    property int iPaceUpperCounter: 4;
-    property int iPaceLowerCounter: 4;
-
+    function fncSavePaceValues()
+    {
+        var sSaveString = bPaceUpperThresholdEnable.toString() + "," + bPaceLowerThresholdEnable.toString() + "," + iPaceLowerTreshold.toString() + "," + iPaceUpperTreshold.toString() + "," + iPaceLowerCounter.toString() + "," + iPaceUpperCounter.toString();
+        settings.paceThreshold = sSaveString;
+    }
 
     onStatusChanged:
     {
@@ -45,33 +46,46 @@ Page {
             bLockOnCompleted = true;
 
             bLockFirstPageLoad = false;
-            console.log("First Active ThresholdSettingsPage");
-
-            id_TextSwitch_UpperHRThreshold.checked = settings.pulseThresholdUpperEnable;
-            id_TextSwitch_BottomHRThreshold.checked = settings.pulseThresholdBottomEnable;
+           // console.log("First Active ThresholdSettingsPage");
 
             var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
+            var iPaceThresholds = settings.paceThreshold.toString().split(",");
 
-            //parse thresholds to int
-            iHRLowerTreshold = parseInt(iHeartrateThresholds[0]);
-            iHRUpperTreshold = parseInt(iHeartrateThresholds[1]);
-            iHRLowerCounter = parseInt(iHeartrateThresholds[2]);
-            iHRUpperCounter = parseInt(iHeartrateThresholds[3]);
+            if (iHeartrateThresholds.length === 6)
+            {
+                //parse to bool
+                bHRUpperThresholdEnable = (iHeartrateThresholds[0] === "true");
+                bHRLowerThresholdEnable = (iHeartrateThresholds[1] === "true");
+
+                //parse thresholds to int
+                iHRLowerTreshold = parseInt(iHeartrateThresholds[2]);
+                iHRUpperTreshold = parseInt(iHeartrateThresholds[3]);
+                iHRLowerCounter = parseInt(iHeartrateThresholds[4]);
+                iHRUpperCounter = parseInt(iHeartrateThresholds[5]);
+            }
+
+            if (iPaceThresholds.length === 6)
+            {
+                //parse to bool
+                bPaceUpperThresholdEnable = (iPaceThresholds[0] === "true");
+                bPaceLowerThresholdEnable = (iPaceThresholds[1] === "true");
+
+                //parse thresholds to int
+                iPaceLowerTreshold = parseFloat(iPaceThresholds[2]);
+                iPaceUpperTreshold = parseFloat(iPaceThresholds[3]);
+                iPaceLowerCounter = parseFloat(iPaceThresholds[4]);
+                iPaceUpperCounter = parseFloat(iPaceThresholds[5]);
+            }
+
+            //Set values to dialog
+            //id_TextSwitch_UpperHRThreshold.checked = bHRUpperThresholdEnable;
+            id_TextSwitch_BottomHRThreshold.checked = bHRLowerThresholdEnable;
 
             id_Slider_UpperHRThreshold.value = iHRUpperTreshold;
             id_Slider_BottomHRThreshold.value = iHRLowerTreshold;
 
-
-            id_TextSwitch_UpperPaceThreshold.checked = settings.paceThresholdUpperEnable;
-            id_TextSwitch_BottomPaceThreshold.checked = settings.paceThresholdBottomEnable;
-
-            var iPaceThresholds = settings.paceThreshold.toString().split(",");
-
-            //parse thresholds to int
-            iPaceLowerTreshold = parseFloat(iPaceThresholds[0]);
-            iPaceUpperTreshold = parseFloat(iPaceThresholds[1]);
-            iPaceLowerCounter = parseFloat(iPaceThresholds[2]);
-            iPaceUpperCounter = parseFloat(iPaceThresholds[3]);
+            id_TextSwitch_UpperPaceThreshold.checked = bPaceUpperThresholdEnable;
+            id_TextSwitch_BottomPaceThreshold.checked = bPaceLowerThresholdEnable;
 
             id_Slider_UpperPaceThreshold.value = iPaceUpperTreshold;
             id_Slider_BottomPaceThreshold.value = iPaceLowerTreshold;
@@ -110,10 +124,14 @@ Page {
                 id: id_TextSwitch_UpperHRThreshold
                 text: qsTr("Upper heart rate limit")
                 description: qsTr("Alarm if limit is exceeded.")
+                checked: bHRUpperThresholdEnable
                 onCheckedChanged:
                 {
-                    if (!bLockOnCompleted)
-                        settings.pulseThresholdUpperEnable = checked;
+                    if (bLockOnCompleted)
+                        return;
+
+                    bHRUpperThresholdEnable = checked;
+                    fncSaveHRValues();
                 }                
             }
             Slider
@@ -125,14 +143,14 @@ Page {
                 label: qsTr("Upper heart rate limit")
                 minimumValue: 20
                 maximumValue: 240
+                enabled: id_TextSwitch_UpperHRThreshold.checked
                 onValueChanged:
                 {
-                    if (!bLockOnCompleted)
-                    {
-                        iHRUpperTreshold = value.toFixed(0);
-                        var sSaveString = iHRLowerTreshold.toString() + "," + iHRUpperTreshold.toString() + "," + iHRLowerCounter.toString() + "," + iHRUpperCounter.toString();
-                        settings.pulseThreshold = sSaveString;
-                    }
+                    if (bLockOnCompleted)
+                        return;
+
+                    iHRUpperTreshold = value.toFixed(0);
+                    fncSaveHRValues();
                 }
             }
             TextSwitch
@@ -142,8 +160,11 @@ Page {
                 description: qsTr("Alarm if limit is exceeded.")
                 onCheckedChanged:
                 {
-                    if (!bLockOnCompleted)
-                        settings.pulseThresholdBottomEnable = checked;
+                    if (bLockOnCompleted)
+                        return;
+
+                    bHRLowerThresholdEnable = checked;
+                    fncSaveHRValues();
                 }
             }
             Slider
@@ -155,14 +176,14 @@ Page {
                 label: qsTr("Lower heart rate limit")
                 minimumValue: 20
                 maximumValue: 240
+                enabled: id_TextSwitch_BottomHRThreshold.checked
                 onValueChanged:
                 {
-                    if (!bLockOnCompleted)
-                    {
-                        iHRLowerTreshold = value.toFixed(0);
-                        var sSaveString = iHRLowerTreshold.toString() + "," + iHRUpperTreshold.toString() + "," + iHRLowerCounter.toString() + "," + iHRUpperCounter.toString();
-                        settings.pulseThreshold = sSaveString;
-                    }
+                    if (bLockOnCompleted)
+                        return;
+
+                    iHRLowerTreshold = value.toFixed(0);
+                    fncSaveHRValues();
                 }
             }
             Separator
@@ -177,8 +198,11 @@ Page {
                 description: qsTr("Alarm if limit is exceeded.")
                 onCheckedChanged:
                 {
-                    if (!bLockOnCompleted)
-                        settings.paceThresholdUpperEnable = checked;
+                    if (bLockOnCompleted)
+                        return;
+
+                    bPaceUpperThresholdEnable = checked;
+                    fncSavePaceValues();
                 }
             }
             Slider
@@ -190,14 +214,14 @@ Page {
                 label: qsTr("Upper pace limit")
                 minimumValue: 0.1
                 maximumValue: 50.0
+                enabled: id_TextSwitch_UpperPaceThreshold.checked
                 onValueChanged:
                 {
-                    if (!bLockOnCompleted)
-                    {
-                        iPaceUpperTreshold = value.toFixed(1);
-                        var sSaveString = iPaceLowerTreshold.toString() + "," + iPaceUpperTreshold.toString() + "," + iPaceLowerCounter.toString() + "," + iPaceUpperCounter.toString();
-                        settings.paceThreshold = sSaveString;
-                    }
+                    if (bLockOnCompleted)
+                        return;
+
+                    iPaceUpperTreshold = value.toFixed(1);
+                    fncSavePaceValues();
                 }
             }
             TextSwitch
@@ -207,8 +231,11 @@ Page {
                 description: qsTr("Alarm if limit is exceeded.")
                 onCheckedChanged:
                 {
-                    if (!bLockOnCompleted)
-                        settings.paceThresholdBottomEnable = checked;
+                    if (bLockOnCompleted)
+                        return;
+
+                    bPaceLowerThresholdEnable = checked;
+                    fncSavePaceValues();
                 }
             }
             Slider
@@ -220,14 +247,14 @@ Page {
                 label: qsTr("Lower pace limit")
                 minimumValue: 0.1
                 maximumValue: 50.0
+                enabled: id_TextSwitch_BottomPaceThreshold.checked
                 onValueChanged:
                 {
-                    if (!bLockOnCompleted)
-                    {
-                        iPaceLowerTreshold = value.toFixed(1);
-                        var sSaveString = iPaceLowerTreshold.toString() + "," + iPaceUpperTreshold.toString() + "," + iPaceLowerCounter.toString() + "," + iPaceUpperCounter.toString();
-                        settings.paceThreshold = sSaveString;
-                    }
+                    if (bLockOnCompleted)
+                        return;
+
+                    iPaceLowerTreshold = value.toFixed(1);
+                    fncSavePaceValues();
                 }
             }
         }
