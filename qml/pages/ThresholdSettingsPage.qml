@@ -51,30 +51,36 @@ Page {
             var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
             var iPaceThresholds = settings.paceThreshold.toString().split(",");
 
-            if (iHeartrateThresholds.length === 6)
+            if (iHeartrateThresholds.length === 7)
             {
+                //Get current profile name
+                sHRCurrentProfileName = iHeartrateThresholds[0];
+
                 //parse to bool
-                bHRUpperThresholdEnable = (iHeartrateThresholds[0] === "true");
-                bHRLowerThresholdEnable = (iHeartrateThresholds[1] === "true");
+                bHRUpperThresholdEnable = (iHeartrateThresholds[1] === "true");
+                bHRLowerThresholdEnable = (iHeartrateThresholds[2] === "true");
 
                 //parse thresholds to int
-                iHRLowerTreshold = parseInt(iHeartrateThresholds[2]);
-                iHRUpperTreshold = parseInt(iHeartrateThresholds[3]);
-                iHRLowerCounter = parseInt(iHeartrateThresholds[4]);
-                iHRUpperCounter = parseInt(iHeartrateThresholds[5]);
+                iHRLowerTreshold = parseInt(iHeartrateThresholds[3]);
+                iHRUpperTreshold = parseInt(iHeartrateThresholds[4]);
+                iHRLowerCounter = parseInt(iHeartrateThresholds[5]);
+                iHRUpperCounter = parseInt(iHeartrateThresholds[6]);
             }
 
-            if (iPaceThresholds.length === 6)
+            if (iPaceThresholds.length === 7)
             {
+                //Get current profile name
+                sPaceCurrentProfileName = iPaceThresholds[0];
+
                 //parse to bool
-                bPaceUpperThresholdEnable = (iPaceThresholds[0] === "true");
-                bPaceLowerThresholdEnable = (iPaceThresholds[1] === "true");
+                bPaceUpperThresholdEnable = (iPaceThresholds[1] === "true");
+                bPaceLowerThresholdEnable = (iPaceThresholds[2] === "true");
 
                 //parse thresholds to int
-                iPaceLowerTreshold = parseFloat(iPaceThresholds[2]);
-                iPaceUpperTreshold = parseFloat(iPaceThresholds[3]);
-                iPaceLowerCounter = parseFloat(iPaceThresholds[4]);
-                iPaceUpperCounter = parseFloat(iPaceThresholds[5]);
+                iPaceLowerTreshold = parseFloat(iPaceThresholds[3]);
+                iPaceUpperTreshold = parseFloat(iPaceThresholds[4]);
+                iPaceLowerCounter = parseFloat(iPaceThresholds[5]);
+                iPaceUpperCounter = parseFloat(iPaceThresholds[6]);
             }
 
             //Set values to dialog

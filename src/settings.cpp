@@ -87,7 +87,7 @@ void Settings::setShowMapRecordPage(bool showMapRecordPage)
 }
 QString Settings::pulseThreshold() const
 {
-        return m_settings->value("recordsettings/pulseThreshold", "false,false,110,160,3,3").toString();
+        return m_settings->value("recordsettings/pulseThreshold", "default profile,false,false,110,160,3,3").toString();
 }
 void Settings::setPulseThreshold(QString pulseThreshold)
 {
@@ -95,7 +95,7 @@ void Settings::setPulseThreshold(QString pulseThreshold)
 }
 QString Settings::paceThreshold() const
 {
-        return m_settings->value("recordsettings/paceThreshold", "false,false,4.5,6.3,3,3").toString();
+        return m_settings->value("recordsettings/paceThreshold", "default profile,false,false,4.5,6.3,3,3").toString();
 }
 void Settings::setPaceThreshold(QString paceThreshold)
 {
