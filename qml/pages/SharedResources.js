@@ -183,7 +183,37 @@ var arrayThresholdProfiles =
 
 function fncConvertSaveStringToArray(sSaveString)
 {
+    //"Default profile,false,173,false,133,false,6.3,false,3.3|Second profile,true,172,true,132,true,6.2,true,3.2"
 
+    //First delete array
+    arrayThresholdProfiles = [];
+
+    var arProfiles = sSaveString.split("|");
+
+    //Go through profiles
+    for (var i = 0; i < arProfiles.length; i++)
+    {
+        var arParameters = arProfiles[i].split(",");
+
+        //Check length, you never know...
+        if (arParameters.length !== 9)
+            continue;
+
+        //Go through parameters for this profile
+        for (var j = 0; j < arParameters.length; j++)
+        {
+            arrayThresholdProfiles[i] = new Object();
+            arrayThresholdProfiles[i]["name"] = arParameters[0];
+            arrayThresholdProfiles[i]["bHRUpperThresholdEnable"] = (arParameters[1] === "true");
+            arrayThresholdProfiles[i]["iHRUpperThreshold"] = parseInt(arParameters[2]);
+            arrayThresholdProfiles[i]["bHRLowerThresholdEnable"] = (arParameters[3] === "true");
+            arrayThresholdProfiles[i]["iHRLowerThreshold"] = parseInt(arParameters[4]);
+            arrayThresholdProfiles[i]["bPaceUpperThresholdEnable"] = (arParameters[5] === "true");
+            arrayThresholdProfiles[i]["fPaceUpperThreshold"] = parseFloat(arParameters[6]);
+            arrayThresholdProfiles[i]["bPaceLowerThresholdEnable"] = (arParameters[7] === "true");
+            arrayThresholdProfiles[i]["fPaceLowerThreshold"] = parseFloat(arParameters[8]);
+        }
+    }
 }
 
 function fncConvertArrayToSaveString()
