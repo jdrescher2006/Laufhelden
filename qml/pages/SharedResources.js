@@ -170,3 +170,30 @@ for (var i = 0; i < arrayWorkoutTypes.length; i++)
 }
 
 /*--------------END workout table --------------*/
+
+
+/*--------------START thresholds  --------------*/
+
+var arrayThresholdProfiles =
+[
+    { name: "Default profile", bHRUpperThresholdEnable: false, iHRUpperThreshold: 165, bHRLowerThresholdEnable: false, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: false, fPaceUpperThreshold: 6.5, bPaceLowerThresholdEnable: false, fPaceLowerThreshold: 4.5 },
+    { name: "Race", bHRUpperThresholdEnable: true, iHRUpperThreshold: 183, bHRLowerThresholdEnable: false, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: true, fPaceUpperThreshold: 5.0, bPaceLowerThresholdEnable: true, fPaceLowerThreshold: 4.3 },
+    { name: "GA1", bHRUpperThresholdEnable: true, iHRUpperThreshold: 142, bHRLowerThresholdEnable: true, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: false, fPaceUpperThreshold: 5.0, bPaceLowerThresholdEnable: false, fPaceLowerThreshold: 4.3 }
+]
+
+function fncConvertSaveStringToArray(sSaveString)
+{
+
+}
+
+function fncConvertArrayToSaveString()
+{
+
+}
+
+/*--------------END thresholds  --------------*/
+
+
+
+
+

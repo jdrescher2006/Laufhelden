@@ -38,6 +38,7 @@ struct TrackItem {
 class HistoryModel : public QAbstractListModel
 {
     Q_OBJECT
+
 public:
     enum HistoryRoles {
         FilenameRole = Qt::UserRole + 1,
@@ -58,6 +59,10 @@ public:
     Q_INVOKABLE bool removeTrack(int index);
     Q_INVOKABLE void readDirectory();
 
+    Q_INVOKABLE int iDuration();
+    Q_INVOKABLE qreal rDistance();
+
+
 signals:
     void sigLoadingFinished();
     void sigAmountGPXFiles(int iAmountGPXFiles);
@@ -69,7 +74,8 @@ public slots:
 private:    
     QList<TrackItem> m_trackList;
     QFutureWatcher<TrackItem> trackLoading;
-
+    int iWorkoutDuration;
+    qreal rWorkoutDistance;
 };
 
 #endif // HISTORYMODEL_H

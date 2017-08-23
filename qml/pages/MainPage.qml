@@ -28,6 +28,9 @@ Page
     property int iGPXFiles: 100
     property bool bLoadingFiles: false
 
+    property string sWorkoutDuration: ""
+    property string sWorkoutDistance: ""
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -83,6 +86,15 @@ Page
         target: id_HistoryModel
         onSigLoadingFinished:     //This is called from C++ if the loading of the GPX files is ready
         {            
+            console.log("Workout rowCount: " + id_HistoryModel.rowCount());
+            console.log("Workout distance: " + id_HistoryModel.rDistance());
+            console.log("Workout duration: " + id_HistoryModel.iDuration());
+
+            var date = new Date(id_HistoryModel.iDuration());
+
+            sWorkoutDuration = date.getHours() + "h " + date.getMinutes() + "m " + date.getSeconds() + "s";
+            sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
+
             historyList.model = undefined;
             historyList.model = id_HistoryModel;            
 
@@ -139,8 +151,65 @@ Page
                 title: qsTr("Welcome to Laufhelden")
             }
 
+            Row
+            {
+                width: parent.width
+                height: parent.height / 4
+                visible: !bLoadingFiles
+
+                Item
+                {
+                    width: parent.width / 2
+                    height: parent.height
+
+                    Image
+                    {
+                        source: "../img/length.png"
+                        height: parent.height
+                        width: parent.height
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    Label
+                    {
+                        anchors.left: parent.left
+                        anchors.leftMargin: parent.height + Theme.paddingMedium
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: Theme.paddingLarge
+                        truncationMode: TruncationMode.Fade
+                        text: sWorkoutDistance + "km"
+                        color: Theme.highlightColor
+                    }
+                }
+                Item
+                {
+                    width: parent.width / 2
+                    height: parent.height
+
+                    Image
+                    {
+                        id: idIMGTime
+                        source: "../img/time.png"
+                        height: parent.height
+                        width: parent.height
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    Label
+                    {
+                        anchors.left: parent.left
+                        anchors.leftMargin: parent.height + Theme.paddingMedium
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: Theme.paddingLarge
+                        truncationMode: TruncationMode.Fade
+                        text: sWorkoutDuration
+                        color: Theme.highlightColor
+                    }
+                }
+            }
             Label
             {
+                anchors.horizontalCenter: parent.horizontalCenter
                 id: id_LBL_WorkoutCount
                 x: Theme.paddingLarge
                 truncationMode: TruncationMode.Fade
@@ -148,6 +217,8 @@ Page
                 color: Theme.highlightColor
                 visible: !bLoadingFiles
             }
+
+
             ProgressBar
             {
                 id: progressBarWaitLoadGPX

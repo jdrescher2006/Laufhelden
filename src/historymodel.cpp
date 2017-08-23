@@ -47,6 +47,9 @@ TrackItem loadTrack(TrackItem track) {
 HistoryModel::HistoryModel(QObject *parent) :
     QAbstractListModel(parent)
 {
+    this->iWorkoutDuration = 0;
+    this->rWorkoutDistance = 0.0;
+
     qDebug()<<"HistoryModel constructor";
     connect(&trackLoading, SIGNAL(resultReadyAt(int)), SLOT(newTrackData(int)));
     connect(&trackLoading, SIGNAL(finished()), SLOT(loadingFinished()));
@@ -73,8 +76,20 @@ QHash<int, QByteArray> HistoryModel::roleNames() const {
     return roles;
 }
 
-int HistoryModel::rowCount(const QModelIndex&) const {
+int HistoryModel::rowCount(const QModelIndex&) const
+{
     return m_trackList.count();
+}
+
+qreal HistoryModel::rDistance()
+{
+    return this->rWorkoutDistance;
+}
+
+int HistoryModel::iDuration()
+{
+    return this->iWorkoutDuration;
+
 }
 
 QVariant HistoryModel::data(const QModelIndex &index, int role) const {
@@ -189,6 +204,17 @@ void HistoryModel::newTrackData(int num) {
 void HistoryModel::loadingFinished()
 {
     qDebug()<<"Data loading finished";
+
+    this->iWorkoutDuration = 0;
+    this->rWorkoutDistance = 0.0;
+
+    //Get workout time
+    for(int j=0;j<m_trackList.length();j++)
+    {
+        this->iWorkoutDuration = this->iWorkoutDuration + m_trackList.at(j).duration;
+        this->rWorkoutDistance = this->rWorkoutDistance + m_trackList.at(j).distance;
+    }
+
     emit this->sigLoadingFinished();
 }
 

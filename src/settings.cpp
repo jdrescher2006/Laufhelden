@@ -101,6 +101,14 @@ void Settings::setPaceThreshold(QString paceThreshold)
 {
     m_settings->setValue("recordsettings/paceThreshold", paceThreshold);
 }
+QString Settings::thresholds() const
+{
+    return m_settings->value("recordsettings/thresholds", "Default profile,false,173,false,133,false,6.3,false,3.3|Second profile,true,172,true,132,true,6.2,true,3.2").toString();
+}
+void Settings::setThresholds(QString thresholds)
+{
+    m_settings->setValue("recordsettings/thresholds", thresholds);
+}
 bool Settings::enableLogFile() const
 {
     return m_settings->value("generalsettings/enableLogFile", false).toBool();

@@ -33,6 +33,7 @@ class Settings : public QObject
     Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)
     Q_PROPERTY(QString pulseThreshold READ pulseThreshold WRITE setPulseThreshold)    
     Q_PROPERTY(QString paceThreshold READ paceThreshold WRITE setPaceThreshold)    
+    Q_PROPERTY(QString thresholds READ thresholds WRITE setThresholds)
     Q_PROPERTY(bool enableLogFile READ enableLogFile WRITE setEnableLogFile)
 
 public:
@@ -63,6 +64,9 @@ public:
 
     QString paceThreshold() const;
     void setPaceThreshold(QString paceThreshold);
+
+    QString thresholds() const;
+    void setThresholds(QString thresholds);
 
     bool enableLogFile() const;
     void setEnableLogFile(bool enableLogFile);
