@@ -1,4 +1,5 @@
 ToDo for first release to openrepos:
+- put all icons and pictures in the img folder!
 - Alerts/thresholds:
 	- implement profiles
 	- save one data string per profile, including profile name
