@@ -109,6 +109,14 @@ void Settings::setThresholds(QString thresholds)
 {
     m_settings->setValue("recordsettings/thresholds", thresholds);
 }
+QString Settings::selectedThresholdProfile() const
+{
+    return m_settings->value("recordsettings/selectedThresholdProfile", "").toString();
+}
+void Settings::setSelectedThresholdProfile(QString selectedThresholdProfile)
+{
+    m_settings->setValue("recordsettings/selectedThresholdProfile", selectedThresholdProfile);
+}
 bool Settings::enableLogFile() const
 {
     return m_settings->value("generalsettings/enableLogFile", false).toBool();

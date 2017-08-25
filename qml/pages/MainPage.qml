@@ -68,7 +68,6 @@ Page
             vMainPageObject = pageStack.currentPage;
             console.log("vMainPageObject: " + vMainPageObject.toString());
 
-
             //Load history model.
             if (bLoadHistoryData)
             {

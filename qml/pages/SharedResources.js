@@ -176,10 +176,18 @@ for (var i = 0; i < arrayWorkoutTypes.length; i++)
 
 var arrayThresholdProfiles =
 [
-    { name: "Default profile", bHRUpperThresholdEnable: false, iHRUpperThreshold: 165, bHRLowerThresholdEnable: false, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: false, fPaceUpperThreshold: 6.5, bPaceLowerThresholdEnable: false, fPaceLowerThreshold: 4.5 },
+    { name: "Test profile", bHRUpperThresholdEnable: false, iHRUpperThreshold: 165, bHRLowerThresholdEnable: false, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: false, fPaceUpperThreshold: 6.5, bPaceLowerThresholdEnable: false, fPaceLowerThreshold: 4.5 },
     { name: "Race", bHRUpperThresholdEnable: true, iHRUpperThreshold: 183, bHRLowerThresholdEnable: false, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: true, fPaceUpperThreshold: 5.0, bPaceLowerThresholdEnable: true, fPaceLowerThreshold: 4.3 },
     { name: "GA1", bHRUpperThresholdEnable: true, iHRUpperThreshold: 142, bHRLowerThresholdEnable: true, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: false, fPaceUpperThreshold: 5.0, bPaceLowerThresholdEnable: false, fPaceLowerThreshold: 4.3 }
 ]
+
+//Create lookup table for threshold profiles.
+//This is a helper table to easier access the threshold profiles table.
+var arrayLookupThresholdProfilesByName = {};
+for (var i = 0; i < arrayThresholdProfiles.length; i++)
+{
+    arrayLookupThresholdProfilesByName[arrayThresholdProfiles[i].name] = arrayThresholdProfiles[i];
+}
 
 function fncConvertSaveStringToArray(sSaveString)
 {
@@ -218,7 +226,26 @@ function fncConvertSaveStringToArray(sSaveString)
 
 function fncConvertArrayToSaveString()
 {
+    var sReturnString = "";
 
+    //Go through profiles
+    for (var i = 0; i < arrayThresholdProfiles.length; i++)
+    {
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["name"] + ",";
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["bHRUpperThresholdEnable"] + ",";
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["iHRUpperThreshold"] + ",";
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["bHRLowerThresholdEnable"] + ",";
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["iHRLowerThreshold"] + ",";
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["bPaceUpperThresholdEnable"] + ",";
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["fPaceUpperThreshold"] + ",";
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["bPaceLowerThresholdEnable"] + ",";
+        sReturnString = sReturnString + arrayThresholdProfiles[i]["fPaceLowerThreshold"]
+
+        sReturnString = sReturnString + "|";
+    }
+
+    //kill the last | and then return
+    return sReturnString.substr(0, (sReturnString.length - 1));
 }
 
 /*--------------END thresholds  --------------*/

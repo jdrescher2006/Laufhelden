@@ -23,39 +23,76 @@ Page
 {
     id: page
 
-    property variant arComboboxStringArray : []
+    property variant arComboboxStringArrayThresholds : []
     property bool bLockOnCompleted : true;
-
-    Component.onCompleted:
-    {
-        bLockOnCompleted = true;               
-
-        //console.log("Eins: " + settings.workoutType);
-        //console.log("Zwei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
-        //console.log("Drei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }));
-
-        //This is a crazy thing, but at least it returns the index :-)
-        cmbWorkout.currentIndex = SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType);
-
-        if (sHRMAddress === "")
-            txtswUseHRMdevice.checked = false;
-        else
-            txtswUseHRMdevice.checked = settings.useHRMdevice;
-
-        txtswRecordPagePreventScreenBlank.checked = settings.disableScreenBlanking;
-
-        bLockOnCompleted = false;
-    }
+    property bool bLockFirstPageLoad: true
 
     onStatusChanged:
     {
+        //This is loaded only the first time the page is displayed
+        if (status === PageStatus.Active && bLockFirstPageLoad)
+        {
+            bLockOnCompleted = true;
+
+            bLockFirstPageLoad = false;
+            console.log("First Active PreRecordPage");
+
+            //console.log("Eins: " + settings.workoutType);
+            //console.log("Zwei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
+            //console.log("Drei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }));
+
+            //This is a crazy thing, but at least it returns the index :-)
+            cmbWorkout.currentIndex = SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType);
+
+            if (sHRMAddress === "")
+                txtswUseHRMdevice.checked = false;
+            else
+                txtswUseHRMdevice.checked = settings.useHRMdevice;
+
+            txtswRecordPagePreventScreenBlank.checked = settings.disableScreenBlanking;
+
+
+
+            console.log("length: " + SharedResources.arrayThresholdProfiles.length.toString());
+
+            //Load threshold settings and convert them to JS array
+            SharedResources.fncConvertSaveStringToArray(settings.thresholds);
+
+            var arComboarray = [];
+
+            console.log("length: " + SharedResources.arrayThresholdProfiles.length.toString());
+
+            for (var i = 0; i < SharedResources.arrayThresholdProfiles.length; i++)
+            {
+                console.log("name " + i.toString() + ": " + SharedResources.arrayThresholdProfiles[i].name);
+
+                arComboarray.push(SharedResources.arrayThresholdProfiles[i].name);
+            }
+
+            arComboboxStringArrayThresholds = arComboarray;
+
+
+            bLockOnCompleted = false;
+        }
+
+        //This is loaded everytime the page is displayed
         if (status === PageStatus.Active)
         {
+            console.log("PreRecordPage active");
+
             if (bHRMConnected)
             {
                 bRecordDialogRequestHRM = false;
                 id_BluetoothData.disconnect();
             }
+
+
+        }
+
+        if (status === PageStatus.Inactive)
+        {
+            console.log("PreRecordPage inactive");
+
         }
     }
 
@@ -112,6 +149,9 @@ Page
                     {
                         if (bLockOnCompleted)
                             return;
+
+                        console.log("onCurrentItemChanged Workout!");
+
                         imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
                         settings.workoutType = recorder.workoutType = SharedResources.arrayWorkoutTypes[currentIndex].name;
                     }
@@ -134,6 +174,33 @@ Page
                         settings.useHRMdevice = checked;
                 }                
             }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            ComboBox
+            {
+                width: parent.width
+                label: "Select thresholds profile"
+                menu: ContextMenu
+                {
+                    Repeater
+                    {
+                        model: SharedResources.arrayThresholdProfiles;
+                        MenuItem { text: modelData.name }
+                    }
+                }
+                onCurrentItemChanged:
+                {
+                    if (bLockOnCompleted)
+                        return;
+
+                    console.log("Selected profile: " + arComboboxStringArrayThresholds[currentIndex]);
+                }
+            }
+
+
             Separator
             {
                 color: Theme.highlightColor
