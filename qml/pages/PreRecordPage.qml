@@ -23,7 +23,6 @@ Page
 {
     id: page
 
-    property variant arComboboxStringArrayThresholds : []
     property bool bLockOnCompleted : true;
     property bool bLockFirstPageLoad: true
 
@@ -36,6 +35,7 @@ Page
 
             bLockFirstPageLoad = false;
             console.log("First Active PreRecordPage");
+
 
             //console.log("Eins: " + settings.workoutType);
             //console.log("Zwei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
@@ -52,25 +52,28 @@ Page
             txtswRecordPagePreventScreenBlank.checked = settings.disableScreenBlanking;
 
 
-
-            console.log("length: " + SharedResources.arrayThresholdProfiles.length.toString());
-
             //Load threshold settings and convert them to JS array
             SharedResources.fncConvertSaveStringToArray(settings.thresholds);
 
-            var arComboarray = [];
+            //Set threshold profile names to combobox
+            idThressholdRepeater.model = undefined;
+            idThressholdRepeater.model = SharedResources.arrayThresholdProfiles;
 
-            console.log("length: " + SharedResources.arrayThresholdProfiles.length.toString());
+            console.log("arrayThresholdProfiles.length: " + SharedResources.arrayThresholdProfiles.length.toString());
 
+            //Set selected profile to combobox
+            var iProfileNameIndex = -1;
+            //Search profile index
             for (var i = 0; i < SharedResources.arrayThresholdProfiles.length; i++)
             {
-                console.log("name " + i.toString() + ": " + SharedResources.arrayThresholdProfiles[i].name);
-
-                arComboarray.push(SharedResources.arrayThresholdProfiles[i].name);
+                if (SharedResources.arrayThresholdProfiles[i].name === settings.selectedThresholdProfile)
+                    iProfileNameIndex = i;
             }
-
-            arComboboxStringArrayThresholds = arComboarray;
-
+            //Check if profile name was found in array of profiles
+            if (iProfileNameIndex !== -1)
+                idComboBoxThresholdProfiles.currentIndex = iProfileNameIndex;
+            else
+                idComboBoxThresholdProfiles.currentIndex = 0;
 
             bLockOnCompleted = false;
         }
@@ -150,8 +153,6 @@ Page
                         if (bLockOnCompleted)
                             return;
 
-                        console.log("onCurrentItemChanged Workout!");
-
                         imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
                         settings.workoutType = recorder.workoutType = SharedResources.arrayWorkoutTypes[currentIndex].name;
                     }
@@ -181,12 +182,14 @@ Page
             }
             ComboBox
             {
+                id: idComboBoxThresholdProfiles
                 width: parent.width
                 label: "Select thresholds profile"
                 menu: ContextMenu
                 {
                     Repeater
                     {
+                        id: idThressholdRepeater
                         model: SharedResources.arrayThresholdProfiles;
                         MenuItem { text: modelData.name }
                     }
@@ -196,7 +199,10 @@ Page
                     if (bLockOnCompleted)
                         return;
 
-                    console.log("Selected profile: " + arComboboxStringArrayThresholds[currentIndex]);
+                    console.log("Selected profile: " + SharedResources.arrayThresholdProfiles[currentIndex].name);
+
+                    //Save selected profile to Settings
+                    settings.selectedThresholdProfile = SharedResources.arrayThresholdProfiles[currentIndex].name;
                 }
             }
 

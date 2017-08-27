@@ -103,7 +103,7 @@ void Settings::setPaceThreshold(QString paceThreshold)
 }
 QString Settings::thresholds() const
 {
-    return m_settings->value("recordsettings/thresholds", "Default profile,false,173,false,133,false,6.3,false,3.3|Second profile,true,172,true,132,true,6.2,true,3.2").toString();
+    return m_settings->value("recordsettings/thresholds", "Thresholds off,false,0,false,0,false,0,false,0|Race 10km,true,183,false,133,true,5.0,true,4.5|Training GA 1,true,141,true,130,false,6.2,false,3.2").toString();
 }
 void Settings::setThresholds(QString thresholds)
 {
@@ -111,7 +111,7 @@ void Settings::setThresholds(QString thresholds)
 }
 QString Settings::selectedThresholdProfile() const
 {
-    return m_settings->value("recordsettings/selectedThresholdProfile", "").toString();
+    return m_settings->value("recordsettings/selectedThresholdProfile", "Thresholds off").toString();
 }
 void Settings::setSelectedThresholdProfile(QString selectedThresholdProfile)
 {
