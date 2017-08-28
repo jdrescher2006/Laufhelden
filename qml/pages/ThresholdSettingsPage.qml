@@ -18,25 +18,14 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../tools/Thresholds.js" as Thresholds
 
 
 Page {
     id: page
 
     property bool bLockOnCompleted : false;
-    property bool bLockFirstPageLoad: true;
-
-    function fncSaveHRValues()
-    {
-        var sSaveString = bHRUpperThresholdEnable.toString() + "," + bHRLowerThresholdEnable.toString() + "," + iHRLowerTreshold.toString() + "," + iHRUpperTreshold.toString() + "," + iHRLowerCounter.toString() + "," + iHRUpperCounter.toString();
-        settings.pulseThreshold = sSaveString;
-    }
-
-    function fncSavePaceValues()
-    {
-        var sSaveString = bPaceUpperThresholdEnable.toString() + "," + bPaceLowerThresholdEnable.toString() + "," + iPaceLowerTreshold.toString() + "," + iPaceUpperTreshold.toString() + "," + iPaceLowerCounter.toString() + "," + iPaceUpperCounter.toString();
-        settings.paceThreshold = sSaveString;
-    }
+    property bool bLockFirstPageLoad: true;      
 
     onStatusChanged:
     {
@@ -46,55 +35,22 @@ Page {
             bLockOnCompleted = true;
 
             bLockFirstPageLoad = false;
-           // console.log("First Active ThresholdSettingsPage");
+            // console.log("First Active ThresholdSettingsPage");
 
-            var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
-            var iPaceThresholds = settings.paceThreshold.toString().split(",");
+            //Load threshold settings and convert them to JS array
+            Thresholds.fncConvertSaveStringToArray(settings.thresholds);
 
-            if (iHeartrateThresholds.length === 7)
-            {
-                //Get current profile name
-                sHRCurrentProfileName = iHeartrateThresholds[0];
+            //Set threshold profile names to combobox
+            idThressholdRepeater.model = undefined;
+            idThressholdRepeater.model = Thresholds.arrayThresholdProfiles;
 
-                //parse to bool
-                bHRUpperThresholdEnable = (iHeartrateThresholds[1] === "true");
-                bHRLowerThresholdEnable = (iHeartrateThresholds[2] === "true");
+            console.log("arrayThresholdProfiles.length: " + Thresholds.arrayThresholdProfiles.length.toString());
+            console.log("selected profile index: " + Thresholds.fncGetCurrentProfileIndex().toString());
 
-                //parse thresholds to int
-                iHRLowerTreshold = parseInt(iHeartrateThresholds[3]);
-                iHRUpperTreshold = parseInt(iHeartrateThresholds[4]);
-                iHRLowerCounter = parseInt(iHeartrateThresholds[5]);
-                iHRUpperCounter = parseInt(iHeartrateThresholds[6]);
-            }
 
-            if (iPaceThresholds.length === 7)
-            {
-                //Get current profile name
-                sPaceCurrentProfileName = iPaceThresholds[0];
+            //Set selected threshold profile to combobox
+            idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
 
-                //parse to bool
-                bPaceUpperThresholdEnable = (iPaceThresholds[1] === "true");
-                bPaceLowerThresholdEnable = (iPaceThresholds[2] === "true");
-
-                //parse thresholds to int
-                iPaceLowerTreshold = parseFloat(iPaceThresholds[3]);
-                iPaceUpperTreshold = parseFloat(iPaceThresholds[4]);
-                iPaceLowerCounter = parseFloat(iPaceThresholds[5]);
-                iPaceUpperCounter = parseFloat(iPaceThresholds[6]);
-            }
-
-            //Set values to dialog
-            //id_TextSwitch_UpperHRThreshold.checked = bHRUpperThresholdEnable;
-            id_TextSwitch_BottomHRThreshold.checked = bHRLowerThresholdEnable;
-
-            id_Slider_UpperHRThreshold.value = iHRUpperTreshold;
-            id_Slider_BottomHRThreshold.value = iHRLowerTreshold;
-
-            id_TextSwitch_UpperPaceThreshold.checked = bPaceUpperThresholdEnable;
-            id_TextSwitch_BottomPaceThreshold.checked = bPaceLowerThresholdEnable;
-
-            id_Slider_UpperPaceThreshold.value = iPaceUpperTreshold;
-            id_Slider_BottomPaceThreshold.value = iPaceLowerTreshold;
 
 
             pageStack.pushAttached(Qt.resolvedUrl("BTConnectPage.qml"));
@@ -124,20 +80,67 @@ Page {
             PageHeader
             {
                 title: qsTr("Threshold settings")
-            }                        
+            }
+            ComboBox
+            {
+                id: idComboBoxThresholdProfiles
+                width: parent.width
+                label: "Select thresholds profile"
+                menu: ContextMenu
+                {
+                    Repeater
+                    {
+                        id: idThressholdRepeater
+                        model: Thresholds.arrayThresholdProfiles;
+                        MenuItem { text: modelData.name }
+                    }
+                }
+
+                onCurrentItemChanged:
+                {
+                    if (bLockOnCompleted)
+                        return;
+
+                    console.log("Selected profile: " + Thresholds.arrayThresholdProfiles[currentIndex].name);
+
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(currentIndex);
+
+                    id_TextSwitch_UpperHRThreshold.checked = oActiveProfileObject.bHRUpperThresholdEnable;
+                    id_Slider_UpperHRThreshold.value = oActiveProfileObject.iHRUpperThreshold;
+
+                    id_TextSwitch_BottomHRThreshold.checked = oActiveProfileObject.bHRLowerThresholdEnable;
+                    id_Slider_BottomHRThreshold.value = oActiveProfileObject.iHRLowerThreshold;
+
+                    id_TextSwitch_UpperPaceThreshold.checked = oActiveProfileObject.bPaceUpperThresholdEnable;
+                    id_Slider_UpperPaceThreshold.value = oActiveProfileObject.fPaceUpperThreshold;
+
+                    id_TextSwitch_BottomPaceThreshold.checked = oActiveProfileObject.bPaceLowerThresholdEnable;
+                    id_Slider_BottomPaceThreshold.value = oActiveProfileObject.fPaceLowerThreshold;
+                }
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+
+
             TextSwitch
             {
                 id: id_TextSwitch_UpperHRThreshold
                 text: qsTr("Upper heart rate limit")
                 description: qsTr("Alarm if limit is exceeded.")
-                checked: bHRUpperThresholdEnable
                 onCheckedChanged:
                 {
                     if (bLockOnCompleted)
                         return;
 
-                    bHRUpperThresholdEnable = checked;
-                    fncSaveHRValues();
+                    //Get selected profile object
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                    //Set value to object
+                    oActiveProfileObject.bHRUpperThresholdEnable = checked;
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }                
             }
             Slider
@@ -155,8 +158,12 @@ Page {
                     if (bLockOnCompleted)
                         return;
 
-                    iHRUpperTreshold = value.toFixed(0);
-                    fncSaveHRValues();
+                    //Get selected profile object
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                    //Set value to object
+                    oActiveProfileObject.iHRUpperThreshold = value;
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
             }
             TextSwitch
@@ -169,8 +176,12 @@ Page {
                     if (bLockOnCompleted)
                         return;
 
-                    bHRLowerThresholdEnable = checked;
-                    fncSaveHRValues();
+                    //Get selected profile object
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                    //Set value to object
+                    oActiveProfileObject.bHRLowerThresholdEnable = checked;
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
             }
             Slider
@@ -188,8 +199,12 @@ Page {
                     if (bLockOnCompleted)
                         return;
 
-                    iHRLowerTreshold = value.toFixed(0);
-                    fncSaveHRValues();
+                    //Get selected profile object
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                    //Set value to object
+                    oActiveProfileObject.iHRLowerThreshold = value;
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
             }
             Separator
@@ -207,8 +222,12 @@ Page {
                     if (bLockOnCompleted)
                         return;
 
-                    bPaceUpperThresholdEnable = checked;
-                    fncSavePaceValues();
+                    //Get selected profile object
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                    //Set value to object
+                    oActiveProfileObject.bPaceUpperThresholdEnable = checked;
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
             }
             Slider
@@ -226,8 +245,12 @@ Page {
                     if (bLockOnCompleted)
                         return;
 
-                    iPaceUpperTreshold = value.toFixed(1);
-                    fncSavePaceValues();
+                    //Get selected profile object
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                    //Set value to object
+                    oActiveProfileObject.fPaceUpperThreshold = value;
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
             }
             TextSwitch
@@ -240,8 +263,12 @@ Page {
                     if (bLockOnCompleted)
                         return;
 
-                    bPaceLowerThresholdEnable = checked;
-                    fncSavePaceValues();
+                    //Get selected profile object
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                    //Set value to object
+                    oActiveProfileObject.bPaceLowerThresholdEnable = checked;
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
             }
             Slider
@@ -259,8 +286,12 @@ Page {
                     if (bLockOnCompleted)
                         return;
 
-                    iPaceLowerTreshold = value.toFixed(1);
-                    fncSavePaceValues();
+                    //Get selected profile object
+                    var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                    //Set value to object
+                    oActiveProfileObject.fPaceLowerThreshold = value;
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
             }
         }

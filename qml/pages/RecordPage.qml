@@ -20,7 +20,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtLocation 5.0
 import QtPositioning 5.0
-import "../tools"
+import "SharedResources.js" as SharedResources
+import "../tools/Thresholds.js" as Thresholds
 
 Page
 {
@@ -31,19 +32,7 @@ Page
     //If not tracking and we have no data, going back is possible
     backNavigation: (!recorder.tracking && recorder.isEmpty)
 
-    property bool bShowMap: settings.showMapRecordPage
-
-    property int iLastHeartRateArea: -1
-    property int iHRAboveTopCounter: 0
-    property int iHRBelowTopCounter: 0
-    property int iHRAboveBottomCounter: 0
-    property int iHRBelowBottomCounter: 0
-
-    property int iLastPaceArea: -1
-    property int iPaceAboveTopCounter: 0
-    property int iPaceBelowTopCounter: 0
-    property int iPaceAboveBottomCounter: 0
-    property int iPaceBelowBottomCounter: 0    
+    property bool bShowMap: settings.showMapRecordPage  
 
     property bool bLockFirstPageLoad: true
     property int iButtonLoop : 3
@@ -86,40 +75,8 @@ Page
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
 
-            var iHeartrateThresholds = settings.pulseThreshold.toString().split(",");
-            var iPaceThresholds = settings.paceThreshold.toString().split(",");
-
-            if (iHeartrateThresholds.length === 7)
-            {
-                //Get current profile name
-                sHRCurrentProfileName = iHeartrateThresholds[0];
-
-                //parse to bool
-                bHRUpperThresholdEnable = (iHeartrateThresholds[1] === "true");
-                bHRLowerThresholdEnable = (iHeartrateThresholds[2] === "true");
-
-                //parse thresholds to int
-                iHRLowerTreshold = parseInt(iHeartrateThresholds[3]);
-                iHRUpperTreshold = parseInt(iHeartrateThresholds[4]);
-                iHRLowerCounter = parseInt(iHeartrateThresholds[5]);
-                iHRUpperCounter = parseInt(iHeartrateThresholds[6]);
-            }
-
-            if (iPaceThresholds.length === 7)
-            {
-                //Get current profile name
-                sPaceCurrentProfileName = iPaceThresholds[0];
-
-                //parse to bool
-                bPaceUpperThresholdEnable = (iPaceThresholds[1] === "true");
-                bPaceLowerThresholdEnable = (iPaceThresholds[2] === "true");
-
-                //parse thresholds to int
-                iPaceLowerTreshold = parseFloat(iPaceThresholds[3]);
-                iPaceUpperTreshold = parseFloat(iPaceThresholds[4]);
-                iPaceLowerCounter = parseFloat(iPaceThresholds[5]);
-                iPaceUpperCounter = parseFloat(iPaceThresholds[6]);
-            }
+            //Load threshold settings and convert them to JS array
+            Thresholds.fncConvertSaveStringToArray(settings.thresholds);
         }
 
         if (status === PageStatus.Inactive)
@@ -256,197 +213,9 @@ Page
             setMapViewport();
         }
 
-        fncHRThreshold();
-
-        fncPaceThreshold();
+        Thresholds.fncCheckHRThresholds();
+        Thresholds.fncCheckPaceThresholds(recorder.pace.toFixed(1));
     }    
-
-    function fncHRThreshold()
-    {
-        //Now process the thresholds. Make some checks.
-        if (sHeartRate === "" || sHeartRate === "-1")
-        {
-            return;
-        }
-        //Parse pulse value to int
-        var iHeartrate = parseInt(sHeartRate);       
-
-        if (iHeartrate === 0)
-            return;
-
-        //Heart rate areas:
-        //-1 not defined, start value
-        // 0 below lower threshold
-        // 1 between lower and upper threshold (good area)
-        // 2 above upper threshold
-
-        if (bHRUpperThresholdEnable)
-        {
-            //First condition: detect a break from below through the upper threshold
-            if (iLastHeartRateArea != 2 && iHeartrate >= iHRUpperTreshold)
-            {
-                //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iHRAboveTopCounter >= iHRUpperCounter)
-                {
-                    iHRAboveTopCounter = 0;
-                    iLastHeartRateArea = 2;                    
-
-                    fncPlaySound("audio/hr_toohigh.wav");
-                }
-                else
-                    iHRAboveTopCounter+=1;
-            }
-            //Second condition: detect a break from above through the upper threshold
-            else if(iLastHeartRateArea == 2 && iHeartrate < iHRUpperTreshold)
-            {
-                //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iHRBelowTopCounter >= iHRUpperCounter)
-                {
-                    iHRBelowTopCounter = 0;
-                    iLastHeartRateArea = 1;                    
-
-                    fncPlaySound("audio/hr_normal.wav");
-                }
-                else
-                    iHRBelowTopCounter+=1;
-            }
-            else
-            {
-                //OK, the threshold was not triggered. Reset the trigger counters.
-                iHRAboveTopCounter = 0;
-                iHRBelowTopCounter = 0;
-            }
-        }
-
-        if (bHRLowerThresholdEnable)
-        {
-            //First condition: detect a break from above through the bottom threshold
-            if (iLastHeartRateArea != 0 && iHeartrate <= iHRLowerTreshold)
-            {
-                //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iHRBelowBottomCounter >= iHRLowerCounter)
-                {
-                    iHRBelowBottomCounter = 0;
-                    iLastHeartRateArea = 0;
-
-                    fncPlaySound("audio/hr_toolow.wav");
-                }
-                else
-                    iHRBelowBottomCounter+=1;
-            }
-            //Second condition: detect a break from below through the bottom threshold
-            else if(iLastHeartRateArea == 0 && iHeartrate > iHRLowerTreshold)
-            {
-                //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iHRAboveBottomCounter >= iHRLowerCounter)
-                {
-                    iHRAboveBottomCounter = 0;
-                    iLastHeartRateArea = 1;
-
-                    fncPlaySound("audio/hr_normal.wav");
-                }
-                else
-                    iHRAboveBottomCounter+=1;
-            }
-            else
-            {
-                //OK, the threshold was not triggered. Reset the trigger counters.
-                iHRAboveBottomCounter = 0;
-                iHRBelowBottomCounter = 0;
-            }
-        }
-    }
-
-    function fncPaceThreshold()
-    {                            
-        //Pace areas:
-        //-1 not defined, start value
-        // 0 below lower threshold
-        // 1 between lower and upper threshold (good area)
-        // 2 above upper threshold
-
-        if (bPaceUpperThresholdEnable)      //Speed is too slow
-        {
-            //First condition: detect a break from below through the upper threshold
-            if (iLastPaceArea != 2 && recorder.pace.toFixed(1) >= iPaceUpperTreshold)
-            {
-                //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceAboveTopCounter >= iPaceUpperCounter)
-                {
-                    iPaceAboveTopCounter = 0;
-                    iLastPaceArea = 2;                    
-
-                    fncPlaySound("audio/pace_toolow.wav");
-
-                    fncVibrate(3, 500);
-                }
-                else
-                    iPaceAboveTopCounter+=1;
-            }
-            //Second condition: detect a break from above through the upper threshold
-            else if(iLastPaceArea == 2 && recorder.pace.toFixed(1) < iPaceUpperTreshold)
-            {
-                //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceBelowTopCounter >= iPaceUpperCounter)
-                {
-                    iPaceBelowTopCounter = 0;
-                    iLastPaceArea = 1;                 
-
-                    fncPlaySound("audio/pace_normal.wav");
-                }
-                else
-                    iPaceBelowTopCounter+=1;
-            }
-            else
-            {
-                //OK, the threshold was not triggered. Reset the trigger counters.
-                iPaceAboveTopCounter = 0;
-                iPaceBelowTopCounter = 0;
-            }
-        }
-
-        if (bPaceLowerThresholdEnable)    //Speed is too fast
-        {
-            //First condition: detect a break from above through the bottom threshold
-            if (iLastPaceArea != 0 && recorder.pace.toFixed(1) <= iPaceLowerTreshold)
-            {
-                //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceBelowBottomCounter >= iPaceLowerCounter)
-                {
-                    iPaceBelowBottomCounter = 0;
-                    iLastPaceArea = 0;
-
-                    fncPlaySound("audio/pace_toohigh.wav");
-
-                    fncVibrate(3, 200);
-                }
-                else
-                    iPaceBelowBottomCounter+=1;
-            }
-            //Second condition: detect a break from below through the bottom threshold
-            else if(iLastPaceArea == 0 && recorder.pace.toFixed(1) > iPaceLowerTreshold)
-            {
-                //Ok the threshold was triggered. Check how often in a row that was the case.
-                if (iPaceAboveBottomCounter >= iPaceLowerCounter)
-                {
-                    iPaceAboveBottomCounter = 0;
-                    iLastPaceArea = 1;
-
-                    fncPlaySound("audio/pace_normal.wav");
-                }
-                else
-                    iPaceAboveBottomCounter+=1;
-            }
-            else
-            {
-                //OK, the threshold was not triggered. Reset the trigger counters.
-                iPaceAboveBottomCounter = 0;
-                iPaceBelowBottomCounter = 0;
-            }
-        }
-
-
-    }
 
     MapCircle
     {

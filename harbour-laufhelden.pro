@@ -66,7 +66,6 @@ DISTFILES += \
     qml/laufhelden.png \
     qml/pages/SharedResources.js \
     qml/heart.png \
-    qml/tools/JSTools.js \
     qml/pages/PreRecordPage.qml \
     qml/workouticons/biking.png \
     qml/workouticons/mountainBiking.png \
@@ -84,5 +83,7 @@ DISTFILES += \
     qml/audio/pace_toolow.wav \
     qml/tools/MediaPlayerControl.qml \
     qml/audio/hlvb.wav \
-    qml/img/calendar.png
+    qml/img/calendar.png \
+    qml/img/bat0.png \
+    qml/tools/Thresholds.js
 

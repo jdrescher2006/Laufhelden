@@ -17,6 +17,7 @@
 
 .pragma library
 
+
 /*----------------START used bluetooth adapters----------------*/
 
 var arrayUsedAdapters = new Array();
@@ -170,87 +171,3 @@ for (var i = 0; i < arrayWorkoutTypes.length; i++)
 }
 
 /*--------------END workout table --------------*/
-
-
-/*--------------START thresholds  --------------*/
-
-var arrayThresholdProfiles =
-[
-    { name: "Test profile", bHRUpperThresholdEnable: false, iHRUpperThreshold: 165, bHRLowerThresholdEnable: false, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: false, fPaceUpperThreshold: 6.5, bPaceLowerThresholdEnable: false, fPaceLowerThreshold: 4.5 },
-    { name: "Race", bHRUpperThresholdEnable: true, iHRUpperThreshold: 183, bHRLowerThresholdEnable: false, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: true, fPaceUpperThreshold: 5.0, bPaceLowerThresholdEnable: true, fPaceLowerThreshold: 4.3 },
-    { name: "GA1", bHRUpperThresholdEnable: true, iHRUpperThreshold: 142, bHRLowerThresholdEnable: true, iHRLowerThreshold: 135, bPaceUpperThresholdEnable: false, fPaceUpperThreshold: 5.0, bPaceLowerThresholdEnable: false, fPaceLowerThreshold: 4.3 }
-]
-
-//Create lookup table for threshold profiles.
-//This is a helper table to easier access the threshold profiles table.
-var arrayLookupThresholdProfilesByName = {};
-for (var i = 0; i < arrayThresholdProfiles.length; i++)
-{
-    arrayLookupThresholdProfilesByName[arrayThresholdProfiles[i].name] = arrayThresholdProfiles[i];
-}
-
-function fncConvertSaveStringToArray(sSaveString)
-{
-    //"Default profile,false,173,false,133,false,6.3,false,3.3|Second profile,true,172,true,132,true,6.2,true,3.2"
-
-    //First delete array
-    arrayThresholdProfiles = [];
-
-    var arProfiles = sSaveString.split("|");
-
-    //Go through profiles
-    for (var i = 0; i < arProfiles.length; i++)
-    {
-        var arParameters = arProfiles[i].split(",");
-
-        //Check length, you never know...
-        if (arParameters.length !== 9)
-            continue;
-
-        //Go through parameters for this profile
-        for (var j = 0; j < arParameters.length; j++)
-        {
-            arrayThresholdProfiles[i] = new Object();
-            arrayThresholdProfiles[i]["name"] = arParameters[0];
-            arrayThresholdProfiles[i]["bHRUpperThresholdEnable"] = (arParameters[1] === "true");
-            arrayThresholdProfiles[i]["iHRUpperThreshold"] = parseInt(arParameters[2]);
-            arrayThresholdProfiles[i]["bHRLowerThresholdEnable"] = (arParameters[3] === "true");
-            arrayThresholdProfiles[i]["iHRLowerThreshold"] = parseInt(arParameters[4]);
-            arrayThresholdProfiles[i]["bPaceUpperThresholdEnable"] = (arParameters[5] === "true");
-            arrayThresholdProfiles[i]["fPaceUpperThreshold"] = parseFloat(arParameters[6]);
-            arrayThresholdProfiles[i]["bPaceLowerThresholdEnable"] = (arParameters[7] === "true");
-            arrayThresholdProfiles[i]["fPaceLowerThreshold"] = parseFloat(arParameters[8]);
-        }
-    }
-}
-
-function fncConvertArrayToSaveString()
-{
-    var sReturnString = "";
-
-    //Go through profiles
-    for (var i = 0; i < arrayThresholdProfiles.length; i++)
-    {
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["name"] + ",";
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["bHRUpperThresholdEnable"] + ",";
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["iHRUpperThreshold"] + ",";
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["bHRLowerThresholdEnable"] + ",";
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["iHRLowerThreshold"] + ",";
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["bPaceUpperThresholdEnable"] + ",";
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["fPaceUpperThreshold"] + ",";
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["bPaceLowerThresholdEnable"] + ",";
-        sReturnString = sReturnString + arrayThresholdProfiles[i]["fPaceLowerThreshold"]
-
-        sReturnString = sReturnString + "|";
-    }
-
-    //kill the last | and then return
-    return sReturnString.substr(0, (sReturnString.length - 1));
-}
-
-/*--------------END thresholds  --------------*/
-
-
-
-
-

@@ -18,6 +18,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "SharedResources.js" as SharedResources
+import "../tools/Thresholds.js" as Thresholds
 
 Page
 {
@@ -53,27 +54,18 @@ Page
 
 
             //Load threshold settings and convert them to JS array
-            SharedResources.fncConvertSaveStringToArray(settings.thresholds);
+            Thresholds.fncConvertSaveStringToArray(settings.thresholds);
 
             //Set threshold profile names to combobox
             idThressholdRepeater.model = undefined;
-            idThressholdRepeater.model = SharedResources.arrayThresholdProfiles;
+            idThressholdRepeater.model = Thresholds.arrayThresholdProfiles;
 
-            console.log("arrayThresholdProfiles.length: " + SharedResources.arrayThresholdProfiles.length.toString());
+            console.log("arrayThresholdProfiles.length: " + Thresholds.arrayThresholdProfiles.length.toString());
+            console.log("selected profile index: " + Thresholds.fncGetCurrentProfileIndex().toString());
 
-            //Set selected profile to combobox
-            var iProfileNameIndex = -1;
-            //Search profile index
-            for (var i = 0; i < SharedResources.arrayThresholdProfiles.length; i++)
-            {
-                if (SharedResources.arrayThresholdProfiles[i].name === settings.selectedThresholdProfile)
-                    iProfileNameIndex = i;
-            }
-            //Check if profile name was found in array of profiles
-            if (iProfileNameIndex !== -1)
-                idComboBoxThresholdProfiles.currentIndex = iProfileNameIndex;
-            else
-                idComboBoxThresholdProfiles.currentIndex = 0;
+
+            //Set selected threshold profile to combobox
+            idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
 
             bLockOnCompleted = false;
         }
@@ -190,7 +182,7 @@ Page
                     Repeater
                     {
                         id: idThressholdRepeater
-                        model: SharedResources.arrayThresholdProfiles;
+                        model: Thresholds.arrayThresholdProfiles;
                         MenuItem { text: modelData.name }
                     }
                 }
@@ -199,10 +191,12 @@ Page
                     if (bLockOnCompleted)
                         return;
 
-                    console.log("Selected profile: " + SharedResources.arrayThresholdProfiles[currentIndex].name);
+                    console.log("Selected profile: " + Thresholds.arrayThresholdProfiles[currentIndex].name);
 
-                    //Save selected profile to Settings
-                    settings.selectedThresholdProfile = SharedResources.arrayThresholdProfiles[currentIndex].name;
+                    //Save selected profile thresholds array
+                    Thresholds.fncSetCurrentProfileByIndex(currentIndex);
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
             }
 

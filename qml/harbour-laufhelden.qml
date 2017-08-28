@@ -45,25 +45,7 @@ ApplicationWindow
     property string sHRMAddress: ""
     property string sHRMDeviceName: ""
     property string sHeartRateHexString: ""
-    //*** HRM End ***
-
-    //*** Threholds Start ***
-    property string sHRCurrentProfileName: "default profile"
-    property bool bHRUpperThresholdEnable: false;
-    property bool bHRLowerThresholdEnable: false;
-    property int iHRUpperTreshold: 170;
-    property int iHRLowerTreshold: 120;
-    property int iHRUpperCounter: 3;
-    property int iHRLowerCounter: 3;
-    property string sPaceCurrentProfileName: "default profile"
-    property bool bPaceUpperThresholdEnable: false;
-    property bool bPaceLowerThresholdEnable: false;
-    property real iPaceUpperTreshold: 7.1;
-    property real iPaceLowerTreshold: 4.9;
-    property int iPaceUpperCounter: 4;
-    property int iPaceLowerCounter: 4;
-    //*** Threholds End ***
-
+    //*** HRM End ***   
 
     property var vMainPageObject            //this is used for back jumps (pop) to the MainPage
     property bool bLoadHistoryData: true    //this is set on record page after a workout, to have mainpage load GPX files

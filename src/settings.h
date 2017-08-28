@@ -30,11 +30,8 @@ class Settings : public QObject
     Q_PROPERTY(QString workoutType READ workoutType WRITE setWorkoutType)
     Q_PROPERTY(bool useHRMdevice READ useHRMdevice WRITE setUseHRMdevice)
     Q_PROPERTY(bool disableScreenBlanking READ disableScreenBlanking WRITE setDisableScreenBlanking)
-    Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)
-    Q_PROPERTY(QString pulseThreshold READ pulseThreshold WRITE setPulseThreshold)    
-    Q_PROPERTY(QString paceThreshold READ paceThreshold WRITE setPaceThreshold)    
+    Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)    
     Q_PROPERTY(QString thresholds READ thresholds WRITE setThresholds)
-    Q_PROPERTY(QString selectedThresholdProfile READ selectedThresholdProfile WRITE setSelectedThresholdProfile)
     Q_PROPERTY(bool enableLogFile READ enableLogFile WRITE setEnableLogFile)
 
 public:
@@ -60,17 +57,8 @@ public:
     bool showMapRecordPage() const;
     void setShowMapRecordPage(bool showMapRecordPage);   
 
-    QString pulseThreshold() const;
-    void setPulseThreshold(QString pulseThreshold);    
-
-    QString paceThreshold() const;
-    void setPaceThreshold(QString paceThreshold);
-
     QString thresholds() const;
     void setThresholds(QString thresholds);
-
-    QString selectedThresholdProfile() const;
-    void setSelectedThresholdProfile(QString selectedThresholdProfile);
 
     bool enableLogFile() const;
     void setEnableLogFile(bool enableLogFile);

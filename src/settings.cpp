@@ -85,37 +85,13 @@ void Settings::setShowMapRecordPage(bool showMapRecordPage)
 {
      m_settings->setValue("recordsettings/showMapRecordPage", showMapRecordPage);
 }
-QString Settings::pulseThreshold() const
-{
-        return m_settings->value("recordsettings/pulseThreshold", "default profile,false,false,110,160,3,3").toString();
-}
-void Settings::setPulseThreshold(QString pulseThreshold)
-{
-    m_settings->setValue("recordsettings/pulseThreshold", pulseThreshold);
-}
-QString Settings::paceThreshold() const
-{
-        return m_settings->value("recordsettings/paceThreshold", "default profile,false,false,4.5,6.3,3,3").toString();
-}
-void Settings::setPaceThreshold(QString paceThreshold)
-{
-    m_settings->setValue("recordsettings/paceThreshold", paceThreshold);
-}
 QString Settings::thresholds() const
 {
-    return m_settings->value("recordsettings/thresholds", "Thresholds off,false,0,false,0,false,0,false,0|Race 10km,true,183,false,133,true,5.0,true,4.5|Training GA 1,true,141,true,130,false,6.2,false,3.2").toString();
+    return m_settings->value("recordsettings/thresholds", "Thresholds off,true,false,0,false,0,false,0,false,0|Race 10km,false,true,183,false,133,true,5.0,true,4.5|Training GA 1,false,true,141,true,130,false,6.2,false,3.2").toString();
 }
 void Settings::setThresholds(QString thresholds)
 {
     m_settings->setValue("recordsettings/thresholds", thresholds);
-}
-QString Settings::selectedThresholdProfile() const
-{
-    return m_settings->value("recordsettings/selectedThresholdProfile", "Thresholds off").toString();
-}
-void Settings::setSelectedThresholdProfile(QString selectedThresholdProfile)
-{
-    m_settings->setValue("recordsettings/selectedThresholdProfile", selectedThresholdProfile);
 }
 bool Settings::enableLogFile() const
 {
