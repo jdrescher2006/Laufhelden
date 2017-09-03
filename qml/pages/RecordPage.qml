@@ -44,6 +44,7 @@ Page
     property color cSecondaryTextColor: "white"
     property color cBorderColor: "steelblue"
     property int iBorderWidth: height / 400
+    property int iSecondaryTextHeightFactor: 4
 
     onStatusChanged:
     {
@@ -536,7 +537,7 @@ Page
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                height: parent.height / 5
+                height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 fontSizeMode: Text.Fit
                 color: cSecondaryTextColor
@@ -558,7 +559,7 @@ Page
             {
                 text: qsTr("min/km")
                 anchors.bottom: parent.bottom
-                height: parent.height / 5
+                height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
@@ -611,7 +612,7 @@ Page
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                height: parent.height / 5
+                height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 fontSizeMode: Text.Fit
                 color: cSecondaryTextColor
@@ -633,7 +634,7 @@ Page
             {
                 text: qsTr("km/h")
                 anchors.bottom: parent.bottom
-                height: parent.height / 5
+                height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
@@ -680,7 +681,7 @@ Page
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                height: parent.height / 5
+                height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 fontSizeMode: Text.Fit
                 color: cSecondaryTextColor
@@ -702,7 +703,7 @@ Page
             {
                 text: qsTr("km")
                 anchors.bottom: parent.bottom
-                height: parent.height / 5
+                height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
@@ -755,7 +756,7 @@ Page
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                height: parent.height / 5
+                height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 fontSizeMode: Text.Fit
                 color: cSecondaryTextColor
@@ -777,7 +778,7 @@ Page
             {
                 text: qsTr("bpm")
                 anchors.bottom: parent.bottom
-                height: parent.height / 5
+                height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
@@ -900,10 +901,9 @@ Page
                 }
             }
         }
-
-
     }
-    Map {
+    Map
+    {
         id: map
         width: parent.width
         height: map.gesture.enabled ? page.height : width * 3/4

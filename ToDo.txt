@@ -54,6 +54,7 @@ ToDo on the long run:
 
 
 Bugs:
+- strange things if there are no gpx files or there is no gpx folder
 - Start button on recordpage is green if accuracy says "No position"
 - if HRM is active and record page is left and then opened again, we get a BT error.
 - music is paused and resumed even when no music is played. Detect first if music is playing!
