@@ -165,7 +165,7 @@ function fncGetCurrentProfileIndex()
     return 0;
 }
 
-function fncCheckHRThresholds()
+function fncCheckHRThresholds(sHeartRate)
 {
     //Check if heartrate has correct value. sHeartrate comes from --> harbour-laufhelden.qml
     if (sHeartRate === "" || sHeartRate === "-1")

@@ -252,7 +252,7 @@ Page
             setMapViewport();
         }
 
-        Thresholds.fncCheckHRThresholds();
+        Thresholds.fncCheckHRThresholds(sHeartRate);
         Thresholds.fncCheckPaceThresholds(recorder.pace.toFixed(1));
     }
 
