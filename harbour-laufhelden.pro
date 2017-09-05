@@ -85,5 +85,6 @@ DISTFILES += \
     qml/audio/hlvb.wav \
     qml/img/calendar.png \
     qml/img/bat0.png \
-    qml/tools/Thresholds.js
+    qml/tools/Thresholds.js \
+    qml/tools/JSTools.js
 
