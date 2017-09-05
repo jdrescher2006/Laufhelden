@@ -47,11 +47,8 @@ Page {
             console.log("arrayThresholdProfiles.length: " + Thresholds.arrayThresholdProfiles.length.toString());
             console.log("selected profile index: " + Thresholds.fncGetCurrentProfileIndex().toString());
 
-
             //Set selected threshold profile to combobox
             idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
-
-
 
             pageStack.pushAttached(Qt.resolvedUrl("BTConnectPage.qml"));
 
@@ -72,6 +69,35 @@ Page {
         anchors.fill: parent
         contentHeight: column.height + Theme.paddingLarge;
         VerticalScrollDecorator {}
+
+        PullDownMenu
+        {
+            visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
+            id: menu
+            MenuItem
+            {
+                text: qsTr("Rename selected profile")
+                onClicked:
+                {
+                    var dialog = pageStack.push(id_Dialog_RenameProfile)
+                    dialog.sProfileName = idComboBoxThresholdProfiles.currentItem.text
+                    dialog.accepted.connect(function()
+                    {
+                        //console.log("New name: " + dialog.sProfileName);
+
+                        //Get selected profile object
+                        var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
+                        //Set value to object
+                        oActiveProfileObject.name = dialog.sProfileName;
+                        //Save theshold array to settings
+                        settings.thresholds = Thresholds.fncConvertArrayToSaveString();
+
+                        idComboBoxThresholdProfiles.currentItem.text = dialog.sProfileName;
+                    })
+                }
+            }
+        }
+
         Column
         {
             id: column
@@ -130,6 +156,7 @@ Page {
                 id: id_TextSwitch_UpperHRThreshold
                 text: qsTr("Upper heart rate limit")
                 description: qsTr("Alarm if limit is exceeded.")
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onCheckedChanged:
                 {
                     if (bLockOnCompleted)
@@ -153,6 +180,7 @@ Page {
                 minimumValue: 20
                 maximumValue: 240
                 enabled: id_TextSwitch_UpperHRThreshold.checked
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onValueChanged:
                 {
                     if (bLockOnCompleted)
@@ -161,7 +189,7 @@ Page {
                     //Get selected profile object
                     var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
                     //Set value to object
-                    oActiveProfileObject.iHRUpperThreshold = value;
+                    oActiveProfileObject.iHRUpperThreshold = value.toFixed(0);
                     //Save theshold array to settings
                     settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
@@ -171,6 +199,7 @@ Page {
                 id: id_TextSwitch_BottomHRThreshold
                 text: qsTr("Lower heart rate limit")
                 description: qsTr("Alarm if limit is exceeded.")
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onCheckedChanged:
                 {
                     if (bLockOnCompleted)
@@ -194,6 +223,7 @@ Page {
                 minimumValue: 20
                 maximumValue: 240
                 enabled: id_TextSwitch_BottomHRThreshold.checked
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onValueChanged:
                 {
                     if (bLockOnCompleted)
@@ -202,7 +232,7 @@ Page {
                     //Get selected profile object
                     var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
                     //Set value to object
-                    oActiveProfileObject.iHRLowerThreshold = value;
+                    oActiveProfileObject.iHRLowerThreshold = value.toFixed(0);
                     //Save theshold array to settings
                     settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
@@ -211,12 +241,14 @@ Page {
             {
                 color: Theme.highlightColor;
                 anchors { left: parent.left; right: parent.right; }
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
             }
             TextSwitch
             {
                 id: id_TextSwitch_UpperPaceThreshold
                 text: qsTr("Upper pace limit")
                 description: qsTr("Alarm if limit is exceeded.")
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onCheckedChanged:
                 {
                     if (bLockOnCompleted)
@@ -238,8 +270,9 @@ Page {
                 valueText: value.toFixed(1) + qsTr("min/km")
                 label: qsTr("Upper pace limit")
                 minimumValue: 0.1
-                maximumValue: 50.0
+                maximumValue: 10.0
                 enabled: id_TextSwitch_UpperPaceThreshold.checked
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onValueChanged:
                 {
                     if (bLockOnCompleted)
@@ -248,7 +281,7 @@ Page {
                     //Get selected profile object
                     var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
                     //Set value to object
-                    oActiveProfileObject.fPaceUpperThreshold = value;
+                    oActiveProfileObject.fPaceUpperThreshold = value.toFixed(1);
                     //Save theshold array to settings
                     settings.thresholds = Thresholds.fncConvertArrayToSaveString();
                 }
@@ -258,6 +291,7 @@ Page {
                 id: id_TextSwitch_BottomPaceThreshold
                 text: qsTr("Lower pace limit")
                 description: qsTr("Alarm if limit is exceeded.")
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onCheckedChanged:
                 {
                     if (bLockOnCompleted)
@@ -279,8 +313,9 @@ Page {
                 valueText: value.toFixed(1) + qsTr("min/km")
                 label: qsTr("Lower pace limit")
                 minimumValue: 0.1
-                maximumValue: 50.0
+                maximumValue: 10.0
                 enabled: id_TextSwitch_BottomPaceThreshold.checked
+                visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onValueChanged:
                 {
                     if (bLockOnCompleted)
@@ -289,9 +324,58 @@ Page {
                     //Get selected profile object
                     var oActiveProfileObject = Thresholds.fncGetProfileObjectByIndex(idComboBoxThresholdProfiles.currentIndex);
                     //Set value to object
-                    oActiveProfileObject.fPaceLowerThreshold = value;
+                    oActiveProfileObject.fPaceLowerThreshold = value.toFixed(1);
                     //Save theshold array to settings
                     settings.thresholds = Thresholds.fncConvertArrayToSaveString();
+                }
+            }
+        }
+
+        Component
+        {
+            id: id_Dialog_RenameProfile
+
+            Dialog
+            {
+                property string sProfileName
+
+                canAccept: id_TXF_ProfileName.text.length > 0 && id_TXF_ProfileName.text.indexOf(",") === -1 && id_TXF_ProfileName.text.indexOf("|") === -1
+                acceptDestination: page
+                acceptDestinationAction:
+                {
+                    sProfileName = id_TXF_ProfileName.text;
+                    PageStackAction.Pop;
+                }
+
+                Flickable
+                {
+                    width: parent.width
+                    height: parent.height
+                    interactive: false
+
+                    Column
+                    {
+                        width: parent.width
+
+                        DialogHeader { title: qsTr("Edit profile name") }
+
+                        Label
+                        {
+                            text: qsTr("Only text, no special characters!")
+                        }
+
+                        TextField
+                        {
+                            id: id_TXF_ProfileName
+                            width: parent.width
+                            label: qsTr("Threshold profile name")
+                            placeholderText: qsTr("Threshold profile name")
+                            text: sProfileName
+                            inputMethodHints: Qt.ImhNoPredictiveText
+                            focus: true
+                            horizontalAlignment: TextInput.AlignRight
+                        }
+                    }
                 }
             }
         }

@@ -22,6 +22,7 @@ import QtLocation 5.0
 import QtPositioning 5.0
 import "SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
+import "../tools/JSTools.js" as JSTools
 
 Page
 {
@@ -36,15 +37,21 @@ Page
 
     property bool bLockFirstPageLoad: true
     property int iButtonLoop : 3
-    property bool bEndLoop: false;
+    property bool bEndLoop: false;       
 
     property int iDisplayMode: 0
     property color cBackColor: "black"
     property color cPrimaryTextColor: "white"
-    property color cSecondaryTextColor: "white"
+    property color cSecondaryTextColor: "#D5D5D5"
     property color cBorderColor: "steelblue"
+
+    //Scaling
+    property int iHeaderLineWidthFactor: 10
+    property int iMiddleLineWidthFactor: 5
+    property int iFooterLineWidthFactor: 10
     property int iBorderWidth: height / 400
-    property int iSecondaryTextHeightFactor: 4
+    property double iPrimaryTextHeightFactor: 1.8
+    property double iSecondaryTextHeightFactor: 3.6
 
     onStatusChanged:
     {
@@ -79,6 +86,11 @@ Page
         {
             console.log("RecordPage active");            
 
+            //Load last display mode from settings
+            iDisplayMode = settings.displayMode;
+            //Set display mode to dialog
+            fncSetDisplayMode();
+
             //If this page is shown, prevent screen from going blank
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
@@ -93,6 +105,24 @@ Page
 
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(false);                    
+        }
+    }
+
+
+    Timer
+    {
+        id: idTimerUpdateCycle
+        interval: 1000
+        repeat: true
+        running: true
+        onTriggered:
+        {
+            //This timer is called every update cycle. Should be every second.
+
+
+            //Set current daytime to dialog.
+            var newDate = new Date();
+            idCurrentDayTime.text = JSTools.fncPadZeros(newDate.getHours(),2) + ":" + JSTools.fncPadZeros(newDate.getMinutes(),2) + ":" + JSTools.fncPadZeros(newDate.getSeconds(),2);
         }
     }
 
@@ -212,7 +242,8 @@ Page
     function newTrackPoint(coordinate)
     {
         //console.log("Position: " + recorder.currentPosition);
-        console.log("newTrackPoint");
+        console.log("newTrackPoint");        
+
 
         trackLine.addCoordinate(coordinate);
         if(!map.gesture.enabled)
@@ -223,7 +254,55 @@ Page
 
         Thresholds.fncCheckHRThresholds();
         Thresholds.fncCheckPaceThresholds(recorder.pace.toFixed(1));
-    }    
+    }
+
+    function fncSetDisplayMode()
+    {
+        if (iDisplayMode == 0)
+        {
+            //AMOLED mode
+            cBackColor = "black";
+            cPrimaryTextColor = "white";
+            cSecondaryTextColor = "#D5D5D5";
+            cBorderColor = "steelblue";
+
+            //Show mode
+            fncShowMessage(1,qsTr("AMOLED mode"), 1000);
+        }
+        else if (iDisplayMode == 1)
+        {
+            //LCD mode
+            cBackColor = "white";
+            cPrimaryTextColor = "black";
+            cSecondaryTextColor = "#5B5B5B";
+            cBorderColor = "steelblue";
+
+            //Show mode
+            fncShowMessage(1,qsTr("LCD mode"), 1000);
+        }
+        else if (iDisplayMode == 2)
+        {
+            //Night mode
+            cBackColor = "black";
+            cPrimaryTextColor = "#F50103";
+            cSecondaryTextColor = "#FF1937";
+            cBorderColor = "#F50103";
+
+            //Show mode
+            fncShowMessage(1,qsTr("Night mode"), 1000);
+        }
+        else
+        {
+            //Silica mode
+            cBackColor = "transparent";
+            cPrimaryTextColor = Theme.primaryColor;
+            cSecondaryTextColor = Theme.secondaryColor;
+            cBorderColor = Theme.secondaryColor;
+
+            //Show mode
+            fncShowMessage(1,qsTr("Silica mode"), 1000);
+        }
+    }
 
     MapCircle
     {
@@ -327,38 +406,11 @@ Page
                     if (iDisplayMode > 3)
                         iDisplayMode = 0;
 
-                    if (iDisplayMode == 0)
-                    {
-                        //LCD mode
-                        cBackColor = "white";
-                        cPrimaryTextColor = "black";
-                        cSecondaryTextColor = "#5B5B5B";
-                        cBorderColor = "steelblue";
-                    }
-                    else if (iDisplayMode == 1)
-                    {
-                        //AMOLED mode
-                        cBackColor = "black";
-                        cPrimaryTextColor = "white";
-                        cSecondaryTextColor = "#D5D5D5";
-                        cBorderColor = "steelblue";
-                    }
-                    else if (iDisplayMode == 2)
-                    {
-                        //Night mode
-                        cBackColor = "black";
-                        cPrimaryTextColor = "#F50103";
-                        cSecondaryTextColor = "#FF1937";
-                        cBorderColor = "#F50103";
-                    }
-                    else
-                    {
-                        //Silica mode
-                        cBackColor = "transparent";
-                        cPrimaryTextColor = Theme.primaryColor;
-                        cSecondaryTextColor = Theme.secondaryColor;
-                        cBorderColor = Theme.secondaryColor;
-                    }
+                    //Save current display mode to settings
+                    settings.displayMode = iDisplayMode;
+
+                    //Set display mode to dialog
+                    fncSetDisplayMode();
                 }
             }
         }
@@ -389,7 +441,7 @@ Page
             anchors.top: parent.top
             anchors.left: parent.left
             width: parent.width / 2
-            height: parent.height / 9
+            height: parent.height / iHeaderLineWidthFactor
 
             MouseArea
             {
@@ -460,7 +512,7 @@ Page
             anchors.top: parent.top
             anchors.right: parent.right
             width: parent.width / 2
-            height: parent.height / 9
+            height: parent.height / iHeaderLineWidthFactor
 
             MouseArea
             {
@@ -513,7 +565,7 @@ Page
             anchors.top: idItemHeaderLine.bottom
             anchors.left: parent.left
             width: parent.width / 2
-            height: parent.height / 4
+            height: parent.height / iMiddleLineWidthFactor
 
             MouseArea
             {
@@ -547,7 +599,7 @@ Page
             {
                 text: recorder.pace.toFixed(1)
                 anchors.centerIn: parent
-                height: parent.height / 2
+                height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -588,7 +640,7 @@ Page
             anchors.top: idItemHeaderLine.bottom
             anchors.right: parent.right
             width: parent.width / 2
-            height: parent.height / 4
+            height: parent.height / iMiddleLineWidthFactor
 
             MouseArea
             {
@@ -622,7 +674,7 @@ Page
             {
                 text: recorder.speed.toFixed(1)
                 anchors.centerIn: parent
-                height: parent.height / 2
+                height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -657,7 +709,7 @@ Page
             anchors.top: idItemFirstLine.bottom
             anchors.left: parent.left
             width: parent.width / 2
-            height: parent.height / 4
+            height: parent.height / iMiddleLineWidthFactor
 
             MouseArea
             {
@@ -691,7 +743,7 @@ Page
             {
                 text: (recorder.distance/1000).toFixed(1)
                 anchors.centerIn: parent
-                height: parent.height / 2
+                height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -727,12 +779,12 @@ Page
             }
         }
 
-        Item   //First Line Right
+        Item   //Second Line Right
         {
             anchors.top: idItemFirstLine.bottom
             anchors.right: parent.right
             width: parent.width / 2
-            height: parent.height / 4
+            height: parent.height / iMiddleLineWidthFactor
 
             MouseArea
             {
@@ -766,7 +818,7 @@ Page
             {
                 text: sHeartRate
                 anchors.centerIn: parent
-                height: parent.height / 2
+                height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -807,18 +859,239 @@ Page
             }
         }
 
-
-        Row
+        Item   //Third Line Left
         {
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: Theme.paddingSmall
-            width: parent.width
-            spacing: Theme.paddingMedium
+            id: idItemThirdLine
+            anchors.top: idItemSecondLine.bottom
+            anchors.left: parent.left
+            width: parent.width / 2
+            height: parent.height / iMiddleLineWidthFactor
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onClicked:
+                {
+                    console.log("Clicked!!!");
+                }
+            }
+
             Rectangle
             {
+                anchors.fill: parent
+                color: cBackColor
+                visible: iDisplayMode !== 3 //invisible in silica mode because we need system background
+            }
 
-                width: ((parent.width/2) - (Theme.paddingMedium/2))
-                height: parent.width/8
+            Text
+            {
+                text: qsTr("Pace ⌀:")
+                anchors.top: parent.top
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                height: parent.height / iSecondaryTextHeightFactor
+                width: parent.width
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                text: recorder.paceaverage.toFixed(1)
+                anchors.centerIn: parent
+                height: parent.height / iPrimaryTextHeightFactor
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cPrimaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                text: qsTr("min/km")
+                anchors.bottom: parent.bottom
+                height: parent.height / iSecondaryTextHeightFactor
+                width: parent.width
+                horizontalAlignment: Text.AlignRight
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Rectangle
+            {
+                width: parent.width
+                height: iBorderWidth
+                anchors.bottom: parent.bottom
+                color: cBorderColor
+            }
+            Rectangle
+            {
+                width: iBorderWidth
+                height: parent.height
+                anchors.right: parent.right
+                color: cBorderColor
+            }
+        }
+
+        Item   //Third Line Right
+        {
+            anchors.top: idItemSecondLine.bottom
+            anchors.right: parent.right
+            width: parent.width / 2
+            height: parent.height / iMiddleLineWidthFactor
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onClicked:
+                {
+                    console.log("Clicked!!!");
+                }
+            }
+
+            Rectangle
+            {
+                anchors.fill: parent
+                color: cBackColor
+                visible: iDisplayMode !== 3 //invisible in silica mode because we need system background
+            }
+
+            Text
+            {
+                text: qsTr("Speed ⌀:")
+                anchors.top: parent.top
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                height: parent.height / iSecondaryTextHeightFactor
+                width: parent.width
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                text: recorder.speedaverage.toFixed(1)
+                anchors.centerIn: parent
+                height: parent.height / iPrimaryTextHeightFactor
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cPrimaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                text: qsTr("km/h")
+                anchors.bottom: parent.bottom
+                height: parent.height / iSecondaryTextHeightFactor
+                width: parent.width
+                horizontalAlignment: Text.AlignRight
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Rectangle
+            {
+                width: parent.width
+                height: iBorderWidth
+                anchors.bottom: parent.bottom
+                color: cBorderColor
+            }
+        }
+
+        Item   //Fourth Line
+        {
+            id: idItemFourthLine
+            anchors.top: idItemThirdLine.bottom
+            anchors.left: parent.left
+            width: parent.width
+            height: parent.height / iMiddleLineWidthFactor
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onClicked:
+                {
+                    console.log("Clicked!!!");
+                }
+            }
+
+            Rectangle
+            {
+                anchors.fill: parent
+                color: cBackColor
+                visible: iDisplayMode !== 3 //invisible in silica mode because we need system background
+            }
+
+            Text
+            {
+                text: qsTr("Duration:")
+                anchors.top: parent.top
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                height: parent.height / iSecondaryTextHeightFactor
+                width: parent.width
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                text: recorder.time
+                anchors.centerIn: parent
+                height: parent.height / iPrimaryTextHeightFactor
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cPrimaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                id: idCurrentDayTime
+                anchors.bottom: parent.bottom
+                height: parent.height / iSecondaryTextHeightFactor
+                width: parent.width
+                horizontalAlignment: Text.AlignRight
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Rectangle
+            {
+                width: parent.width
+                height: iBorderWidth
+                anchors.bottom: parent.bottom
+                color: cBorderColor
+            }
+        }
+
+        Item    //Footer line
+        {
+            id: idItemFooterLine
+            anchors.top: idItemFourthLine.bottom
+            width: parent.width
+            height: (parent.height / iFooterLineWidthFactor) - Theme.paddingSmall
+
+            Rectangle
+            {
+                anchors.fill: parent
+                color: cBackColor
+                visible: iDisplayMode !== 3 //invisible in silica mode because we need system background
+            }
+
+            Rectangle
+            {
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.paddingSmall
+                width: ((parent.width/2) - (Theme.paddingLarge/2))
+                height: parent.height
                 color: recorder.isEmpty ? "dimgrey" : "lightsalmon"
                 border.color: recorder.isEmpty ? "grey" : "white"
                 border.width: 2
@@ -851,11 +1124,13 @@ Page
             }
             Rectangle
             {
-                width: ((parent.width/2) - (Theme.paddingMedium/2))
-                height: parent.width/8
+                width: ((parent.width/2) - (Theme.paddingLarge/2))
+                height: parent.height
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.paddingSmall
                 //color: !recorder.tracking && recorder.isEmpty ? "#389632" : "salmon"
-                color: (recorder.isEmpty && recorder.accuracy >= 30) ? "dimgrey" : (!recorder.tracking && recorder.isEmpty ? "#389632" : "salmon")
-                border.color: (recorder.isEmpty && recorder.accuracy >= 30) ? "grey" : "white"
+                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (!recorder.tracking && recorder.isEmpty ? "#389632" : "salmon")
+                border.color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
                 border.width: 2
                 radius: 10
                 Image
@@ -871,7 +1146,7 @@ Page
                     anchors.rightMargin: Theme.paddingMedium
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeLarge
-                    color: (recorder.isEmpty && recorder.accuracy >= 30) ? "grey" : "white"
+                    color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
                     text: !recorder.tracking && recorder.isEmpty ? qsTr("Start") : qsTr("End")
                 }
                 MouseArea
@@ -882,7 +1157,7 @@ Page
                         if (!recorder.tracking && recorder.isEmpty)
                         {
                             //Check accuracy
-                            if (recorder.accuracy < 30)
+                            if (recorder.accuracy > 0 && recorder.accuracy < 30)
                             {
                                 //Start workout
                                 recorder.tracking = true;

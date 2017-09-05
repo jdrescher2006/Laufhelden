@@ -33,6 +33,7 @@ class Settings : public QObject
     Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)    
     Q_PROPERTY(QString thresholds READ thresholds WRITE setThresholds)
     Q_PROPERTY(bool enableLogFile READ enableLogFile WRITE setEnableLogFile)
+    Q_PROPERTY(int displayMode READ displayMode WRITE setDisplayMode)
 
 public:
     explicit Settings(QObject *parent = 0);
@@ -62,6 +63,9 @@ public:
 
     bool enableLogFile() const;
     void setEnableLogFile(bool enableLogFile);
+
+    int displayMode() const;
+    void setDisplayMode(int displayMode);
 
 signals:
     void updateIntervalChanged();

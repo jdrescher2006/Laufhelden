@@ -95,7 +95,8 @@ Page
     {
         anchors.fill: parent
         contentHeight: column.height + Theme.paddingLarge;
-        VerticalScrollDecorator {}
+        VerticalScrollDecorator {}       
+
         Column
         {
             id: column
@@ -218,5 +219,7 @@ Page
                 }
             }
         }
-    }
+
+
+    }    
 }

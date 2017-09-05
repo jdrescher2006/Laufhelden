@@ -228,6 +228,9 @@ void HistoryModel::readDirectory() {
     QDir dir = QDir(dirName);
     if(!dir.exists()) {
         qDebug()<<"Directory doesn't exist, nothing to read";
+
+        emit this->sigLoadingError();
+
         return;
     }
     dir.setFilter(QDir::Files);

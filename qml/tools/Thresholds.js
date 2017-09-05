@@ -73,8 +73,14 @@ function fncConvertSaveStringToArray(sSaveString)
         for (var j = 0; j < arParameters.length; j++)
         {
             arrayThresholdProfiles[i] = new Object();
-            arrayThresholdProfiles[i]["name"] = arParameters[0];
-            arrayThresholdProfiles[i]["active"] = arParameters[1];
+
+            //First one is always off!
+            if (i === 0)
+                arrayThresholdProfiles[i]["name"] = qsTr("Thresholds off");
+            else
+                arrayThresholdProfiles[i]["name"] = arParameters[0];
+
+            arrayThresholdProfiles[i]["active"] = (arParameters[1] === "true");
             arrayThresholdProfiles[i]["bHRUpperThresholdEnable"] = (arParameters[2] === "true");
             arrayThresholdProfiles[i]["iHRUpperThreshold"] = parseInt(arParameters[3]);
             arrayThresholdProfiles[i]["bHRLowerThresholdEnable"] = (arParameters[4] === "true");

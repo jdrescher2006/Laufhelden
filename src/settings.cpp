@@ -87,7 +87,7 @@ void Settings::setShowMapRecordPage(bool showMapRecordPage)
 }
 QString Settings::thresholds() const
 {
-    return m_settings->value("recordsettings/thresholds", "Thresholds off,true,false,0,false,0,false,0,false,0|Race 10km,false,true,183,false,133,true,5.0,true,4.5|Training GA 1,false,true,141,true,130,false,6.2,false,3.2").toString();
+    return m_settings->value("recordsettings/thresholds", "Thresholds off,true,false,0,false,0,false,0,false,0|Wettkampf 10km,false,true,183,false,133,true,5.0,true,4.5|Training GA 1,false,true,141,true,130,false,6.2,false,3.2").toString();
 }
 void Settings::setThresholds(QString thresholds)
 {
@@ -100,6 +100,14 @@ bool Settings::enableLogFile() const
 void Settings::setEnableLogFile(bool enableLogFile)
 {
      m_settings->setValue("generalsettings/enableLogFile", enableLogFile);
+}
+int Settings::displayMode() const
+{
+    return m_settings->value("recordsettings/displayMode", 1000).toInt();
+}
+void Settings::setDisplayMode(int displayMode)
+{
+    m_settings->setValue("recordsettings/displayMode", displayMode);
 }
 
 

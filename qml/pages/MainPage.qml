@@ -74,6 +74,7 @@ Page
                 bLoadingFiles = true;
 
                 id_HistoryModel.readDirectory();
+
                 bLoadHistoryData = false;
             }
         }
@@ -108,6 +109,12 @@ Page
         {
             console.log("Amount of tracks: " + iAmountGPXFiles.toString());
             iGPXFiles = iAmountGPXFiles;
+        }
+        onSigLoadingError:
+        {
+            console.log("Error while loading GPX files");
+
+            bLoadingFiles = false;
         }
     }
 

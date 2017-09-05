@@ -65,6 +65,7 @@ public:
 
 signals:
     void sigLoadingFinished();
+    void sigLoadingError();
     void sigAmountGPXFiles(int iAmountGPXFiles);
 
 public slots:
