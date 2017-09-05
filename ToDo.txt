@@ -1,5 +1,5 @@
 ToDo for first release to openrepos:
-- Thresholds profiles should be renameable!
+- add new threshold profiles
 - put all icons and pictures in the img folder!
 - Alerts/thresholds:
 	- implement profiles
@@ -20,7 +20,7 @@ ToDo for first release to openrepos:
 		- current, minimum, maximum height (gps)
 		- up/down travelled height
 		- energy kcal
-		- average speed/tempo
+		- average speed/tempo -> OK
 		- speed/tempo of last 100m/1km
 		- top speed/tempo
 		- average, minimum, maximum heart rate 
@@ -35,6 +35,7 @@ ToDo for first release to openrepos:
 
 
 ToDo on the long run:
+- AM/PM mode for recordpage
 - enable night mode automatically. 
 - view diagrams on the statistics page. See app "Rush Hour" which is on openrepos.
 - make volume of audio messages adjustable
@@ -54,10 +55,7 @@ ToDo on the long run:
 
 
 Bugs:
-- strange things if there are no gpx files or there is no gpx folder
-- Start button on recordpage is green if accuracy says "No position"
 - if HRM is active and record page is left and then opened again, we get a BT error.
-- music is paused and resumed even when no music is played. Detect first if music is playing!
 - after bt scan and finding new HRM device, not able to connect. First need to restart app.
 - sometimes there is a view problem on mainpage after a completed workout.
 - compiler issue, comparison between signed and unsigned
@@ -72,6 +70,12 @@ Bugs:
 
 
 Completed:
+- Thresholds profiles should be renameable!
+- music is paused and resumed even when no music is played. Detect first if music is playing!
+- Start button on recordpage is green if accuracy says "No position"
+- save last display mode to settings
+- last used threshold profile is not recalled
+- strange things if there are no gpx files or there is no gpx folder
 - mainpage needs a progressbar.
 - pause music if audio message is played
 - fix mapcircle on recordpage
