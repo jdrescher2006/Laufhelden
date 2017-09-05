@@ -17,7 +17,6 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "SharedResources.js" as SharedResources
 
 Dialog {
     id: saveDialog
@@ -33,8 +32,8 @@ Dialog {
     Column {
         anchors.fill: parent
         DialogHeader {
-            title: "Save track"
-            acceptText: "Save"
+            title: qsTr("Save track")
+            acceptText: qsTr("Save")
         }
         TextField {
             id: nameField
@@ -43,7 +42,7 @@ Dialog {
             focus: true
             label: qsTr("Name")
             placeholderText: qsTr("Name")
-            text: recorder.startingDateTime + " - " + SharedResources.arrayLookupWorkoutTableByName[settings.workoutType].labeltext
+            text: ""
             EnterKey.enabled: true
             EnterKey.iconSource: "image://theme/icon-m-enter-next"
             EnterKey.onClicked: descriptionField.focus = true

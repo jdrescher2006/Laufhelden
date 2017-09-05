@@ -55,17 +55,10 @@ HEADERS += \
     src/logwriter.h
 
 DISTFILES += \
-    qml/cd_logo.jpg \
     qml/pages/MainPage.qml \
     qml/pages/BTConnectPage.qml \
     qml/tools/Messagebox.qml \
-    qml/icon-lock-error.png \
-    qml/icon-lock-info.png \
-    qml/icon-lock-ok.png \
-    qml/icon-lock-warning.png \
     qml/laufhelden.png \
-    qml/pages/SharedResources.js \
-    qml/heart.png \
     qml/pages/PreRecordPage.qml \
     qml/workouticons/biking.png \
     qml/workouticons/mountainBiking.png \
@@ -86,5 +79,22 @@ DISTFILES += \
     qml/img/calendar.png \
     qml/img/bat0.png \
     qml/tools/Thresholds.js \
-    qml/tools/JSTools.js
+    qml/tools/JSTools.js \
+    qml/tools/SharedResources.js \
+    qml/img/bat20.png \
+    qml/img/bat50.png \
+    qml/img/bat80.png \
+    qml/img/bat100.png \
+    qml/img/flame.png \
+    qml/img/heart.png \
+    qml/img/length.png \
+    qml/img/mountains.png \
+    qml/img/speed.png \
+    qml/img/speedavg.png \
+    qml/img/time.png \
+    qml/img/cd_logo.jpg \
+    qml/img/icon-lock-error.png \
+    qml/img/icon-lock-info.png \
+    qml/img/icon-lock-ok.png \
+    qml/img/icon-lock-warning.png
 

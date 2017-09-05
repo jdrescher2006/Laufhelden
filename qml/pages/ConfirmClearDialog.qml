@@ -7,8 +7,8 @@ Dialog {
     Column {
         anchors.fill: parent
         DialogHeader {
-            title: "Start a new track"
-            acceptText: "Start"
+            title: qsTr("Start a new track")
+            acceptText: qsTr("Start")
         }
     }
 

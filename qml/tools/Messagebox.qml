@@ -63,31 +63,31 @@ BackgroundItem
         {
             idRectangleColor.color = "#DEB954";
             idImageIcon.visible = true;
-            idImageIcon.source = "../icon-lock-warning.png"
+            idImageIcon.source = "../img/icon-lock-warning.png"
         }
         else if (type === 1)//INFO
         {
             idRectangleColor.color = "#7086FF";
             idImageIcon.visible = true;
-            idImageIcon.source = "../icon-lock-info.png"
+            idImageIcon.source = "../img/icon-lock-info.png"
         }
         else if (type === 2)//SUCCESS
         {
             idRectangleColor.color = "#2FE629";
             idImageIcon.visible = true;
-            idImageIcon.source = "../icon-lock-ok.png"
+            idImageIcon.source = "../img/icon-lock-ok.png"
         }
         else if (type === 3)//ERROR
         {
             idRectangleColor.color = "#F23730";
             idImageIcon.visible = true;
-            idImageIcon.source = "../icon-lock-error.png"
+            idImageIcon.source = "../img/icon-lock-error.png"
         }
         else if (type === 4)//SPECIAL IMAGE
         {
             idRectangleColor.color = "#F9D440";
             idImageIcon.visible = true;
-            idImageIcon.source = "../cd_logo.jpg"
+            idImageIcon.source = "../img/cd_logo.jpg"
         }
     }
 
