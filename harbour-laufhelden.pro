@@ -43,6 +43,10 @@ OTHER_FILES += qml/harbour-laufhelden.qml \
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
+# to disable building translations every time, comment out the
+# following CONFIG line
+CONFIG += sailfishapp_i18n
+
 TRANSLATIONS += translations/harbour-laufhelden-de.ts
 
 HEADERS += \
@@ -96,5 +100,5 @@ DISTFILES += \
     qml/img/icon-lock-error.png \
     qml/img/icon-lock-info.png \
     qml/img/icon-lock-ok.png \
-    qml/img/icon-lock-warning.png
+    qml/img/icon-lock-warning.png \
 
