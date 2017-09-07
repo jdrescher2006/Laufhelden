@@ -18,6 +18,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../tools/SharedResources.js" as SharedResources
+import "../tools/Thresholds.js" as Thresholds
 
 Page
 {

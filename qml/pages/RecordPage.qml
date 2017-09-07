@@ -252,8 +252,35 @@ Page
             setMapViewport();
         }
 
-        Thresholds.fncCheckHRThresholds(sHeartRate);
-        Thresholds.fncCheckPaceThresholds(recorder.pace.toFixed(1));
+        var iThresholdTriggered = Thresholds.fncCheckHRThresholds(sHeartRate);
+
+        if (iThresholdTriggered === 1)   //normal
+        {
+            fncPlaySound("audio/hr_normal.wav");
+        }
+        else if (iThresholdTriggered === 2)   //low
+        {
+            fncPlaySound("audio/hr_toolow.wav");
+        }
+        else if (iThresholdTriggered === 3)   //high
+        {
+            fncPlaySound("audio/hr_toohigh.wav");
+        }
+
+        iThresholdTriggered = Thresholds.fncCheckPaceThresholds(recorder.pace.toFixed(1));
+
+        if (iThresholdTriggered === 1)   //normal
+        {
+            fncPlaySound("audio/pace_normal.wav");
+        }
+        else if (iThresholdTriggered === 2)   //low
+        {
+            fncPlaySound("audio/pace_toolow.wav");
+        }
+        else if (iThresholdTriggered === 3)   //high
+        {
+            fncPlaySound("audio/pace_toohigh.wav");
+        }
     }
 
     function fncSetDisplayMode()

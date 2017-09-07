@@ -197,7 +197,8 @@ function fncCheckHRThresholds(sHeartRate)
                 iHRAboveTopCounter = 0;
                 iLastHeartRateArea = 2;
 
-                fncPlaySound("audio/hr_toohigh.wav");
+                return 3;   //too high
+                //fncPlaySound("audio/hr_toohigh.wav");
             }
             else
                 iHRAboveTopCounter+=1;
@@ -211,7 +212,8 @@ function fncCheckHRThresholds(sHeartRate)
                 iHRBelowTopCounter = 0;
                 iLastHeartRateArea = 1;
 
-                fncPlaySound("audio/hr_normal.wav");
+                return 1;   //normal
+                //fncPlaySound("audio/hr_normal.wav");
             }
             else
                 iHRBelowTopCounter+=1;
@@ -235,7 +237,8 @@ function fncCheckHRThresholds(sHeartRate)
                 iHRBelowBottomCounter = 0;
                 iLastHeartRateArea = 0;
 
-                fncPlaySound("audio/hr_toolow.wav");
+                return 2;   //too low
+                //fncPlaySound("audio/hr_toolow.wav");
             }
             else
                 iHRBelowBottomCounter+=1;
@@ -249,7 +252,8 @@ function fncCheckHRThresholds(sHeartRate)
                 iHRAboveBottomCounter = 0;
                 iLastHeartRateArea = 1;
 
-                fncPlaySound("audio/hr_normal.wav");
+                return 1;   //normal
+                //fncPlaySound("audio/hr_normal.wav");
             }
             else
                 iHRAboveBottomCounter+=1;
@@ -284,9 +288,10 @@ function fncCheckPaceThresholds(fPace)
                 iPaceAboveTopCounter = 0;
                 iLastPaceArea = 2;
 
-                fncPlaySound("audio/pace_toolow.wav");
+                return 2;   //too low
 
-                fncVibrate(3, 500);
+                //fncPlaySound("audio/pace_toolow.wav");
+                //fncVibrate(3, 500);
             }
             else
                 iPaceAboveTopCounter+=1;
@@ -300,7 +305,9 @@ function fncCheckPaceThresholds(fPace)
                 iPaceBelowTopCounter = 0;
                 iLastPaceArea = 1;
 
-                fncPlaySound("audio/pace_normal.wav");
+                return 1;   //normal
+
+                //fncPlaySound("audio/pace_normal.wav");
             }
             else
                 iPaceBelowTopCounter+=1;
@@ -324,9 +331,11 @@ function fncCheckPaceThresholds(fPace)
                 iPaceBelowBottomCounter = 0;
                 iLastPaceArea = 0;
 
-                fncPlaySound("audio/pace_toohigh.wav");
+                return 3;   //too high
 
-                fncVibrate(3, 200);
+                //fncPlaySound("audio/pace_toohigh.wav");
+
+                //fncVibrate(3, 200);
             }
             else
                 iPaceBelowBottomCounter+=1;
@@ -340,7 +349,9 @@ function fncCheckPaceThresholds(fPace)
                 iPaceAboveBottomCounter = 0;
                 iLastPaceArea = 1;
 
-                fncPlaySound("audio/pace_normal.wav");
+                return 1;   //normal
+
+                //fncPlaySound("audio/pace_normal.wav");
             }
             else
                 iPaceAboveBottomCounter+=1;
