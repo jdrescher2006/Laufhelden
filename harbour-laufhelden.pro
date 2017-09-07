@@ -101,4 +101,10 @@ DISTFILES += \
     qml/img/icon-lock-info.png \
     qml/img/icon-lock-ok.png \
     qml/img/icon-lock-warning.png \
+    qml/audio/hr_toohigh_en_male.wav \
+    qml/audio/hr_normal_en_male.wav \
+    qml/audio/hr_toolow_en_male.wav \
+    qml/audio/pace_toohigh_en_male.wav \
+    qml/audio/pace_toolow_en_male.wav \
+    qml/audio/pace_normal_en_male.wav
 
