@@ -3,7 +3,6 @@ ToDo for first release to openrepos:
 - BUG: MainPage values for workout total time does nor fit
 - implement add/remove threshold profiles
 - put all icons and pictures in the img folder!
-- search for all "Rena" and replace
 - bluetooth data logging function (writing to files does not work???)
 - translation to german language
 - support all workout types from meerun
@@ -66,6 +65,7 @@ Bugs:
 
 
 Completed:
+- search for all "Rena" and replace
 - Record page: replace menu items (stop, pause, continue, start) with buttons
 - cover dialog needs complete workover
 	- remove app name, add app icon

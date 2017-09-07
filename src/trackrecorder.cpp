@@ -310,8 +310,8 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     } else
     {
         qDebug()<<"GPX file successfully written";
-        QDir renaDir = QDir(homeDir + "/" + subDir);
-        renaDir.remove("Autosave");
+        QDir appDir = QDir(homeDir + "/" + subDir);
+        appDir.remove("Autosave");
     }    
 }
 
