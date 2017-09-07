@@ -1,19 +1,23 @@
 ToDo for first release to openrepos:
-- add new threshold profiles
+- Workouts need to be sorted after date on MainPage
+- BUG: MainPage values for workout total time does nor fit
+- implement add/remove threshold profiles
 - put all icons and pictures in the img folder!
-- Alerts/thresholds:
-	- implement profiles
-	- save one data string per profile, including profile name
-- names of workouts still not good. Workouts are not sorted properly due to this.
 - search for all "Rena" and replace
-- Style first page list view like in meerun (upper part of page should not scroll)
-- bluetooth data logging function
+- bluetooth data logging function (writing to files does not work???)
 - translation to german language
 - support all workout types from meerun
-- cover dialog needs complete workover
-	- remove app name, add app icon
-- implement autopause
-- save pause time to gpx file. Look in Meerun gpx file where to save pause data.
+
+
+
+
+
+
+ToDo on the long run:
+- alert system:
+	- vibration alert / sound alert
+	- send vibration also to pebble via dbus call provided by rockpool (does not exist. Have to do this myself?)
+	- make sound file configurable or changeable
 - record page workover	
 	- choose what to display on the fields
 	- add more data to view
@@ -25,16 +29,9 @@ ToDo for first release to openrepos:
 		- top speed/tempo
 		- average, minimum, maximum heart rate 
 		- pause time
-- alert system:
-	- vibration alert / sound alert
-	- send vibration also to pebble via dbus call provided by rockpool (does not exist. Have to do this myself?)
-	- make sound file configurable or changeable
-	- alert thresholds:
-		- heart rate upper and lower each with hysteresis
-		- speed upper and lower each with hysteresis
-
-
-ToDo on the long run:
+- implement autopause
+- save pause time to gpx file. Look in Meerun gpx file where to save pause data.
+- Style first page list view like in meerun (upper part of page should not scroll)
 - AM/PM mode for recordpage
 - enable night mode automatically. 
 - view diagrams on the statistics page. See app "Rush Hour" which is on openrepos.
@@ -42,7 +39,6 @@ ToDo on the long run:
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
 - introduce configurable lock page (LCD mode, AMOLED mode)
-- Record page: replace menu items (stop, pause, continue, start) with buttons
 - support workouts without gps e.g. indoor activities
 - choose metrics, km/miles
 - new workout icons
@@ -70,6 +66,13 @@ Bugs:
 
 
 Completed:
+- Record page: replace menu items (stop, pause, continue, start) with buttons
+- cover dialog needs complete workover
+	- remove app name, add app icon
+- names of workouts still not good. Workouts are not sorted properly due to this.
+- Alerts/thresholds:
+	- implement profiles
+	- save one data string per profile, including profile name
 - Thresholds profiles should be renameable!
 - music is paused and resumed even when no music is played. Detect first if music is playing!
 - Start button on recordpage is green if accuracy says "No position"
