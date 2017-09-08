@@ -1,18 +1,31 @@
 ToDo for first release to openrepos:
-- Workouts need to be sorted after date on MainPage
-- BUG: MainPage values for workout total time does nor fit
-- implement add/remove threshold profiles
-- put all icons and pictures in the img folder!
-- bluetooth data logging function (writing to files does not work???)
-- translation to german language
-- support all workout types from meerun
-
-
+- detailspage:
+	- make heartrate invisible if there is no data
+	- some workouts have no max speed
+	- texts need general overhaul!
+- what is ConfirmClearDialog for? Maybe delete this thing...
+- set release date to .changes file
+- complete translation to german language
+- support all workout types from meerun (is not possible because export function in meerun is broken for many workout types)
+- test if a new workout is saved without having the gpx files folder
+- sometimes there is a view problem on mainpage after a completed workout.
+- GPS starts with app start. Make it start with recordpage.
 
 
 
 
 ToDo on the long run:
+- introduce reward system:
+	- fastest run 5/10/20/40 km
+	- longest run (distance/time)
+	- most workouts in a week/month
+	- most distance in a week/month
+	- most time in a week/month
+	-  5km in under 30/25/20/15 mins
+	- 10km in under 1h/55/50/48/45/40/35/30 mins
+- view burned calories on mainpage and recordpage and detailspage
+- bluetooth data logging function (writing to files does not work???)
+- introduce female voice
 - alert system:
 	- vibration alert / sound alert
 	- send vibration also to pebble via dbus call provided by rockpool (does not exist. Have to do this myself?)
@@ -52,11 +65,9 @@ ToDo on the long run:
 Bugs:
 - if HRM is active and record page is left and then opened again, we get a BT error.
 - after bt scan and finding new HRM device, not able to connect. First need to restart app.
-- sometimes there is a view problem on mainpage after a completed workout.
 - compiler issue, comparison between signed and unsigned
 - write to log file is not working, strange no error or something...
 - sometimes, maybe if app is left on cover view or even in background, screen on is not longer working
-- GPS starts with app start. Make it start with recordpage.
 - autosave file might not get deleted after a training session
 	- complete autosave mechanism must be checked. There are UI problems with this also.
 	- if autosave is there on start on app, ask user if to resume workout
@@ -65,6 +76,11 @@ Bugs:
 
 
 Completed:
+- Workouts need to be sorted after date on MainPage
+- implement add/remove threshold profiles
+- put all icons and pictures in the img folder!
+- make voice language selectable and save to settings
+- BUG: MainPage values for workout total time does nor fit
 - search for all "Rena" and replace
 - Record page: replace menu items (stop, pause, continue, start) with buttons
 - cover dialog needs complete workover
