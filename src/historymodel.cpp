@@ -212,10 +212,18 @@ void HistoryModel::loadingFinished()
     for(int j=0;j<m_trackList.length();j++)
     {
         this->iWorkoutDuration = this->iWorkoutDuration + m_trackList.at(j).duration;
-        this->rWorkoutDistance = this->rWorkoutDistance + m_trackList.at(j).distance;
+        this->rWorkoutDistance = this->rWorkoutDistance + m_trackList.at(j).distance;               
     }
 
+    //Now we should sort the array after date!
+    qSort(m_trackList.begin(), m_trackList.end(), HistoryModel::bCompareDates);
+
     emit this->sigLoadingFinished();
+}
+
+bool HistoryModel::bCompareDates(const TrackItem &ti1, const TrackItem &ti2)
+{
+    return ti1.time < ti2.time;
 }
 
 void HistoryModel::readDirectory() {
@@ -244,7 +252,9 @@ void HistoryModel::readDirectory() {
     {
         //Check if we already have an item with the current filename
         bool bAlreadyHaveItem = false;
-        //qDebug()<<"CurrentFilename: "<<entries.at(i);
+
+        qDebug()<<"CurrentFilename: "<<entries.at(i);
+
         for(int j=0;j<m_trackList.length();j++)
         {
             //qDebug()<<"Filename["<<j<<"]: "<<m_trackList.at(j).filename;

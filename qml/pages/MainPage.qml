@@ -89,11 +89,17 @@ Page
         {            
             console.log("Workout rowCount: " + id_HistoryModel.rowCount());
             console.log("Workout distance: " + id_HistoryModel.rDistance());
-            console.log("Workout duration: " + id_HistoryModel.iDuration());
+            console.log("Workout duration: " + id_HistoryModel.iDuration());            
 
-            var date = new Date(id_HistoryModel.iDuration());
+            var iHours = Math.floor(id_HistoryModel.iDuration() / 3600);
+            console.log("iHours: " + iHours);
 
-            sWorkoutDuration = date.getHours() + "h " + date.getMinutes() + "m " + date.getSeconds() + "s";
+            var iMinutes = Math.floor((id_HistoryModel.iDuration() - iHours * 3600) / 60);
+            console.log("iMinutes: " + iMinutes);
+
+            var iSeconds = Math.floor(id_HistoryModel.iDuration() - (iHours * 3600) - (iMinutes * 60));
+
+            sWorkoutDuration = iHours + "h " + iMinutes + "m " + iSeconds + "s";
             sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
 
             historyList.model = undefined;
@@ -122,9 +128,9 @@ Page
     SilicaListView
     {
         anchors.fill: parent
-
         id: historyList
         model: id_HistoryModel
+        VerticalScrollDecorator {}
 
         PullDownMenu
         {

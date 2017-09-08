@@ -23,7 +23,8 @@
 #include <QDateTime>
 #include <QtConcurrent>
 
-struct TrackItem {
+struct TrackItem
+{
     int id;
     QString filename;
     bool ready;
@@ -77,6 +78,7 @@ private:
     QFutureWatcher<TrackItem> trackLoading;
     int iWorkoutDuration;
     qreal rWorkoutDistance;
+    static bool bCompareDates(const TrackItem &ti1, const TrackItem &ti2);
 };
 
 #endif // HISTORYMODEL_H
