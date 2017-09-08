@@ -71,13 +71,7 @@ DISTFILES += \
     qml/tools/ScreenBlank.qml \
     qml/pages/catch-action.wav \
     rpm/harbour-laufhelden.changes \
-    qml/audio/hr_normal.wav \
-    qml/audio/hr_toohigh.wav \
-    qml/audio/hr_toolow.wav \
     qml/pages/ThresholdSettingsPage.qml \
-    qml/audio/pace_normal.wav \
-    qml/audio/pace_toohigh.wav \
-    qml/audio/pace_toolow.wav \
     qml/tools/MediaPlayerControl.qml \
     qml/audio/hlvb.wav \
     qml/img/calendar.png \
@@ -106,5 +100,11 @@ DISTFILES += \
     qml/audio/hr_toolow_en_male.wav \
     qml/audio/pace_toohigh_en_male.wav \
     qml/audio/pace_toolow_en_male.wav \
-    qml/audio/pace_normal_en_male.wav
+    qml/audio/pace_normal_en_male.wav \
+    qml/audio/hr_normal_de_male.wav \
+    qml/audio/hr_toohigh_de_male.wav \
+    qml/audio/hr_toolow_de_male.wav \
+    qml/audio/pace_normal_de_male.wav \
+    qml/audio/pace_toohigh_de_male.wav \
+    qml/audio/pace_toolow_de_male.wav
 
