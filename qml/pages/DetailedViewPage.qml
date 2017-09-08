@@ -86,7 +86,7 @@ Page {
             width: parent.width
             PageHeader {
                 id: header
-                title: name==="" ? "Unnamed track" : name
+                title: name==="" ? qsTr("Unnamed track") : name
                 Behavior on opacity {
                     FadeAnimation {}
                 }
@@ -95,7 +95,7 @@ Page {
                 id: gridContainer
                 x: Theme.paddingLarge
                 width: parent.width
-                spacing: Theme.paddingLarge
+                spacing: Theme.paddingMedium
                 columns: 2
                 opacity: 0.2
                 Behavior on opacity {
@@ -115,7 +115,7 @@ Page {
                 Label {
                     id: descriptionData
                     width: parent.width - descriptionLabel.width - 2*Theme.paddingLarge
-                    text: trackLoader.description==="" ? "No description" : trackLoader.description
+                    text: trackLoader.description==="" ? qsTr("No description") : trackLoader.description
                     wrapMode: Text.WordWrap
                 }
                 Label {
@@ -125,7 +125,7 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Starting time:"
+                    text: qsTr("Starting time:")
                 }
                 Label {
                     id: timeData
@@ -139,7 +139,7 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Duration:"
+                    text: qsTr("Duration:")
                 }
                 Label {
                     id: durationData
@@ -153,7 +153,7 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Distance:"
+                    text: qsTr("Distance:")
                 }
                 Label {
                     id: distanceData
@@ -168,7 +168,7 @@ Page {
                     id: avgSpeedLabel
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Average speed:"
+                    text: qsTr("Average speed:")
                 }
                 Label {
                     id: speedData
@@ -183,7 +183,7 @@ Page {
                     id: maxSpeedLabel
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Maximum speed:"
+                    text: qsTr("Maximum speed:")
                 }
                 Label {
                     id: maxSpeedData
@@ -199,7 +199,7 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Average pace:"
+                    text: qsTr("Average pace:")
                 }
                 Label {
                     id: paceData
@@ -214,7 +214,7 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Heart rate Min/Max/Ø:"
+                    text: qsTr("Heart rate Min/Max/Ø:")
                 }
                 Label {
                     id: heartRateData
