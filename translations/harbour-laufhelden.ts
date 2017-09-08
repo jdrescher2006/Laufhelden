@@ -102,6 +102,45 @@
     </message>
 </context>
 <context>
+    <name>DetailedViewPage</name>
+    <message>
+        <source>Unnamed track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Average speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum speed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Average pace:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heart rate Min/Max/Ø:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainPage</name>
     <message>
         <source>About</source>
@@ -336,10 +375,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Record page portrait</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Keep record page in portrait mode.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -349,6 +384,26 @@
     </message>
     <message>
         <source>File: $HOME/Laufhelden/log.txt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Record page portrait mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -419,6 +474,14 @@
     </message>
     <message>
         <source>Threshold profile name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected profile</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

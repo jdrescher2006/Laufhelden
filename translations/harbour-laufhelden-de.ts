@@ -79,7 +79,7 @@
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Start</translation>
     </message>
     <message>
         <source>Clear unsaved track and start a new one?</source>
@@ -99,6 +99,45 @@
     <message>
         <source> bpm</source>
         <translation> bpm</translation>
+    </message>
+</context>
+<context>
+    <name>DetailedViewPage</name>
+    <message>
+        <source>Unnamed track</source>
+        <translation>Unbenannter Track</translation>
+    </message>
+    <message>
+        <source>No description</source>
+        <translation>Keine Beschreibung</translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation>Startzeit:</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Dauer:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation>Distanz:</translation>
+    </message>
+    <message>
+        <source>Average speed:</source>
+        <translation>Geschwindigkeit ⌀:</translation>
+    </message>
+    <message>
+        <source>Maximum speed:</source>
+        <translation>Geschwindigkeit max.:</translation>
+    </message>
+    <message>
+        <source>Average pace:</source>
+        <translation>Tempo ⌀:</translation>
+    </message>
+    <message>
+        <source>Heart rate Min/Max/Ø:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -148,166 +187,166 @@
     <name>PreRecordPage</name>
     <message>
         <source>Workout settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktivitäts-Einstellungen</translation>
     </message>
     <message>
         <source>Let&apos;s go!</source>
-        <translation type="unfinished"></translation>
+        <translation>Los geht&apos;s!</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivität</translation>
     </message>
     <message>
         <source>Use HRM device</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulsgurt benutzen</translation>
     </message>
     <message>
         <source>Use heart rate monitor in this workout.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulsgurt in dieser Aktivität benutzen</translation>
     </message>
     <message>
         <source>Disable screen blanking</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Disbale screen blanking when recording.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildschirmschoner abschalten</translation>
     </message>
 </context>
 <context>
     <name>RecordPage</name>
     <message>
         <source>AMOLED mode</source>
-        <translation type="unfinished"></translation>
+        <translation>AMOLED Modus</translation>
     </message>
     <message>
         <source>LCD mode</source>
-        <translation type="unfinished"></translation>
+        <translation>LCD Modus</translation>
     </message>
     <message>
         <source>Night mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Nacht Modus</translation>
     </message>
     <message>
         <source>Silica mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Silica Modus</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>Hide Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte ausblenden</translation>
     </message>
     <message>
         <source>Show Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte anzeigen</translation>
     </message>
     <message>
         <source>Disconnect HRM</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulsgurt trennen</translation>
     </message>
     <message>
         <source>Reconnect HRM</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulsgurt verbinden</translation>
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>hold button for: </source>
-        <translation type="unfinished"></translation>
+        <translation>Button gedrückt halten für: </translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
-        <translation type="unfinished"></translation>
+        <translation>GPS Genauigkeit:</translation>
     </message>
     <message>
         <source>No position</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Position</translation>
     </message>
     <message>
         <source>too low: </source>
-        <translation type="unfinished"></translation>
+        <translation>zu niedrig: </translation>
     </message>
     <message>
         <source>Recording</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzeichnen</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestoppt</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausiert</translation>
     </message>
     <message>
         <source>Pace:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo:</translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished"></translation>
+        <translation>min/km</translation>
     </message>
     <message>
         <source>Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit:</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished"></translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Distanz:</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished"></translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>Heartrate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenz:</translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished"></translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Bat:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bat:</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo ⌀:</translation>
     </message>
     <message>
         <source>Speed ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit ⌀:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dauer:</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pause</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortsetzen</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <source>End</source>
-        <translation type="unfinished"></translation>
+        <translation>Ende</translation>
     </message>
 </context>
 <context>
@@ -318,37 +357,53 @@
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
         <source>General settings</source>
-        <translation type="unfinished">Allgemeine Einstellungen</translation>
-    </message>
-    <message>
-        <source>Record page portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemeine Einstellungen</translation>
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzeichnen im Portraitmodus</translation>
     </message>
     <message>
         <source>Write log file</source>
-        <translation type="unfinished"></translation>
+        <translation>Logbuch Datei schreiben</translation>
     </message>
     <message>
         <source>File: $HOME/Laufhelden/log.txt</source>
+        <translation>Datei: $HOME/Laufhelden/log.txt</translation>
+    </message>
+    <message>
+        <source>Record page portrait mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -391,7 +446,7 @@
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">bpm</translation>
     </message>
     <message>
         <source>Lower heart rate limit</source>
@@ -403,7 +458,7 @@
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">min/km</translation>
     </message>
     <message>
         <source>Lower pace limit</source>
@@ -419,6 +474,14 @@
     </message>
     <message>
         <source>Threshold profile name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add new profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected profile</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
