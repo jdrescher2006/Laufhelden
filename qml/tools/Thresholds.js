@@ -51,6 +51,35 @@ for (var i = 0; i < arrayThresholdProfiles.length; i++)
     arrayLookupThresholdProfilesByName[arrayThresholdProfiles[i].name] = arrayThresholdProfiles[i];
 }
 
+function fncRemoveProfile(iIndex)
+{
+    arrayThresholdProfiles.splice(iIndex, 1);
+}
+
+function fncAddProfile(sName,sActive)
+{
+    var iPosition = arrayThresholdProfiles.length;
+    var bActive = false;
+
+    if (sActive !== null && sActive !== undefined)
+        bActive = (sActive === "true");
+
+    arrayThresholdProfiles[iPosition] = new Object();
+
+    arrayThresholdProfiles[iPosition]["name"] = sName;
+    arrayThresholdProfiles[iPosition]["active"] = bActive;
+    arrayThresholdProfiles[iPosition]["bHRUpperThresholdEnable"] = false;
+    arrayThresholdProfiles[iPosition]["iHRUpperThreshold"] = 170;
+    arrayThresholdProfiles[iPosition]["bHRLowerThresholdEnable"] = false;
+    arrayThresholdProfiles[iPosition]["iHRLowerThreshold"] = 130;
+    arrayThresholdProfiles[iPosition]["bPaceUpperThresholdEnable"] = false;
+    arrayThresholdProfiles[iPosition]["fPaceUpperThreshold"] = 6.5;
+    arrayThresholdProfiles[iPosition]["bPaceLowerThresholdEnable"] = false;
+    arrayThresholdProfiles[iPosition]["fPaceLowerThreshold"] = 4.5;
+
+    return iPosition;
+}
+
 function fncConvertSaveStringToArray(sSaveString)
 {
     //"Default profile,true,false,173,false,133,false,6.3,false,3.3|Second profile,true,172,true,132,true,6.2,true,3.2"

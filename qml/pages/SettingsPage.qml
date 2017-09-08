@@ -39,6 +39,8 @@ Page {
             id_TextSwitch_RecordPagePortrait.checked = settings.recordPagePortrait;
             id_TextSwitch_LogFile.checked = settings.enableLogFile;
 
+            id_CMB_VoiceLanguage.currentIndex = settings.voiceLanguage;
+
             pageStack.pushAttached(Qt.resolvedUrl("ThresholdSettingsPage.qml"));
 
             bLockOnCompleted = false;
@@ -70,7 +72,7 @@ Page {
             TextSwitch
             {
                 id: id_TextSwitch_RecordPagePortrait
-                text: qsTr("Record page portrait")
+                text: qsTr("Record page portrait mode")
                 description: qsTr("Keep record page in portrait mode.")
                 onCheckedChanged:
                 {
@@ -88,10 +90,58 @@ Page {
                 id: id_TextSwitch_LogFile
                 text: qsTr("Write log file")
                 description: qsTr("File: $HOME/Laufhelden/log.txt")
+                visible: false
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted)
                         settings.enableLogFile = checked;
+                }
+            }
+            ComboBox
+            {
+                id: id_CMB_VoiceLanguage
+                label: qsTr("Voice language")
+                menu: ContextMenu
+                {
+                    MenuItem
+                    {
+                        text: qsTr("English male")
+                        onClicked:
+                        {
+                            if (bLockOnCompleted)
+                                return;
+
+                            settings.voiceLanguage = 0;
+                        }
+                    }
+                    MenuItem
+                    {
+                        text: qsTr("German male")
+                        onClicked:
+                        {
+                            if (bLockOnCompleted)
+                                return;
+
+                            settings.voiceLanguage = 1;
+                        }
+                    }
+                }
+            }
+            Button
+            {
+                width: parent.width - Theme.paddingLarge
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Test")
+                onClicked:
+                {
+                    var sVoiceLanguage = "_en_male.wav";
+                    //check voice language and generate last part of audio filename
+                    if (settings.voiceLanguage === 0)        //english male
+                        sVoiceLanguage = "_en_male.wav";
+                    else if (settings.voiceLanguage === 1)   //german male
+                        sVoiceLanguage = "_de_male.wav";
+
+                    fncPlaySound("audio/hr_toohigh" + sVoiceLanguage);
                 }
             }
         }

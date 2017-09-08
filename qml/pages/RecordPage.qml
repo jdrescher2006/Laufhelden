@@ -254,32 +254,40 @@ Page
 
         var iThresholdTriggered = Thresholds.fncCheckHRThresholds(sHeartRate);
 
+        var sVoiceLanguage = "_en_male.wav";
+        //check voice language and generate last part of audio filename
+        if (settings.voiceLanguage === 0)        //english male
+            sVoiceLanguage = "_en_male.wav";
+        else if (settings.voiceLanguage === 1)   //german male
+            sVoiceLanguage = "_de_male.wav";
+
+
         if (iThresholdTriggered === 1)   //normal
-        {
-            fncPlaySound("audio/hr_normal.wav");
+        {            
+            fncPlaySound("audio/hr_normal" + sVoiceLanguage);
         }
         else if (iThresholdTriggered === 2)   //low
         {
-            fncPlaySound("audio/hr_toolow.wav");
+            fncPlaySound("audio/hr_toolow" + sVoiceLanguage);
         }
         else if (iThresholdTriggered === 3)   //high
         {
-            fncPlaySound("audio/hr_toohigh.wav");
+            fncPlaySound("audio/hr_toohigh" + sVoiceLanguage);
         }
 
         iThresholdTriggered = Thresholds.fncCheckPaceThresholds(recorder.pace.toFixed(1));
 
         if (iThresholdTriggered === 1)   //normal
         {
-            fncPlaySound("audio/pace_normal.wav");
+            fncPlaySound("audio/pace_normal" + sVoiceLanguage);
         }
         else if (iThresholdTriggered === 2)   //low
         {
-            fncPlaySound("audio/pace_toolow.wav");
+            fncPlaySound("audio/pace_toolow" + sVoiceLanguage);
         }
         else if (iThresholdTriggered === 3)   //high
         {
-            fncPlaySound("audio/pace_toohigh.wav");
+            fncPlaySound("audio/pace_toohigh" + sVoiceLanguage);
         }
     }
 

@@ -76,6 +76,30 @@ Page {
             id: menu
             MenuItem
             {
+                text: qsTr("Add new profile")
+                onClicked:
+                {
+                    var dialog = pageStack.push(id_Dialog_RenameProfile)
+                    dialog.sProfileName = ""
+                    dialog.accepted.connect(function()
+                    {
+                        //Add the new profile to array and set it to active
+                        var iNewIndex = Thresholds.fncAddProfile(dialog.sProfileName, "true");
+
+                        //Save theshold array to settings
+                        settings.thresholds = Thresholds.fncConvertArrayToSaveString();
+
+                        //Set new profile name to combobox
+                        idThressholdRepeater.model = undefined;
+                        idThressholdRepeater.model = Thresholds.arrayThresholdProfiles;
+
+                        //Select new profile
+                        idComboBoxThresholdProfiles.currentIndex = iNewIndex;
+                    })
+                }
+            }
+            MenuItem
+            {
                 text: qsTr("Rename selected profile")
                 onClicked:
                 {
@@ -94,6 +118,24 @@ Page {
 
                         idComboBoxThresholdProfiles.currentItem.text = dialog.sProfileName;
                     })
+                }
+            }
+            MenuItem
+            {
+                text: qsTr("Remove selected profile")
+                onClicked:
+                {
+                    Thresholds.fncRemoveProfile(idComboBoxThresholdProfiles.currentIndex);
+
+                    //Save theshold array to settings
+                    settings.thresholds = Thresholds.fncConvertArrayToSaveString();
+
+                    //Set new profile name to combobox
+                    idThressholdRepeater.model = undefined;
+                    idThressholdRepeater.model = Thresholds.arrayThresholdProfiles;
+
+                    //Select new profile
+                    idComboBoxThresholdProfiles.currentIndex = 0;
                 }
             }
         }

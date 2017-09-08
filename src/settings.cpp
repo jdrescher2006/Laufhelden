@@ -110,4 +110,13 @@ void Settings::setDisplayMode(int displayMode)
     m_settings->setValue("recordsettings/displayMode", displayMode);
 }
 
+int Settings::voiceLanguage() const
+{
+    return m_settings->value("generalsettings/voiceLanguage", 0).toInt();
+}
+void Settings::setVoiceLanguage(int voiceLanguage)
+{
+    m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
+}
+
 
