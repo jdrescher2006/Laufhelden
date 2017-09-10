@@ -38,7 +38,6 @@ OTHER_FILES += qml/harbour-laufhelden.qml \
     translations/*.ts \
     qml/pages/DetailedViewPage.qml \
     qml/pages/AboutPage.qml \
-    qml/pages/ConfirmClearDialog.qml \
     qml/pages/SettingsPage.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
