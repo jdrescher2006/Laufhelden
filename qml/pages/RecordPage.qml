@@ -188,17 +188,7 @@ Page
             //We must return here to the mainpage.
             pageStack.pop(vMainPageObject, PageStackAction.Immediate);
         })
-    }
-
-    function showClearConfirmation() {
-        var dialog = pageStack.push(Qt.resolvedUrl("ConfirmClearDialog.qml"));
-        dialog.accepted.connect(function() {
-            console.log("Starting new tracking");
-            recorder.clearTrack();
-            trackLine.path = [];
-            recorder.tracking = true;
-        })
-    }
+    }   
 
     function setMapViewport()
     {

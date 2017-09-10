@@ -72,21 +72,6 @@
     </message>
 </context>
 <context>
-    <name>ConfirmClearDialog</name>
-    <message>
-        <source>Start a new track</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear unsaved track and start a new one?</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CoverPage</name>
     <message>
         <source>Recording</source>
@@ -103,14 +88,6 @@
 </context>
 <context>
     <name>DetailedViewPage</name>
-    <message>
-        <source>Unnamed track</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No description</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Starting time:</source>
         <translation type="unfinished"></translation>
@@ -136,7 +113,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate Min/Max/Ø:</source>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heart rate min/max/Ø:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

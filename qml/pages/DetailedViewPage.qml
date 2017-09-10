@@ -86,7 +86,7 @@ Page {
             width: parent.width
             PageHeader {
                 id: header
-                title: name==="" ? qsTr("Unnamed track") : name
+                title: name==="" ? "-" : name
                 Behavior on opacity {
                     FadeAnimation {}
                 }
@@ -110,12 +110,12 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: "Description:"
+                    text: qsTr("Description:")
                 }
                 Label {
                     id: descriptionData
                     width: parent.width - descriptionLabel.width - 2*Theme.paddingLarge
-                    text: trackLoader.description==="" ? qsTr("No description") : trackLoader.description
+                    text: trackLoader.description==="" ? "-" : trackLoader.description
                     wrapMode: Text.WordWrap
                 }
                 Label {
@@ -214,7 +214,7 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Heart rate Min/Max/Ø:")
+                    text: qsTr("Heart rate min/max/Ø:")
                 }
                 Label {
                     id: heartRateData
