@@ -59,21 +59,25 @@ Page {
         }
     }
 
-    MapPolyline {
+    MapPolyline
+    {
         id: trackLine
         line.color: "red"
         line.width: 5
         smooth: true
     }
 
-    BusyIndicator {
+    BusyIndicator
+    {
         anchors.centerIn: detailPage
         running: !trackLoader.loaded
         size: BusyIndicatorSize.Large
     }
 
-    SilicaFlickable {
-        anchors {
+    SilicaFlickable
+    {
+        anchors
+        {
             top: parent.top
             left: parent.left
             right: parent.right
@@ -82,27 +86,32 @@ Page {
         clip: true
         contentHeight: header.height + gridContainer.height + Theme.paddingLarge
         VerticalScrollDecorator {}
-        Column {
+        Column
+        {
             width: parent.width
-            PageHeader {
+            PageHeader
+            {
                 id: header
                 title: name==="" ? "-" : name
                 Behavior on opacity {
                     FadeAnimation {}
                 }
             }
-            Grid {
+            Grid
+            {
                 id: gridContainer
                 x: Theme.paddingLarge
                 width: parent.width
                 spacing: Theme.paddingMedium
                 columns: 2
                 opacity: 0.2
-                Behavior on opacity {
+                Behavior on opacity
+                {
                     FadeAnimation {}
                 }
 
-                Label {
+                Label
+                {
                     id: descriptionLabel
                     width: hearRateLabel.width
                     height:descriptionData.height
@@ -112,13 +121,15 @@ Page {
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Description:")
                 }
-                Label {
+                Label
+                {
                     id: descriptionData
                     width: parent.width - descriptionLabel.width - 2*Theme.paddingLarge
                     text: trackLoader.description==="" ? "-" : trackLoader.description
                     wrapMode: Text.WordWrap
                 }
-                Label {
+                Label
+                {
                     width: hearRateLabel.width
                     height:timeData.height
                     horizontalAlignment: Text.AlignRight
@@ -127,12 +138,14 @@ Page {
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Starting time:")
                 }
-                Label {
+                Label
+                {
                     id: timeData
                     width: descriptionData.width
                     text: trackLoader.timeStr
                 }
-                Label {
+                Label
+                {
                     width: hearRateLabel.width
                     height:durationData.height
                     horizontalAlignment: Text.AlignRight
@@ -141,12 +154,14 @@ Page {
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Duration:")
                 }
-                Label {
+                Label
+                {
                     id: durationData
                     width: descriptionData.width
                     text: trackLoader.durationStr
                 }
-                Label {
+                Label
+                {
                     width: hearRateLabel.width
                     height:distanceData.height
                     horizontalAlignment: Text.AlignRight
@@ -155,12 +170,14 @@ Page {
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Distance:")
                 }
-                Label {
+                Label
+                {
                     id: distanceData
                     width: descriptionData.width
                     text: (trackLoader.distance/1000).toFixed(2) + " km"
                 }
-                Label {
+                Label
+                {
                     width: hearRateLabel.width
                     height:speedData.height
                     horizontalAlignment: Text.AlignRight
@@ -168,58 +185,45 @@ Page {
                     id: avgSpeedLabel
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Average speed:")
+                    text: qsTr("Speed max/⌀:")
                 }
-                Label {
+                Label
+                {
                     id: speedData
                     width: descriptionData.width
-                    text: (trackLoader.speed*3.6).toFixed(1) + " km/h"
-                }
-                Label {
-                    width: hearRateLabel.width
-                    height:maxSpeedData.height                    
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    id: maxSpeedLabel
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Maximum speed:")
-                }
-                Label {
-                    id: maxSpeedData
-                    width: descriptionData.width
-                    text: trackLoader.maxSpeed>0
-                          ? (trackLoader.maxSpeed*3.6).toFixed(1) + " km/h"
-                          : "-"
-                }
-                Label {
+                    text: (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h"
+                }                
+                Label
+                {
                     width: hearRateLabel.width
                     height:paceData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Average pace:")
+                    text: qsTr("Pace ⌀:")
                 }
-                Label {
+                Label
+                {
                     id: paceData
                     width: descriptionData.width
                     text: trackLoader.pace.toFixed(2) + " min/km"
                 }
-
-                Label {
+                Label
+                {
                     id: hearRateLabel
                     height:heartRateData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Heart rate min/max/Ø:")
+                    text: qsTr("Heart rate min/max/⌀:")
                 }
-                Label {
+                Label
+                {
                     id: heartRateData
                     width: descriptionData.width
-                    text: trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
+                    text: (trackLoader.heartRateMin === 9999999 && trackLoader.heartRateMax === 0) ? "-" : trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
                 }                                
             }
         }

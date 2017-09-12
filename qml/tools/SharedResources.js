@@ -159,7 +159,8 @@ var arrayWorkoutTypes =
     { name: "running", labeltext: qsTr("Running"), icon: "../workouticons/running.png" },
     { name: "biking", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png" },
     { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png" },
-    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" }
+    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" },
+    { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png" }
 ]
 
 //Create lookup table for workout types.
@@ -171,3 +172,4 @@ for (var i = 0; i < arrayWorkoutTypes.length; i++)
 }
 
 /*--------------END workout table --------------*/
+

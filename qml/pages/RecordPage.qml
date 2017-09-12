@@ -513,7 +513,7 @@ Page
                 height: parent.height
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                verticalAlignment: bShowMap ? Text.AlignBottom : Text.AlignVCenter
                 color: cPrimaryTextColor
                 font.pixelSize: Theme.fontSizeSmall
             }

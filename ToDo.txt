@@ -1,20 +1,21 @@
 ToDo for first release to openrepos:
-- detailspage:
-	- make heartrate invisible if there is no data
-	- some workouts have no max speed
-	- texts need general overhaul!
-- what is ConfirmClearDialog for? Maybe delete this thing...
 - set release date to .changes file
 - complete translation to german language
-- support all workout types from meerun (is not possible because export function in meerun is broken for many workout types)
 - test if a new workout is saved without having the gpx files folder
-- sometimes there is a view problem on mainpage after a completed workout.
-- GPS starts with app start. Make it start with recordpage.
+
+
 
 
 
 
 ToDo on the long run:
+- support elevation as new datapoint
+- AM/PM mode for recordpage
+- on recordpage: enable onRadiusChanged and onCenterChanged in mapcircle.
+- sometimes there is a view problem on mainpage after a completed workout.
+- GPS starts with app start. Make it start with recordpage.
+- support all workout types from meerun (is not possible because export function in meerun is broken for many workout types)
+- rename workouts on mainpage
 - introduce reward system:
 	- fastest run 5/10/20/40 km
 	- longest run (distance/time)
@@ -56,7 +57,7 @@ ToDo on the long run:
 - new workout icons
 - voice announcements
 - pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
-- use scout server as map tile provider (wait for Jolla dudes introducing QT5.6 to SFOS)
+- use scout server as map tile provider (waiting for Jolla: https://talk.maemo.org/showpost.php?p=1528801&postcount=257)
 - introduce lap function
 - CRC check for Zephyr HxM data packets
 - BLE heart rate devices support (currently waiting for kimmoli to bring this to OPX)
@@ -76,6 +77,13 @@ Bugs:
 
 
 Completed:
+- what is ConfirmClearDialog for? Maybe delete this thing...
+- detailspage:
+	- make heartrate invisible if there is no data
+	- some workouts have no max speed
+	- texts need general overhaul!
+- workout icon is too small on prerecordpage
+- make sorting of workouts from most recent to least recent on mainpage
 - Workouts need to be sorted after date on MainPage
 - implement add/remove threshold profiles
 - put all icons and pictures in the img folder!

@@ -43,7 +43,10 @@ Page
             //console.log("Drei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }));
 
             //This is a crazy thing, but at least it returns the index :-)
+            console.log("Index of workout type: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
+
             cmbWorkout.currentIndex = SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType);
+            imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType)].icon;
 
             if (sHRMAddress === "")
                 txtswUseHRMdevice.checked = false;
@@ -117,7 +120,7 @@ Page
             {
                 color: Theme.highlightColor
                 width: parent.width
-            }
+            }           
             Row
             {
                 spacing: Theme.paddingSmall
@@ -125,13 +128,14 @@ Page
                 Image
                 {
                     id: imgWorkoutImage
-                    height: cmbWorkout.height
+                    height: parent.width / 8
+                    width: parent.width / 8
                     fillMode: Image.PreserveAspectFit
                 }
                 ComboBox
                 {
                     id: cmbWorkout
-                    width: parent.width - imgWorkoutImage.width
+                    width: (parent.width / 8) * 7
                     label: qsTr("Workout:")
                     menu: ContextMenu
                     {

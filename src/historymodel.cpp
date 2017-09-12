@@ -223,7 +223,7 @@ void HistoryModel::loadingFinished()
 
 bool HistoryModel::bCompareDates(const TrackItem &ti1, const TrackItem &ti2)
 {
-    return ti1.time < ti2.time;
+    return ti1.time > ti2.time;
 }
 
 void HistoryModel::readDirectory() {

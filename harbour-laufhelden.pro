@@ -8,12 +8,8 @@
 #         - icon definition filename in desktop file must be changed
 TARGET = harbour-laufhelden
 
-# Application version
-VERSION = 0.0.1
-VERSION_SUFFIX =
-
 # Define the preprocessor macro to get the application version in our application.
-DEFINES += APP_VERSION=\\\"$$VERSION\\\" APP_VERSION_SUFFIX=\\\"$$VERSION_SUFFIX\\\"
+DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 
 CONFIG += sailfishapp
 QT += positioning location concurrent

@@ -76,7 +76,7 @@ Page {
             id: menu
             MenuItem
             {
-                text: qsTr("Add new profile")
+                text: qsTr("Add profile")
                 onClicked:
                 {
                     var dialog = pageStack.push(id_Dialog_RenameProfile)
@@ -100,7 +100,7 @@ Page {
             }
             MenuItem
             {
-                text: qsTr("Rename selected profile")
+                text: qsTr("Rename profile")
                 onClicked:
                 {
                     var dialog = pageStack.push(id_Dialog_RenameProfile)
@@ -122,7 +122,7 @@ Page {
             }
             MenuItem
             {
-                text: qsTr("Remove selected profile")
+                text: qsTr("Remove profile")
                 onClicked:
                 {
                     Thresholds.fncRemoveProfile(idComboBoxThresholdProfiles.currentIndex);
@@ -153,7 +153,7 @@ Page {
             {
                 id: idComboBoxThresholdProfiles
                 width: parent.width
-                label: "Select thresholds profile"
+                label: qsTr("Select thresholds profile")
                 menu: ContextMenu
                 {
                     Repeater
@@ -240,7 +240,7 @@ Page {
             {
                 id: id_TextSwitch_BottomHRThreshold
                 text: qsTr("Lower heart rate limit")
-                description: qsTr("Alarm if limit is exceeded.")
+                description: qsTr("Alarm if limit is undershot.")
                 visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onCheckedChanged:
                 {
@@ -332,7 +332,7 @@ Page {
             {
                 id: id_TextSwitch_BottomPaceThreshold
                 text: qsTr("Lower pace limit")
-                description: qsTr("Alarm if limit is exceeded.")
+                description: qsTr("Alarm if limit is undershot.")
                 visible: (idComboBoxThresholdProfiles.currentIndex !== 0)
                 onCheckedChanged:
                 {

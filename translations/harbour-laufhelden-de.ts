@@ -101,24 +101,20 @@
         <translation>Distanz:</translation>
     </message>
     <message>
-        <source>Average speed:</source>
-        <translation>Geschwindigkeit ⌀:</translation>
+        <source>Description:</source>
+        <translation>Beschreibung:</translation>
     </message>
     <message>
-        <source>Maximum speed:</source>
-        <translation>Geschwindigkeit max.:</translation>
+        <source>Speed max/⌀:</source>
+        <translation>Geschw. max/⌀:</translation>
     </message>
     <message>
-        <source>Average pace:</source>
+        <source>Pace ⌀:</source>
         <translation>Tempo ⌀:</translation>
     </message>
     <message>
-        <source>Description:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heart rate min/max/Ø:</source>
-        <translation type="unfinished"></translation>
+        <source>Heart rate min/max/⌀:</source>
+        <translation>Herzfrequenz min/max/⌀:</translation>
     </message>
 </context>
 <context>
@@ -168,7 +164,7 @@
     <name>PreRecordPage</name>
     <message>
         <source>Workout settings</source>
-        <translation type="unfinished">Aktivitäts-Einstellungen</translation>
+        <translation>Aktivitäts-Einstellungen</translation>
     </message>
     <message>
         <source>Let&apos;s go!</source>
@@ -235,7 +231,7 @@
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation></translation>
+        <translation>Display-Modus</translation>
     </message>
     <message>
         <source>hold button for: </source>
@@ -334,7 +330,7 @@
     <name>SaveDialog</name>
     <message>
         <source>Save track</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivität speichern</translation>
     </message>
     <message>
         <source>Save</source>
@@ -369,108 +365,120 @@
     </message>
     <message>
         <source>Record page portrait mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufzeichnen im Portraitmodus</translation>
     </message>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache der Stimme</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished"></translation>
+        <translation>Englisch Mann</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished"></translation>
+        <translation>Deutsch Mann</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Test</translation>
     </message>
 </context>
 <context>
     <name>SharedResources</name>
     <message>
         <source>Running</source>
-        <translation type="unfinished"></translation>
+        <translation>Laufen</translation>
     </message>
     <message>
         <source>Roadbike</source>
-        <translation type="unfinished"></translation>
+        <translation>Rennrad</translation>
     </message>
     <message>
         <source>Mountainbike</source>
-        <translation type="unfinished"></translation>
+        <translation>Mountainbike</translation>
     </message>
     <message>
         <source>Walking</source>
-        <translation type="unfinished"></translation>
+        <translation>Walking</translation>
+    </message>
+    <message>
+        <source>Inline skating</source>
+        <translation>Inlineskating</translation>
     </message>
 </context>
 <context>
     <name>ThresholdSettingsPage</name>
     <message>
-        <source>Rename selected profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Threshold settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwellwerte</translation>
     </message>
     <message>
         <source>Upper heart rate limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenz obere Schwelle</translation>
     </message>
     <message>
         <source>Alarm if limit is exceeded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarm wenn Schwelle überschritten</translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished">bpm</translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Lower heart rate limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenz untere Schwelle</translation>
     </message>
     <message>
         <source>Upper pace limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo obere Schwelle</translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished">min/km</translation>
+        <translation>min/km</translation>
     </message>
     <message>
         <source>Lower pace limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo untere Schwelle</translation>
     </message>
     <message>
         <source>Edit profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil bearbeiten</translation>
     </message>
     <message>
         <source>Only text, no special characters!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur Text, keine Sonderzeichen!</translation>
     </message>
     <message>
         <source>Threshold profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwellwertprofil</translation>
     </message>
     <message>
-        <source>Add new profile</source>
-        <translation type="unfinished"></translation>
+        <source>Add profile</source>
+        <translation>Profil hinzufügen</translation>
     </message>
     <message>
-        <source>Remove selected profile</source>
-        <translation type="unfinished"></translation>
+        <source>Rename profile</source>
+        <translation>Profil umbenennen</translation>
+    </message>
+    <message>
+        <source>Remove profile</source>
+        <translation>Profil löschen</translation>
+    </message>
+    <message>
+        <source>Select thresholds profile</source>
+        <translation>Schwellwertprofil auswählen</translation>
+    </message>
+    <message>
+        <source>Alarm if limit is undershot.</source>
+        <translation>Alarm wenn Schwelle unterschritten</translation>
     </message>
 </context>
 <context>
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwellwerte Aus</translation>
     </message>
 </context>
 </TS>

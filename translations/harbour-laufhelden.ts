@@ -101,23 +101,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Average speed:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Maximum speed:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Average pace:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate min/max/Ø:</source>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace ⌀:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heart rate min/max/⌀:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -406,13 +402,13 @@
         <source>Walking</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Inline skating</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ThresholdSettingsPage</name>
-    <message>
-        <source>Rename selected profile</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Threshold settings</source>
         <translation type="unfinished"></translation>
@@ -458,11 +454,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add new profile</source>
+        <source>Add profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Remove selected profile</source>
+        <source>Rename profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select thresholds profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alarm if limit is undershot.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

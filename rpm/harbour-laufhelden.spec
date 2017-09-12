@@ -13,8 +13,8 @@ Name:       harbour-laufhelden
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Laufhelden - Sport tracker
-Version:    0.0.1
-Release:    1
+Version:    0.9.1
+Release:    2
 Group:      Qt/Qt
 License:    GPL
 URL:        http://example.org/
@@ -46,7 +46,8 @@ Laufhelden records your track when you walk, run, cycle or practise any other ou
 # >> build pre
 # << build pre
 
-%qtc_qmake5 
+%qtc_qmake5  \
+    VERSION='%{version}-%{release}'
 
 %qtc_make %{?_smp_mflags}
 

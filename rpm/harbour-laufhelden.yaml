@@ -1,7 +1,7 @@
 Name: harbour-laufhelden
 Summary: Laufhelden - Sport tracker
-Version: 0.0.1
-Release: 1
+Version: 0.9.1
+Release: 2
 Group: Qt/Qt
 URL: http://example.org/
 License: GPL
@@ -11,6 +11,11 @@ Description: |-
   Laufhelden records your track when you walk, run, cycle or practise any other outdoor activity.
 Configure: none
 Builder: qtc5
+
+#This is for making the version accessible within QML
+QMakeOptions:
+- VERSION='%{version}-%{release}'
+
 PkgConfigBR:
 - sailfishapp >= 1.0.2
 - Qt5Core

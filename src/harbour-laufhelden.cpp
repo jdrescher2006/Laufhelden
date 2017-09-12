@@ -36,13 +36,9 @@ int main(int argc, char *argv[]) {
     QGuiApplication *app = SailfishApp::application(argc, argv);
 
     app->setApplicationName("Laufhelden");
-    app->setApplicationVersion(QString(APP_VERSION)+QString(APP_VERSION_SUFFIX));
-    QString userAgent(QString("Laufhelden/")+
-                      QString(APP_VERSION)+QString(APP_VERSION_SUFFIX)+
-                      QString(" (Sailfish)"));
+    app->setApplicationVersion(QString(APP_VERSION));
 
     qDebug()<<app->applicationName()<<" version "<<app->applicationVersion();
-    qDebug()<<"User agent: "<<userAgent;
 
     qmlRegisterType<TrackRecorder>("TrackRecorder", 1, 0, "TrackRecorder");
     qmlRegisterType<HistoryModel>("HistoryModel", 1, 0, "HistoryModel");
@@ -54,7 +50,6 @@ int main(int argc, char *argv[]) {
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());
-    view->rootContext()->setContextProperty("appUserAgent", userAgent);
     view->setSource(SailfishApp::pathTo("qml/harbour-laufhelden.qml"));
     view->showFullScreen();
 
