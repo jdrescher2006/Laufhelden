@@ -163,10 +163,6 @@
 <context>
     <name>PreRecordPage</name>
     <message>
-        <source>Workout settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Let&apos;s go!</source>
         <translation type="unfinished"></translation>
     </message>

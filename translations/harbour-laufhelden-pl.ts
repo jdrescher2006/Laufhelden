@@ -101,24 +101,20 @@
         <translation>Dystans:</translation>
     </message>
     <message>
-        <source>Average speed:</source>
-        <translation>Średnia prędkość:</translation>
-    </message>
-    <message>
-        <source>Maximum speed:</source>
-        <translation>Maksymalna prędkość:</translation>
-    </message>
-    <message>
-        <source>Average pace:</source>
-        <translation>Średnie tempo:</translation>
-    </message>
-    <message>
         <source>Description:</source>
         <translation>Opis:</translation>
     </message>
     <message>
-        <source>Heart rate min/max/Ø:</source>
-        <translation>Tętno min/max/Ø</translation>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace ⌀:</source>
+        <translation type="unfinished">Tempo ⌀:</translation>
+    </message>
+    <message>
+        <source>Heart rate min/max/⌀:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -166,10 +162,6 @@
 </context>
 <context>
     <name>PreRecordPage</name>
-    <message>
-        <source>Workout settings</source>
-        <translation>Ustawienia treningu</translation>
-    </message>
     <message>
         <source>Let&apos;s go!</source>
         <translation>Start!</translation>
@@ -406,13 +398,13 @@
         <source>Walking</source>
         <translation>Spacer</translation>
     </message>
+    <message>
+        <source>Inline skating</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ThresholdSettingsPage</name>
-    <message>
-        <source>Rename selected profile</source>
-        <translation>Zmień nazwę wybranego profilu</translation>
-    </message>
     <message>
         <source>Threshold settings</source>
         <translation>Ustawienia progowe</translation>
@@ -458,12 +450,24 @@
         <translation>Nazwa profilu progowego</translation>
     </message>
     <message>
-        <source>Add new profile</source>
-        <translation>Dodaj nowy profil</translation>
+        <source>Add profile</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Remove selected profile</source>
-        <translation>Usuń wybrany profil</translation>
+        <source>Rename profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select thresholds profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alarm if limit is undershot.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

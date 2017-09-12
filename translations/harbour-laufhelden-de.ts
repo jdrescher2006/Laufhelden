@@ -163,10 +163,6 @@
 <context>
     <name>PreRecordPage</name>
     <message>
-        <source>Workout settings</source>
-        <translation>Aktivitäts-Einstellungen</translation>
-    </message>
-    <message>
         <source>Let&apos;s go!</source>
         <translation>Los geht&apos;s!</translation>
     </message>
