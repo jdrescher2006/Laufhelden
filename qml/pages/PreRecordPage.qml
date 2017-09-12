@@ -70,6 +70,8 @@ Page
             //Set selected threshold profile to combobox
             idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
 
+            pageStack.pushAttached(Qt.resolvedUrl("RecordPage.qml"));
+
             bLockOnCompleted = false;
         }
 
@@ -107,19 +109,7 @@ Page
             spacing: Theme.paddingLarge
             PageHeader
             {
-                title: qsTr("Workout settings")
-            }
-
-            Button
-            {
-                text: qsTr("Let's go!")
-                width: parent.width
-                onClicked: pageStack.push(Qt.resolvedUrl("RecordPage.qml"))
-            }
-            Separator
-            {
-                color: Theme.highlightColor
-                width: parent.width
+                title: qsTr("Let's go!")
             }           
             Row
             {
