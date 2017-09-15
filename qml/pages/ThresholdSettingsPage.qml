@@ -48,9 +48,7 @@ Page {
             console.log("selected profile index: " + Thresholds.fncGetCurrentProfileIndex().toString());
 
             //Set selected threshold profile to combobox
-            idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
-
-            pageStack.pushAttached(Qt.resolvedUrl("BTConnectPage.qml"));
+            idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();            
 
             bLockOnCompleted = false;
         }
@@ -147,7 +145,7 @@ Page {
             spacing: Theme.paddingLarge
             PageHeader
             {
-                title: qsTr("Threshold settings")
+                title: qsTr("Alarm thresholds")
             }
             ComboBox
             {
@@ -309,7 +307,7 @@ Page {
                 id: id_Slider_UpperPaceThreshold
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
-                valueText: value.toFixed(1) + qsTr("min/km")
+                valueText: Math.floor(value) + ":" + Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)) + qsTr("min/km")
                 label: qsTr("Upper pace limit")
                 minimumValue: 0.1
                 maximumValue: 10.0
@@ -352,7 +350,7 @@ Page {
                 id: id_Slider_BottomPaceThreshold
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
-                valueText: value.toFixed(1) + qsTr("min/km")
+                valueText: Math.floor(value) + ":" + Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)) + qsTr("min/km")
                 label: qsTr("Lower pace limit")
                 minimumValue: 0.1
                 maximumValue: 10.0
