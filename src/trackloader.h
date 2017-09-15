@@ -38,6 +38,7 @@ class TrackLoader : public QObject
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(qreal maxSpeed READ maxSpeed NOTIFY maxSpeedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
+    Q_PROPERTY(QString paceStr READ paceStr NOTIFY paceChanged)
     Q_PROPERTY(qreal heartRate READ heartRate NOTIFY heartRateChanged)
     Q_PROPERTY(uint heartRateMin READ heartRateMin NOTIFY heartRateMinChanged)
     Q_PROPERTY(uint heartRateMax READ heartRateMax NOTIFY heartRateMaxChanged)
@@ -58,6 +59,7 @@ public:
     qreal speed();
     qreal maxSpeed();
     qreal pace();
+    QString paceStr();
     qreal heartRate();
     uint heartRateMin();
     uint heartRateMax();

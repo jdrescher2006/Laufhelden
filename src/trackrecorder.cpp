@@ -127,7 +127,8 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             emit speedChanged();
 
             //Calculate pace in [min/km]
-            m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);
+            m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);            
+
             qDebug()<<"Pace:"<<m_pace;
             emit paceChanged();
 
@@ -361,6 +362,30 @@ qreal TrackRecorder::paceaverage() const {
     return m_paceaverage;
 }
 
+QString TrackRecorder::paceStr() const
+{
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_pace);
+    qreal rSeconds = qCeil((m_pace * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
+QString TrackRecorder::paceaverageStr() const
+{
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_paceaverage);
+    qreal rSeconds = qCeil((m_paceaverage * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
 QString TrackRecorder::startingDateTime() const
 {
     if(m_points.size() < 2)
@@ -517,7 +542,8 @@ QGeoCoordinate TrackRecorder::trackCenter() {
     return QGeoCoordinate((minLat+maxLat)/2, (minLon+maxLon)/2);
 }
 
-void TrackRecorder::autoSave() {
+void TrackRecorder::autoSave()
+{
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Laufhelden";
     QString filename = "Autosave";
@@ -548,7 +574,8 @@ void TrackRecorder::autoSave() {
     QTextStream stream(&file);
     stream.setRealNumberPrecision(15);
 
-    while(m_autoSavePosition < m_points.size()) {
+    while(m_autoSavePosition < m_points.size())
+    {
         stream<<m_points.at(m_autoSavePosition).coordinate().latitude();
         stream<<" ";
         stream<<m_points.at(m_autoSavePosition).coordinate().longitude();
@@ -572,6 +599,9 @@ void TrackRecorder::autoSave() {
         stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::HorizontalAccuracy);
         stream<<" ";
         stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::VerticalAccuracy);
+        stream<<" ";
+        stream<<m_heartrate.at(m_autoSavePosition);
+
         stream<<'\n';
         m_autoSavePosition++;
     }
@@ -579,7 +609,8 @@ void TrackRecorder::autoSave() {
     file.close();
 }
 
-void TrackRecorder::loadAutoSave() {
+void TrackRecorder::loadAutoSave()
+{
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Laufhelden";
     QString filename = "Autosave";
@@ -598,8 +629,10 @@ void TrackRecorder::loadAutoSave() {
     }
     QTextStream stream(&file);
 
-    while(!stream.atEnd()) {
+    while(!stream.atEnd())
+    {
         QGeoPositionInfo point;
+        uint iHeartrate;
         qreal lat, lon, alt, temp;
         QString timeStr;
         stream>>lat>>lon>>timeStr>>alt;
@@ -629,8 +662,18 @@ void TrackRecorder::loadAutoSave() {
         if(temp == temp) {
             point.setAttribute(QGeoPositionInfo::VerticalAccuracy, temp);
         }
+
+        stream>>temp;
+        if(temp == temp)
+        {
+            iHeartrate = temp;
+        }
+
+
         stream.readLine(); // Read rest of the line, if any
         m_points.append(point);
+        m_heartrate.append(iHeartrate);
+
         if(m_points.size() > 1) {
             if(point.coordinate().latitude() < m_minLat) {
                 m_minLat = point.coordinate().latitude();

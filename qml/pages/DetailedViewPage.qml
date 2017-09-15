@@ -207,7 +207,7 @@ Page {
                 {
                     id: paceData
                     width: descriptionData.width
-                    text: trackLoader.pace.toFixed(2) + " min/km"
+                    text: trackLoader.paceStr + " min/km"
                 }
                 Label
                 {

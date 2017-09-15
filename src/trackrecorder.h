@@ -30,8 +30,10 @@ class TrackRecorder : public QObject
     Q_PROPERTY(qreal distance READ distance NOTIFY distanceChanged)
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
+    Q_PROPERTY(QString paceStr READ paceStr NOTIFY paceChanged)
     Q_PROPERTY(qreal speedaverage READ speedaverage NOTIFY speedaverageChanged)
     Q_PROPERTY(qreal paceaverage READ paceaverage NOTIFY paceaverageChanged)
+    Q_PROPERTY(QString paceaverageStr READ paceaverageStr NOTIFY paceaverageChanged)
     Q_PROPERTY(QString time READ time NOTIFY timeChanged)
     Q_PROPERTY(bool tracking READ isTracking WRITE setIsTracking NOTIFY isTrackingChanged)
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY isEmptyChanged)
@@ -53,8 +55,10 @@ public:
     qreal distance() const;
     qreal speed() const;
     qreal pace() const;
+    QString paceStr() const;
     qreal speedaverage() const;
     qreal paceaverage() const;
+    QString paceaverageStr() const;
     QString time() const;
     bool isTracking() const;
     void setIsTracking(bool tracking);

@@ -230,7 +230,7 @@ void TrackLoader::load() {
         emit distanceChanged();
         emit maxSpeedChanged();
         m_speed = m_distance / m_duration;
-        emit speedChanged();
+        emit speedChanged();       
         m_pace = m_duration / m_distance * 1000 / 60;
         emit paceChanged();        
         m_heartRate = m_heartRate / m_heartRatePoints;
@@ -332,6 +332,28 @@ uint TrackLoader::duration() {
         return 0;
     }
     return m_duration;
+}
+
+QString TrackLoader::paceStr()
+{
+    if(!m_loaded && !m_error)
+    {
+        load();
+    }
+    if(!m_loaded || m_error)
+    {
+        // Nothing to load or error in loading
+        return QString();
+    }
+
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_pace);
+    qreal rSeconds = qCeil((m_pace * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
 }
 
 QString TrackLoader::durationStr() {
