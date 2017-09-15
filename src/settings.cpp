@@ -103,7 +103,7 @@ void Settings::setEnableLogFile(bool enableLogFile)
 }
 int Settings::displayMode() const
 {
-    return m_settings->value("recordsettings/displayMode", 1000).toInt();
+    return m_settings->value("recordsettings/displayMode", 3).toInt();
 }
 void Settings::setDisplayMode(int displayMode)
 {
@@ -118,5 +118,11 @@ void Settings::setVoiceLanguage(int voiceLanguage)
 {
     m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
 }
-
-
+bool Settings::showBorderLines() const
+{
+    return m_settings->value("generalsettings/showBorderLines", true).toBool();
+}
+void Settings::setShowBorderLines(bool showBorderLines)
+{
+     m_settings->setValue("generalsettings/showBorderLines", showBorderLines);
+}

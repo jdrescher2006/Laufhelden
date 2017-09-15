@@ -41,7 +41,7 @@ Page {
 
             id_CMB_VoiceLanguage.currentIndex = settings.voiceLanguage;
 
-            pageStack.pushAttached(Qt.resolvedUrl("ThresholdSettingsPage.qml"));
+            id_TextSwitch_ShowLines.checked = settings.showBorderLines;
 
             bLockOnCompleted = false;
         }
@@ -79,6 +79,22 @@ Page {
                     if (!bLockOnCompleted)
                         settings.recordPagePortrait = checked;
                 }                
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_ShowLines
+                text: qsTr("Show grid lines")
+                description: qsTr("Show grid lines on record page.")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.showBorderLines = checked;
+                }
             }
             Separator
             {

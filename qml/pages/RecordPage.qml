@@ -39,7 +39,8 @@ Page
     property int iButtonLoop : 3
     property bool bEndLoop: false;       
 
-    property int iDisplayMode: 0
+    property int iDisplayMode: settings.displayMode
+    property bool bShowBorderLines: settings.showBorderLines
     property color cBackColor: "black"
     property color cPrimaryTextColor: "white"
     property color cSecondaryTextColor: "#D5D5D5"
@@ -86,8 +87,6 @@ Page
         {
             console.log("RecordPage active");            
 
-            //Load last display mode from settings
-            iDisplayMode = settings.displayMode;
             //Set display mode to dialog
             fncSetDisplayMode();
 
@@ -122,7 +121,7 @@ Page
 
             //Set current daytime to dialog.
             var newDate = new Date();
-            idCurrentDayTime.text = JSTools.fncPadZeros(newDate.getHours(),2) + ":" + JSTools.fncPadZeros(newDate.getMinutes(),2) + ":" + JSTools.fncPadZeros(newDate.getSeconds(),2);
+            idCurrentDayTime.text = JSTools.fncPadZeros(newDate.getHours(),2) + ":" + JSTools.fncPadZeros(newDate.getMinutes(),2) + ":" + JSTools.fncPadZeros(newDate.getSeconds(),2) + " ";
         }
     }
 
@@ -523,6 +522,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
             Rectangle
             {
@@ -530,6 +530,7 @@ Page
                 height: parent.height
                 anchors.right: parent.right
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
         Item   //Header Line Right
@@ -581,6 +582,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
 
@@ -622,7 +624,7 @@ Page
             }
             Text
             {
-                text: recorder.pace.toFixed(1)
+                text: recorder.paceStr
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -634,12 +636,13 @@ Page
             }
             Text
             {
-                text: qsTr("min/km")
+                text: qsTr("min/km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
+
                 fontSizeMode: Text.Fit
                 color: cSecondaryTextColor
                 font.pointSize: 4000
@@ -650,6 +653,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
             Rectangle
             {
@@ -657,6 +661,7 @@ Page
                 height: parent.height
                 anchors.right: parent.right
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
 
@@ -685,7 +690,7 @@ Page
 
             Text
             {
-                text: qsTr("Speed:")
+                text: " " + qsTr("Speed:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -725,6 +730,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
 
@@ -778,7 +784,7 @@ Page
             }
             Text
             {
-                text: qsTr("km")
+                text: qsTr("km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
@@ -794,6 +800,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
             Rectangle
             {
@@ -801,6 +808,7 @@ Page
                 height: parent.height
                 anchors.right: parent.right
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
 
@@ -829,7 +837,7 @@ Page
 
             Text
             {
-                text: qsTr("Heartrate:")
+                text: " " + qsTr("Heartrate:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -881,6 +889,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
 
@@ -922,7 +931,7 @@ Page
             }
             Text
             {
-                text: recorder.paceaverage.toFixed(1)
+                text: recorder.paceaverageStr
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -934,7 +943,7 @@ Page
             }
             Text
             {
-                text: qsTr("min/km")
+                text: qsTr("min/km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
@@ -950,6 +959,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
             Rectangle
             {
@@ -957,6 +967,7 @@ Page
                 height: parent.height
                 anchors.right: parent.right
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
 
@@ -985,7 +996,7 @@ Page
 
             Text
             {
-                text: qsTr("Speed ⌀:")
+                text: " " + qsTr("Speed ⌀:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -1025,6 +1036,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
 
@@ -1094,6 +1106,7 @@ Page
                 height: iBorderWidth
                 anchors.bottom: parent.bottom
                 color: cBorderColor
+                visible: bShowBorderLines
             }
         }
 
