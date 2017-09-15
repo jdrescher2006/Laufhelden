@@ -69,7 +69,7 @@ Page {
             spacing: Theme.paddingLarge
             PageHeader
             {
-                title: qsTr("Heart rate monitor")
+                title: qsTr("Heart rate device")
             }
 
             SectionHeader
