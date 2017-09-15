@@ -31,10 +31,6 @@
 <context>
     <name>BTConnectPage</name>
     <message>
-        <source>Heart rate monitor</source>
-        <translation>Herzfrequenz-Messgerät</translation>
-    </message>
-    <message>
         <source>Scan for Bluetooth devices</source>
         <translation>Suche nach Bluetooth Geräten</translation>
     </message>
@@ -69,6 +65,10 @@
     <message>
         <source>Found BT devices (press to connect):</source>
         <translation>BT Gerät gefunden (zum Verbinden tippen):</translation>
+    </message>
+    <message>
+        <source>Heart rate device</source>
+        <translation>Herzfrequenzmesser</translation>
     </message>
 </context>
 <context>
@@ -342,6 +342,25 @@
     </message>
 </context>
 <context>
+    <name>SettingsMenu</name>
+    <message>
+        <source>General settings</source>
+        <translation>Allgemeine Einstellungen</translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
+        <translation>Alarm Schwellen</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>Heart rate device</source>
+        <translation>Herzfrequenzmesser</translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <source>General settings</source>
@@ -379,6 +398,14 @@
         <source>Test</source>
         <translation>Test</translation>
     </message>
+    <message>
+        <source>Show grid lines</source>
+        <translation>Rahmen anzeigen</translation>
+    </message>
+    <message>
+        <source>Show grid lines on record page.</source>
+        <translation>Trainigsdaten umrahmen beim Aufzeichnen</translation>
+    </message>
 </context>
 <context>
     <name>SharedResources</name>
@@ -405,10 +432,6 @@
 </context>
 <context>
     <name>ThresholdSettingsPage</name>
-    <message>
-        <source>Threshold settings</source>
-        <translation>Schwellwerte</translation>
-    </message>
     <message>
         <source>Upper heart rate limit</source>
         <translation>Herzfrequenz obere Schwelle</translation>
@@ -468,6 +491,10 @@
     <message>
         <source>Alarm if limit is undershot.</source>
         <translation>Alarm wenn Schwelle unterschritten</translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
+        <translation>Alarm Schwellen</translation>
     </message>
 </context>
 <context>

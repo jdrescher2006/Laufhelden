@@ -31,10 +31,6 @@
 <context>
     <name>BTConnectPage</name>
     <message>
-        <source>Heart rate monitor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Scan for Bluetooth devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -68,6 +64,10 @@
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heart rate device</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -342,6 +342,25 @@
     </message>
 </context>
 <context>
+    <name>SettingsMenu</name>
+    <message>
+        <source>General settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heart rate device</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <source>General settings</source>
@@ -379,6 +398,14 @@
         <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show grid lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show grid lines on record page.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SharedResources</name>
@@ -405,10 +432,6 @@
 </context>
 <context>
     <name>ThresholdSettingsPage</name>
-    <message>
-        <source>Threshold settings</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Upper heart rate limit</source>
         <translation type="unfinished"></translation>
@@ -467,6 +490,10 @@
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

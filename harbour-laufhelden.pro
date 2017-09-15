@@ -102,5 +102,6 @@ DISTFILES += \
     qml/audio/hr_toolow_de_male.wav \
     qml/audio/pace_normal_de_male.wav \
     qml/audio/pace_toohigh_de_male.wav \
-    qml/audio/pace_toolow_de_male.wav
+    qml/audio/pace_toolow_de_male.wav \
+    qml/pages/SettingsMenu.qml
 
