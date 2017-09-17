@@ -43,7 +43,8 @@ SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 CONFIG += sailfishapp_i18n
 
 TRANSLATIONS += translations/harbour-laufhelden-de.ts \
-                translations/harbour-laufhelden-pl.ts
+                translations/harbour-laufhelden-pl.ts \
+                translations/harbour-laufhelden-es.ts
 
 HEADERS += \
     src/trackrecorder.h \
