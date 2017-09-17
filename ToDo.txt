@@ -1,7 +1,9 @@
-ToDo for first release to openrepos:
+ToDo for next release to openrepos:
+- bug: go back from recordscreen to prerecord. Then switch off HR. Then proceed to recordscreen. HR is still active! -> bRecordDialogRequestHRM
 - set release date to .changes file
 - complete translation to german language
-- test if a new workout is saved without having the gpx files folder
+- 
+
 
 
 
