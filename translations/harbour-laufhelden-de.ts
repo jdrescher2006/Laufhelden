@@ -116,6 +116,17 @@
         <source>Heart rate min/max/⌀:</source>
         <translation>Herzfrequenz min/max/⌀:</translation>
     </message>
+    <message>
+        <source>Diagrams</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiagramViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>

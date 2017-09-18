@@ -18,16 +18,11 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtSensors 5.0 as Sensors
-import HistoryModel 1.0
-import Settings 1.0
-import TrackRecorder 1.0
-import bluetoothconnection 1.0
-import bluetoothdata 1.0
-import logwriter 1.0
 import "pages"
 import "tools"
 import QtFeedback 5.0
 import QtMultimedia 5.0 as Media
+import harbour.laufhelden 1.0
 
 ApplicationWindow
 {
@@ -59,6 +54,7 @@ ApplicationWindow
     BluetoothData{ id: id_BluetoothData }
     LogWriter{ id: id_LogWriter }
     Settings{ id: settings }
+    PlotWidget{ id: id_PlotWidget }
     TrackRecorder
     {
         id: recorder        

@@ -22,7 +22,8 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/settings.cpp \
     src/bluetoothconnection.cpp \
     src/bluetoothdata.cpp \
-    src/logwriter.cpp
+    src/logwriter.cpp \
+    src/plotwidget.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -53,7 +54,8 @@ HEADERS += \
     src/settings.h \
     src/bluetoothconnection.h \
     src/bluetoothdata.h \
-    src/logwriter.h
+    src/logwriter.h \
+    src/plotwidget.h
 
 DISTFILES += \
     qml/pages/MainPage.qml \
@@ -104,5 +106,6 @@ DISTFILES += \
     qml/audio/pace_normal_de_male.wav \
     qml/audio/pace_toohigh_de_male.wav \
     qml/audio/pace_toolow_de_male.wav \
-    qml/pages/SettingsMenu.qml
+    qml/pages/SettingsMenu.qml \
+    qml/pages/DiagramViewPage.qml
 

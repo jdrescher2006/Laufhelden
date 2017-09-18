@@ -30,6 +30,7 @@
 #include "bluetoothconnection.h"
 #include "bluetoothdata.h"
 #include "logwriter.h"
+#include "plotwidget.h"
 
 
 int main(int argc, char *argv[]) {
@@ -40,13 +41,14 @@ int main(int argc, char *argv[]) {
 
     qDebug()<<app->applicationName()<<" version "<<app->applicationVersion();
 
-    qmlRegisterType<TrackRecorder>("TrackRecorder", 1, 0, "TrackRecorder");
-    qmlRegisterType<HistoryModel>("HistoryModel", 1, 0, "HistoryModel");
-    qmlRegisterType<TrackLoader>("TrackLoader", 1, 0, "TrackLoader");
-    qmlRegisterType<Settings>("Settings", 1, 0, "Settings");
-    qmlRegisterType<BluetoothConnection,1>("bluetoothconnection", 1, 0, "BluetoothConnection");
-    qmlRegisterType<BluetoothData,1>("bluetoothdata", 1, 0, "BluetoothData");
-    qmlRegisterType<LogWriter,1>("logwriter", 1, 0, "LogWriter");
+    qmlRegisterType<TrackRecorder>("harbour.laufhelden", 1, 0, "TrackRecorder");
+    qmlRegisterType<HistoryModel>("harbour.laufhelden", 1, 0, "HistoryModel");
+    qmlRegisterType<TrackLoader>("harbour.laufhelden", 1, 0, "TrackLoader");
+    qmlRegisterType<Settings>("harbour.laufhelden", 1, 0, "Settings");
+    qmlRegisterType<BluetoothConnection,1>("harbour.laufhelden", 1, 0, "BluetoothConnection");
+    qmlRegisterType<BluetoothData,1>("harbour.laufhelden", 1, 0, "BluetoothData");
+    qmlRegisterType<LogWriter,1>("harbour.laufhelden", 1, 0, "LogWriter");
+    qmlRegisterType<PlotWidget,1>("harbour.laufhelden", 1, 0, "PlotWidget");
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());

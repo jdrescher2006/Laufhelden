@@ -19,8 +19,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtLocation 5.0
-import QtPositioning 5.0
-import TrackLoader 1.0
+import harbour.laufhelden 1.0
 
 Page {
     id: detailPage
@@ -86,6 +85,17 @@ Page {
         clip: true
         contentHeight: header.height + gridContainer.height + Theme.paddingLarge
         VerticalScrollDecorator {}
+
+        PullDownMenu
+        {
+            id: menu
+            MenuItem
+            {
+                text: qsTr("Diagrams")
+                onClicked: pageStack.push(Qt.resolvedUrl("DiagramViewPage.qml"))
+            }
+        }
+
         Column
         {
             width: parent.width
