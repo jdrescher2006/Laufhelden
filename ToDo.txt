@@ -1,8 +1,8 @@
 ToDo for next release to openrepos:
 - bug: go back from recordscreen to prerecord. Then switch off HR. Then proceed to recordscreen. HR is still active! -> bRecordDialogRequestHRM
+- test: check if HR is saved to autosave file.
 - set release date to .changes file
 - complete translation to german language
-- 
 
 
 
@@ -11,6 +11,7 @@ ToDo for next release to openrepos:
 
 
 ToDo on the long run:
+- implement workout comparison. Compare current workout with virtual workout in the past
 - support elevation as new datapoint
 - AM/PM mode for recordpage
 - on recordpage: enable onRadiusChanged and onCenterChanged in mapcircle.
