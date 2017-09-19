@@ -45,6 +45,22 @@ class TrackLoader : public QObject
     Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
 
 public:
+    struct TrackPoint
+    {
+        qreal latitude;
+        qreal longitude;
+        QDateTime time;
+        qreal elevation;
+        qreal direction;
+        qreal groundSpeed;
+        qreal verticalSpeed;
+        qreal magneticVariation;
+        qreal horizontalAccuracy;
+        qreal verticalAccuracy;
+        uint heartrate;
+    };
+
+
     explicit TrackLoader(QObject *parent = 0);
     QString filename() const;
     void setFilename(QString filename);
@@ -66,6 +82,9 @@ public:
     bool loaded();
     Q_INVOKABLE int trackPointCount();
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
+    Q_INVOKABLE uint heartRateAt(int index);
+    Q_INVOKABLE qreal elevationAt(int index);
+
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);
@@ -90,21 +109,7 @@ signals:
 
 public slots:
 
-private:
-    struct TrackPoint {
-        qreal latitude;
-        qreal longitude;
-        QDateTime time;
-        qreal elevation;
-        qreal direction;
-        qreal groundSpeed;
-        qreal verticalSpeed;
-        qreal magneticVariation;
-        qreal horizontalAccuracy;
-        qreal verticalAccuracy;
-        uint heartrate;
-    };
-
+private:    
     void load();
 
     QList<TrackPoint> m_points;

@@ -129,12 +129,13 @@ void TrackLoader::load() {
                                 point.magneticVariation = 0;
                                 point.horizontalAccuracy = 0;
                                 point.verticalAccuracy = 0;
-                                point.heartrate = 0;
+                                point.heartrate = 0;                                
 
                                 point.latitude = xml.attributes().value("lat").toDouble();
                                 point.longitude = xml.attributes().value("lon").toDouble();
 
-                                while(xml.readNextStartElement()) {
+                                while(xml.readNextStartElement())
+                                {
                                     if(xml.name() == "time") {
                                         point.time = QDateTime::fromString(xml.readElementText(),Qt::ISODate);
                                     } else if(xml.name() == "ele") {
@@ -234,7 +235,7 @@ void TrackLoader::load() {
         m_pace = m_duration / m_distance * 1000 / 60;
         emit paceChanged();        
         m_heartRate = m_heartRate / m_heartRatePoints;
-        emit heartRateChanged();
+        emit heartRateChanged();        
     } else {
         qDebug()<<"Not enough trackpoints to calculate duration, distance and speed";
         if(m_points.size() > 0) {
@@ -243,7 +244,6 @@ void TrackLoader::load() {
             emit timeChanged();
         }
     }
-
     emit trackChanged();
 }
 
@@ -478,6 +478,17 @@ QGeoCoordinate TrackLoader::trackPointAt(int index) {
     return QGeoCoordinate(m_points.at(index).latitude,
                           m_points.at(index).longitude,
                           m_points.at(index).elevation);
+}
+
+uint TrackLoader::heartRateAt(int index)
+{
+    return m_points.at(index).heartrate;
+}
+
+
+qreal TrackLoader::elevationAt(int index)
+{
+    return m_points.at(index).elevation;
 }
 
 int TrackLoader::fitZoomLevel(int width, int height) {
