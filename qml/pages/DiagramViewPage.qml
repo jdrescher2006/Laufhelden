@@ -18,10 +18,51 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import harbour.laufhelden 1.0
+import "../tools/JSTools.js" as JSTools
 
 Page
 {
+    id: page
+
     allowedOrientations: Orientation.All
+
+    property bool bLockFirstPageLoad: true
+
+    onStatusChanged:
+    {
+        if (status === PageStatus.Active && bLockFirstPageLoad)
+        {
+            bLockFirstPageLoad = false;
+
+        }
+
+        if (status === PageStatus.Active)
+        {
+            id_PlotWidgetHR.reset();
+            id_PlotWidgetELE.reset();
+
+            var iLastProperHeartRate = 0;
+
+            for (var i = 0; i < JSTools.arrayDataPoints.length; i++)
+            {
+                if (JSTools.arrayDataPoints[i].heartrate > 0)
+                {
+                    id_PlotWidgetHR.addValue(JSTools.arrayDataPoints[i].heartrate);
+                    iLastProperHeartRate = JSTools.arrayDataPoints[i].heartrate;
+                }
+                else
+                    id_PlotWidgetHR.addValue(iLastProperHeartRate);
+
+                id_PlotWidgetELE.addValue(JSTools.arrayDataPoints[i].elevation);
+
+                //if (i > 100)
+                  //  break;
+            }
+
+            id_PlotWidgetHR.update();
+            id_PlotWidgetELE.update();
+        }
+    }
 
     SilicaFlickable
     {
@@ -44,9 +85,18 @@ Page
 
             PlotWidget
             {
-                id: id_PlotWidget
+                id: id_PlotWidgetHR
                 width: parent.width
-                height: 150
+                height: page.height / 3
+                plotColor: Theme.highlightColor
+                scaleColor: Theme.secondaryHighlightColor
+            }
+
+            PlotWidget
+            {
+                id: id_PlotWidgetELE
+                width: parent.width
+                height: page.height / 3
                 plotColor: Theme.highlightColor
                 scaleColor: Theme.secondaryHighlightColor
             }
