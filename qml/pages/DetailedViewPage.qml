@@ -20,6 +20,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtLocation 5.0
 import harbour.laufhelden 1.0
+import "../tools/JSTools.js" as JSTools
 
 Page {
     id: detailPage
@@ -39,23 +40,34 @@ Page {
         }
     }
 
-    TrackLoader {
+    TrackLoader
+    {
         id: trackLoader
-        onTrackChanged: {
+        onTrackChanged:
+        {
             var trackLength = trackLoader.trackPointCount();
             var trackPoints = [];
-            for(var i=0;i<trackLength;i++) {
+            JSTools.arrayDataPoints = [];
+
+            for(var i=0;i<trackLength;i++)
+            {
                 trackPoints.push(trackLoader.trackPointAt(i));
+
+                JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), 0);
             }
             trackLine.path = trackPoints;
             trackMap.addMapItem(trackLine);
             //trackMap.fitViewportToMapItems(); // Not working
             setMapViewport(); // Workaround for above
+
+
+            console.log("onTrackChanged: " + JSTools.arrayDataPoints.length.toString());
         }
-        onLoadedChanged: {
+        onLoadedChanged:
+        {
             gridContainer.opacity = 1.0
-            trackMap.opacity = 1.0
-        }
+            trackMap.opacity = 1.0                       
+        }       
     }
 
     MapPolyline

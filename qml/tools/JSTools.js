@@ -23,3 +23,20 @@ function fncPadZeros(number, size)
   while (number.length < size) number = "0" + number;
   return number;
 }
+
+
+var arrayDataPoints =
+[
+    //{ heartrate: 140, elevation: 354.34, distance: 232 }
+]
+
+
+function fncAddDataPoint(heartrate,elevation,distance)
+{
+    var iPosition = arrayDataPoints.length;
+
+    arrayDataPoints[iPosition] = new Object();
+    arrayDataPoints[iPosition]["heartrate"] = heartrate;
+    arrayDataPoints[iPosition]["elevation"] = elevation;
+    arrayDataPoints[iPosition]["distance"] = distance;
+}
