@@ -1,4 +1,5 @@
 ToDo for next release to openrepos:
+- rework menu on recordpage
 - bug: go back from recordscreen to prerecord. Then switch off HR. Then proceed to recordscreen. HR is still active! -> bRecordDialogRequestHRM
 - test: check if HR is saved to autosave file.
 - set release date to .changes file
@@ -11,6 +12,9 @@ ToDo for next release to openrepos:
 
 
 ToDo on the long run:
+- if autosave is there on start on app, ask user if to resume workout
+- add heart rate average to record page
+- add over/below average speed to record page
 - implement workout comparison. Compare current workout with virtual workout in the past
 - support elevation as new datapoint
 - AM/PM mode for recordpage
@@ -72,14 +76,13 @@ Bugs:
 - compiler issue, comparison between signed and unsigned
 - write to log file is not working, strange no error or something...
 - sometimes, maybe if app is left on cover view or even in background, screen on is not longer working
-- autosave file might not get deleted after a training session
-	- complete autosave mechanism must be checked. There are UI problems with this also.
-	- if autosave is there on start on app, ask user if to resume workout
-	- bring HRM values to autosave file
+
+
 
 
 
 Completed:
+- bring HRM values to autosave file
 - what is ConfirmClearDialog for? Maybe delete this thing...
 - detailspage:
 	- make heartrate invisible if there is no data
