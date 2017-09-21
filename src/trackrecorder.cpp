@@ -85,7 +85,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
     if(m_tracking) {
         m_points.append(newPos);
         m_heartrate.append(this->iCurrentHeartRate);
-        this->iCurrentHeartRate = -1;
+        this->iCurrentHeartRate = 9999;
 
         emit pointsChanged();
         emit timeChanged();
@@ -283,7 +283,7 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
             xml.writeTextElement("v_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalAccuracy), 'g', 15));
         }
 
-        if(m_heartrate.count() > 0 && m_heartrate.at(i) != -1)
+        if(m_heartrate.count() > 0 && m_heartrate.at(i) != 9999)
         {
             xml.writeStartElement("gpxtpx:TrackPointExtension");
             xml.writeTextElement("gpxtpx:hr", QString::number(m_heartrate.at(i), 'g', 15));
