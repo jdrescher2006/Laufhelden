@@ -1,18 +1,15 @@
 ToDo for next release to openrepos:
-- rework menu on recordpage
-- bug: go back from recordscreen to prerecord. Then switch off HR. Then proceed to recordscreen. HR is still active! -> bRecordDialogRequestHRM
 - test: check if HR is saved to autosave file.
-- set release date to .changes file
-- complete translation to german language
 
-
-
-
+- set release date to .changes file				-> OK
+- complete translation to german language		-> OK
+- set new version number to yaml and spec files	-> OK
+- clean project and recompile					-> OK
 
 
 
 ToDo on the long run:
-- if autosave is there on start on app, ask user if to resume workout
+- if autosave is there on start of app, ask user if to resume workout
 - add heart rate average to record page
 - add over/below average speed to record page
 - implement workout comparison. Compare current workout with virtual workout in the past
@@ -82,6 +79,8 @@ Bugs:
 
 
 Completed:
+- bug: go back from recordscreen to prerecord. Then switch off HR. Then proceed to recordscreen. HR is still active! -> bRecordDialogRequestHRM
+- rework menu on recordpage
 - bring HRM values to autosave file
 - what is ConfirmClearDialog for? Maybe delete this thing...
 - detailspage:
