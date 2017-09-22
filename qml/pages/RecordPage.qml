@@ -71,14 +71,6 @@ Page
             map.addMapItem(trackLine);
             console.log("RecordPage: Setting map viewport");
             setMapViewport();
-
-            //Connect to HRM device if we have a BT address and HRM device should be used
-             if (sHRMAddress !== "" && settings.useHRMdevice)
-             {
-                 id_BluetoothData.connect(sHRMAddress, 1);
-             }
-
-             bRecordDialogRequestHRM = true;
         }
 
         //This is loaded everytime the page is displayed
@@ -92,6 +84,12 @@ Page
             //If this page is shown, prevent screen from going blank
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
+
+            if (sHRMAddress !== "" && settings.useHRMdevice && bRecordDialogRequestHRM === false)
+            {
+                id_BluetoothData.connect(sHRMAddress, 1);
+                bRecordDialogRequestHRM = true;
+            }
 
             //Load threshold settings and convert them to JS array
             Thresholds.fncConvertSaveStringToArray(settings.thresholds);
@@ -383,13 +381,25 @@ Page
             MenuItem
             {
                 text: qsTr("Settings")
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-            }           
-        }
-        PushUpMenu
-        {
-            id: menuUP            
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsMenu.qml"))
+            }
+            MenuItem
+            {
+                text: qsTr("Switch display mode")
+                onClicked:
+                {
+                    iDisplayMode++;
 
+                    if (iDisplayMode > 3)
+                        iDisplayMode = 0;
+
+                    //Save current display mode to settings
+                    settings.displayMode = iDisplayMode;
+
+                    //Set display mode to dialog
+                    fncSetDisplayMode();
+                }
+            }
             MenuItem
             {
                 text: bShowMap ? qsTr("Hide Map") : qsTr("Show Map")
@@ -399,6 +409,11 @@ Page
                     settings.showMapRecordPage = bShowMap;
                 }
             }
+        }
+        PushUpMenu
+        {
+            id: menuUP            
+
             MenuItem
             {
                 text: qsTr("Disconnect HRM")
@@ -419,23 +434,7 @@ Page
                     bRecordDialogRequestHRM = true;
                 }
             }
-            MenuItem
-            {
-                text: qsTr("Switch display mode")
-                onClicked:
-                {
-                    iDisplayMode++;
 
-                    if (iDisplayMode > 3)
-                        iDisplayMode = 0;
-
-                    //Save current display mode to settings
-                    settings.displayMode = iDisplayMode;
-
-                    //Set display mode to dialog
-                    fncSetDisplayMode();
-                }
-            }
         }
 
         //contentHeight: column.height + Theme.paddingLarge

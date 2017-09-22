@@ -86,6 +86,9 @@ Page
                 id_BluetoothData.disconnect();
             }
 
+            //We might returned from record page and HR reconnect is still active. Switch it off.
+            if (bRecordDialogRequestHRM)
+                bRecordDialogRequestHRM = false;
 
         }
 
