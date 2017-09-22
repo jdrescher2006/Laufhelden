@@ -118,14 +118,14 @@
     </message>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagramme</translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagramme</translation>
     </message>
 </context>
 <context>
