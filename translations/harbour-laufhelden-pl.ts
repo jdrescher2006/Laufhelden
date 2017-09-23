@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenie do pomiaru tętna</translation>
     </message>
 </context>
 <context>
@@ -106,26 +106,26 @@
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pręddość maks./⌀</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished">Tempo ⌀:</translation>
+        <translation>Tempo ⌀:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tętno min/maks/⌀</translation>
     </message>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagramy</translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished"></translation>
+        <translation>Driagramy</translation>
     </message>
 </context>
 <context>
@@ -356,19 +356,19 @@
     <name>SettingsMenu</name>
     <message>
         <source>General settings</source>
-        <translation type="unfinished">Ustawienia ogólne</translation>
+        <translation>Ustawienia ogólne</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarm progów</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Ustawienia</translation>
+        <translation>Ustawienia</translation>
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation type="unfinished"></translation>
+        <translation>Urządzenie do pomiaru tętna</translation>
     </message>
 </context>
 <context>
@@ -411,11 +411,11 @@
     </message>
     <message>
         <source>Show grid lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż linie siatki</translation>
     </message>
     <message>
         <source>Show grid lines on record page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż linie siatki na stronie rejestrowania</translation>
     </message>
 </context>
 <context>
@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>Inline skating</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazda na rolkach</translation>
     </message>
 </context>
 <context>
@@ -485,27 +485,27 @@
     </message>
     <message>
         <source>Add profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj profil</translation>
     </message>
     <message>
         <source>Rename profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę profilu</translation>
     </message>
     <message>
         <source>Remove profile</source>
-        <translation type="unfinished"></translation>
+        <translation>usuń profil</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybież profil progów</translation>
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarm, jeśli limit jest poniżej</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation type="unfinished"></translation>
+        <translation>Alarm progów</translation>
     </message>
 </context>
 <context>
