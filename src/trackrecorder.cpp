@@ -32,12 +32,14 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_pace = 0.0;
     m_speedaverage = 0.0;
     m_paceaverage = 0.0;
+    m_heartrateaverage = 0.0;
     m_accuracy = -1;
     m_tracking = false;
     m_isEmpty = true;
     m_applicationActive = true;
     m_autoSavePosition = 0;
     iCurrentHeartRate = 0;
+    m_heartrateadded = 0;
     sWorkoutType = "running";
 
     // Load autosaved track if left from previous session
@@ -100,6 +102,10 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
         {
             // Next line triggers following compiler warning?
             // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
+
+            //Calculate average heartrate
+            if (iCurrentHeartRate != 9999)
+            m_heartrateadded = m_heartrateadded + iCurrentHeartRate;
 
             //Calculate distance in meter [m]
             qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
@@ -360,6 +366,10 @@ qreal TrackRecorder::speedaverage() const {
 
 qreal TrackRecorder::paceaverage() const {
     return m_paceaverage;
+}
+
+qreal TrackRecorder::heartrateaverage() const {
+    return m_heartrateaverage;
 }
 
 QString TrackRecorder::paceStr() const

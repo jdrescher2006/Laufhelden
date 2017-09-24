@@ -33,6 +33,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(QString paceStr READ paceStr NOTIFY paceChanged)
     Q_PROPERTY(qreal speedaverage READ speedaverage NOTIFY speedaverageChanged)
     Q_PROPERTY(qreal paceaverage READ paceaverage NOTIFY paceaverageChanged)
+    Q_PROPERTY(qreal heartrateaverage READ heartrateaverage NOTIFY heartrateaverageChanged)
     Q_PROPERTY(QString paceaverageStr READ paceaverageStr NOTIFY paceaverageChanged)
     Q_PROPERTY(QString time READ time NOTIFY timeChanged)
     Q_PROPERTY(bool tracking READ isTracking WRITE setIsTracking NOTIFY isTrackingChanged)
@@ -58,6 +59,7 @@ public:
     QString paceStr() const;
     qreal speedaverage() const;
     qreal paceaverage() const;
+    qreal heartrateaverage() const;
     QString paceaverageStr() const;
     QString time() const;
     bool isTracking() const;
@@ -86,6 +88,7 @@ signals:
     void paceChanged();
     void speedaverageChanged();
     void paceaverageChanged();
+    void heartrateaverageChanged();
     void timeChanged();
     void isTrackingChanged();
     void isEmptyChanged();
@@ -112,6 +115,8 @@ private:
     qreal m_pace;
     qreal m_speedaverage;
     qreal m_paceaverage;
+    qreal m_heartrateaverage;
+    uint m_heartrateadded;
     qreal m_minLat;
     qreal m_maxLat;
     qreal m_minLon;
