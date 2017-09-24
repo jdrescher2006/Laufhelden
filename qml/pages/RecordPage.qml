@@ -333,18 +333,20 @@ Page
         color: "blue"
         border.color: "white"
         border.width: 6
-        opacity: 0.3
-        /* this stuff comes from Rena but was not working there either
-        onRadiusChanged: {
+        opacity: 0.3        
+        onRadiusChanged:
+        {
             if(!map.gesture.enabled) {  // When not browsing the map
                 setMapViewport()
             }
         }
-        onCenterChanged: {
+        onCenterChanged:
+        {
             if(!map.gesture.enabled) {  // When not browsing the map
                 setMapViewport()
             }
         }        
+        /* this stuff comes from Rena but was not working there either
         Behavior on radius
         {
             NumberAnimation { duration: 200 }
@@ -359,7 +361,8 @@ Page
         }*/
     }
 
-    MapPolyline {
+    MapPolyline
+    {
         id: trackLine
         visible: path.length > 1
         line.color: "red"
@@ -367,7 +370,8 @@ Page
         smooth: true
     }
 
-    SilicaFlickable {
+    SilicaFlickable
+    {
         id: flickable
         anchors.top: page.top
         anchors.bottom: bShowMap ? map.top : page.bottom

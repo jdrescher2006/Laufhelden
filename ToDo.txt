@@ -1,14 +1,16 @@
 ToDo for next release to openrepos:
-- test: check if HR is saved to autosave file.
 
-- set release date to .changes file				-> OK
-- complete translation to german language		-> OK
-- set new version number to yaml and spec files	-> OK
-- clean project and recompile					-> OK
+
+
+- set release date to .changes file
+- complete translation to german language
+- set new version number to yaml and spec files
+- clean project and recompile
 
 
 
 ToDo on the long run:
+- store workout type to autosave
 - if autosave is there on start of app, ask user if to resume workout
 - add heart rate average to record page
 - add over/below average speed to record page
@@ -79,6 +81,7 @@ Bugs:
 
 
 Completed:
+- test: check if HR is saved to autosave file.
 - bug: go back from recordscreen to prerecord. Then switch off HR. Then proceed to recordscreen. HR is still active! -> bRecordDialogRequestHRM
 - rework menu on recordpage
 - bring HRM values to autosave file
