@@ -87,6 +87,10 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
     if(m_tracking) {
         m_points.append(newPos);
         m_heartrate.append(this->iCurrentHeartRate);
+
+        if (iCurrentHeartRate != 9999)
+            m_heartrateadded = m_heartrateadded + iCurrentHeartRate;
+
         this->iCurrentHeartRate = 9999;
 
         emit pointsChanged();
@@ -104,8 +108,11 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
 
             //Calculate average heartrate
-            if (iCurrentHeartRate != 9999)
-            m_heartrateadded = m_heartrateadded + iCurrentHeartRate;
+            if (m_heartrate.size() > 0)
+            {
+                m_heartrateaverage = m_heartrateadded / m_heartrate.size();
+                emit heartrateaverageChanged();
+            }
 
             //Calculate distance in meter [m]
             qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
@@ -326,6 +333,7 @@ void TrackRecorder::clearTrack()
 {
     m_points.clear();
     m_heartrate.clear();
+    m_heartrateadded = 0;
     m_distance = 0;
     m_isEmpty = true;
 
@@ -709,9 +717,14 @@ void TrackRecorder::loadAutoSave()
     emit pointsChanged();
     emit timeChanged();
 
-    if(m_points.size() > 1) {
-        for(int i=1;i<m_points.size();i++) {
+    if(m_points.size() > 1)
+    {
+        for(int i=1;i<m_points.size();i++)
+        {
             m_distance += m_points.at(i-1).coordinate().distanceTo(m_points.at(i).coordinate());
+
+            if (m_heartrate.at(i - 1) != 9999)
+                m_heartrateadded = m_heartrateadded + m_heartrate.at(i - 1);
         }
         emit distanceChanged();
     }
