@@ -51,10 +51,6 @@
         <translation>Ninguno</translation>
     </message>
     <message>
-        <source>Heart Rate:</source>
-        <translation>Ritmo Cardiaco:</translation>
-    </message>
-    <message>
         <source> bpm</source>
         <translation>ppm</translation>
     </message>
@@ -69,6 +65,10 @@
     <message>
         <source>Heart rate device</source>
         <translation>Dispositivo de ritmo cardíaco</translation>
+    </message>
+    <message>
+        <source>Heart Rate: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -116,6 +116,17 @@
         <source>Heart rate min/max/⌀:</source>
         <translation>Ritmo cardiaco mín/máx/⌀:</translation>
     </message>
+    <message>
+        <source>Diagrams</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiagramViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>
@@ -159,6 +170,15 @@
         <source>Removing workout...</source>
         <translation>Removiendo ejercicio...</translation>
     </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accept - resume workout
+Cancel - delete workout</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreRecordPage</name>
@@ -168,7 +188,7 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translationEjercicio:></translation>
+        <translation>Ejercicio:</translation>
     </message>
     <message>
         <source>Use HRM device</source>
@@ -207,7 +227,7 @@
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ajustes</translation>
     </message>
     <message>
         <source>Hide Map</source>
