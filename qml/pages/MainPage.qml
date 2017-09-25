@@ -32,6 +32,30 @@ Page
     property string sWorkoutDuration: ""
     property string sWorkoutDistance: ""
 
+    function fncCheckAutosave()
+    {
+
+        console.log("recorder.isEmpty: " + recorder.isEmpty.toString());
+
+        if (recorder.isEmpty === false)
+        {
+            var dialog = pageStack.push(id_Dialog_Autosave)
+            dialog.accepted.connect(function()
+            {
+                //console.log("Accepted");
+                //Accept means the users wants to resume the workout
+                recorder.workoutType = settings.workoutType;
+                pageStack.push(Qt.resolvedUrl("RecordPage.qml"));
+            })
+            dialog.rejected.connect(function()
+            {
+                console.log("Canceled");
+                //Cancel means the users wants to delete the workout
+                recorder.clearTrack();
+            })
+        }
+    }
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -106,6 +130,8 @@ Page
             historyList.model = id_HistoryModel;            
 
             bLoadingFiles = false;
+
+            fncCheckAutosave();
         }
         onDataChanged:     //This is called from C++ if the loading of one GPX file is ready
         {
@@ -122,6 +148,8 @@ Page
             console.log("Error while loading GPX files");
 
             bLoadingFiles = false;
+
+            fncCheckAutosave();
         }
     }
 
@@ -149,7 +177,7 @@ Page
             {
                 text: qsTr("Start new workout")
                 onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
-            }            
+            }
         }
 
         header: Column
@@ -329,6 +357,36 @@ Page
             }
             onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
                                       {filename: filename, name: name})
+        }
+    }
+    Component
+    {
+        id: id_Dialog_Autosave
+
+        Dialog
+        {
+            canAccept: true
+            acceptDestination: mainPage
+            acceptDestinationAction: PageStackAction.Pop
+
+            Flickable
+            {
+                width: parent.width
+                height: parent.height
+                interactive: false
+
+                Column
+                {
+                    width: parent.width
+
+                    DialogHeader { title: qsTr("Uncompleted workout found!") }
+
+                    Label
+                    {
+                        text: qsTr("Accept - resume workout\r\nCancel - delete workout")
+                    }
+                }
+            }
         }
     }
 }
