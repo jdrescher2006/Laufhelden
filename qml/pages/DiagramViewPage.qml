@@ -24,7 +24,7 @@ Page
 {
     id: page
 
-    allowedOrientations: Orientation.All
+    allowedOrientations: Orientation.Landscape
 
     property bool bLockFirstPageLoad: true
 
@@ -54,6 +54,8 @@ Page
                     id_PlotWidgetHR.addValue(iLastProperHeartRate);
 
                 id_PlotWidgetELE.addValue(JSTools.arrayDataPoints[i].elevation);
+
+
 
                 //if (i > 100)
                   //  break;
@@ -86,16 +88,21 @@ Page
             PlotWidget
             {
                 id: id_PlotWidgetHR
-                width: parent.width
+                width: page.width
                 height: page.height / 3
-                plotColor: Theme.highlightColor
-                scaleColor: Theme.secondaryHighlightColor
+                plotColor: "blue"
+                scaleColor: "red"
+            }
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
             }
 
             PlotWidget
             {
                 id: id_PlotWidgetELE
-                width: parent.width
+                width: page.width
                 height: page.height / 3
                 plotColor: Theme.highlightColor
                 scaleColor: Theme.secondaryHighlightColor
