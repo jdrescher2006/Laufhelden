@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ritmo cardiaco:</translation>
     </message>
 </context>
 <context>
@@ -118,14 +118,14 @@
     </message>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagramas</translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagramas</translation>
     </message>
 </context>
 <context>
@@ -172,12 +172,12 @@
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrado un ejercicio incompleto!</translation>
     </message>
     <message>
         <source>Accept - resume workout
 Cancel - delete workout</source>
-        <translation type="unfinished"></translation>
+        <translation>aceptar - resumen de ejercicio - borrar ejercicio</translation>
     </message>
 </context>
 <context>
