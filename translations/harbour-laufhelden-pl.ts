@@ -170,6 +170,15 @@
         <source>Removing workout...</source>
         <translation>Usuwanie traningu...</translation>
     </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accept - resume workout
+Cancel - delete workout</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreRecordPage</name>
