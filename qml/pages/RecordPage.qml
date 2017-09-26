@@ -22,6 +22,7 @@ import QtLocation 5.0
 import "../tools/SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
 import "../tools/JSTools.js" as JSTools
+import "../tools/RecordPageDisplay.js" as RecordPageDisplay
 
 Page
 {
@@ -229,6 +230,10 @@ Page
     {
         //console.log("Position: " + recorder.currentPosition);
         console.log("newTrackPoint");        
+
+        //Set values to JS array
+        RecordPageDisplay.arrayValueTypes[0].value = (recorder.distance/1000).toFixed(1);
+        RecordPageDisplay.arrayValueTypes[1].value = sHeartRate;
 
 
         trackLine.addCoordinate(coordinate);
@@ -614,6 +619,7 @@ Page
 
             Text
             {
+                id: idTXT_1_Header
                 text: qsTr("Pace:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
@@ -626,6 +632,7 @@ Page
             }
             Text
             {
+                id: idTXT_1_Value
                 text: recorder.paceStr
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
@@ -638,6 +645,7 @@ Page
             }
             Text
             {
+                id: idTXT_1_Footer
                 text: qsTr("min/km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
@@ -692,6 +700,7 @@ Page
 
             Text
             {
+                id: idTXT_2_Header
                 text: " " + qsTr("Speed:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
@@ -704,6 +713,7 @@ Page
             }
             Text
             {
+                id: idTXT_2_Value
                 text: recorder.speed.toFixed(1)
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
@@ -716,6 +726,7 @@ Page
             }
             Text
             {
+                id: idTXT_2_Footer
                 text: qsTr("km/h")
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
@@ -762,6 +773,7 @@ Page
 
             Text
             {
+                id: idTXT_3_Header
                 text: qsTr("Distance:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
@@ -774,6 +786,7 @@ Page
             }
             Text
             {
+                id: idTXT_3_Value
                 text: (recorder.distance/1000).toFixed(1)
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
@@ -786,6 +799,7 @@ Page
             }
             Text
             {
+                id: idTXT_3_Footer
                 text: qsTr("km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
@@ -839,6 +853,7 @@ Page
 
             Text
             {
+                id: idTXT_4_Header
                 text: " " + qsTr("Heartrate:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
@@ -851,6 +866,7 @@ Page
             }
             Text
             {
+                id: idTXT_4_Value
                 text: sHeartRate
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
@@ -863,6 +879,7 @@ Page
             }
             Text
             {
+                id: idTXT_4_Footer
                 text: qsTr("bpm")
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
@@ -921,6 +938,7 @@ Page
 
             Text
             {
+                id: idTXT_5_Header
                 text: qsTr("Pace ⌀:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
@@ -933,6 +951,7 @@ Page
             }
             Text
             {
+                id: idTXT_5_Value
                 text: recorder.paceaverageStr
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
@@ -945,6 +964,7 @@ Page
             }
             Text
             {
+                id: idTXT_5_Footer
                 text: qsTr("min/km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
@@ -998,6 +1018,7 @@ Page
 
             Text
             {
+                id: idTXT_6_Header
                 text: " " + qsTr("Speed ⌀:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
@@ -1010,6 +1031,7 @@ Page
             }
             Text
             {
+                id: idTXT_6_Value
                 text: recorder.speedaverage.toFixed(1)
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
@@ -1022,6 +1044,7 @@ Page
             }
             Text
             {
+                id: idTXT_6_Footer
                 text: qsTr("km/h")
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor

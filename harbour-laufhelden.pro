@@ -107,5 +107,6 @@ DISTFILES += \
     qml/audio/pace_toohigh_de_male.wav \
     qml/audio/pace_toolow_de_male.wav \
     qml/pages/SettingsMenu.qml \
-    qml/pages/DiagramViewPage.qml
+    qml/pages/DiagramViewPage.qml \
+    qml/tools/RecordPageDisplay.js
 
