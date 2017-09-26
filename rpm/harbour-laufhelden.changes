@@ -1,4 +1,8 @@
-* Fri Sep 22 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.92-3
+* Tue Sep 26 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.3-4
+- added a dialog to resume a broken workout
+- fixed localization
+
+* Fri Sep 22 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.2-3
 - added a settings menu page for better overview
 - replaced "let's go" button with forward navigation
 - grids on record page can be made invisible
@@ -9,8 +13,8 @@
 - autosave now includes the heartrate
 - fixed bugs
 
-* Tue Sep 09 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.91-2
+* Tue Sep 09 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.1-2
 - fixed a bug on PreRecordPage. App crashed if a workout type was choosen.
 
-* Tue Sep 09 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.90-1
+* Tue Sep 09 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.0-1
 - initial release to openrepos
