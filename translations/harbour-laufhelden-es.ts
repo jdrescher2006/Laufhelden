@@ -175,9 +175,8 @@
         <translation>Encontrado un ejercicio incompleto!</translation>
     </message>
     <message>
-        <source>Accept - resume workout
-Cancel - delete workout</source>
-        <translation>aceptar - resumen de ejercicio - borrar ejercicio</translation>
+        <source>Resume</source>
+        <translation>Continuar</translation>
     </message>
 </context>
 <context>
@@ -227,7 +226,7 @@ Cancel - delete workout</source>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Ajustes</translation>
+        <translation>Ajustes</translation>
     </message>
     <message>
         <source>Hide Map</source>

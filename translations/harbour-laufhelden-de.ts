@@ -175,9 +175,8 @@
         <translation>Abgebrochenes Training gefunden!</translation>
     </message>
     <message>
-        <source>Accept - resume workout
-Cancel - delete workout</source>
-        <translation type="unfinished"></translation>
+        <source>Resume</source>
+        <translation>Fortsetzen</translation>
     </message>
 </context>
 <context>

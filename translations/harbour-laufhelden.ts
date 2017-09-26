@@ -175,8 +175,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Accept - resume workout
-Cancel - delete workout</source>
+        <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
