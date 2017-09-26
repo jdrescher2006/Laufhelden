@@ -361,13 +361,15 @@ Page
     }
     Component
     {
-        id: id_Dialog_Autosave
+        id: id_Dialog_Autosave        
 
         Dialog
         {
+            width: parent.width
             canAccept: true
             acceptDestination: mainPage
             acceptDestinationAction: PageStackAction.Pop
+
 
             Flickable
             {
@@ -379,11 +381,10 @@ Page
                 {
                     width: parent.width
 
-                    DialogHeader { title: qsTr("Uncompleted workout found!") }
-
-                    Label
+                    DialogHeader
                     {
-                        text: qsTr("Accept - resume workout\r\nCancel - delete workout")
+                        title: qsTr("Uncompleted workout found!")
+                        defaultAcceptText: qsTr("Resume")
                     }
                 }
             }
