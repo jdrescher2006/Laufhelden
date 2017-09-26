@@ -1,6 +1,8 @@
 ToDo for next release to openrepos:
 
-
+- new values for recordpage: elevation and heartrate avg
+- adjustable value fields for recordpage
+- test rena stuff for map updating (mapcircle)
 
 - set release date to .changes file
 - complete translation to german language
