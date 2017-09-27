@@ -1,5 +1,6 @@
 ToDo for next release to openrepos:
 
+- view credits on about page
 - new values for recordpage: elevation and heartrate avg
 - adjustable value fields for recordpage
 - test rena stuff for map updating (mapcircle)
