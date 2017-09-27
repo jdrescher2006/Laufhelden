@@ -277,47 +277,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pace:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>min/km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Speed:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>km/h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heartrate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>bpm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Bat:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Speed ⌀:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -338,6 +298,61 @@
     </message>
     <message>
         <source>End</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RecordPageDisplay</name>
+    <message>
+        <source>Distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bpm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate ���</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>min/km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace ���</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed ���</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>m</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -79,6 +79,12 @@ Page
         {
             console.log("RecordPage active");            
 
+            //Set value types for fields in JS array
+            RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
+
+            //Set header and footer to text fields
+            fncSetHeaderFooterTexts();
+
             //Set display mode to dialog
             fncSetDisplayMode();
 
@@ -158,7 +164,29 @@ Page
                 }
             }
         }
-    }   
+    }        
+
+    function fncSetHeaderFooterTexts()
+    {
+        idTXT_1_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].header;
+        idTXT_1_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footer + " ";
+
+        idTXT_2_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].header;
+        idTXT_2_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footer;
+
+        idTXT_3_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].header;
+        idTXT_3_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footer + " ";
+
+        idTXT_4_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].header;
+        idTXT_4_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footer;
+
+        idTXT_5_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].header;
+        idTXT_5_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footer + " ";
+
+        idTXT_6_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].header;
+        idTXT_6_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footer;
+
+    }
 
     function showSaveDialog()
     {
@@ -234,6 +262,20 @@ Page
         //Set values to JS array
         RecordPageDisplay.arrayValueTypes[0].value = (recorder.distance/1000).toFixed(1);
         RecordPageDisplay.arrayValueTypes[1].value = sHeartRate;
+        RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
+        RecordPageDisplay.arrayValueTypes[3].value = recorder.paceStr;
+        RecordPageDisplay.arrayValueTypes[4].value = recorder.paceaverageStr;
+        RecordPageDisplay.arrayValueTypes[5].value = recorder.speed.toFixed(1);
+        RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
+        RecordPageDisplay.arrayValueTypes[7].value = 0; //elevation
+
+        //Set values from JS array to dialog text fields
+        idTXT_1_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].value;
+        idTXT_2_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].value;
+        idTXT_3_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].value;
+        idTXT_4_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].value;
+        idTXT_5_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].value;
+        idTXT_6_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].value;
 
 
         trackLine.addCoordinate(coordinate);
@@ -620,7 +662,6 @@ Page
             Text
             {
                 id: idTXT_1_Header
-                text: qsTr("Pace:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -633,7 +674,6 @@ Page
             Text
             {
                 id: idTXT_1_Value
-                text: recorder.paceStr
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -646,7 +686,6 @@ Page
             Text
             {
                 id: idTXT_1_Footer
-                text: qsTr("min/km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
@@ -701,7 +740,6 @@ Page
             Text
             {
                 id: idTXT_2_Header
-                text: " " + qsTr("Speed:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -714,7 +752,6 @@ Page
             Text
             {
                 id: idTXT_2_Value
-                text: recorder.speed.toFixed(1)
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -727,7 +764,6 @@ Page
             Text
             {
                 id: idTXT_2_Footer
-                text: qsTr("km/h")
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
@@ -774,7 +810,6 @@ Page
             Text
             {
                 id: idTXT_3_Header
-                text: qsTr("Distance:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -787,7 +822,6 @@ Page
             Text
             {
                 id: idTXT_3_Value
-                text: (recorder.distance/1000).toFixed(1)
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -800,7 +834,6 @@ Page
             Text
             {
                 id: idTXT_3_Footer
-                text: qsTr("km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
@@ -854,7 +887,6 @@ Page
             Text
             {
                 id: idTXT_4_Header
-                text: " " + qsTr("Heartrate:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -867,7 +899,6 @@ Page
             Text
             {
                 id: idTXT_4_Value
-                text: sHeartRate
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -880,7 +911,6 @@ Page
             Text
             {
                 id: idTXT_4_Footer
-                text: qsTr("bpm")
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
@@ -939,7 +969,6 @@ Page
             Text
             {
                 id: idTXT_5_Header
-                text: qsTr("Pace ⌀:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -952,7 +981,6 @@ Page
             Text
             {
                 id: idTXT_5_Value
-                text: recorder.paceaverageStr
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -965,7 +993,6 @@ Page
             Text
             {
                 id: idTXT_5_Footer
-                text: qsTr("min/km") + " "
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
@@ -1019,7 +1046,6 @@ Page
             Text
             {
                 id: idTXT_6_Header
-                text: " " + qsTr("Speed ⌀:")
                 anchors.top: parent.top
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -1032,7 +1058,6 @@ Page
             Text
             {
                 id: idTXT_6_Value
-                text: recorder.speedaverage.toFixed(1)
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -1045,7 +1070,6 @@ Page
             Text
             {
                 id: idTXT_6_Footer
-                text: qsTr("km/h")
                 anchors.bottom: parent.bottom
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width

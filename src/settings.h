@@ -36,6 +36,7 @@ class Settings : public QObject
     Q_PROPERTY(int displayMode READ displayMode WRITE setDisplayMode)
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
     Q_PROPERTY(bool showBorderLines READ showBorderLines WRITE setShowBorderLines)
+    Q_PROPERTY(QString valueFields READ valueFields WRITE setValueFields)
 
 public:
     explicit Settings(QObject *parent = 0);
@@ -74,6 +75,9 @@ public:
 
     bool showBorderLines() const;
     void setShowBorderLines(bool showBorderLines);
+
+    QString valueFields() const;
+    void setValueFields(QString valueFields);
 
 signals:
     void updateIntervalChanged();

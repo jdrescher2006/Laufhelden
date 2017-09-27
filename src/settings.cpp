@@ -126,3 +126,11 @@ void Settings::setShowBorderLines(bool showBorderLines)
 {
      m_settings->setValue("generalsettings/showBorderLines", showBorderLines);
 }
+QString Settings::valueFields() const
+{
+    return m_settings->value("recordsettings/valueFields", "3,4,1,2,0,7|5,6,1,2,0,7|5,6,1,2,0,7|5,6,1,2,0,7|5,6,1,2,0,7").toString();
+}
+void Settings::setValueFields(QString valueFields)
+{
+    m_settings->setValue("recordsettings/valueFields", valueFields);
+}

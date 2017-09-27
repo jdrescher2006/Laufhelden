@@ -85,7 +85,8 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
     }
 
     if(m_tracking) {
-        m_points.append(newPos);
+        m_points.append(newPos);       
+
         m_heartrate.append(this->iCurrentHeartRate);
 
         if (iCurrentHeartRate != 9999)
