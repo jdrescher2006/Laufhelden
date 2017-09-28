@@ -41,6 +41,7 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     iCurrentHeartRate = 0;
     m_heartrateadded = 0;
     sWorkoutType = "running";
+    m_altitude = 0;
 
     // Load autosaved track if left from previous session
     loadAutoSave();
@@ -151,7 +152,6 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             QDateTime last = m_points.at(m_points.size()-1).timestamp();
             qint64 iWorkoutTimeSec = first.secsTo(last);
 
-
             //Calculate average speed
             m_speedaverage = (m_distance / 1000.0) / (iWorkoutTimeSec / 3600.0);
             qDebug()<<"AVG speed:"<<m_speedaverage;
@@ -161,6 +161,9 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             m_paceaverage = (iWorkoutTimeSec / 60.0) / (m_distance / 1000.0);
             qDebug()<<"AVG pace:"<<m_paceaverage;
             emit paceaverageChanged();
+
+            //Get altitude
+            m_altitude = newPos.coordinate().altitude();
 
             if(newPos.coordinate().latitude() < m_minLat)
             {
@@ -176,6 +179,8 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
             {
                 m_maxLon = newPos.coordinate().longitude();
             }
+
+            emit valuesChanged();
         }
         emit newTrackPoint(newPos.coordinate());
     }
@@ -379,6 +384,11 @@ qreal TrackRecorder::paceaverage() const {
 
 qreal TrackRecorder::heartrateaverage() const {
     return m_heartrateaverage;
+}
+
+double TrackRecorder::altitude() const
+{
+    return m_altitude;
 }
 
 QString TrackRecorder::paceStr() const
