@@ -167,7 +167,7 @@ Page
     }        
 
     function fncSetHeaderFooterTexts()
-    {
+    {       
         idTXT_1_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].header;
         idTXT_1_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footer + " ";
 
@@ -185,7 +185,6 @@ Page
 
         idTXT_6_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].header;
         idTXT_6_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footer;
-
     }
 
     function showSaveDialog()
@@ -267,7 +266,7 @@ Page
         RecordPageDisplay.arrayValueTypes[4].value = recorder.paceaverageStr;
         RecordPageDisplay.arrayValueTypes[5].value = recorder.speed.toFixed(1);
         RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
-        RecordPageDisplay.arrayValueTypes[7].value = 0; //elevation
+        RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
 
         //Set values from JS array to dialog text fields
         idTXT_1_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].value;
@@ -492,6 +491,36 @@ Page
 
         Rectangle
         {
+            id: idRECChooseValueType
+            z: 2
+            color: "steelblue"
+            width: parent.width
+            height: parent.height/6
+            anchors.centerIn: parent
+            visible: false
+
+            ComboBox
+            {
+                id: cmbValueType
+                width: parent.width
+                label: qsTr("Value type:")
+                menu: ContextMenu
+                {
+                    Repeater
+                    {
+                        model: RecordPageDisplay.arrayValueTypes;
+                        MenuItem { text: modelData.header }
+                    }
+                }
+                onCurrentItemChanged:
+                {
+                    console.log("onCurrentItemChanged: " + currentIndex.toString());
+                }
+            }
+        }
+
+        Rectangle
+        {
             visible: iButtonLoop < 3
             z: 2
             color: "steelblue"
@@ -514,16 +543,7 @@ Page
             anchors.top: parent.top
             anchors.left: parent.left
             width: parent.width / 2
-            height: parent.height / iHeaderLineWidthFactor
-
-            MouseArea
-            {
-                anchors.fill: parent
-                onClicked:
-                {
-                    console.log("Clicked!!!");
-                }
-            }
+            height: parent.height / iHeaderLineWidthFactor            
 
             Rectangle
             {
@@ -589,15 +609,6 @@ Page
             width: parent.width / 2
             height: parent.height / iHeaderLineWidthFactor
 
-            MouseArea
-            {
-                anchors.fill: parent
-                onClicked:
-                {
-                    console.log("Clicked!!!");
-                }
-            }
-
             Rectangle
             {
                 anchors.fill: parent
@@ -649,6 +660,7 @@ Page
                 onClicked:
                 {
                     console.log("Clicked!!!");
+                    idRECChooseValueType.visible = !idRECChooseValueType.visible;
                 }
             }
 
@@ -1095,16 +1107,7 @@ Page
             anchors.top: idItemThirdLine.bottom
             anchors.left: parent.left
             width: parent.width
-            height: parent.height / iMiddleLineWidthFactor
-
-            MouseArea
-            {
-                anchors.fill: parent
-                onClicked:
-                {
-                    console.log("Clicked!!!");
-                }
-            }
+            height: parent.height / iMiddleLineWidthFactor           
 
             Rectangle
             {

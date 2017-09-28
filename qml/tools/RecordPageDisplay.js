@@ -26,7 +26,7 @@ var arrayValueTypes =
     { fieldID: 5, value: 0, header: qsTr("Pace ⌀"), footer: qsTr("min/km") },
     { fieldID: 6, value: 0, header: qsTr("Speed"), footer: qsTr("km/h") },
     { fieldID: 0, value: 0, header: qsTr("Speed ⌀"), footer: qsTr("km/h") },
-    { fieldID: 0, value: 0, header: qsTr("Elevation"), footer: qsTr("m") }
+    { fieldID: 0, value: 0, header: qsTr("Altitude"), footer: qsTr("m") }
 ]
 
 
@@ -42,8 +42,7 @@ for (var i = 0; i < arrayValueTypes.length; i++)
 
 function fncConvertSaveStringToArray(sSaveString, iWorkoutType)
 {
-    //3,4,1,2,0,7|5,6,1,2,0,7|5,6,1,2,0,7|5,6,1,2,0,7|5,6,1,2,0,7
-    //
+    //"5,3,4,1,2,0,0,6|5,3,4,0,0,1,2,6|5,3,4,0,0,1,2,6|5,3,4,1,2,0,0,6|5,3,4,0,0,1,2,6"
 
     var arValueTypesByWorkout = sSaveString.split("|");
 
@@ -53,22 +52,20 @@ function fncConvertSaveStringToArray(sSaveString, iWorkoutType)
     //Pick the one for the selected workout
     var arValueTypes = arValueTypesByWorkout[iWorkoutType].split(",");
 
-    if (arValueTypes.length !== 6)    //This is the amount of value fields on record page, currently 6
+    if (arValueTypes.length !== arrayValueTypes.length)    //This is the amount of value types
         return;
 
-    arrayValueTypes[parseInt(arValueTypes[0])].fieldID = 1;
-    arrayValueTypes[parseInt(arValueTypes[1])].fieldID = 2;
-    arrayValueTypes[parseInt(arValueTypes[2])].fieldID = 3;
-    arrayValueTypes[parseInt(arValueTypes[3])].fieldID = 4;
-    arrayValueTypes[parseInt(arValueTypes[4])].fieldID = 5;
-    arrayValueTypes[parseInt(arValueTypes[5])].fieldID = 6;
+    arrayValueTypes[0].fieldID = parseInt(arValueTypes[0]);
+    arrayValueTypes[1].fieldID = parseInt(arValueTypes[1]);
+    arrayValueTypes[2].fieldID = parseInt(arValueTypes[2]);
+    arrayValueTypes[3].fieldID = parseInt(arValueTypes[3]);
+    arrayValueTypes[4].fieldID = parseInt(arValueTypes[4]);
+    arrayValueTypes[5].fieldID = parseInt(arValueTypes[5]);
+    arrayValueTypes[6].fieldID = parseInt(arValueTypes[6]);
+    arrayValueTypes[7].fieldID = parseInt(arValueTypes[7]);
 
-    console.log(arrayValueTypes[0].fieldID.toString());
-    console.log(arrayValueTypes[1].fieldID.toString());
-    console.log(arrayValueTypes[2].fieldID.toString());
-    console.log(arrayValueTypes[3].fieldID.toString());
-    console.log(arrayValueTypes[4].fieldID.toString());
-    console.log(arrayValueTypes[5].fieldID.toString());
-    console.log(arrayValueTypes[6].fieldID.toString());
-    console.log(arrayValueTypes[7].fieldID.toString());
+    for (var i = 0; i < arrayValueTypes.length; i++)
+    {
+        arrayLookupValueTypesByFieldID[arrayValueTypes[i].fieldID] = arrayValueTypes[i];
+    }
 }
