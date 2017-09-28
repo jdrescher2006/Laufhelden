@@ -300,6 +300,10 @@
         <source>End</source>
         <translation>fin</translation>
     </message>
+    <message>
+        <source>Value type:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
@@ -348,11 +352,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Elevation</source>
+        <source>m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>m</source>
+        <source>Altitude</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
