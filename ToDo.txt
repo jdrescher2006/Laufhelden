@@ -1,5 +1,6 @@
 ToDo for next release to openrepos:
 
+- check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
 - view credits on about page
 - new values for recordpage: elevation and heartrate avg
 - adjustable value fields for recordpage
