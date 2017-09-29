@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Start new workout</source>
-        <translation>Comenzar un nuevo ejercicio</translation>
+        <translation>Empezar un ejercicio</translation>
     </message>
     <message>
         <source>Welcome to Laufhelden</source>
@@ -176,7 +176,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Continuar</translation>
+        <translation>Resumir</translation>
     </message>
 </context>
 <context>
@@ -302,62 +302,62 @@
     </message>
     <message>
         <source>Value type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de valor:</translation>
     </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
     <message>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Distancia</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ritmo cardiaco</translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished">ppm</translation>
+        <translation>ppm</translation>
     </message>
     <message>
         <source>Heartrate ���</source>
-        <translation type="unfinished"></translation>
+        <translation>Ritmo cardiaco ���</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished"></translation>
+        <translation>Paso</translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished">mín/km</translation>
+        <translation>mín/km</translation>
     </message>
     <message>
         <source>Pace ���</source>
-        <translation type="unfinished"></translation>
+        <translation>Paso ���</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocidad</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>Speed ���</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocidad ���</translation>
     </message>
     <message>
         <source>m</source>
-        <translation type="unfinished"></translation>
+        <translation>m</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation type="unfinished"></translation>
+        <translation>Altitud</translation>
     </message>
 </context>
 <context>
