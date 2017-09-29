@@ -37,7 +37,8 @@ Page
 
     property bool bLockFirstPageLoad: true
     property int iButtonLoop : 3
-    property bool bEndLoop: false;       
+    property bool bEndLoop: false;
+    property int iValueFieldPressed: -1
 
     property int iDisplayMode: settings.displayMode
     property bool bShowBorderLines: settings.showBorderLines
@@ -59,8 +60,9 @@ Page
         //This is loaded only the first time the page is displayed
         if (status === PageStatus.Active && bLockFirstPageLoad)
         {
+            console.log("---RecordPage first active enter---");
+
             bLockFirstPageLoad = false;
-            console.log("First Active RecordPage");
 
             recorder.newTrackPoint.connect(newTrackPoint);
             map.addMapItem(positionMarker);
@@ -72,15 +74,17 @@ Page
             map.addMapItem(trackLine);
             console.log("RecordPage: Setting map viewport");
             setMapViewport();
+
+            console.log("---RecordPage first active leave---");
         }
 
         //This is loaded everytime the page is displayed
         if (status === PageStatus.Active)
         {
-            console.log("RecordPage active");            
+            console.log("---RecordPage active enter---");
 
             //Set value types for fields in JS array
-            RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
+            RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
 
             //Set header and footer to text fields
             fncSetHeaderFooterTexts();
@@ -100,6 +104,8 @@ Page
 
             //Load threshold settings and convert them to JS array
             Thresholds.fncConvertSaveStringToArray(settings.thresholds);
+
+            console.log("---RecordPage active leave---");
         }
 
         if (status === PageStatus.Inactive)
@@ -140,6 +146,7 @@ Page
             //Cancel end operation
             if (bEndLoop)
             {
+                iValueFieldPressed = -1;
                 iButtonLoop = 3;
                 return;
             }
@@ -150,17 +157,28 @@ Page
             {
                 iButtonLoop = 3;
 
-                bRecordDialogRequestHRM = false;
 
-                if (bHRMConnected) {id_BluetoothData.disconnect();}
-
-                sHeartRate: ""
-                sBatteryLevel: ""
-
-                recorder.tracking = false;
-                if(!recorder.isEmpty)
+                //Now check if a value field button was pressed or not.
+                if (iValueFieldPressed !== -1)
                 {
-                    showSaveDialog();
+                    //These operations belong to "value field" button pressed
+                    idRECChooseValueType.visible = true;
+                }
+                else
+                {
+                    //These operation belong to "end workout" button pressed
+                    bRecordDialogRequestHRM = false;
+
+                    if (bHRMConnected) {id_BluetoothData.disconnect();}
+
+                    sHeartRate: ""
+                    sBatteryLevel: ""
+
+                    recorder.tracking = false;
+                    if(!recorder.isEmpty)
+                    {
+                        showSaveDialog();
+                    }
                 }
             }
         }
@@ -495,14 +513,27 @@ Page
             z: 2
             color: "steelblue"
             width: parent.width
-            height: parent.height/6
+            height: Theme.paddingLarge + cmbValueType.height + Theme.paddingLarge + idBTNAcceptValueType.height + Theme.paddingLarge
             anchors.centerIn: parent
             visible: false
+
+            onVisibleChanged:
+            {
+                console.log("onVisibleChanged visible: " + visible);
+
+                if (visible === true)
+                {
+                    //Set combobox value
+                    cmbValueType.currentIndex = RecordPageDisplay.arrayLookupValueTypesByFieldID[iValueFieldPressed].index;
+                }
+            }
 
             ComboBox
             {
                 id: cmbValueType
                 width: parent.width
+                anchors.top: parent.top
+                anchors.topMargin: Theme.paddingLarge
                 label: qsTr("Value type:")
                 menu: ContextMenu
                 {
@@ -515,6 +546,31 @@ Page
                 onCurrentItemChanged:
                 {
                     console.log("onCurrentItemChanged: " + currentIndex.toString());
+
+                    RecordPageDisplay.arrayValueTypes[currentIndex].fieldID = iValueFieldPressed;
+
+                    RecordPageDisplay.fncRefreshLookupArrayByFieldIDs();
+
+                }
+            }
+            Button
+            {
+                id: idBTNAcceptValueType
+                width: parent.width
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: Theme.paddingLarge
+                text: qsTr("Accept")
+                onClicked:
+                {
+                    iValueFieldPressed = -1;
+
+                    //make combobox dialog invisible
+                    idRECChooseValueType.visible = false;
+
+                    fncSetHeaderFooterTexts();
+
+                    //save new composition of value fields to settings
+                    settings.valueFields = RecordPageDisplay.fncConvertArrayToSaveString(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
                 }
             }
         }
@@ -525,8 +581,8 @@ Page
             z: 2
             color: "steelblue"
             width: parent.width
-            height: parent.height/3
-            anchors.centerIn: parent
+            height: parent.height/10
+            anchors.top: parent.top
             Label
             {
                 color: "white"
@@ -656,11 +712,16 @@ Page
 
             MouseArea
             {
-                anchors.fill: parent
-                onClicked:
+                anchors.fill: parent                
+                onPressed:
                 {
-                    console.log("Clicked!!!");
-                    idRECChooseValueType.visible = !idRECChooseValueType.visible;
+                    iValueFieldPressed = 1;
+                    bEndLoop = false;
+                    iButtonLoop = 2;
+                }
+                onReleased:
+                {
+                    bEndLoop = true;
                 }
             }
 
@@ -686,6 +747,7 @@ Page
             Text
             {
                 id: idTXT_1_Value
+                text: "0"
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -736,9 +798,15 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onClicked:
+                onPressed:
                 {
-                    console.log("Clicked!!!");
+                    iValueFieldPressed = 2;
+                    bEndLoop = false;
+                    iButtonLoop = 2;
+                }
+                onReleased:
+                {
+                    bEndLoop = true;
                 }
             }
 
@@ -764,6 +832,7 @@ Page
             Text
             {
                 id: idTXT_2_Value
+                text: "0"
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -806,9 +875,15 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onClicked:
+                onPressed:
                 {
-                    console.log("Clicked!!!");
+                    iValueFieldPressed = 3;
+                    bEndLoop = false;
+                    iButtonLoop = 2;
+                }
+                onReleased:
+                {
+                    bEndLoop = true;
                 }
             }
 
@@ -834,6 +909,7 @@ Page
             Text
             {
                 id: idTXT_3_Value
+                text: "0"
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -883,9 +959,15 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onClicked:
+                onPressed:
                 {
-                    console.log("Clicked!!!");
+                    iValueFieldPressed = 4;
+                    bEndLoop = false;
+                    iButtonLoop = 2;
+                }
+                onReleased:
+                {
+                    bEndLoop = true;
                 }
             }
 
@@ -911,6 +993,7 @@ Page
             Text
             {
                 id: idTXT_4_Value
+                text: "0"
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -965,9 +1048,15 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onClicked:
+                onPressed:
                 {
-                    console.log("Clicked!!!");
+                    iValueFieldPressed = 5;
+                    bEndLoop = false;
+                    iButtonLoop = 2;
+                }
+                onReleased:
+                {
+                    bEndLoop = true;
                 }
             }
 
@@ -993,6 +1082,7 @@ Page
             Text
             {
                 id: idTXT_5_Value
+                text: "0"
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
@@ -1042,9 +1132,15 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onClicked:
+                onPressed:
                 {
-                    console.log("Clicked!!!");
+                    iValueFieldPressed = 6;
+                    bEndLoop = false;
+                    iButtonLoop = 2;
+                }
+                onReleased:
+                {
+                    bEndLoop = true;
                 }
             }
 
@@ -1070,6 +1166,7 @@ Page
             Text
             {
                 id: idTXT_6_Value
+                text: "0"
                 anchors.centerIn: parent
                 height: parent.height / iPrimaryTextHeightFactor
                 width: parent.width
