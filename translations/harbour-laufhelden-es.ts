@@ -304,6 +304,10 @@
         <source>Value type:</source>
         <translation>Tipo de valor:</translation>
     </message>
+    <message>
+        <source>Accept</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
