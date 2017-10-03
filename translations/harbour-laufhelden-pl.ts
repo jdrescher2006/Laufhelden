@@ -301,11 +301,15 @@
         <translation>Koniec</translation>
     </message>
     <message>
-        <source>Value type:</source>
+        <source>Accept</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Accept</source>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select value!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -447,6 +451,14 @@
     <message>
         <source>Show grid lines on record page.</source>
         <translation>Pokaż linie siatki na stronie rejestrowania</translation>
+    </message>
+    <message>
+        <source>Enable autosave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No need to enter workout name on end of workout..</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
