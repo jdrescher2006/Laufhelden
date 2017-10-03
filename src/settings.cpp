@@ -134,3 +134,11 @@ void Settings::setValueFields(QString valueFields)
 {
     m_settings->setValue("recordsettings/valueFields", valueFields);
 }
+bool Settings::enableAutosave() const
+{
+    return m_settings->value("generalsettings/enableAutosave", false).toBool();
+}
+void Settings::setEnableAutosave(bool enableAutosave)
+{
+     m_settings->setValue("generalsettings/enableAutosave", enableAutosave);
+}

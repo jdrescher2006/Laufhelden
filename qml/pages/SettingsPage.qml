@@ -43,6 +43,8 @@ Page {
 
             id_TextSwitch_ShowLines.checked = settings.showBorderLines;
 
+            id_TextSwitch_EnableAutosave.checked = settings.enableAutosave;
+
             bLockOnCompleted = false;
         }
 
@@ -94,6 +96,22 @@ Page {
                 {
                     if (!bLockOnCompleted)
                         settings.showBorderLines = checked;
+                }
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_EnableAutosave
+                text: qsTr("Enable autosave")
+                description: qsTr("No need to enter workout name on end of workout..")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.enableAutosave = checked;
                 }
             }
             Separator

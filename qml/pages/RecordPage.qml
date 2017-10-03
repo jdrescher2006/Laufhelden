@@ -162,7 +162,19 @@ Page
                 if (iValueFieldPressed !== -1)
                 {
                     //These operations belong to "value field" button pressed
-                    idRECChooseValueType.visible = true;
+                    //idRECChooseValueType.visible = true;
+
+                    var dialog = pageStack.push(id_Dialog_ChooseValue)
+                    dialog.accepted.connect(function()
+                    {
+                        console.log("Accepted");
+
+                    })
+                    dialog.rejected.connect(function()
+                    {
+                        console.log("Canceled");
+
+                    })
                 }
                 else
                 {
@@ -207,29 +219,46 @@ Page
 
     function showSaveDialog()
     {
-        var dialog = pageStack.push(Qt.resolvedUrl("SaveDialog.qml"));
-        dialog.accepted.connect(function()
+        //If autosave is active...
+        if (settings.enableAutosave)
         {
-            console.log("Saving workout");
-            recorder.exportGpx(dialog.name, dialog.description);
+            console.log("Autosaving workout");
+            recorder.exportGpx(SharedResources.arrayLookupWorkoutTableByName[settings.workoutType].labeltext + " - " + recorder.startingDateTime + " - " + (recorder.distance/1000).toFixed(1) + "km", "");
             recorder.clearTrack();  // TODO: Make sure save was successful?
             trackLine.path = [];
 
             //Mainpage must load history data to get this new workout in the list
             bLoadHistoryData = true;
 
-            //We must return here to the mainpage.            
-            pageStack.pop(vMainPageObject, PageStackAction.Immediate);
-        })
-        dialog.rejected.connect(function()
-        {
-            console.log("Cancel workout");
-            recorder.clearTrack();
-            trackLine.path = [];
-
             //We must return here to the mainpage.
             pageStack.pop(vMainPageObject, PageStackAction.Immediate);
-        })
+        }
+        else
+        {
+            var dialog = pageStack.push(Qt.resolvedUrl("SaveDialog.qml"));
+            dialog.accepted.connect(function()
+            {
+                console.log("Saving workout");
+                recorder.exportGpx(dialog.name, dialog.description);
+                recorder.clearTrack();  // TODO: Make sure save was successful?
+                trackLine.path = [];
+
+                //Mainpage must load history data to get this new workout in the list
+                bLoadHistoryData = true;
+
+                //We must return here to the mainpage.
+                pageStack.pop(vMainPageObject, PageStackAction.Immediate);
+            })
+            dialog.rejected.connect(function()
+            {
+                console.log("Cancel workout");
+                recorder.clearTrack();
+                trackLine.path = [];
+
+                //We must return here to the mainpage.
+                pageStack.pop(vMainPageObject, PageStackAction.Immediate);
+            })
+        }
     }   
 
     function setMapViewport()
@@ -507,73 +536,6 @@ Page
 
         //contentHeight: column.height + Theme.paddingLarge
 
-        Rectangle
-        {
-            id: idRECChooseValueType
-            z: 2
-            color: "steelblue"
-            width: parent.width
-            height: Theme.paddingLarge + cmbValueType.height + Theme.paddingLarge + idBTNAcceptValueType.height + Theme.paddingLarge
-            anchors.centerIn: parent
-            visible: false
-
-            onVisibleChanged:
-            {
-                console.log("onVisibleChanged visible: " + visible);
-
-                if (visible === true)
-                {
-                    //Set combobox value
-                    cmbValueType.currentIndex = RecordPageDisplay.arrayLookupValueTypesByFieldID[iValueFieldPressed].index;
-                }
-            }
-
-            ComboBox
-            {
-                id: cmbValueType
-                width: parent.width
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingLarge
-                label: qsTr("Value type:")
-                menu: ContextMenu
-                {
-                    Repeater
-                    {
-                        model: RecordPageDisplay.arrayValueTypes;
-                        MenuItem { text: modelData.header }
-                    }
-                }
-                onCurrentItemChanged:
-                {
-                    console.log("onCurrentItemChanged: " + currentIndex.toString());
-
-                    RecordPageDisplay.arrayValueTypes[currentIndex].fieldID = iValueFieldPressed;
-
-                    RecordPageDisplay.fncRefreshLookupArrayByFieldIDs();
-
-                }
-            }
-            Button
-            {
-                id: idBTNAcceptValueType
-                width: parent.width
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: Theme.paddingLarge
-                text: qsTr("Accept")
-                onClicked:
-                {
-                    iValueFieldPressed = -1;
-
-                    //make combobox dialog invisible
-                    idRECChooseValueType.visible = false;
-
-                    fncSetHeaderFooterTexts();
-
-                    //save new composition of value fields to settings
-                    settings.valueFields = RecordPageDisplay.fncConvertArrayToSaveString(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
-                }
-            }
-        }
 
         Rectangle
         {
@@ -1443,4 +1405,62 @@ Page
             }
         }
     }
+    Component
+    {
+        id: id_Dialog_ChooseValue
+        property int iSelectedValue: -1
+
+        Dialog
+        {
+            width: parent.width
+            canAccept: true
+            acceptDestination: page
+            acceptDestinationAction: PageStackAction.Pop
+
+            DialogHeader
+            {
+                title: qsTr("Select value!")
+                defaultAcceptText: qsTr("Accept")
+                defaultCancelText: qsTr("Cancel")
+            }
+
+            SilicaListView
+            {
+                id: listView
+                anchors.fill: parent                
+                header: PageHeader {}
+                model: RecordPageDisplay.arrayValueTypes;
+                delegate: ListItem
+                {
+                    width: listView.width
+                    Label
+                    {
+                        id: idLBLValueName                        
+                        text: modelData.header
+                        color: (iValueFieldPressed === modelData.fieldID) ? Theme.highlightColor : Theme.primaryColor
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: Theme.paddingLarge
+                    }
+                    GlassItem
+                    {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "green"
+                        falloffRadius: 0.15
+                        radius: 1.0
+                        cache: false
+                        visible: (iValueFieldPressed === modelData.fieldID)
+                    }
+                    onClicked:
+                    {
+                        console.log("Clicked: " + modelData.fieldID.toString());
+                        iSelectedValue = modelData.index;
+                    }
+                }
+
+            }
+
+        }
+    }
+
 }

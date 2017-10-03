@@ -200,7 +200,7 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     QString subDir = "Laufhelden";
     QString filename;
 
-    filename = m_points.at(0).timestamp().toLocalTime().toString() + " - " + sWorkoutType + ".gpx";
+    filename = sWorkoutType + "-" + m_points.at(0).timestamp().toLocalTime().toString() + "-" + QString("%1km").arg(m_distance / 1000, 0, 'f', 1) + ".gpx";
 
     /*
     if(!sWorkoutType.isEmpty()) {

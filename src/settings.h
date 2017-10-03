@@ -37,6 +37,7 @@ class Settings : public QObject
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
     Q_PROPERTY(bool showBorderLines READ showBorderLines WRITE setShowBorderLines)
     Q_PROPERTY(QString valueFields READ valueFields WRITE setValueFields)
+    Q_PROPERTY(bool enableAutosave READ enableAutosave WRITE setEnableAutosave)
 
 public:
     explicit Settings(QObject *parent = 0);
@@ -78,6 +79,9 @@ public:
 
     QString valueFields() const;
     void setValueFields(QString valueFields);
+
+    bool enableAutosave() const;
+    void setEnableAutosave(bool enableAutosave);
 
 signals:
     void updateIntervalChanged();
