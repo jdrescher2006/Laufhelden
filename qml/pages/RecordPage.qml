@@ -47,6 +47,9 @@ Page
     property color cSecondaryTextColor: "#D5D5D5"
     property color cBorderColor: "steelblue"
 
+    property int iSelectedValue: -1
+    property int iOldValue: -1
+
     //Scaling
     property int iHeaderLineWidthFactor: 10
     property int iMiddleLineWidthFactor: 5
@@ -63,6 +66,8 @@ Page
             console.log("---RecordPage first active enter---");
 
             bLockFirstPageLoad = false;
+
+
 
             recorder.newTrackPoint.connect(newTrackPoint);
             map.addMapItem(positionMarker);
@@ -81,7 +86,7 @@ Page
         //This is loaded everytime the page is displayed
         if (status === PageStatus.Active)
         {
-            console.log("---RecordPage active enter---");
+            console.log("---RecordPage active enter---");            
 
             //Set value types for fields in JS array
             RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
@@ -164,16 +169,32 @@ Page
                     //These operations belong to "value field" button pressed
                     //idRECChooseValueType.visible = true;
 
+                    iSelectedValue = -1;
+                    iOldValue = RecordPageDisplay.arrayLookupValueTypesByFieldID[iValueFieldPressed].index;
+
                     var dialog = pageStack.push(id_Dialog_ChooseValue)
                     dialog.accepted.connect(function()
                     {
                         console.log("Accepted");
 
+                        if (iSelectedValue !== -1 && iOldValue !== -1)
+                        {
+                            console.log("iSelectedValue: " + iSelectedValue.toString());
+                            console.log("iOldValue: " + iOldValue.toString());
+
+                            RecordPageDisplay.arrayValueTypes[iOldValue].fieldID = 0;
+                            RecordPageDisplay.arrayValueTypes[iSelectedValue].fieldID = iValueFieldPressed;
+                            //Rearrange helper array
+                            RecordPageDisplay.fncRefreshLookupArrayByFieldIDs();
+                            //Save the new value field arrangement to settings                           
+                            settings.valueFields = RecordPageDisplay.fncConvertArrayToSaveString(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
+                        }
                     })
                     dialog.rejected.connect(function()
                     {
                         console.log("Canceled");
-
+                        iSelectedValue = -1;
+                        iOldValue = -1;
                     })
                 }
                 else
@@ -1408,7 +1429,7 @@ Page
     Component
     {
         id: id_Dialog_ChooseValue
-        property int iSelectedValue: -1
+
 
         Dialog
         {
@@ -1417,50 +1438,55 @@ Page
             acceptDestination: page
             acceptDestinationAction: PageStackAction.Pop
 
-            DialogHeader
+            Column
             {
-                title: qsTr("Select value!")
-                defaultAcceptText: qsTr("Accept")
-                defaultCancelText: qsTr("Cancel")
-            }
+                width: parent.width
 
-            SilicaListView
-            {
-                id: listView
-                anchors.fill: parent                
-                header: PageHeader {}
-                model: RecordPageDisplay.arrayValueTypes;
-                delegate: ListItem
+                DialogHeader
                 {
-                    width: listView.width
-                    Label
-                    {
-                        id: idLBLValueName                        
-                        text: modelData.header
-                        color: (iValueFieldPressed === modelData.fieldID) ? Theme.highlightColor : Theme.primaryColor
-                        anchors.verticalCenter: parent.verticalCenter
-                        x: Theme.paddingLarge
-                    }
-                    GlassItem
-                    {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        color: "green"
-                        falloffRadius: 0.15
-                        radius: 1.0
-                        cache: false
-                        visible: (iValueFieldPressed === modelData.fieldID)
-                    }
-                    onClicked:
-                    {
-                        console.log("Clicked: " + modelData.fieldID.toString());
-                        iSelectedValue = modelData.index;
-                    }
+                    title: qsTr("Select value!")
+                    defaultAcceptText: qsTr("Accept")
+                    defaultCancelText: qsTr("Cancel")
                 }
 
-            }
+                SilicaListView
+                {
+                    id: listView
+                    width: parent.width
+                    height: contentItem.childrenRect.height
+                    //header: PageHeader {}
+                    model: RecordPageDisplay.arrayValueTypes;
 
+                    delegate: ListItem
+                    {
+                        width: listView.width
+                        Label
+                        {
+                            id: idLBLValueName
+                            text: modelData.header
+                            color: (iValueFieldPressed === modelData.fieldID) ? Theme.highlightColor : Theme.primaryColor
+                            anchors.verticalCenter: parent.verticalCenter
+                            x: Theme.paddingLarge
+                        }
+                        GlassItem
+                        {
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            color: (iSelectedValue !== -1 && iSelectedValue === modelData.index) ? "green" : ((iSelectedValue === -1 || iValueFieldPressed === modelData.fieldID) ? "green" : "grey")
+                            falloffRadius: 0.15
+                            radius: 1.0
+                            cache: false
+                            visible: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index)
+                        }
+                        onClicked:
+                        {
+                            console.log("Clicked: " + modelData.fieldID.toString());
+                            iSelectedValue = modelData.index;
+                        }
+                    }
+
+                }
+            }
         }
     }
-
 }
