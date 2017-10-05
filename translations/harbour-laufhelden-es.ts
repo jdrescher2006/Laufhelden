@@ -302,15 +302,15 @@
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar valor!</translation>
     </message>
 </context>
 <context>
@@ -454,11 +454,11 @@
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoguardar</translation>
     </message>
     <message>
         <source>No need to enter workout name on end of workout..</source>
-        <translation type="unfinished"></translation>
+        <translation>No es necesario entrar el nombre del ejercicio al final del entrenamiento</translation>
     </message>
 </context>
 <context>
