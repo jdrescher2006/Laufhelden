@@ -454,7 +454,7 @@
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation>Auto guardar</translation>
+        <translation>Autoguardar</translation>
     </message>
     <message>
         <source>No need to enter workout name on end of workout..</source>
