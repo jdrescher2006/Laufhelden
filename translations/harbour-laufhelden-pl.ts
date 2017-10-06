@@ -312,6 +312,10 @@
         <source>Select value!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>keep tapping button: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
