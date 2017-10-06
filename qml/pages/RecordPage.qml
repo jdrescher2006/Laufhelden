@@ -40,6 +40,8 @@ Page
     property bool bEndLoop: false;
     property int iValueFieldPressed: -1
 
+    property int iKeepPressingButton: 4
+
     property int iDisplayMode: settings.displayMode
     property bool bShowBorderLines: settings.showBorderLines
     property color cBackColor: "black"
@@ -142,6 +144,20 @@ Page
 
     Timer
     {
+        id: idTimerKeepTappingReset
+        interval: 1000
+        repeat: false
+        running: (iKeepPressingButton !== 4)
+        onTriggered:
+        {
+            //This timer is called if the user does not tap on the button repeately
+            iKeepPressingButton = 4;
+            iValueFieldPressed = -1;
+        }
+    }
+
+    Timer
+    {
         id: idTimerButtonLoop
         interval: 1000;
         repeat: (iButtonLoop<3 && iButtonLoop>0)
@@ -150,8 +166,7 @@ Page
         {
             //Cancel end operation
             if (bEndLoop)
-            {
-                iValueFieldPressed = -1;
+            {                
                 iButtonLoop = 3;
                 return;
             }
@@ -162,79 +177,72 @@ Page
             {
                 iButtonLoop = 3;
 
+                //These operation belong to "end workout" button pressed
+                bRecordDialogRequestHRM = false;
 
-                //Now check if a value field button was pressed or not.
-                if (iValueFieldPressed !== -1)
+                if (bHRMConnected) {id_BluetoothData.disconnect();}
+
+                sHeartRate: ""
+                sBatteryLevel: ""
+
+                recorder.tracking = false;
+                if(!recorder.isEmpty)
                 {
-                    //These operations belong to "value field" button pressed
-                    //idRECChooseValueType.visible = true;
-
-                    iSelectedValue = -1;
-                    iOldValue = RecordPageDisplay.arrayLookupValueTypesByFieldID[iValueFieldPressed].index;
-
-                    var dialog = pageStack.push(id_Dialog_ChooseValue)
-                    dialog.accepted.connect(function()
-                    {
-                        console.log("Accepted");
-
-                        if (iSelectedValue !== -1 && iOldValue !== -1)
-                        {
-                            console.log("iSelectedValue: " + iSelectedValue.toString());
-                            console.log("iOldValue: " + iOldValue.toString());
-
-                            RecordPageDisplay.arrayValueTypes[iOldValue].fieldID = 0;
-                            RecordPageDisplay.arrayValueTypes[iSelectedValue].fieldID = iValueFieldPressed;
-                            //Rearrange helper array
-                            RecordPageDisplay.fncRefreshLookupArrayByFieldIDs();
-                            //Save the new value field arrangement to settings                           
-                            settings.valueFields = RecordPageDisplay.fncConvertArrayToSaveString(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
-                        }
-                    })
-                    dialog.rejected.connect(function()
-                    {
-                        console.log("Canceled");
-                        iSelectedValue = -1;
-                        iOldValue = -1;
-                    })
-                }
-                else
-                {
-                    //These operation belong to "end workout" button pressed
-                    bRecordDialogRequestHRM = false;
-
-                    if (bHRMConnected) {id_BluetoothData.disconnect();}
-
-                    sHeartRate: ""
-                    sBatteryLevel: ""
-
-                    recorder.tracking = false;
-                    if(!recorder.isEmpty)
-                    {
-                        showSaveDialog();
-                    }
+                    showSaveDialog();
                 }
             }
         }
     }        
 
+    function fncChangeValueField()
+    {
+        iSelectedValue = -1;
+        iOldValue = RecordPageDisplay.arrayLookupValueTypesByFieldID[iValueFieldPressed].index;
+
+        var dialog = pageStack.push(id_Dialog_ChooseValue)
+        dialog.accepted.connect(function()
+        {
+            console.log("Accepted");
+
+            if (iSelectedValue !== -1 && iOldValue !== -1)
+            {
+                console.log("iSelectedValue: " + iSelectedValue.toString());
+                console.log("iOldValue: " + iOldValue.toString());
+
+                RecordPageDisplay.arrayValueTypes[iOldValue].fieldID = 0;
+                RecordPageDisplay.arrayValueTypes[iSelectedValue].fieldID = iValueFieldPressed;
+                //Rearrange helper array
+                RecordPageDisplay.fncRefreshLookupArrayByFieldIDs();
+                //Save the new value field arrangement to settings
+                settings.valueFields = RecordPageDisplay.fncConvertArrayToSaveString(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
+            }
+        })
+        dialog.rejected.connect(function()
+        {
+            console.log("Canceled");
+            iSelectedValue = -1;
+            iOldValue = -1;
+        })
+    }
+
     function fncSetHeaderFooterTexts()
     {       
-        idTXT_1_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].header;
+        idTXT_1_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].header + ":";
         idTXT_1_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footer + " ";
 
-        idTXT_2_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].header;
+        idTXT_2_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].header + ":";
         idTXT_2_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footer;
 
-        idTXT_3_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].header;
+        idTXT_3_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].header + ":";
         idTXT_3_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footer + " ";
 
-        idTXT_4_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].header;
+        idTXT_4_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].header + ":";
         idTXT_4_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footer;
 
-        idTXT_5_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].header;
+        idTXT_5_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].header + ":";
         idTXT_5_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footer + " ";
 
-        idTXT_6_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].header;
+        idTXT_6_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].header + ":";
         idTXT_6_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footer;
     }
 
@@ -560,12 +568,30 @@ Page
 
         Rectangle
         {
-            visible: iButtonLoop < 3
+            visible: (iKeepPressingButton !== 4)
             z: 2
             color: "steelblue"
             width: parent.width
             height: parent.height/10
             anchors.top: parent.top
+            Label
+            {
+                color: "white"
+                text: qsTr("keep tapping button: ") + iKeepPressingButton.toString();
+                font.pixelSize: Theme.fontSizeMedium
+                anchors.centerIn: parent
+            }
+        }
+
+
+        Rectangle
+        {
+            visible: iButtonLoop < 3
+            z: 2
+            color: "steelblue"
+            width: parent.width
+            height: parent.height/10
+            anchors.centerIn: parent
             Label
             {
                 color: "white"
@@ -582,7 +608,7 @@ Page
             anchors.top: parent.top
             anchors.left: parent.left
             width: parent.width / 2
-            height: parent.height / iHeaderLineWidthFactor            
+            height: parent.height / iHeaderLineWidthFactor                        
 
             Rectangle
             {
@@ -695,16 +721,27 @@ Page
 
             MouseArea
             {
-                anchors.fill: parent                
-                onPressed:
-                {
-                    iValueFieldPressed = 1;
-                    bEndLoop = false;
-                    iButtonLoop = 2;
-                }
+                anchors.fill: parent
                 onReleased:
                 {
-                    bEndLoop = true;
+                    //Check if an other value field was pressed before.
+                    if (iValueFieldPressed !== 1)
+                    {
+                        iValueFieldPressed = 1;
+                        iKeepPressingButton = 3;
+                    }
+                    else
+                        iKeepPressingButton--;
+
+                    if (iKeepPressingButton === 0)
+                    {
+                        idTimerKeepTappingReset.stop();
+                        iKeepPressingButton = 4;
+
+                        fncChangeValueField();
+                    }
+                    else
+                        idTimerKeepTappingReset.restart();
                 }
             }
 
@@ -781,15 +818,26 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onPressed:
-                {
-                    iValueFieldPressed = 2;
-                    bEndLoop = false;
-                    iButtonLoop = 2;
-                }
                 onReleased:
                 {
-                    bEndLoop = true;
+                    //Check if an other value field was pressed before.
+                    if (iValueFieldPressed !== 2)
+                    {
+                        iValueFieldPressed = 2;
+                        iKeepPressingButton = 3;                                       
+                    }
+                    else
+                        iKeepPressingButton--;
+
+                    if (iKeepPressingButton === 0)
+                    {
+                        idTimerKeepTappingReset.stop();
+                        iKeepPressingButton = 4;
+
+                        fncChangeValueField();
+                    }
+                    else
+                        idTimerKeepTappingReset.restart();
                 }
             }
 
@@ -858,15 +906,26 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onPressed:
-                {
-                    iValueFieldPressed = 3;
-                    bEndLoop = false;
-                    iButtonLoop = 2;
-                }
                 onReleased:
                 {
-                    bEndLoop = true;
+                    //Check if an other value field was pressed before.
+                    if (iValueFieldPressed !== 3)
+                    {
+                        iValueFieldPressed = 3;
+                        iKeepPressingButton = 3;
+                    }
+                    else
+                        iKeepPressingButton--;
+
+                    if (iKeepPressingButton === 0)
+                    {
+                        idTimerKeepTappingReset.stop();
+                        iKeepPressingButton = 4;
+
+                        fncChangeValueField();
+                    }
+                    else
+                        idTimerKeepTappingReset.restart();
                 }
             }
 
@@ -942,15 +1001,26 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onPressed:
-                {
-                    iValueFieldPressed = 4;
-                    bEndLoop = false;
-                    iButtonLoop = 2;
-                }
                 onReleased:
                 {
-                    bEndLoop = true;
+                    //Check if an other value field was pressed before.
+                    if (iValueFieldPressed !== 4)
+                    {
+                        iValueFieldPressed = 4;
+                        iKeepPressingButton = 3;
+                    }
+                    else
+                        iKeepPressingButton--;
+
+                    if (iKeepPressingButton === 0)
+                    {
+                        idTimerKeepTappingReset.stop();
+                        iKeepPressingButton = 4;
+
+                        fncChangeValueField();
+                    }
+                    else
+                        idTimerKeepTappingReset.restart();
                 }
             }
 
@@ -1031,15 +1101,26 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onPressed:
-                {
-                    iValueFieldPressed = 5;
-                    bEndLoop = false;
-                    iButtonLoop = 2;
-                }
                 onReleased:
                 {
-                    bEndLoop = true;
+                    //Check if an other value field was pressed before.
+                    if (iValueFieldPressed !== 5)
+                    {
+                        iValueFieldPressed = 5;
+                        iKeepPressingButton = 3;
+                    }
+                    else
+                        iKeepPressingButton--;
+
+                    if (iKeepPressingButton === 0)
+                    {
+                        idTimerKeepTappingReset.stop();
+                        iKeepPressingButton = 4;
+
+                        fncChangeValueField();
+                    }
+                    else
+                        idTimerKeepTappingReset.restart();
                 }
             }
 
@@ -1115,15 +1196,26 @@ Page
             MouseArea
             {
                 anchors.fill: parent
-                onPressed:
-                {
-                    iValueFieldPressed = 6;
-                    bEndLoop = false;
-                    iButtonLoop = 2;
-                }
                 onReleased:
                 {
-                    bEndLoop = true;
+                    //Check if an other value field was pressed before.
+                    if (iValueFieldPressed !== 6)
+                    {
+                        iValueFieldPressed = 6;
+                        iKeepPressingButton = 3;
+                    }
+                    else
+                        iKeepPressingButton--;
+
+                    if (iKeepPressingButton === 0)
+                    {
+                        idTimerKeepTappingReset.stop();
+                        iKeepPressingButton = 4;
+
+                        fncChangeValueField();
+                    }
+                    else
+                        idTimerKeepTappingReset.restart();
                 }
             }
 
