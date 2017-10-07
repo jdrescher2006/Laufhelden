@@ -1556,19 +1556,29 @@ Page
                         {
                             id: idLBLValueName
                             text: modelData.header
-                            color: (iValueFieldPressed === modelData.fieldID) ? Theme.highlightColor : Theme.primaryColor
+                            color: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index) ? Theme.highlightColor : Theme.primaryColor
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                         }
-                        GlassItem
+                        GlassItem //this is the item for the old value field
                         {
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
-                            color: (iSelectedValue !== -1 && iSelectedValue === modelData.index) ? "green" : ((iSelectedValue === -1 || iValueFieldPressed === modelData.fieldID) ? "green" : "grey")
+                            color: (iSelectedValue === -1 && iValueFieldPressed === modelData.fieldID) ? "green" : "grey"
                             falloffRadius: 0.15
                             radius: 1.0
                             cache: false
-                            visible: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index)
+                            visible: (iValueFieldPressed === modelData.fieldID && !(iSelectedValue === modelData.index))
+                        }
+                        GlassItem //this is the item for the newly selected value field
+                        {
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            color: "green"
+                            falloffRadius: 0.15
+                            radius: 1.0
+                            cache: false
+                            visible: (iSelectedValue !== -1 && iSelectedValue === modelData.index)
                         }
                         onClicked:
                         {
