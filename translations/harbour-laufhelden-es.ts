@@ -314,7 +314,7 @@
     </message>
     <message>
         <source>keep tapping button: </source>
-        <translation type="unfinished"></translation>
+        <translation>mantener pulsando el botón:</translation>
     </message>
 </context>
 <context>
