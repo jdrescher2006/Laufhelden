@@ -107,7 +107,7 @@ Page {
             {
                 id: id_TextSwitch_EnableAutosave
                 text: qsTr("Enable autosave")
-                description: qsTr("No need to enter workout name on end of workout..")
+                description: qsTr("No need to enter workout name on end of workout.")
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted)
