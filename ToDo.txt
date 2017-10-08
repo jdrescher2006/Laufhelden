@@ -1,12 +1,16 @@
 ToDo for next release to openrepos:
 
+- fix battery status for HR device on record page
+- no HR when workout isn't started
+- missing non localized texts
+- 
+
+
 - implement autosave, see github issue #9
-- check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
 - view credits on about page
-- new values for recordpage: elevation and heartrate avg
+
 - adjustable value fields for recordpage
 - test rena stuff for map updating (mapcircle)
-
 - set release date to .changes file
 - complete translation to german language
 - set new version number to yaml and spec files
@@ -15,7 +19,8 @@ ToDo for next release to openrepos:
 
 
 ToDo on the long run:
-- store workout type to autosave
+- check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
+- store workout type to autosave, but maybe this is not needed.
 - if autosave is there on start of app, ask user if to resume workout
 - add heart rate average to record page
 - add over/below average speed to record page
@@ -86,6 +91,7 @@ Bugs:
 
 
 Completed:
+- new values for recordpage: elevation and heartrate avg
 - test: check if HR is saved to autosave file.
 - bug: go back from recordscreen to prerecord. Then switch off HR. Then proceed to recordscreen. HR is still active! -> bRecordDialogRequestHRM
 - rework menu on recordpage
