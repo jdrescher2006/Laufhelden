@@ -336,10 +336,6 @@
         <translation>ppm</translation>
     </message>
     <message>
-        <source>Heartrate ���</source>
-        <translation>Ritmo cardiaco ���</translation>
-    </message>
-    <message>
         <source>Pace</source>
         <translation>Paso</translation>
     </message>
@@ -348,20 +344,12 @@
         <translation>mín/km</translation>
     </message>
     <message>
-        <source>Pace ���</source>
-        <translation>Paso ���</translation>
-    </message>
-    <message>
         <source>Speed</source>
         <translation>Velocidad</translation>
     </message>
     <message>
         <source>km/h</source>
         <translation>km/h</translation>
-    </message>
-    <message>
-        <source>Speed ���</source>
-        <translation>Velocidad ���</translation>
     </message>
     <message>
         <source>m</source>
@@ -461,8 +449,8 @@
         <translation>Autoguardar</translation>
     </message>
     <message>
-        <source>No need to enter workout name on end of workout..</source>
-        <translation>No es necesario entrar el nombre del ejercicio al final del entrenamiento</translation>
+        <source>No need to enter workout name on end of workout.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

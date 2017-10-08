@@ -336,10 +336,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heartrate ���</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Pace</source>
         <translation type="unfinished"></translation>
     </message>
@@ -348,19 +344,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pace ���</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Speed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Speed ���</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -461,7 +449,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No need to enter workout name on end of workout..</source>
+        <source>No need to enter workout name on end of workout.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

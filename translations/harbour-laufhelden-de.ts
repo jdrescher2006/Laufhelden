@@ -302,74 +302,62 @@
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Übernehmen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuen Wert aussuchen!</translation>
     </message>
     <message>
         <source>keep tapping button: </source>
-        <translation type="unfinished"></translation>
+        <translation>Weiter drücken: </translation>
     </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
     <message>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Distanz</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>Km</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenz</translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished">bpm</translation>
-    </message>
-    <message>
-        <source>Heartrate ���</source>
-        <translation type="unfinished"></translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo</translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished">min/km</translation>
-    </message>
-    <message>
-        <source>Pace ���</source>
-        <translation type="unfinished"></translation>
+        <translation>min/km</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
-    </message>
-    <message>
-        <source>Speed ���</source>
-        <translation type="unfinished"></translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>m</source>
-        <translation type="unfinished"></translation>
+        <translation>m</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation type="unfinished"></translation>
+        <translation>Höhe</translation>
     </message>
 </context>
 <context>
@@ -458,11 +446,11 @@
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisch speichern</translation>
     </message>
     <message>
-        <source>No need to enter workout name on end of workout..</source>
-        <translation type="unfinished"></translation>
+        <source>No need to enter workout name on end of workout.</source>
+        <translation>Automatisch speichern am Ende eines Trainings.</translation>
     </message>
 </context>
 <context>

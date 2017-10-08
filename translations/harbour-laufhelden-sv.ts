@@ -277,48 +277,8 @@
         <translation>Pausad</translation>
     </message>
     <message>
-        <source>Pace:</source>
-        <translation>Tempo:</translation>
-    </message>
-    <message>
-        <source>min/km</source>
-        <translation>min/km</translation>
-    </message>
-    <message>
-        <source>Speed:</source>
-        <translation>Hastighet:</translation>
-    </message>
-    <message>
-        <source>km/h</source>
-        <translation>km/t</translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation>Distans:</translation>
-    </message>
-    <message>
-        <source>km</source>
-        <translation>km</translation>
-    </message>
-    <message>
-        <source>Heartrate:</source>
-        <translation>Hjärtfrekvens:</translation>
-    </message>
-    <message>
-        <source>bpm</source>
-        <translation>bpm</translation>
-    </message>
-    <message>
         <source>Bat:</source>
         <translation>Bat:</translation>
-    </message>
-    <message>
-        <source>Pace ⌀:</source>
-        <translation>Tempo ⌀:</translation>
-    </message>
-    <message>
-        <source>Speed ⌀:</source>
-        <translation>Hastighet ⌀:</translation>
     </message>
     <message>
         <source>Duration:</source>
@@ -339,6 +299,65 @@
     <message>
         <source>End</source>
         <translation>Sluta</translation>
+    </message>
+    <message>
+        <source>keep tapping button: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select value!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RecordPageDisplay</name>
+    <message>
+        <source>Distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bpm</source>
+        <translation type="unfinished">bpm</translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>min/km</source>
+        <translation type="unfinished">min/km</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/t</translation>
+    </message>
+    <message>
+        <source>Altitude</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>m</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -424,6 +443,14 @@
     <message>
         <source>Show grid lines on record page.</source>
         <translation>Visa stödlinjer på inspelningssidan.</translation>
+    </message>
+    <message>
+        <source>Enable autosave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No need to enter workout name on end of workout.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
