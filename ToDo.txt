@@ -2,11 +2,10 @@ ToDo for next release to openrepos:
 
 - fix battery status for HR device on record page
 - no HR when workout isn't started
-- missing non localized texts
-- when HR device fails during workout, the 0bpm is added to average HR.
+- when HR device fails during workout, the 0bpm is added to average HR -> needs to be tested!
 
 
-- implement autosave, see github issue #9
+
 - view credits on about page
 
 - adjustable value fields for recordpage
@@ -91,6 +90,8 @@ Bugs:
 
 
 Completed:
+- missing non localized texts
+- implement autosave, see github issue #9
 - new values for recordpage: elevation and heartrate avg
 - test: check if HR is saved to autosave file.
 - bug: go back from recordscreen to prerecord. Then switch off HR. Then proceed to recordscreen. HR is still active! -> bRecordDialogRequestHRM
