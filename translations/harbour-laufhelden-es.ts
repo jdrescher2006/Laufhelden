@@ -205,6 +205,10 @@
         <source>Disbale screen blanking when recording.</source>
         <translation>Desactiva el borrado de la pantalla durante la grabación.</translation>
     </message>
+    <message>
+        <source>Select thresholds profile</source>
+        <translation type="unfinished">Seleccionar perfil de umbrales</translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>

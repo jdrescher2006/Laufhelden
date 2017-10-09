@@ -205,6 +205,10 @@
         <source>Disbale screen blanking when recording.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Select thresholds profile</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>

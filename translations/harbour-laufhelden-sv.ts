@@ -205,6 +205,10 @@
         <source>Disbale screen blanking when recording.</source>
         <translation>Inaktivera skärmsläckning vid inspelning</translation>
     </message>
+    <message>
+        <source>Select thresholds profile</source>
+        <translation type="unfinished">Välj tröskelvärdesprofil</translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>

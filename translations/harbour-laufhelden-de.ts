@@ -199,11 +199,15 @@
     </message>
     <message>
         <source>Disable screen blanking</source>
-        <translation></translation>
+        <translation>Bildschirmschoner abschalten</translation>
     </message>
     <message>
         <source>Disbale screen blanking when recording.</source>
-        <translation>Bildschirmschoner abschalten</translation>
+        <translation>Bildschirmschoner abschalten während Training</translation>
+    </message>
+    <message>
+        <source>Select thresholds profile</source>
+        <translation>Schwellwertprofil auswählen</translation>
     </message>
 </context>
 <context>

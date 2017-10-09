@@ -205,6 +205,10 @@
         <source>Disbale screen blanking when recording.</source>
         <translation>Wyłącz wygaszanie ekranu podczas rejetrowania treningu.</translation>
     </message>
+    <message>
+        <source>Select thresholds profile</source>
+        <translation type="unfinished">Wybież profil progów</translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>
