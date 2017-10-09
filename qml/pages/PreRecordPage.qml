@@ -174,7 +174,7 @@ Page
             {
                 id: idComboBoxThresholdProfiles
                 width: parent.width
-                label: "Select thresholds profile"
+                label: qsTr("Select thresholds profile")
                 menu: ContextMenu
                 {
                     Repeater
