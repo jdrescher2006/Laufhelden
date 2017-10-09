@@ -3,7 +3,7 @@ ToDo for next release to openrepos:
 - fix battery status for HR device on record page
 - no HR when workout isn't started
 - missing non localized texts
-- 
+- when HR device fails during workout, the 0bpm is added to average HR.
 
 
 - implement autosave, see github issue #9
