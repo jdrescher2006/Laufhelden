@@ -90,7 +90,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
 
         m_heartrate.append(this->iCurrentHeartRate);
 
-        if (iCurrentHeartRate != 9999)
+        if (iCurrentHeartRate != 9999 && iCurrentHeartRate != 0)
             m_heartrateadded = m_heartrateadded + iCurrentHeartRate;
 
         this->iCurrentHeartRate = 9999;
@@ -734,7 +734,7 @@ void TrackRecorder::loadAutoSave()
         {
             m_distance += m_points.at(i-1).coordinate().distanceTo(m_points.at(i).coordinate());
 
-            if (m_heartrate.at(i - 1) != 9999)
+            if (m_heartrate.at(i - 1) != 9999 && m_heartrate.at(i - 1) != 0)
                 m_heartrateadded = m_heartrateadded + m_heartrate.at(i - 1);
         }
         emit distanceChanged();
