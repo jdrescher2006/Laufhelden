@@ -152,6 +152,27 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
+                text: qsTr("Credits for localization:")
+            }
+            Label
+            {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                text: qsTr("Spanish") + " - Caballlero, " + qsTr("Polish") + " - atlochowski, " + qsTr("Swedish") + " - eson57"
+            }
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
                 text: qsTr("Feedback, bugs:")
             }
             Label
