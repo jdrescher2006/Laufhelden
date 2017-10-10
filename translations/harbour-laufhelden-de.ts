@@ -27,6 +27,22 @@
         <source>Sport tracker application for Sailfish OS</source>
         <translation>Sport Tracker App für Sailfish OS</translation>
     </message>
+    <message>
+        <source>Credits for localization:</source>
+        <translation>Danke für die Übersetzung geht an:</translation>
+    </message>
+    <message>
+        <source>Spanish</source>
+        <translation>Spanisch</translation>
+    </message>
+    <message>
+        <source>Polish</source>
+        <translation>Polnisch</translation>
+    </message>
+    <message>
+        <source>Swedish</source>
+        <translation>Schwedisch</translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
