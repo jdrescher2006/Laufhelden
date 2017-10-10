@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation type="unfinished">Seleccionar perfil de umbrales</translation>
+        <translation>Seleccionar perfil de umbrales</translation>
     </message>
 </context>
 <context>
@@ -454,7 +454,7 @@
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation type="unfinished"></translation>
+        <translation>No es necesario entrar el nombre del ejercicio al final del entrenamiento<.</translation>
     </message>
 </context>
 <context>
