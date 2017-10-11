@@ -1,9 +1,6 @@
 ToDo for next release to openrepos:
 
 - fix battery status for HR device on record page
-- no HR when workout isn't started
-- when HR device fails during workout, the 0bpm is added to average HR -> needs to be tested!
-- test rena stuff for map updating (mapcircle)
 
 - set release date to .changes file
 - complete translation to german language
@@ -86,6 +83,9 @@ Bugs:
 
 
 Completed:
+- test rena stuff for map updating (mapcircle)
+- when HR device fails during workout, the 0bpm is added to average HR
+- no HR when workout isn't started
 - adjustable value fields for recordpage
 - view credits on about page
 - missing non localized texts
