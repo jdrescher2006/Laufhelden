@@ -135,6 +135,37 @@ Page
         {
             //This timer is called every update cycle. Should be every second.
 
+            //Really strange thing: this timer is called even when the page is NOT opened!
+            //If the prerecord page is open, the timer is called!
+            //So we need to find out wether this page is opened anf if not return here.
+            if (page.status === 0)
+                return;
+
+            //set heartrate to JS array if HR device is used
+            if (sHRMAddress !== "" && settings.useHRMdevice)
+            {
+                RecordPageDisplay.arrayValueTypes[1].value = sHeartRate;
+                RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
+            }
+            //Set values to JS array if recorder is running
+            if (recorder.tracking)
+            {
+                RecordPageDisplay.arrayValueTypes[0].value = (recorder.distance/1000).toFixed(1);
+                RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
+                RecordPageDisplay.arrayValueTypes[3].value = recorder.paceStr;
+                RecordPageDisplay.arrayValueTypes[4].value = recorder.paceaverageStr;
+                RecordPageDisplay.arrayValueTypes[5].value = recorder.speed.toFixed(1);
+                RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
+                RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
+            }
+
+            //Set values from JS array to dialog text fields
+            idTXT_1_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].value;
+            idTXT_2_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].value;
+            idTXT_3_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].value;
+            idTXT_4_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].value;
+            idTXT_5_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].value;
+            idTXT_6_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].value;
 
             //Set current daytime to dialog.
             var newDate = new Date();
@@ -229,21 +260,33 @@ Page
     {       
         idTXT_1_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].header + ":";
         idTXT_1_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footer + " ";
+        idTXT_1_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footnote;
+        idTXT_1_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footnoteValue;
 
         idTXT_2_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].header + ":";
         idTXT_2_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footer;
+        idTXT_2_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footnote;
+        idTXT_2_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footnoteValue;
 
         idTXT_3_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].header + ":";
         idTXT_3_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footer + " ";
+        idTXT_3_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footnote;
+        idTXT_3_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footnoteValue;
 
         idTXT_4_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].header + ":";
         idTXT_4_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footer;
+        idTXT_4_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footnote;
+        idTXT_4_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footnoteValue;
 
         idTXT_5_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].header + ":";
         idTXT_5_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footer + " ";
+        idTXT_5_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footnote;
+        idTXT_5_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footnoteValue;
 
         idTXT_6_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].header + ":";
         idTXT_6_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footer;
+        idTXT_6_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footnote;
+        idTXT_6_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footnoteValue;
     }
 
     function showSaveDialog()
@@ -332,26 +375,7 @@ Page
     function newTrackPoint(coordinate)
     {
         //console.log("Position: " + recorder.currentPosition);
-        console.log("newTrackPoint");        
-
-        //Set values to JS array
-        RecordPageDisplay.arrayValueTypes[0].value = (recorder.distance/1000).toFixed(1);
-        RecordPageDisplay.arrayValueTypes[1].value = sHeartRate;
-        RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
-        RecordPageDisplay.arrayValueTypes[3].value = recorder.paceStr;
-        RecordPageDisplay.arrayValueTypes[4].value = recorder.paceaverageStr;
-        RecordPageDisplay.arrayValueTypes[5].value = recorder.speed.toFixed(1);
-        RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
-        RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
-
-        //Set values from JS array to dialog text fields
-        idTXT_1_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].value;
-        idTXT_2_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].value;
-        idTXT_3_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].value;
-        idTXT_4_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].value;
-        idTXT_5_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].value;
-        idTXT_6_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].value;
-
+        console.log("newTrackPoint");               
 
         trackLine.addCoordinate(coordinate);
         if(!map.gesture.enabled)
@@ -785,7 +809,18 @@ Page
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
-
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                id: idTXT_1_Footnote
+                anchors.bottom: parent.bottom
+                height: parent.height / 6
+                width: parent.width
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
                 fontSizeMode: Text.Fit
                 color: cSecondaryTextColor
                 font.pointSize: 4000
@@ -885,6 +920,18 @@ Page
                 color: cSecondaryTextColor
                 font.pointSize: 4000
             }
+            Text
+            {
+                id: idTXT_2_Footnote
+                anchors.bottom: parent.bottom
+                height: parent.height / 6
+                width: parent.width
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
             Rectangle
             {
                 width: parent.width
@@ -968,6 +1015,18 @@ Page
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                id: idTXT_3_Footnote
+                anchors.bottom: parent.bottom
+                height: parent.height / 6
+                width: parent.width
+                horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 fontSizeMode: Text.Fit
                 color: cSecondaryTextColor
@@ -1070,9 +1129,10 @@ Page
             }
             Text
             {
-                text: qsTr("Bat:") + " " +  sBatteryLevel + "%"
+                id: idTXT_4_Footnote
+                //text: " " + qsTr("Bat:") + " " +  sBatteryLevel + "%"
                 anchors.bottom: parent.bottom
-                height: parent.height / 7
+                height: parent.height / 6
                 width: parent.width
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -1168,6 +1228,18 @@ Page
                 color: cSecondaryTextColor
                 font.pointSize: 4000
             }
+            Text
+            {
+                id: idTXT_5_Footnote
+                anchors.bottom: parent.bottom
+                height: parent.height / 6
+                width: parent.width
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
             Rectangle
             {
                 width: parent.width
@@ -1258,6 +1330,18 @@ Page
                 height: parent.height / iSecondaryTextHeightFactor
                 width: parent.width
                 horizontalAlignment: Text.AlignRight
+                verticalAlignment: Text.AlignVCenter
+                fontSizeMode: Text.Fit
+                color: cSecondaryTextColor
+                font.pointSize: 4000
+            }
+            Text
+            {
+                id: idTXT_6_Footnote
+                anchors.bottom: parent.bottom
+                height: parent.height / 6
+                width: parent.width
+                horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 fontSizeMode: Text.Fit
                 color: cSecondaryTextColor

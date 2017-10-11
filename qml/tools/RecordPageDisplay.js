@@ -19,14 +19,14 @@
 
 var arrayValueTypes =
 [
-    { index: 0, fieldID: 1, value: 0, header: qsTr("Distance"), footer: qsTr("km") },
-    { index: 1, fieldID: 2, value: 0, header: qsTr("Heartrate"), footer: qsTr("bpm") },
-    { index: 2, fieldID: 3, value: 0, header: qsTr("Heartrate") + "∅", footer: qsTr("bpm") },
-    { index: 3, fieldID: 4, value: 0, header: qsTr("Pace"), footer: qsTr("min/km") },
-    { index: 4, fieldID: 5, value: 0, header: qsTr("Pace") + "∅", footer: qsTr("min/km") },
-    { index: 5, fieldID: 6, value: 0, header: qsTr("Speed"), footer: qsTr("km/h") },
-    { index: 6, fieldID: 0, value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h") },
-    { index: 7, fieldID: 0, value: 0, header: qsTr("Altitude"), footer: qsTr("m") }
+    { index: 0, fieldID: 1, value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 1, fieldID: 2, value: 0, header: qsTr("Heartrate"), footer: qsTr("bpm"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 2, fieldID: 3, value: 0, header: qsTr("Heartrate") + "∅", footer: qsTr("bpm"), footnote: true, footnoteText: qsTr("Bat.:"), footnoteValue: 0},
+    { index: 3, fieldID: 4, value: 0, header: qsTr("Pace"), footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 4, fieldID: 5, value: 0, header: qsTr("Pace") + "∅", footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 5, fieldID: 6, value: 0, header: qsTr("Speed"), footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 6, fieldID: 0, value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 7, fieldID: 0, value: 0, header: qsTr("Altitude"), footer: qsTr("m"), footnote: false, footnoteText: "", footnoteValue: 0 }
 ]
 
 
