@@ -29,19 +29,19 @@
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation type="unfinished"></translation>
+        <translation>créditos</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Español</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="unfinished"></translation>
+        <translation>Polaco</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation>Sueco</translation>
     </message>
 </context>
 <context>
@@ -56,7 +56,7 @@
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Cancelar el escaneo</translation>
+        <translation>Cancelar escaneo</translation>
     </message>
     <message>
         <source>Current BT device</source>
@@ -156,7 +156,7 @@
     </message>
     <message>
         <source>Start new workout</source>
-        <translation>Empezar un ejercicio</translation>
+        <translation>Empezar</translation>
     </message>
     <message>
         <source>Welcome to Laufhelden</source>
@@ -477,23 +477,23 @@
     <name>SharedResources</name>
     <message>
         <source>Running</source>
-        <translation>Corriendo</translation>
+        <translation>Correr</translation>
     </message>
     <message>
         <source>Roadbike</source>
-        <translation>Bicicleta de carretera</translation>
+        <translation>Bici carretera</translation>
     </message>
     <message>
         <source>Mountainbike</source>
-        <translation>Bicicleta de montaña</translation>
+        <translation>Bici montaña</translation>
     </message>
     <message>
         <source>Walking</source>
-        <translation>Caminado</translation>
+        <translation>Caminar</translation>
     </message>
     <message>
         <source>Inline skating</source>
-        <translation>Patinaje en línea</translation>
+        <translation>Patinar</translation>
     </message>
 </context>
 <context>
