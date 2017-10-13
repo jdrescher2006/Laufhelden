@@ -297,10 +297,6 @@
         <translation>Wstrzymany</translation>
     </message>
     <message>
-        <source>Bat:</source>
-        <translation>Bat:</translation>
-    </message>
-    <message>
         <source>Duration:</source>
         <translation>Czas trwania:</translation>
     </message>
@@ -377,6 +373,14 @@
     </message>
     <message>
         <source>Altitude</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bat.:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

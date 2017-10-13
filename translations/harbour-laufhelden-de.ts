@@ -297,10 +297,6 @@
         <translation>Pausiert</translation>
     </message>
     <message>
-        <source>Bat:</source>
-        <translation>Bat:</translation>
-    </message>
-    <message>
         <source>Duration:</source>
         <translation>Dauer:</translation>
     </message>
@@ -378,6 +374,14 @@
     <message>
         <source>Altitude</source>
         <translation>Höhe</translation>
+    </message>
+    <message>
+        <source>Bat.:</source>
+        <translation>Bat.:</translation>
+    </message>
+    <message>
+        <source>Empty</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

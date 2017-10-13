@@ -297,10 +297,6 @@
         <translation>Pausado</translation>
     </message>
     <message>
-        <source>Bat:</source>
-        <translation>Bat:</translation>
-    </message>
-    <message>
         <source>Duration:</source>
         <translation>duración:</translation>
     </message>
@@ -378,6 +374,14 @@
     <message>
         <source>Altitude</source>
         <translation>Altitud</translation>
+    </message>
+    <message>
+        <source>Bat.:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -470,7 +474,7 @@
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation>No es necesario entrar el nombre del ejercicio al final del entrenamiento<.</translation>
+        <translation>No es necesario entrar el nombre del ejercicio al final del entrenamiento.</translation>
     </message>
 </context>
 <context>
