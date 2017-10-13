@@ -150,22 +150,34 @@ Page
             //Set values to JS array if recorder is running
             if (recorder.tracking)
             {
-                RecordPageDisplay.arrayValueTypes[0].value = (recorder.distance/1000).toFixed(1);
+                //0 is empty and 1 is heartrate!
                 RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
                 RecordPageDisplay.arrayValueTypes[3].value = recorder.paceStr;
                 RecordPageDisplay.arrayValueTypes[4].value = recorder.paceaverageStr;
                 RecordPageDisplay.arrayValueTypes[5].value = recorder.speed.toFixed(1);
                 RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
                 RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
+                RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);
             }
 
             //Set values from JS array to dialog text fields
-            idTXT_1_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].value;
-            idTXT_2_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].value;
-            idTXT_3_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].value;
-            idTXT_4_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].value;
-            idTXT_5_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].value;
-            idTXT_6_Value.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].value;
+            idTXT_1_Value.text = RecordPageDisplay.fncGetValueTextByFieldID(1);
+            if (RecordPageDisplay.fncGetFootnoteVisibleByFieldID(1)) idTXT_1_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(1) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(1);
+
+            idTXT_2_Value.text = RecordPageDisplay.fncGetValueTextByFieldID(2);
+            if (RecordPageDisplay.fncGetFootnoteVisibleByFieldID(2)) idTXT_2_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(2) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(2);
+
+            idTXT_3_Value.text = RecordPageDisplay.fncGetValueTextByFieldID(3);
+            if (RecordPageDisplay.fncGetFootnoteVisibleByFieldID(3)) idTXT_3_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(3) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(3);
+
+            idTXT_4_Value.text = RecordPageDisplay.fncGetValueTextByFieldID(4);
+            if (RecordPageDisplay.fncGetFootnoteVisibleByFieldID(4)) idTXT_4_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(4) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(4);
+
+            idTXT_5_Value.text = RecordPageDisplay.fncGetValueTextByFieldID(5);
+            if (RecordPageDisplay.fncGetFootnoteVisibleByFieldID(5)) idTXT_5_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(5) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(5);
+
+            idTXT_6_Value.text = RecordPageDisplay.fncGetValueTextByFieldID(6);
+            if (RecordPageDisplay.fncGetFootnoteVisibleByFieldID(6)) idTXT_6_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(6) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(6);
 
             //Set current daytime to dialog.
             var newDate = new Date();
@@ -257,36 +269,36 @@ Page
     }
 
     function fncSetHeaderFooterTexts()
-    {       
-        idTXT_1_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].header + ":";
-        idTXT_1_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footer + " ";
-        idTXT_1_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footnote;
-        idTXT_1_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[1].footnoteValue;
+    {                      
+        idTXT_1_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(1) + ":";
+        idTXT_1_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(1) + " ";
+        idTXT_1_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(1);
+        idTXT_1_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(1) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(1);
 
-        idTXT_2_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].header + ":";
-        idTXT_2_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footer;
-        idTXT_2_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footnote;
-        idTXT_2_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[2].footnoteValue;
+        idTXT_2_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(2) + ":";
+        idTXT_2_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(2);
+        idTXT_2_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(2);
+        idTXT_2_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(2) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(2);
 
-        idTXT_3_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].header + ":";
-        idTXT_3_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footer + " ";
-        idTXT_3_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footnote;
-        idTXT_3_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[3].footnoteValue;
+        idTXT_3_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(3) + ":";
+        idTXT_3_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(3) + " ";
+        idTXT_3_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(3);
+        idTXT_3_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(3) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(3);
 
-        idTXT_4_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].header + ":";
-        idTXT_4_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footer;
-        idTXT_4_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footnote;
-        idTXT_4_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[4].footnoteValue;
+        idTXT_4_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(4) + ":";
+        idTXT_4_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(4);
+        idTXT_4_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(4);
+        idTXT_4_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(4) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(4);
 
-        idTXT_5_Header.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].header + ":";
-        idTXT_5_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footer + " ";
-        idTXT_5_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footnote;
-        idTXT_5_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[5].footnoteValue;
+        idTXT_5_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(5) + ":";
+        idTXT_5_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(5) + " ";
+        idTXT_5_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(5);
+        idTXT_5_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(5) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(5);
 
-        idTXT_6_Header.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].header + ":";
-        idTXT_6_Footer.text = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footer;
-        idTXT_6_Footnote.visible = RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footnote;
-        idTXT_6_Footnote.text = " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footnoteText + " " + RecordPageDisplay.arrayLookupValueTypesByFieldID[6].footnoteValue;
+        idTXT_6_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(6) + ":";
+        idTXT_6_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(6);
+        idTXT_6_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(6);
+        idTXT_6_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(6) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(6);
     }
 
     function showSaveDialog()
@@ -1635,12 +1647,12 @@ Page
 
                     delegate: ListItem
                     {
-                        width: listView.width
+                        width: listView.width                        
                         Label
                         {
                             id: idLBLValueName
                             text: modelData.header
-                            color: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index) ? Theme.highlightColor : Theme.primaryColor
+                            //color: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index) ? Theme.highlightColor : Theme.primaryColor
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                         }
@@ -1648,13 +1660,14 @@ Page
                         {
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
-                            color: (iSelectedValue === -1 && iValueFieldPressed === modelData.fieldID) ? "green" : "grey"
+                            //color: (iSelectedValue === -1 && iValueFieldPressed === modelData.fieldID) ? "green" : "grey"
                             falloffRadius: 0.15
                             radius: 1.0
                             cache: false
-                            visible: (iValueFieldPressed === modelData.fieldID && !(iSelectedValue === modelData.index))
+                            visible: (iSelectedValue !== modelData.index)
+                            //visible: (iValueFieldPressed === modelData.fieldID && !(iSelectedValue === modelData.index))
                         }
-                        GlassItem //this is the item for the newly selected value field
+                        GlassItem //this is the item for the currently selected value field
                         {
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
@@ -1663,10 +1676,11 @@ Page
                             radius: 1.0
                             cache: false
                             visible: (iSelectedValue !== -1 && iSelectedValue === modelData.index)
-                        }
+                        }                        
+
                         onClicked:
                         {
-                            console.log("Clicked: " + modelData.fieldID.toString());
+                            console.log("Clicked index: " + modelData.index.toString());
                             iSelectedValue = modelData.index;
                         }
                     }

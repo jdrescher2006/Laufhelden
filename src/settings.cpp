@@ -128,7 +128,7 @@ void Settings::setShowBorderLines(bool showBorderLines)
 }
 QString Settings::valueFields() const
 {
-    return m_settings->value("recordsettings/valueFields", "5,3,4,1,2,0,0,6|5,3,4,0,0,1,2,6|5,3,4,0,0,1,2,6|5,3,4,1,2,0,0,6|5,3,4,0,0,1,2,6").toString();
+    return m_settings->value("recordsettings/valueFields", "3,3,1,2,7,8|5,6,1,2,7,8|5,6,1,2,7,8|3,4,1,2,7,8|5,6,1,2,7,8").toString();
 }
 void Settings::setValueFields(QString valueFields)
 {

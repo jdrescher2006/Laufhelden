@@ -1,27 +1,112 @@
 ToDo for next release to openrepos:
 
-- fix battery status for HR device on record page
+ToDo in lines 255 + 256 + 258 + 1652 downwards
+
+	{ index: 0, fieldID: "0", value: 0, header: "", footer: "", footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 1, fieldID: "3", value: 0, header: qsTr("Heartrate"), footer: qsTr("bpm"), footnote: true, footnoteText: qsTr("Bat.:"), footnoteValue: 0 },
+    { index: 2, fieldID: "4", value: 0, header: qsTr("Heartrate") + "∅", footer: qsTr("bpm"),footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 3, fieldID: "1,2", value: 0, header: qsTr("Pace"), footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 4, fieldID: "0", value: 0, header: qsTr("Pace") + "∅", footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 5, fieldID: "0", value: 0, header: qsTr("Speed"), footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 6, fieldID: "0", value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 7, fieldID: "5", value: 0, header: qsTr("Altitude"), footer: qsTr("m"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 8, fieldID: "6", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0 }
+
+	{ name: "running", labeltext: qsTr("Running"), icon: "../workouticons/running.png" },
+    { name: "biking", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png" },
+    { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png" },
+    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" },
+    { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png" }
+
+
+	"3,3,1,2,7,8|5,6,1,2,7,8|5,6,1,2,7,8|3,4,1,2,7,8|5,6,1,2,7,8"
+
+
+
+
+
+
+function fncConvertSaveStringToArray(sSaveString, iWorkoutType, iWorkoutTypesCount)
+{
+    //"3,3,1,2,7,8|5,6,1,2,7,8|5,6,1,2,7,8|3,4,1,2,7,8|5,6,1,2,7,8"
+
+    var arValueTypesByWorkout = sSaveString.split("|");
+
+    if (arValueTypesByWorkout.length < iWorkoutTypesCount) //This is the amount of known workout types, currently 5
+        return;
+
+    //Pick the one for the selected workout
+    var arValueTypes = arValueTypesByWorkout[iWorkoutType].split(",");
+
+    if (arValueTypes.length !== 6)    //This is the amount of value fields on record page, currently 6
+        return;
+
+    //Go through value types
+    for (var i = 0; i < arrayValueTypes.length; i++)
+    {
+        var sFieldIDString = "";
+
+        //Go through value fields
+        for (var j = 0; j < arValueTypes.length; j++)
+        {
+            if (parseInt(arValueTypes[j]) === i)
+                sFieldIDString = sFieldIDString + (j + 1).toString() + ",";
+        }
+
+        //If the current value (i) was not found in the save string, set fieldID to 0
+        //0 means that this value will not be shown anywhere on the record dialog
+        if (sFieldIDString === "")
+            sFieldIDString = "0";
+        else
+        {
+            //kill the last ,
+            sFieldIDString = sFieldIDString.substr(0, (sFieldIDString.length - 1));
+        }
+
+        //write that to the array
+        arrayValueTypes[i].fieldID = sFieldIDString;
+    }
+
+    fncRefreshLookupArrayByFieldIDs();
+}
+
+
+
+
+
+
+
+
+
+- Die dynamischen Felder müssen umgebaut werden. Im Savestring sollen sechs werte auftauchen. Das sind die Felder. Vorteil ist, das dann doppel Belegungen möglich sind.
+	Außerdem ist ein Vorteil, das die Anzahl der Felder sich wohl nicht ändern wird. Die Anzahl der Parameter aber schon!
+
+- do not return if amount of arrays does not fit in RecordPageDisplay.js
 
 - set release date to .changes file
-- complete translation to german language
-- set new version number to yaml and spec files
+- complete translation to german language		-> OK	
+- set new version number to yaml and spec files	-> OK
 - clean project and recompile
 
 
 
-ToDo on the long run:
-- while working out, the map circle is not centered on the map
+ToDo for second next releaseto openrepos:
+- unlocalized texts on BT device page
+1.) while working out, the map circle is not centered on the map
+2.) add over/below average speed, average pace and average heart rate to record page
+3.) GPS starts with app start. Make it start with recordpage.
+4.) introduce configurable lock page (LCD mode, AMOLED mode)
+5.) cyclic voice announcements	
+	- every 0,5-10 km
+	- maximum three parameters
+	- distance, speed, pace, HR
+
+
+
+ToDo on the long run (second next release):
 - check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
-- store workout type to autosave, but maybe this is not needed.
-- if autosave is there on start of app, ask user if to resume workout
-- add heart rate average to record page
-- add over/below average speed to record page
 - implement workout comparison. Compare current workout with virtual workout in the past
-- support elevation as new datapoint
 - AM/PM mode for recordpage
-- on recordpage: enable onRadiusChanged and onCenterChanged in mapcircle.
-- sometimes there is a view problem on mainpage after a completed workout.
-- GPS starts with app start. Make it start with recordpage.
 - support all workout types from meerun (is not possible because export function in meerun is broken for many workout types)
 - rename workouts on mainpage
 - introduce reward system:
@@ -39,9 +124,7 @@ ToDo on the long run:
 	- vibration alert / sound alert
 	- send vibration also to pebble via dbus call provided by rockpool (does not exist. Have to do this myself?)
 	- make sound file configurable or changeable
-- record page workover	
-	- choose what to display on the fields
-	- add more data to view
+- record page workover, add more data to view
 		- current, minimum, maximum height (gps)
 		- up/down travelled height
 		- energy kcal
@@ -53,17 +136,14 @@ ToDo on the long run:
 - implement autopause
 - save pause time to gpx file. Look in Meerun gpx file where to save pause data.
 - Style first page list view like in meerun (upper part of page should not scroll)
-- AM/PM mode for recordpage
 - enable night mode automatically. 
 - view diagrams on the statistics page. See app "Rush Hour" which is on openrepos.
 - make volume of audio messages adjustable
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
-- introduce configurable lock page (LCD mode, AMOLED mode)
 - support workouts without gps e.g. indoor activities
 - choose metrics, km/miles
 - new workout icons
-- voice announcements
 - pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
 - use scout server as map tile provider (waiting for Jolla: https://talk.maemo.org/showpost.php?p=1528801&postcount=257)
 - introduce lap function
@@ -72,6 +152,7 @@ ToDo on the long run:
 
 
 Bugs:
+- sometimes there is a view problem on mainpage after a completed workout.
 - if HRM is active and record page is left and then opened again, we get a BT error.
 - after bt scan and finding new HRM device, not able to connect. First need to restart app.
 - compiler issue, comparison between signed and unsigned
@@ -83,6 +164,12 @@ Bugs:
 
 
 Completed:
+- fix battery status for HR device on record page
+- on recordpage: enable onRadiusChanged and onCenterChanged in mapcircle.
+- support elevation as new datapoint
+- store workout type to autosave, but maybe this is not needed.
+- if autosave is there on start of app, ask user if to resume workout
+- add heart rate average to record page
 - test rena stuff for map updating (mapcircle)
 - when HR device fails during workout, the 0bpm is added to average HR
 - no HR when workout isn't started
