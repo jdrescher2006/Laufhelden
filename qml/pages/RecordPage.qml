@@ -270,32 +270,32 @@ Page
 
     function fncSetHeaderFooterTexts()
     {                      
-        idTXT_1_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(1) + ":";
+        idTXT_1_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(1);
         idTXT_1_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(1) + " ";
         idTXT_1_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(1);
         idTXT_1_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(1) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(1);
 
-        idTXT_2_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(2) + ":";
+        idTXT_2_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(2);
         idTXT_2_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(2);
         idTXT_2_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(2);
         idTXT_2_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(2) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(2);
 
-        idTXT_3_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(3) + ":";
+        idTXT_3_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(3);
         idTXT_3_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(3) + " ";
         idTXT_3_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(3);
         idTXT_3_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(3) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(3);
 
-        idTXT_4_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(4) + ":";
+        idTXT_4_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(4);
         idTXT_4_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(4);
         idTXT_4_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(4);
         idTXT_4_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(4) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(4);
 
-        idTXT_5_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(5) + ":";
+        idTXT_5_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(5);
         idTXT_5_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(5) + " ";
         idTXT_5_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(5);
         idTXT_5_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(5) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(5);
 
-        idTXT_6_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(6) + ":";
+        idTXT_6_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(6);
         idTXT_6_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(6);
         idTXT_6_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(6);
         idTXT_6_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(6) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(6);

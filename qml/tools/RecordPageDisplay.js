@@ -143,7 +143,7 @@ function fncGetHeaderTextByFieldID(iFieldID)
                 if (i === 0)
                     return "";
                 else
-                    return arrayValueTypes[i].header;
+                    return arrayValueTypes[i].header + ":";
             }
         }
     }
