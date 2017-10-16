@@ -1,88 +1,5 @@
 ToDo for next release to openrepos:
 
-ToDo in lines 255 + 256 + 258 + 1652 downwards
-
-	{ index: 0, fieldID: "0", value: 0, header: "", footer: "", footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 1, fieldID: "3", value: 0, header: qsTr("Heartrate"), footer: qsTr("bpm"), footnote: true, footnoteText: qsTr("Bat.:"), footnoteValue: 0 },
-    { index: 2, fieldID: "4", value: 0, header: qsTr("Heartrate") + "∅", footer: qsTr("bpm"),footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 3, fieldID: "1,2", value: 0, header: qsTr("Pace"), footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 4, fieldID: "0", value: 0, header: qsTr("Pace") + "∅", footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 5, fieldID: "0", value: 0, header: qsTr("Speed"), footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 6, fieldID: "0", value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 7, fieldID: "5", value: 0, header: qsTr("Altitude"), footer: qsTr("m"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 8, fieldID: "6", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0 }
-
-	{ name: "running", labeltext: qsTr("Running"), icon: "../workouticons/running.png" },
-    { name: "biking", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png" },
-    { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png" },
-    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" },
-    { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png" }
-
-
-	"3,3,1,2,7,8|5,6,1,2,7,8|5,6,1,2,7,8|3,4,1,2,7,8|5,6,1,2,7,8"
-
-
-
-
-
-
-function fncConvertSaveStringToArray(sSaveString, iWorkoutType, iWorkoutTypesCount)
-{
-    //"3,3,1,2,7,8|5,6,1,2,7,8|5,6,1,2,7,8|3,4,1,2,7,8|5,6,1,2,7,8"
-
-    var arValueTypesByWorkout = sSaveString.split("|");
-
-    if (arValueTypesByWorkout.length < iWorkoutTypesCount) //This is the amount of known workout types, currently 5
-        return;
-
-    //Pick the one for the selected workout
-    var arValueTypes = arValueTypesByWorkout[iWorkoutType].split(",");
-
-    if (arValueTypes.length !== 6)    //This is the amount of value fields on record page, currently 6
-        return;
-
-    //Go through value types
-    for (var i = 0; i < arrayValueTypes.length; i++)
-    {
-        var sFieldIDString = "";
-
-        //Go through value fields
-        for (var j = 0; j < arValueTypes.length; j++)
-        {
-            if (parseInt(arValueTypes[j]) === i)
-                sFieldIDString = sFieldIDString + (j + 1).toString() + ",";
-        }
-
-        //If the current value (i) was not found in the save string, set fieldID to 0
-        //0 means that this value will not be shown anywhere on the record dialog
-        if (sFieldIDString === "")
-            sFieldIDString = "0";
-        else
-        {
-            //kill the last ,
-            sFieldIDString = sFieldIDString.substr(0, (sFieldIDString.length - 1));
-        }
-
-        //write that to the array
-        arrayValueTypes[i].fieldID = sFieldIDString;
-    }
-
-    fncRefreshLookupArrayByFieldIDs();
-}
-
-
-
-
-
-
-
-
-
-- Die dynamischen Felder müssen umgebaut werden. Im Savestring sollen sechs werte auftauchen. Das sind die Felder. Vorteil ist, das dann doppel Belegungen möglich sind.
-	Außerdem ist ein Vorteil, das die Anzahl der Felder sich wohl nicht ändern wird. Die Anzahl der Parameter aber schon!
-
-- do not return if amount of arrays does not fit in RecordPageDisplay.js
-
 - set release date to .changes file
 - complete translation to german language		-> OK	
 - set new version number to yaml and spec files	-> OK
@@ -90,20 +7,25 @@ function fncConvertSaveStringToArray(sSaveString, iWorkoutType, iWorkoutTypesCou
 
 
 
-ToDo for second next releaseto openrepos:
-- unlocalized texts on BT device page
-1.) while working out, the map circle is not centered on the map
-2.) add over/below average speed, average pace and average heart rate to record page
-3.) GPS starts with app start. Make it start with recordpage.
-4.) introduce configurable lock page (LCD mode, AMOLED mode)
-5.) cyclic voice announcements	
+ToDo for second next release to openrepos:
+1.) unlocalized texts on BT device page
+2.) while working out, the map circle is not centered on the map.
+3.) when map is shown, make field 5&6 invisible
+4.) add over/below average speed, average pace and average heart rate to record page
+5.) GPS starts with app start. Make it start with recordpage.
+6.) introduce configurable lock page (LCD mode, AMOLED mode)
+7.) event voice announcements	
+	- GPS online/offline
+	- start, stop, pause, resume workout
+	- ...
+8.) cyclic voice announcements	
 	- every 0,5-10 km
 	- maximum three parameters
 	- distance, speed, pace, HR
 
 
 
-ToDo on the long run (second next release):
+ToDo on the long run:
 - check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
 - implement workout comparison. Compare current workout with virtual workout in the past
 - AM/PM mode for recordpage
