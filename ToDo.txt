@@ -1,9 +1,9 @@
 ToDo for next release to openrepos:
 
-- set release date to .changes file
+- set release date to .changes file				-> OK
 - complete translation to german language		-> OK	
 - set new version number to yaml and spec files	-> OK
-- clean project and recompile
+- clean project and compile on release			-> OK
 
 
 
