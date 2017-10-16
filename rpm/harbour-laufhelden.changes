@@ -1,4 +1,4 @@
-* Fri Oct 13 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.4-5
+* Mon Oct 16 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.4-5
 - added new feature autosave
 - new values for record page: altitude and heartrate average
 - value fields on record page are configurable now
