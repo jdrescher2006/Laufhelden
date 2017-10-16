@@ -30,6 +30,77 @@ var arrayValueTypes =
     { index: 8, fieldID: "1", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0 }
 ]
 
+function fncAddFieldIDByIndex(iIndex, iFieldID)
+{
+    console.log("Old fieldID: " + arrayValueTypes[iIndex].fieldID);
+
+    var arFieldIDString = arrayValueTypes[iIndex].fieldID.split(",");
+
+    var sNewFieldIDString = "";
+
+    if (arFieldIDString.length === 1 && arFieldIDString[0] === "0")
+        sNewFieldIDString = iFieldID.toString();
+    else
+        sNewFieldIDString = arrayValueTypes[iIndex].fieldID + "," + iFieldID.toString();
+
+    console.log("New fieldID: " + sNewFieldIDString);
+
+    arrayValueTypes[iIndex].fieldID = sNewFieldIDString;
+}
+
+function fncRemoveFieldIDByIndex(iIndex, iFieldID)
+{
+    console.log("Old fieldID: " + arrayValueTypes[iIndex].fieldID);
+
+    var arFieldIDString = arrayValueTypes[iIndex].fieldID.split(",");
+
+    var sNewFieldIDString = "";
+
+    //the fieldID string must hold at least one value, go through this array
+    for (var j = 0; j < arFieldIDString.length; j++)
+    {
+        //If the current item fits the current value field
+        if (parseInt(arFieldIDString[j]) === iFieldID)
+        {
+            //Do nothing here, the field must become empty
+            //sNewFieldIDString = sNewFieldIDString + "0,";
+        }
+        else
+            sNewFieldIDString = sNewFieldIDString + arFieldIDString[j] + ",";
+    }
+
+    //kill the last ,
+    sNewFieldIDString = sNewFieldIDString.substr(0, (sNewFieldIDString.length - 1));
+
+    if (sNewFieldIDString === "") sNewFieldIDString = "0";
+
+    console.log("New fieldID: " + sNewFieldIDString);
+
+    arrayValueTypes[iIndex].fieldID = sNewFieldIDString;
+}
+
+
+function fncGetIndexByFieldID(iFieldID)
+{
+    //Go through value types array
+    for (var i = 0; i < arrayValueTypes.length; i++)
+    {
+        var arFieldIDString = arrayValueTypes[i].fieldID.split(",");
+
+        //the fieldID string must hold at least one value, go through this array
+        for (var j = 0; j < arFieldIDString.length; j++)
+        {
+            //If the current item fits the current value field
+            if (parseInt(arFieldIDString[j]) === iFieldID)
+            {
+                return arrayValueTypes[i].index;
+            }
+        }
+    }
+
+    return 0;
+}
+
 function fncGetValueTextByFieldID(iFieldID)
 {
     //Go through value types array
@@ -43,7 +114,11 @@ function fncGetValueTextByFieldID(iFieldID)
             //If the current item fits the current value field
             if (parseInt(arFieldIDString[j]) === iFieldID)
             {
-                return arrayValueTypes[i].value;
+                //If this is the first index [0], this is empty field, return ""
+                if (i === 0)
+                    return "";
+                else
+                    return arrayValueTypes[i].value;
             }
         }
     }
@@ -64,7 +139,11 @@ function fncGetHeaderTextByFieldID(iFieldID)
             //If the current item fits the current value field
             if (parseInt(arFieldIDString[j]) === iFieldID)
             {
-                return arrayValueTypes[i].header;
+                //If this is the first index [0], this is empty field, return ""
+                if (i === 0)
+                    return "";
+                else
+                    return arrayValueTypes[i].header;
             }
         }
     }
@@ -156,25 +235,6 @@ function fncGetFootnoteValueByFieldID(iFieldID)
     return 0;
 }
 
-
-
-//Create lookup table for value types.
-//This is a helper table to easier access the value types table.
-var arrayLookupValueTypesByFieldID = {};
-for (var i = 0; i < arrayValueTypes.length; i++)
-{
-    arrayLookupValueTypesByFieldID[arrayValueTypes[i].fieldID] = arrayValueTypes[i];
-}
-
-function fncRefreshLookupArrayByFieldIDs()
-{
-    for (var i = 0; i < arrayValueTypes.length; i++)
-    {
-        arrayLookupValueTypesByFieldID[arrayValueTypes[i].fieldID] = arrayValueTypes[i];
-    }
-}
-
-
 function fncConvertSaveStringToArray(sSaveString, iWorkoutType, iWorkoutTypesCount)
 {
     //"3,3,1,2,7,8|5,6,1,2,7,8|5,6,1,2,7,8|3,4,1,2,7,8|5,6,1,2,7,8"
@@ -215,8 +275,6 @@ function fncConvertSaveStringToArray(sSaveString, iWorkoutType, iWorkoutTypesCou
         //write that to the array
         arrayValueTypes[i].fieldID = sFieldIDString;
     }
-
-    fncRefreshLookupArrayByFieldIDs();
 }
 
 function fncConvertArrayToSaveString(sSaveString, iWorkoutType, iWorkoutTypesCount)

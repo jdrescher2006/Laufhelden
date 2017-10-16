@@ -240,7 +240,7 @@ Page
     function fncChangeValueField()
     {
         iSelectedValue = -1;
-        iOldValue = RecordPageDisplay.arrayLookupValueTypesByFieldID[iValueFieldPressed].index;
+        iOldValue = RecordPageDisplay.fncGetIndexByFieldID(iValueFieldPressed);
 
         var dialog = pageStack.push(id_Dialog_ChooseValue)
         dialog.accepted.connect(function()
@@ -249,13 +249,13 @@ Page
 
             if (iSelectedValue !== -1 && iOldValue !== -1)
             {
-                console.log("iSelectedValue: " + iSelectedValue.toString());
-                console.log("iOldValue: " + iOldValue.toString());
+                console.log("iValueFieldPressed: " + iValueFieldPressed.toString());
+                console.log("iSelectedValueIndex: " + iSelectedValue.toString());
+                console.log("iOldValueIndex: " + iOldValue.toString());
 
-                RecordPageDisplay.arrayValueTypes[iOldValue].fieldID = 0;
-                RecordPageDisplay.arrayValueTypes[iSelectedValue].fieldID = iValueFieldPressed;
-                //Rearrange helper array
-                RecordPageDisplay.fncRefreshLookupArrayByFieldIDs();
+                RecordPageDisplay.fncRemoveFieldIDByIndex(iOldValue, iValueFieldPressed);
+                RecordPageDisplay.fncAddFieldIDByIndex(iSelectedValue, iValueFieldPressed);
+
                 //Save the new value field arrangement to settings
                 settings.valueFields = RecordPageDisplay.fncConvertArrayToSaveString(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
             }
@@ -1660,12 +1660,11 @@ Page
                         {
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
-                            //color: (iSelectedValue === -1 && iValueFieldPressed === modelData.fieldID) ? "green" : "grey"
+                            color: (iSelectedValue === -1 || iSelectedValue === modelData.index) ? "green" : "grey"
                             falloffRadius: 0.15
                             radius: 1.0
                             cache: false
-                            visible: (iSelectedValue !== modelData.index)
-                            //visible: (iValueFieldPressed === modelData.fieldID && !(iSelectedValue === modelData.index))
+                            visible: (iSelectedValue !== modelData.index && (RecordPageDisplay.fncGetIndexByFieldID(iValueFieldPressed) === modelData.index))
                         }
                         GlassItem //this is the item for the currently selected value field
                         {
