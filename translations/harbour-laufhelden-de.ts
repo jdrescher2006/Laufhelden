@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Leeres Feld</translation>
     </message>
 </context>
 <context>
