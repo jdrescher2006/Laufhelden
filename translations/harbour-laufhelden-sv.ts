@@ -29,19 +29,19 @@
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tack för översättning:</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanska</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="unfinished"></translation>
+        <translation>Polska</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation>Svenska</translation>
     </message>
 </context>
 <context>
@@ -318,26 +318,26 @@
     </message>
     <message>
         <source>keep tapping button: </source>
-        <translation type="unfinished"></translation>
+        <translation>fortsätt snabbtrycka på knappen: </translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj värde!</translation>
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Acceptera</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
     <message>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Distans</translation>
     </message>
     <message>
         <source>km</source>
@@ -345,7 +345,7 @@
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjätfrekvens</translation>
     </message>
     <message>
         <source>bpm</source>
@@ -353,7 +353,7 @@
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo</translation>
     </message>
     <message>
         <source>min/km</source>
@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Hastighet</translation>
     </message>
     <message>
         <source>km/h</source>
@@ -369,19 +369,19 @@
     </message>
     <message>
         <source>Altitude</source>
-        <translation type="unfinished"></translation>
+        <translation>Altitud</translation>
     </message>
     <message>
         <source>m</source>
-        <translation type="unfinished"></translation>
+        <translation>m</translation>
     </message>
     <message>
         <source>Bat.:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bat.:</translation>
     </message>
     <message>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Tomt</translation>
     </message>
 </context>
 <context>
@@ -470,11 +470,11 @@
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara automatiskt</translation>
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation type="unfinished"></translation>
+        <translation>Behöver inte ange namn på träningspass vid passets slut.</translation>
     </message>
 </context>
 <context>
