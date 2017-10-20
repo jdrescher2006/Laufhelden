@@ -37,7 +37,6 @@ Page
             bLockFirstPageLoad = false;
             console.log("First Active PreRecordPage");
 
-
             //console.log("Eins: " + settings.workoutType);
             //console.log("Zwei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
             //console.log("Drei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }));

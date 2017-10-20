@@ -41,7 +41,8 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     iCurrentHeartRate = 0;
     m_heartrateadded = 0;
     sWorkoutType = "running";
-    m_altitude = 0;
+    m_altitude = 0;  
+    m_posSrc = NULL;
 
     // Load autosaved track if left from previous session
     loadAutoSave();
@@ -49,30 +50,56 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     // Setup periodic autosave
     m_autoSaveTimer.setInterval(60000);
     connect(&m_autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSave()));
-    m_autoSaveTimer.start();
+    m_autoSaveTimer.start();   
+
+    this->vStartGPS();  //this is working from here (constructor) ONLY!!! Can not call that later :-(
+}
+
+TrackRecorder::~TrackRecorder()
+{
+    qDebug()<<"TrackRecorder destructor";
+    autoSave();
+}
+
+void TrackRecorder::vStartGPS()
+{    
+    qDebug()<<"Starting GPS...";
 
     m_posSrc = QGeoPositionInfoSource::createDefaultSource(0);
-    if (m_posSrc) {
+    if (m_posSrc)
+    {
+        qDebug()<<"GPS initialized!";
+
         m_posSrc->setUpdateInterval(1000);
         connect(m_posSrc, SIGNAL(positionUpdated(QGeoPositionInfo)),
                 this, SLOT(positionUpdated(QGeoPositionInfo)));
         connect(m_posSrc, SIGNAL(error(QGeoPositionInfoSource::Error)),
                 this, SLOT(positioningError(QGeoPositionInfoSource::Error)));
         // Position updates are started/stopped in setIsTracking(...)
-    } else {
+    }
+    else
+    {
         qDebug()<<"Failed initializing PositionInfoSource!";
     }
 }
 
-TrackRecorder::~TrackRecorder() {
-    qDebug()<<"TrackRecorder destructor";
-    autoSave();
+void TrackRecorder::vEndGPS()
+{
+    if (m_posSrc != NULL)
+    {
+        m_posSrc->stopUpdates();
+        m_posSrc->disconnect();
+        m_posSrc = NULL;
+    }
 }
 
-void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos) {
-    if(newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy)) {
+void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
+{
+    if(newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy))
+    {
         m_accuracy = newPos.attribute(QGeoPositionInfo::HorizontalAccuracy);
-    } else {
+    } else
+    {
         m_accuracy = -1;
     }
     emit accuracyChanged();

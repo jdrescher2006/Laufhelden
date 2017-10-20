@@ -67,14 +67,13 @@ Page
         {
             console.log("---RecordPage first active enter---");
 
-            bLockFirstPageLoad = false;
-
-
+            bLockFirstPageLoad = false;            
 
             recorder.newTrackPoint.connect(newTrackPoint);
             map.addMapItem(positionMarker);
             console.log("RecordPage: Plotting track line");
-            for(var i=0;i<recorder.points;i++) {
+            for(var i=0;i<recorder.points;i++)
+            {
                 trackLine.addCoordinate(recorder.trackPointAt(i));
             }
             console.log("RecordPage: Appending track line to map");
@@ -377,10 +376,17 @@ Page
         } else {
             map.zoomLevel = trackZoom;
         }
-        if(recorder.isEmpty) {
+        if(recorder.isEmpty)
+        {
             map.center = recorder.currentPosition;
-        } else {
-            map.center = recorder.trackCenter();
+        }
+        else
+        {
+            //Das hier ist wohl das Problem!
+            //map.center = recorder.trackCenter();
+
+            //Wir machen das erst mal so:
+            map.center = recorder.currentPosition;
         }
     }
 

@@ -87,7 +87,7 @@ Page
         //This is loaded everytime the page is displayed
         if (status === PageStatus.Active)
         {
-            console.log("Active MainPage");
+            console.log("Active MainPage");            
 
             //Save the object of this page for back jumps
             vMainPageObject = pageStack.currentPage;

@@ -51,6 +51,8 @@ public:
     Q_INVOKABLE void exportGpx(QString name="", QString desc="");
     Q_INVOKABLE void clearTrack();
     Q_INVOKABLE void vSetCurrentHeartRate(uint heartRate);
+    Q_INVOKABLE void vStartGPS();
+    Q_INVOKABLE void vEndGPS();
 
     qreal accuracy() const;
     int points() const;
