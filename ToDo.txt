@@ -1,24 +1,27 @@
 ToDo for next release to openrepos:
 
-- set release date to .changes file				-> OK
-- complete translation to german language		-> OK	
-- set new version number to yaml and spec files	-> OK
-- clean project and compile on release			-> OK
+1.) unlocalized texts on BT device page
+2.) while working out, the map circle is not centered on the map.
+3.) when map is shown, make field 5&6 invisible
+4.) GPS starts with app start. Make it start with prerecordpage. Take a look into Messwerk, there it is working.
+5.) automatic night mode
+6.) there is a bug with pause function. Time is runnning further.
+- set release date to .changes file
+- compile with translation generation and complete translation to german language
+- set new version number to yaml and spec files
+- clean project and compile on release
 
 
 
 ToDo for second next release to openrepos:
-1.) unlocalized texts on BT device page
-2.) while working out, the map circle is not centered on the map.
-3.) when map is shown, make field 5&6 invisible
-4.) add over/below average speed, average pace and average heart rate to record page
-5.) GPS starts with app start. Make it start with recordpage.
-6.) introduce configurable lock page (LCD mode, AMOLED mode)
-7.) event voice announcements	
+
+- add over/below average speed, average pace and average heart rate to record page
+- introduce configurable lock page (LCD mode, AMOLED mode)
+- event voice announcements	
 	- GPS online/offline
 	- start, stop, pause, resume workout
 	- ...
-8.) cyclic voice announcements	
+- cyclic voice announcements	
 	- every 0,5-10 km
 	- maximum three parameters
 	- distance, speed, pace, HR
