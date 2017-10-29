@@ -86,6 +86,14 @@
         <source>Heart rate device</source>
         <translation>Urządzenie do pomiaru tętna</translation>
     </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -192,6 +200,33 @@
     </message>
     <message>
         <source>Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MapSettingsPage</name>
+    <message>
+        <source>Map settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Optimize screen in map mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show only 4 value fields (instead of 6) when map is shown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map center mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center current position on map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center track on map</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -421,6 +456,10 @@
         <source>Heart rate device</source>
         <translation>Urządzenie do pomiaru tętna</translation>
     </message>
+    <message>
+        <source>Map settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -474,6 +513,14 @@
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatic night mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switch display to night mode if ambiance light is low.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

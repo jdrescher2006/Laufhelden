@@ -38,6 +38,10 @@ class Settings : public QObject
     Q_PROPERTY(bool showBorderLines READ showBorderLines WRITE setShowBorderLines)
     Q_PROPERTY(QString valueFields READ valueFields WRITE setValueFields)
     Q_PROPERTY(bool enableAutosave READ enableAutosave WRITE setEnableAutosave)
+    Q_PROPERTY(bool autoNightMode READ autoNightMode WRITE setAutoNightMode)
+    Q_PROPERTY(int mapMode READ mapMode WRITE setMapMode)
+    Q_PROPERTY(bool mapShowOnly4Fields READ mapShowOnly4Fields WRITE setmapShowOnly4Fields)
+
 
 public:
     explicit Settings(QObject *parent = 0);
@@ -82,6 +86,15 @@ public:
 
     bool enableAutosave() const;
     void setEnableAutosave(bool enableAutosave);
+
+    bool autoNightMode() const;
+    void setAutoNightMode(bool autoNightMode);
+
+    int mapMode() const;
+    void setMapMode(int mapMode);
+
+    bool mapShowOnly4Fields() const;
+    void setmapShowOnly4Fields(bool mapShowOnly4Fields);
 
 signals:
     void updateIntervalChanged();

@@ -1,5 +1,4 @@
 #include <QPainter>
-
 #include "plotwidget.h"
 
 PlotWidget::PlotWidget(QQuickItem *parent) :

@@ -33,6 +33,11 @@ Page
         }
         ListElement
         {
+            page: "MapSettingsPage.qml"
+            title: qsTr("Map settings")
+        }
+        ListElement
+        {
             page: "ThresholdSettingsPage.qml"
             title: qsTr("Alarm thresholds")
         }

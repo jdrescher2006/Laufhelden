@@ -28,10 +28,10 @@ Page
 {
     id: page
 
-    allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All;
+    allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All
 
-    //If not tracking and we have no data, going back is possible
-    backNavigation: (!recorder.tracking && recorder.isEmpty)
+    //If not tracking and we have no data and the map is not big, going back is possible
+    backNavigation: (!recorder.tracking && recorder.isEmpty && !map.gesture.enabled)
 
     property bool bShowMap: settings.showMapRecordPage  
 
@@ -52,10 +52,15 @@ Page
     property int iSelectedValue: -1
     property int iOldValue: -1
 
+    //Automatic night mode
+    property int iAutoNightModeLoop: 0
+    property int iAutoNightModeValue: 0
+    property int iOldDisplayMode: settings.displayMode
+
     //Scaling
-    property int iHeaderLineWidthFactor: 10
-    property int iMiddleLineWidthFactor: 5
-    property int iFooterLineWidthFactor: 10
+    property int iHeaderLineWidthFactor: (settings.mapShowOnly4Fields && bShowMap) ? 8 : 10
+    property int iMiddleLineWidthFactor: (settings.mapShowOnly4Fields && bShowMap) ? 4 : 5
+    property int iFooterLineWidthFactor: (settings.mapShowOnly4Fields && bShowMap) ? 8 : 10
     property int iBorderWidth: height / 400
     property double iPrimaryTextHeightFactor: 1.8
     property double iSecondaryTextHeightFactor: 3.6
@@ -67,7 +72,7 @@ Page
         {
             console.log("---RecordPage first active enter---");
 
-            bLockFirstPageLoad = false;            
+            bLockFirstPageLoad = false;                        
 
             recorder.newTrackPoint.connect(newTrackPoint);
             map.addMapItem(positionMarker);
@@ -96,7 +101,7 @@ Page
             fncSetHeaderFooterTexts();
 
             //Set display mode to dialog
-            fncSetDisplayMode();
+            fncSetDisplayMode();            
 
             //If this page is shown, prevent screen from going blank
             if (settings.disableScreenBlanking)
@@ -123,6 +128,16 @@ Page
         }
     }
 
+    function fncUpdateBrightness()
+    {
+        if (id_Light === undefined)
+            return;
+
+        console.log("Brightness: " + id_Light.brightness.toString());
+
+        iAutoNightModeValue = iAutoNightModeValue + id_Light.brightness;
+    }
+
 
     Timer
     {
@@ -132,13 +147,63 @@ Page
         running: true
         onTriggered:
         {
-            //This timer is called every update cycle. Should be every second.
+            //This timer is called every update cycle. Should be every second.            
 
             //Really strange thing: this timer is called even when the page is NOT opened!
             //If the prerecord page is open, the timer is called!
             //So we need to find out wether this page is opened anf if not return here.
             if (page.status === 0)
                 return;
+
+            //Get current light in LUX
+            if (settings.autoNightMode)
+            {
+                //Read from light sensor of smartphone
+                id_Light.refresh();
+
+                //console.log("Brightness: " + id_Light.brightness.toString());
+
+                iAutoNightModeValue = iAutoNightModeValue + id_Light.brightness;
+
+
+                iAutoNightModeLoop++;
+
+                //After 3 seconds, check value
+                if (iAutoNightModeLoop >= 4)
+                {
+                    //console.log("iAutoNightModeLoop: " + iAutoNightModeLoop.toString());
+                    //console.log("iDisplayMode: " + iDisplayMode.toString());
+                    //console.log("iOldDisplayMode: " + iOldDisplayMode.toString());
+                    //console.log("iAutoNightModeValue: " + iAutoNightModeValue.toString());
+
+
+                    iAutoNightModeLoop = 0;
+
+                    //If we are currently in night mode, and original mode was something else than night mode, check if light is bright enough to leave night mode
+                    if (iDisplayMode === 2 && iOldDisplayMode !== 2 && (iAutoNightModeValue / 3) > 30)
+                    {
+                        //Set mode to original mode.
+                        iDisplayMode = iOldDisplayMode;
+                        //Change mode
+                        fncSetDisplayMode();
+                    }
+
+                    //If we are currently NOT in night mode, check if it is dark enough to enter night mode
+                    if (iDisplayMode !== 2 && (iAutoNightModeValue / 3) <= 30)
+                    {
+                        //Save current display mode
+                        iOldDisplayMode = iDisplayMode
+
+                        //Switch on night mode
+                        iDisplayMode = 2;
+
+                        //Change mode
+                        fncSetDisplayMode();
+                    }
+
+                    iAutoNightModeValue = 0;
+                }
+            }
 
             //set heartrate to JS array if HR device is used
             if (sHRMAddress !== "" && settings.useHRMdevice)
@@ -382,11 +447,13 @@ Page
         }
         else
         {
-            //Das hier ist wohl das Problem!
-            //map.center = recorder.trackCenter();
-
-            //Wir machen das erst mal so:
-            map.center = recorder.currentPosition;
+            //center current position on map
+            if (settings.mapMode === 0)
+                map.center = recorder.currentPosition;
+            else if (settings.mapMode === 1)
+                map.center = recorder.trackCenter();
+            else
+                map.center = recorder.currentPosition;
         }
     }
 
@@ -563,6 +630,9 @@ Page
 
                     //Save current display mode to settings
                     settings.displayMode = iDisplayMode;
+
+                    //Save current display mode to variable which is used for auto night mode
+                    iOldDisplayMode = iDisplayMode;
 
                     //Set display mode to dialog
                     fncSetDisplayMode();
@@ -1175,6 +1245,7 @@ Page
             anchors.left: parent.left
             width: parent.width / 2
             height: parent.height / iMiddleLineWidthFactor
+            visible: !(settings.mapShowOnly4Fields && bShowMap)
 
             MouseArea
             {
@@ -1282,6 +1353,7 @@ Page
             anchors.right: parent.right
             width: parent.width / 2
             height: parent.height / iMiddleLineWidthFactor
+            visible: !(settings.mapShowOnly4Fields && bShowMap)
 
             MouseArea
             {
@@ -1378,7 +1450,7 @@ Page
         Item   //Fourth Line
         {
             id: idItemFourthLine
-            anchors.top: idItemThirdLine.bottom
+            anchors.top: (settings.mapShowOnly4Fields && bShowMap) ? idItemSecondLine.bottom : idItemThirdLine.bottom
             anchors.left: parent.left
             width: parent.width
             height: parent.height / iMiddleLineWidthFactor           
@@ -1545,7 +1617,8 @@ Page
     {
         id: map
         width: parent.width
-        height: map.gesture.enabled ? page.height : width * 3/4
+        //height: map.gesture.enabled ? page.height : width * 3/4
+        height: map.gesture.enabled ? page.height : parent.height / 2.5
         anchors.bottom: parent.bottom
         clip: true
         gesture.enabled: false
@@ -1578,7 +1651,7 @@ Page
         }
         Behavior on center.longitude {
             NumberAnimation { duration: 200 }
-        }
+        }       
 
         MapQuickItem {
             anchors.right: parent.right

@@ -1,3 +1,11 @@
+* Tue Oct 31 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.5-6
+- Startpage and PreRecordpage will also stay in portrait mode if selected in settings
+- if workout is not started and map is in full screen mode, scrolling left on map is now working properly
+- new setting: center current position on map or center track on map
+- new setting: optimize screen mode for record page if map is viewed
+- automatic night mode
+- resolved some unlocalized texts
+
 * Mon Oct 16 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.4-5
 - added new feature autosave
 - new values for record page: altitude and heartrate average

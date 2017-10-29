@@ -86,6 +86,14 @@
         <source>Heart rate device</source>
         <translation>Herzfrequenzmesser</translation>
     </message>
+    <message>
+        <source>Connect</source>
+        <translation>Verbinden</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>Trennen</translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -193,6 +201,33 @@
     <message>
         <source>Resume</source>
         <translation>Fortsetzen</translation>
+    </message>
+</context>
+<context>
+    <name>MapSettingsPage</name>
+    <message>
+        <source>Map settings</source>
+        <translation>Karten Einstellungen</translation>
+    </message>
+    <message>
+        <source>Optimize screen in map mode</source>
+        <translation>Bildschirm optimieren im Karten-Modus</translation>
+    </message>
+    <message>
+        <source>Show only 4 value fields (instead of 6) when map is shown</source>
+        <translation>Zeige nur 4 Wertfelder (anstelle von 6) an, wenn die Karte angezeigt wird.</translation>
+    </message>
+    <message>
+        <source>Map center mode</source>
+        <translation>Karten-Mittelpunkt</translation>
+    </message>
+    <message>
+        <source>Center current position on map</source>
+        <translation>Aktuelle Position auf der Karte zentrieren.</translation>
+    </message>
+    <message>
+        <source>Center track on map</source>
+        <translation>Track auf der Karte zentrieren.</translation>
     </message>
 </context>
 <context>
@@ -421,6 +456,10 @@
         <source>Heart rate device</source>
         <translation>Herzfrequenzmesser</translation>
     </message>
+    <message>
+        <source>Map settings</source>
+        <translation>Karte</translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -475,6 +514,14 @@
     <message>
         <source>No need to enter workout name on end of workout.</source>
         <translation>Automatisch speichern am Ende eines Trainings.</translation>
+    </message>
+    <message>
+        <source>Automatic night mode</source>
+        <translation>Automatischer Nacht-Modus</translation>
+    </message>
+    <message>
+        <source>Switch display to night mode if ambiance light is low.</source>
+        <translation>Nacht-Modus einschalten bei schwachem Umgebungslicht.</translation>
     </message>
 </context>
 <context>

@@ -55,6 +55,7 @@ ApplicationWindow
     LogWriter{ id: id_LogWriter }
     Settings{ id: settings }
     PlotWidget{ id: id_PlotWidget }
+    Light{ id: id_Light }
     TrackRecorder
     {
         id: recorder        

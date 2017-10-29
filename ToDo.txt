@@ -1,11 +1,12 @@
 ToDo for next release to openrepos:
 
-1.) unlocalized texts on BT device page
-2.) while working out, the map circle is not centered on the map.
-3.) when map is shown, make field 5&6 invisible
-4.) GPS starts with app start. Make it start with prerecordpage. Take a look into Messwerk, there it is working.
-5.) automatic night mode
-6.) there is a bug with pause function. Time is runnning further.
+
+Diese Funktion checken, das könnte es sein!!!: void TrackRecorder::setIsTracking(bool tracking) {
+
+2.) GPS starts with app start. Make it start with prerecordpage. Take a look into Messwerk, there it is working.
+3.) there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
+4.) place map settings on new settings page
+
 - set release date to .changes file
 - compile with translation generation and complete translation to german language
 - set new version number to yaml and spec files
@@ -15,6 +16,9 @@ ToDo for next release to openrepos:
 
 ToDo for second next release to openrepos:
 
+- add buttons to map
+	- center position
+	- switch between center position/center track mode
 - add over/below average speed, average pace and average heart rate to record page
 - introduce configurable lock page (LCD mode, AMOLED mode)
 - event voice announcements	
@@ -32,7 +36,7 @@ ToDo on the long run:
 - check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
 - implement workout comparison. Compare current workout with virtual workout in the past
 - AM/PM mode for recordpage
-- support all workout types from meerun (is not possible because export function in meerun is broken for many workout types)
+- support all workout types from meerun (is not possible because export function in meerun is broken for many workout types, even on android)
 - rename workouts on mainpage
 - introduce reward system:
 	- fastest run 5/10/20/40 km
@@ -89,6 +93,12 @@ Bugs:
 
 
 Completed:
+- when map is shown, make field 5&6 invisible
+- Mainpage and PreRecordpage need horizontal layout lock function
+- while workout is not started, and map is in big mode, it is annoying to scroll left
+- while working out, the map circle is not centered on the map.
+- unlocalized texts on BT device page
+- automatic night mode
 - fix battery status for HR device on record page
 - on recordpage: enable onRadiusChanged and onCenterChanged in mapcircle.
 - support elevation as new datapoint
@@ -158,3 +168,29 @@ Completed:
 	use the textbox text from the savedialog.
 	Make no prediction and leave text box empty on start dialog.
 - compatibility with new HRM belt
+
+
+
+CALCULATION FOR DISPLAY SCALING ON RECORD PAGE
+Header: height / 10	=	10
+midle1: height / 5	=	20
+midle2: height / 5	=	20
+midle3: height / 5	=	20
+midle4: height / 5	=	20
+Footer: height / 10	=	10
+						--
+						100
+
+Map mode:
+
+60% but viewed as 100%
+Header: height / 8	= 12.5
+midle1: height / 4	=	25
+midle2: height / 4	=	25
+midle3: height / 4	=	25
+Footer: height / 8	= 12.5
+
+40%
+Map   : height / 2.5=   40
+						--
+						100

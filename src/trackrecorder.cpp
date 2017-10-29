@@ -59,6 +59,7 @@ TrackRecorder::~TrackRecorder()
 {
     qDebug()<<"TrackRecorder destructor";
     autoSave();
+    delete m_posSrc;
 }
 
 void TrackRecorder::vStartGPS()
@@ -66,11 +67,14 @@ void TrackRecorder::vStartGPS()
     qDebug()<<"Starting GPS...";
 
     m_posSrc = QGeoPositionInfoSource::createDefaultSource(0);
+
     if (m_posSrc)
     {
         qDebug()<<"GPS initialized!";
 
         m_posSrc->setUpdateInterval(1000);
+
+
         connect(m_posSrc, SIGNAL(positionUpdated(QGeoPositionInfo)),
                 this, SLOT(positionUpdated(QGeoPositionInfo)));
         connect(m_posSrc, SIGNAL(error(QGeoPositionInfoSource::Error)),
@@ -515,7 +519,7 @@ void TrackRecorder::setApplicationActive(bool active) {
     if(m_posSrc) {  // If we have positioning
         if(m_applicationActive && !m_tracking) {
             // Application became active without tracking
-            m_posSrc->startUpdates();
+            m_posSrc->startUpdates();       //Hier ist das Problem!!!
         }
         if(!m_applicationActive && !m_tracking) {
             // Application went to background without tracking

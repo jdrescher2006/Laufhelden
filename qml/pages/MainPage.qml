@@ -24,6 +24,8 @@ Page
 {
     id: mainPage
 
+    allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All
+
     property bool bLockFirstPageLoad: true
     property int iLoadFileGPX: 0
     property int iGPXFiles: 100

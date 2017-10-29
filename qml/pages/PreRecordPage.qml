@@ -24,6 +24,8 @@ Page
 {
     id: page
 
+    allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All
+
     property bool bLockOnCompleted : true;
     property bool bLockFirstPageLoad: true
 
@@ -78,6 +80,9 @@ Page
         if (status === PageStatus.Active)
         {
             console.log("PreRecordPage active");
+
+            //Switch off light sensor for this app
+            id_Light.deactivate();
 
             if (bHRMConnected)
             {

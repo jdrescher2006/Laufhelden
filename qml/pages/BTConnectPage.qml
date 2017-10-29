@@ -148,7 +148,7 @@ Page {
 
             Button
             {
-                text: "Connect"
+                text: qsTr("Connect")
                 width: parent.width
                 visible: !bHRMConnected && !bHRMConnecting && sHRMAddress !== ""
                 onClicked:
@@ -158,7 +158,7 @@ Page {
             }
             Button
             {
-                text: "Disconnect"
+                text: qsTr("Disconnect")
                 width: parent.width
                 visible: bHRMConnected && !bHRMConnecting && sHRMAddress !== ""
                 onClicked:

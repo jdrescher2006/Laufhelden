@@ -13,7 +13,7 @@ DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 
 CONFIG += sailfishapp
 QT += positioning location concurrent
-QT += bluetooth
+QT += bluetooth sensors
 
 SOURCES += src/harbour-laufhelden.cpp \
     src/trackrecorder.cpp \
@@ -23,7 +23,8 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/bluetoothconnection.cpp \
     src/bluetoothdata.cpp \
     src/logwriter.cpp \
-    src/plotwidget.cpp
+    src/plotwidget.cpp \
+    src/light.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -41,7 +42,7 @@ SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
 # to disable building translations every time, comment out the
 # following CONFIG line
-#CONFIG += sailfishapp_i18n
+CONFIG += sailfishapp_i18n
 
 TRANSLATIONS += translations/harbour-laufhelden-de.ts \
                 translations/harbour-laufhelden-pl.ts \
@@ -56,7 +57,8 @@ HEADERS += \
     src/bluetoothconnection.h \
     src/bluetoothdata.h \
     src/logwriter.h \
-    src/plotwidget.h
+    src/plotwidget.h \
+    src/light.h
 
 DISTFILES += \
     qml/pages/MainPage.qml \
@@ -109,5 +111,6 @@ DISTFILES += \
     qml/audio/pace_toolow_de_male.wav \
     qml/pages/SettingsMenu.qml \
     qml/pages/DiagramViewPage.qml \
-    qml/tools/RecordPageDisplay.js
+    qml/tools/RecordPageDisplay.js \
+    qml/pages/MapSettingsPage.qml
 

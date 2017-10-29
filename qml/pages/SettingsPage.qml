@@ -45,6 +45,8 @@ Page {
 
             id_TextSwitch_EnableAutosave.checked = settings.enableAutosave;
 
+            id_TextSwitch_EnableAutoNightmode.checked = settings.autoNightMode;
+
             bLockOnCompleted = false;
         }
 
@@ -52,8 +54,7 @@ Page {
         if (status === PageStatus.Active)
         {
             console.log("Active SettingsPage");
-
-        }
+        }        
     }
 
 
@@ -98,6 +99,22 @@ Page {
                         settings.showBorderLines = checked;
                 }
             }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_EnableAutoNightmode
+                text: qsTr("Automatic night mode")
+                description: qsTr("Switch display to night mode if ambiance light is low.")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.autoNightMode = checked;
+                }
+            }                        
             Separator
             {
                 color: Theme.highlightColor

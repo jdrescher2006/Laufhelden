@@ -109,7 +109,6 @@ void Settings::setDisplayMode(int displayMode)
 {
     m_settings->setValue("recordsettings/displayMode", displayMode);
 }
-
 int Settings::voiceLanguage() const
 {
     return m_settings->value("generalsettings/voiceLanguage", 0).toInt();
@@ -141,4 +140,29 @@ bool Settings::enableAutosave() const
 void Settings::setEnableAutosave(bool enableAutosave)
 {
      m_settings->setValue("generalsettings/enableAutosave", enableAutosave);
+}
+bool Settings::autoNightMode() const
+{
+    return m_settings->value("generalsettings/autoNightMode", true).toBool();
+}
+void Settings::setAutoNightMode(bool autoNightMode)
+{
+     m_settings->setValue("generalsettings/autoNightMode", autoNightMode);
+}
+int Settings::mapMode() const
+{
+    return m_settings->value("mapsettings/mapMode", 0).toInt();
+}
+void Settings::setMapMode(int mapMode)
+{
+    m_settings->setValue("mapsettings/mapMode", mapMode);
+}
+
+bool Settings::mapShowOnly4Fields() const
+{
+    return m_settings->value("mapsettings/mapShowOnly4Fields", true).toBool();
+}
+void Settings::setmapShowOnly4Fields(bool mapShowOnly4Fields)
+{
+     m_settings->setValue("mapsettings/mapShowOnly4Fields", mapShowOnly4Fields);
 }
