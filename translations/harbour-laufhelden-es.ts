@@ -88,11 +88,11 @@
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Conectar</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconectar</translation>
     </message>
 </context>
 <context>
@@ -207,27 +207,27 @@
     <name>MapSettingsPage</name>
     <message>
         <source>Map settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes del mapa</translation>
     </message>
     <message>
         <source>Optimize screen in map mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Optimizar pantalla en modo mapa</translation>
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar solo 4 campos de valores (en lugar de 6) cuando se muestra el mapa</translation>
     </message>
     <message>
         <source>Map center mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo centro de mapa</translation>
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrar posición actual en el mapa</translation>
     </message>
     <message>
         <source>Center track on map</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrar rastro en el mapa</translation>
     </message>
 </context>
 <context>
@@ -412,11 +412,11 @@
     </message>
     <message>
         <source>Bat.:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bat:</translation>
     </message>
     <message>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Vacío</translation>
     </message>
 </context>
 <context>
@@ -458,7 +458,7 @@
     </message>
     <message>
         <source>Map settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes del mapa</translation>
     </message>
 </context>
 <context>
@@ -517,11 +517,11 @@
     </message>
     <message>
         <source>Automatic night mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo nocturno automático</translation>
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar pantalla al modo nocturno si la luz ambiental es baja.</translation>
     </message>
 </context>
 <context>
