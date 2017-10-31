@@ -8,6 +8,7 @@ ToDo for next release to openrepos:
 
 ToDo for second next release to openrepos:
 
+- Edit workout and save to GPX
 - GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.
 - there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
 - add buttons to map
