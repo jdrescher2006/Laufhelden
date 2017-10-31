@@ -91,6 +91,9 @@ Page
         {
             console.log("Active MainPage");            
 
+            //stop positioning
+            recorder.vEndGPS();
+
             //Save the object of this page for back jumps
             vMainPageObject = pageStack.currentPage;
             console.log("vMainPageObject: " + vMainPageObject.toString());

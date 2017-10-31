@@ -34,15 +34,14 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_paceaverage = 0.0;
     m_heartrateaverage = 0.0;
     m_accuracy = -1;
-    m_tracking = false;
     m_isEmpty = true;
-    m_applicationActive = true;
     m_autoSavePosition = 0;
     iCurrentHeartRate = 0;
     m_heartrateadded = 0;
     sWorkoutType = "running";
     m_altitude = 0;  
     m_posSrc = NULL;
+    m_pause = false;
 
     // Load autosaved track if left from previous session
     loadAutoSave();
@@ -52,7 +51,23 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     connect(&m_autoSaveTimer, SIGNAL(timeout()), this, SLOT(autoSave()));
     m_autoSaveTimer.start();   
 
-    this->vStartGPS();  //this is working from here (constructor) ONLY!!! Can not call that later :-(
+    m_posSrc = QGeoPositionInfoSource::createDefaultSource(0);
+
+    if (m_posSrc)
+    {
+        qDebug()<<"GPS initialized!";
+
+        m_posSrc->setUpdateInterval(1000);
+
+        connect(m_posSrc, SIGNAL(positionUpdated(QGeoPositionInfo)),
+                this, SLOT(positionUpdated(QGeoPositionInfo)));
+        connect(m_posSrc, SIGNAL(error(QGeoPositionInfoSource::Error)),
+                this, SLOT(positioningError(QGeoPositionInfoSource::Error)));
+    }
+    else
+    {
+        qDebug()<<"Failed initializing PositionInfoSource!";
+    }
 }
 
 TrackRecorder::~TrackRecorder()
@@ -64,26 +79,9 @@ TrackRecorder::~TrackRecorder()
 
 void TrackRecorder::vStartGPS()
 {    
-    qDebug()<<"Starting GPS...";
-
-    m_posSrc = QGeoPositionInfoSource::createDefaultSource(0);
-
-    if (m_posSrc)
+    if (m_posSrc != NULL)
     {
-        qDebug()<<"GPS initialized!";
-
-        m_posSrc->setUpdateInterval(1000);
-
-
-        connect(m_posSrc, SIGNAL(positionUpdated(QGeoPositionInfo)),
-                this, SLOT(positionUpdated(QGeoPositionInfo)));
-        connect(m_posSrc, SIGNAL(error(QGeoPositionInfoSource::Error)),
-                this, SLOT(positioningError(QGeoPositionInfoSource::Error)));
-        // Position updates are started/stopped in setIsTracking(...)
-    }
-    else
-    {
-        qDebug()<<"Failed initializing PositionInfoSource!";
+        m_posSrc->startUpdates();
     }
 }
 
@@ -116,105 +114,106 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
         return;
     }
 
-    if(m_tracking) {
-        m_points.append(newPos);       
 
-        m_heartrate.append(this->iCurrentHeartRate);
+    m_points.append(newPos);
 
-        if (iCurrentHeartRate != 9999 && iCurrentHeartRate != 0)
-            m_heartrateadded = m_heartrateadded + iCurrentHeartRate;
+    m_heartrate.append(this->iCurrentHeartRate);
+    m_pausearray.append(this->m_pause);
 
-        this->iCurrentHeartRate = 9999;
+    if (iCurrentHeartRate != 9999 && iCurrentHeartRate != 0)
+        m_heartrateadded = m_heartrateadded + iCurrentHeartRate;
 
-        emit pointsChanged();
-        emit timeChanged();
-        if(m_isEmpty) {
-            m_isEmpty = false;
-            m_minLat = m_maxLat = newPos.coordinate().latitude();
-            m_minLon = m_maxLon = newPos.coordinate().longitude();
-            emit isEmptyChanged();
-        }
+    this->iCurrentHeartRate = 9999;
 
-        if(m_points.size() > 1)
-        {
-            // Next line triggers following compiler warning?
-            // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
-
-            //Calculate average heartrate
-            if (m_heartrate.size() > 0)
-            {
-                m_heartrateaverage = m_heartrateadded / m_heartrate.size();
-                emit heartrateaverageChanged();
-            }
-
-            //Calculate distance in meter [m]
-            qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
-            qDebug()<<"Distance :"<<rCurrentDistance;
-            m_distance += rCurrentDistance;
-            emit distanceChanged();
-
-            //Fill distance array. Save the last few values to have a better speed/pace calculation.
-            if (m_distancearray.length() == 7)
-                m_distancearray.removeFirst();
-            m_distancearray.append(rCurrentDistance);
-
-            rCurrentDistance = 0.0;
-            //Calculate distance over the last few gps points
-            for(int i=0 ; i < m_distancearray.length(); i++)
-            {
-                rCurrentDistance += m_distancearray[i];
-            }
-            qDebug()<<"Added distance: "<<rCurrentDistance;
-            qDebug()<<"Update interval:"<<updateInterval();
-
-            //Calculate speed in [km/h]
-            m_speed = (rCurrentDistance / 1000.0) / (((updateInterval() * m_distancearray.length()) / 1000) / 3600.0);
-            qDebug()<<"Speed:"<<m_speed;
-            emit speedChanged();
-
-            //Calculate pace in [min/km]
-            m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);            
-
-            qDebug()<<"Pace:"<<m_pace;
-            emit paceChanged();
-
-            //Calculate workout time
-            QDateTime first = m_points.at(0).timestamp();
-            QDateTime last = m_points.at(m_points.size()-1).timestamp();
-            qint64 iWorkoutTimeSec = first.secsTo(last);
-
-            //Calculate average speed
-            m_speedaverage = (m_distance / 1000.0) / (iWorkoutTimeSec / 3600.0);
-            qDebug()<<"AVG speed:"<<m_speedaverage;
-            emit speedaverageChanged();
-
-            //Calculate average pace
-            m_paceaverage = (iWorkoutTimeSec / 60.0) / (m_distance / 1000.0);
-            qDebug()<<"AVG pace:"<<m_paceaverage;
-            emit paceaverageChanged();
-
-            //Get altitude
-            m_altitude = newPos.coordinate().altitude();
-
-            if(newPos.coordinate().latitude() < m_minLat)
-            {
-                m_minLat = newPos.coordinate().latitude();
-            } else if(newPos.coordinate().latitude() > m_maxLat)
-            {
-                m_maxLat = newPos.coordinate().latitude();
-            }
-            if(newPos.coordinate().longitude() < m_minLon)
-            {
-                m_minLon = newPos.coordinate().longitude();
-            } else if(newPos.coordinate().longitude() > m_maxLon)
-            {
-                m_maxLon = newPos.coordinate().longitude();
-            }
-
-            emit valuesChanged();
-        }
-        emit newTrackPoint(newPos.coordinate());
+    emit pointsChanged();
+    emit timeChanged();
+    if(m_isEmpty) {
+        m_isEmpty = false;
+        m_minLat = m_maxLat = newPos.coordinate().latitude();
+        m_minLon = m_maxLon = newPos.coordinate().longitude();
+        emit isEmptyChanged();
     }
+
+    if(m_points.size() > 1)
+    {
+        // Next line triggers following compiler warning?
+        // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
+
+        //Calculate average heartrate
+        if (m_heartrate.size() > 0)
+        {
+            m_heartrateaverage = m_heartrateadded / m_heartrate.size();
+            emit heartrateaverageChanged();
+        }
+
+        //Calculate distance in meter [m]
+        qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
+        qDebug()<<"Distance :"<<rCurrentDistance;
+        m_distance += rCurrentDistance;
+        emit distanceChanged();
+
+        //Fill distance array. Save the last few values to have a better speed/pace calculation.
+        if (m_distancearray.length() == 7)
+            m_distancearray.removeFirst();
+        m_distancearray.append(rCurrentDistance);
+
+        rCurrentDistance = 0.0;
+        //Calculate distance over the last few gps points
+        for(int i=0 ; i < m_distancearray.length(); i++)
+        {
+            rCurrentDistance += m_distancearray[i];
+        }
+        qDebug()<<"Added distance: "<<rCurrentDistance;
+        qDebug()<<"Update interval:"<<updateInterval();
+
+        //Calculate speed in [km/h]
+        m_speed = (rCurrentDistance / 1000.0) / (((updateInterval() * m_distancearray.length()) / 1000) / 3600.0);
+        qDebug()<<"Speed:"<<m_speed;
+        emit speedChanged();
+
+        //Calculate pace in [min/km]
+        m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);
+
+        qDebug()<<"Pace:"<<m_pace;
+        emit paceChanged();
+
+        //Calculate workout time
+        QDateTime first = m_points.at(0).timestamp();
+        QDateTime last = m_points.at(m_points.size()-1).timestamp();
+        qint64 iWorkoutTimeSec = first.secsTo(last);
+
+        //Calculate average speed
+        m_speedaverage = (m_distance / 1000.0) / (iWorkoutTimeSec / 3600.0);
+        qDebug()<<"AVG speed:"<<m_speedaverage;
+        emit speedaverageChanged();
+
+        //Calculate average pace
+        m_paceaverage = (iWorkoutTimeSec / 60.0) / (m_distance / 1000.0);
+        qDebug()<<"AVG pace:"<<m_paceaverage;
+        emit paceaverageChanged();
+
+        //Get altitude
+        m_altitude = newPos.coordinate().altitude();
+
+        if(newPos.coordinate().latitude() < m_minLat)
+        {
+            m_minLat = newPos.coordinate().latitude();
+        } else if(newPos.coordinate().latitude() > m_maxLat)
+        {
+            m_maxLat = newPos.coordinate().latitude();
+        }
+        if(newPos.coordinate().longitude() < m_minLon)
+        {
+            m_minLon = newPos.coordinate().longitude();
+        } else if(newPos.coordinate().longitude() > m_maxLon)
+        {
+            m_maxLon = newPos.coordinate().longitude();
+        }
+
+        emit valuesChanged();
+    }
+    emit newTrackPoint(newPos.coordinate());
+
 }
 
 void TrackRecorder::positioningError(QGeoPositionInfoSource::Error error) {
@@ -370,6 +369,7 @@ void TrackRecorder::clearTrack()
 {
     m_points.clear();
     m_heartrate.clear();
+    m_pausearray.clear();
     m_heartrateadded = 0;
     m_distance = 0;
     m_isEmpty = true;
@@ -420,6 +420,23 @@ qreal TrackRecorder::heartrateaverage() const {
 double TrackRecorder::altitude() const
 {
     return m_altitude;
+}
+
+bool TrackRecorder::pause() const
+{
+    return m_pause;
+}
+
+void TrackRecorder::setPause(bool pause)
+{
+    if(!m_posSrc)
+    {
+        qDebug()<<"Can't pause, position source not initialized!";
+        return;
+    }
+    m_posSrc->setPause(pause);
+
+    emit pauseChanged();
 }
 
 QString TrackRecorder::paceStr() const
@@ -478,56 +495,8 @@ QString TrackRecorder::time() const {
     return timeStr;
 }
 
-bool TrackRecorder::isTracking() const {
-    return m_tracking;
-}
-
-void TrackRecorder::setIsTracking(bool tracking) {
-    if(m_tracking == tracking) {
-        return; // No change
-    }
-    m_tracking = tracking;
-
-    if(m_posSrc) {  // If we have positioning
-        if(m_tracking && !m_applicationActive) {
-            // Start tracking when application at background -> positioning has to be enabled
-            m_posSrc->startUpdates();
-        }
-        if(!m_tracking && !m_applicationActive) {
-            // Stop tracking when application at background -> disable positioning
-            m_posSrc->stopUpdates();
-        }
-    }
-
-    emit isTrackingChanged();
-}
-
 bool TrackRecorder::isEmpty() const {
     return m_isEmpty;
-}
-
-bool TrackRecorder::applicationActive() const {
-    return m_applicationActive;
-}
-
-void TrackRecorder::setApplicationActive(bool active) {
-    if(m_applicationActive == active) {
-        return; // No change
-    }
-    m_applicationActive = active;
-
-    if(m_posSrc) {  // If we have positioning
-        if(m_applicationActive && !m_tracking) {
-            // Application became active without tracking
-            m_posSrc->startUpdates();       //Hier ist das Problem!!!
-        }
-        if(!m_applicationActive && !m_tracking) {
-            // Application went to background without tracking
-            m_posSrc->stopUpdates();
-        }
-    }
-
-    emit applicationActiveChanged();
 }
 
 QGeoCoordinate TrackRecorder::currentPosition() const {
@@ -661,6 +630,8 @@ void TrackRecorder::autoSave()
         stream<<m_points.at(m_autoSavePosition).attribute(QGeoPositionInfo::VerticalAccuracy);
         stream<<" ";
         stream<<m_heartrate.at(m_autoSavePosition);
+        stream<<" ";
+        stream<<m_pausearray.at(m_autoSavePosition);
 
         stream<<'\n';
         m_autoSavePosition++;
@@ -693,6 +664,7 @@ void TrackRecorder::loadAutoSave()
     {
         QGeoPositionInfo point;
         uint iHeartrate;
+        bool bPause;
         qreal lat, lon, alt, temp;
         QString timeStr;
         stream>>lat>>lon>>timeStr>>alt;
@@ -729,10 +701,19 @@ void TrackRecorder::loadAutoSave()
             iHeartrate = temp;
         }
 
+        stream>>temp;
+        if(temp == temp)
+        {
+            bPause = temp;
+        }
+
 
         stream.readLine(); // Read rest of the line, if any
         m_points.append(point);
         m_heartrate.append(iHeartrate);
+        m_pausearray.append(bPause);
+
+
 
         if(m_points.size() > 1) {
             if(point.coordinate().latitude() < m_minLat) {

@@ -1,19 +1,23 @@
 ToDo for next release to openrepos:
-- set release date to .changes file														OK
-- compile with translation generation and complete translation to german language		OK
-- set new version number to yaml and spec files											OK
-- clean project and compile on release													OK	
+
+1.) GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.
+1.) there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
+2.) add new featuer: autopause
+
+- set release date to .changes file														
+- compile with translation generation and complete translation to german language		
+- set new version number to yaml and spec files											
+- clean project and compile on release														
 
 
 
 ToDo for second next release to openrepos:
 
 - Edit workout and save to GPX
-- GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.
-- there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
 - add buttons to map
 	- center position
 	- switch between center position/center track mode
+- add icons to map (start/stop/pause)
 - add over/below average speed, average pace and average heart rate to record page
 - introduce configurable lock page (LCD mode, AMOLED mode)
 - event voice announcements	
@@ -57,7 +61,6 @@ ToDo on the long run:
 		- top speed/tempo
 		- average, minimum, maximum heart rate 
 		- pause time
-- implement autopause
 - save pause time to gpx file. Look in Meerun gpx file where to save pause data.
 - Style first page list view like in meerun (upper part of page should not scroll)
 - enable night mode automatically. 

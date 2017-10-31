@@ -260,6 +260,10 @@
         <source>Select thresholds profile</source>
         <translation>Seleccionar perfil de umbrales</translation>
     </message>
+    <message>
+        <source>GPS positioning started!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>

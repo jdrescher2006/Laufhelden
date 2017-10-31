@@ -39,9 +39,8 @@ Page
             bLockFirstPageLoad = false;
             console.log("First Active PreRecordPage");
 
-            //console.log("Eins: " + settings.workoutType);
-            //console.log("Zwei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
-            //console.log("Drei: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }));
+            //start positioning
+            recorder.vStartGPS();
 
             //This is a crazy thing, but at least it returns the index :-)
             console.log("Index of workout type: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
@@ -72,6 +71,9 @@ Page
             idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
 
             pageStack.pushAttached(Qt.resolvedUrl("RecordPage.qml"));
+
+            //inform user about starting positioning now
+            fncShowMessage(1,qsTr("GPS positioning started!"), 2000);
 
             bLockOnCompleted = false;
         }

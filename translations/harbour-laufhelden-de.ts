@@ -260,6 +260,10 @@
         <source>Select thresholds profile</source>
         <translation>Schwellwertprofil auswählen</translation>
     </message>
+    <message>
+        <source>GPS positioning started!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>

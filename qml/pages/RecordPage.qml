@@ -30,8 +30,8 @@ Page
 
     allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All
 
-    //If not tracking and we have no data and the map is not big, going back is possible
-    backNavigation: (!recorder.tracking && recorder.isEmpty && !map.gesture.enabled)
+    //If pause and we have no data and the map is not big, going back is possible
+    backNavigation: (recorder.pause && recorder.isEmpty && !map.gesture.enabled)
 
     property bool bShowMap: settings.showMapRecordPage  
 
@@ -212,7 +212,7 @@ Page
                 RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
             }
             //Set values to JS array if recorder is running
-            if (recorder.tracking)
+            if (!recorder.pause)
             {
                 //0 is empty and 1 is heartrate!
                 RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
@@ -292,7 +292,7 @@ Page
                 sHeartRate: ""
                 sBatteryLevel: ""
 
-                recorder.tracking = false;
+                recorder.pause = true;
                 if(!recorder.isEmpty)
                 {
                     showSaveDialog();
@@ -797,14 +797,14 @@ Page
             {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
-                color: recorder.tracking ? "red" : (recorder.isEmpty ? "green" : "orange")
+                color: !recorder.pause ? "red" : (recorder.isEmpty ? "green" : "orange")
                 falloffRadius: 0.15
                 radius: 1.0
                 cache: false
             }
             Text
             {
-                text: recorder.tracking ? qsTr("Recording") : (recorder.isEmpty ? qsTr("Stopped") : qsTr("Paused"))
+                text: !recorder.pause ? qsTr("Recording") : (recorder.isEmpty ? qsTr("Stopped") : qsTr("Paused"))
                 anchors.centerIn: parent
                 height: parent.height
                 width: parent.width
@@ -1537,7 +1537,7 @@ Page
                     height: parent.height
                     anchors.left: parent.left
                     fillMode: Image.PreserveAspectFit
-                    source: recorder.tracking ? "image://theme/icon-l-pause" : "image://theme/icon-l-play"
+                    source: !recorder.pause ? "image://theme/icon-l-pause" : "image://theme/icon-l-play"
                 }
                 Label
                 {
@@ -1546,7 +1546,7 @@ Page
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeLarge
                     color: recorder.isEmpty ? "grey" : "white"
-                    text: recorder.tracking ? qsTr("Pause") : qsTr("Continue")
+                    text: !recorder.pause ? qsTr("Pause") : qsTr("Continue")
                 }
                 MouseArea
                 {
@@ -1554,7 +1554,7 @@ Page
                     enabled: !recorder.isEmpty //pause or continue only if workout was really started
                     onClicked:
                     {
-                        recorder.tracking = !recorder.tracking;
+                        recorder.pause = !recorder.pause;
                     }
                 }
             }
@@ -1564,8 +1564,7 @@ Page
                 height: parent.height
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.paddingSmall
-                //color: !recorder.tracking && recorder.isEmpty ? "#389632" : "salmon"
-                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (!recorder.tracking && recorder.isEmpty ? "#389632" : "salmon")
+                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (recorder.pause && recorder.isEmpty ? "#389632" : "salmon")
                 border.color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
                 border.width: 2
                 radius: 10
@@ -1574,7 +1573,7 @@ Page
                     height: parent.height
                     anchors.left: parent.left
                     fillMode: Image.PreserveAspectFit
-                    source: !recorder.tracking && recorder.isEmpty ? "image://theme/icon-l-add" :  "image://theme/icon-l-clear"
+                    source: recorder.pause && recorder.isEmpty ? "image://theme/icon-l-add" :  "image://theme/icon-l-clear"
                 }
                 Label
                 {
@@ -1583,20 +1582,20 @@ Page
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeLarge
                     color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
-                    text: !recorder.tracking && recorder.isEmpty ? qsTr("Start") : qsTr("End")
+                    text: recorder.pause && recorder.isEmpty ? qsTr("Start") : qsTr("End")
                 }
                 MouseArea
                 {
                     anchors.fill: parent
                     onPressed:
                     {
-                        if (!recorder.tracking && recorder.isEmpty)
+                        if (recorder.pause && recorder.isEmpty)
                         {
                             //Check accuracy
                             if (recorder.accuracy > 0 && recorder.accuracy < 30)
                             {
                                 //Start workout
-                                recorder.tracking = true;
+                                recorder.pause = false;
                             }
                         }
                         else

@@ -59,8 +59,6 @@ ApplicationWindow
     TrackRecorder
     {
         id: recorder        
-        //We want the app to continue recording the track even when in background!
-        applicationActive: appWindow.applicationActive
         updateInterval: settings.updateInterval
     }
 
