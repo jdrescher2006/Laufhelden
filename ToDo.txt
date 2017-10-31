@@ -1,21 +1,15 @@
 ToDo for next release to openrepos:
-
-
-Diese Funktion checken, das könnte es sein!!!: void TrackRecorder::setIsTracking(bool tracking) {
-
-2.) GPS starts with app start. Make it start with prerecordpage. Take a look into Messwerk, there it is working.
-3.) there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
-4.) place map settings on new settings page
-
-- set release date to .changes file
-- compile with translation generation and complete translation to german language
-- set new version number to yaml and spec files
-- clean project and compile on release
+- set release date to .changes file														OK
+- compile with translation generation and complete translation to german language		OK
+- set new version number to yaml and spec files											OK
+- clean project and compile on release													OK	
 
 
 
 ToDo for second next release to openrepos:
 
+- GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.
+- there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
 - add buttons to map
 	- center position
 	- switch between center position/center track mode
@@ -93,6 +87,7 @@ Bugs:
 
 
 Completed:
+- place map settings on new settings page
 - when map is shown, make field 5&6 invisible
 - Mainpage and PreRecordpage need horizontal layout lock function
 - while workout is not started, and map is in big mode, it is annoying to scroll left

@@ -223,11 +223,11 @@
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation>Aktuelle Position auf der Karte zentrieren.</translation>
+        <translation>Aktuelle Position auf der Karte zentrieren</translation>
     </message>
     <message>
         <source>Center track on map</source>
-        <translation>Track auf der Karte zentrieren.</translation>
+        <translation>Track auf der Karte zentrieren</translation>
     </message>
 </context>
 <context>
@@ -458,7 +458,7 @@
     </message>
     <message>
         <source>Map settings</source>
-        <translation>Karte</translation>
+        <translation>Karten Einstellungen</translation>
     </message>
 </context>
 <context>
