@@ -31,7 +31,7 @@ Page
     allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All
 
     //If pause and we have no data and the map is not big, going back is possible
-    backNavigation: (recorder.pause && recorder.isEmpty && !map.gesture.enabled)
+    backNavigation: (!recorder.running && recorder.isEmpty && !map.gesture.enabled)
 
     property bool bShowMap: settings.showMapRecordPage  
 
@@ -212,7 +212,7 @@ Page
                 RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
             }
             //Set values to JS array if recorder is running
-            if (!recorder.pause)
+            if (!recorder.running)
             {
                 //0 is empty and 1 is heartrate!
                 RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
@@ -292,7 +292,7 @@ Page
                 sHeartRate: ""
                 sBatteryLevel: ""
 
-                recorder.pause = true;
+                recorder.running = false;
                 if(!recorder.isEmpty)
                 {
                     showSaveDialog();
@@ -797,14 +797,14 @@ Page
             {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
-                color: !recorder.pause ? "red" : (recorder.isEmpty ? "green" : "orange")
+                color: !recorder.running ? "green" : (recorder.pause ? "orange" : "red")
                 falloffRadius: 0.15
                 radius: 1.0
                 cache: false
             }
             Text
             {
-                text: !recorder.pause ? qsTr("Recording") : (recorder.isEmpty ? qsTr("Stopped") : qsTr("Paused"))
+                text: !recorder.running ? qsTr("Stopped") : (recorder.pause ? qsTr("Paused") : qsTr("Recording"))
                 anchors.centerIn: parent
                 height: parent.height
                 width: parent.width

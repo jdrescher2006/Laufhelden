@@ -38,7 +38,7 @@ CoverBackground
         Label
         {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: recorder.tracking ? qsTr("Recording") : qsTr("Stopped")
+            text: !recorder.running ? qsTr("Stopped") : (recorder.pause ? qsTr("Paused") : qsTr("Recording"))
             font.pixelSize: Theme.fontSizeLarge
         }
         Label
@@ -65,11 +65,11 @@ CoverBackground
     CoverActionList
     {
         id: coverAction
-        enabled: recorder.tracking || !recorder.isEmpty
+        enabled: recorder.running
         CoverAction
         {
-            iconSource: recorder.tracking ? "image://theme/icon-cover-pause" : "image://theme/icon-cover-play"
-            onTriggered: recorder.tracking = !recorder.tracking
+            iconSource: !recorder.pause ? "image://theme/icon-cover-pause" : "image://theme/icon-cover-play"
+            onTriggered: recorder.pause = !recorder.pause
         }
     }
 }

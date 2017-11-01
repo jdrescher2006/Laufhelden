@@ -43,6 +43,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(QString startingDateTime READ startingDateTime)
     Q_PROPERTY(double altitude READ altitude NOTIFY valuesChanged)
     Q_PROPERTY(bool pause READ pause WRITE setPause NOTIFY pauseChanged)
+    Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);
@@ -73,6 +74,7 @@ public:
     QString startingDateTime() const;
     double altitude() const;
     bool pause() const;
+    bool running() const;
 
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 
@@ -96,6 +98,7 @@ signals:
     void valuesChanged();
     void newTrackPoint(QGeoCoordinate coordinate);
     void pauseChanged();
+    void runningChanged();
 
 public slots:
     void positionUpdated(const QGeoPositionInfo &newPos);
@@ -129,6 +132,7 @@ private:
     QString sWorkoutType;
     double m_altitude;
     bool m_pause;
+    bool m_running;
     };
 
 #endif // TRACKRECORDER_H
