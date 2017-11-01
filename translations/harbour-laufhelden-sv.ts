@@ -88,11 +88,11 @@
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslut</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Koppla ifrån</translation>
     </message>
 </context>
 <context>
@@ -207,27 +207,27 @@
     <name>MapSettingsPage</name>
     <message>
         <source>Map settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartinställningar</translation>
     </message>
     <message>
         <source>Optimize screen in map mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Optimera skärmen för kartläge</translation>
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa endast 4 värdefält (istället för 6) när kartan visas</translation>
     </message>
     <message>
         <source>Map center mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartcentreringsläge</translation>
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrera aktuell position på kartan</translation>
     </message>
     <message>
         <source>Center track on map</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrera spåret på kartan</translation>
     </message>
 </context>
 <context>
@@ -462,7 +462,7 @@
     </message>
     <message>
         <source>Map settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartinställningar</translation>
     </message>
 </context>
 <context>
@@ -521,11 +521,11 @@
     </message>
     <message>
         <source>Automatic night mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatiskt nattläge</translation>
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation type="unfinished"></translation>
+        <translation>Byt till nattläge om atmosfärljuset är svagt.</translation>
     </message>
 </context>
 <context>
