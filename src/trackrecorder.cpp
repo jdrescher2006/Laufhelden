@@ -82,6 +82,7 @@ void TrackRecorder::vStartGPS()
 {    
     if (m_posSrc != NULL)
     {
+        qDebug()<<"Starting GPS";
         m_posSrc->startUpdates();
     }
 }
@@ -90,18 +91,18 @@ void TrackRecorder::vEndGPS()
 {
     if (m_posSrc != NULL)
     {
-        m_posSrc->stopUpdates();
-        m_posSrc->disconnect();
-        m_posSrc = NULL;
+        qDebug()<<"Stopping GPS";
+        m_posSrc->stopUpdates();        
     }
 }
 
 void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 {
-    if(newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy))
+    if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy))
     {
         m_accuracy = newPos.attribute(QGeoPositionInfo::HorizontalAccuracy);
-    } else
+    }
+    else
     {
         m_accuracy = -1;
     }
@@ -110,11 +111,13 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
     m_currentPosition = newPos.coordinate();
     emit currentPositionChanged();
 
-    if(newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) &&
-            (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0)) {
+    //Check if horizontal accuracy is enough
+    if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) && (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0))
+    {
         return;
     }
 
+    qDebug()<<"Groundspeed: " << QString::number(newPos.GroundSpeed);
 
     if(m_running)
     {
@@ -130,7 +133,8 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 
         emit pointsChanged();
         emit timeChanged();
-        if(m_isEmpty) {
+        if(m_isEmpty)
+        {
             m_isEmpty = false;
             m_minLat = m_maxLat = newPos.coordinate().latitude();
             m_minLon = m_maxLon = newPos.coordinate().longitude();
@@ -219,11 +223,13 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
     }
 }
 
-void TrackRecorder::positioningError(QGeoPositionInfoSource::Error error) {
+void TrackRecorder::positioningError(QGeoPositionInfoSource::Error error)
+{
     qDebug()<<"Positioning error:"<<error;
 }
 
-void TrackRecorder::exportGpx(QString name, QString desc) {
+void TrackRecorder::exportGpx(QString name, QString desc)
+{
     qDebug()<<"Exporting track to gpx";
     if(m_points.size() < 1) {
         qDebug()<<"Nothing to save";
@@ -235,23 +241,18 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
 
     filename = sWorkoutType + "-" + m_points.at(0).timestamp().toLocalTime().toString() + "-" + QString("%1km").arg(m_distance / 1000, 0, 'f', 1) + ".gpx";
 
-    /*
-    if(!sWorkoutType.isEmpty()) {
-        filename = m_points.at(0).timestamp().toUTC().toString(Qt::ISODate)
-                + " - " + sWorkoutType + ".gpx";
-    } else {
-        filename = m_points.at(0).timestamp().toUTC().toString(Qt::ISODate)
-                + ".gpx";
-    }
-    */
     qDebug()<<"File:"<<homeDir<<"/"<<subDir<<"/"<<filename;
 
     QDir home = QDir(homeDir);
-    if(!home.exists(subDir)) {
+    if(!home.exists(subDir))
+    {
         qDebug()<<"Directory does not exist, creating";
-        if(home.mkdir(subDir)) {
+        if(home.mkdir(subDir))
+        {
             qDebug()<<"Directory created";
-        } else {
+        }
+        else
+        {
             qDebug()<<"Directory creation failed, aborting";
             return;
         }
@@ -302,8 +303,10 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
     xml.writeStartElement("trk");
     xml.writeStartElement("trkseg");
 
-    for(int i=0 ; i < m_points.size(); i++) {
-        if(m_points.at(i).coordinate().type() == QGeoCoordinate::InvalidCoordinate) {
+    for(int i=0 ; i < m_points.size(); i++)
+    {
+        if(m_points.at(i).coordinate().type() == QGeoCoordinate::InvalidCoordinate)
+        {
             break; // No position info, skip this point
         }
         xml.writeStartElement("trkpt");

@@ -112,5 +112,11 @@ DISTFILES += \
     qml/pages/SettingsMenu.qml \
     qml/pages/DiagramViewPage.qml \
     qml/tools/RecordPageDisplay.js \
-    qml/pages/MapSettingsPage.qml
+    qml/pages/MapSettingsPage.qml \
+    qml/img/map_pause.png \
+    qml/img/map_play.png \
+    qml/img/map_resume.png \
+    qml/img/map_stop.png \
+    qml/tools/MapPauseItem.qml \
+    qml/tools/MapPolyLine.qml
 

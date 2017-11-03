@@ -74,6 +74,9 @@ Page
 
             bLockFirstPageLoad = false;                        
 
+            //start positioning
+            recorder.vStartGPS();
+
             recorder.newTrackPoint.connect(newTrackPoint);
             map.addMapItem(positionMarker);
             console.log("RecordPage: Plotting track line");
@@ -212,7 +215,7 @@ Page
                 RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
             }
             //Set values to JS array if recorder is running
-            if (!recorder.running)
+            if (recorder.running && !recorder.pause)
             {
                 //0 is empty and 1 is heartrate!
                 RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
@@ -468,6 +471,10 @@ Page
             // Set viewport only when not browsing
             setMapViewport();
         }
+
+        //Thresholds processing needs to be disabled if recording is paused
+        if (recorder.pause)
+            return;
 
         var iThresholdTriggered = Thresholds.fncCheckHRThresholds(sHeartRate);
 
@@ -1564,7 +1571,7 @@ Page
                 height: parent.height
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.paddingSmall
-                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (recorder.pause && recorder.isEmpty ? "#389632" : "salmon")
+                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (!recorder.running && recorder.isEmpty ? "#389632" : "salmon")
                 border.color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
                 border.width: 2
                 radius: 10
@@ -1573,7 +1580,7 @@ Page
                     height: parent.height
                     anchors.left: parent.left
                     fillMode: Image.PreserveAspectFit
-                    source: recorder.pause && recorder.isEmpty ? "image://theme/icon-l-add" :  "image://theme/icon-l-clear"
+                    source: !recorder.running && recorder.isEmpty ? "image://theme/icon-l-add" :  "image://theme/icon-l-clear"
                 }
                 Label
                 {
@@ -1582,20 +1589,20 @@ Page
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeLarge
                     color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
-                    text: recorder.pause && recorder.isEmpty ? qsTr("Start") : qsTr("End")
+                    text: !recorder.running && recorder.isEmpty ? qsTr("Start") : qsTr("End")
                 }
                 MouseArea
                 {
                     anchors.fill: parent
                     onPressed:
                     {
-                        if (recorder.pause && recorder.isEmpty)
+                        if (!recorder.running && recorder.isEmpty)
                         {
                             //Check accuracy
                             if (recorder.accuracy > 0 && recorder.accuracy < 30)
                             {
                                 //Start workout
-                                recorder.pause = false;
+                                recorder.running = true;
                             }
                         }
                         else

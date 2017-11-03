@@ -75,6 +75,8 @@ public:
     double altitude() const;
     bool pause() const;
     bool running() const;
+    void setPause(bool pause);
+    void setRunning(bool running);
 
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
 

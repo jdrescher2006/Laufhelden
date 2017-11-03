@@ -109,9 +109,21 @@
         <source> bpm</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Starting time:</source>
         <translation type="unfinished"></translation>
@@ -122,10 +134,6 @@
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -141,7 +149,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Diagrams</source>
+        <source>Pause number/duration</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -258,10 +266,6 @@
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GPS positioning started!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

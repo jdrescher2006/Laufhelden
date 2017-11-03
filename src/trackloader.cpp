@@ -40,8 +40,10 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_heartRateMax = 0;
 }
 
-void TrackLoader::load() {
-    if(m_filename.isEmpty()) {
+void TrackLoader::load()
+{
+    if(m_filename.isEmpty())
+    {
         // No filename set, nothing to do
         //qDebug()<<"No filename set";
         return;
@@ -50,22 +52,30 @@ void TrackLoader::load() {
     QString fullFilename = dirName + "/" + m_filename;
     QFile file(fullFilename);
 
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
         qDebug()<<"Error opening"<<fullFilename;
         m_error = true;
         return;
     }
     QXmlStreamReader xml(&file);
-    if(!xml.readNextStartElement()) {
+    if(!xml.readNextStartElement())
+    {
         qDebug()<<m_filename<<"is not xml file?";
         m_error = true;
         return;
     }
-    if( !(xml.name() == "gpx" && xml.attributes().value("version") == "1.1") ) {
+    if( !(xml.name() == "gpx" && xml.attributes().value("version") == "1.1") )
+    {
         qDebug()<<m_filename<<"is not gpx 1.1 file";
         m_error = true;
         return;
     }
+
+    //count track segments
+    int iSegments = 0;
+    bool bPauseFound = false;
+
 
     // Loading considered succeeded at this point
     m_loaded = true;
@@ -116,6 +126,24 @@ void TrackLoader::load() {
                 {
                     if(xml.name() == "trkseg")
                     {
+                        //Count segments
+                        iSegments++;
+
+                        //If this is NOT the first segment, we are here after a pause in the track
+                        if (iSegments > 1)
+                        {
+                            //We must now save the last coordinate as pause start coordinate
+                            TrackPointPause point;
+                            point.latitude = m_points.at(m_points.length() - 1).latitude;
+                            point.longitude = m_points.at(m_points.length() - 1).longitude;
+                            m_pause_start.append(point);
+
+                            qDebug()<<"Start of pause found at: " << QString::number(point.latitude) << "," << QString::number(point.longitude);
+
+                            //mark that we have found the end of a pause
+                            bPauseFound = true;
+                        }
+
                         while(xml.readNextStartElement())
                         {
                             if(xml.name() == "trkpt")
@@ -133,6 +161,17 @@ void TrackLoader::load() {
 
                                 point.latitude = xml.attributes().value("lat").toDouble();
                                 point.longitude = xml.attributes().value("lon").toDouble();
+
+                                //if a pause is right before this track point, we have to save it's position as pause end position
+                                if (bPauseFound)
+                                {
+                                    TrackPointPause pausePoint;
+                                    pausePoint.latitude = point.latitude;
+                                    pausePoint.longitude = point.longitude;
+                                    m_pause_end.append(pausePoint);
+
+                                    bPauseFound = false;
+                                }
 
                                 while(xml.readNextStartElement())
                                 {
@@ -195,7 +234,7 @@ void TrackLoader::load() {
                 xml.skipCurrentElement();
             }
         }
-    }
+    }    
 
     if(m_points.size() > 1)
     {
@@ -461,6 +500,29 @@ uint TrackLoader::heartRateMax() {
 
 bool TrackLoader::loaded() {
     return m_loaded;
+}
+
+int TrackLoader::pausePointCount()
+{
+    if(!m_loaded && !m_error)
+    {
+        load();
+    }
+    if(!m_loaded || m_error)
+    {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_pause_start.size();
+}
+
+QGeoCoordinate TrackLoader::pauseStartPointAt(int index)
+{
+    return QGeoCoordinate(m_pause_start.at(index).latitude, m_pause_start.at(index).longitude);
+}
+QGeoCoordinate TrackLoader::pauseEndPointAt(int index)
+{
+    return QGeoCoordinate(m_pause_end.at(index).latitude, m_pause_end.at(index).longitude);
 }
 
 int TrackLoader::trackPointCount() {

@@ -19,6 +19,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtLocation 5.0
+
 import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
 
@@ -45,11 +46,47 @@ Page {
         id: trackLoader
         onTrackChanged:
         {
+            //******** START: draw pause icons on the map ********
+            var pauseLength = trackLoader.pausePointCount();
+
+            var pauseStartPoints = [];
+            var pauseEndPoints = [];
+            for(var i=0;i<pauseLength;i++)
+            {
+                pauseStartPoints.push(trackLoader.pauseStartPointAt(i));
+                pauseEndPoints.push(trackLoader.pauseEndPointAt(i));
+            }
+
+            //iterate through pauses
+            for (i = 0; i < pauseLength; i++)
+            {
+                var componentStart = Qt.createComponent("../tools/MapPauseItem.qml");
+                var pauseItemStart = componentStart.createObject(trackMap);
+                pauseItemStart.coordinate = pauseStartPoints[i];
+                //pauseItemStart.coordinate.latitude = 51.8776;
+                //pauseItemStart.coordinate.longitude = 9.1518;
+                pauseItemStart.iSize = (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
+                pauseItemStart.bPauseStart = true;
+
+                var componentEnd = Qt.createComponent("../tools/MapPauseItem.qml");
+                var pauseItemEnd = componentEnd.createObject(trackMap);
+                pauseItemEnd.coordinate = pauseEndPoints[i];
+                pauseItemEnd.iSize = (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
+                pauseItemEnd.bPauseStart = false;
+
+                trackMap.addMapItem(pauseItemStart);
+                trackMap.addMapItem(pauseItemEnd);
+
+            }
+            //********END: draw pause icons on the map ********
+
+            //******** START: draw track on the map ********
+
             var trackLength = trackLoader.trackPointCount();
             var trackPoints = [];
             JSTools.arrayDataPoints = [];
 
-            for(var i=0;i<trackLength;i++)
+            for(i=0;i<trackLength;i++)
             {
                 trackPoints.push(trackLoader.trackPointAt(i));
 
@@ -57,9 +94,23 @@ Page {
             }
             trackLine.path = trackPoints;
             trackMap.addMapItem(trackLine);
+
+            //******** END: draw track on the map ********
+
+            //******** START: draw start/stop icons on the map ********
+
+            idItemTrackStart.coordinate = trackLoader.trackPointAt(0);
+            idItemTrackEnd.coordinate = trackLoader.trackPointAt(trackLength - 1);
+            idItemTrackStart.visible = true;
+            idItemTrackEnd.visible = true;
+
+            //******** END: draw start/stop icons on the map ********
+
+
             //trackMap.fitViewportToMapItems(); // Not working
             setMapViewport(); // Workaround for above
 
+            pauseData.text = pauseLength.toString();
 
             console.log("onTrackChanged: " + JSTools.arrayDataPoints.length.toString());
         }
@@ -105,7 +156,7 @@ Page {
             {
                 text: qsTr("Diagrams")
                 onClicked: pageStack.push(Qt.resolvedUrl("DiagramViewPage.qml"))
-                visible: false
+                visible: true
             }
         }
 
@@ -247,7 +298,22 @@ Page {
                     id: heartRateData
                     width: descriptionData.width
                     text: (trackLoader.heartRateMin === 9999999 && trackLoader.heartRateMax === 0) ? "-" : trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
-                }                                
+                }
+                Label
+                {
+                    id: pauseLabel
+                    height:heartRateData.height
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignBottom
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: qsTr("Pause number/duration")
+                }
+                Label
+                {
+                    id: pauseData
+                    width: descriptionData.width
+                }
             }
         }
     }
@@ -305,6 +371,42 @@ Page {
                         font.pixelSize: Theme.fontSizeTiny
                         color: "black"
                         text: "(C) OpenStreetMap contributors"
+                }
+            }
+        }
+        MapQuickItem
+        {
+            id: idItemTrackStart
+            anchorPoint.x: sourceItem.width/2
+            anchorPoint.y: sourceItem.height/2
+            visible: false
+            sourceItem: Item
+            {
+                height: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
+                width: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
+                Image
+                {
+                    width: parent.width
+                    height: parent.height
+                    source: "../img/map_play.png"
+                }
+            }
+        }
+        MapQuickItem
+        {
+            id: idItemTrackEnd
+            anchorPoint.x: sourceItem.width/2
+            anchorPoint.y: sourceItem.height/2
+            visible: false
+            sourceItem: Item
+            {
+                height: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
+                width: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
+                Image
+                {
+                    width: parent.width
+                    height: parent.height
+                    source: "../img/map_stop.png"
                 }
             }
         }

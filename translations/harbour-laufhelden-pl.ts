@@ -109,40 +109,48 @@
         <source> bpm</source>
         <translation> bpm</translation>
     </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished">Wstrzymany</translation>
+    </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
     <message>
-        <source>Starting time:</source>
-        <translation>Czas startu:</translation>
-    </message>
-    <message>
-        <source>Duration:</source>
-        <translation>Czas trwania:</translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation>Dystans:</translation>
+        <source>Diagrams</source>
+        <translation type="unfinished">Driagramy</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Opis:</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Czas trwania:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation>Pręddość maks./⌀</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation>Tempo ⌀:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation>Tętno min/maks/⌀</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Diagrams</source>
-        <translation>Diagramy</translation>
+        <source>Pause number/duration</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -259,10 +267,6 @@
     <message>
         <source>Select thresholds profile</source>
         <translation type="unfinished">Wybież profil progów</translation>
-    </message>
-    <message>
-        <source>GPS positioning started!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

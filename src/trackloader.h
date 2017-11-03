@@ -60,6 +60,12 @@ public:
         uint heartrate;
     };
 
+    struct TrackPointPause
+    {
+        qreal latitude;
+        qreal longitude;
+    };
+
 
     explicit TrackLoader(QObject *parent = 0);
     QString filename() const;
@@ -81,7 +87,10 @@ public:
     uint heartRateMax();
     bool loaded();
     Q_INVOKABLE int trackPointCount();
+    Q_INVOKABLE int pausePointCount();
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
+    Q_INVOKABLE QGeoCoordinate pauseStartPointAt(int index);
+    Q_INVOKABLE QGeoCoordinate pauseEndPointAt(int index);
     Q_INVOKABLE uint heartRateAt(int index);
     Q_INVOKABLE qreal elevationAt(int index);
 
@@ -113,6 +122,8 @@ private:
     void load();
 
     QList<TrackPoint> m_points;
+    QList<TrackPointPause> m_pause_start;
+    QList<TrackPointPause> m_pause_end;
     bool m_loaded;
     bool m_error;
     QString m_filename;

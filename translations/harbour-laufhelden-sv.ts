@@ -109,40 +109,48 @@
         <source> bpm</source>
         <translation> bpm</translation>
     </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished">Pausad</translation>
+    </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
     <message>
-        <source>Starting time:</source>
-        <translation>Starttid:</translation>
-    </message>
-    <message>
-        <source>Duration:</source>
-        <translation>Varaktighet:</translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation>Distans:</translation>
+        <source>Diagrams</source>
+        <translation type="unfinished">Diagram</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Beskrivning:</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Varaktighet:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation>Maxhastighet/⌀:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation>Tempo ⌀:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation>Hjärtfrekvens min/max/⌀:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Diagrams</source>
-        <translation>Diagram</translation>
+        <source>Pause number/duration</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -259,10 +267,6 @@
     <message>
         <source>Select thresholds profile</source>
         <translation type="unfinished">Välj tröskelvärdesprofil</translation>
-    </message>
-    <message>
-        <source>GPS positioning started!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

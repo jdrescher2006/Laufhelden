@@ -2,6 +2,8 @@ ToDo for next release to openrepos:
 
 1.) GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.
 1.) there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
+- add icons to map (start/stop/pause)
+- add pause time to trackloader and detailpage
 2.) add new featuer: autopause
 
 - set release date to .changes file														
@@ -17,7 +19,7 @@ ToDo for second next release to openrepos:
 - add buttons to map
 	- center position
 	- switch between center position/center track mode
-- add icons to map (start/stop/pause)
+
 - add over/below average speed, average pace and average heart rate to record page
 - introduce configurable lock page (LCD mode, AMOLED mode)
 - event voice announcements	
