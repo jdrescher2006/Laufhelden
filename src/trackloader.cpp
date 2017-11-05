@@ -131,16 +131,8 @@ void TrackLoader::load()
 
                         //If this is NOT the first segment, we are here after a pause in the track
                         if (iSegments > 1)
-                        {
-                            //We must now save the last coordinate as pause start coordinate
-                            TrackPointPause point;
-                            point.latitude = m_points.at(m_points.length() - 1).latitude;
-                            point.longitude = m_points.at(m_points.length() - 1).longitude;
-                            m_pause_start.append(point);
-
-                            qDebug()<<"Start of pause found at: " << QString::number(point.latitude) << "," << QString::number(point.longitude);
-
-                            //mark that we have found the end of a pause
+                        {                            
+                            //mark that we have found a pause
                             bPauseFound = true;
                         }
 
@@ -157,19 +149,14 @@ void TrackLoader::load()
                                 point.magneticVariation = 0;
                                 point.horizontalAccuracy = 0;
                                 point.verticalAccuracy = 0;
-                                point.heartrate = 0;                                
-
+                                point.heartrate = 0;
                                 point.latitude = xml.attributes().value("lat").toDouble();
                                 point.longitude = xml.attributes().value("lon").toDouble();
 
-                                //if a pause is right before this track point, we have to save it's position as pause end position
+                                //if a pause is right before this track point, we have to save the index of this track point
                                 if (bPauseFound)
                                 {
-                                    TrackPointPause pausePoint;
-                                    pausePoint.latitude = point.latitude;
-                                    pausePoint.longitude = point.longitude;
-                                    m_pause_end.append(pausePoint);
-
+                                    m_pause_positions.append(m_points.length() + 1);
                                     bPauseFound = false;
                                 }
 
@@ -502,7 +489,7 @@ bool TrackLoader::loaded() {
     return m_loaded;
 }
 
-int TrackLoader::pausePointCount()
+int TrackLoader::pausePositionsCount()
 {
     if(!m_loaded && !m_error)
     {
@@ -513,16 +500,12 @@ int TrackLoader::pausePointCount()
         // Nothing to load or error in loading
         return 0;
     }
-    return m_pause_start.size();
+    return m_pause_positions.size();
 }
 
-QGeoCoordinate TrackLoader::pauseStartPointAt(int index)
+int TrackLoader::pausePositionAt(int index)
 {
-    return QGeoCoordinate(m_pause_start.at(index).latitude, m_pause_start.at(index).longitude);
-}
-QGeoCoordinate TrackLoader::pauseEndPointAt(int index)
-{
-    return QGeoCoordinate(m_pause_end.at(index).latitude, m_pause_end.at(index).longitude);
+    return m_pause_positions[index];
 }
 
 int TrackLoader::trackPointCount() {
@@ -536,7 +519,8 @@ int TrackLoader::trackPointCount() {
     return m_points.size();
 }
 
-QGeoCoordinate TrackLoader::trackPointAt(int index) {
+QGeoCoordinate TrackLoader::trackPointAt(int index)
+{
     return QGeoCoordinate(m_points.at(index).latitude,
                           m_points.at(index).longitude,
                           m_points.at(index).elevation);

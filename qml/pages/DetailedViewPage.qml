@@ -46,71 +46,71 @@ Page {
         id: trackLoader
         onTrackChanged:
         {
-            //******** START: draw pause icons on the map ********
-            var pauseLength = trackLoader.pausePointCount();
-
-            var pauseStartPoints = [];
-            var pauseEndPoints = [];
-            for(var i=0;i<pauseLength;i++)
-            {
-                pauseStartPoints.push(trackLoader.pauseStartPointAt(i));
-                pauseEndPoints.push(trackLoader.pauseEndPointAt(i));
-            }
-
-            //iterate through pauses
-            for (i = 0; i < pauseLength; i++)
-            {
-                var componentStart = Qt.createComponent("../tools/MapPauseItem.qml");
-                var pauseItemStart = componentStart.createObject(trackMap);
-                pauseItemStart.coordinate = pauseStartPoints[i];
-                //pauseItemStart.coordinate.latitude = 51.8776;
-                //pauseItemStart.coordinate.longitude = 9.1518;
-                pauseItemStart.iSize = (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
-                pauseItemStart.bPauseStart = true;
-
-                var componentEnd = Qt.createComponent("../tools/MapPauseItem.qml");
-                var pauseItemEnd = componentEnd.createObject(trackMap);
-                pauseItemEnd.coordinate = pauseEndPoints[i];
-                pauseItemEnd.iSize = (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
-                pauseItemEnd.bPauseStart = false;
-
-                trackMap.addMapItem(pauseItemStart);
-                trackMap.addMapItem(pauseItemEnd);
-
-            }
-            //********END: draw pause icons on the map ********
-
-            //******** START: draw track on the map ********
-
             var trackLength = trackLoader.trackPointCount();
             var trackPoints = [];
+
             JSTools.arrayDataPoints = [];
 
-            for(i=0;i<trackLength;i++)
+            for(var i=0; i<trackLength; i++)
             {
                 trackPoints.push(trackLoader.trackPointAt(i));
 
                 JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), 0);
             }
-            trackLine.path = trackPoints;
-            trackMap.addMapItem(trackLine);
 
-            //******** END: draw track on the map ********
+            var pausePositionsLength = trackLoader.pausePositionsCount();
+            var pausePositions = [];
 
-            //******** START: draw start/stop icons on the map ********
+            for(i=0; i<pausePositionsLength; i++)
+            {
+                pausePositions.push(trackLoader.trackPointAt(i));
+            }
 
-            idItemTrackStart.coordinate = trackLoader.trackPointAt(0);
-            idItemTrackEnd.coordinate = trackLoader.trackPointAt(trackLength - 1);
-            idItemTrackStart.visible = true;
-            idItemTrackEnd.visible = true;
 
-            //******** END: draw start/stop icons on the map ********
+            var trackPointsTemporary = [];
+
+            var iPausePositionsIndex = 0;
+
+            //Go through JS array with track data points
+            for (i=0; i<trackLength; i++)
+            {
+                //Check if we have the first data point.
+                if (i===0)
+                {
+                    //This is the first data point, draw the start icon
+                    idItemTrackStart.coordinate = trackLoader.trackPointAt(i);
+                    idItemTrackStart.visible = true;
+                }
+
+                //Check if we have the last data point, draw the stop icon
+                if (i===(trackLength - 1))
+                {
+                    idItemTrackEnd.coordinate = trackLoader.trackPointAt(i)
+                    idItemTrackEnd.visible = true;
+                }
+
+                //add this track point to temporary array. This will be used for drawing the track line
+                trackPointsTemporary.push(trackLoader.trackPointAt(i));
+
+                //now check if have a point where a oause starts
+                if (i===pausePositions[iPausePositionsIndex])
+                {
+                    //So this is a track point where a pause starts. The next one is the pause end!
+
+
+                }
+
+            }
+
+
+
+
 
 
             //trackMap.fitViewportToMapItems(); // Not working
             setMapViewport(); // Workaround for above
 
-            pauseData.text = pauseLength.toString();
+            pauseData.text = trackLoader.pausePositionsCount().toString();
 
             console.log("onTrackChanged: " + JSTools.arrayDataPoints.length.toString());
         }

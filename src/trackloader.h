@@ -58,14 +58,7 @@ public:
         qreal horizontalAccuracy;
         qreal verticalAccuracy;
         uint heartrate;
-    };
-
-    struct TrackPointPause
-    {
-        qreal latitude;
-        qreal longitude;
-    };
-
+    };  
 
     explicit TrackLoader(QObject *parent = 0);
     QString filename() const;
@@ -87,13 +80,11 @@ public:
     uint heartRateMax();
     bool loaded();
     Q_INVOKABLE int trackPointCount();
-    Q_INVOKABLE int pausePointCount();
+    Q_INVOKABLE int pausePositionsCount();
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
-    Q_INVOKABLE QGeoCoordinate pauseStartPointAt(int index);
-    Q_INVOKABLE QGeoCoordinate pauseEndPointAt(int index);
+    Q_INVOKABLE int pausePositionAt(int index);
     Q_INVOKABLE uint heartRateAt(int index);
     Q_INVOKABLE qreal elevationAt(int index);
-
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);
@@ -121,9 +112,8 @@ public slots:
 private:    
     void load();
 
-    QList<TrackPoint> m_points;
-    QList<TrackPointPause> m_pause_start;
-    QList<TrackPointPause> m_pause_end;
+    QList<TrackPoint> m_points;   
+    QList<int> m_pause_positions;
     bool m_loaded;
     bool m_error;
     QString m_filename;
