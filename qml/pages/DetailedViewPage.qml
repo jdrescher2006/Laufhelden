@@ -56,16 +56,7 @@ Page {
                 trackPoints.push(trackLoader.trackPointAt(i));
 
                 JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), 0);
-            }
-
-            var pausePositionsLength = trackLoader.pausePositionsCount();
-            var pausePositions = [];
-
-            for(i=0; i<pausePositionsLength; i++)
-            {
-                pausePositions.push(trackLoader.trackPointAt(i));
-            }
-
+            }           
 
             var trackPointsTemporary = [];
 
@@ -74,6 +65,9 @@ Page {
             //Go through JS array with track data points
             for (i=0; i<trackLength; i++)
             {
+                //add this track point to temporary array. This will be used for drawing the track line
+                trackPointsTemporary.push(trackLoader.trackPointAt(i));
+
                 //Check if we have the first data point.
                 if (i===0)
                 {
@@ -87,25 +81,52 @@ Page {
                 {
                     idItemTrackEnd.coordinate = trackLoader.trackPointAt(i)
                     idItemTrackEnd.visible = true;
-                }
 
-                //add this track point to temporary array. This will be used for drawing the track line
-                trackPointsTemporary.push(trackLoader.trackPointAt(i));
+                    //We have to create a track line here. Either it comes from a pause end or from start of track
+                    var componentTrack = Qt.createComponent("../tools/MapPolyLine.qml");
+                    var track = componentTrack.createObject(trackMap);
+                    track.path = trackPointsTemporary;
+                    //Add track to map
+                    trackMap.addMapItem(track);
+                }                
 
-                //now check if have a point where a oause starts
-                if (i===pausePositions[iPausePositionsIndex])
+                //now check if we have a point where a pause starts
+                if (trackLoader.pausePositionsCount() > 0 && i===trackLoader.pausePositionAt(iPausePositionsIndex))
                 {
                     //So this is a track point where a pause starts. The next one is the pause end!
+                    //Draw the pause start icon
+                    var componentStart = Qt.createComponent("../tools/MapPauseItem.qml");
+                    var pauseItemStart = componentStart.createObject(trackMap);
+                    pauseItemStart.coordinate = trackLoader.trackPointAt(i);
+                    pauseItemStart.iSize = (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
+                    pauseItemStart.bPauseStart = true;
+                    //Draw the pause end icon
+                    var componentEnd = Qt.createComponent("../tools/MapPauseItem.qml");
+                    var pauseItemEnd = componentEnd.createObject(trackMap);
+                    pauseItemEnd.coordinate = trackLoader.trackPointAt(i+1);
+                    pauseItemEnd.iSize = (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
+                    pauseItemEnd.bPauseStart = false;
+
+                    //put pause items to the map
+                    trackMap.addMapItem(pauseItemStart);
+                    trackMap.addMapItem(pauseItemEnd);
+
+                    //We can now create the track from start or end of last pause to start of this pause
+                    var componentPauseTrack = Qt.createComponent("../tools/MapPolyLine.qml");
+                    var pauseTrack = componentPauseTrack.createObject(trackMap);
+                    pauseTrack.path = trackPointsTemporary;
+                    //Add track to map
+                    trackMap.addMapItem(pauseTrack);
 
 
+                    //now we can delete the temp track array
+                    trackPointsTemporary = [];
+
+                    //set indexer to next pause position. Bu only if there is a further pause.
+                    if ((iPausePositionsIndex + 1) < trackLoader.pausePositionsCount())
+                        iPausePositionsIndex++;
                 }
-
             }
-
-
-
-
-
 
             //trackMap.fitViewportToMapItems(); // Not working
             setMapViewport(); // Workaround for above
@@ -119,15 +140,7 @@ Page {
             gridContainer.opacity = 1.0
             trackMap.opacity = 1.0                       
         }       
-    }
-
-    MapPolyline
-    {
-        id: trackLine
-        line.color: "red"
-        line.width: 5
-        smooth: true
-    }
+    }    
 
     BusyIndicator
     {

@@ -99,7 +99,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Copyright") \u00A9 2017 Jens Drescher, qsTr("Germany")
+                text: qsTr("Copyright") + " \u00A9 2017 Jens Drescher, " + qsTr("Germany")
             }
             Label
             {

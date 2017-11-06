@@ -4,44 +4,52 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <source>License: GPLv3</source>
-        <translation>Licencia: GPLv3</translation>
-    </message>
-    <message>
-        <source>Source code:</source>
-        <translation>Código fuente:</translation>
-    </message>
-    <message>
-        <source>Date: </source>
-        <translation>Fecha:</translation>
-    </message>
-    <message>
-        <source>Feedback, bugs:</source>
-        <translation>Realimentación, bichos:</translation>
-    </message>
-    <message>
         <source>About Laufhelden</source>
-        <translation>Acerca de</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation>Rastreador deportivo para Sailfish OS</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Germany</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License: GPLv3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source code:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation>créditos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation>Español</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation>Polaco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation>Sueco</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feedback, bugs:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

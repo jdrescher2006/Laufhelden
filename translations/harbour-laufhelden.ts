@@ -4,11 +4,19 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <source>License: GPLv3</source>
+        <source>About Laufhelden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Source code:</source>
+        <source>Sport tracker application for Sailfish OS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Germany</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -16,15 +24,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Feedback, bugs:</source>
+        <source>License: GPLv3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>About Laufhelden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sport tracker application for Sailfish OS</source>
+        <source>Source code:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -41,6 +45,10 @@
     </message>
     <message>
         <source>Swedish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feedback, bugs:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

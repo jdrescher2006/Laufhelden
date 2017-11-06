@@ -4,28 +4,32 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <source>License: GPLv3</source>
-        <translation>Licencja: GPLv3</translation>
-    </message>
-    <message>
-        <source>Source code:</source>
-        <translation>Kod źródłowy:</translation>
-    </message>
-    <message>
-        <source>Date: </source>
-        <translation>Data:</translation>
-    </message>
-    <message>
-        <source>Feedback, bugs:</source>
-        <translation>Informacja zwrotna, błedy:</translation>
-    </message>
-    <message>
         <source>About Laufhelden</source>
-        <translation>O Laufhelden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation>Sport tracker dla Sailfish OS</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Germany</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License: GPLv3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source code:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Credits for localization:</source>
@@ -41,6 +45,10 @@
     </message>
     <message>
         <source>Swedish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feedback, bugs:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

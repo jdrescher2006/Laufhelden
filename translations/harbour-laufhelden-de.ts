@@ -4,44 +4,52 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <source>License: GPLv3</source>
-        <translation>Lizenz: GPLv3</translation>
-    </message>
-    <message>
-        <source>Source code:</source>
-        <translation>Quellcode:</translation>
-    </message>
-    <message>
-        <source>Date: </source>
-        <translation>Datum: </translation>
-    </message>
-    <message>
-        <source>Feedback, bugs:</source>
-        <translation>Feedback, Probleme:</translation>
-    </message>
-    <message>
         <source>About Laufhelden</source>
-        <translation>Über Laufhelden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation>Sport Tracker App für Sailfish OS</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Germany</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License: GPLv3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source code:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation>Danke für die Übersetzung geht an:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation>Spanisch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation>Polnisch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation>Schwedisch</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feedback, bugs:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

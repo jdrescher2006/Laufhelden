@@ -156,7 +156,10 @@ void TrackLoader::load()
                                 //if a pause is right before this track point, we have to save the index of this track point
                                 if (bPauseFound)
                                 {
-                                    m_pause_positions.append(m_points.length() + 1);
+                                    qDebug()<<"Pause found: "<<QString::number(m_points.length());
+
+
+                                    m_pause_positions.append(m_points.length()-1);
                                     bPauseFound = false;
                                 }
 
