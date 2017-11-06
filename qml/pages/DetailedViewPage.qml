@@ -131,7 +131,10 @@ Page {
             //trackMap.fitViewportToMapItems(); // Not working
             setMapViewport(); // Workaround for above
 
-            pauseData.text = trackLoader.pausePositionsCount().toString();
+            if (trackLoader.pausePositionsCount() === 0)
+                pauseData.text = "-" ;
+            else
+                pauseData.text = trackLoader.pausePositionsCount().toString() + "/" + trackLoader.pauseDurationStr;
 
             console.log("onTrackChanged: " + JSTools.arrayDataPoints.length.toString());
         }
@@ -314,13 +317,14 @@ Page {
                 }
                 Label
                 {
+                    width: hearRateLabel.width
                     id: pauseLabel
                     height:heartRateData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Pause number/duration")
+                    text: qsTr("Pause number/duration:")
                 }
                 Label
                 {

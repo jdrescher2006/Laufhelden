@@ -157,7 +157,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pause number/duration</source>
+        <source>Pause number/duration:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

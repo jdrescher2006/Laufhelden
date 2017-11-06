@@ -20,10 +20,6 @@
         <translation>Alemania</translation>
     </message>
     <message>
-        <source>Date:</source>
-        <translation>Fecha:</translation>
-    </message>
-    <message>
         <source>License: GPLv3</source>
         <translation>Licencia GPLv3</translation>
     </message>
@@ -50,6 +46,10 @@
     <message>
         <source>Feedback, bugs:</source>
         <translation>Realimentación, bichos:</translation>
+    </message>
+    <message>
+        <source>Date: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -149,16 +149,16 @@
         <translation>Velocidad máx/⌀:</translation>
     </message>
     <message>
-        <source>Pace/⌀:</source>
-        <translation>Paso/⌀:</translation>
-    </message>
-    <message>
         <source>Heart rate min/max/⌀:</source>
         <translation>Ritmo cardiaco mín/máx/⌀:</translation>
     </message>
     <message>
-        <source>Pause number/duration</source>
-        <translation>Número de pausa/duración</translation>
+        <source>Pace ⌀:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause number/duration:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

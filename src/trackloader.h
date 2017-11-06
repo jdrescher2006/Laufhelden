@@ -34,6 +34,10 @@ class TrackLoader : public QObject
     Q_PROPERTY(QString timeStr READ timeStr NOTIFY timeChanged)
     Q_PROPERTY(int duration READ duration NOTIFY durationChanged)
     Q_PROPERTY(QString durationStr READ durationStr NOTIFY durationChanged)
+
+    Q_PROPERTY(int pauseDuration READ pauseDuration NOTIFY durationChanged)
+    Q_PROPERTY(QString pauseDurationStr READ pauseDurationStr NOTIFY durationChanged)
+
     Q_PROPERTY(qreal distance READ distance NOTIFY distanceChanged)
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(qreal maxSpeed READ maxSpeed NOTIFY maxSpeedChanged)
@@ -70,6 +74,10 @@ public:
     QString timeStr();
     uint duration();
     QString durationStr();
+
+    uint pauseDuration();
+    QString pauseDurationStr();
+
     qreal distance();
     qreal speed();
     qreal maxSpeed();
@@ -122,6 +130,7 @@ private:
     QString m_description;
     QDateTime m_time;
     uint m_duration;
+    uint m_pause_duration;
     qreal m_distance;
     qreal m_speed;
     qreal m_maxSpeed;

@@ -33,6 +33,7 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_maxSpeed = 0;
     m_pace = 0;
     m_duration = 0;
+    m_pause_duration = 0;
     m_distance = 0;
     m_heartRate = 0;
     m_heartRatePoints = 0;
@@ -158,7 +159,6 @@ void TrackLoader::load()
                                 {
                                     qDebug()<<"Pause found: "<<QString::number(m_points.length());
 
-
                                     m_pause_positions.append(m_points.length()-1);
                                     bPauseFound = false;
                                 }
@@ -231,16 +231,33 @@ void TrackLoader::load()
         QDateTime firstTime(m_points.at(0).time);
         QDateTime secondTime(m_points.at(m_points.size()-1).time);
         m_duration = firstTime.secsTo(secondTime);
-        emit durationChanged();
+
         m_time = firstTime.toLocalTime();
-        emit timeChanged();
+
         m_distance = 0;
+
+        int iPausePositionsIndex = 0;
+
         for(int i=1;i<m_points.size();i++)
         {
-            QGeoCoordinate first(m_points.at(i-1).latitude,m_points.at(i-1).longitude);
-            QGeoCoordinate second(m_points.at(i).latitude,m_points.at(i).longitude);
-            m_distance += first.distanceTo(second);
-            if(m_points.at(i).groundSpeed > m_maxSpeed) {
+            //We need to find out if this point is the end of a pause
+            if (this->pausePositionsCount() > 0 && i==(this->pausePositionAt(iPausePositionsIndex) + 1))
+            {
+                //Here we are at a point where a pause ends. We can calculate the pause duration here
+                QDateTime firstTime(m_points.at(i-1).time);
+                QDateTime secondTime(m_points.at(i).time);
+                m_pause_duration = m_pause_duration + firstTime.secsTo(secondTime);
+            }
+            else
+            {
+                QGeoCoordinate first(m_points.at(i-1).latitude,m_points.at(i-1).longitude);
+                QGeoCoordinate second(m_points.at(i).latitude,m_points.at(i).longitude);
+
+                m_distance += first.distanceTo(second);
+            }
+
+            if(m_points.at(i).groundSpeed > m_maxSpeed)
+            {
                 m_maxSpeed = m_points.at(i).groundSpeed;
             }
             //If this point has a heart rate
@@ -255,19 +272,29 @@ void TrackLoader::load()
                     m_heartRateMin = m_points.at(i).heartrate;
             }
         }
+
+        //We need to substract the pause duration from the overall duration
+        m_duration = m_duration - m_pause_duration;
+
+        m_speed = m_distance / m_duration;        
+        m_pace = m_duration / m_distance * 1000 / 60;        
+        m_heartRate = m_heartRate / m_heartRatePoints;
+
+        emit paceChanged();
+        emit heartRateChanged();
+        emit speedChanged();
         emit heartRateMinChanged();
         emit heartRateMaxChanged();
         emit distanceChanged();
         emit maxSpeedChanged();
-        m_speed = m_distance / m_duration;
-        emit speedChanged();       
-        m_pace = m_duration / m_distance * 1000 / 60;
-        emit paceChanged();        
-        m_heartRate = m_heartRate / m_heartRatePoints;
-        emit heartRateChanged();        
-    } else {
+        emit durationChanged();
+        emit timeChanged();
+    }
+    else
+    {
         qDebug()<<"Not enough trackpoints to calculate duration, distance and speed";
-        if(m_points.size() > 0) {
+        if(m_points.size() > 0)
+        {
             QDateTime firstTime(m_points.at(0).time);
             m_time = firstTime.toLocalTime();
             emit timeChanged();
@@ -276,7 +303,8 @@ void TrackLoader::load()
     emit trackChanged();
 }
 
-QString TrackLoader::filename() const {
+QString TrackLoader::filename() const
+{
     return m_filename;
 }
 
@@ -352,7 +380,8 @@ QString TrackLoader::timeStr() {
     return m_time.toString(Qt::SystemLocaleShortDate);
 }
 
-uint TrackLoader::duration() {
+uint TrackLoader::duration()
+{
     if(!m_loaded && !m_error) {
         load();
     }
@@ -361,6 +390,18 @@ uint TrackLoader::duration() {
         return 0;
     }
     return m_duration;
+}
+
+uint TrackLoader::pauseDuration()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_pause_duration;
 }
 
 QString TrackLoader::paceStr()
@@ -397,6 +438,36 @@ QString TrackLoader::durationStr() {
     uint hours = m_duration / (60*60);
     uint minutes = (m_duration - hours*60*60) / 60;
     uint seconds = m_duration - hours*60*60 - minutes*60;
+    if(hours == 0) {
+        if(minutes == 0) {
+            return QString("%3s").arg(seconds);
+        }
+        return QString("%2m %3s")
+                .arg(minutes)
+                .arg(seconds, 2, 10, QLatin1Char('0'));
+    }
+    return QString("%1h %2m %3s")
+            .arg(hours)
+            .arg(minutes, 2, 10, QLatin1Char('0'))
+            .arg(seconds, 2, 10, QLatin1Char('0'));
+}
+
+QString TrackLoader::pauseDurationStr() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return QString();
+    }
+
+    //If there is no pause, return
+    if (this->pausePositionsCount() == 0)
+        return QString();
+
+    uint hours = m_pause_duration / (60*60);
+    uint minutes = (m_pause_duration - hours*60*60) / 60;
+    uint seconds = m_pause_duration - hours*60*60 - minutes*60;
     if(hours == 0) {
         if(minutes == 0) {
             return QString("%3s").arg(seconds);

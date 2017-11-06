@@ -5,51 +5,51 @@
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation type="unfinished"></translation>
+        <translation>Über Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Sport Tracker App für Sailfish OS</translation>
     </message>
     <message>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Deutschland</translation>
     </message>
     <message>
         <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Datum: </translation>
     </message>
     <message>
         <source>License: GPLv3</source>
-        <translation type="unfinished"></translation>
+        <translation>Lizenz: GPLv3</translation>
     </message>
     <message>
         <source>Source code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellcode:</translation>
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dank für die Übersetzung geht an:</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanisch</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;Polnisch</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwedisch</translation>
     </message>
     <message>
         <source>Feedback, bugs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Feedback, Probleme:</translation>
     </message>
 </context>
 <context>
@@ -119,46 +119,46 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Pausiert</translation>
+        <translation>Pausiert</translation>
     </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Diagramme</translation>
+        <translation>Diagramme</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Startzeit:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Dauer:</translation>
+        <translation>Dauer:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Distanz:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschw. max/⌀:</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo ⌀:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenz min/max/⌀:</translation>
     </message>
     <message>
-        <source>Pause number/duration</source>
-        <translation type="unfinished"></translation>
+        <source>Pause number/duration:</source>
+        <translation>Pausen/Pausendauer:</translation>
     </message>
 </context>
 <context>
