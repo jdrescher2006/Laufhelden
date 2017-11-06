@@ -5,51 +5,51 @@
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Rastreador deportivo para Sailfish OS</translation>
     </message>
     <message>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation>Derechos de autor</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Alemania</translation>
     </message>
     <message>
-        <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <source>Date:</source>
+        <translation>Fecha:</translation>
     </message>
     <message>
         <source>License: GPLv3</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencia GPLv3</translation>
     </message>
     <message>
         <source>Source code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Código fuente:</translation>
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation type="unfinished"></translation>
+        <translation>Créditos para localización:</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Español</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="unfinished"></translation>
+        <translation>Polaco</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation>Sueco</translation>
     </message>
     <message>
         <source>Feedback, bugs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Realimentación, bichos:</translation>
     </message>
 </context>
 <context>
@@ -119,46 +119,46 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Pausado</translation>
+        <translation>Pausado</translation>
     </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Diagramas</translation>
+        <translation>Diagramas</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Descripción:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiempo de empezar:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">duración:</translation>
+        <translation>duración:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Distancia:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velocidad máx/⌀:</translation>
     </message>
     <message>
-        <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <source>Pace/⌀:</source>
+        <translation>Paso/⌀:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ritmo cardiaco mín/máx/⌀:</translation>
     </message>
     <message>
         <source>Pause number/duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de pausa/duración</translation>
     </message>
 </context>
 <context>
