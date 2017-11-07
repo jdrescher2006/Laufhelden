@@ -122,7 +122,6 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
     if(m_running)
     {
         m_points.append(newPos);
-
         m_heartrate.append(this->iCurrentHeartRate);
         m_pausearray.append(this->m_pause);
 
@@ -141,7 +140,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             emit isEmptyChanged();
         }
 
-        if(m_points.size() > 1)
+        if(m_points.size() > 1 && this->m_pause == false)
         {
             // Next line triggers following compiler warning?
             // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
@@ -218,8 +217,9 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             }
 
             emit valuesChanged();
-        }
-        emit newTrackPoint(newPos.coordinate());
+
+            emit newTrackPoint(newPos.coordinate());
+        }        
     }
 }
 
@@ -299,60 +299,72 @@ void TrackRecorder::exportGpx(QString name, QString desc)
 
     xml.writeEndElement(); // metadata
 
-
     xml.writeStartElement("trk");
-    xml.writeStartElement("trkseg");
 
     for(int i=0 ; i < m_points.size(); i++)
     {
-        if(m_points.at(i).coordinate().type() == QGeoCoordinate::InvalidCoordinate)
+        //If we have the first point or the start of a pause, we have to start a new track segment
+        if (i == 0 || (m_pausearray.at(i) == true && m_pausearray.at(i-1) == false))
         {
-            break; // No position info, skip this point
-        }
-        xml.writeStartElement("trkpt");
-        xml.writeAttribute("lat", QString::number(m_points.at(i).coordinate().latitude(), 'g', 15));
-        xml.writeAttribute("lon", QString::number(m_points.at(i).coordinate().longitude(), 'g', 15));
-
-        xml.writeTextElement("time", m_points.at(i).timestamp().toUTC().toString(Qt::ISODate));
-        if(m_points.at(i).coordinate().type() == QGeoCoordinate::Coordinate3D) {
-            xml.writeTextElement("ele", QString::number(m_points.at(i).coordinate().altitude(), 'g', 15));
+            xml.writeStartElement("trkseg");
         }
 
-        xml.writeStartElement("extensions");
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::Direction)) {
-            xml.writeTextElement("dir", QString::number(m_points.at(i).attribute(QGeoPositionInfo::Direction), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::GroundSpeed)) {
-            xml.writeTextElement("g_spd", QString::number(m_points.at(i).attribute(QGeoPositionInfo::GroundSpeed), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalSpeed)) {
-            xml.writeTextElement("v_spd", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalSpeed), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::MagneticVariation)) {
-            xml.writeTextElement("m_var", QString::number(m_points.at(i).attribute(QGeoPositionInfo::MagneticVariation), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::HorizontalAccuracy)) {
-            xml.writeTextElement("h_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::HorizontalAccuracy), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalAccuracy)) {
-            xml.writeTextElement("v_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalAccuracy), 'g', 15));
-        }
-
-        if(m_heartrate.count() > 0 && m_heartrate.at(i) != 9999)
+        //Check if the coordinates are invalid or if this is a pause point
+        if(m_points.at(i).coordinate().type() == QGeoCoordinate::InvalidCoordinate || m_pausearray.at(i) == true)
         {
-            xml.writeStartElement("gpxtpx:TrackPointExtension");
-            xml.writeTextElement("gpxtpx:hr", QString::number(m_heartrate.at(i), 'g', 15));
-            xml.writeEndElement(); // gpxtpx:TrackPointExtension
+            // No position info or this is a pause point, skip this point
+        }
+        else
+        {
+            xml.writeStartElement("trkpt");
+            xml.writeAttribute("lat", QString::number(m_points.at(i).coordinate().latitude(), 'g', 15));
+            xml.writeAttribute("lon", QString::number(m_points.at(i).coordinate().longitude(), 'g', 15));
+
+            xml.writeTextElement("time", m_points.at(i).timestamp().toUTC().toString(Qt::ISODate));
+            if(m_points.at(i).coordinate().type() == QGeoCoordinate::Coordinate3D) {
+                xml.writeTextElement("ele", QString::number(m_points.at(i).coordinate().altitude(), 'g', 15));
+            }
+
+            xml.writeStartElement("extensions");
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::Direction)) {
+                xml.writeTextElement("dir", QString::number(m_points.at(i).attribute(QGeoPositionInfo::Direction), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::GroundSpeed)) {
+                xml.writeTextElement("g_spd", QString::number(m_points.at(i).attribute(QGeoPositionInfo::GroundSpeed), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalSpeed)) {
+                xml.writeTextElement("v_spd", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalSpeed), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::MagneticVariation)) {
+                xml.writeTextElement("m_var", QString::number(m_points.at(i).attribute(QGeoPositionInfo::MagneticVariation), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::HorizontalAccuracy)) {
+                xml.writeTextElement("h_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::HorizontalAccuracy), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalAccuracy)) {
+                xml.writeTextElement("v_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalAccuracy), 'g', 15));
+            }
+
+            if(m_heartrate.count() > 0 && m_heartrate.at(i) != 9999)
+            {
+                xml.writeStartElement("gpxtpx:TrackPointExtension");
+                xml.writeTextElement("gpxtpx:hr", QString::number(m_heartrate.at(i), 'g', 15));
+                xml.writeEndElement(); // gpxtpx:TrackPointExtension
+            }
+
+            xml.writeEndElement(); // extensions
+
+            xml.writeEndElement(); // trkpt
         }
 
-        xml.writeEndElement(); // extensions
+        //If we have the last point or the end of a pause, we need to end the current track segment
+        if (i == (m_points.size() - 1) || (m_pausearray.at(i) == false && m_pausearray.at(i-1) == true))
+        {
+            xml.writeEndElement(); // trkseg
+        }
+    }   
 
-        xml.writeEndElement(); // trkpt
-    }
-
-    xml.writeEndElement(); // trkseg
     xml.writeEndElement(); // trk
-
     xml.writeEndElement(); // gpx
     xml.writeEndDocument();
 
