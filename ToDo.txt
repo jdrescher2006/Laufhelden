@@ -1,28 +1,34 @@
-ToDo for next release to openrepos:
+---- ToDo for next release to openrepos: 0.9.6 -----
 
+New features:
+- add icons to map (start/stop/pause)																		-> OK
+- add pause duration to detailpage																			-> OK
+- add new feature: autopause
+- add new parameter for record page: pause duration
+
+Bugfixes:
 - GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.		-> OK
 - there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
-- add icons to map (start/stop/pause)																		-> OK
-- add pause time to trackloader and detailpage																-> OK
-- add new featuer: autopause
 
-- set release date to .changes file														
-- compile with translation generation and complete translation to german language		
+Do not forget:
+- set changelog and release date to .changes file														
+- compile with translations and complete translation to german language		
 - set new version number to yaml and spec files											
-- clean project and compile on release														
+- clean project and compile on release for arm and 486												
 
 
 
-ToDo for second next release to openrepos:
 
+
+----- ToDo for second next release to openrepos: 0.9.7 -----
 - Edit workout and save to GPX
 - add buttons to map
 	- center position
-	- switch between center position/center track mode
-- add over/below average speed, average pace and average heart rate to record page
-- introduce configurable lock page (LCD mode, AMOLED mode)
+	- center track
+- add icons for indicating over/below average speed, average pace and average heart rate to record page
+- introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
 - event voice announcements	
-	- GPS online/offline
+	- positioning online/offline
 	- start, stop, pause, resume workout
 	- ...
 - cyclic voice announcements	
@@ -32,7 +38,8 @@ ToDo for second next release to openrepos:
 
 
 
-ToDo on the long run:
+
+----- Other planned features for the far future: -----
 - check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
 - implement workout comparison. Compare current workout with virtual workout in the past
 - AM/PM mode for recordpage
