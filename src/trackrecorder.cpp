@@ -43,6 +43,7 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_posSrc = NULL;
     m_pause = false;
     m_running = false;
+    m_PauseDuration = 0;
 
     // Load autosaved track if left from previous session
     loadAutoSave();
@@ -111,6 +112,14 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
     m_currentPosition = newPos.coordinate();
     emit currentPositionChanged();
 
+    //If recorder is running and is paused
+    if(this->m_running == true && this->m_pause == true)
+    {
+        m_PauseDuration = m_PauseDuration + 1; //add one second (update interval)
+        emit pauseTimeChanged();
+    }
+
+
     //Check if horizontal accuracy is enough
     if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) && (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0))
     {
@@ -131,7 +140,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
         this->iCurrentHeartRate = 9999;
 
         emit pointsChanged();
-        emit timeChanged();
+
         if(m_isEmpty)
         {
             m_isEmpty = false;
@@ -140,10 +149,13 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             emit isEmptyChanged();
         }
 
+
+
         if(m_points.size() > 1 && this->m_pause == false)
         {
             // Next line triggers following compiler warning?
             // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
+
 
             //Calculate average heartrate
             if (m_heartrate.size() > 0)
@@ -217,8 +229,8 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             }
 
             emit valuesChanged();
-
-            emit newTrackPoint(newPos.coordinate());
+            emit timeChanged();
+            emit newTrackPoint(newPos.coordinate()); //This is calling a function on the recordpage
         }        
     }
 }
@@ -391,6 +403,7 @@ void TrackRecorder::clearTrack()
     m_heartrateadded = 0;
     m_distance = 0;
     m_isEmpty = true;
+    m_PauseDuration = 0;
 
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Laufhelden";
@@ -399,6 +412,7 @@ void TrackRecorder::clearTrack()
 
     emit distanceChanged();
     emit timeChanged();
+    emit pauseTimeChanged();
     emit isEmptyChanged();
     emit pointsChanged();
 }
@@ -503,17 +517,41 @@ QString TrackRecorder::startingDateTime() const
         return m_points.at(0).timestamp().toLocalTime().toString();
 }
 
-QString TrackRecorder::time() const {
+QString TrackRecorder::pauseTime() const
+{
     uint hours, minutes, seconds;
 
-    if(m_points.size() < 2) {
+    hours = this->m_PauseDuration / (60*60);
+    minutes = (this->m_PauseDuration - hours*60*60) / 60;
+    seconds = this->m_PauseDuration - hours*60*60 - minutes*60;
+
+    QString timeStr = QString("%1h %2m %3s")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(minutes, 2, 10, QLatin1Char('0'))
+            .arg(seconds, 2, 10, QLatin1Char('0'));
+
+    return timeStr;
+}
+
+QString TrackRecorder::time() const
+{
+    uint hours, minutes, seconds;
+
+    if(m_points.size() < 2)
+    {
         hours = 0;
         minutes = 0;
         seconds = 0;
-    } else {
+    }
+    else
+    {
         QDateTime first = m_points.at(0).timestamp();
         QDateTime last = m_points.at(m_points.size()-1).timestamp();
         qint64 difference = first.secsTo(last);
+
+        //Substract the pause time from the overall time
+        difference = difference - this->m_PauseDuration;
+
         hours = difference / (60*60);
         minutes = (difference - hours*60*60) / 60;
         seconds = difference - hours*60*60 - minutes*60;
@@ -745,8 +783,6 @@ void TrackRecorder::loadAutoSave()
         m_heartrate.append(iHeartrate);
         m_pausearray.append(bPause);
 
-
-
         if(m_points.size() > 1) {
             if(point.coordinate().latitude() < m_minLat) {
                 m_minLat = point.coordinate().latitude();
@@ -769,19 +805,25 @@ void TrackRecorder::loadAutoSave()
 
     qDebug()<<m_autoSavePosition<<"track points loaded";
 
-    emit pointsChanged();
-    emit timeChanged();
-
     if(m_points.size() > 1)
     {
         for(int i=1;i<m_points.size();i++)
         {
+            //Sum up pause duration
+            if (m_pausearray.at(i) == true)
+            {
+                m_PauseDuration = m_PauseDuration + 1; //add one second (update interval)
+            }
+
             m_distance += m_points.at(i-1).coordinate().distanceTo(m_points.at(i).coordinate());
 
             if (m_heartrate.at(i - 1) != 9999 && m_heartrate.at(i - 1) != 0)
                 m_heartrateadded = m_heartrateadded + m_heartrate.at(i - 1);
         }
         emit distanceChanged();
+        emit pointsChanged();
+        emit timeChanged();
+        emit pauseTimeChanged();
     }
 
     if(!m_points.isEmpty()) {

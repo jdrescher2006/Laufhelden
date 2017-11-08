@@ -41,11 +41,26 @@ Item
         return interfaceDBUS.getProperty('PlaybackStatus');
     }
 
+
+    function fncStartPebbleApp()
+    {
+        interfaceDBUS_Pebble.call('LaunchApp','57bca63abb85ed1b7900069e')
+    }
+
+
     DBusInterface
     {
         id: interfaceDBUS
         service: 'org.mpris.MediaPlayer2.jolla-mediaplayer'
         path: '/org/mpris/MediaPlayer2'
         iface: 'org.mpris.MediaPlayer2.Player'
+    }
+
+    DBusInterface
+    {
+        id: interfaceDBUS_Pebble
+        service: 'org.rockwork'
+        path: '/org/rockwork/B0_B4_48_62_63_F7'
+        iface: 'org.rockwork.Pebble'
     }
 }

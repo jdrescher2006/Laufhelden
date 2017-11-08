@@ -182,7 +182,7 @@ Page
             {
                 text: qsTr("Start new workout")
                 onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
-            }
+            }           
         }
 
         header: Column

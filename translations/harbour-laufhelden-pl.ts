@@ -368,6 +368,10 @@
         <translation>Koniec</translation>
     </message>
     <message>
+        <source>keep tapping button: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Accept</source>
         <translation type="unfinished"></translation>
     </message>
@@ -377,10 +381,6 @@
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>keep tapping button: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -433,6 +433,10 @@
     <message>
         <source>Empty</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished">Wstrzymaj</translation>
     </message>
 </context>
 <context>

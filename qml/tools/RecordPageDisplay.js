@@ -27,7 +27,8 @@ var arrayValueTypes =
     { index: 5, fieldID: "6", value: 0, header: qsTr("Speed"), footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
     { index: 6, fieldID: "0", value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
     { index: 7, fieldID: "0", value: 0, header: qsTr("Altitude"), footer: qsTr("m"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 8, fieldID: "1", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0 }
+    { index: 8, fieldID: "1", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0 },
+    { index: 9, fieldID: "0", value: 0, header: qsTr("Pause"), footer: "", footnote: false, footnoteText: "", footnoteValue: 0 }
 ]
 
 function fncAddFieldIDByIndex(iIndex, iFieldID)

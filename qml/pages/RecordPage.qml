@@ -226,6 +226,11 @@ Page
                 RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
                 RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);
             }
+            if (recorder.running)
+            {
+                //This is the pause duration
+                RecordPageDisplay.arrayValueTypes[9].value = recorder.pauseTime;
+            }
 
             //Set values from JS array to dialog text fields
             idTXT_1_Value.text = RecordPageDisplay.fncGetValueTextByFieldID(1);
@@ -1704,16 +1709,19 @@ Page
         id: id_Dialog_ChooseValue
 
 
+
         Dialog
         {
             width: parent.width
+            height: parent.height
             canAccept: true
             acceptDestination: page
-            acceptDestinationAction: PageStackAction.Pop
+            acceptDestinationAction: PageStackAction.Pop            
 
             Column
             {
                 width: parent.width
+                height: parent.height
 
                 DialogHeader
                 {
@@ -1722,13 +1730,19 @@ Page
                     defaultCancelText: qsTr("Cancel")
                 }
 
+
                 SilicaListView
                 {
                     id: listView
                     width: parent.width
-                    height: contentItem.childrenRect.height
+                    //height: contentItem.childrenRect.height
+                    height: parent.height
+
+
                     //header: PageHeader {}
                     model: RecordPageDisplay.arrayValueTypes;
+
+                    VerticalScrollDecorator {}
 
                     delegate: ListItem
                     {

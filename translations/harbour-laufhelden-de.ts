@@ -368,20 +368,20 @@
         <translation>Ende</translation>
     </message>
     <message>
+        <source>keep tapping button: </source>
+        <translation>Weiter drücken: </translation>
+    </message>
+    <message>
         <source>Accept</source>
-        <translation>Übernehmen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation>Neuen Wert aussuchen!</translation>
-    </message>
-    <message>
-        <source>keep tapping button: </source>
-        <translation>Weiter drücken: </translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -433,6 +433,10 @@
     <message>
         <source>Empty</source>
         <translation>Leeres Feld</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished">Pause</translation>
     </message>
 </context>
 <context>

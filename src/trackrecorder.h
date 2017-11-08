@@ -35,7 +35,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(qreal paceaverage READ paceaverage NOTIFY paceaverageChanged)
     Q_PROPERTY(qreal heartrateaverage READ heartrateaverage NOTIFY heartrateaverageChanged)
     Q_PROPERTY(QString paceaverageStr READ paceaverageStr NOTIFY paceaverageChanged)
-    Q_PROPERTY(QString time READ time NOTIFY timeChanged)
+    Q_PROPERTY(QString time READ time NOTIFY timeChanged)    
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY isEmptyChanged)
     Q_PROPERTY(QGeoCoordinate currentPosition READ currentPosition NOTIFY currentPositionChanged)
     Q_PROPERTY(int updateInterval READ updateInterval WRITE setUpdateInterval NOTIFY updateIntervalChanged)
@@ -44,6 +44,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(double altitude READ altitude NOTIFY valuesChanged)
     Q_PROPERTY(bool pause READ pause WRITE setPause NOTIFY pauseChanged)
     Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
+    Q_PROPERTY(QString pauseTime READ pauseTime NOTIFY pauseTimeChanged)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);
@@ -64,7 +65,8 @@ public:
     qreal paceaverage() const;
     qreal heartrateaverage() const;
     QString paceaverageStr() const;
-    QString time() const;   
+    QString time() const;
+    QString pauseTime() const;
     bool isEmpty() const;
     QGeoCoordinate currentPosition() const;
     int updateInterval() const;
@@ -101,6 +103,7 @@ signals:
     void newTrackPoint(QGeoCoordinate coordinate);
     void pauseChanged();
     void runningChanged();
+    void pauseTimeChanged();
 
 public slots:
     void positionUpdated(const QGeoPositionInfo &newPos);
@@ -135,6 +138,7 @@ private:
     double m_altitude;
     bool m_pause;
     bool m_running;
+    quint32 m_PauseDuration;
     };
 
 #endif // TRACKRECORDER_H

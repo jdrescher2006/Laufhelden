@@ -5,7 +5,7 @@
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation >Om Laufhelden</translation>
+        <translation>Om Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
@@ -372,16 +372,16 @@
         <translation>fortsätt snabbtrycka på knappen: </translation>
     </message>
     <message>
-        <source>Select value!</source>
-        <translation>Välj värde!</translation>
-    </message>
-    <message>
         <source>Accept</source>
-        <translation>Acceptera</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Avbryt</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select value!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -433,6 +433,10 @@
     <message>
         <source>Empty</source>
         <translation>Tomt</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished">Pausa</translation>
     </message>
 </context>
 <context>
