@@ -5,51 +5,51 @@
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation type="unfinished"></translation>
+        <translation >Om Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Spårning av sportaktiviteter för Sailfish OS</translation>
     </message>
     <message>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyskland</translation>
     </message>
     <message>
         <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Datum: </translation>
     </message>
     <message>
         <source>License: GPLv3</source>
-        <translation type="unfinished"></translation>
+        <translation>Licens: GPLv3</translation>
     </message>
     <message>
         <source>Source code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Källkod:</translation>
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tack för översättning:</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanska</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="unfinished"></translation>
+        <translation>Polska</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation>Svenska</translation>
     </message>
     <message>
         <source>Feedback, bugs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Återkoppling och fel:</translation>
     </message>
 </context>
 <context>
@@ -130,11 +130,11 @@
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Beskrivning</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Starttid:</translation>
     </message>
     <message>
         <source>Duration:</source>
@@ -142,23 +142,23 @@
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Distans:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hastighet max/⌀:</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo ⌀:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjärtfrekvens min/max/⌀:</translation>
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Paus antal/varaktighet</translation>
     </message>
 </context>
 <context>
