@@ -9,6 +9,7 @@ New features:
 Bugfixes:
 - GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.		-> OK
 - there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
+- if an autosave is loaded, it is on stop and can not be resumed further
 
 Do not forget:
 - set changelog and release date to .changes file														
@@ -35,6 +36,7 @@ Do not forget:
 	- every 0,5-10 km
 	- maximum three parameters
 	- distance, speed, pace, HR
+- add leading 0 to values on recordpage
 
 
 
