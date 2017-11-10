@@ -315,8 +315,10 @@ void TrackRecorder::exportGpx(QString name, QString desc)
 
     for(int i=0 ; i < m_points.size(); i++)
     {
+        qDebug()<<"i: "<<QString::number(i);
+
         //If we have the first point or the start of a pause, we have to start a new track segment
-        if (i == 0 || (m_pausearray.at(i) == true && m_pausearray.at(i-1) == false))
+        if (i == 0 || (i > 0 && m_pausearray.at(i) == false && m_pausearray.at(i-1) == true))
         {
             xml.writeStartElement("trkseg");
         }
@@ -370,7 +372,7 @@ void TrackRecorder::exportGpx(QString name, QString desc)
         }
 
         //If we have the last point or the end of a pause, we need to end the current track segment
-        if (i == (m_points.size() - 1) || (m_pausearray.at(i) == false && m_pausearray.at(i-1) == true))
+        if (i == (m_points.size() - 1) || (i < (m_points.size() - 1) && m_pausearray.at(i) == false && m_pausearray.at(i+1) == true))
         {
             xml.writeEndElement(); // trkseg
         }
@@ -397,13 +399,26 @@ void TrackRecorder::exportGpx(QString name, QString desc)
 
 void TrackRecorder::clearTrack()
 {
+    //Clear all variables
+    m_distance = 0.0;
+    m_speed = 0.0;
+    m_pace = 0.0;
+    m_speedaverage = 0.0;
+    m_paceaverage = 0.0;
+    m_heartrateaverage = 0.0;
+    m_isEmpty = true;
+    m_autoSavePosition = 0;
+    iCurrentHeartRate = 0;
+    m_heartrateadded = 0;
+    m_altitude = 0;
+    m_pause = false;
+    m_running = false;
+    m_PauseDuration = 0;
+    //Clear all arrays
     m_points.clear();
     m_heartrate.clear();
     m_pausearray.clear();
-    m_heartrateadded = 0;
-    m_distance = 0;
-    m_isEmpty = true;
-    m_PauseDuration = 0;
+
 
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Laufhelden";
@@ -587,10 +602,26 @@ void TrackRecorder::setUpdateInterval(int updateInterval) {
     emit updateIntervalChanged();
 }
 
-QGeoCoordinate TrackRecorder::trackPointAt(int index) {
-    if(index < m_points.length()) {
+QGeoCoordinate TrackRecorder::pausePointAt(int index)
+{
+    if(index < m_pausearray.length())
+    {
+        return m_pausearray.at(index);
+    }
+    else
+    {
+        return false;
+    }
+}
+
+QGeoCoordinate TrackRecorder::trackPointAt(int index)
+{
+    if(index < m_points.length())
+    {
         return m_points.at(index).coordinate();
-    } else {
+    }
+    else
+    {
         return QGeoCoordinate();
     }
 }
@@ -824,10 +855,14 @@ void TrackRecorder::loadAutoSave()
         emit pointsChanged();
         emit timeChanged();
         emit pauseTimeChanged();
+
+        this->m_pause = true;
+        this->m_running = true;
     }
 
-    if(!m_points.isEmpty()) {
-        m_isEmpty = false;
+    if(!m_points.isEmpty())
+    {
+        this->m_isEmpty = false;
         emit isEmptyChanged();
     }
 }

@@ -81,6 +81,7 @@ public:
     void setRunning(bool running);
 
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
+    Q_INVOKABLE bool pausePointAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);

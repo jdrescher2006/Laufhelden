@@ -471,6 +471,7 @@ Page
         console.log("newTrackPoint");               
 
         trackLine.addCoordinate(coordinate);
+
         if(!map.gesture.enabled)
         {
             // Set viewport only when not browsing

@@ -566,6 +566,10 @@
         <source>Inline skating</source>
         <translation>Inlineskating</translation>
     </message>
+    <message>
+        <source>Skiing</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ThresholdSettingsPage</name>

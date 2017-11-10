@@ -42,9 +42,13 @@ Item
     }
 
 
-    function fncStartPebbleApp()
+    function fncStartPebbleSportApp()
     {
-        interfaceDBUS_Pebble.call('LaunchApp','57bca63abb85ed1b7900069e')
+        interfaceDBUS_Pebble.call('LaunchApp','4dab81a6-d2fc-458a-992c-7a1f3b96a970');
+    }
+    function fncStartPebbleSportApp()
+    {
+        interfaceDBUS_Pebble.call('CloseApp','4dab81a6-d2fc-458a-992c-7a1f3b96a970');
     }
 
 

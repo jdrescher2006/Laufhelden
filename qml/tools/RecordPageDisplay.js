@@ -242,7 +242,20 @@ function fncConvertSaveStringToArray(sSaveString, iWorkoutType, iWorkoutTypesCou
 
     var arValueTypesByWorkout = sSaveString.split("|");
 
-    if (arValueTypesByWorkout.length !== iWorkoutTypesCount) //This is the amount of known workout types, currently 5
+    //If the app knows more workout types than the save string, we have to add default sets
+    while(iWorkoutTypesCount > arValueTypesByWorkout.length)
+    {
+        arValueTypesByWorkout.push("5,6,1,2,7,8");
+    }
+
+    //If the app knows less workout types than the save string, we have to kill them
+    while(iWorkoutTypesCount < arValueTypesByWorkout.length)
+    {
+        arValueTypesByWorkout.pop();
+    }
+
+    //Now the amount of workout types in the app and the save string should match!
+    if (arValueTypesByWorkout.length !== iWorkoutTypesCount)
         return;
 
     //Pick the one for the selected workout
@@ -284,9 +297,22 @@ function fncConvertArrayToSaveString(sSaveString, iWorkoutType, iWorkoutTypesCou
     var sReturnString = "";
     var sWorkoutString = "";
 
-    var arValueTypesByWorkout = sSaveString.split("|");
+    var arValueTypesByWorkout = sSaveString.split("|");    
 
-    if (arValueTypesByWorkout.length !== iWorkoutTypesCount) //This is the amount of known workout types, currently 5
+    //If the app knows more workout types than the save string, we have to add default sets
+    while(iWorkoutTypesCount > arValueTypesByWorkout.length)
+    {
+        arValueTypesByWorkout.push("5,6,1,2,7,8");
+    }
+
+    //If the app knows less workout types than the save string, we have to kill them
+    while(iWorkoutTypesCount < arValueTypesByWorkout.length)
+    {
+        arValueTypesByWorkout.pop();
+    }
+
+    //Now the amount of workout types in the app and the save string should match!
+    if (arValueTypesByWorkout.length !== iWorkoutTypesCount)
         return;
 
     //Go through value fields
