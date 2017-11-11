@@ -49,18 +49,18 @@
     </message>
     <message>
         <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fecha:</translation>
     </message>
 </context>
 <context>
     <name>BTConnectPage</name>
     <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Escanear dispositivos Bluetooth</translation>
+        <translation>Dispositivos Bluetooth</translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Comenzar a escanear...</translation>
+        <translation>Escanear...</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Dispositivo BT actuales</translation>
+        <translation>Dispositivo Bluetooth actuales</translation>
     </message>
     <message>
         <source>None</source>
@@ -154,11 +154,11 @@
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Paso ⌀:</translation>
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de pausa/duración</translation>
     </message>
 </context>
 <context>
@@ -188,7 +188,7 @@
     </message>
     <message>
         <source>No earlier workouts</source>
-        <translation>No hay ejercicios anteriores</translation>
+        <translation>No hay ejercicios</translation>
     </message>
     <message>
         <source>Workouts: </source>
@@ -231,7 +231,7 @@
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation>Mostrar solo 4 campos de valores (en lugar de 6) cuando se muestra el mapa</translation>
+        <translation>Muestra solo 4 campos de valores (en lugar de 6) en el mapa</translation>
     </message>
     <message>
         <source>Map center mode</source>
@@ -325,7 +325,7 @@
     </message>
     <message>
         <source>GPS accuracy:</source>
-        <translation>Precisión del GPS:</translation>
+        <translation>Precisión GPS:</translation>
     </message>
     <message>
         <source>No position</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>End</source>
-        <translation>fin</translation>
+        <translation>Fin</translation>
     </message>
     <message>
         <source>keep tapping button: </source>
@@ -373,15 +373,15 @@
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar un valor!</translation>
     </message>
 </context>
 <context>
@@ -436,7 +436,7 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Pausa</translation>
+        <translation>Pausa</translation>
     </message>
 </context>
 <context>
@@ -489,7 +489,7 @@
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>Mantener página de registro en modo vertical.</translation>
+        <translation>Mantiene  página de registro en modo vertical.</translation>
     </message>
     <message>
         <source>Write log file</source>
@@ -517,7 +517,7 @@
     </message>
     <message>
         <source>Test</source>
-        <translation>Prueba</translation>
+        <translation>Probar</translation>
     </message>
     <message>
         <source>Show grid lines</source>
@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Show grid lines on record page.</source>
-        <translation>Mostrar líneas de cuadrícula en la página de registro.</translation>
+        <translation>Muestra líneas de cuadrícula en página de registro.</translation>
     </message>
     <message>
         <source>Enable autosave</source>
@@ -541,7 +541,7 @@
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation>Cambiar pantalla al modo nocturno si la luz ambiental es baja.</translation>
+        <translation>Cambia la pantalla modo nocturno si la luz ambiental es baja.</translation>
     </message>
 </context>
 <context>
@@ -568,7 +568,7 @@
     </message>
     <message>
         <source>Skiing</source>
-        <translation type="unfinished"></translation>
+        <translation>Esquiar</translation>
     </message>
 </context>
 <context>
