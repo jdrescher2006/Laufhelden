@@ -22,12 +22,15 @@ import QtLocation 5.0
 
 import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
+import "../tools/SportsTracker.js" as ST
 
 Page {
     id: detailPage
     allowedOrientations: Orientation.Portrait
     property string filename
     property string name
+    property int stSharing: 0
+    property string stComment: ""
 
     function setMapViewport() {
         trackMap.zoomLevel = Math.min(trackMap.maximumZoomLevel,
@@ -38,6 +41,64 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Active) {
             trackLoader.filename = filename;
+        }
+    }
+
+    function uploadToSportsTracker(sharing, comment){
+        stComment = comment;
+        stSharing = sharing;
+        if (ST.SESSIONKEY == ""){
+            displayNotification("Logging in...","info",25000);
+            ST.loginSportsTracker(sendGPX,
+                                  displayNotification,
+                                  settings.stUsername,
+                                  settings.stPassword);
+        }
+        else{
+            sendGPX();
+        }
+    }
+
+    function sendGPX(){
+        displayNotification("Reading GPX file...","info", 25000);
+        var gpx = trackLoader.readGpx();
+        displayNotification("Uploading...", "info", 25000);
+        ST.importGPX(gpx, displayNotification, stSharing, stComment);
+    }
+
+    function displayNotification(text, type, delay){
+        console.log(text);
+        load_text.text = text;
+        if (type === "info"){
+            ntimer.interval = delay;
+            load_text.color = Theme.primaryColor;
+        }
+        else if (type === "success"){
+            ntimer.interval = delay;
+            load_text.color = Theme.primaryColor;
+        }
+        else if (type === "error"){
+            ntimer.interval = delay;
+            load_text.color = Theme.secondaryHighlightColor;
+        }
+
+        ntimer.restart();
+        ntimer.start();
+    }
+
+    Timer{
+        id:ntimer;
+        running: false;
+        interval: 2000;
+        repeat: false;
+        onTriggered: {
+            detail_busy.running = false;
+            detail_flick.visible = true;
+            trackMap.opacity = 1.0
+            detail_busy.visible = false;
+            load_text.visible = false;
+            ntimer.restart();
+            ntimer.start();
         }
     }
 
@@ -141,19 +202,42 @@ Page {
         onLoadedChanged:
         {
             gridContainer.opacity = 1.0
-            trackMap.opacity = 1.0                       
+            trackMap.opacity = 1.0
         }       
-    }    
+    }
 
     BusyIndicator
     {
+        id: detail_busy
+        visible: false
+        anchors.centerIn: detailPage
+        running: true
+        size: BusyIndicatorSize.Large
+    }
+    Label {
+         id:load_text
+         width: parent.width
+         anchors.top: detail_busy.bottom
+         anchors.topMargin: 25;
+         horizontalAlignment: Label.AlignHCenter
+         visible: false
+         text: "loading..."
+         font.pixelSize: Theme.fontSizeMedium
+    }
+
+    BusyIndicator
+    {
+        visible: true
         anchors.centerIn: detailPage
         running: !trackLoader.loaded
         size: BusyIndicatorSize.Large
+
     }
 
     SilicaFlickable
     {
+        id:detail_flick
+        visible: true;
         anchors
         {
             top: parent.top
@@ -173,6 +257,30 @@ Page {
                 text: qsTr("Diagrams")
                 onClicked: pageStack.push(Qt.resolvedUrl("DiagramViewPage.qml"))
                 visible: true
+            }
+            MenuItem
+            {
+                text: qsTr("Send to Sports-Tracker.com")
+                onClicked: {
+
+                    var dialog = pageStack.push(Qt.resolvedUrl("SportsTrackerUploadPage.qml"));//
+                                            //,{"name": header.title})
+                    dialog.accepted.connect(function() {
+                        detail_busy.running = true;
+                        detail_busy.visible = true;
+                        load_text.visible = true;
+                        detail_flick.visible = false;
+                        trackMap.opacity = 0.0;
+
+                        console.log("accepted");
+                        uploadToSportsTracker(dialog.sharing*1, dialog.stcomment); //TODO ENABLE ME AFTER TESTING
+                    });
+                    dialog.rejected.connect(function() {
+                        console.log("rejected");
+
+                    });
+
+                 }
             }
         }
 

@@ -46,6 +46,11 @@ Page
             page: "BTConnectPage.qml"
             title: qsTr("Heart rate device")
         }
+        ListElement
+        {
+            page: "SportsTrackerSettingsPage.qml"
+            title: qsTr("Sports-Tracker.com")
+        }
     }
     SilicaListView
     {

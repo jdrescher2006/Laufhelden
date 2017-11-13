@@ -87,6 +87,7 @@ public:
     uint heartRateMin();
     uint heartRateMax();
     bool loaded();
+    Q_INVOKABLE QString readGpx();
     Q_INVOKABLE int trackPointCount();
     Q_INVOKABLE int pausePositionsCount();
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
