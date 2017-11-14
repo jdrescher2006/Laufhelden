@@ -160,6 +160,10 @@
         <source>Pause number/duration:</source>
         <translation>Pausen/Pausendauer:</translation>
     </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
@@ -480,6 +484,10 @@
         <source>Map settings</source>
         <translation>Karten Einstellungen</translation>
     </message>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -568,6 +576,88 @@
     </message>
     <message>
         <source>Skiing</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerSettingsPage</name>
+    <message>
+        <source>Sports-Tracker.com settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto upload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send workout automatically to Sports-Tracker.com after exercise</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Default Sharing option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerUploadPage</name>
+    <message>
+        <source>Give workout description to Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished">Beschreibung</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Public</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

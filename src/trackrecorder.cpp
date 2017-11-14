@@ -121,7 +121,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 
 
     //Check if horizontal accuracy is enough
-    if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) && (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0))
+    if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) == false || (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0))
     {
         return;
     }
@@ -230,7 +230,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 
             emit valuesChanged();
             emit timeChanged();
-            emit newTrackPoint(newPos.coordinate()); //This is calling a function on the recordpage
+            emit newTrackPoint(newPos.coordinate(), m_points.size()-1); //This is calling a function on the recordpage
         }        
     }
 }
@@ -761,6 +761,8 @@ void TrackRecorder::loadAutoSave()
     }
     QTextStream stream(&file);
 
+    int iPointIndex = 0;
+
     while(!stream.atEnd())
     {
         QGeoPositionInfo point;
@@ -814,7 +816,10 @@ void TrackRecorder::loadAutoSave()
         m_heartrate.append(iHeartrate);
         m_pausearray.append(bPause);
 
-        if(m_points.size() > 1) {
+        iPointIndex++;
+
+        if(m_points.size() > 1)
+        {
             if(point.coordinate().latitude() < m_minLat) {
                 m_minLat = point.coordinate().latitude();
             } else if(point.coordinate().latitude() > m_maxLat) {
@@ -825,11 +830,13 @@ void TrackRecorder::loadAutoSave()
             } else if(point.coordinate().longitude() > m_maxLon) {
                 m_maxLon = point.coordinate().longitude();
             }
-        } else {
+        }
+        else
+        {
             m_minLat = m_maxLat = point.coordinate().latitude();
             m_minLon = m_maxLon = point.coordinate().longitude();
         }
-        emit newTrackPoint(point.coordinate());
+        emit newTrackPoint(point.coordinate(), iPointIndex);
     }
     m_autoSavePosition = m_points.size();
     file.close();

@@ -33,6 +33,8 @@ Page
     //If pause and we have no data and the map is not big, going back is possible
     backNavigation: (!recorder.running && recorder.isEmpty && !map.gesture.enabled)
 
+    property var tMapTrackObject: null
+
     property bool bShowMap: settings.showMapRecordPage  
 
     property bool bLockFirstPageLoad: true
@@ -78,14 +80,23 @@ Page
             recorder.vStartGPS();
 
             recorder.newTrackPoint.connect(newTrackPoint);
-            map.addMapItem(positionMarker);
-            console.log("RecordPage: Plotting track line");
-            for(var i=0;i<recorder.points;i++)
+            map.addMapItem(positionMarker);            
+
+            console.log("Is track empty: " + recorder.isEmpty.toString())
+
+            //Check if recorder is empty. If this is not the case, there is data from an autoload.
+            if (recorder.isEmpty === false)
             {
-                trackLine.addCoordinate(recorder.trackPointAt(i));
+                //Now we have to view this data
+                for(var i=0;i<recorder.points;i++)
+                {
+                    fncSetMapPoint(recorder.trackPointAt(i), i);
+                }
+
+                //We need to set parameters to the dialog
+                RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);
             }
-            console.log("RecordPage: Appending track line to map");
-            map.addMapItem(trackLine);
+
             console.log("RecordPage: Setting map viewport");
             setMapViewport();
 
@@ -381,7 +392,6 @@ Page
             console.log("Autosaving workout");
             recorder.exportGpx(SharedResources.arrayLookupWorkoutTableByName[settings.workoutType].labeltext + " - " + recorder.startingDateTime + " - " + (recorder.distance/1000).toFixed(1) + "km", "");
             recorder.clearTrack();  // TODO: Make sure save was successful?
-            trackLine.path = [];
 
             //Mainpage must load history data to get this new workout in the list
             bLoadHistoryData = true;
@@ -397,7 +407,6 @@ Page
                 console.log("Saving workout");
                 recorder.exportGpx(dialog.name, dialog.description);
                 recorder.clearTrack();  // TODO: Make sure save was successful?
-                trackLine.path = [];
 
                 //Mainpage must load history data to get this new workout in the list
                 bLoadHistoryData = true;
@@ -409,7 +418,6 @@ Page
             {
                 console.log("Cancel workout");
                 recorder.clearTrack();
-                trackLine.path = [];
 
                 //We must return here to the mainpage.
                 pageStack.pop(vMainPageObject, PageStackAction.Immediate);
@@ -465,18 +473,80 @@ Page
         }
     }
 
-    function newTrackPoint(coordinate)
+    function fncSetMapPoint(coordinate, iPointIndex)
+    {
+        //console.log("Index: " + iPointIndex.toString());
+
+        var componentTrack;
+
+        //Recognize the start of a workout
+        if (idItemTrackStart.visible === false && recorder.running && !recorder.isEmpty)
+        {
+            //Set start icon to map
+            idItemTrackStart.coordinate = coordinate;
+            idItemTrackStart.visible = true;
+
+            //We have to create a track line here
+            componentTrack = Qt.createComponent("../tools/MapPolyLine.qml");
+            tMapTrackObject = componentTrack.createObject(map);
+            //Add track to map
+            map.addMapItem(tMapTrackObject);
+        }
+
+        //Recognize the start of a pause
+        if (idItemTrackStart.visible === true && recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === false && recorder.pausePointAt(iPointIndex) === true)
+        {
+            //Draw the pause start icon
+            var componentStart = Qt.createComponent("../tools/MapPauseItem.qml");
+            var pauseItemStart = componentStart.createObject(map);
+            pauseItemStart.coordinate = coordinate;
+            pauseItemStart.iSize = (page.orientation == Orientation.Portrait || page.orientation == Orientation.PortraitInverted) ? page.width / 14 : page.height / 14
+            pauseItemStart.bPauseStart = true;
+
+            //put pause items to the map
+            map.addMapItem(pauseItemStart);
+
+            //End the track line here.
+            tMapTrackObject = null;            
+        }
+
+        //Recognize the end of a pause
+        if (idItemTrackStart.visible === true && recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === true && recorder.pausePointAt(iPointIndex) === false)
+        {
+            //Draw the pause end icon
+            var componentEnd = Qt.createComponent("../tools/MapPauseItem.qml");
+            var pauseItemEnd = componentEnd.createObject(map);
+            pauseItemEnd.coordinate = coordinate;
+            pauseItemEnd.iSize = (page.orientation == Orientation.Portrait || page.orientation == Orientation.PortraitInverted) ? page.width / 14 : page.height / 14
+            pauseItemEnd.bPauseStart = false;            
+
+            //put pause items to the map
+            map.addMapItem(pauseItemEnd);
+
+            //We have to create a track line here
+            componentTrack = Qt.createComponent("../tools/MapPolyLine.qml");
+            tMapTrackObject = componentTrack.createObject(map);
+            //Add track to map
+            map.addMapItem(tMapTrackObject);           
+        }
+
+        //If the current point is not a pause point, add it to the current track
+        if (recorder.running && !recorder.isEmpty && recorder.pausePointAt(iPointIndex) === false && tMapTrackObject !== null)
+            tMapTrackObject.addCoordinate(coordinate);
+    }
+
+    function newTrackPoint(coordinate, iPointIndex)
     {
         //console.log("Position: " + recorder.currentPosition);
         console.log("newTrackPoint");               
-
-        trackLine.addCoordinate(coordinate);
 
         if(!map.gesture.enabled)
         {
             // Set viewport only when not browsing
             setMapViewport();
         }
+
+        fncSetMapPoint(coordinate, iPointIndex);
 
         //Thresholds processing needs to be disabled if recording is paused
         if (recorder.pause)
@@ -603,16 +673,7 @@ Page
         {
             NumberAnimation { duration: 200 }
         }*/
-    }
-
-    MapPolyline
-    {
-        id: trackLine
-        visible: path.length > 1
-        line.color: "red"
-        line.width: 5
-        smooth: true
-    }
+    }   
 
     SilicaFlickable
     {
@@ -1665,7 +1726,8 @@ Page
             NumberAnimation { duration: 200 }
         }       
 
-        MapQuickItem {
+        MapQuickItem
+        {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             sourceItem: Rectangle {
@@ -1678,6 +1740,24 @@ Page
                     font.pixelSize: Theme.fontSizeTiny
                     color: "black"
                     text: "(C) OpenStreetMap contributors"
+                }
+            }
+        }
+        MapQuickItem
+        {
+            id: idItemTrackStart
+            anchorPoint.x: sourceItem.width/2
+            anchorPoint.y: sourceItem.height/2
+            visible: false
+            sourceItem: Item
+            {
+                height: (page.orientation == Orientation.Portrait || page.orientation == Orientation.PortraitInverted) ? page.width / 14 : page.height / 14
+                width: (page.orientation == Orientation.Portrait || page.orientation == Orientation.PortraitInverted) ? page.width / 14 : page.height / 14
+                Image
+                {
+                    width: parent.width
+                    height: parent.height
+                    source: "../img/map_play.png"
                 }
             }
         }
@@ -1713,78 +1793,74 @@ Page
 
         Dialog
         {
+            id: diagDialog
             width: parent.width
             height: parent.height
             canAccept: true
             acceptDestination: page
             acceptDestinationAction: PageStackAction.Pop            
 
-            Column
+            DialogHeader
             {
-                width: parent.width
-                height: parent.height
+                id: diagTitle
+                title: qsTr("Select value!")
+                defaultAcceptText: qsTr("Accept")
+                defaultCancelText: qsTr("Cancel")
+            }
 
-                DialogHeader
+            SilicaListView
+            {
+                id: listView
+                anchors.top: diagTitle.bottom
+                anchors.bottom: diagDialog.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                //header: PageHeader {}
+                model: RecordPageDisplay.arrayValueTypes;
+
+                //TODO: scrappy thing does not work, no idea :-((
+                VerticalScrollDecorator {}
+
+                delegate: ListItem
                 {
-                    title: qsTr("Select value!")
-                    defaultAcceptText: qsTr("Accept")
-                    defaultCancelText: qsTr("Cancel")
-                }
-
-
-                SilicaListView
-                {
-                    id: listView
-                    width: parent.width
-                    //height: contentItem.childrenRect.height
-                    height: parent.height
-
-
-                    //header: PageHeader {}
-                    model: RecordPageDisplay.arrayValueTypes;
-
-                    VerticalScrollDecorator {}
-
-                    delegate: ListItem
+                    width: listView.width
+                    Label
                     {
-                        width: listView.width                        
-                        Label
-                        {
-                            id: idLBLValueName
-                            text: modelData.header
-                            //color: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index) ? Theme.highlightColor : Theme.primaryColor
-                            anchors.verticalCenter: parent.verticalCenter
-                            x: Theme.paddingLarge
-                        }
-                        GlassItem //this is the item for the old value field
-                        {
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: (iSelectedValue === -1 || iSelectedValue === modelData.index) ? "green" : "grey"
-                            falloffRadius: 0.15
-                            radius: 1.0
-                            cache: false
-                            visible: (iSelectedValue !== modelData.index && (RecordPageDisplay.fncGetIndexByFieldID(iValueFieldPressed) === modelData.index))
-                        }
-                        GlassItem //this is the item for the currently selected value field
-                        {
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: "green"
-                            falloffRadius: 0.15
-                            radius: 1.0
-                            cache: false
-                            visible: (iSelectedValue !== -1 && iSelectedValue === modelData.index)
-                        }                        
-
-                        onClicked:
-                        {
-                            console.log("Clicked index: " + modelData.index.toString());
-                            iSelectedValue = modelData.index;
-                        }
+                        id: idLBLValueName
+                        text: modelData.header
+                        //color: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index) ? Theme.highlightColor : Theme.primaryColor
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: Theme.paddingLarge
+                    }
+                    GlassItem //this is the item for the old value field
+                    {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: (iSelectedValue === -1 || iSelectedValue === modelData.index) ? "green" : "grey"
+                        falloffRadius: 0.15
+                        radius: 1.0
+                        cache: false
+                        visible: (iSelectedValue !== modelData.index && (RecordPageDisplay.fncGetIndexByFieldID(iValueFieldPressed) === modelData.index))
+                    }
+                    GlassItem //this is the item for the currently selected value field
+                    {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "green"
+                        falloffRadius: 0.15
+                        radius: 1.0
+                        cache: false
+                        visible: (iSelectedValue !== -1 && iSelectedValue === modelData.index)
                     }
 
+                    onClicked:
+                    {
+                        console.log("Clicked index: " + modelData.index.toString());
+                        iSelectedValue = modelData.index;
+                    }
                 }
+
             }
         }
     }

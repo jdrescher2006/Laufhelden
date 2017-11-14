@@ -2,16 +2,20 @@
 
 New features:
 - add icons to map in trackloader (start/stop/pause)														-> OK
-- add icons to map in trackrecorder (start/stop/pause)														
+- add icons to map in trackrecorder (start/stop/pause)														-> OK													
 - add pause duration to detailpage																			-> OK
 - add new feature: autopause
 - add new parameter for record page: pause duration															-> OK
 - add skiing to workout types																				-> OK
 
 Bugfixes:
+- GPX from meerun is not imported correctly
+- While recording and leaving and returning to recordpage, track and track icons are screwed
 - GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.		-> OK
 - there is a bug with pause function. Time is runnning further. Must be debugged in live mode.				-> OK
 - if an autosave is loaded, it is on stop and can not be resumed further									-> OK
+- repair verticalscrolldecorator in change value dialog on recordage										-> OK
+- write values to screen after restoring autosave															-> OK
 
 Do not forget:
 - set changelog and release date to .changes file														
@@ -91,6 +95,7 @@ Do not forget:
 
 
 Bugs:
+- strange bug in recordpage when opening the values select menu: [W] unknown:38 - file:///usr/lib/qt5/qml/Sailfish/Silica/private/Util.js:38: TypeError: Cannot read property 'parent' of null
 - there are strange files in the ~/Laufhelden folder, e.g. "running-Di. Nov. 7 16:00:36 2017-7.5km.gpx.wZ8116" or "running-Mi. Nov. 8 15:46:48 2017-0.5km.gpx.M27425"
 - sometimes there is a view problem on mainpage after a completed workout.
 - if HRM is active and record page is left and then opened again, we get a BT error.

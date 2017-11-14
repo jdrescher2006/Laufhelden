@@ -101,7 +101,7 @@ signals:
     void currentPositionChanged();
     void updateIntervalChanged();
     void valuesChanged();
-    void newTrackPoint(QGeoCoordinate coordinate);
+    void newTrackPoint(QGeoCoordinate coordinate, int iPointIndex);
     void pauseChanged();
     void runningChanged();
     void pauseTimeChanged();

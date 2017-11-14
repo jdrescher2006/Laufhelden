@@ -39,18 +39,7 @@ Item
     function getPlayerStatus()
     {
         return interfaceDBUS.getProperty('PlaybackStatus');
-    }
-
-
-    function fncStartPebbleSportApp()
-    {
-        interfaceDBUS_Pebble.call('LaunchApp','4dab81a6-d2fc-458a-992c-7a1f3b96a970');
-    }
-    /*function fncStartPebbleSportApp()
-    {
-        interfaceDBUS_Pebble.call('CloseApp','4dab81a6-d2fc-458a-992c-7a1f3b96a970');
-    }*/
-
+    }   
 
     DBusInterface
     {
@@ -58,13 +47,5 @@ Item
         service: 'org.mpris.MediaPlayer2.jolla-mediaplayer'
         path: '/org/mpris/MediaPlayer2'
         iface: 'org.mpris.MediaPlayer2.Player'
-    }
-
-    DBusInterface
-    {
-        id: interfaceDBUS_Pebble
-        service: 'org.rockwork'
-        path: '/org/rockwork/B0_B4_48_62_63_F7'
-        iface: 'org.rockwork.Pebble'
     }
 }
