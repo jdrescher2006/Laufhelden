@@ -149,7 +149,22 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             emit isEmptyChanged();
         }
 
+        if(newPos.coordinate().latitude() < m_minLat)
+        {
+            m_minLat = newPos.coordinate().latitude();
+        } else if(newPos.coordinate().latitude() > m_maxLat)
+        {
+            m_maxLat = newPos.coordinate().latitude();
+        }
+        if(newPos.coordinate().longitude() < m_minLon)
+        {
+            m_minLon = newPos.coordinate().longitude();
+        } else if(newPos.coordinate().longitude() > m_maxLon)
+        {
+            m_maxLon = newPos.coordinate().longitude();
+        }
 
+        emit newTrackPoint(newPos.coordinate(), m_points.size()-1);
 
         if(m_points.size() > 1 && this->m_pause == false)
         {
@@ -213,24 +228,9 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             //Get altitude
             m_altitude = newPos.coordinate().altitude();
 
-            if(newPos.coordinate().latitude() < m_minLat)
-            {
-                m_minLat = newPos.coordinate().latitude();
-            } else if(newPos.coordinate().latitude() > m_maxLat)
-            {
-                m_maxLat = newPos.coordinate().latitude();
-            }
-            if(newPos.coordinate().longitude() < m_minLon)
-            {
-                m_minLon = newPos.coordinate().longitude();
-            } else if(newPos.coordinate().longitude() > m_maxLon)
-            {
-                m_maxLon = newPos.coordinate().longitude();
-            }
 
             emit valuesChanged();
-            emit timeChanged();
-            emit newTrackPoint(newPos.coordinate(), m_points.size()-1); //This is calling a function on the recordpage
+            emit timeChanged();            
         }        
     }
 }

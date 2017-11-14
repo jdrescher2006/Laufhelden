@@ -4,7 +4,6 @@ New features:
 - add icons to map in trackloader (start/stop/pause)														-> OK
 - add icons to map in trackrecorder (start/stop/pause)														-> OK													
 - add pause duration to detailpage																			-> OK
-- add new feature: autopause
 - add new parameter for record page: pause duration															-> OK
 - add skiing to workout types																				-> OK
 
@@ -28,6 +27,8 @@ Do not forget:
 
 
 ----- ToDo for second next release to openrepos: 0.9.7 -----
+- PEBBLE!!!
+- add new feature: autopause
 - Edit workout and save to GPX
 - add buttons to map
 	- center position
