@@ -338,10 +338,10 @@ ApplicationWindow
         id: screenblank
     }
 
-    MediaPlayerControl
+    /*MediaPlayerControl
     {
        id: mediaPlayerControl
-    }
+    }*/
 
     Media.SoundEffect
     {

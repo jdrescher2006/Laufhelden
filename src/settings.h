@@ -42,6 +42,11 @@ class Settings : public QObject
     Q_PROPERTY(int mapMode READ mapMode WRITE setMapMode)
     Q_PROPERTY(bool mapShowOnly4Fields READ mapShowOnly4Fields WRITE setmapShowOnly4Fields)
 
+    //Sports-Tracker.com spesific Settings
+    Q_PROPERTY(QString stUsername READ stUsername WRITE setStUsername)
+    Q_PROPERTY(QString stPassword READ stPassword WRITE setStPassword)
+    Q_PROPERTY(bool stAutoUpload READ stAutoUpload WRITE setStAutoUpload)
+    Q_PROPERTY(int stSharing READ stSharing WRITE setStSharing)
 
 public:
     explicit Settings(QObject *parent = 0);
@@ -95,6 +100,19 @@ public:
 
     bool mapShowOnly4Fields() const;
     void setmapShowOnly4Fields(bool mapShowOnly4Fields);
+
+    //Sporst-Tracker.com functions
+    QString stUsername() const;
+    void setStUsername(QString stUsername);
+
+    QString stPassword() const;
+    void setStPassword(QString stPassword);
+
+    bool stAutoUpload() const;
+    void setStAutoUpload(bool stAutoUpload);
+
+    int stSharing() const;
+    void setStSharing(int stSharing);
 
 signals:
     void updateIntervalChanged();

@@ -47,7 +47,8 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-laufhelden-de.ts \
                 translations/harbour-laufhelden-pl.ts \
                 translations/harbour-laufhelden-es.ts \
-                translations/harbour-laufhelden-sv.ts
+                translations/harbour-laufhelden-sv.ts \
+                translations/harbour-laufhelden-fi_FI.ts
 
 HEADERS += \
     src/trackrecorder.h \
@@ -119,5 +120,8 @@ DISTFILES += \
     qml/img/map_stop.png \
     qml/tools/MapPauseItem.qml \
     qml/tools/MapPolyLine.qml \
-    qml/workouticons/skiing.png
+    qml/workouticons/skiing.png \
+    qml/tools/SportsTracker.js \
+    qml/pages/SportsTrackerUploadPage.qml \
+    qml/pages/SportsTrackerSettingsPage.qml
 

@@ -41,6 +41,17 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_heartRateMax = 0;
 }
 
+QString TrackLoader::readGpx(){
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/" + m_filename;
+    qDebug()<<"Reading File:"<<fullFilename;
+
+    QFile f(fullFilename);
+    if (!f.open(QFile::ReadOnly | QFile::Text)) return "";
+    QTextStream in(&f);
+    return in.readAll();
+}
+
 void TrackLoader::load()
 {
     if(m_filename.isEmpty())

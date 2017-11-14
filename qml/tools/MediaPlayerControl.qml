@@ -46,10 +46,10 @@ Item
     {
         interfaceDBUS_Pebble.call('LaunchApp','4dab81a6-d2fc-458a-992c-7a1f3b96a970');
     }
-    function fncStartPebbleSportApp()
+    /*function fncStartPebbleSportApp()
     {
         interfaceDBUS_Pebble.call('CloseApp','4dab81a6-d2fc-458a-992c-7a1f3b96a970');
-    }
+    }*/
 
 
     DBusInterface

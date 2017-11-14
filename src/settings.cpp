@@ -166,3 +166,42 @@ void Settings::setmapShowOnly4Fields(bool mapShowOnly4Fields)
 {
      m_settings->setValue("mapsettings/mapShowOnly4Fields", mapShowOnly4Fields);
 }
+
+//Sports-Tracker.com Sharing functions
+void Settings::setStUsername(QString username)
+{
+    return m_settings->setValue("sportstracker/username", username);
+}
+QString Settings::stUsername() const
+{
+    return m_settings->value("sportstracker/username").toString();
+}
+
+void Settings::setStPassword(QString password)
+{
+    return m_settings->setValue("sportstracker/password", password);
+}
+QString Settings::stPassword() const
+{
+    return m_settings->value("sportstracker/password").toString();
+}
+
+void Settings::setStAutoUpload(bool stAutoUpload)
+{
+     m_settings->setValue("sportstracker/autoupload", stAutoUpload);
+}
+
+bool Settings::stAutoUpload() const
+{
+    return m_settings->value("sportstracker/autoupload", true).toBool();
+}
+
+void Settings::setStSharing(int stSharing)
+{
+     m_settings->setValue("sportstracker/sharing", stSharing);
+}
+
+int Settings::stSharing() const
+{
+    return m_settings->value("sportstracker/sharing", 0).toInt(); //Defaults Private option = 0
+}

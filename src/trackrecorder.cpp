@@ -602,7 +602,7 @@ void TrackRecorder::setUpdateInterval(int updateInterval) {
     emit updateIntervalChanged();
 }
 
-QGeoCoordinate TrackRecorder::pausePointAt(int index)
+bool TrackRecorder::pausePointAt(int index)
 {
     if(index < m_pausearray.length())
     {
