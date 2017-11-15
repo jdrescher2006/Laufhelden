@@ -162,7 +162,7 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Senden an Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -377,15 +377,15 @@
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Übernehmen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert Auswählen!</translation>
     </message>
 </context>
 <context>
@@ -440,7 +440,7 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Pause</translation>
+        <translation>Pause</translation>
     </message>
 </context>
 <context>
@@ -486,7 +486,7 @@
     </message>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -576,42 +576,42 @@
     </message>
     <message>
         <source>Skiing</source>
-        <translation type="unfinished"></translation>
+        <translation>Skifahren</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Sports-Tracker.com settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Sports-Tracker.com Einstellungen</translation>
     </message>
     <message>
         <source>Auto upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto. hochladen</translation>
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach dem Training automatisch nach Sports-Tracker.com senden</translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Usernamen eingeben</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Username</translation>
     </message>
     <message>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort eingeben</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <source>Show password</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort anzeigen</translation>
     </message>
     <message>
         <source></source>
@@ -619,46 +619,46 @@
     </message>
     <message>
         <source>Default Sharing option</source>
-        <translation type="unfinished"></translation>
+        <translation>Freigabeoption</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>Follower</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffentlich</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Trainingsbeschreibung an Sports-Tracker.com senden</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Beschreibung</translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Training mit anderen teilen</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>Follower</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffentlich</translation>
     </message>
 </context>
 <context>

@@ -25,4 +25,5 @@ MapPolyline
     line.color: "red"
     line.width: 5
     smooth: true
+    z: 20 //the trackline must always be on top!
 }

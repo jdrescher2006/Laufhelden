@@ -480,7 +480,7 @@ Page
         var componentTrack;
 
         //Recognize the start of a workout
-        if (idItemTrackStart.visible === false && recorder.running && !recorder.isEmpty)
+        if (iPointIndex === 0 && recorder.running && !recorder.isEmpty)
         {
             //Set start icon to map
             idItemTrackStart.coordinate = coordinate;
@@ -494,7 +494,7 @@ Page
         }
 
         //Recognize the start of a pause
-        if (idItemTrackStart.visible === true && recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === false && recorder.pausePointAt(iPointIndex) === true)
+        if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === false && recorder.pausePointAt(iPointIndex) === true)
         {
             //Draw the pause start icon
             var componentStart = Qt.createComponent("../tools/MapPauseItem.qml");
@@ -511,7 +511,7 @@ Page
         }
 
         //Recognize the end of a pause
-        if (idItemTrackStart.visible === true && recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === true && recorder.pausePointAt(iPointIndex) === false)
+        if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === true && recorder.pausePointAt(iPointIndex) === false)
         {
             //Draw the pause end icon
             var componentEnd = Qt.createComponent("../tools/MapPauseItem.qml");

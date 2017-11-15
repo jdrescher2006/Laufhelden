@@ -1,3 +1,13 @@
+* Fri Nov 17 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.6-7
+- fixed many bugs in pause function
+- new value for record page: pause duration
+- added map icons (start, stop, pause)
+- added skiing as new workout type
+- positioning starts now on recordpage (not on start of app)
+- workouts can be uploaded to sports-tracker.com (thanks to @niemisenjussi)
+- added finnish translation (thanks to @niemisenjussi)
+- some bugfixes
+
 * Tue Oct 31 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.5-6
 - Startpage and PreRecordpage will also stay in portrait mode if selected in settings
 - if workout is not started and map is in full screen mode, scrolling left on map is now working properly

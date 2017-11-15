@@ -8,7 +8,7 @@ New features:
 - add skiing to workout types																				-> OK
 
 Bugfixes:
-- GPX from meerun is not imported correctly
+- GPX from meerun is not imported correctly, that is a bug in meerun										-> OK
 - While recording and leaving and returning to recordpage, track and track icons are screwed
 - GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.		-> OK
 - there is a bug with pause function. Time is runnning further. Must be debugged in live mode.				-> OK
@@ -29,7 +29,7 @@ Do not forget:
 ----- ToDo for second next release to openrepos: 0.9.7 -----
 - PEBBLE!!!
 - add new feature: autopause
-- Edit workout and save to GPX
+- Edit workout (name/description/workout type) and save to GPX
 - add buttons to map
 	- center position
 	- center track

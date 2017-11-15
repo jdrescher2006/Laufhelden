@@ -140,8 +140,8 @@ Page {
                 //Check if we have the last data point, draw the stop icon
                 if (i===(trackLength - 1))
                 {
-                    idItemTrackEnd.coordinate = trackLoader.trackPointAt(i)
-                    idItemTrackEnd.visible = true;
+                    idItemTrackEnd.coordinate = trackLoader.trackPointAt(i);
+                    idItemTrackEnd.visible = true;                    
 
                     //We have to create a track line here. Either it comes from a pause end or from start of track
                     var componentTrack = Qt.createComponent("../tools/MapPolyLine.qml");
@@ -505,6 +505,7 @@ Page {
             anchorPoint.x: sourceItem.width/2
             anchorPoint.y: sourceItem.height/2
             visible: false
+            z: 1    //this means that pause icons are placed on top
             sourceItem: Item
             {
                 height: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
@@ -523,6 +524,7 @@ Page {
             anchorPoint.x: sourceItem.width/2
             anchorPoint.y: sourceItem.height/2
             visible: false
+            z: 1    //this means that pause icons are placed on top
             sourceItem: Item
             {
                 height: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
