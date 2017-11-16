@@ -162,7 +162,7 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Skicka till Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -486,7 +486,7 @@
     </message>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -583,35 +583,35 @@
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Sports-Tracker.com settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Inställningar för Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Auto upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladda upp automatiskt</translation>
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation type="unfinished"></translation>
+        <translation>Skicka träningspasset automatiskt till Sports-Tracker.com efter träning</translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange användarnamn</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Användarnamn</translation>
     </message>
     <message>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange lösenord</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenord</translation>
     </message>
     <message>
         <source>Show password</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa lösenord</translation>
     </message>
     <message>
         <source></source>
@@ -619,26 +619,26 @@
     </message>
     <message>
         <source>Default Sharing option</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardalternativ för att dela</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>Följare</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Allmänt</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Skicka träningsbeskrivning till Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Description</source>
@@ -646,19 +646,19 @@
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Dela träningspass</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>Följare</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Allmänt</translation>
     </message>
 </context>
 <context>
