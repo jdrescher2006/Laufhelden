@@ -1,6 +1,19 @@
 ---- ToDo for next release to openrepos: 0.9.7 -----
 
-- add Pebble support
+- add Pebble support:
+	- new setting: use Pebble yes/no [bool]
+	- new setting: choose value for third field on pebble [int]
+	- add settings page:
+		- check if rockpool is there in the right version?
+		- toggle Pebble support ON/OFF
+		- choose value for third field
+		- view if pebble is connected and model and BT address
+		- test button to launch/close sport app
+	- add warning to prerecord page if pebble is not connected
+	- launch sport app on prerecord page, close it on main page
+	- on record page set values to pebble
+	
+
 - edit workout (name/description/workout type) and save to GPX
 
 Do not forget:
