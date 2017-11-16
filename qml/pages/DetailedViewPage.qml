@@ -256,7 +256,7 @@ Page {
             {
                 text: qsTr("Diagrams")
                 onClicked: pageStack.push(Qt.resolvedUrl("DiagramViewPage.qml"))
-                visible: true
+                visible: false
             }
             MenuItem
             {

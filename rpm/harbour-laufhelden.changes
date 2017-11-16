@@ -1,4 +1,4 @@
-* Fri Nov 17 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.6-7
+* Thu Nov 16 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.6-7
 - fixed many bugs in pause function
 - new value for record page: pause duration
 - added map icons (start, stop, pause)
