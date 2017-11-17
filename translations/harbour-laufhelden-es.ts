@@ -329,7 +329,7 @@
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation>Cambiar el modo de visualización</translation>
+        <translation>Cambiar visualización</translation>
     </message>
     <message>
         <source>hold button for: </source>
@@ -494,7 +494,7 @@
     </message>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -591,35 +591,35 @@
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Sports-Tracker.com settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Auto upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto cargar</translation>
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto enviar ejercicio a Sports-Tracker.com después del ejercicio</translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrar nombre de usuario</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrar contraseña</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>contraseña</translation>
     </message>
     <message>
         <source>Show password</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar contraseña</translation>
     </message>
     <message>
         <source></source>
@@ -627,46 +627,46 @@
     </message>
     <message>
         <source>Default Sharing option</source>
-        <translation type="unfinished"></translation>
+        <translation>Compartir como:</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>privado</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>seguidor</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>público</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Dar la descripción del entrenamiento a Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Descripción</translation>
+        <translation>Descripción</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Compartir ejercicio</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>privado</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>seguidor</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>público</translation>
     </message>
 </context>
 <context>
