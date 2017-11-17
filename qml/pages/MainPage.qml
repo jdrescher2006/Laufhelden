@@ -94,6 +94,12 @@ Page
             //stop positioning
             recorder.vEndGPS();
 
+            //close pebble sport app
+            if (settings.enablePebble)
+            {
+                pebbleComm.fncClosePebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
+            }
+
             //Save the object of this page for back jumps
             vMainPageObject = pageStack.currentPage;
             console.log("vMainPageObject: " + vMainPageObject.toString());

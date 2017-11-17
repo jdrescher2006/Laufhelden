@@ -123,5 +123,7 @@ DISTFILES += \
     qml/workouticons/skiing.png \
     qml/tools/SportsTracker.js \
     qml/pages/SportsTrackerUploadPage.qml \
-    qml/pages/SportsTrackerSettingsPage.qml
+    qml/pages/SportsTrackerSettingsPage.qml \
+    qml/pages/PebbleSettingsPage.qml \
+    qml/tools/PebbleComm.qml
 

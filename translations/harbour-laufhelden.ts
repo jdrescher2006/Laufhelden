@@ -259,6 +259,53 @@
     </message>
 </context>
 <context>
+    <name>PebbleSettingsPage</name>
+    <message>
+        <source>set metric units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>closing sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value 1 field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>starting sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PreRecordPage</name>
     <message>
         <source>Let&apos;s go!</source>
@@ -494,6 +541,10 @@
     </message>
     <message>
         <source>Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

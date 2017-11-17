@@ -167,6 +167,15 @@ void Settings::setmapShowOnly4Fields(bool mapShowOnly4Fields)
      m_settings->setValue("mapsettings/mapShowOnly4Fields", mapShowOnly4Fields);
 }
 
+bool Settings::enablePebble() const
+{
+    return m_settings->value("pebblesettings/enablePebble", false).toBool();
+}
+void Settings::setEnablePebble(bool enablePebble)
+{
+     m_settings->setValue("pebblesettings/enablePebble", enablePebble);
+}
+
 //Sports-Tracker.com Sharing functions
 void Settings::setStUsername(QString username)
 {

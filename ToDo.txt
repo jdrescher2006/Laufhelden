@@ -1,5 +1,7 @@
 ---- ToDo for next release to openrepos: 0.9.7 -----
 
+- fixed a bug: mediaplayer pause/resume was not working					-> OK
+
 - add Pebble support:
 	- new setting: use Pebble yes/no [bool]
 	- new setting: choose value for third field on pebble [int]

@@ -121,6 +121,13 @@ Page
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
 
+            if (settings.enablePebble)
+            {
+                //Set metric unit
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': '1'});
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'4': '1'});
+            }
+
             if (sHRMAddress !== "" && settings.useHRMdevice && bRecordDialogRequestHRM === false)
             {
                 id_BluetoothData.connect(sHRMAddress, 1);
@@ -235,7 +242,7 @@ Page
                 RecordPageDisplay.arrayValueTypes[5].value = recorder.speed.toFixed(1);
                 RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
                 RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
-                RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);
+                RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);                
             }
             if (recorder.running)
             {
@@ -265,6 +272,12 @@ Page
             //Set current daytime to dialog.
             var newDate = new Date();
             idCurrentDayTime.text = JSTools.fncPadZeros(newDate.getHours(),2) + ":" + JSTools.fncPadZeros(newDate.getMinutes(),2) + ":" + JSTools.fncPadZeros(newDate.getSeconds(),2) + " ";
+
+
+            if (settings.enablePebble)
+            {                                
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': recorder.pebbleTime, '1': (recorder.distance/1000).toFixed(1).toString(), '5': '0', '2': sHeartRate});
+            }
         }
     }
 

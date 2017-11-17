@@ -580,6 +580,35 @@ QString TrackRecorder::time() const
     return timeStr;
 }
 
+QString TrackRecorder::pebbleTime() const
+{
+    uint hours, minutes;
+
+    if(m_points.size() < 2)
+    {
+        hours = 0;
+        minutes = 0;
+    }
+    else
+    {
+        QDateTime first = m_points.at(0).timestamp();
+        QDateTime last = m_points.at(m_points.size()-1).timestamp();
+        qint64 difference = first.secsTo(last);
+
+        //Substract the pause time from the overall time
+        difference = difference - this->m_PauseDuration;
+
+        hours = difference / (60*60);
+        minutes = (difference - hours*60*60) / 60;
+    }
+
+    QString timeStr = QString("%1:%2")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(minutes, 2, 10, QLatin1Char('0'));
+
+    return timeStr;
+}
+
 bool TrackRecorder::isEmpty() const {
     return m_isEmpty;
 }

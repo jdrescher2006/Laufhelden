@@ -338,10 +338,15 @@ ApplicationWindow
         id: screenblank
     }
 
-    /*MediaPlayerControl
+    MediaPlayerControl
     {
        id: mediaPlayerControl
-    }*/
+    }
+
+    PebbleComm
+    {
+        id: pebbleComm
+    }
 
     Media.SoundEffect
     {
