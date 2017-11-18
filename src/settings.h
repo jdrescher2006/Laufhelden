@@ -42,7 +42,10 @@ class Settings : public QObject
     Q_PROPERTY(int mapMode READ mapMode WRITE setMapMode)
     Q_PROPERTY(bool mapShowOnly4Fields READ mapShowOnly4Fields WRITE setmapShowOnly4Fields)
 
-    //Sports-Tracker.com spesific Settings
+    //Pebble specific setings
+    Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
+
+    //Sports-Tracker.com specific settings
     Q_PROPERTY(QString stUsername READ stUsername WRITE setStUsername)
     Q_PROPERTY(QString stPassword READ stPassword WRITE setStPassword)
     Q_PROPERTY(bool stAutoUpload READ stAutoUpload WRITE setStAutoUpload)
@@ -100,6 +103,9 @@ public:
 
     bool mapShowOnly4Fields() const;
     void setmapShowOnly4Fields(bool mapShowOnly4Fields);
+
+    bool enablePebble() const;
+    void setEnablePebble(bool enablePebble);
 
     //Sporst-Tracker.com functions
     QString stUsername() const;

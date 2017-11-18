@@ -26,6 +26,7 @@ MapQuickItem
     anchorPoint.y: sourceItem.height/2
     height: sourceItem.height
     width: sourceItem.width
+    z: 10 //the pause items should be placed on top of start/end icon
     sourceItem: Item
     {
         height: pause_marker.iSize

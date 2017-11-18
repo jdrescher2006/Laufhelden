@@ -51,6 +51,14 @@
         <source>Feedback, bugs:</source>
         <translation>Återkoppling och fel:</translation>
     </message>
+    <message>
+        <source>Finnish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credits for code contribution:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -160,6 +168,10 @@
         <source>Pause number/duration:</source>
         <translation>Paus antal/varaktighet</translation>
     </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation>Skicka till Sports-Tracker.com</translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
@@ -244,6 +256,53 @@
     <message>
         <source>Center track on map</source>
         <translation>Centrera spåret på kartan</translation>
+    </message>
+</context>
+<context>
+    <name>PebbleSettingsPage</name>
+    <message>
+        <source>set metric units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>closing sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value 1 field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>starting sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -480,6 +539,14 @@
         <source>Map settings</source>
         <translation>Kartinställningar</translation>
     </message>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -569,6 +636,88 @@
     <message>
         <source>Skiing</source>
         <translation>Skidor</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerSettingsPage</name>
+    <message>
+        <source>Sports-Tracker.com settings</source>
+        <translation>Inställningar för Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Auto upload</source>
+        <translation>Ladda upp automatiskt</translation>
+    </message>
+    <message>
+        <source>Send workout automatically to Sports-Tracker.com after exercise</source>
+        <translation>Skicka träningspasset automatiskt till Sports-Tracker.com efter träning</translation>
+    </message>
+    <message>
+        <source>Enter Username</source>
+        <translation>Ange användarnamn</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Användarnamn</translation>
+    </message>
+    <message>
+        <source>Enter Password</source>
+        <translation>Ange lösenord</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Lösenord</translation>
+    </message>
+    <message>
+        <source>Show password</source>
+        <translation>Visa lösenord</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Default Sharing option</source>
+        <translation>Standardalternativ för att dela</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>Följare</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>Allmänt</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerUploadPage</name>
+    <message>
+        <source>Give workout description to Sports-Tracker.com</source>
+        <translation>Skicka träningsbeskrivning till Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished">Beskrivning</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Dela träningspass</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>Följare</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>Allmänt</translation>
     </message>
 </context>
 <context>

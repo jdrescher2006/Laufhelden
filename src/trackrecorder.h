@@ -36,6 +36,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(qreal heartrateaverage READ heartrateaverage NOTIFY heartrateaverageChanged)
     Q_PROPERTY(QString paceaverageStr READ paceaverageStr NOTIFY paceaverageChanged)
     Q_PROPERTY(QString time READ time NOTIFY timeChanged)    
+    Q_PROPERTY(QString pebbleTime READ pebbleTime NOTIFY pebbleTimeChanged)
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY isEmptyChanged)
     Q_PROPERTY(QGeoCoordinate currentPosition READ currentPosition NOTIFY currentPositionChanged)
     Q_PROPERTY(int updateInterval READ updateInterval WRITE setUpdateInterval NOTIFY updateIntervalChanged)
@@ -66,6 +67,7 @@ public:
     qreal heartrateaverage() const;
     QString paceaverageStr() const;
     QString time() const;
+    QString pebbleTime() const;
     QString pauseTime() const;
     bool isEmpty() const;
     QGeoCoordinate currentPosition() const;
@@ -97,11 +99,12 @@ signals:
     void paceaverageChanged();
     void heartrateaverageChanged();
     void timeChanged();    
+    void pebbleTimeChanged();
     void isEmptyChanged();
     void currentPositionChanged();
     void updateIntervalChanged();
     void valuesChanged();
-    void newTrackPoint(QGeoCoordinate coordinate);
+    void newTrackPoint(QGeoCoordinate coordinate, int iPointIndex);
     void pauseChanged();
     void runningChanged();
     void pauseTimeChanged();

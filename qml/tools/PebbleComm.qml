@@ -20,28 +20,35 @@ import org.nemomobile.dbus 2.0
 
 Item
 {
-    id: mediaPlayerControl
+    id: pebbleControl
 
-    function pause()
-    {        
-        interfaceDBUS.call('Pause', undefined);
-    }
-
-    function resume()
-    {       
-        interfaceDBUS.call('Play', undefined);
-    }
-
-    function getPlayerStatus()
+    function fncLaunchPebbleApp(sAppID)
     {
-        return interfaceDBUS.getProperty('PlaybackStatus');
-    }   
+        interfaceDBUS.call('LaunchApp', sAppID);
+    }
+
+    function fncClosePebbleApp(sAppID)
+    {
+        interfaceDBUS.call('CloseApp', sAppID);
+    }
+
+    function fncSendDataToPebbleApp(sAppID, oData)
+    {
+        interfaceDBUS.call('SendAppData', [sAppID, oData]);
+    }
+
+    function bIsPebbleConnected()
+    {
+        var sTester = interfaceDBUS.call('IsConnected');
+        console.log("isConnected: " + sTester.toString());
+        return true;
+    }
 
     DBusInterface
     {
-        id: interfaceDBUS
-        service: 'org.mpris.MediaPlayer2.jolla-mediaplayer'
-        path: '/org/mpris/MediaPlayer2'
-        iface: 'org.mpris.MediaPlayer2.Player'
+        id:interfaceDBUS
+        service: 'org.rockwork'
+        path: '/org/rockwork/B0_B4_48_62_63_F7'
+        iface: 'org.rockwork.Pebble'
     }
 }

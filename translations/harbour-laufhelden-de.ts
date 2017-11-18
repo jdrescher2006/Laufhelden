@@ -51,6 +51,14 @@
         <source>Feedback, bugs:</source>
         <translation>Feedback, Probleme:</translation>
     </message>
+    <message>
+        <source>Finnish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credits for code contribution:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -160,6 +168,10 @@
         <source>Pause number/duration:</source>
         <translation>Pausen/Pausendauer:</translation>
     </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation>Senden an Sports-Tracker.com</translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
@@ -244,6 +256,53 @@
     <message>
         <source>Center track on map</source>
         <translation>Track auf der Karte zentrieren</translation>
+    </message>
+</context>
+<context>
+    <name>PebbleSettingsPage</name>
+    <message>
+        <source>set metric units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>closing sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value 1 field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>starting sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -373,15 +432,15 @@
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Übernehmen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert Auswählen!</translation>
     </message>
 </context>
 <context>
@@ -436,7 +495,7 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Pause</translation>
+        <translation>Pause</translation>
     </message>
 </context>
 <context>
@@ -479,6 +538,14 @@
     <message>
         <source>Map settings</source>
         <translation>Karten Einstellungen</translation>
+    </message>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -568,7 +635,89 @@
     </message>
     <message>
         <source>Skiing</source>
-        <translation type="unfinished"></translation>
+        <translation>Skifahren</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerSettingsPage</name>
+    <message>
+        <source>Sports-Tracker.com settings</source>
+        <translation>Sports-Tracker.com Einstellungen</translation>
+    </message>
+    <message>
+        <source>Auto upload</source>
+        <translation>Auto. hochladen</translation>
+    </message>
+    <message>
+        <source>Send workout automatically to Sports-Tracker.com after exercise</source>
+        <translation>Nach dem Training automatisch nach Sports-Tracker.com senden</translation>
+    </message>
+    <message>
+        <source>Enter Username</source>
+        <translation>Usernamen eingeben</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Username</translation>
+    </message>
+    <message>
+        <source>Enter Password</source>
+        <translation>Passwort eingeben</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Passwort</translation>
+    </message>
+    <message>
+        <source>Show password</source>
+        <translation>Passwort anzeigen</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Default Sharing option</source>
+        <translation>Freigabeoption</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>Follower</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>Öffentlich</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerUploadPage</name>
+    <message>
+        <source>Give workout description to Sports-Tracker.com</source>
+        <translation>Trainingsbeschreibung an Sports-Tracker.com senden</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Training mit anderen teilen</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>Follower</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>Öffentlich</translation>
     </message>
 </context>
 <context>

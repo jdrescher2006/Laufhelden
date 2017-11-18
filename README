@@ -14,6 +14,8 @@ This application orginates from a fork of Rena by Simoma: https://github.com/Sim
 
 Credits go to:
 - Messagebox: Kimmo Lindholm, https://github.com/kimmoli/paint/blob/master/qml/components/Messagebox.qml
+- Localization: Caballlero, atlochowski, eson57, niemisenjussi
+- Sports-Tracker support: niemisenjussi
 
 Workout icons are from here: https://de.icons8.com/ They are under this license: https://creativecommons.org/licenses/by-nd/3.0/
 

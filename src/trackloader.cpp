@@ -228,6 +228,82 @@ void TrackLoader::load()
                             }
                         }
                     }
+                    else if(xml.name() == "trkpt")
+                    {
+                        TrackPoint point;
+
+                        point.elevation = 0;
+                        point.direction = 0;
+                        point.groundSpeed = 0;
+                        point.verticalSpeed = 0;
+                        point.magneticVariation = 0;
+                        point.horizontalAccuracy = 0;
+                        point.verticalAccuracy = 0;
+                        point.heartrate = 0;
+                        point.latitude = xml.attributes().value("lat").toDouble();
+                        point.longitude = xml.attributes().value("lon").toDouble();
+
+                        //if a pause is right before this track point, we have to save the index of this track point
+                        if (bPauseFound)
+                        {
+                            qDebug()<<"Pause found: "<<QString::number(m_points.length());
+
+                            m_pause_positions.append(m_points.length()-1);
+                            bPauseFound = false;
+                        }
+
+                        while(xml.readNextStartElement())
+                        {
+                            if(xml.name() == "time") {
+                                point.time = QDateTime::fromString(xml.readElementText(),Qt::ISODate);
+                            } else if(xml.name() == "ele") {
+                                point.elevation = xml.readElementText().toDouble();
+                            } else if(xml.name() == "extensions") {
+                                while(xml.readNextStartElement())
+                                {
+                                    if(xml.name() == "dir")
+                                    {
+                                        point.direction = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "g_spd")
+                                    {
+                                        point.groundSpeed = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "v_spd")
+                                    {
+                                        point.verticalSpeed = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "m_var")
+                                    {
+                                        point.magneticVariation = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "h_acc")
+                                    {
+                                        point.horizontalAccuracy = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "v_acc")
+                                    {
+                                        point.verticalAccuracy = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "TrackPointExtension")
+                                    {
+                                        while(xml.readNextStartElement())
+                                        {
+                                            if(xml.name() == "hr")
+                                            {
+                                                point.heartrate = xml.readElementText().toInt();
+                                            }
+                                            else
+                                                xml.skipCurrentElement();
+                                        }
+                                    }
+                                    else
+                                        xml.skipCurrentElement();
+                                }
+                            }
+                        }
+                        m_points.append(point);
+                    }
                 }
             }
             else
@@ -236,6 +312,8 @@ void TrackLoader::load()
             }
         }
     }    
+
+    //qDebug()<<"Segments found: "<<QString::number(iSegments);
 
     if(m_points.size() > 1)
     {

@@ -51,6 +51,14 @@
         <source>Feedback, bugs:</source>
         <translation>Palaute, Ongelmat:</translation>
     </message>
+    <message>
+        <source>Finnish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credits for code contribution:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -248,6 +256,53 @@
     <message>
         <source>Center track on map</source>
         <translation>Reitin mukaan</translation>
+    </message>
+</context>
+<context>
+    <name>PebbleSettingsPage</name>
+    <message>
+        <source>set metric units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>closing sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value 1 field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>starting sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -487,6 +542,10 @@
     <message>
         <source>Sports-Tracker.com</source>
         <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

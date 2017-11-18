@@ -121,7 +121,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 
 
     //Check if horizontal accuracy is enough
-    if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) && (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0))
+    if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) == false || (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0))
     {
         return;
     }
@@ -149,7 +149,22 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             emit isEmptyChanged();
         }
 
+        if(newPos.coordinate().latitude() < m_minLat)
+        {
+            m_minLat = newPos.coordinate().latitude();
+        } else if(newPos.coordinate().latitude() > m_maxLat)
+        {
+            m_maxLat = newPos.coordinate().latitude();
+        }
+        if(newPos.coordinate().longitude() < m_minLon)
+        {
+            m_minLon = newPos.coordinate().longitude();
+        } else if(newPos.coordinate().longitude() > m_maxLon)
+        {
+            m_maxLon = newPos.coordinate().longitude();
+        }
 
+        emit newTrackPoint(newPos.coordinate(), m_points.size()-1);
 
         if(m_points.size() > 1 && this->m_pause == false)
         {
@@ -213,24 +228,9 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             //Get altitude
             m_altitude = newPos.coordinate().altitude();
 
-            if(newPos.coordinate().latitude() < m_minLat)
-            {
-                m_minLat = newPos.coordinate().latitude();
-            } else if(newPos.coordinate().latitude() > m_maxLat)
-            {
-                m_maxLat = newPos.coordinate().latitude();
-            }
-            if(newPos.coordinate().longitude() < m_minLon)
-            {
-                m_minLon = newPos.coordinate().longitude();
-            } else if(newPos.coordinate().longitude() > m_maxLon)
-            {
-                m_maxLon = newPos.coordinate().longitude();
-            }
 
             emit valuesChanged();
-            emit timeChanged();
-            emit newTrackPoint(newPos.coordinate()); //This is calling a function on the recordpage
+            emit timeChanged();            
         }        
     }
 }
@@ -580,6 +580,35 @@ QString TrackRecorder::time() const
     return timeStr;
 }
 
+QString TrackRecorder::pebbleTime() const
+{
+    uint hours, minutes;
+
+    if(m_points.size() < 2)
+    {
+        hours = 0;
+        minutes = 0;
+    }
+    else
+    {
+        QDateTime first = m_points.at(0).timestamp();
+        QDateTime last = m_points.at(m_points.size()-1).timestamp();
+        qint64 difference = first.secsTo(last);
+
+        //Substract the pause time from the overall time
+        difference = difference - this->m_PauseDuration;
+
+        hours = difference / (60*60);
+        minutes = (difference - hours*60*60) / 60;
+    }
+
+    QString timeStr = QString("%1:%2")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(minutes, 2, 10, QLatin1Char('0'));
+
+    return timeStr;
+}
+
 bool TrackRecorder::isEmpty() const {
     return m_isEmpty;
 }
@@ -761,6 +790,8 @@ void TrackRecorder::loadAutoSave()
     }
     QTextStream stream(&file);
 
+    int iPointIndex = 0;
+
     while(!stream.atEnd())
     {
         QGeoPositionInfo point;
@@ -814,7 +845,10 @@ void TrackRecorder::loadAutoSave()
         m_heartrate.append(iHeartrate);
         m_pausearray.append(bPause);
 
-        if(m_points.size() > 1) {
+        iPointIndex++;
+
+        if(m_points.size() > 1)
+        {
             if(point.coordinate().latitude() < m_minLat) {
                 m_minLat = point.coordinate().latitude();
             } else if(point.coordinate().latitude() > m_maxLat) {
@@ -825,11 +859,13 @@ void TrackRecorder::loadAutoSave()
             } else if(point.coordinate().longitude() > m_maxLon) {
                 m_maxLon = point.coordinate().longitude();
             }
-        } else {
+        }
+        else
+        {
             m_minLat = m_maxLat = point.coordinate().latitude();
             m_minLon = m_maxLon = point.coordinate().longitude();
         }
-        emit newTrackPoint(point.coordinate());
+        emit newTrackPoint(point.coordinate(), iPointIndex);
     }
     m_autoSavePosition = m_points.size();
     file.close();

@@ -51,6 +51,11 @@ Page
             page: "SportsTrackerSettingsPage.qml"
             title: qsTr("Sports-Tracker.com")
         }
+        ListElement
+        {
+            page: "PebbleSettingsPage.qml"
+            title: qsTr("Pebble settings")
+        }
     }
     SilicaListView
     {

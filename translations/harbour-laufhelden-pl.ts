@@ -5,51 +5,59 @@
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation type="unfinished"></translation>
+        <translation>O Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Sport tracker dla Sailfish OS</translation>
     </message>
     <message>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawa autorskie</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Niemcy</translation>
     </message>
     <message>
         <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Data: </translation>
     </message>
     <message>
         <source>License: GPLv3</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencja: GPLv3</translation>
     </message>
     <message>
         <source>Source code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod źródłowy:</translation>
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation type="unfinished"></translation>
+        <translation>Podziękowania za tłumaczenie:</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation type="unfinished"></translation>
+        <translation>hiszpański</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation type="unfinished"></translation>
+        <translation>polski</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation type="unfinished"></translation>
+        <translation>szwedzki</translation>
     </message>
     <message>
         <source>Feedback, bugs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje zwrotne, błędy:</translation>
+    </message>
+    <message>
+        <source>Finnish</source>
+        <translation>fiński</translation>
+    </message>
+    <message>
+        <source>Credits for code contribution:</source>
+        <translation>Podzękowania za kontrybucję:</translation>
     </message>
 </context>
 <context>
@@ -96,11 +104,11 @@
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Połacz</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozłącz</translation>
     </message>
 </context>
 <context>
@@ -119,46 +127,50 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Wstrzymany</translation>
+        <translation>Wstrzymany</translation>
     </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Driagramy</translation>
+        <translation>Driagramy</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Czas startu:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Czas trwania:</translation>
+        <translation>Czas trwania:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dystans:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prędkość max/⌀</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo ⌀:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tętno min/max/⌀:</translation>
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba/czas trwania pauz</translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation>Prześlij do Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -212,37 +224,84 @@
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Znaleziono niedokończone treningi!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Wznów</translation>
     </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
     <message>
         <source>Map settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia map</translation>
     </message>
     <message>
         <source>Optimize screen in map mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoptymalizuj ekran w trybie mapy</translation>
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż tylko 4 pola wartości (zamiast 6) kiedy mapa jest pokazana</translation>
     </message>
     <message>
         <source>Map center mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb wyśrodkowanej mapy</translation>
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyśrodkuj obecną pozycję na mapie</translation>
     </message>
     <message>
         <source>Center track on map</source>
+        <translation>Wyśrodkuj ścieżkę na mapie</translation>
+    </message>
+</context>
+<context>
+    <name>PebbleSettingsPage</name>
+    <message>
+        <source>set metric units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>closing sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value 1 field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>starting sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -274,7 +333,7 @@
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation type="unfinished">Wybież profil progów</translation>
+        <translation>Wybież profil progów</translation>
     </message>
 </context>
 <context>
@@ -369,74 +428,74 @@
     </message>
     <message>
         <source>keep tapping button: </source>
-        <translation type="unfinished"></translation>
+        <translation>nie przestawaj naciskać przycisku:</translation>
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Akceptuj</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz wartość!</translation>
     </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
     <message>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Dystans</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Tętno</translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished">bpm</translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo</translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished">min/km</translation>
+        <translation>min/km</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Prędkość</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>m</source>
-        <translation type="unfinished"></translation>
+        <translation>m</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation type="unfinished"></translation>
+        <translation>Wzniesienie</translation>
     </message>
     <message>
         <source>Bat.:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bat.:</translation>
     </message>
     <message>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Pusty</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Wstrzymaj</translation>
+        <translation>Wstrzymaj</translation>
     </message>
 </context>
 <context>
@@ -478,6 +537,14 @@
     </message>
     <message>
         <source>Map settings</source>
+        <translation>Ustawienia map</translation>
+    </message>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -529,19 +596,19 @@
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz autozapisywanie</translation>
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ma potrzeby wpisywanie nazwy treningu po jego zakończeniu.</translation>
     </message>
     <message>
         <source>Automatic night mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczny tryb nocny</translation>
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz ekran w tryb nocny kiedy jest ciemno.</translation>
     </message>
 </context>
 <context>
@@ -568,7 +635,89 @@
     </message>
     <message>
         <source>Skiing</source>
-        <translation type="unfinished"></translation>
+        <translation>Narciarstwo</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerSettingsPage</name>
+    <message>
+        <source>Sports-Tracker.com settings</source>
+        <translation>Ustawienia Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Auto upload</source>
+        <translation>Autowysyłanie</translation>
+    </message>
+    <message>
+        <source>Send workout automatically to Sports-Tracker.com after exercise</source>
+        <translation>Wyślij automatycznie trening do Sports-Tracker.com po treningu</translation>
+    </message>
+    <message>
+        <source>Enter Username</source>
+        <translation>Wprowadź imię</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Imię</translation>
+    </message>
+    <message>
+        <source>Enter Password</source>
+        <translation>Wprowadź hasło</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Hasło</translation>
+    </message>
+    <message>
+        <source>Show password</source>
+        <translation>Pokaż hasło</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Default Sharing option</source>
+        <translation>Domyślne opcje udostępniania</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Prywatny</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>Obserwujący</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>Publiczny</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerUploadPage</name>
+    <message>
+        <source>Give workout description to Sports-Tracker.com</source>
+        <translation>Wpisz opis treningu dla Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Opis</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Udostępnij trening</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Prywatny</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>Obserwujący</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>Publiczny</translation>
     </message>
 </context>
 <context>

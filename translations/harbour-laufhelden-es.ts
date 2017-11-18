@@ -51,6 +51,14 @@
         <source>Date: </source>
         <translation>Fecha:</translation>
     </message>
+    <message>
+        <source>Finnish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credits for code contribution:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -160,6 +168,10 @@
         <source>Pause number/duration:</source>
         <translation>Número de pausa/duración</translation>
     </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
@@ -247,6 +259,53 @@
     </message>
 </context>
 <context>
+    <name>PebbleSettingsPage</name>
+    <message>
+        <source>set metric units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sending data 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>closing sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value 1 field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>starting sport app</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PreRecordPage</name>
     <message>
         <source>Let&apos;s go!</source>
@@ -317,7 +376,7 @@
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation>Cambiar el modo de visualización</translation>
+        <translation>Cambiar visualización</translation>
     </message>
     <message>
         <source>hold button for: </source>
@@ -480,6 +539,14 @@
         <source>Map settings</source>
         <translation>Ajustes del mapa</translation>
     </message>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -569,6 +636,88 @@
     <message>
         <source>Skiing</source>
         <translation>Esquiar</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerSettingsPage</name>
+    <message>
+        <source>Sports-Tracker.com settings</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Auto upload</source>
+        <translation>Auto cargar</translation>
+    </message>
+    <message>
+        <source>Send workout automatically to Sports-Tracker.com after exercise</source>
+        <translation>Auto enviar ejercicio a Sports-Tracker.com después del ejercicio</translation>
+    </message>
+    <message>
+        <source>Enter Username</source>
+        <translation>Entrar nombre de usuario</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Nombre de usuario</translation>
+    </message>
+    <message>
+        <source>Enter Password</source>
+        <translation>Entrar contraseña</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>contraseña</translation>
+    </message>
+    <message>
+        <source>Show password</source>
+        <translation>Mostrar contraseña</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Default Sharing option</source>
+        <translation>Compartir como:</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>privado</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>seguidor</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>público</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerUploadPage</name>
+    <message>
+        <source>Give workout description to Sports-Tracker.com</source>
+        <translation>Dar la descripción del entrenamiento a Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Descripción</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Compartir ejercicio</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>privado</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>seguidor</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>público</translation>
     </message>
 </context>
 <context>
