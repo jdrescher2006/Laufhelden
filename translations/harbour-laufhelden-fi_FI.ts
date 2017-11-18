@@ -53,11 +53,11 @@
     </message>
     <message>
         <source>Finnish</source>
-        <translation type="unfinished"></translation>
+        <translation>Suomi</translation>
     </message>
     <message>
         <source>Credits for code contribution:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiitokset koodi lisäyksistä</translation>
     </message>
 </context>
 <context>
@@ -80,7 +80,7 @@
     </message>
     <message>
         <source>None</source>
-        <translation>Tyhjä</translation>
+        <translation>Ei yhtään</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
@@ -171,6 +171,14 @@
     <message>
         <source>Send to Sports-Tracker.com</source>
         <translation>Lähetä Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Logging in...</source>
+        <translation>Kirjaudutaan sisään...</translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
+        <translation>Lähetetään...</translation>
     </message>
 </context>
 <context>
@@ -282,7 +290,7 @@
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pebble asetukset</translation>
     </message>
     <message>
         <source>Enable Pebble</source>
@@ -463,7 +471,7 @@
     </message>
     <message>
         <source>Pace</source>
-        <translation>Vauhti</translation>
+        <translation>Tahdin</translation>
     </message>
     <message>
         <source>min/km</source>
@@ -545,7 +553,7 @@
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble asetukset</translation>
     </message>
 </context>
 <context>
@@ -556,7 +564,7 @@
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>Pidä harjoitusnäyttö pystyssä.</translation>
+        <translation>Pidä harjoitusnäyttö pystyssä</translation>
     </message>
     <message>
         <source>Write log file</source>
@@ -584,7 +592,7 @@
     </message>
     <message>
         <source>Test</source>
-        <translation>Testi</translation>
+        <translation>Testaa ääniä</translation>
     </message>
     <message>
         <source>Show grid lines</source>
@@ -639,6 +647,25 @@
     </message>
 </context>
 <context>
+    <name>SportsTracker</name>
+    <message>
+        <source>Oops, username or password error</source>
+        <translation>Virheellinen käyttäjänimi tai salasana</translation>
+    </message>
+    <message>
+        <source>Some kind of error happened on GPX import</source>
+        <translation>Jonkinlainen virhe tapahtui GPX tuonnissa</translation>
+    </message>
+    <message>
+        <source>Workout uploaded!</source>
+        <translation>Harjoitus lähetetty!</translation>
+    </message>
+    <message>
+        <source>Some kind of error happened on Saving data</source>
+        <translation>Tietojen tallennuksessa tapahtui virhe</translation>
+    </message>
+</context>
+<context>
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Sports-Tracker.com settings</source>
@@ -685,12 +712,56 @@
         <translation>Salasana</translation>
     </message>
     <message>
-        <source>Show password</source>
-        <translation>Näytä salasana</translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Test login...</source>
+        <translation>Testataan kirjautumista...</translation>
+    </message>
+    <message>
+        <source>Already authenticated</source>
+        <translation>Olet jo autentikoitunut</translation>
+    </message>
+    <message>
+        <source>Login success!</source>
+        <translation>Kirjautuminen onnistui!</translation>
+    </message>
+    <message>
+        <source>Login error, Check username or password</source>
+        <translation>Virhe, Tarkista käyttäjätunnus tai salasana</translation>
+    </message>
+    <message>
+        <source>Loading workouts...</source>
+        <translation>Ladataan harjoituksia</translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation> / </translation>
+    </message>
+    <message>
+        <source> unique workout downloaded!</source>
+        <translation> uniikkia harjoitusta ladattu!</translation>
+    </message>
+    <message>
+        <source>Test login</source>
+        <translation>Testaa kirjautumista</translation>
+    </message>
+    <message>
+        <source>Download workouts</source>
+        <translation>Lataa harjoituksia</translation>
+    </message>
+    <message>
+        <source>Maximum number to download</source>
+        <translation>Lataa maksimissaan</translation>
+    </message>
+    <message>
+        <source>Downloading GPX files</source>
+        <translation>Ladataan GPX tiedostoja</translation>
+    </message>
+    <message>
+        <source>Track write error</source>
+        <translation>Virhe kirjoitettaessa tietoja</translation>
     </message>
 </context>
 <context>
@@ -728,7 +799,7 @@
     </message>
     <message>
         <source>Alarm if limit is exceeded.</source>
-        <translation>Hälytyä jos raja ylitetään</translation>
+        <translation>Hälytä jos raja ylitetään</translation>
     </message>
     <message>
         <source>bpm</source>
@@ -748,7 +819,7 @@
     </message>
     <message>
         <source>Lower pace limit</source>
-        <translation>Vauhdin alaraja</translation>
+        <translation>Tahdin alaraja</translation>
     </message>
     <message>
         <source>Edit profile name</source>

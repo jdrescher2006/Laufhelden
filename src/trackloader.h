@@ -88,6 +88,7 @@ public:
     uint heartRateMax();
     bool loaded();
     Q_INVOKABLE QString readGpx();
+    Q_INVOKABLE QString sTworkoutKey();
     Q_INVOKABLE int trackPointCount();
     Q_INVOKABLE int pausePositionsCount();
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
@@ -140,6 +141,7 @@ private:
     qreal m_heartRatePoints;
     uint m_heartRateMin;
     uint m_heartRateMax;
+    QString m_sTkey; //Sports-Tracker.com workout key
     QGeoCoordinate m_center;
 };
 

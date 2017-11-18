@@ -172,6 +172,14 @@
         <source>Send to Sports-Tracker.com</source>
         <translation>Skicka till Sports-Tracker.com</translation>
     </message>
+    <message>
+        <source>Logging in...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
@@ -639,6 +647,25 @@
     </message>
 </context>
 <context>
+    <name>SportsTracker</name>
+    <message>
+        <source>Oops, username or password error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some kind of error happened on GPX import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout uploaded!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some kind of error happened on Saving data</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Sports-Tracker.com settings</source>
@@ -669,10 +696,6 @@
         <translation>Lösenord</translation>
     </message>
     <message>
-        <source>Show password</source>
-        <translation>Visa lösenord</translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
     </message>
@@ -691,6 +714,54 @@
     <message>
         <source>Public</source>
         <translation>Allmänt</translation>
+    </message>
+    <message>
+        <source>Test login...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Already authenticated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login success!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login error, Check username or password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading workouts...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished">av</translation>
+    </message>
+    <message>
+        <source> unique workout downloaded!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download workouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum number to download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading GPX files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Track write error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

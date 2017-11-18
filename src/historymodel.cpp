@@ -41,6 +41,7 @@ TrackItem loadTrack(TrackItem track) {
     data.duration = loader.duration();
     data.distance = loader.distance();
     data.speed = loader.speed();
+    data.stKey = loader.sTworkoutKey(); //Sports-Tracker workoutkey
     return data;
 }
 
@@ -90,6 +91,13 @@ int HistoryModel::iDuration()
 {
     return this->iWorkoutDuration;
 
+}
+
+QString HistoryModel::getSportsTrackerKey(const int index) const{
+    if (index > 0 && index < m_trackList.length()){
+        return m_trackList.at(index).stKey;
+    }
+    return "";
 }
 
 QVariant HistoryModel::data(const QModelIndex &index, int role) const {

@@ -214,3 +214,13 @@ int Settings::stSharing() const
 {
     return m_settings->value("sportstracker/sharing", 0).toInt(); //Defaults Private option = 0
 }
+
+void Settings::setStSessionkey(QString key)
+{
+    return m_settings->setValue("sportstracker/sessionkey", key);
+}
+
+QString Settings::stSessionkey() const
+{
+    return m_settings->value("sportstracker/sessionkey").toString();
+}

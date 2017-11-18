@@ -34,6 +34,7 @@ struct TrackItem
     int duration;
     qreal distance;
     qreal speed;
+    QString stKey;
 };
 
 class HistoryModel : public QAbstractListModel
@@ -62,6 +63,8 @@ public:
 
     Q_INVOKABLE int iDuration();
     Q_INVOKABLE qreal rDistance();
+
+    Q_INVOKABLE QString getSportsTrackerKey(const int index) const;
 
 
 signals:
