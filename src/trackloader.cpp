@@ -39,6 +39,7 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_heartRatePoints = 0;
     m_heartRateMin = 9999999;
     m_heartRateMax = 0;
+    m_sTkey = "";
 }
 
 QString TrackLoader::readGpx(){
@@ -51,6 +52,12 @@ QString TrackLoader::readGpx(){
     QTextStream in(&f);
     return in.readAll();
 }
+
+//Returns Sports-Tracker.com unique workoutkey.
+QString TrackLoader::sTworkoutKey(){
+    return m_sTkey;
+}
+
 
 void TrackLoader::load()
 {
@@ -117,6 +124,12 @@ void TrackLoader::load()
                         {
                             if(xml.name() == "meerun")
                             {
+                                m_workout = xml.attributes().value("activity").toString();
+                                emit workoutChanged();
+                            }
+                            else if(xml.name() == "sportstracker")
+                            {
+                                m_sTkey = xml.attributes().value("workoutkey").toString();
                                 m_workout = xml.attributes().value("activity").toString();
                                 emit workoutChanged();
                             }

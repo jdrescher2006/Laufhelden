@@ -240,6 +240,128 @@ void TrackRecorder::positioningError(QGeoPositionInfoSource::Error error)
     qDebug()<<"Positioning error:"<<error;
 }
 
+/*
+ Writes given GPXcontent to Laufhelden folder in the device. This is used by Sports-Tracker.com downloader
+*/
+bool TrackRecorder::writeStGpxToFile(QString gpxcontent, QString filename, QString desc, QString sTkey, QString activity){
+    QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    QString subDir = "Laufhelden";
+    filename = filename + ".gpx";
+
+    qDebug()<<"File:"<<homeDir<<"/"<<subDir<<"/"<<filename;
+
+    QDir home = QDir(homeDir);
+    if(!home.exists(subDir)){
+        qDebug()<<"Directory does not exist, creating";
+        if(home.mkdir(subDir)) {
+            qDebug()<<"Directory created";
+        }
+        else{
+            qDebug()<<"Directory creation failed, aborting";
+            return false;
+        }
+    }
+
+    QXmlStreamReader xml(gpxcontent);
+    if(!xml.readNextStartElement()) {
+        qDebug()<<"Downloaded content is not xml format?";
+        return false;
+    }
+
+    //Read elements under metadata tag and only add elements which are missing
+    bool nameFound = false;
+    bool descFound = false;
+    bool extensionsFound = false;
+    bool stFound = false;
+    //bool meerunFound = false;
+
+    while(!xml.atEnd()){
+        while(xml.readNextStartElement()){
+            if(xml.name() == "metadata"){
+                while(xml.readNextStartElement()){
+                    if(xml.name() == "name"){
+                        nameFound = true;
+                    }
+                    else if(xml.name() == "desc"){
+                        descFound = true;
+                    }
+                    else if(xml.name() == "extensions"){
+                        extensionsFound = true;
+                        while(xml.readNextStartElement()){
+                            if(xml.name() == "sportstracker"){
+                                stFound = true;
+                            }
+                            /*else if (xml.name() == "meerun"){ //meerun tags are removed when exported to Sporst-tracker.
+                                meerunFound = true;
+                            }*/
+                            else
+                            {
+                                xml.skipCurrentElement();
+                            }
+                        }
+                    }
+                    else{
+                        xml.skipCurrentElement();
+                    }
+                }
+                break;
+            }
+            xml.skipCurrentElement();
+        }
+    }
+
+    QFile file;
+    file.setFileName(homeDir + "/" + subDir + "/" + filename);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug()<<"File opening failed, aborting";
+        return false;
+    }
+
+    // Inject data depending what exist in GPX.
+
+    QString injectElement = "";
+    if (!nameFound){
+        injectElement += "  <name>"+desc+"</name>\n"; //Add name, for now same as description
+        qDebug() << " <name> injected "<<desc;
+    }
+    if (!descFound){
+        injectElement += "    <desc>"+desc+"</desc>\n"; //Add description if not found
+        qDebug() << " <desc> injected "<<desc;
+    }
+
+    //Store Sports-Tracker.com key so we detect which are downloaded from there
+    if (stFound == false && extensionsFound == false){
+        //If extensions is missing
+        injectElement +=  "    <extensions>\n";
+        injectElement +=  "        <sportstracker workoutkey=\""+sTkey+"\" activity=\""+activity+"\"></sportstracker>\n";
+        injectElement +=  "    </extensions>\n";
+        qDebug() << " <sportstracker workoutkey injected "<<sTkey;
+    }
+    else{
+        qDebug() << "sports-tracker key found, extensions found and meerun found";
+    }
+
+    //Finally inject name, desc and extensions if they are still missing
+    injectElement += "</metadata>";
+    gpxcontent = gpxcontent.replace("</metadata>",injectElement);
+
+
+    //Write QString to file using stream
+    QTextStream stream(&file);
+    stream << gpxcontent;
+    file.flush();
+    file.close();
+
+    if(file.error()){
+        qDebug()<<"Error in writing to a file";
+        qDebug()<<file.errorString();
+        return false;
+    } else{
+        qDebug()<<"GPX file successfully written";
+        return true;
+    }
+}
+
 void TrackRecorder::exportGpx(QString name, QString desc)
 {
     qDebug()<<"Exporting track to gpx";

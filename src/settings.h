@@ -50,6 +50,7 @@ class Settings : public QObject
     Q_PROPERTY(QString stPassword READ stPassword WRITE setStPassword)
     Q_PROPERTY(bool stAutoUpload READ stAutoUpload WRITE setStAutoUpload)
     Q_PROPERTY(int stSharing READ stSharing WRITE setStSharing)
+    Q_PROPERTY(QString stSessionkey READ stSessionkey WRITE setStSessionkey)
 
 public:
     explicit Settings(QObject *parent = 0);
@@ -119,6 +120,9 @@ public:
 
     int stSharing() const;
     void setStSharing(int stSharing);
+
+    QString stSessionkey() const;
+    void setStSessionkey(QString stSessionkey);
 
 signals:
     void updateIntervalChanged();

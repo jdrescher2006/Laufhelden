@@ -45,24 +45,29 @@ Page {
     }
 
     function uploadToSportsTracker(sharing, comment){
+        ST.loginstate = 0;
         stComment = comment;
         stSharing = sharing;
-        if (ST.SESSIONKEY == ""){
-            displayNotification("Logging in...","info",25000);
+        if (settings.stSessionkey === ""){
+            displayNotification(qsTr("Logging in..."),"info",25000);
             ST.loginSportsTracker(sendGPX,
                                   displayNotification,
                                   settings.stUsername,
                                   settings.stPassword);
         }
         else{
+            ST.recycledlogin = true;
+            ST.SESSIONKEY = settings.stSessionkey; //Read stored sessionkey and use it.
+            console.log("Already authenticated, trying to use existing sessionkey");
             sendGPX();
         }
     }
 
     function sendGPX(){
+        ST.loginstate = 1;
         displayNotification("Reading GPX file...","info", 25000);
         var gpx = trackLoader.readGpx();
-        displayNotification("Uploading...", "info", 25000);
+        displayNotification(qsTr("Uploading..."), "info", 25000);
         ST.importGPX(gpx, displayNotification, stSharing, stComment);
     }
 
@@ -78,10 +83,18 @@ Page {
             load_text.color = Theme.primaryColor;
         }
         else if (type === "error"){
-            ntimer.interval = delay;
-            load_text.color = Theme.secondaryHighlightColor;
+            if (ST.loginstate == 1 && ST.recycledlogin === true){
+                console.log("Sessionkey might be too old. Trying to login again");
+                settings.stSessionkey = "";
+                ST.SESSIONKEY = "";
+                recycledlogin = false;
+                uploadToSportsTracker(stSharing, stComment);
+            }
+            else{
+                ntimer.interval = delay;
+                load_text.color = Theme.secondaryHighlightColor;
+            }
         }
-
         ntimer.restart();
         ntimer.start();
     }
@@ -261,6 +274,7 @@ Page {
             MenuItem
             {
                 text: qsTr("Send to Sports-Tracker.com")
+                visible: settings.stUsername === "" ? false:true
                 onClicked: {
 
                     var dialog = pageStack.push(Qt.resolvedUrl("SportsTrackerUploadPage.qml"));//
