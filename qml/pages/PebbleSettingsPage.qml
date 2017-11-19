@@ -38,10 +38,9 @@ Page
             console.log("First Active PebbleSettingsPage");
 
             id_TextSwitch_enablePebble.checked = settings.enablePebble;
-            //id_CMB_MapCenterMode.currentIndex = settings.mapMode;
+            //id_CMB_MapCenterMode.currentIndex = settings.mapMode;           
 
-
-            //id_GI_PebbleConnected.color = pebbleComm.bIsPebbleConnected() ? "green" : "red"
+            id_GI_PebbleConnected.color = pebbleComm.bIsPebbleConnected() ? "green" : "red"
 
             bLockOnCompleted = false;
         }
@@ -149,6 +148,7 @@ Page
             Item
             {
                 width: parent.width
+                height: id_BTN_TestPebble.height
 
                 GlassItem
                 {
@@ -162,8 +162,10 @@ Page
                 }
                 Button
                 {
+                    id: id_BTN_TestPebble
                     text: qsTr("Test Pebble")
                     width: parent.width/2
+                    anchors.horizontalCenter: parent.horizontalCenter
                     onClicked:
                     {
                         iCheckPebbleStep = 1;

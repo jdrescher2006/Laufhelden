@@ -39,9 +39,21 @@ Item
 
     function bIsPebbleConnected()
     {
-        var sTester = interfaceDBUS.call('IsConnected');
+        var sTester = interfaceDBUS.getProperty('IsConnected');
         console.log("isConnected: " + sTester.toString());
-        return true;
+
+        sTester = interfaceDBUS.getProperty('Name');
+        console.log("Name: " + sTester.toString());
+
+        sTester = interfaceDBUS.getProperty('Address');
+        console.log("Address: " + sTester.toString());
+
+
+
+
+
+
+        return interfaceDBUS.getProperty('IsConnected');
     }
 
     DBusInterface
