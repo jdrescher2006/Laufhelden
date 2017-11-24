@@ -121,7 +121,7 @@ Page
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
 
-            if (settings.enablePebble)
+            if (settings.enablePebble && bPebbleConnected)
             {
                 //Set metric unit
                 pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': '1'});
@@ -759,7 +759,16 @@ Page
                     bRecordDialogRequestHRM = true;
                 }
             }
-
+            MenuItem
+            {
+                text: qsTr("Restart Pebble App")
+                visible: settings.enablePebble
+                onClicked:
+                {
+                    //Launch pebble sport app
+                    pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
+                }
+            }
         }
 
         //contentHeight: column.height + Theme.paddingLarge

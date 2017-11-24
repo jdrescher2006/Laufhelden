@@ -166,7 +166,6 @@ void Settings::setmapShowOnly4Fields(bool mapShowOnly4Fields)
 {
      m_settings->setValue("mapsettings/mapShowOnly4Fields", mapShowOnly4Fields);
 }
-
 bool Settings::enablePebble() const
 {
     return m_settings->value("pebblesettings/enablePebble", false).toBool();
@@ -174,6 +173,14 @@ bool Settings::enablePebble() const
 void Settings::setEnablePebble(bool enablePebble)
 {
      m_settings->setValue("pebblesettings/enablePebble", enablePebble);
+}
+QString Settings::valuePebbleFields() const
+{
+    return m_settings->value("pebblesettings/valuePebbleFields", "1,2,3").toString();
+}
+void Settings::setValuePebbleFields(QString valuePebbleFields)
+{
+    m_settings->setValue("pebblesettings/valuePebbleFields", valuePebbleFields);
 }
 
 //Sports-Tracker.com Sharing functions

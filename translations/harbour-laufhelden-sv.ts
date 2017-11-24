@@ -267,6 +267,17 @@
     </message>
 </context>
 <context>
+    <name>PebbleComm</name>
+    <message>
+        <source>Pebble connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
@@ -293,14 +304,6 @@
         <translation>Pebble-inställningar</translation>
     </message>
     <message>
-        <source>Enable Pebble</source>
-        <translation>Aktivera Pebble</translation>
-    </message>
-    <message>
-        <source>Value 1 field:</source>
-        <translation>Värde 1:</translation>
-    </message>
-    <message>
         <source>Test Pebble</source>
         <translation>Testa Pebble</translation>
     </message>
@@ -311,6 +314,26 @@
     <message>
         <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
         <translation>Skicka träningsdata till Pebble. Tillse att du har Rockpool (&gt;= v1.4-4) installerat!</translation>
+    </message>
+    <message>
+        <source>Connected:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Pebble support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 DURATION field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 DISTANCE field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 PACE/SPEED field:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -449,6 +472,10 @@
     <message>
         <source>Select value!</source>
         <translation>Välj värde!</translation>
+    </message>
+    <message>
+        <source>Restart Pebble App</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

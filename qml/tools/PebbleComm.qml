@@ -24,43 +24,80 @@ Item
 
     function fncLaunchPebbleApp(sAppID)
     {
-        interfaceDBUS.call('LaunchApp', sAppID);
+        interfaceDBUSPebble.call('LaunchApp', sAppID);
     }
 
     function fncClosePebbleApp(sAppID)
     {
-        interfaceDBUS.call('CloseApp', sAppID);
+        interfaceDBUSPebble.call('CloseApp', sAppID);
     }
 
     function fncSendDataToPebbleApp(sAppID, oData)
     {
-        interfaceDBUS.call('SendAppData', [sAppID, oData]);
+        interfaceDBUSPebble.call('SendAppData', [sAppID, oData]);
+    }
+
+    function bGetPebbleAddress()
+    {
+        return interfaceDBUSPebble.getProperty('Address');
+    }
+
+    function bGetPebbleName()
+    {
+        return interfaceDBUSPebble.getProperty('Name');
     }
 
     function bIsPebbleConnected()
+    {      
+        return interfaceDBUSPebble.getProperty('IsConnected');
+    }
+
+    function fncGetRockworkVersion()
     {
-        var sTester = interfaceDBUS.getProperty('IsConnected');
-        console.log("isConnected: " + sTester.toString());
+        return interfaceDBUSManager.getProperty('Version');
+    }
 
-        sTester = interfaceDBUS.getProperty('Name');
-        console.log("Name: " + sTester.toString());
-
-        sTester = interfaceDBUS.getProperty('Address');
-        console.log("Address: " + sTester.toString());
-
-
-
-
-
-
-        return interfaceDBUS.getProperty('IsConnected');
+    function fncGetListOfWatches()
+    {
+        return interfaceDBUSManager.getProperty('ListWatches');       
     }
 
     DBusInterface
     {
-        id:interfaceDBUS
+        id:interfaceDBUSPebble
         service: 'org.rockwork'
-        path: '/org/rockwork/B0_B4_48_62_63_F7'
+        path: '/org/rockwork/' + sPebbleAddress
         iface: 'org.rockwork.Pebble'
+        signalsEnabled: true
+
+        function connected()
+        {
+            console.log("Pebble connected");
+            bPebbleConnected = true;
+
+            fncShowMessage(2,qsTr("Pebble connected"), 1200);
+
+            //TODO: if recorder is recording, we have to start the sport app here
+        }
+        function disconnected()
+        {
+            console.log("Pebble disconnected");
+
+            fncShowMessage(3,qsTr("Pebble disconnected"), 1200);
+
+            bPebbleConnected = false;
+        }
+        function appButtonPressed(uuid, key)
+        {
+            console.log("appbuttonpressed, " + uuid + ": " + key.toString());
+        }
+    }
+
+    DBusInterface
+    {
+        id:interfaceDBUSManager
+        service: 'org.rockwork'
+        path: '/org/rockwork/Manager'
+        iface: 'org.rockwork.Manager'
     }
 }

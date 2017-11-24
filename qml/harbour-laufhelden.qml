@@ -47,6 +47,9 @@ ApplicationWindow
     property int iVibrationCounter: 0       //this is used for the vibration function
     property bool bPlayerWasPlaying: false     //this is used if playing music needs to be resumed after audio output
 
+    property bool bPebbleConnected: false
+    property string sPebbleAddress: "B0_B4_48_62_63_F7"
+
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }

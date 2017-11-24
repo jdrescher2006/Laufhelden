@@ -40,8 +40,6 @@ Page
             id_TextSwitch_enablePebble.checked = settings.enablePebble;
             //id_CMB_MapCenterMode.currentIndex = settings.mapMode;           
 
-            id_GI_PebbleConnected.color = pebbleComm.bIsPebbleConnected() ? "green" : "red"
-
             bLockOnCompleted = false;
         }
 
@@ -114,48 +112,42 @@ Page
             TextSwitch
             {
                 id: id_TextSwitch_enablePebble
-                text: qsTr("Enable Pebble")
+                text: qsTr("Enable Pebble support")
                 description: qsTr("Send workout data to pebble. Make sure you have Rockpool (>= v1.4-4) installed!")
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted && !bLockFirstPageLoad)
                         settings.enablePebble = checked;
                 }                
-            }                   
+            }
+
             Separator
             {
-                color: Theme.highlightColor
-                width: parent.width
-            }
-            ComboBox
-            {
-                id: id_CMB_MapCenterMode
-                label: qsTr("Value 1 field:")
-                menu: ContextMenu { Repeater { model: RecordPageDisplay.arrayValueTypes; MenuItem { text: modelData.header } }}
-                onCurrentItemChanged:
-                {
-                    if (!bLockOnCompleted && !bLockFirstPageLoad)
-                    {
-                        console.log("Combo changed: " + RecordPageDisplay.arrayValueTypes[currentIndex].header);
-                    }
-                }
-            }
-            Separator
-            {
+                visible: id_TextSwitch_enablePebble.checked
                 color: Theme.highlightColor
                 width: parent.width
             }
             Item
             {
+                visible: id_TextSwitch_enablePebble.checked
                 width: parent.width
                 height: id_BTN_TestPebble.height
+
+                Label
+                {
+                    id: id_LBL_PebbleConnected
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.paddingSmall
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: qsTr("Connected:")
+                }
 
                 GlassItem
                 {
                     id: id_GI_PebbleConnected
-                    anchors.left: parent.left
+                    anchors.left: id_LBL_PebbleConnected.right
                     anchors.verticalCenter: parent.verticalCenter
-                    color: "red"
+                    color: bPebbleConnected ? "green" : "red"
                     falloffRadius: 0.15
                     radius: 1.0
                     cache: false
@@ -165,7 +157,8 @@ Page
                     id: id_BTN_TestPebble
                     text: qsTr("Test Pebble")
                     width: parent.width/2
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.paddingSmall
                     onClicked:
                     {
                         iCheckPebbleStep = 1;
@@ -174,6 +167,55 @@ Page
                     }
                 }
             }
+
+            Separator
+            {
+                visible: id_TextSwitch_enablePebble.checked
+                color: Theme.highlightColor
+                width: parent.width
+            }            
+            ComboBox
+            {
+                visible: id_TextSwitch_enablePebble.checked
+                id: id_CMB_ValueField1
+                label: qsTr("1 DURATION field:")
+                menu: ContextMenu { Repeater { model: RecordPageDisplay.arrayValueTypes; MenuItem { text: modelData.header } }}
+                onCurrentItemChanged:
+                {
+                    if (!bLockOnCompleted && !bLockFirstPageLoad)
+                    {
+                        console.log("Combo changed: " + RecordPageDisplay.arrayValueTypes[currentIndex].header);
+                    }
+                }
+            }
+            ComboBox
+            {
+                visible: id_TextSwitch_enablePebble.checked
+                id: id_CMB_ValueField2
+                label: qsTr("2 DISTANCE field:")
+                menu: ContextMenu { Repeater { model: RecordPageDisplay.arrayValueTypes; MenuItem { text: modelData.header } }}
+                onCurrentItemChanged:
+                {
+                    if (!bLockOnCompleted && !bLockFirstPageLoad)
+                    {
+                        console.log("Combo changed: " + RecordPageDisplay.arrayValueTypes[currentIndex].header);
+                    }
+                }
+            }
+            ComboBox
+            {
+                visible: id_TextSwitch_enablePebble.checked
+                id: id_CMB_ValueField3
+                label: qsTr("3 PACE/SPEED field:")
+                menu: ContextMenu { Repeater { model: RecordPageDisplay.arrayValueTypes; MenuItem { text: modelData.header } }}
+                onCurrentItemChanged:
+                {
+                    if (!bLockOnCompleted && !bLockFirstPageLoad)
+                    {
+                        console.log("Combo changed: " + RecordPageDisplay.arrayValueTypes[currentIndex].header);
+                    }
+                }
+            }            
             ProgressBar
             {
                 id: progressBarCheckPebble
