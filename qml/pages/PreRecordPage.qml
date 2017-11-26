@@ -69,12 +69,6 @@ Page
 
             pageStack.pushAttached(Qt.resolvedUrl("RecordPage.qml"));           
 
-            if (settings.enablePebble && bPebbleConnected)
-            {
-                //Launch pebble sport app
-                pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
-            }
-
             bLockOnCompleted = false;
         }
 
@@ -96,6 +90,15 @@ Page
             if (bRecordDialogRequestHRM)
                 bRecordDialogRequestHRM = false;
 
+            //Check if pebble is connected
+            if (settings.enablePebble && !bPebbleConnected)
+                bPebbleConnected = pebbleComm.bIsPebbleConnected();
+
+            if (settings.enablePebble && bPebbleConnected)
+            {
+                //Launch pebble sport app
+                pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
+            }
         }
 
         if (status === PageStatus.Inactive)

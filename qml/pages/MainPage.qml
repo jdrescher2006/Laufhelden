@@ -84,6 +84,10 @@ Page
                 sHRMAddress = "";
                 sHRMDeviceName = "";
             }
+
+            //Check if pebble is connected
+            if (settings.enablePebble && !bPebbleConnected)
+                bPebbleConnected = pebbleComm.bIsPebbleConnected();
         }
 
         //This is loaded everytime the page is displayed

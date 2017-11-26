@@ -48,6 +48,9 @@ Page
         {
             console.log("Active PebbleSettingsPage");
 
+            //Check if pebble is connected
+            if (settings.enablePebble && !bPebbleConnected)
+                bPebbleConnected = pebbleComm.bIsPebbleConnected();
         }
     }
 

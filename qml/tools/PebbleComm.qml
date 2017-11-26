@@ -73,9 +73,11 @@ Item
         function connected()
         {
             console.log("Pebble connected");
+            
+            if (!bPebbleConnected)
+                fncShowMessage(2,qsTr("Pebble connected"), 1200);
+                                
             bPebbleConnected = true;
-
-            fncShowMessage(2,qsTr("Pebble connected"), 1200);
 
             //TODO: if recorder is recording, we have to start the sport app here
         }
@@ -83,7 +85,8 @@ Item
         {
             console.log("Pebble disconnected");
 
-            fncShowMessage(3,qsTr("Pebble disconnected"), 1200);
+            if (bPebbleConnected)
+                fncShowMessage(3,qsTr("Pebble disconnected"), 1200);
 
             bPebbleConnected = false;
         }
