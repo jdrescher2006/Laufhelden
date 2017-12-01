@@ -66,7 +66,7 @@ Item
     {
         id:interfaceDBUSPebble
         service: 'org.rockwork'
-        path: '/org/rockwork/' + sPebbleAddress
+        path: sPebblePath
         iface: 'org.rockwork.Pebble'
         signalsEnabled: true
 
@@ -76,10 +76,12 @@ Item
             
             if (!bPebbleConnected)
                 fncShowMessage(2,qsTr("Pebble connected"), 1200);
-                                
-            bPebbleConnected = true;
 
-            //TODO: if recorder is recording, we have to start the sport app here
+            //Pebble just got connected, check if sport app is required
+            if (bPebbleSportAppRequired && !bPebbleConnected)
+                pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
+
+            bPebbleConnected = true;                       
         }
         function disconnected()
         {

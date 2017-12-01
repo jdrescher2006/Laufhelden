@@ -176,7 +176,7 @@ void Settings::setEnablePebble(bool enablePebble)
 }
 QString Settings::valuePebbleFields() const
 {
-    return m_settings->value("pebblesettings/valuePebbleFields", "1,2,3").toString();
+    return m_settings->value("pebblesettings/valuePebbleFields", "10,8,3").toString();
 }
 void Settings::setValuePebbleFields(QString valuePebbleFields)
 {

@@ -670,6 +670,20 @@ QString TrackRecorder::pauseTime() const
     return timeStr;
 }
 
+QString TrackRecorder::pebblePauseTime() const
+{
+    uint hours, minutes;
+
+    hours = this->m_PauseDuration / (60*60);
+    minutes = (this->m_PauseDuration - hours*60*60) / 60;
+
+    QString timeStr = QString("%1:%2")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(minutes, 2, 10, QLatin1Char('0'));
+
+    return timeStr;
+}
+
 QString TrackRecorder::time() const
 {
     uint hours, minutes, seconds;

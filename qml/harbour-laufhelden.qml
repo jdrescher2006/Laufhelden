@@ -47,9 +47,11 @@ ApplicationWindow
     property int iVibrationCounter: 0       //this is used for the vibration function
     property bool bPlayerWasPlaying: false     //this is used if playing music needs to be resumed after audio output
 
+    //*** Pebble Start ***
     property bool bPebbleConnected: false
-    property string sPebbleAddress: "B0_B4_48_62_63_F7"
-
+    property bool bPebbleSportAppRequired: false
+    property string sPebblePath: ""
+    //*** Pebble End ***
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }
@@ -59,6 +61,7 @@ ApplicationWindow
     Settings{ id: settings }
     PlotWidget{ id: id_PlotWidget }
     Light{ id: id_Light }
+    PebbleManagerComm{ id: id_PebbleManagerComm }
     TrackRecorder
     {
         id: recorder        

@@ -14,6 +14,7 @@ DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 CONFIG += sailfishapp
 QT += positioning location concurrent
 QT += bluetooth sensors
+QT += dbus
 
 SOURCES += src/harbour-laufhelden.cpp \
     src/trackrecorder.cpp \
@@ -24,7 +25,8 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/bluetoothdata.cpp \
     src/logwriter.cpp \
     src/plotwidget.cpp \
-    src/light.cpp
+    src/light.cpp \
+    src/pebblemanagercomm.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -59,7 +61,8 @@ HEADERS += \
     src/bluetoothdata.h \
     src/logwriter.h \
     src/plotwidget.h \
-    src/light.h
+    src/light.h \
+    src/pebblemanagercomm.h
 
 DISTFILES += \
     qml/pages/MainPage.qml \

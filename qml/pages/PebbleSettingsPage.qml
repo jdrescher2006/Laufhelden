@@ -17,7 +17,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../tools/RecordPageDisplay.js" as RecordPageDisplay
+import "../tools/JSTools.js" as JSTools
 
 Page
 {
@@ -37,8 +37,53 @@ Page
             bLockFirstPageLoad = false;
             console.log("First Active PebbleSettingsPage");
 
+            //Check if a Pebble watch was found in Rockpool manager
+            var sPebbleList = id_PebbleManagerComm.getListWatches();
+            console.log("sPebbleList: " + sPebbleList);
+
+            if (sPebbleList !== undefined && sPebbleList.length > 0)
+            {
+                //A pebble was found, we have now a DBus path to it.
+                //If there are more than one pebble, use the first one.
+                sPebblePath = sPebbleList[0];
+
+                //Read version of Rockpool and check if it is sufficient
+                fncCheckVersion(id_PebbleManagerComm.getRockpoolVersion());
+            }
+            else
+            {
+                //Show error
+                id_REC_PebbleAddress.visible = true;
+
+                //Disable pebble support
+                settings.enablePebble = false;
+
+                //Disble this dialog
+                id_TextSwitch_enablePebble.checked = false;
+                id_TextSwitch_enablePebble.enabled = false;
+            }
+
+
+            //Set settings to dialog
             id_TextSwitch_enablePebble.checked = settings.enablePebble;
-            //id_CMB_MapCenterMode.currentIndex = settings.mapMode;           
+
+            var arValueTypes = settings.valuePebbleFields.split(",");
+            if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 3)    //This is the amount pebble fields
+            {
+                //Set defaults if save string is damaged or broken
+                arValueTypes[0] = 10;
+                arValueTypes[1] = 8;
+                arValueTypes[2] = 3;
+            }
+
+            arValueTypes[0] = parseInt(arValueTypes[0]);
+            arValueTypes[1] = parseInt(arValueTypes[1]);
+            arValueTypes[2] = parseInt(arValueTypes[2]);
+
+            id_CMB_ValueField1.currentIndex = arValueTypes[0];
+            id_CMB_ValueField2.currentIndex = arValueTypes[1];
+            id_CMB_ValueField3.currentIndex = arValueTypes[2];
+
 
             bLockOnCompleted = false;
         }
@@ -52,6 +97,62 @@ Page
             if (settings.enablePebble && !bPebbleConnected)
                 bPebbleConnected = pebbleComm.bIsPebbleConnected();
         }
+    }
+
+    function fncCheckVersion(sVersion)
+    {
+        //Check if version is valid
+        if (sVersion === undefined || sVersion === "" || sVersion.indexOf(".") === -1 || sVersion.indexOf("-") === -1)
+        {
+            id_LBL_Rockpool.text = id_LBL_Rockpool.text + "-";
+            id_REC_Rockpool.visible = true;
+
+            //Disable pebble support
+            settings.enablePebble = false;
+
+            //Disble this dialog
+            id_TextSwitch_enablePebble.checked = false;
+            id_TextSwitch_enablePebble.enabled = false;
+        }
+        else
+        {
+            //Cut off the release number, we don't need that for comparing
+            var sModVersion = sVersion.substring(0, sVersion.indexOf("-"));
+
+            //Check if Rockpool verion is too old
+            if (fncCompareVersions(sModVersion, "1.3") < 0)
+            {
+                id_LBL_Rockpool.text = id_LBL_Rockpool.text + sVersion;
+                id_REC_Rockpool.visible = true;
+
+                settings.enablePebble = false;
+                id_TextSwitch_enablePebble.checked = false;
+                id_TextSwitch_enablePebble.enabled = false;
+
+            }
+            else
+            {
+                id_REC_Rockpool.visible = false;
+                id_TextSwitch_enablePebble.enabled = true;
+            }
+        }
+    }
+
+    function fncCompareVersions(a, b)
+    {
+        var i, diff;
+        var regExStrip0 = /(\.0+)+$/;
+        var segmentsA = a.replace(regExStrip0, '').split('.');
+        var segmentsB = b.replace(regExStrip0, '').split('.');
+        var l = Math.min(segmentsA.length, segmentsB.length);
+
+        for (i = 0; i < l; i++) {
+            diff = parseInt(segmentsA[i], 10) - parseInt(segmentsB[i], 10);
+            if (diff) {
+                return diff;
+            }
+        }
+        return segmentsA.length - segmentsB.length;
     }
 
     Timer
@@ -98,11 +199,85 @@ Page
         }
     }
 
+    Rectangle
+    {
+        visible: false
+        id: id_REC_Rockpool
+        z: 2
+        color: "black"
+        anchors.fill: parent
+        Label
+        {
+            id: id_LBL_Rockpool
+            color: "red"
+            text: qsTr("Rockpool must be installed<br>at least in version 1.4-4.<br>Installed version is: ")
+            font.pixelSize: Theme.fontSizeSmall
+            anchors.centerIn: parent
+        }
+        Label
+        {
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: id_LBL_Rockpool.bottom
+            anchors.topMargin: Theme.paddingLarge
+            font.pixelSize: Theme.fontSizeSmall
+            property string urlstring: "https://openrepos.net/content/abranson/rockpool"
+            text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
+            onLinkActivated: Qt.openUrlExternally(link)
+        }
+        Image
+        {
+            width: parent.width/10
+            height: parent.width/10
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: id_LBL_Rockpool.top
+            anchors.bottomMargin: Theme.paddingLarge
+            source: "../img/icon-lock-error.png"
+        }
+    }
+
+    Rectangle
+    {
+        visible: false
+        id: id_REC_PebbleAddress
+        z: 2
+        color: "black"
+        anchors.fill: parent
+        Label
+        {
+            id: id_LBL_PebbleAddress
+            color: "red"
+            text: qsTr("No Pebble found.<br>Install Rockpool and<br>then connect Pebble!")
+            font.pixelSize: Theme.fontSizeSmall
+            anchors.centerIn: parent
+        }
+        Label
+        {
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: id_LBL_PebbleAddress.bottom
+            anchors.topMargin: Theme.paddingLarge
+            font.pixelSize: Theme.fontSizeSmall
+            property string urlstring: "https://openrepos.net/content/abranson/rockpool"
+            text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
+            onLinkActivated: Qt.openUrlExternally(link)
+        }
+        Image
+        {
+            width: parent.width/10
+            height: parent.width/10
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: id_LBL_PebbleAddress.top
+            anchors.bottomMargin: Theme.paddingLarge
+            source: "../img/icon-lock-error.png"
+        }
+    }
+
+
     SilicaFlickable
     {
         anchors.fill: parent
         contentHeight: column.height + Theme.paddingLarge;
         VerticalScrollDecorator {}
+
         Column
         {
             id: column
@@ -116,9 +291,10 @@ Page
             {
                 id: id_TextSwitch_enablePebble
                 text: qsTr("Enable Pebble support")
-                description: qsTr("Send workout data to pebble. Make sure you have Rockpool (>= v1.4-4) installed!")
+                description: qsTr("View workout data on Pebble Smartwatch.")
                 onCheckedChanged:
                 {
+                    console.log("Pressed...");
                     if (!bLockOnCompleted && !bLockFirstPageLoad)
                         settings.enablePebble = checked;
                 }                
@@ -176,18 +352,75 @@ Page
                 visible: id_TextSwitch_enablePebble.checked
                 color: Theme.highlightColor
                 width: parent.width
-            }            
+            }
+            Item
+            {
+                width: parent.width
+                height: parent.height / 5
+                Image
+                {
+                    id: id_IMG_Pebble
+                    visible: id_TextSwitch_enablePebble.checked
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    height: parent.height
+                    width: parent.height / 1.167
+                    fillMode: Image.Stretch
+                    source: "../img/pebble.jpg"
+                }
+                Label
+                {
+                    anchors.left: id_IMG_Pebble.right
+                    anchors.leftMargin: Theme.paddingSmall
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: parent.width - id_IMG_Pebble.width
+                    wrapMode: Text.WordWrap
+                    color: Theme.primaryColor
+                    visible: id_TextSwitch_enablePebble.checked
+                    text: qsTr("Choose values for Pebble fields!")
+                }
+            }
             ComboBox
             {
                 visible: id_TextSwitch_enablePebble.checked
                 id: id_CMB_ValueField1
                 label: qsTr("1 DURATION field:")
-                menu: ContextMenu { Repeater { model: RecordPageDisplay.arrayValueTypes; MenuItem { text: modelData.header } }}
+                menu: ContextMenu { Repeater { model: JSTools.arrayPebbleValueTypes; MenuItem { text: modelData.header } }}
                 onCurrentItemChanged:
                 {
                     if (!bLockOnCompleted && !bLockFirstPageLoad)
                     {
-                        console.log("Combo changed: " + RecordPageDisplay.arrayValueTypes[currentIndex].header);
+                        console.log("Combo changed: " + JSTools.arrayPebbleValueTypes[currentIndex].header);
+
+                        //Check if an other combobox has this value
+                        if (currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex)
+                        {
+                            fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
+                            return
+                        }
+
+                        //Check if the other comboboxes are OK
+                        if (id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex)
+                            return;
+
+                        var arValueTypes = settings.valuePebbleFields.split(",");
+                        if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 3)    //This is the amount pebble fields
+                        {
+                            //Set defaults if save string is damaged or broken
+                            arValueTypes[0] = 10;
+                            arValueTypes[1] = 8;
+                            arValueTypes[2] = 3;
+                        }
+
+                        arValueTypes[0] = id_CMB_ValueField1.currentIndex;
+                        arValueTypes[1] = id_CMB_ValueField2.currentIndex;
+                        arValueTypes[2] = id_CMB_ValueField3.currentIndex;
+
+                        var sSaveString = arValueTypes[0].toString() + "," + arValueTypes[1].toString() + "," + arValueTypes[2].toString();
+
+                        settings.valuePebbleFields = sSaveString;
+
+                        JSTools.fncGenerateHelperArray();
                     }
                 }
             }
@@ -196,12 +429,42 @@ Page
                 visible: id_TextSwitch_enablePebble.checked
                 id: id_CMB_ValueField2
                 label: qsTr("2 DISTANCE field:")
-                menu: ContextMenu { Repeater { model: RecordPageDisplay.arrayValueTypes; MenuItem { text: modelData.header } }}
+                menu: ContextMenu { Repeater { model: JSTools.arrayPebbleValueTypes; MenuItem { text: modelData.header } }}
                 onCurrentItemChanged:
                 {
                     if (!bLockOnCompleted && !bLockFirstPageLoad)
                     {
-                        console.log("Combo changed: " + RecordPageDisplay.arrayValueTypes[currentIndex].header);
+                        console.log("Combo changed: " + JSTools.arrayPebbleValueTypes[currentIndex].header);
+
+                        //Check if an other combobox has this value
+                        if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex)
+                        {
+                            fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
+                            return
+                        }
+
+                        //Check if the other comboboxes are OK
+                        if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex)
+                            return;
+
+                        var arValueTypes = settings.valuePebbleFields.split(",");
+                        if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 3)    //This is the amount pebble fields
+                        {
+                            //Set defaults if save string is damaged or broken
+                            arValueTypes[0] = 10;
+                            arValueTypes[1] = 8;
+                            arValueTypes[2] = 3;
+                        }
+
+                        arValueTypes[0] = id_CMB_ValueField1.currentIndex;
+                        arValueTypes[1] = id_CMB_ValueField2.currentIndex;
+                        arValueTypes[2] = id_CMB_ValueField3.currentIndex;
+
+                        var sSaveString = arValueTypes[0].toString() + "," + arValueTypes[1].toString() + "," + arValueTypes[2].toString();
+
+                        settings.valuePebbleFields = sSaveString;
+
+                        JSTools.fncGenerateHelperArray();
                     }
                 }
             }
@@ -210,12 +473,42 @@ Page
                 visible: id_TextSwitch_enablePebble.checked
                 id: id_CMB_ValueField3
                 label: qsTr("3 PACE/SPEED field:")
-                menu: ContextMenu { Repeater { model: RecordPageDisplay.arrayValueTypes; MenuItem { text: modelData.header } }}
+                menu: ContextMenu { Repeater { model: JSTools.arrayPebbleValueTypes; MenuItem { text: modelData.header } }}
                 onCurrentItemChanged:
                 {
                     if (!bLockOnCompleted && !bLockFirstPageLoad)
                     {
-                        console.log("Combo changed: " + RecordPageDisplay.arrayValueTypes[currentIndex].header);
+                        console.log("Combo changed: " + JSTools.arrayPebbleValueTypes[currentIndex].header);
+
+                        //Check if an other combobox has this value
+                        if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex)
+                        {
+                            fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
+                            return
+                        }
+
+                        //Check if the other comboboxes are OK
+                        if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex)
+                            return;
+
+                        var arValueTypes = settings.valuePebbleFields.split(",");
+                        if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 3)    //This is the amount pebble fields
+                        {
+                            //Set defaults if save string is damaged or broken
+                            arValueTypes[0] = 10;
+                            arValueTypes[1] = 8;
+                            arValueTypes[2] = 3;
+                        }
+
+                        arValueTypes[0] = id_CMB_ValueField1.currentIndex;
+                        arValueTypes[1] = id_CMB_ValueField2.currentIndex;
+                        arValueTypes[2] = id_CMB_ValueField3.currentIndex;
+
+                        var sSaveString = arValueTypes[0].toString() + "," + arValueTypes[1].toString() + "," + arValueTypes[2].toString();
+
+                        settings.valuePebbleFields = sSaveString;
+
+                        JSTools.fncGenerateHelperArray();
                     }
                 }
             }            

@@ -93,8 +93,9 @@ Page
                     fncSetMapPoint(recorder.trackPointAt(i), i);
                 }
 
-                //We need to set parameters to the dialog
+                //We need to set parameters to the dialog/pebble
                 RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);
+                JSTools.arrayPebbleValueTypes[8].value = (recorder.distance/1000).toFixed(1);
             }
 
             console.log("RecordPage: Setting map viewport");
@@ -111,6 +112,8 @@ Page
             //Set value types for fields in JS array
             RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
 
+            JSTools.fncConvertSaveStringToArray(settings.valuePebbleFields);
+
             //Set header and footer to text fields
             fncSetHeaderFooterTexts();
 
@@ -121,7 +124,7 @@ Page
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
 
-            if (settings.enablePebble && bPebbleConnected)
+            if (sPebblePath !== "" && settings.enablePebble && bPebbleConnected)
             {
                 //Set metric unit
                 pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': '1'});
@@ -133,6 +136,10 @@ Page
                 id_BluetoothData.connect(sHRMAddress, 1);
                 bRecordDialogRequestHRM = true;
             }
+
+            //Check if pebble is connected
+            if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
+                bPebbleConnected = pebbleComm.bIsPebbleConnected();
 
             //Load threshold settings and convert them to JS array
             Thresholds.fncConvertSaveStringToArray(settings.thresholds);
@@ -231,6 +238,8 @@ Page
             {
                 RecordPageDisplay.arrayValueTypes[1].value = sHeartRate;
                 RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
+
+                JSTools.arrayPebbleValueTypes[1].value = sHeartRate;
             }
             //Set values to JS array if recorder is running
             if (recorder.running && !recorder.pause)
@@ -243,11 +252,22 @@ Page
                 RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
                 RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
                 RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);                
+
+                JSTools.arrayPebbleValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
+                JSTools.arrayPebbleValueTypes[3].value = recorder.paceStr;
+                JSTools.arrayPebbleValueTypes[4].value = recorder.paceaverageStr;
+                JSTools.arrayPebbleValueTypes[5].value = recorder.speed.toFixed(1);
+                JSTools.arrayPebbleValueTypes[6].value = recorder.speedaverage.toFixed(1);
+                JSTools.arrayPebbleValueTypes[7].value = recorder.altitude;
+                JSTools.arrayPebbleValueTypes[8].value = (recorder.distance/1000).toFixed(1);
             }
             if (recorder.running)
             {
                 //This is the pause duration
                 RecordPageDisplay.arrayValueTypes[9].value = recorder.pauseTime;
+
+                JSTools.arrayPebbleValueTypes[9].value = recorder.pebblePauseTime;
+                JSTools.arrayPebbleValueTypes[10].value = recorder.pebbleTime;
             }
 
             //Set values from JS array to dialog text fields
@@ -273,10 +293,9 @@ Page
             var newDate = new Date();
             idCurrentDayTime.text = JSTools.fncPadZeros(newDate.getHours(),2) + ":" + JSTools.fncPadZeros(newDate.getMinutes(),2) + ":" + JSTools.fncPadZeros(newDate.getSeconds(),2) + " ";
 
-
-            if (settings.enablePebble)
-            {                                
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': recorder.pebbleTime, '1': (recorder.distance/1000).toFixed(1).toString(), '5': '0', '2': sHeartRate});
+            if (sPebblePath !== "" && settings.enablePebble)
+            {
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': JSTools.arrayLookupPebbleValueTypesByFieldID[1].value, '1': JSTools.arrayLookupPebbleValueTypesByFieldID[2].value, '5': '0', '2': JSTools.arrayLookupPebbleValueTypesByFieldID[3].value});
             }
         }
     }

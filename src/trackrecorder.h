@@ -46,6 +46,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(bool pause READ pause WRITE setPause NOTIFY pauseChanged)
     Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
     Q_PROPERTY(QString pauseTime READ pauseTime NOTIFY pauseTimeChanged)
+    Q_PROPERTY(QString pebblePauseTime READ pebblePauseTime NOTIFY pauseTimeChanged)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);
@@ -69,6 +70,7 @@ public:
     QString paceaverageStr() const;
     QString time() const;
     QString pebbleTime() const;
+    QString pebblePauseTime() const;
     QString pauseTime() const;
     bool isEmpty() const;
     QGeoCoordinate currentPosition() const;

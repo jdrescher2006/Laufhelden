@@ -85,8 +85,21 @@ Page
                 sHRMDeviceName = "";
             }
 
-            //Check if pebble is connected
-            if (settings.enablePebble && !bPebbleConnected)
+            //Search for pebble watch
+            if (settings.enablePebble)
+            {
+                var sPebbleList = id_PebbleManagerComm.getListWatches();
+                console.log("sPebbleList: " + sPebbleList);
+
+                if (sPebbleList !== undefined && sPebbleList.length > 0)
+                    sPebblePath = sPebbleList[0];
+            }
+
+            //Sport app on the pebble is no longer required
+            bPebbleSportAppRequired = false;
+
+            //If pebble is NOT connected, check if it's connected now
+            if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
                 bPebbleConnected = pebbleComm.bIsPebbleConnected();
         }
 
@@ -99,7 +112,7 @@ Page
             recorder.vEndGPS();
 
             //close pebble sport app
-            if (settings.enablePebble)
+            if (sPebblePath !== "" && settings.enablePebble)
             {
                 pebbleComm.fncClosePebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
             }

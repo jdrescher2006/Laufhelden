@@ -53,11 +53,15 @@
     </message>
     <message>
         <source>Finnish</source>
-        <translation type="unfinished"></translation>
+        <translation>Finnisch</translation>
     </message>
     <message>
         <source>Credits for code contribution:</source>
-        <translation type="unfinished"></translation>
+        <translation>Credits für Beiträge zur Entwicklung:</translation>
+    </message>
+    <message>
+        <source>If you like this app you can donate for it:</source>
+        <translation>Wenn Sie diese App mögen, können Sie dafür spenden:</translation>
     </message>
 </context>
 <context>
@@ -174,11 +178,11 @@
     </message>
     <message>
         <source>Logging in...</source>
-        <translation type="unfinished"></translation>
+        <translation>Einloggen...</translation>
     </message>
     <message>
         <source>Uploading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hochladen...</translation>
     </message>
 </context>
 <context>
@@ -186,6 +190,41 @@
     <message>
         <source>Diagrams</source>
         <translation>Diagramme</translation>
+    </message>
+</context>
+<context>
+    <name>JSTools</name>
+    <message>
+        <source>Empty</source>
+        <translation>Leeres Feld</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation>Herzfrequenz</translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation>Tempo</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>Geschwindigkeit</translation>
+    </message>
+    <message>
+        <source>Altitude</source>
+        <translation>Höhe</translation>
+    </message>
+    <message>
+        <source>Distance</source>
+        <translation>Distanz</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation>Pause</translation>
+    </message>
+    <message>
+        <source>Duration</source>
+        <translation>Dauer</translation>
     </message>
 </context>
 <context>
@@ -270,70 +309,86 @@
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble Verbunden</translation>
     </message>
     <message>
         <source>Pebble disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble Getrennt</translation>
     </message>
 </context>
 <context>
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation type="unfinished"></translation>
+        <translation>Metrische Einheiten</translation>
     </message>
     <message>
         <source>sending data 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sende Daten 1</translation>
     </message>
     <message>
         <source>sending data 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Sende Daten 2</translation>
     </message>
     <message>
         <source>sending data 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Sende Daten 3</translation>
     </message>
     <message>
         <source>closing sport app</source>
-        <translation type="unfinished"></translation>
+        <translation>Schliesse Sport App</translation>
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble Einstellungen</translation>
     </message>
     <message>
         <source>Test Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>starting sport app</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Starte Sport App</translation>
     </message>
     <message>
         <source>Connected:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbunden:</translation>
     </message>
     <message>
         <source>Enable Pebble support</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble Ausgabe</translation>
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 DURATION Feld</translation>
     </message>
     <message>
         <source>2 DISTANCE field:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 DISTANCE Feld</translation>
     </message>
     <message>
         <source>3 PACE/SPEED field:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 PACE/SPEED Feld</translation>
+    </message>
+    <message>
+        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-4.&lt;br&gt;Installed version is: </source>
+        <translation>Rockpool muss installiert sein&lt;br&gt;mindestens in Version 1.4-4.&lt;br&gt;Installiert ist: </translation>
+    </message>
+    <message>
+        <source>View workout data on Pebble Smartwatch.</source>
+        <translation>Zeige Trainingsdaten auf der Pebble Smartwatch an.</translation>
+    </message>
+    <message>
+        <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
+        <translation>Keine Pebble gefunden.&lt;br&gt;Rockpool installieren und&lt;br&gt;dann Pebble verbinden!</translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation>Dieser Wert ist bereits zugewiesen!</translation>
+    </message>
+    <message>
+        <source>Choose values for Pebble fields!</source>
+        <translation>Werte für Pebble-Felder auswählen</translation>
     </message>
 </context>
 <context>
@@ -475,7 +530,7 @@
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble App neu starten</translation>
     </message>
 </context>
 <context>
@@ -580,7 +635,7 @@
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -677,19 +732,19 @@
     <name>SportsTracker</name>
     <message>
         <source>Oops, username or password error</source>
-        <translation type="unfinished"></translation>
+        <translation>Oops, Username oder Passwort Fehler</translation>
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim GPX-Import ist ein Fehler aufgetreten</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
-        <translation type="unfinished"></translation>
+        <translation>Trainingsdaten hochgeladen!</translation>
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Speichern ist ein Fehler aufgetreten</translation>
     </message>
 </context>
 <context>
@@ -744,51 +799,51 @@
     </message>
     <message>
         <source>Test login...</source>
-        <translation type="unfinished"></translation>
+        <translation>Test Login...</translation>
     </message>
     <message>
         <source>Already authenticated</source>
-        <translation type="unfinished"></translation>
+        <translation>Bereits Authentifiziert</translation>
     </message>
     <message>
         <source>Login success!</source>
-        <translation type="unfinished"></translation>
+        <translation>Einloggen erfolgreich</translation>
     </message>
     <message>
         <source>Login error, Check username or password</source>
-        <translation type="unfinished"></translation>
+        <translation>Login-Fehler, Benutzername oder Passwort überprüfen</translation>
     </message>
     <message>
         <source>Loading workouts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lade Trainingsdaten...</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">von</translation>
+        <translation>von</translation>
     </message>
     <message>
         <source> unique workout downloaded!</source>
-        <translation type="unfinished"></translation>
+        <translation> Training heruntergeladen!</translation>
     </message>
     <message>
         <source>Test login</source>
-        <translation type="unfinished"></translation>
+        <translation>Test login</translation>
     </message>
     <message>
         <source>Download workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Trainings Herunterladen</translation>
     </message>
     <message>
         <source>Maximum number to download</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Anzahl zum Herunterladen</translation>
     </message>
     <message>
         <source>Downloading GPX files</source>
-        <translation type="unfinished"></translation>
+        <translation>Herunterladen von GPX-Dateien</translation>
     </message>
     <message>
         <source>Track write error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim schreiben des Tracks</translation>
     </message>
 </context>
 <context>

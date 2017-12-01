@@ -88,17 +88,17 @@ Page
 
             //We might returned from record page and HR reconnect is still active. Switch it off.
             if (bRecordDialogRequestHRM)
-                bRecordDialogRequestHRM = false;
+                bRecordDialogRequestHRM = false;           
 
             //Check if pebble is connected
-            if (settings.enablePebble && !bPebbleConnected)
+            if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
                 bPebbleConnected = pebbleComm.bIsPebbleConnected();
 
-            if (settings.enablePebble && bPebbleConnected)
-            {
-                //Launch pebble sport app
+            //Launch pebble sport app
+            if (sPebblePath !== "" && settings.enablePebble && bPebbleConnected)
                 pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
-            }
+
+            bPebbleSportAppRequired = settings.enablePebble;
         }
 
         if (status === PageStatus.Inactive)

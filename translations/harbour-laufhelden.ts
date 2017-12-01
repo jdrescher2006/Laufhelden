@@ -59,6 +59,10 @@
         <source>Credits for code contribution:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>If you like this app you can donate for it:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -189,6 +193,41 @@
     </message>
 </context>
 <context>
+    <name>JSTools</name>
+    <message>
+        <source>Empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Altitude</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainPage</name>
     <message>
         <source>About</source>
@@ -312,10 +351,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Connected:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -333,6 +368,26 @@
     </message>
     <message>
         <source>3 PACE/SPEED field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-4.&lt;br&gt;Installed version is: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View workout data on Pebble Smartwatch.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose values for Pebble fields!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
