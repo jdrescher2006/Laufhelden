@@ -61,7 +61,7 @@
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation type="unfinished"></translation>
+        <translation>Om du gillar den här appen kan du donera för vidare utveckling:</translation>
     </message>
 </context>
 <context>
@@ -224,7 +224,7 @@
     </message>
     <message>
         <source>Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Varaktighet</translation>
     </message>
 </context>
 <context>
@@ -309,11 +309,11 @@
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble ansluten</translation>
     </message>
     <message>
         <source>Pebble disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble bortkopplad</translation>
     </message>
 </context>
 <context>
@@ -352,43 +352,43 @@
     </message>
     <message>
         <source>Connected:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ansluten:</translation>
     </message>
     <message>
         <source>Enable Pebble support</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivera Pebble-stöd</translation>
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 VARAKTIGHET:</translation>
     </message>
     <message>
         <source>2 DISTANCE field:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 DISTANS:</translation>
     </message>
     <message>
         <source>3 PACE/SPEED field:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 TEMPO/HASTIGHET:</translation>
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-4.&lt;br&gt;Installed version is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Rockpool måste vara installerat&lt;br&gt;lägst version 1.4-4&lt;br&gt;Installerad version är: </translation>
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa träningsdata på Pebble Smartwatch.</translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen Pebble hittades.&lt;br&gt;Installera Rockpool och&lt;br&gt;anslut sedan Pebble!</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished"></translation>
+        <translation>Detta värde är redan tilldelat!</translation>
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj värden för Pebble-fälten!</translation>
     </message>
 </context>
 <context>
@@ -530,7 +530,7 @@
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta om Pebble-appen</translation>
     </message>
 </context>
 <context>
