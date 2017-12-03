@@ -253,7 +253,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disbale screen blanking when recording.</source>
+        <source>Disable screen blanking when recording.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
