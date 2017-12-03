@@ -172,5 +172,16 @@ for (var i = 0; i < arrayWorkoutTypes.length; i++)
     arrayLookupWorkoutTableByName[arrayWorkoutTypes[i].name] = arrayWorkoutTypes[i];
 }
 
+function fncGetIndexByName(sWorkoutName)
+{
+    for (var i = 0; i < arrayWorkoutTypes; i++)
+    {
+        if (arrayWorkoutTypes[i].name === sWorkoutName)
+            return i;
+    }
+
+    return 0;
+}
+
 /*--------------END workout table --------------*/
 

@@ -23,8 +23,10 @@ import QtLocation 5.0
 import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
 import "../tools/SportsTracker.js" as ST
+import "../tools/SharedResources.js" as SharedResources
 
-Page {
+Page
+{
     id: detailPage
     allowedOrientations: Orientation.Portrait
     property string filename
@@ -270,6 +272,17 @@ Page {
                 text: qsTr("Diagrams")
                 onClicked: pageStack.push(Qt.resolvedUrl("DiagramViewPage.qml"))
                 visible: false
+            }
+            MenuItem
+            {
+                text: qsTr("Edit workout")
+                onClicked:
+                {
+                    var dialog = pageStack.push(id_Dialog_EditWorkout);
+                    dialog.sName = name;
+                    dialog.sDesc = trackLoader.description;
+                    dialog.iWorkout = SharedResources.fncGetIndexByName(trackLoader.workout);
+                }
             }
             MenuItem
             {
@@ -565,6 +578,112 @@ Page {
                     //detailPage.allowedOrientations = Orientation.Portrait;
                 }
                 detailPage.backNavigation = !trackMap.gesture.enabled;
+            }
+        }
+    }
+
+    Component
+    {
+        id: id_Dialog_EditWorkout
+
+        Dialog
+        {
+            property string sName
+            property string sDesc
+            property int iWorkout
+
+            canAccept: true
+            acceptDestination: detailPage
+            acceptDestinationAction:
+            {
+                sName = id_TXF_WorkoutName.text;
+                sDesc = id_TXF_WorkoutDesc.text;
+                iWorkout = cmbWorkout.currentIndex;
+                PageStackAction.Pop;
+            }
+
+            Flickable
+            {
+                width: parent.width
+                height: parent.height
+                interactive: false
+
+                Column
+                {
+                    width: parent.width
+
+                    DialogHeader { title: qsTr("Edit workout") }
+
+                    TextField
+                    {
+                        id: id_TXF_WorkoutName
+                        width: parent.width
+                        label: qsTr("Workout name")
+                        placeholderText: qsTr("Workout name")
+                        text: sName
+                        inputMethodHints: Qt.ImhNoPredictiveText
+                        focus: true
+                        horizontalAlignment: TextInput.AlignLeft
+                    }
+                    Item
+                    {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                    }
+                    TextField
+                    {
+                        id: id_TXF_WorkoutDesc
+                        width: parent.width
+                        label: qsTr("Workout description")
+                        placeholderText: qsTr("Workout description")
+                        text: sDesc
+                        inputMethodHints: Qt.ImhNoPredictiveText
+                        focus: true
+                        horizontalAlignment: TextInput.AlignLeft
+                    }
+                    Item
+                    {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                    }
+                    Row
+                    {
+                        spacing: Theme.paddingSmall
+                        width:parent.width;
+                        Image
+                        {
+                            id: imgWorkoutImage
+                            height: parent.width / 8
+                            width: parent.width / 8
+                            fillMode: Image.PreserveAspectFit
+                        }
+                        ComboBox
+                        {
+                            id: cmbWorkout
+                            width: (parent.width / 8) * 7
+                            label: qsTr("Workout:")
+                            currentIndex: iWorkout
+                            menu: ContextMenu
+                            {
+                                Repeater
+                                {
+                                    model: SharedResources.arrayWorkoutTypes;
+                                    MenuItem { text: modelData.labeltext }
+                                }
+                            }
+                            onCurrentItemChanged:
+                            {
+                                console.log("Workout changed!");
+
+                                //if (bLockOnCompleted)
+                                  //  return;
+
+                                imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
+                                iWorkout = currentIndex;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

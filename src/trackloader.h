@@ -48,6 +48,10 @@ class TrackLoader : public QObject
     Q_PROPERTY(uint heartRateMax READ heartRateMax NOTIFY heartRateMaxChanged)
     Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
 
+    Q_INVOKABLE void vReadFile(QString sFilename);
+    Q_INVOKABLE void vSetNewProperties(QString sName, QString sDesc, QString sWorkout);
+    Q_INVOKABLE void vWriteFile(QString sFilename);
+
 public:
     struct TrackPoint
     {
@@ -124,6 +128,7 @@ private:
 
     QList<TrackPoint> m_points;   
     QList<int> m_pause_positions;
+    QList<QString> sFileStringArray;
     bool m_loaded;
     bool m_error;
     QString m_filename;

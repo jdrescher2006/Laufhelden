@@ -17,6 +17,8 @@
 
 #include <QStandardPaths>
 #include <QFile>
+#include <QSaveFile>
+#include <QXmlStreamWriter>
 #include <QGeoCoordinate>
 #include <QDebug>
 #include <qmath.h>
@@ -58,13 +60,108 @@ QString TrackLoader::sTworkoutKey(){
     return m_sTkey;
 }
 
+void TrackLoader::vReadFile(QString sFilename)
+{
+    this->sFileStringArray.clear();
+
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Documents";
+    QString fullFilename = dirName + "/" + sFilename;
+    qDebug()<<"Reading File:"<<fullFilename;
+
+    QFile f(fullFilename);
+    if (!f.open(QFile::ReadWrite | QFile::Text)) return;
+    QTextStream in(&f);
+
+    while (!in.atEnd())
+    {
+        this->sFileStringArray.append(in.readLine());
+    }
+
+    f.close();
+}
+
+void TrackLoader::vSetNewProperties(QString sName, QString sDesc, QString sWorkout)
+{
+    //Search for a line
+    bool bNameFound = false;
+    bool bDescFound = false;
+    bool bMeerunFound = false;
+
+    for (int i = 0; i < this->sFileStringArray.length(); i++)
+    {
+        if (!bNameFound && this->sFileStringArray.at(i).contains("<desc>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</desc>", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found description: "<<this->sFileStringArray.at(i);
+            bDescFound = true;
+
+            this->sFileStringArray.replace(i, "        <desc>" + sDesc + "</desc>");
+            /*
+            //Extract description
+            QString sDescription = this->sFileStringArray.at(i).trimmed();
+            sDescription.chop(7);
+            sDescription = sDescription.remove(0,6);
+
+            qDebug()<<"Description: "<<sDescription;
+            */
+        }
+
+        if (!bNameFound && this->sFileStringArray.at(i).contains("<name>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</name>", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found name: "<<this->sFileStringArray.at(i);
+            bNameFound = true;
+
+            this->sFileStringArray.replace(i, "        <name>" + sName + "</name>");
+            /*
+            //Extract name
+            QString sName = this->sFileStringArray.at(i).trimmed();
+            sName.chop(7);
+            sName = sName.remove(0,6);
+
+            qDebug()<<"Name: "<<sName;
+            */
+        }
+
+        if (!bMeerunFound && this->sFileStringArray.at(i).contains("<meerun", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("activity=", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found meerun: "<<this->sFileStringArray.at(i);
+            bMeerunFound = true;
+
+            this->sFileStringArray.replace(i, "            <meerun uid=\"462b711341ea5c7e\" activity=\"" + sWorkout + "\" filtered=\"true\" interval=\"1\" elevationCorrected=\"true\" manualPause=\"true\" autoPause=\"true\" autoPauseSensitivity=\"medium\" gpsPause=\"false\" createLapOnPause=\"false\">");
+        }
+
+        if (bDescFound && bNameFound && bMeerunFound)
+            break;
+    }
+}
+
+void TrackLoader::vWriteFile(QString sFilename)
+{
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Documents";
+    QString fullFilename = dirName + "/" + sFilename;
+    qDebug()<<"Reading File:"<<fullFilename;
+
+
+    QFile fOut(fullFilename);
+    if (fOut.open(QFile::WriteOnly | QFile::Text))
+    {
+        QTextStream s(&fOut);
+        for (int i = 0; i < this->sFileStringArray.size(); ++i)
+        {
+            s << this->sFileStringArray.at(i) << '\n';
+        }
+    }
+    else
+    {
+        qDebug() << "error opening output file\n";
+        return;
+    }
+    fOut.close();
+}
 
 void TrackLoader::load()
 {
     if(m_filename.isEmpty())
-    {
-        // No filename set, nothing to do
-        //qDebug()<<"No filename set";
+    {        
         return;
     }
     QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
