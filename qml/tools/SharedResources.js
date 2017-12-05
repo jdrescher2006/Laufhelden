@@ -173,11 +173,13 @@ for (var i = 0; i < arrayWorkoutTypes.length; i++)
 }
 
 function fncGetIndexByName(sWorkoutName)
-{
-    for (var i = 0; i < arrayWorkoutTypes; i++)
+{    
+    for (var i = 0; i < arrayWorkoutTypes.length; i++)
     {
         if (arrayWorkoutTypes[i].name === sWorkoutName)
-            return i;
+        {
+            return i;           
+        }
     }
 
     return 0;

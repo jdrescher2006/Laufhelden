@@ -124,6 +124,8 @@ Page
             //Load history model.
             if (bLoadHistoryData)
             {
+                iLoadFileGPX = 0;
+
                 bLoadingFiles = true;
 
                 id_HistoryModel.readDirectory();

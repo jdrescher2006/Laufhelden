@@ -116,11 +116,20 @@ Page
         }
         else
         {
-            //Cut off the release number, we don't need that for comparing
-            var sModVersion = sVersion.substring(0, sVersion.indexOf("-"));
+            //Swap the - for an . so that the release number becomes part of the version number
+            var sModVersion = sVersion.replace("-", ".");
+
+            console.log("Modified version: " + sModVersion);
+
+            console.log("Compare: " + fncCompareVersions(sModVersion, "1.3.3"));
 
             //Check if Rockpool verion is too old
-            if (fncCompareVersions(sModVersion, "1.3") < 0)
+            if (fncCompareVersions(sModVersion, "0.3.3") > 0)
+            {                
+                id_REC_Rockpool.visible = false;
+                id_TextSwitch_enablePebble.enabled = true;
+            }
+            else
             {
                 id_LBL_Rockpool.text = id_LBL_Rockpool.text + sVersion;
                 id_REC_Rockpool.visible = true;
@@ -128,12 +137,6 @@ Page
                 settings.enablePebble = false;
                 id_TextSwitch_enablePebble.checked = false;
                 id_TextSwitch_enablePebble.enabled = false;
-
-            }
-            else
-            {
-                id_REC_Rockpool.visible = false;
-                id_TextSwitch_enablePebble.enabled = true;
             }
         }
     }

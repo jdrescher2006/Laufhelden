@@ -34,6 +34,8 @@ Page
     property int stSharing: 0
     property string stComment: ""
 
+    property int iCurrentWorkout: 0
+
     function setMapViewport() {
         trackMap.zoomLevel = Math.min(trackMap.maximumZoomLevel,
                                       trackLoader.fitZoomLevel(trackMap.width, trackMap.height));
@@ -278,10 +280,27 @@ Page
                 text: qsTr("Edit workout")
                 onClicked:
                 {
+                    iCurrentWorkout = SharedResources.fncGetIndexByName(trackLoader.workout);
+
                     var dialog = pageStack.push(id_Dialog_EditWorkout);
-                    dialog.sName = name;
+                    dialog.sName = trackLoader.name;
                     dialog.sDesc = trackLoader.description;
                     dialog.iWorkout = SharedResources.fncGetIndexByName(trackLoader.workout);
+
+                    dialog.accepted.connect(function()
+                    {
+                        //Edit and save GPX file
+                        trackLoader.vReadFile(filename);
+                        trackLoader.vSetNewProperties(name, trackLoader.description, trackLoader.workout, dialog.sName, dialog.sDesc, dialog.sWorkout)
+                        trackLoader.vWriteFile(filename);
+
+                        //Set edited values to dialog
+                        header.title = dialog.sName;
+                        descriptionData.text = dialog.sDesc;
+
+                        //Mainpage must reload all GPX files
+                        bLoadHistoryData = true;
+                    })
                 }
             }
             MenuItem
@@ -317,7 +336,7 @@ Page
             PageHeader
             {
                 id: header
-                title: name==="" ? "-" : name
+                title: trackLoader.name === "" ? "-" : trackLoader.name
                 Behavior on opacity {
                     FadeAnimation {}
                 }
@@ -586,11 +605,13 @@ Page
     {
         id: id_Dialog_EditWorkout
 
+
         Dialog
         {
             property string sName
             property string sDesc
             property int iWorkout
+            property string sWorkout
 
             canAccept: true
             acceptDestination: detailPage
@@ -599,6 +620,7 @@ Page
                 sName = id_TXF_WorkoutName.text;
                 sDesc = id_TXF_WorkoutDesc.text;
                 iWorkout = cmbWorkout.currentIndex;
+
                 PageStackAction.Pop;
             }
 
@@ -662,7 +684,7 @@ Page
                             id: cmbWorkout
                             width: (parent.width / 8) * 7
                             label: qsTr("Workout:")
-                            currentIndex: iWorkout
+                            currentIndex: iCurrentWorkout
                             menu: ContextMenu
                             {
                                 Repeater
@@ -675,11 +697,9 @@ Page
                             {
                                 console.log("Workout changed!");
 
-                                //if (bLockOnCompleted)
-                                  //  return;
-
                                 imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
                                 iWorkout = currentIndex;
+                                sWorkout = SharedResources.arrayWorkoutTypes[currentIndex].name;
                             }
                         }
                     }

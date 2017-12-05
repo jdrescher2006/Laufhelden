@@ -48,9 +48,7 @@ class TrackLoader : public QObject
     Q_PROPERTY(uint heartRateMax READ heartRateMax NOTIFY heartRateMaxChanged)
     Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
 
-    Q_INVOKABLE void vReadFile(QString sFilename);
-    Q_INVOKABLE void vSetNewProperties(QString sName, QString sDesc, QString sWorkout);
-    Q_INVOKABLE void vWriteFile(QString sFilename);
+
 
 public:
     struct TrackPoint
@@ -103,6 +101,10 @@ public:
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);
     Q_INVOKABLE QGeoCoordinate center();
+
+    Q_INVOKABLE void vReadFile(QString sFilename);
+    Q_INVOKABLE void vSetNewProperties(QString sOldName, QString sOldDesc, QString sOldWorkout, QString sName, QString sDesc, QString sWorkout);
+    Q_INVOKABLE void vWriteFile(QString sFilename);
 
 signals:
     void filenameChanged();

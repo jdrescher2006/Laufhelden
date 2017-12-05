@@ -254,10 +254,15 @@ void HistoryModel::readDirectory() {
     dir.setNameFilters(QStringList("*.gpx"));
     QStringList entries = dir.entryList();
 
+    this->m_trackList.clear();
+
     emit this->sigAmountGPXFiles(entries.size());
 
     for(int i=0;i<entries.size();i++)
     {
+        //This was a check if a workout was already loaded before. It was nice for saving time while loading the mainpage.
+        //Problem was that it generated a vast array of bugs. Therefore, for now it's out.
+        /*
         //Check if we already have an item with the current filename
         bool bAlreadyHaveItem = false;
 
@@ -274,8 +279,9 @@ void HistoryModel::readDirectory() {
                 break;
             }
         }
-        if (bAlreadyHaveItem)
-            continue;
+        //if (bAlreadyHaveItem)
+          //  continue;
+          */
 
         TrackItem item;
         item.id = i;

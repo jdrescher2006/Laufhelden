@@ -64,7 +64,7 @@ void TrackLoader::vReadFile(QString sFilename)
 {
     this->sFileStringArray.clear();
 
-    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Documents";
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
     QString fullFilename = dirName + "/" + sFilename;
     qDebug()<<"Reading File:"<<fullFilename;
 
@@ -80,7 +80,7 @@ void TrackLoader::vReadFile(QString sFilename)
     f.close();
 }
 
-void TrackLoader::vSetNewProperties(QString sName, QString sDesc, QString sWorkout)
+void TrackLoader::vSetNewProperties(QString sOldName, QString sOldDesc, QString sOldWorkout, QString sName, QString sDesc, QString sWorkout)
 {
     //Search for a line
     bool bNameFound = false;
@@ -89,7 +89,7 @@ void TrackLoader::vSetNewProperties(QString sName, QString sDesc, QString sWorko
 
     for (int i = 0; i < this->sFileStringArray.length(); i++)
     {
-        if (!bNameFound && this->sFileStringArray.at(i).contains("<desc>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</desc>", Qt::CaseInsensitive))
+        if (!bDescFound && this->sFileStringArray.at(i).contains(sOldDesc) && this->sFileStringArray.at(i).contains("<desc>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</desc>", Qt::CaseInsensitive))
         {
             qDebug()<<"Found description: "<<this->sFileStringArray.at(i);
             bDescFound = true;
@@ -105,20 +105,12 @@ void TrackLoader::vSetNewProperties(QString sName, QString sDesc, QString sWorko
             */
         }
 
-        if (!bNameFound && this->sFileStringArray.at(i).contains("<name>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</name>", Qt::CaseInsensitive))
+        if (!bNameFound && this->sFileStringArray.at(i).contains(sOldName) && this->sFileStringArray.at(i).contains("<name>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</name>", Qt::CaseInsensitive))
         {
             qDebug()<<"Found name: "<<this->sFileStringArray.at(i);
             bNameFound = true;
 
-            this->sFileStringArray.replace(i, "        <name>" + sName + "</name>");
-            /*
-            //Extract name
-            QString sName = this->sFileStringArray.at(i).trimmed();
-            sName.chop(7);
-            sName = sName.remove(0,6);
-
-            qDebug()<<"Name: "<<sName;
-            */
+            this->sFileStringArray.replace(i, "        <name>" + sName + "</name>");            
         }
 
         if (!bMeerunFound && this->sFileStringArray.at(i).contains("<meerun", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("activity=", Qt::CaseInsensitive))
@@ -126,7 +118,15 @@ void TrackLoader::vSetNewProperties(QString sName, QString sDesc, QString sWorko
             qDebug()<<"Found meerun: "<<this->sFileStringArray.at(i);
             bMeerunFound = true;
 
-            this->sFileStringArray.replace(i, "            <meerun uid=\"462b711341ea5c7e\" activity=\"" + sWorkout + "\" filtered=\"true\" interval=\"1\" elevationCorrected=\"true\" manualPause=\"true\" autoPause=\"true\" autoPauseSensitivity=\"medium\" gpsPause=\"false\" createLapOnPause=\"false\">");
+            QString sMeerun = this->sFileStringArray.at(i);
+            int iActivityPosition = this->sFileStringArray.at(i).indexOf("activity=", 0);
+            sMeerun = sMeerun.remove(iActivityPosition, 9 + 2 + sOldWorkout.length());
+            //qDebug()<<"Meerun: "<<sMeerun;
+
+            sMeerun = sMeerun.insert(iActivityPosition, "activity=\"" + sWorkout + "\"");
+            //qDebug()<<"Meerun: "<<sMeerun;
+            
+            this->sFileStringArray.replace(i, sMeerun);
         }
 
         if (bDescFound && bNameFound && bMeerunFound)
@@ -136,9 +136,9 @@ void TrackLoader::vSetNewProperties(QString sName, QString sDesc, QString sWorko
 
 void TrackLoader::vWriteFile(QString sFilename)
 {
-    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Documents";
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
     QString fullFilename = dirName + "/" + sFilename;
-    qDebug()<<"Reading File:"<<fullFilename;
+    qDebug()<<"Writing File:"<<fullFilename;
 
 
     QFile fOut(fullFilename);

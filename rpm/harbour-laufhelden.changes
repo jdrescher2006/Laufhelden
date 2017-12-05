@@ -1,5 +1,6 @@
 * Fri Dec 08 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.7-8
 - added new feature/settings: Pebble smartwatch support
+- added new feature: edit workout name/description/type on detailspage
 - fixed a bug: mediaplayer pause/resume was not working
 - optimizations for sports-tracker.com (thanks to @niemisenjussi)
 

@@ -186,19 +186,19 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeiten</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Aktivität</translation>
+        <translation>Aktivität:</translation>
     </message>
 </context>
 <context>
