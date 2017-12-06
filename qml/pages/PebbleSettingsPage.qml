@@ -124,7 +124,7 @@ Page
             console.log("Compare: " + fncCompareVersions(sModVersion, "1.3.3"));
 
             //Check if Rockpool verion is too old
-            if (fncCompareVersions(sModVersion, "0.3.3") > 0)
+            if (fncCompareVersions(sModVersion, "1.3.3") > 0)
             {                
                 id_REC_Rockpool.visible = false;
                 id_TextSwitch_enablePebble.enabled = true;
@@ -171,23 +171,22 @@ Page
             if (iCheckPebbleStep === 2)
             {
                 progressBarCheckPebble.label = qsTr("set metric units");
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': '1'});
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'4': '1'});
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': 1});
             }
             if (iCheckPebbleStep === 3)
             {
                 progressBarCheckPebble.label = qsTr("sending data 1");
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': '02:30', '1': '10.12', '5': '0', '2': '2.4'});
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': '02:30', '1': '10.12', '2': '2.4'});
             }
             if (iCheckPebbleStep === 4)
             {
                 progressBarCheckPebble.label = qsTr("sending data 2");
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': '02:33', '1': '10.22', '5': '0', '2': '3.3'});
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': '02:33', '1': '10.22', '2': '3.3'});
             }
             if (iCheckPebbleStep === 5)
             {
                 progressBarCheckPebble.label = qsTr("sending data 3");
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': '02:45', '1': '11.34', '5': '0', '2': '14.4'});
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': '02:45', '1': '11.34', '2': '14.4'});
             }
             if (iCheckPebbleStep === 6)
             {
@@ -213,7 +212,7 @@ Page
         {
             id: id_LBL_Rockpool
             color: "red"
-            text: qsTr("Rockpool must be installed<br>at least in version 1.4-4.<br>Installed version is: ")
+            text: qsTr("Rockpool must be installed<br>at least in version 1.4-1.<br>Installed version is: ")
             font.pixelSize: Theme.fontSizeSmall
             anchors.centerIn: parent
         }

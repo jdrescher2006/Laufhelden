@@ -295,19 +295,19 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Bearbeiten</translation>
+        <translation>Bearbeiten</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Beschreibung</translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished"></translation>
+        <translation>Training:</translation>
     </message>
 </context>
 <context>
@@ -403,10 +403,6 @@
         <translation>1 PACE/SPEED Feld</translation>
     </message>
     <message>
-        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-4.&lt;br&gt;Installed version is: </source>
-        <translation>Rockpool muss installiert sein&lt;br&gt;mindestens in Version 1.4-4.&lt;br&gt;Installiert ist: </translation>
-    </message>
-    <message>
         <source>View workout data on Pebble Smartwatch.</source>
         <translation>Zeige Trainingsdaten auf der Pebble Smartwatch an.</translation>
     </message>
@@ -421,6 +417,10 @@
     <message>
         <source>Choose values for Pebble fields!</source>
         <translation>Werte für Pebble-Felder auswählen</translation>
+    </message>
+    <message>
+        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
+        <translation>Rockpool muss installiert sein&lt;br&gt;mindestens in Version 1.4-1.&lt;br&gt;Installiert ist: </translation>
     </message>
 </context>
 <context>

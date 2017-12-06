@@ -403,10 +403,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-4.&lt;br&gt;Installed version is: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>View workout data on Pebble Smartwatch.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -420,6 +416,10 @@
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -403,10 +403,6 @@
         <translation>3 campo de PASO/VELOCIDAD</translation>
     </message>
     <message>
-        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-4.&lt;br&gt;Installed version is: </source>
-        <translation>Rockpool debe estar instalado&lt;br&gt;a la versión 1.4-4&lt;br&gt;Versión instalada:</translation>
-    </message>
-    <message>
         <source>View workout data on Pebble Smartwatch.</source>
         <translation>Ver datos de ejercicio en Pebble smartwatch.</translation>
     </message>
@@ -421,6 +417,10 @@
     <message>
         <source>Choose values for Pebble fields!</source>
         <translation>Elejir valores para el campos de Pebble!</translation>
+    </message>
+    <message>
+        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
+        <translation type="unfinished">Rockpool debe estar instalado&lt;br&gt;a la versión 1.4-4&lt;br&gt;Versión instalada: {1.4-1.?}</translation>
     </message>
 </context>
 <context>

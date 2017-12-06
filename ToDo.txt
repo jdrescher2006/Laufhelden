@@ -1,28 +1,10 @@
 ---- ToDo for next release to openrepos: 0.9.7 -----
 
-REMEMBER: SET ROCKPOOL VERSION COMPARE!!!
 
-- fixed a bug: mediaplayer pause/resume was not working					-> OK
 
-- add Pebble support:
-	- new setting: use Pebble yes/no									-> OK
-	- new setting: choose value for fields on pebble					-> OK
-	- add settings page:
-		- check if rockpool is there in the right version?				-> OK
-		- toggle Pebble support ON/OFF									-> OK
-		- choose value for fields										-> OK
-		- view if pebble is connected and model and BT address			-> OK
-		- test button to launch/close sport app							-> OK
-	- add warning to prerecord page if pebble is not connected			-> OK
-	- launch sport app on prerecord page, close it on main page			-> OK
-	- on record page set values to pebble								-> OK
-	- on pebble button press, pause/resume workout						-> OK
-	
-
-- edit workout (name/description/workout type) and save to GPX			-> OK
 
 Do not forget:
-- set changelog and release date to .changes file															
+- set changelog and release date to .changes file						-> OK													
 - compile with translations and complete translation to german language										
 - set new version number to yaml and spec files							-> OK															
 - clean project and compile on release for arm and 486														
@@ -115,6 +97,21 @@ Bugs:
 
 
 Completed:
+- fixed a bug: mediaplayer pause/resume was not working
+- add Pebble support:
+	- new setting: use Pebble yes/no				
+	- new setting: choose value for fields on pebble
+	- add settings page:
+		- check if rockpool is there in the right version?	
+		- toggle Pebble support ON/OFF						
+		- choose value for fields							
+		- view if pebble is connected and model and BT address	
+		- test button to launch/close sport app					
+	- add warning to prerecord page if pebble is not connected	
+	- launch sport app on prerecord page, close it on main page	
+	- on record page set values to pebble						
+	- on pebble button press, pause/resume workout				
+- edit workout (name/description/workout type) and save to GPX	
 - add icons to map in trackloader (start/stop/pause)														
 - add icons to map in trackrecorder (start/stop/pause)														
 - add pause duration to detailpage																			
