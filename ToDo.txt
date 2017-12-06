@@ -16,14 +16,15 @@ REMEMBER: SET ROCKPOOL VERSION COMPARE!!!
 	- add warning to prerecord page if pebble is not connected			-> OK
 	- launch sport app on prerecord page, close it on main page			-> OK
 	- on record page set values to pebble								-> OK
+	- on pebble button press, pause/resume workout						-> OK
 	
 
-- edit workout (name/description/workout type) and save to GPX
+- edit workout (name/description/workout type) and save to GPX			-> OK
 
 Do not forget:
 - set changelog and release date to .changes file															
 - compile with translations and complete translation to german language										
-- set new version number to yaml and spec files																
+- set new version number to yaml and spec files							-> OK															
 - clean project and compile on release for arm and 486														
 
 
@@ -32,7 +33,7 @@ Do not forget:
 
 ----- ToDo for second next release to openrepos: 0.9.8 -----
 - pebble: if speed is choosen for third field, set unit to speed. Same with pace.
-- add new feature: autopause
+- add new feature: autopause if speed goes below certain threshold
 - add buttons to map
 	- center position
 	- center track

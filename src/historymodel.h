@@ -35,6 +35,7 @@ struct TrackItem
     qreal distance;
     qreal speed;
     QString stKey;
+    QString description;
 };
 
 class HistoryModel : public QAbstractListModel
@@ -49,7 +50,8 @@ public:
         DateRole,
         DurationRole,
         DistanceRole,
-        SpeedRole
+        SpeedRole,
+        DescriptionRole
     };
 
     explicit HistoryModel(QObject *parent = 0);

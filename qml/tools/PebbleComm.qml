@@ -52,15 +52,6 @@ Item
         return interfaceDBUSPebble.getProperty('IsConnected');
     }
 
-    function fncGetRockworkVersion()
-    {
-        return interfaceDBUSManager.getProperty('Version');
-    }
-
-    function fncGetListOfWatches()
-    {
-        return interfaceDBUSManager.getProperty('ListWatches');       
-    }
 
     DBusInterface
     {
@@ -95,14 +86,23 @@ Item
         function appButtonPressed(uuid, key)
         {
             console.log("appbuttonpressed, " + uuid + ": " + key.toString());
-        }
-    }
 
-    DBusInterface
-    {
-        id:interfaceDBUSManager
-        service: 'org.rockwork'
-        path: '/org/rockwork/Manager'
-        iface: 'org.rockwork.Manager'
-    }
+            //If the pause key was pressed within pebble sport app
+            if (uuid.toString().indexOf("4dab81a6-d2fc-458a-992c-7a1f3b96a970") !== -1 && key.toString() === "4")
+            {
+                console.log("Pause button pressed!")
+
+                //Only toggle pause if recorder is running
+                if (recorder.running)
+                    recorder.pause = !recorder.pause;
+
+                //If recorder is not running, start workout
+                if (!recorder.running && recorder.accuracy > 0 && recorder.accuracy < 30)
+                {
+                    recorder.pause = false;
+                    recorder.running = true;
+                }
+            }
+        }
+    } 
 }

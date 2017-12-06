@@ -41,6 +41,7 @@ TrackItem loadTrack(TrackItem track) {
     data.duration = loader.duration();
     data.distance = loader.distance();
     data.speed = loader.speed();
+    data.description = loader.description();
     data.stKey = loader.sTworkoutKey(); //Sports-Tracker workoutkey
     return data;
 }
@@ -73,6 +74,7 @@ QHash<int, QByteArray> HistoryModel::roleNames() const {
     roles[DurationRole] = "duration";
     roles[DistanceRole] = "distance";
     roles[SpeedRole] = "speed";
+    roles[DescriptionRole] = "description";
 
     return roles;
 }
@@ -164,6 +166,13 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const {
             return QString("-km/h");
         }
         return QString("%1km/h").arg(m_trackList.at(index.row()).speed * 3.6, 0, 'f', 1);
+    }
+    if(role == DescriptionRole) {
+        if(!m_trackList.at(index.row()).ready) {
+            // Data not loaded yet
+            return QString("-");
+        }
+        return m_trackList.at(index.row()).description;
     }
     return QVariant();
 }
@@ -299,6 +308,7 @@ void HistoryModel::readDirectory() {
         item.duration = 0;
         item.distance = 0;
         item.speed = 0;
+        item.description = "";
 
         m_trackList.append(item);
     }

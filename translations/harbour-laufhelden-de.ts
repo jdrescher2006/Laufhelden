@@ -293,6 +293,22 @@
         <source>Resume</source>
         <translation>Fortsetzen</translation>
     </message>
+    <message>
+        <source>Edit workout</source>
+        <translation type="unfinished">Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation type="unfinished">Name</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation type="unfinished">Beschreibung</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>

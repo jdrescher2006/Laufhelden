@@ -127,8 +127,7 @@ Page
             if (sPebblePath !== "" && settings.enablePebble && bPebbleConnected)
             {
                 //Set metric unit
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': '1'});
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'4': '1'});
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': 1});
             }
 
             if (sHRMAddress !== "" && settings.useHRMdevice && bRecordDialogRequestHRM === false)
@@ -295,7 +294,7 @@ Page
 
             if (sPebblePath !== "" && settings.enablePebble)
             {
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': JSTools.arrayLookupPebbleValueTypesByFieldID[1].value, '1': JSTools.arrayLookupPebbleValueTypesByFieldID[2].value, '5': '0', '2': JSTools.arrayLookupPebbleValueTypesByFieldID[3].value});
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': JSTools.arrayLookupPebbleValueTypesByFieldID[1].value, '1': JSTools.arrayLookupPebbleValueTypesByFieldID[2].value, '2': JSTools.arrayLookupPebbleValueTypesByFieldID[3].value});
             }
         }
     }
