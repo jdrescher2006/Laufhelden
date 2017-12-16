@@ -186,15 +186,15 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera träningspass</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Träningspassnamn</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation>Träningsbeskrivning</translation>
     </message>
     <message>
         <source>Workout:</source>
@@ -295,15 +295,15 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera träningspass</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Träningspassnamn</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation>Träningsbeskrivning</translation>
     </message>
     <message>
         <source>Workout:</source>
@@ -855,7 +855,7 @@
     </message>
     <message>
         <source> unique workout downloaded!</source>
-        <translation>unikt träningspass nerladdat!</translation>
+        <translation> unikt träningspass nerladdat!</translation>
     </message>
     <message>
         <source>Test login</source>
