@@ -51,6 +51,7 @@ ApplicationWindow
     property bool bPebbleConnected: false
     property bool bPebbleSportAppRequired: false
     property string sPebblePath: ""
+    property string sPebbleNameAddress: ""
     //*** Pebble End ***
 
     //Init C++ classes, libraries
@@ -62,6 +63,7 @@ ApplicationWindow
     PlotWidget{ id: id_PlotWidget }
     Light{ id: id_Light }
     PebbleManagerComm{ id: id_PebbleManagerComm }
+    PebbleWatchComm{ id: id_PebbleWatchComm }
     TrackRecorder
     {
         id: recorder        

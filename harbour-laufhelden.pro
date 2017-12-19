@@ -26,7 +26,8 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/logwriter.cpp \
     src/plotwidget.cpp \
     src/light.cpp \
-    src/pebblemanagercomm.cpp
+    src/pebblemanagercomm.cpp \
+    src/pebblewatchcomm.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -62,7 +63,8 @@ HEADERS += \
     src/logwriter.h \
     src/plotwidget.h \
     src/light.h \
-    src/pebblemanagercomm.h
+    src/pebblemanagercomm.h \
+    src/pebblewatchcomm.h
 
 DISTFILES += \
     qml/pages/MainPage.qml \

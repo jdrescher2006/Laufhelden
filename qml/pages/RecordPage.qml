@@ -138,7 +138,7 @@ Page
 
             //Check if pebble is connected
             if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
-                bPebbleConnected = pebbleComm.bIsPebbleConnected();
+                bPebbleConnected = id_PebbleWatchComm.isConnected();
 
             //Load threshold settings and convert them to JS array
             Thresholds.fncConvertSaveStringToArray(settings.thresholds);

@@ -9,7 +9,7 @@ PebbleManagerComm::PebbleManagerComm(QObject *parent) : QObject(parent)
 
 PebbleManagerComm::~PebbleManagerComm()
 {
-
+    this->dbusPebbleManager = NULL;
 }
 
 QList<QString> PebbleManagerComm::getListWatches()
@@ -51,5 +51,4 @@ QString PebbleManagerComm::getRockpoolVersion()
         qDebug()<<"DBus error: " << reply.error().message();
         return "";
     }
-
 }

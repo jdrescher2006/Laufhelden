@@ -92,7 +92,7 @@ Page
 
             //Check if pebble is connected
             if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
-                bPebbleConnected = pebbleComm.bIsPebbleConnected();
+                bPebbleConnected = id_PebbleWatchComm.isConnected();
 
             //Launch pebble sport app
             if (sPebblePath !== "" && settings.enablePebble && bPebbleConnected)

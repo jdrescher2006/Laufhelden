@@ -1,4 +1,4 @@
-* Wed Dec 06 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.7-8
+* Wed Dec 19 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.7-8
 - added new feature/settings: Pebble smartwatch support
 - added new feature: edit workout name/description/type
 - fixed a bug: mediaplayer pause/resume was not working

@@ -33,6 +33,7 @@
 #include "plotwidget.h"
 #include "light.h"
 #include "pebblemanagercomm.h"
+#include "pebblewatchcomm.h"
 
 
 int main(int argc, char *argv[]) {
@@ -53,6 +54,7 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<PlotWidget,1>("harbour.laufhelden", 1, 0, "PlotWidget");
     qmlRegisterType<Light,1>("harbour.laufhelden", 1, 0, "Light");
     qmlRegisterType<PebbleManagerComm,1>("harbour.laufhelden", 1, 0, "PebbleManagerComm");
+    qmlRegisterType<PebbleWatchComm,1>("harbour.laufhelden", 1, 0, "PebbleWatchComm");
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());

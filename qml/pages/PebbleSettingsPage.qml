@@ -49,6 +49,9 @@ Page
 
                 //Read version of Rockpool and check if it is sufficient
                 fncCheckVersion(id_PebbleManagerComm.getRockpoolVersion());
+
+                //This sets the path with the BT address to the C++ class and inits the DBUS communication object
+                id_PebbleWatchComm.setServicePath(sPebblePath);
             }
             else
             {
@@ -95,7 +98,11 @@ Page
 
             //Check if pebble is connected
             if (settings.enablePebble && !bPebbleConnected)
-                bPebbleConnected = pebbleComm.bIsPebbleConnected();
+                bPebbleConnected = id_PebbleWatchComm.isConnected();
+
+            //If pebble is connected read name and address
+            if (bPebbleConnected)
+                sPebbleNameAddress = id_PebbleWatchComm.getName() + ", " + id_PebbleWatchComm.getAddress();
         }
     }
 
@@ -273,6 +280,26 @@ Page
         }
     }
 
+    Rectangle
+    {
+        visible: (iCheckPebbleStep > 0)
+        anchors.fill: parent
+        color: "black"
+        z: 2
+
+        ProgressBar
+        {
+            id: progressBarCheckPebble
+            width: parent.width
+            anchors.centerIn: parent
+            maximumValue: 6
+            valueText: value.toString() + "/" + maximumValue.toString()
+            label: ""
+            visible: (iCheckPebbleStep > 0)
+            value: iCheckPebbleStep
+        }
+    }
+
 
     SilicaFlickable
     {
@@ -287,8 +314,8 @@ Page
             spacing: Theme.paddingLarge
             PageHeader
             {
-                title: qsTr("Pebble settings")
-            }                        
+                title: bPebbleConnected ? sPebbleNameAddress : qsTr("Pebble settings")
+            }
             TextSwitch
             {
                 id: id_TextSwitch_enablePebble
@@ -307,10 +334,10 @@ Page
                 visible: id_TextSwitch_enablePebble.checked
                 color: Theme.highlightColor
                 width: parent.width
-            }
+            }            
             Item
             {
-                visible: id_TextSwitch_enablePebble.checked
+
                 width: parent.width
                 height: id_BTN_TestPebble.height
 
@@ -513,16 +540,6 @@ Page
                         JSTools.fncGenerateHelperArray();
                     }
                 }
-            }            
-            ProgressBar
-            {
-                id: progressBarCheckPebble
-                width: parent.width
-                maximumValue: 6
-                valueText: value.toString() + "/" + maximumValue.toString()
-                label: ""
-                visible: (iCheckPebbleStep > 0)
-                value: iCheckPebbleStep
             }
         }
     }

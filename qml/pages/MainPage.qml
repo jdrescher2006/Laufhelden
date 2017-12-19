@@ -100,7 +100,10 @@ Page
                 console.log("sPebbleList: " + sPebbleList);
 
                 if (sPebbleList !== undefined && sPebbleList.length > 0)
+                {
                     sPebblePath = sPebbleList[0];
+                    id_PebbleWatchComm.setServicePath(sPebblePath); //This sets the path with the BT address to the C++ class and inits the DBUS communication object
+                }
             }
 
             //Sport app on the pebble is no longer required
@@ -108,7 +111,9 @@ Page
 
             //If pebble is NOT connected, check if it's connected now
             if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
-                bPebbleConnected = pebbleComm.bIsPebbleConnected();
+            {
+                bPebbleConnected = id_PebbleWatchComm.isConnected();
+            }
         }
 
         //This is loaded everytime the page is displayed

@@ -17,11 +17,10 @@ public:
     ~PebbleManagerComm();
 
     Q_INVOKABLE QString	getRockpoolVersion();
-    Q_INVOKABLE QList<QString> getListWatches();
+    Q_INVOKABLE QList<QString> getListWatches();   
 
-private:
-    QDBusInterface *dbusPebbleManager;
-
+private:    
+    QDBusInterface *dbusPebbleManager;    
 };
 
 #endif // PEBBLEMANAGERCOMM_H

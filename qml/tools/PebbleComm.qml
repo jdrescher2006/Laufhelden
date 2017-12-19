@@ -37,22 +37,6 @@ Item
         interfaceDBUSPebble.call('SendAppData', [sAppID, oData]);
     }
 
-    function bGetPebbleAddress()
-    {
-        return interfaceDBUSPebble.getProperty('Address');
-    }
-
-    function bGetPebbleName()
-    {
-        return interfaceDBUSPebble.getProperty('Name');
-    }
-
-    function bIsPebbleConnected()
-    {      
-        return interfaceDBUSPebble.getProperty('IsConnected');
-    }
-
-
     DBusInterface
     {
         id:interfaceDBUSPebble
@@ -66,7 +50,11 @@ Item
             console.log("Pebble connected");
             
             if (!bPebbleConnected)
+            {
                 fncShowMessage(2,qsTr("Pebble connected"), 1200);
+
+                sPebbleNameAddress = id_PebbleWatchComm.getName() + ", " + id_PebbleWatchComm.getAddress();
+            }
 
             //Pebble just got connected, check if sport app is required
             if (bPebbleSportAppRequired && !bPebbleConnected)
