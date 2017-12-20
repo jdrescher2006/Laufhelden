@@ -183,6 +183,24 @@ void Settings::setValuePebbleFields(QString valuePebbleFields)
     m_settings->setValue("pebblesettings/valuePebbleFields", valuePebbleFields);
 }
 
+QString Settings::mapStyle() const
+{
+    return m_settings->value("mapsettings/mapStyle", "mapbox://styles/mapbox/outdoors-v10").toString();
+}
+void Settings::setMapStyle(QString mapStyle)
+{
+    m_settings->setValue("mapsettings/mapStyle", mapStyle);
+}
+
+int Settings::mapCache() const
+{
+    return m_settings->value("mapsettings/mapCache", 50).toInt();
+}
+void Settings::setMapCache(int mapCache)
+{
+    m_settings->setValue("mapsettings/mapCache", mapCache);
+}
+
 //Sports-Tracker.com Sharing functions
 void Settings::setStUsername(QString username)
 {

@@ -41,6 +41,8 @@ class Settings : public QObject
     Q_PROPERTY(bool autoNightMode READ autoNightMode WRITE setAutoNightMode)
     Q_PROPERTY(int mapMode READ mapMode WRITE setMapMode)
     Q_PROPERTY(bool mapShowOnly4Fields READ mapShowOnly4Fields WRITE setmapShowOnly4Fields)
+    Q_PROPERTY(QString mapStyle READ mapStyle WRITE setMapStyle)
+    Q_PROPERTY(int mapCache READ mapCache WRITE setMapCache)
 
     //Pebble specific setings
     Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
@@ -111,6 +113,12 @@ public:
 
     QString valuePebbleFields() const;
     void setValuePebbleFields(QString valuePebbleFields);
+
+    QString mapStyle() const;
+    void setMapStyle(QString mapStyle);
+
+    int mapCache() const;
+    void setMapCache(int mapCache);
 
     //Sporst-Tracker.com functions
     QString stUsername() const;

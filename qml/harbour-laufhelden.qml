@@ -52,7 +52,7 @@ ApplicationWindow
     property bool bPebbleSportAppRequired: false
     property string sPebblePath: ""
     property string sPebbleNameAddress: ""
-    //*** Pebble End ***
+    //*** Pebble End ***   
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }
@@ -385,7 +385,7 @@ ApplicationWindow
         playSoundEffect.source = sFile;
         playSoundEffect.play();
     }
-
+         
     initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All

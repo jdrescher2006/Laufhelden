@@ -336,6 +336,50 @@
         <source>Center track on map</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cache size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose map style.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Streets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Outdoors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Satellite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Satellite Streets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OSM Scout Server</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PebbleComm</name>
