@@ -53,6 +53,11 @@ Page
         }
         ListElement
         {
+            page: "StravaSettingsPage.qml"
+            title: qsTr("Strava")
+        }
+        ListElement
+        {
             page: "PebbleSettingsPage.qml"
             title: qsTr("Pebble settings")
         }

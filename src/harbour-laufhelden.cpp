@@ -34,7 +34,8 @@
 #include "light.h"
 #include "pebblemanagercomm.h"
 #include "pebblewatchcomm.h"
-
+//#include "oauth2service.h"
+#include "o2/src/o2.h"
 
 int main(int argc, char *argv[]) {
     QGuiApplication *app = SailfishApp::application(argc, argv);
@@ -55,9 +56,14 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<Light,1>("harbour.laufhelden", 1, 0, "Light");
     qmlRegisterType<PebbleManagerComm,1>("harbour.laufhelden", 1, 0, "PebbleManagerComm");
     qmlRegisterType<PebbleWatchComm,1>("harbour.laufhelden", 1, 0, "PebbleWatchComm");
+    qmlRegisterType<O2>("com.pipacs.o2", 1, 0, "O2");
+
+    //OAuth2Service StravaOAuthService("https://www.strava.com/oauth/authorize", "https://www.strava.com/oauth/token","13707", "6080ff1ae302088ddd3d3b0a310c722d0829fd6b", "write");
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());
+    //view->rootContext()->setContextProperty("StravaOAuthService", &StravaOAuthService);
+
     view->setSource(SailfishApp::pathTo("qml/harbour-laufhelden.qml"));
     view->showFullScreen();
 
