@@ -741,7 +741,10 @@
         <source>Voice output settings</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
     </message>
+=======
+>>>>>>> Add translation changes
     <message>
         <source>Strava</source>
         <translation type="unfinished"></translation>
