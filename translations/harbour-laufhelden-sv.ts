@@ -338,47 +338,47 @@
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Begränsad cachelagring säkerställer uppdaterade kartor och håller diskanvändningen under kontroll, men orsakar långsammare kartinläsning och mer datatrafik. Notera att inställning av cachestorlek tillämpas först efter omstart av appen.</translation>
     </message>
     <message>
         <source>Cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Cachestorlek</translation>
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj kartstil</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Karta</translation>
     </message>
     <message>
         <source>Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Gator</translation>
     </message>
     <message>
         <source>Outdoors</source>
-        <translation type="unfinished"></translation>
+        <translation>Utomhus</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Ljus</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Mörk</translation>
     </message>
     <message>
         <source>Satellite</source>
-        <translation type="unfinished"></translation>
+        <translation>Satellit</translation>
     </message>
     <message>
         <source>Satellite Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Satellitgator</translation>
     </message>
     <message>
         <source>OSM Scout Server</source>
-        <translation type="unfinished"></translation>
+        <translation>OSM Scout Server</translation>
     </message>
 </context>
 <context>
