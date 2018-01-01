@@ -8,6 +8,8 @@
 #         - icon definition filename in desktop file must be changed
 TARGET = harbour-laufhelden
 
+include (o2/src/src.pri)
+
 # Define the preprocessor macro to get the application version in our application.
 DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 
