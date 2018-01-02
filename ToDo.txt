@@ -1,12 +1,39 @@
 ---- ToDo for next release to openrepos: 0.9.7 -----
 
+- current point on record page needs workover
+- no tracks on record page
+
+- scale bar on map needs imperial units
+- imperial units for record page
+- imperial units for start page
 
 
+
+- add settigs:
+	- token for mapbox
+	- event voice announcements											-> OK
+
+- add buttons to map, >center mode</>track mode< ?
+- add min/max elevation to detailspage/trackloader
+- fix map bug in horizontal mode										-> OK
+- meerun imports have no max. speed
+- add max pace to detailspage/trackloader
+- fix elevation up/down
+- event voice announcements	
+	- positioning online/offline										-> OK
+	- start, stop, pause, resume workout								-> OK
+
+
+- choose metrics/american/britisch
+	- british: 	mph/mi/yd
+	- american: mph/mi/ft
+	- metric:	kmh/km/m
+	
 
 Do not forget:
-- set changelog and release date to .changes file						-> OK													
+- set changelog and release date to .changes file																	
 - compile with translations and complete translation to german language										
-- set new version number to yaml and spec files							-> OK															
+- set new version number to yaml and spec files							
 - clean project and compile on release for arm and 486														
 
 
@@ -21,10 +48,7 @@ Do not forget:
 	- center track
 - add icons for indicating over/below average speed, average pace and average heart rate to record page
 - introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
-- event voice announcements	
-	- positioning online/offline
-	- start, stop, pause, resume workout
-	- ...
+
 - cyclic voice announcements	
 	- every 0,5-10 km
 	- maximum three parameters
@@ -72,7 +96,7 @@ Do not forget:
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
 - support workouts without gps e.g. indoor activities
-- choose metrics, km/miles
+
 - new workout icons
 - pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
 - use scout server as map tile provider (waiting for Jolla: https://talk.maemo.org/showpost.php?p=1528801&postcount=257)

@@ -42,6 +42,8 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_heartRateMin = 9999999;
     m_heartRateMax = 0;
     m_sTkey = "";
+    m_elevationUp = 0;
+    m_elevationDown = 0;
 }
 
 QString TrackLoader::readGpx(){
@@ -110,7 +112,7 @@ void TrackLoader::vSetNewProperties(QString sOldName, QString sOldDesc, QString 
             qDebug()<<"Found name: "<<this->sFileStringArray.at(i);
             bNameFound = true;
 
-            this->sFileStringArray.replace(i, "        <name>" + sName + "</name>");            
+            this->sFileStringArray.replace(i, "        <name>" + sName + "</name>");
         }
 
         if (!bMeerunFound && this->sFileStringArray.at(i).contains("<meerun", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("activity=", Qt::CaseInsensitive))
@@ -125,7 +127,7 @@ void TrackLoader::vSetNewProperties(QString sOldName, QString sOldDesc, QString 
 
             sMeerun = sMeerun.insert(iActivityPosition, "activity=\"" + sWorkout + "\"");
             //qDebug()<<"Meerun: "<<sMeerun;
-            
+
             this->sFileStringArray.replace(i, sMeerun);
         }
 
@@ -161,7 +163,7 @@ void TrackLoader::vWriteFile(QString sFilename)
 void TrackLoader::load()
 {
     if(m_filename.isEmpty())
-    {        
+    {
         return;
     }
     QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
@@ -253,7 +255,7 @@ void TrackLoader::load()
 
                         //If this is NOT the first segment, we are here after a pause in the track
                         if (iSegments > 1)
-                        {                            
+                        {
                             //mark that we have found a pause
                             bPauseFound = true;
                         }
@@ -421,7 +423,7 @@ void TrackLoader::load()
                 xml.skipCurrentElement();
             }
         }
-    }    
+    }
 
     //qDebug()<<"Segments found: "<<QString::number(iSegments);
 
@@ -436,6 +438,8 @@ void TrackLoader::load()
         m_distance = 0;
 
         int iPausePositionsIndex = 0;
+
+        qreal rElevationLastValue = 0;
 
         for(int i=1;i<m_points.size();i++)
         {
@@ -470,13 +474,26 @@ void TrackLoader::load()
                 if (m_points.at(i).heartrate < m_heartRateMin)
                     m_heartRateMin = m_points.at(i).heartrate;
             }
+
+            //Elevation Up/Down
+            if (i > 1)
+            {
+                if (m_points.at(i).elevation > rElevationLastValue)
+                    m_elevationUp = m_elevationUp + (m_points.at(i).elevation - rElevationLastValue);
+
+                if (m_points.at(i).elevation < rElevationLastValue)
+                    m_elevationDown = m_elevationDown + (rElevationLastValue - m_points.at(i).elevation);
+            }
+
+            //Save this elevation value for next iteration
+            rElevationLastValue = m_points.at(i).elevation;
         }
 
         //We need to substract the pause duration from the overall duration
         m_duration = m_duration - m_pause_duration;
 
-        m_speed = m_distance / m_duration;        
-        m_pace = m_duration / m_distance * 1000 / 60;        
+        m_speed = m_distance / m_duration;
+        m_pace = m_duration / m_distance * 1000 / 60;
         m_heartRate = m_heartRate / m_heartRatePoints;
 
         emit paceChanged();
@@ -488,6 +505,7 @@ void TrackLoader::load()
         emit maxSpeedChanged();
         emit durationChanged();
         emit timeChanged();
+        emit elevationChanged();
     }
     else
     {
@@ -603,6 +621,30 @@ uint TrackLoader::pauseDuration()
     return m_pause_duration;
 }
 
+qreal TrackLoader::elevationUp()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_elevationUp;
+}
+
+qreal TrackLoader::elevationDown()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_elevationDown;
+}
+
 QString TrackLoader::paceStr()
 {
     if(!m_loaded && !m_error)
@@ -619,6 +661,30 @@ QString TrackLoader::paceStr()
 
     qreal rMinutes = qFloor(m_pace);
     qreal rSeconds = qCeil((m_pace * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
+QString TrackLoader::paceImperialStr()
+{
+    if(!m_loaded && !m_error)
+    {
+        load();
+    }
+    if(!m_loaded || m_error)
+    {
+        // Nothing to load or error in loading
+        return QString();
+    }
+
+    qreal m_pace_imperial = m_pace * 1.609344;
+
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
 
     strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
 

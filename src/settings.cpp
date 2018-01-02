@@ -109,14 +109,6 @@ void Settings::setDisplayMode(int displayMode)
 {
     m_settings->setValue("recordsettings/displayMode", displayMode);
 }
-int Settings::voiceLanguage() const
-{
-    return m_settings->value("generalsettings/voiceLanguage", 0).toInt();
-}
-void Settings::setVoiceLanguage(int voiceLanguage)
-{
-    m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
-}
 bool Settings::showBorderLines() const
 {
     return m_settings->value("generalsettings/showBorderLines", true).toBool();
@@ -199,6 +191,48 @@ int Settings::mapCache() const
 void Settings::setMapCache(int mapCache)
 {
     m_settings->setValue("mapsettings/mapCache", mapCache);
+}
+int Settings::measureSystem() const
+{
+    return m_settings->value("generalsettings/measureSystem", 0).toInt();
+}
+void Settings::setMeasureSystem(int measureSystem)
+{
+    m_settings->setValue("generalsettings/measureSystem", measureSystem);
+}
+
+//Voice output
+int Settings::voiceLanguage() const
+{
+    return m_settings->value("generalsettings/voiceLanguage", 0).toInt();
+}
+void Settings::setVoiceLanguage(int voiceLanguage)
+{
+    m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
+}
+bool Settings::voiceStartEndWorkout() const
+{
+    return m_settings->value("generalsettings/voiceStartEndWorkout", true).toBool();
+}
+void Settings::setVoiceStartEndWorkout(bool voiceStartEndWorkout)
+{
+     m_settings->setValue("generalsettings/voiceStartEndWorkout", voiceStartEndWorkout);
+}
+bool Settings::voicePauseContinueWorkout() const
+{
+    return m_settings->value("generalsettings/voicePauseContinueWorkout", true).toBool();
+}
+void Settings::setVoicePauseContinueWorkout(bool voicePauseContinueWorkout)
+{
+     m_settings->setValue("generalsettings/voicePauseContinueWorkout", voicePauseContinueWorkout);
+}
+bool Settings::voiceGPSConnectLost() const
+{
+    return m_settings->value("generalsettings/voiceGPSConnectLost", true).toBool();
+}
+void Settings::setVoiceGPSConnectLost(bool voiceGPSConnectLost)
+{
+     m_settings->setValue("generalsettings/voiceGPSConnectLost", voiceGPSConnectLost);
 }
 
 //Sports-Tracker.com Sharing functions

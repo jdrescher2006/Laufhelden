@@ -201,6 +201,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Elevation up/down:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Send to Strava</source>
         <translation type="unfinished"></translation>
     </message>
@@ -718,6 +722,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Strava</source>
         <translation type="unfinished"></translation>
     </message>
@@ -745,22 +753,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Voice language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show grid lines</source>
         <translation type="unfinished"></translation>
     </message>
@@ -782,6 +774,18 @@
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unit of measurement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Metric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imperial</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1098,6 +1102,45 @@
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice outputs on events</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

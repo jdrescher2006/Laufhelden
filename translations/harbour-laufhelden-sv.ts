@@ -201,6 +201,10 @@
         <translation type="unfinished">Träningspass:</translation>
     </message>
     <message>
+        <source>Elevation up/down:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Send to Strava</source>
         <translation type="unfinished"></translation>
     </message>
@@ -718,6 +722,10 @@
         <translation>Pebble-inställningar</translation>
     </message>
     <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Strava</source>
         <translation type="unfinished"></translation>
     </message>
@@ -745,22 +753,6 @@
         <translation>Inspelningssida i stående läge</translation>
     </message>
     <message>
-        <source>Voice language</source>
-        <translation>Röstspråk</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation>Engelska manlig</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation>Tyska kvinnlig</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
         <source>Show grid lines</source>
         <translation>Visa stödlinjer</translation>
     </message>
@@ -783,6 +775,18 @@
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
         <translation>Byt till nattläge om atmosfärljuset är svagt.</translation>
+    </message>
+    <message>
+        <source>Unit of measurement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Metric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imperial</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1099,6 +1103,45 @@
     <message>
         <source>Thresholds off</source>
         <translation>Tröskelvärden av</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished">Röstspråk</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished">Engelska manlig</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished">Tyska kvinnlig</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished">Test</translation>
+    </message>
+    <message>
+        <source>Voice outputs on events</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -29,9 +29,9 @@ import com.pipacs.o2 1.0
 Page
 {
     id: detailPage
-    allowedOrientations: (map.height !== detailPage.height) ? Orientation.Portrait : Orientation.All //TODO: buggy!
+    allowedOrientations: bMapMaximized ? Orientation.All : Orientation.Portrait
     //No back navigation if the map is big
-    backNavigation: (map.height !== detailPage.height)
+    backNavigation: !bMapMaximized
 
     property string filename
     property string name
@@ -42,7 +42,9 @@ Page
     //Map buttons
     property bool showSettingsButton: true
     property bool showMinMaxButton: true
-    property bool showCenterButton: true       
+    property bool showCenterButton: true
+
+    property bool bMapMaximized: false
 
     property int iCurrentWorkout: 0
 
@@ -51,8 +53,8 @@ Page
         {
             trackLoader.filename = filename;
 
-            
             console.log("settings.mapStyle: " + settings.mapStyle);
+            map.styleUrl = settings.mapStyle;
         }
     }
 
@@ -139,7 +141,7 @@ Page
             for(var i=0; i<trackLength; i++)
             {
                 JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), 0);
-            }           
+            }
 
             var trackPointsTemporary = [];
             var iPausePositionsIndex = 0;
@@ -154,7 +156,7 @@ Page
                 //Check if we have the first data point.
                 if (i===0)
                 {
-                    //This is the first data point, draw the start icon                    
+                    //This is the first data point, draw the start icon
                     map.addSourcePoint("pointStartImage",  trackLoader.trackPointAt(i));
                     map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
                     map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
@@ -183,7 +185,7 @@ Page
 
                     vTrackLinePoints = trackPointsTemporary;
                     map.fitView(trackPointsTemporary);
-                }                
+                }
 
                 //now check if we have a point where a pause starts
                 if (trackLoader.pausePositionsCount() > 0 && i===trackLoader.pausePositionAt(iPausePositionsIndex))
@@ -242,7 +244,7 @@ Page
         {
             gridContainer.opacity = 1.0
             map.opacity = 1.0
-        }       
+        }
     }
 
     BusyIndicator
@@ -463,7 +465,7 @@ Page
                 {
                     id: distanceData
                     width: descriptionData.width
-                    text: (trackLoader.distance/1000).toFixed(2) + " km"
+                    text: (settings.measureSystem === 0) ? ((trackLoader.distance/1000).toFixed(2) + " km") : (JSTools.fncConvertDistanceToImperial(trackLoader.distance/1000).toFixed(2) + " mi")
                 }
                 Label
                 {
@@ -480,8 +482,8 @@ Page
                 {
                     id: speedData
                     width: descriptionData.width
-                    text: (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h"
-                }                
+                    text: (settings.measureSystem === 0) ? (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(trackLoader.maxSpeed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(trackLoader.speed*3.6)).toFixed(1) + " mi/h"
+                }
                 Label
                 {
                     width: hearRateLabel.width
@@ -496,7 +498,7 @@ Page
                 {
                     id: paceData
                     width: descriptionData.width
-                    text: trackLoader.paceStr + " min/km"
+                    text: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
                 }
                 Label
                 {
@@ -530,6 +532,25 @@ Page
                     id: pauseData
                     width: descriptionData.width
                 }
+                Label
+                {
+                    width: hearRateLabel.width
+                    id: elevationbLabel
+                    height:heartRateData.height
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignBottom
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: qsTr("Elevation up/down:")
+                    visible: false
+                }
+                Label
+                {
+                    id: elevationData
+                    width: descriptionData.width
+                    text: trackLoader.elevationUp.toFixed(1) + "/" + trackLoader.elevationDown.toFixed(1)
+                    visible: false
+                }
             }
         }
     }
@@ -538,7 +559,7 @@ Page
         id: map
 
         width: parent.width
-        height: map.width*3/4;
+        height: bMapMaximized ? detailPage.height : detailPage.height / 3
         anchors.bottom: parent.bottom
 
         center: QtPositioning.coordinate(51.9854, 9.2743)
@@ -598,10 +619,7 @@ Page
                 onReleased:
                 {
                     console.log("minmaxButton pressed");
-                    if (map.height === detailPage.height)
-                        map.height = map.width*3/4
-                    else
-                        map.height = detailPage.height
+                    bMapMaximized = !bMapMaximized;
                 }
             }
             Image
@@ -717,9 +735,21 @@ Page
             return Math.round(x * mult) / mult;
         }
 
-        function roundedDistace(dist) {
+        function roundedDistace(dist)
+        {
             // Return dist rounded to an even amount of user-visible units,
             // but keeping the value as meters.
+
+            if (settings.measureSystem === 0)
+            {
+                return siground(dist, 1);
+            }
+            else
+            {
+                return dist >= 1609.34 ?
+                    siground(dist / 1609.34, 1) * 1609.34 :
+                    siground(dist * 3.28084, 1) / 3.28084;
+            }
 
             /*
             if (app.conf.get("units") === "american")
@@ -734,8 +764,7 @@ Page
                     siground(dist * 1.09361, 1) / 1.09361;
             */
 
-            // Round to an even amount of kilometers or meters.
-            return siground(dist, 1);
+            // Round to an even amount of kilometers or meters.            
         }
 
         function update()
@@ -756,6 +785,8 @@ Page
                 sUnit = "km";
                 iDistance = dist / 1000.0;
             }
+
+            //TODO: imperial conversion needed here!
 
             scaleBar.text = iDistance.toString() + " " + sUnit
         }

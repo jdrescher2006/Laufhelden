@@ -33,6 +33,11 @@ Page
         }
         ListElement
         {
+            page: "VoiceSettingsPage.qml"
+            title: qsTr("Voice output settings")
+        }
+        ListElement
+        {
             page: "MapSettingsPage.qml"
             title: qsTr("Map settings")
         }

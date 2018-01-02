@@ -104,7 +104,7 @@ signals:
     void timeChanged();    
     void pebbleTimeChanged();
     void isEmptyChanged();
-    void currentPositionChanged();
+    void currentPositionChanged(QGeoCoordinate coordinate);
     void updateIntervalChanged();
     void valuesChanged();
     void newTrackPoint(QGeoCoordinate coordinate, int iPointIndex);

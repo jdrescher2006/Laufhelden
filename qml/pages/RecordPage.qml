@@ -18,7 +18,9 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtLocation 5.0
+//import QtLocation 5.0
+import QtPositioning 5.3
+import MapboxMap 1.0
 import "../tools/SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
 import "../tools/JSTools.js" as JSTools
@@ -31,9 +33,7 @@ Page
     allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All
 
     //If pause and we have no data and the map is not big, going back is possible
-    backNavigation: (!recorder.running && recorder.isEmpty && !map.gesture.enabled)
-
-    property var tMapTrackObject: null
+    backNavigation: (!recorder.running && recorder.isEmpty && !bMapMaximized)
 
     property bool bShowMap: settings.showMapRecordPage  
 
@@ -67,6 +67,18 @@ Page
     property double iPrimaryTextHeightFactor: 1.8
     property double iSecondaryTextHeightFactor: 3.6
 
+    //Map
+    property bool bMapMaximized: false
+    property var vTrackLinePoints
+    property string sTrackLine
+    property string sCurrentPosition: ""
+    property int iPausePositionsIndex: 0
+
+    //Map buttons
+    property bool showSettingsButton: true
+    property bool showMinMaxButton: true
+    property bool showCenterButton: true
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -80,7 +92,7 @@ Page
             recorder.vStartGPS();
 
             recorder.newTrackPoint.connect(newTrackPoint);
-            map.addMapItem(positionMarker);            
+            recorder.currentPositionChanged.connect(fncCurrentPositionChanged);
 
             console.log("Is track empty: " + recorder.isEmpty.toString())
 
@@ -97,9 +109,6 @@ Page
                 RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);
                 JSTools.arrayPebbleValueTypes[8].value = (recorder.distance/1000).toFixed(1);
             }
-
-            console.log("RecordPage: Setting map viewport");
-            setMapViewport();
 
             console.log("---RecordPage first active leave---");
         }
@@ -188,7 +197,7 @@ Page
                 //Read from light sensor of smartphone
                 id_Light.refresh();
 
-                //console.log("Brightness: " + id_Light.brightness.toString());
+                console.log("Brightness: " + id_Light.brightness.toString());
 
                 iAutoNightModeValue = iAutoNightModeValue + id_Light.brightness;
 
@@ -216,7 +225,7 @@ Page
                     }
 
                     //If we are currently NOT in night mode, check if it is dark enough to enter night mode
-                    if (iDisplayMode !== 2 && (iAutoNightModeValue / 3) <= 30)
+                    if (iDisplayMode !== 2 && (iAutoNightModeValue / 3) <= 20)
                     {
                         //Save current display mode
                         iOldDisplayMode = iDisplayMode
@@ -456,128 +465,134 @@ Page
         }
     }   
 
-    function setMapViewport()
-    {
-        if(recorder.accuracy < 0 && recorder.points < 1)
-        {
-            return;
-        }
-
-        var accuracyZoom;
-        if(recorder.accuracy > 0) {
-            var windowPixels;
-            if(map.width < map.height) {
-                windowPixels = map.width;
-            } else {
-                windowPixels = map.height;
-            }
-            var latCor = Math.cos(recorder.currentPosition.latitude*Math.PI/180);
-            // Earth equator length in WGS-84: 40075.016686 km
-            // Tile size: 256 pixels
-            var innerFunction = windowPixels/256.0 * 40075016.686/(2*recorder.accuracy) * latCor
-            // 2 base logarithm is ln(x)/ln(2)
-            accuracyZoom = Math.min(map.maximumZoomLevel, Math.floor(Math.log(innerFunction) / Math.log(2)));
-        } else {
-            accuracyZoom = map.maximumZoomLevel;
-        }
-
-        var trackZoom = Math.min(map.maximumZoomLevel, recorder.fitZoomLevel(map.width, map.height));
-
-        if(accuracyZoom <= trackZoom && recorder.accuracy > 0) {
-            map.zoomLevel = accuracyZoom;
-        } else {
-            map.zoomLevel = trackZoom;
-        }
-        if(recorder.isEmpty)
-        {
-            map.center = recorder.currentPosition;
-        }
-        else
-        {
-            //center current position on map
-            if (settings.mapMode === 0)
-                map.center = recorder.currentPosition;
-            else if (settings.mapMode === 1)
-                map.center = recorder.trackCenter();
-            else
-                map.center = recorder.currentPosition;
-        }
-    }
-
     function fncSetMapPoint(coordinate, iPointIndex)
     {
-        //console.log("Index: " + iPointIndex.toString());
+        var vLineArray = [];
 
-        var componentTrack;
+        //console.log("Index: " + iPointIndex.toString());               
 
         //Recognize the start of a workout
         if (iPointIndex === 0 && recorder.running && !recorder.isEmpty)
         {
-            //Set start icon to map
-            idItemTrackStart.coordinate = coordinate;
-            idItemTrackStart.visible = true;
+            //This is the first data point, draw the start icon
+            map.addSourcePoint("pointStartImage",  coordinate);
+            map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
+            map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
+            map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
+            map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerStartLayer", "visibility", "visible");
 
-            //We have to create a track line here
-            componentTrack = Qt.createComponent("../tools/MapPolyLine.qml");
-            tMapTrackObject = componentTrack.createObject(map);
-            //Add track to map
-            map.addMapItem(tMapTrackObject);
+            //Create temp line array
+            vLineArray = [];
+            //Write first coordinate to line array
+            vLineArray.push(coordinate);
+            //Save that to global array
+            vTrackLinePoints = vLineArray;
+
+            sTrackLine = "lineEndTrack";
+
+            //We have to create a track line here.
+            map.addSourceLine(sTrackLine, vTrackLinePoints)
+            map.addLayer("layerEndTrack", { "type": "line", "source": sTrackLine })
+            map.setLayoutProperty("layerEndTrack", "line-join", "round");
+            map.setLayoutProperty("layerEndTrack", "line-cap", "round");
+            map.setPaintProperty("layerEndTrack", "line-color", "red");
+            map.setPaintProperty("layerEndTrack", "line-width", 2.0);            
         }
 
         //Recognize the start of a pause
         if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === false && recorder.pausePointAt(iPointIndex) === true)
         {
             //Draw the pause start icon
-            var componentStart = Qt.createComponent("../tools/MapPauseItem.qml");
-            var pauseItemStart = componentStart.createObject(map);
-            pauseItemStart.coordinate = coordinate;
-            pauseItemStart.iSize = (page.orientation == Orientation.Portrait || page.orientation == Orientation.PortraitInverted) ? page.width / 14 : page.height / 14
-            pauseItemStart.bPauseStart = true;
+            map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(),  coordinate);
+            map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_pause.png"));
+            map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");          
 
-            //put pause items to the map
-            map.addMapItem(pauseItemStart);
-
-            //End the track line here.
-            tMapTrackObject = null;            
+            //set indexer to next pause position.
+            iPausePositionsIndex++;
         }
 
         //Recognize the end of a pause
         if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === true && recorder.pausePointAt(iPointIndex) === false)
         {
-            //Draw the pause end icon
-            var componentEnd = Qt.createComponent("../tools/MapPauseItem.qml");
-            var pauseItemEnd = componentEnd.createObject(map);
-            pauseItemEnd.coordinate = coordinate;
-            pauseItemEnd.iSize = (page.orientation == Orientation.Portrait || page.orientation == Orientation.PortraitInverted) ? page.width / 14 : page.height / 14
-            pauseItemEnd.bPauseStart = false;            
+            //So this is a track point where a pause starts. The next one is the pause end!
+            //Draw the pause start icon
+            map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(), coordinate);
+            map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_resume.png"));
+            map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
 
-            //put pause items to the map
-            map.addMapItem(pauseItemEnd);
+            //Start new trackline here
+            //Create fresh temp line array
+            vLineArray = [];
+            //Write first coordinate of new track segment to line array
+            vLineArray.push(coordinate);
+            //Save that to global array
+            vTrackLinePoints = vLineArray;
 
-            //We have to create a track line here
-            componentTrack = Qt.createComponent("../tools/MapPolyLine.qml");
-            tMapTrackObject = componentTrack.createObject(map);
-            //Add track to map
-            map.addMapItem(tMapTrackObject);           
+            sTrackLine = "lineTrack" + iPausePositionsIndex.toString();
+
+            //We have to create a track line here.
+            map.addSourceLine(sTrackLine, vTrackLinePoints)
+            map.addLayer("layerTrack" + iPausePositionsIndex.toString(), { "type": "line", "source": sTrackLine })
+            map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-join", "round");
+            map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-cap", "round");
+            map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-color", "red");
+            map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-width", 2.0);
         }
 
-        //If the current point is not a pause point, add it to the current track
-        if (recorder.running && !recorder.isEmpty && recorder.pausePointAt(iPointIndex) === false && tMapTrackObject !== null)
-            tMapTrackObject.addCoordinate(coordinate);
+        //If the current point is not the first one and not a pause point, add it to the current track
+        if (recorder.running && !recorder.isEmpty && iPointIndex !== 0 && recorder.pausePointAt(iPointIndex) === false)
+        {
+            //Create temp line array and set current points array to it. Must use a JS array here necause QML arrays don't allow for push!
+            vLineArray = vTrackLinePoints;
+            //Write first coordinate to line array
+            vLineArray.push(coordinate);
+            //Save that to global array
+            vTrackLinePoints = vLineArray;
+
+            map.updateSourceLine(sTrackLine, vTrackLinePoints);
+
+            if (settings.mapMode === 1 && !bMapMaximized) //center track on map
+                map.fitView(sTrackLine);
+        }
+    }
+
+    function fncCurrentPositionChanged(coordinate)
+    {
+        console.log("CurrentPositionChanged");
+
+        if (sCurrentPosition === undefined || sCurrentPosition === "")
+        {
+            sCurrentPosition = "currentPosition";
+
+            //Create current position point on map
+            map.addSourcePoint(sCurrentPosition,  coordinate);
+            map.addImagePath("image", Qt.resolvedUrl("../img/position-circle-blue.png"));
+            map.addLayer("image_layer", {"type": "symbol", "source": sCurrentPosition});
+            map.setLayoutProperty("image_layer", "icon-image", "image");
+            map.setLayoutProperty("image_layer", "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("image_layer", "visibility", "visible");
+        }
+        else
+            map.updateSourcePoint(sCurrentPosition, coordinate);
+
+        if (settings.mapMode === 0  && !bMapMaximized)
+            map.center = coordinate;
     }
 
     function newTrackPoint(coordinate, iPointIndex)
     {
         //console.log("Position: " + recorder.currentPosition);
-        console.log("newTrackPoint");               
-
-        if(!map.gesture.enabled)
-        {
-            // Set viewport only when not browsing
-            setMapViewport();
-        }
+        console.log("newTrackPoint");                       
 
         fncSetMapPoint(coordinate, iPointIndex);
+
 
         //Thresholds processing needs to be disabled if recording is paused
         if (recorder.pause)
@@ -670,41 +685,6 @@ Page
         }
     }
 
-    MapCircle
-    {
-        id: positionMarker
-        center: recorder.currentPosition
-        radius: recorder.accuracy
-        color: "blue"
-        border.color: "white"
-        border.width: 6
-        opacity: 0.3        
-        onRadiusChanged:
-        {
-            if(!map.gesture.enabled) {  // When not browsing the map
-                setMapViewport()
-            }
-        }
-        onCenterChanged:
-        {
-            if(!map.gesture.enabled) {  // When not browsing the map
-                setMapViewport()
-            }
-        }        
-        /* this stuff comes from Rena but was not working there either
-        Behavior on radius
-        {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.latitude
-        {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.longitude
-        {
-            NumberAnimation { duration: 200 }
-        }*/
-    }   
 
     SilicaFlickable
     {
@@ -1726,110 +1706,132 @@ Page
             }
         }
     }
-    Map
+    MapboxMap
     {
         id: map
-        width: parent.width
-        //height: map.gesture.enabled ? page.height : width * 3/4
-        height: map.gesture.enabled ? page.height : parent.height / 2.5
-        anchors.bottom: parent.bottom
-        clip: true
-        gesture.enabled: false
-        visible: bShowMap
-        plugin: Plugin
-        {
-            name: "osm"
-            PluginParameter
-            {
-                name: "useragent"                
-                value: "Laufhelden(SailfishOS)"
-            }
-            //PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
-        }
-        center {
-            latitude: 0.0
-            longitude: 0.0
-        }
-        zoomLevel: minimumZoomLevel
-        onHeightChanged: setMapViewport()
-        onWidthChanged: setMapViewport()
-        Behavior on height {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on zoomLevel {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.latitude {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.longitude {
-            NumberAnimation { duration: 200 }
-        }       
 
-        MapQuickItem
+        width: parent.width
+        height: bMapMaximized ? page.height : page.height / 3
+        anchors.bottom: parent.bottom
+
+        center: QtPositioning.coordinate(51.9854, 9.2743)
+        zoomLevel: 8.0
+        minimumZoomLevel: 0
+        maximumZoomLevel: 20
+        pixelRatio: 3.0
+
+        accessToken: "pk.eyJ1IjoiamRyZXNjaGVyIiwiYSI6ImNqYmVta256YTJsdjUzMm1yOXU0cmxibGoifQ.JiMiONJkWdr0mVIjajIFZQ"
+        cacheDatabaseMaximalSize: (settings.mapCache)*1024*1024
+        cacheDatabaseDefaultPath: true
+
+        styleUrl: settings.mapStyle
+
+        Item
         {
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            sourceItem: Rectangle {
-                color: "white"
-                opacity: 0.6
-                width: contributionLabel.width
-                height: contributionLabel.height
-                Label {
-                    id: contributionLabel
-                    font.pixelSize: Theme.fontSizeTiny
-                    color: "black"
-                    text: "(C) OpenStreetMap contributors"
-                }
-            }
-        }
-        MapQuickItem
-        {
-            id: idItemTrackStart
-            anchorPoint.x: sourceItem.width/2
-            anchorPoint.y: sourceItem.height/2
-            visible: false
-            sourceItem: Item
+            id: centerButton
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.paddingSmall
+            anchors.top: parent.top
+            anchors.topMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showCenterButton && bMapMaximized
+            z: 200
+
+            MouseArea
             {
-                height: (page.orientation == Orientation.Portrait || page.orientation == Orientation.PortraitInverted) ? page.width / 14 : page.height / 14
-                width: (page.orientation == Orientation.Portrait || page.orientation == Orientation.PortraitInverted) ? page.width / 14 : page.height / 14
-                Image
+                anchors.fill: parent
+                onReleased:
                 {
-                    width: parent.width
-                    height: parent.height
-                    source: "../img/map_play.png"
+                    console.log("centerButton pressed");
+                    map.center = recorder.currentPosition;
                 }
             }
+            Image
+            {
+                anchors.fill: parent
+                source: "../img/map_btn_center.png"
+            }
         }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                map.gesture.enabled = !map.gesture.enabled;
-                if(map.gesture.enabled)
+        Item
+        {
+            id: minmaxButton
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.paddingSmall
+            anchors.top: parent.top
+            anchors.topMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showMinMaxButton
+            z: 200
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onReleased:
                 {
-                    //distanceLabel.opacity = 0.0;
-                    //timeLabel.opacity = 0.0;
-                    //accuracyLabel.opacity = 0.0;
-                    //page.allowedOrientations = Orientation.All;
+                    console.log("minmaxButton pressed");
+                    bMapMaximized = !bMapMaximized;
                 }
-                else
+            }
+            Image
+            {
+                anchors.fill: parent
+                source: (map.height === page.height) ? "../img/map_btn_min.png" : "../img/map_btn_max.png"
+            }
+        }
+        Item
+        {
+            id: settingsButton
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.paddingSmall
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showSettingsButton
+            z: 200
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onReleased:
                 {
-                    //distanceLabel.opacity = 1.0;
-                    //timeLabel.opacity = 1.0;
-                    //accuracyLabel.opacity = 1.0;
-                    //page.allowedOrientations = Orientation.All;
+                    console.log("settingsButton pressed");
+                    pageStack.push(Qt.resolvedUrl("MapSettingsPage.qml"));
                 }
-                //page.forwardNavigation = !map.gesture.enabled;
-                flickable.interactive = !map.gesture.enabled;
-                menu.visible = !map.gesture.enabled;
+            }
+            Image
+            {
+                anchors.fill: parent
+                source: "../img/map_btn_settings.png"
+            }
+        }
+
+        MapboxMapGestureArea
+        {
+            id: mouseArea
+            map: map
+            activeClickedGeo: true
+            activeDoubleClickedGeo: true
+            activePressAndHoldGeo: false
+
+            onDoubleClicked:
+            {
+                //console.log("onDoubleClicked: " + mouse)
+                map.setZoomLevel(map.zoomLevel + 1, Qt.point(mouse.x, mouse.y) );
+            }
+            onDoubleClickedGeo:
+            {
+                //console.log("onDoubleClickedGeo: " + geocoordinate);
+                map.center = geocoordinate;
             }
         }
     }
+
     Component
     {
         id: id_Dialog_ChooseValue
-
-
 
         Dialog
         {

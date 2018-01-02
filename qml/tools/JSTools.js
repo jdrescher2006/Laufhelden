@@ -41,6 +41,26 @@ function fncAddDataPoint(heartrate,elevation,distance)
     arrayDataPoints[iPosition]["distance"] = distance;
 }
 
+function fncConvertDistanceToImperial(iKilometers)
+{
+    return iKilometers * 0.621371192237;
+}
+
+function fncConvertelevationToImperial(iMeters)
+{
+    return iMeters * 3.28084;
+}
+
+function fncConvertPacetoImperial(iPace)
+{
+    return iPace * 1.609344;
+}
+
+function fncConvertSpeedToImperial(iSpeed)
+{
+    return iSpeed * 0.621371192237;
+}
+
 
 //*************** Pebble functions *****************
 

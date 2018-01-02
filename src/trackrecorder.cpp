@@ -109,8 +109,11 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
     }
     emit accuracyChanged();
 
+    //qDebug()<<"m_accuracy: " << QString::number(m_accuracy);
+
+
     m_currentPosition = newPos.coordinate();
-    emit currentPositionChanged();
+    emit currentPositionChanged(newPos.coordinate());
 
     //If recorder is running and is paused
     if(this->m_running == true && this->m_pause == true)
@@ -126,7 +129,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
         return;
     }
 
-    qDebug()<<"Groundspeed: " << QString::number(newPos.GroundSpeed);
+    //qDebug()<<"Groundspeed: " << QString::number(newPos.GroundSpeed);
 
     if(m_running)
     {
@@ -1030,6 +1033,9 @@ void TrackRecorder::loadAutoSave()
 
         this->m_pause = true;
         this->m_running = true;
+
+        emit pauseChanged();
+        emit runningChanged();
     }
 
     if(!m_points.isEmpty())
