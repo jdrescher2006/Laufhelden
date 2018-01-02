@@ -34,7 +34,6 @@ class Settings : public QObject
     Q_PROPERTY(QString thresholds READ thresholds WRITE setThresholds)
     Q_PROPERTY(bool enableLogFile READ enableLogFile WRITE setEnableLogFile)
     Q_PROPERTY(int displayMode READ displayMode WRITE setDisplayMode)
-    Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
     Q_PROPERTY(bool showBorderLines READ showBorderLines WRITE setShowBorderLines)
     Q_PROPERTY(QString valueFields READ valueFields WRITE setValueFields)
     Q_PROPERTY(bool enableAutosave READ enableAutosave WRITE setEnableAutosave)
@@ -43,6 +42,13 @@ class Settings : public QObject
     Q_PROPERTY(bool mapShowOnly4Fields READ mapShowOnly4Fields WRITE setmapShowOnly4Fields)
     Q_PROPERTY(QString mapStyle READ mapStyle WRITE setMapStyle)
     Q_PROPERTY(int mapCache READ mapCache WRITE setMapCache)
+    Q_PROPERTY(int measureSystem READ measureSystem WRITE setMeasureSystem)
+
+    //Voice output
+    Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
+    Q_PROPERTY(bool voiceStartEndWorkout READ voiceStartEndWorkout WRITE setVoiceStartEndWorkout)
+    Q_PROPERTY(bool voicePauseContinueWorkout READ voicePauseContinueWorkout WRITE setVoicePauseContinueWorkout)
+    Q_PROPERTY(bool voiceGPSConnectLost READ voiceGPSConnectLost WRITE setVoiceGPSConnectLost)
 
     //Pebble specific setings
     Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
@@ -85,10 +91,7 @@ public:
     void setEnableLogFile(bool enableLogFile);
 
     int displayMode() const;
-    void setDisplayMode(int displayMode);
-
-    int voiceLanguage() const;
-    void setVoiceLanguage(int voiceLanguage);
+    void setDisplayMode(int displayMode);    
 
     bool showBorderLines() const;
     void setShowBorderLines(bool showBorderLines);
@@ -119,6 +122,22 @@ public:
 
     int mapCache() const;
     void setMapCache(int mapCache);
+
+    int measureSystem() const;
+    void setMeasureSystem(int measureSystem);
+
+    //Voice output
+    int voiceLanguage() const;
+    void setVoiceLanguage(int voiceLanguage);
+
+    bool voiceStartEndWorkout() const;
+    void setVoiceStartEndWorkout(bool voiceStartEndWorkout);
+
+    bool voicePauseContinueWorkout() const;
+    void setVoicePauseContinueWorkout(bool voicePauseContinueWorkout);
+
+    bool voiceGPSConnectLost() const;
+    void setVoiceGPSConnectLost(bool voiceGPSConnectLost);
 
     //Sporst-Tracker.com functions
     QString stUsername() const;

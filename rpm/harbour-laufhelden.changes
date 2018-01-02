@@ -1,3 +1,9 @@
+* Wed Jan 19 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.8-9
+- new map plugin MapBox
+    - allows offline maps via OSM Scout Server
+- added new feature/settings: imperial units
+- automatic night mode is now enabled in darker conditions
+
 * Wed Dec 19 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.7-8
 - added new feature/settings: Pebble smartwatch support
 - added new feature: edit workout name/description/type

@@ -200,6 +200,10 @@
         <source>Workout:</source>
         <translation type="unfinished">Harjoitus:</translation>
     </message>
+    <message>
+        <source>Elevation up/down:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
@@ -713,6 +717,10 @@
         <source>Pebble settings</source>
         <translation>Pebble asetukset</translation>
     </message>
+    <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -737,22 +745,6 @@
         <translation>Harjoitusnäyttö pystytilassa</translation>
     </message>
     <message>
-        <source>Voice language</source>
-        <translation>Ääni-ilmoitusten kieli</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation>Englanti mies</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation>Saksa mies</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testaa ääniä</translation>
-    </message>
-    <message>
         <source>Show grid lines</source>
         <translation>Näytä ruudukko</translation>
     </message>
@@ -775,6 +767,18 @@
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
         <translation>Vaihtaa automaattisesti yötilaan pimeässä</translation>
+    </message>
+    <message>
+        <source>Unit of measurement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Metric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imperial</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1021,6 +1025,45 @@
     <message>
         <source>Thresholds off</source>
         <translation>Hälytysrajat pois</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished">Ääni-ilmoitusten kieli</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished">Englanti mies</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished">Saksa mies</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished">Testaa ääniä</translation>
+    </message>
+    <message>
+        <source>Voice outputs on events</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

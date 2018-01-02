@@ -200,6 +200,10 @@
         <source>Workout:</source>
         <translation>Aktivität:</translation>
     </message>
+    <message>
+        <source>Elevation up/down:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
@@ -713,6 +717,10 @@
         <source>Pebble settings</source>
         <translation>Pebble Einstellungen</translation>
     </message>
+    <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -737,22 +745,6 @@
         <translation>Aufzeichnen im Portraitmodus</translation>
     </message>
     <message>
-        <source>Voice language</source>
-        <translation>Sprache der Stimme</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation>Englisch Mann</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation>Deutsch Mann</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
         <source>Show grid lines</source>
         <translation>Rahmen anzeigen</translation>
     </message>
@@ -775,6 +767,18 @@
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
         <translation>Nacht-Modus einschalten bei schwachem Umgebungslicht.</translation>
+    </message>
+    <message>
+        <source>Unit of measurement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Metric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imperial</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1021,6 +1025,45 @@
     <message>
         <source>Thresholds off</source>
         <translation>Schwellwerte Aus</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished">Sprache der Stimme</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished">Englisch Mann</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished">Deutsch Mann</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished">Test</translation>
+    </message>
+    <message>
+        <source>Voice outputs on events</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

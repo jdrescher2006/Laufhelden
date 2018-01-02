@@ -123,8 +123,6 @@ DISTFILES += \
     qml/img/map_play.png \
     qml/img/map_resume.png \
     qml/img/map_stop.png \
-    qml/tools/MapPauseItem.qml \
-    qml/tools/MapPolyLine.qml \
     qml/workouticons/skiing.png \
     qml/tools/SportsTracker.js \
     qml/pages/SportsTrackerUploadPage.qml \

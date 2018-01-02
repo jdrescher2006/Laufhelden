@@ -43,10 +43,13 @@ class TrackLoader : public QObject
     Q_PROPERTY(qreal maxSpeed READ maxSpeed NOTIFY maxSpeedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
     Q_PROPERTY(QString paceStr READ paceStr NOTIFY paceChanged)
+    Q_PROPERTY(QString paceImperialStr READ paceImperialStr NOTIFY paceChanged)
     Q_PROPERTY(qreal heartRate READ heartRate NOTIFY heartRateChanged)
     Q_PROPERTY(uint heartRateMin READ heartRateMin NOTIFY heartRateMinChanged)
     Q_PROPERTY(uint heartRateMax READ heartRateMax NOTIFY heartRateMaxChanged)
     Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
+    Q_PROPERTY(qreal elevationUp READ elevationUp NOTIFY elevationChanged)
+    Q_PROPERTY(qreal elevationDown READ elevationDown NOTIFY elevationChanged)
 
 
 
@@ -64,7 +67,7 @@ public:
         qreal horizontalAccuracy;
         qreal verticalAccuracy;
         uint heartrate;
-    };  
+    };
 
     explicit TrackLoader(QObject *parent = 0);
     QString filename() const;
@@ -76,19 +79,21 @@ public:
     QString timeStr();
     uint duration();
     QString durationStr();
-
     uint pauseDuration();
     QString pauseDurationStr();
-
     qreal distance();
     qreal speed();
     qreal maxSpeed();
     qreal pace();
-    QString paceStr();
+    QString paceStr();    
+    QString paceImperialStr();
     qreal heartRate();
     uint heartRateMin();
     uint heartRateMax();
+    qreal elevationUp();
+    qreal elevationDown();
     bool loaded();
+
     Q_INVOKABLE QString readGpx();
     Q_INVOKABLE QString sTworkoutKey();
     Q_INVOKABLE int trackPointCount();
@@ -122,13 +127,14 @@ signals:
     void heartRateChanged();
     void heartRateMinChanged();
     void heartRateMaxChanged();
+    void elevationChanged();
 
 public slots:
 
-private:    
+private:
     void load();
 
-    QList<TrackPoint> m_points;   
+    QList<TrackPoint> m_points;
     QList<int> m_pause_positions;
     QList<QString> sFileStringArray;
     bool m_loaded;
@@ -150,6 +156,8 @@ private:
     uint m_heartRateMax;
     QString m_sTkey; //Sports-Tracker.com workout key
     QGeoCoordinate m_center;
+    qreal m_elevationUp;
+    qreal m_elevationDown;
 };
 
 #endif // TRACKLOADER_H

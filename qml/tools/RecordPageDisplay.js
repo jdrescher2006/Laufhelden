@@ -19,16 +19,16 @@
 
 var arrayValueTypes =
 [
-    { index: 0, fieldID: "0", value: 0, header: qsTr("Empty"), footer: "", footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 1, fieldID: "2", value: 0, header: qsTr("Heartrate"), footer: qsTr("bpm"), footnote: true, footnoteText: qsTr("Bat.:"), footnoteValue: 0 },
-    { index: 2, fieldID: "3", value: 0, header: qsTr("Heartrate") + "∅", footer: qsTr("bpm"),footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 3, fieldID: "4", value: 0, header: qsTr("Pace"), footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 4, fieldID: "5", value: 0, header: qsTr("Pace") + "∅", footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 5, fieldID: "6", value: 0, header: qsTr("Speed"), footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 6, fieldID: "0", value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 7, fieldID: "0", value: 0, header: qsTr("Altitude"), footer: qsTr("m"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 8, fieldID: "1", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 9, fieldID: "0", value: 0, header: qsTr("Pause"), footer: "", footnote: false, footnoteText: "", footnoteValue: 0 }
+    { index: 0, fieldID: "0", value: 0, header: qsTr("Empty"), footer: "", footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "", imperialFactor: 0 },
+    { index: 1, fieldID: "2", value: 0, header: qsTr("Heartrate"), footer: qsTr("bpm"), footnote: true, footnoteText: qsTr("Bat.:"), footnoteValue: 0, imperialUnit: "", imperialFactor: 0 },
+    { index: 2, fieldID: "3", value: 0, header: qsTr("Heartrate") + "∅", footer: qsTr("bpm"),footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "", imperialFactor: 0 },
+    { index: 3, fieldID: "4", value: 0, header: qsTr("Pace"), footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "min/mi", imperialFactor: 1.609344 },
+    { index: 4, fieldID: "5", value: 0, header: qsTr("Pace") + "∅", footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "min/mi", imperialFactor: 1.609344 },
+    { index: 5, fieldID: "6", value: 0, header: qsTr("Speed"), footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "mi/h", imperialFactor: 0.621371192237 },
+    { index: 6, fieldID: "0", value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "mi/h", imperialFactor: 0.621371192237 },
+    { index: 7, fieldID: "0", value: 0, header: qsTr("Altitude"), footer: qsTr("m"), footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "ft", imperialFactor: 3.28084 },
+    { index: 8, fieldID: "1", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "mi", imperialFactor: 0.621371192237 },
+    { index: 9, fieldID: "0", value: 0, header: qsTr("Pause"), footer: "", footnote: false, footnoteText: "", footnoteValue: 0, imperialUnit: "", imperialFactor: 0 }
 ]
 
 function fncAddFieldIDByIndex(iIndex, iFieldID)
