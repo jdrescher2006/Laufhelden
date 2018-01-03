@@ -202,7 +202,7 @@
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höjd upp/ner:</translation>
     </message>
     <message>
         <source>Send to Strava</source>
@@ -652,12 +652,12 @@
         <translation type="unfinished">km/t</translation>
     </message>
     <message>
-        <source>Altitude</source>
-        <translation>Altitud</translation>
-    </message>
-    <message>
         <source>m</source>
         <translation>m</translation>
+    </message>
+    <message>
+        <source>Altitude</source>
+        <translation>Altitud</translation>
     </message>
     <message>
         <source>Bat.:</source>
@@ -723,7 +723,7 @@
     </message>
     <message>
         <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Inställningar för röstutmatning</translation>
     </message>
     <message>
         <source>Strava</source>
@@ -778,15 +778,15 @@
     </message>
     <message>
         <source>Unit of measurement</source>
-        <translation type="unfinished"></translation>
+        <translation>Måttenhet</translation>
     </message>
     <message>
         <source>Metric</source>
-        <translation type="unfinished"></translation>
+        <translation>Meter</translation>
     </message>
     <message>
         <source>Imperial</source>
-        <translation type="unfinished"></translation>
+        <translation>Brittisk standard</translation>
     </message>
 </context>
 <context>
@@ -1109,39 +1109,39 @@
     <name>VoiceSettingsPage</name>
     <message>
         <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Inställningar för röstutmatning</translation>
     </message>
     <message>
         <source>Start/end workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta/Avsluta träningspass</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausa/Fortsätta träningspass</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation type="unfinished"></translation>
+        <translation>Ansluta/Koppla ner GPS</translation>
     </message>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished">Röstspråk</translation>
+        <translation>Röstspråk</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished">Engelska manlig</translation>
+        <translation>Engelska manlig</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished">Tyska kvinnlig</translation>
+        <translation>Tyska manlig</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished">Test</translation>
+        <translation>Testa</translation>
     </message>
     <message>
         <source>Voice outputs on events</source>
-        <translation type="unfinished"></translation>
+        <translation>Röstutmatning vid händelser</translation>
     </message>
 </context>
 </TS>
