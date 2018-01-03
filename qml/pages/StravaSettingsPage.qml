@@ -23,8 +23,8 @@ import com.pipacs.o2 1.0
 Page {
     id: page
 
-    property bool downloadingGPX: false;
-    property variant athlete;
+    property bool downloadingGPX: false
+    property variant athlete
     property string username: ""
     property string email: ""
     property string country: ""
@@ -58,7 +58,7 @@ Page {
         tokenUrl: "https://www.strava.com/oauth/token"
 
         onOpenBrowser: {
-            var browser = pageStack.push(Qt.resolvedUrl("BrowserPage.qml"))
+            var browser = pageStack.push(Qt.resolvedUrl("BrowserPage.qml"));
             browser.url = url;
         }
 
@@ -68,7 +68,7 @@ Page {
         }
 
         onLinkedChanged: {
-            btnAuth.enabled = true
+            btnAuth.enabled = true;
             if (linked) {
                 var tokens = o2strava.extraTokens;
                 athlete = tokens["athlete"];
@@ -113,9 +113,9 @@ Page {
                     onClicked: {
                         enabled = false
                         if (o2strava.linked) {
-                            o2strava.unlink()
+                            o2strava.unlink();
                         } else {
-                            o2strava.link()
+                            o2strava.link();
                         }
                     }
                 }

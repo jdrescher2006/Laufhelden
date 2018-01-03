@@ -24,7 +24,7 @@ Page {
     property bool busy: false
     property string activityType: ""
     property string activityID: ""
-    property var gpx;
+    property var gpx
     property var uploadData;
     property alias activityName: st_name.text
     property alias activityDescription: st_description.text
@@ -89,7 +89,7 @@ Page {
                     text: qsTr("Riding")
                     onClicked:
                     {
-                        activityType = "ride"
+                        activityType = "ride";
                     }
 
                 }
@@ -98,7 +98,7 @@ Page {
                     text: qsTr("Running")
                     onClicked:
                     {
-                        activityType = "run"
+                        activityType = "run";
                     }
 
                 }
@@ -107,7 +107,7 @@ Page {
                     text: qsTr("Swimming")
                     onClicked:
                     {
-                        activityType = "swim"
+                        activityType = "swim";
                     }
                 }
                 MenuItem
@@ -115,7 +115,7 @@ Page {
                     text: qsTr("Workout")
                     onClicked:
                     {
-                        activityType = "workout"
+                        activityType = "workout";
                     }
                 }
                 MenuItem
@@ -123,7 +123,7 @@ Page {
                     text: qsTr("Walking")
                     onClicked:
                     {
-                        activityType = "walk"
+                        activityType = "walk";
                     }
                 }
             }
@@ -141,7 +141,7 @@ Page {
             text: "Upload"
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
-                busy = true
+                busy = true;
                 uploadGPX();
             }
         }
