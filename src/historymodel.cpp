@@ -156,16 +156,18 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const {
     if(role == DistanceRole) {
         if(!m_trackList.at(index.row()).ready) {
             // Data not loaded yet
-            return QString("-km");
+            return qreal(0);
         }
-        return QString("%1km").arg(m_trackList.at(index.row()).distance / 1000, 0, 'f', 1);
+        //return QString("%1km").arg(m_trackList.at(index.row()).distance / 1000, 0, 'f', 1);
+        return m_trackList.at(index.row()).distance;
     }
     if(role == SpeedRole) {
         if(!m_trackList.at(index.row()).ready) {
             // Data not loaded yet
-            return QString("-km/h");
+            return qreal(0);
         }
-        return QString("%1km/h").arg(m_trackList.at(index.row()).speed * 3.6, 0, 'f', 1);
+        //return QString("%1km/h").arg(m_trackList.at(index.row()).speed * 3.6, 0, 'f', 1);
+        return (m_trackList.at(index.row()).speed * 3.6);
     }
     if(role == DescriptionRole) {
         if(!m_trackList.at(index.row()).ready) {

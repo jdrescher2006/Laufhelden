@@ -20,6 +20,7 @@ import Sailfish.Silica 1.0
 import harbour.laufhelden 1.0
 import "../tools/SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
+import "../tools/JSTools.js" as JSTools
 
 Page
 {
@@ -167,7 +168,11 @@ Page
             var iSeconds = Math.floor(id_HistoryModel.iDuration() - (iHours * 3600) - (iMinutes * 60));
 
             sWorkoutDuration = iHours + "h " + iMinutes + "m " + iSeconds + "s";
-            sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
+
+            if (settings.measureSystem === 0)
+                sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
+            else
+                sWorkoutDistance = (JSTools.fncConvertDistanceToImperial(id_HistoryModel.rDistance()/1000)).toFixed(1);
 
             historyList.model = undefined;
             historyList.model = id_HistoryModel;            
@@ -261,7 +266,7 @@ Page
                         anchors.verticalCenter: parent.verticalCenter
                         x: Theme.paddingLarge
                         truncationMode: TruncationMode.Fade
-                        text: sWorkoutDistance + "km"
+                        text: (settings.measureSystem === 0) ? sWorkoutDistance + "km" : sWorkoutDistance + "mi"
                         color: Theme.highlightColor
                     }
                 }
@@ -410,7 +415,7 @@ Page
                 x: Theme.paddingLarge * 2
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
-                text: distance
+                text: (settings.measureSystem === 0) ? (distance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(distance/1000).toFixed(2) + "mi"
             }
             Label
             {
@@ -427,7 +432,7 @@ Page
                 anchors.rightMargin: Theme.paddingSmall
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
-                text: speed
+                text: (settings.measureSystem === 0) ? speed.toFixed(1) + "km/h" : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + "mi/h"
             }
             onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
                                       {filename: filename, name: name})

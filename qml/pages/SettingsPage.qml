@@ -157,6 +157,7 @@ Page {
             {
                 color: Theme.highlightColor
                 width: parent.width
+                visible: false
             }
             TextSwitch
             {

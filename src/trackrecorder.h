@@ -31,9 +31,11 @@ class TrackRecorder : public QObject
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
     Q_PROPERTY(QString paceStr READ paceStr NOTIFY paceChanged)
+    Q_PROPERTY(QString paceImperialStr READ paceImperialStr NOTIFY paceChanged)
     Q_PROPERTY(qreal speedaverage READ speedaverage NOTIFY speedaverageChanged)
     Q_PROPERTY(qreal paceaverage READ paceaverage NOTIFY paceaverageChanged)
     Q_PROPERTY(qreal heartrateaverage READ heartrateaverage NOTIFY heartrateaverageChanged)
+    Q_PROPERTY(QString paceaverageImperialStr READ paceaverageImperialStr NOTIFY paceaverageChanged)
     Q_PROPERTY(QString paceaverageStr READ paceaverageStr NOTIFY paceaverageChanged)
     Q_PROPERTY(QString time READ time NOTIFY timeChanged)    
     Q_PROPERTY(QString pebbleTime READ pebbleTime NOTIFY pebbleTimeChanged)
@@ -64,10 +66,12 @@ public:
     qreal speed() const;
     qreal pace() const;
     QString paceStr() const;
+    QString paceImperialStr() const;
     qreal speedaverage() const;
     qreal paceaverage() const;
     qreal heartrateaverage() const;
     QString paceaverageStr() const;
+    QString paceaverageImperialStr() const;
     QString time() const;
     QString pebbleTime() const;
     QString pebblePauseTime() const;

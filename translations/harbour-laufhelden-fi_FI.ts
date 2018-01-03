@@ -671,6 +671,22 @@
         <source>Pause</source>
         <translation>Pysäytä</translation>
     </message>
+    <message>
+        <source>min/mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ft</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SaveDialog</name>
