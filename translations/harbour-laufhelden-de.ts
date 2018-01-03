@@ -202,7 +202,7 @@
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höhe hoch/runter:</translation>
     </message>
 </context>
 <context>
@@ -342,47 +342,47 @@
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Einstellung wird erst nach Neustart der App übernommen.</translation>
     </message>
     <message>
         <source>Cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache Grösse</translation>
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartenstil wählen.</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte</translation>
     </message>
     <message>
         <source>Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Strassen</translation>
     </message>
     <message>
         <source>Outdoors</source>
-        <translation type="unfinished"></translation>
+        <translation>Outdoor/Gelände</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Hell</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Dunkel</translation>
     </message>
     <message>
         <source>Satellite</source>
-        <translation type="unfinished"></translation>
+        <translation>Satellit</translation>
     </message>
     <message>
         <source>Satellite Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Satellit mit Strassen</translation>
     </message>
     <message>
         <source>OSM Scout Server</source>
-        <translation type="unfinished"></translation>
+        <translation>OSM Scout Server</translation>
     </message>
 </context>
 <context>
@@ -667,6 +667,22 @@
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
+    <message>
+        <source>min/mi</source>
+        <translation>min/mi</translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation>mi/h</translation>
+    </message>
+    <message>
+        <source>ft</source>
+        <translation>ft</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
+    </message>
 </context>
 <context>
     <name>SaveDialog</name>
@@ -719,7 +735,7 @@
     </message>
     <message>
         <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachausgabe Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -770,15 +786,15 @@
     </message>
     <message>
         <source>Unit of measurement</source>
-        <translation type="unfinished"></translation>
+        <translation>Maßeinheiten</translation>
     </message>
     <message>
         <source>Metric</source>
-        <translation type="unfinished"></translation>
+        <translation>Metrisch</translation>
     </message>
     <message>
         <source>Imperial</source>
-        <translation type="unfinished"></translation>
+        <translation>Imperial</translation>
     </message>
 </context>
 <context>
@@ -1031,39 +1047,39 @@
     <name>VoiceSettingsPage</name>
     <message>
         <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachausgabe Einstellungen</translation>
     </message>
     <message>
         <source>Start/end workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Training Start/Ende</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Training Pause/Fortsetzen</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation type="unfinished"></translation>
+        <translation>GPS Verbunden/Getrennt</translation>
     </message>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished">Sprache der Stimme</translation>
+        <translation>Sprache der Stimme</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished">Englisch Mann</translation>
+        <translation>Englisch Mann</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished">Deutsch Mann</translation>
+        <translation>Deutsch Mann</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished">Test</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Voice outputs on events</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachausgaben für Ereignisse</translation>
     </message>
 </context>
 </TS>

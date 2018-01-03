@@ -637,12 +637,40 @@ QString TrackRecorder::paceStr() const
     return strPace;
 }
 
+QString TrackRecorder::paceImperialStr() const
+{
+    QString strPace = "";
+
+    qreal m_pace_imperial = m_pace * 1.609344;
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
 QString TrackRecorder::paceaverageStr() const
 {
     QString strPace = "";
 
     qreal rMinutes = qFloor(m_paceaverage);
     qreal rSeconds = qCeil((m_paceaverage * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
+QString TrackRecorder::paceaverageImperialStr() const
+{
+    QString strPace = "";
+
+    qreal m_pace_imperial = m_paceaverage * 1.609344;
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
 
     strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
 

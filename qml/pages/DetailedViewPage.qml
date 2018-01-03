@@ -725,22 +725,7 @@ Page
                 return dist >= 1609.34 ?
                     siground(dist / 1609.34, 1) * 1609.34 :
                     siground(dist * 3.28084, 1) / 3.28084;
-            }
-
-            /*
-            if (app.conf.get("units") === "american")
-                // Round to an even amount of miles or feet.
-                return dist >= 1609.34 ?
-                    siground(dist / 1609.34, 1) * 1609.34 :
-                    siground(dist * 3.28084, 1) / 3.28084;
-            if (app.conf.get("units") === "british")
-                // Round to an even amount of miles or yards.
-                return dist >= 1609.34 ?
-                    siground(dist / 1609.34, 1) * 1609.34 :
-                    siground(dist * 1.09361, 1) / 1.09361;
-            */
-
-            // Round to an even amount of kilometers or meters.            
+            }          
         }
 
         function update()
@@ -754,15 +739,33 @@ Page
 
             console.log("dist: " + dist);
 
-            var sUnit = "m";
-            var iDistance = Math.ceil(dist);
-            if (dist >= 1000)
-            {
-                sUnit = "km";
-                iDistance = dist / 1000.0;
-            }
+            var sUnit = "";
+            var iDistance = 0;
 
-            //TODO: imperial conversion needed here!
+            if (settings.measureSystem === 0)
+            {
+                sUnit = "m";
+                iDistance = Math.ceil(dist);
+                if (dist >= 1000)
+                {
+                    sUnit = "km";
+                    iDistance = dist / 1000.0;
+                    iDistance = Math.ceil(iDistance);
+                }
+            }
+            else
+            {
+                dist = dist * 3.28084;  //convert to feet
+
+                sUnit = "ft";
+                iDistance = Math.ceil(dist);
+                if (dist >= 5280)
+                {
+                    sUnit = "mi";
+                    iDistance = dist / 5280.0;
+                    iDistance = Math.ceil(iDistance);
+                }
+            }
 
             scaleBar.text = iDistance.toString() + " " + sUnit
         }

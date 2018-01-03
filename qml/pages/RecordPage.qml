@@ -79,6 +79,15 @@ Page
     property bool showMinMaxButton: true
     property bool showCenterButton: true
 
+    Connections
+    {
+        target: map
+        onMetersPerPixelChanged:
+        {
+            fncSetMapUncertainty();
+        }
+    }
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -106,8 +115,8 @@ Page
                 }
 
                 //We need to set parameters to the dialog/pebble
-                RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);
-                JSTools.arrayPebbleValueTypes[8].value = (recorder.distance/1000).toFixed(1);
+                RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial((recorder.distance/1000).toFixed(1));
+                JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial((recorder.distance/1000).toFixed(1));
             }
 
             console.log("---RecordPage first active leave---");
@@ -135,8 +144,16 @@ Page
 
             if (sPebblePath !== "" && settings.enablePebble && bPebbleConnected)
             {
-                //Set metric unit
-                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': 1});
+                if (settings.measureSystem === 0)
+                {
+                    //Set metric unit
+                    pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': 1});
+                }
+                else
+                {
+                    //Set imperial unit
+                    pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': 0});
+                }
             }
 
             if (sHRMAddress !== "" && settings.useHRMdevice && bRecordDialogRequestHRM === false)
@@ -216,7 +233,7 @@ Page
                     iAutoNightModeLoop = 0;
 
                     //If we are currently in night mode, and original mode was something else than night mode, check if light is bright enough to leave night mode
-                    if (iDisplayMode === 2 && iOldDisplayMode !== 2 && (iAutoNightModeValue / 3) > 30)
+                    if (iDisplayMode === 2 && iOldDisplayMode !== 2 && (iAutoNightModeValue / 3) > 20)
                     {
                         //Set mode to original mode.
                         iDisplayMode = iOldDisplayMode;
@@ -254,20 +271,20 @@ Page
             {
                 //0 is empty and 1 is heartrate!
                 RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
-                RecordPageDisplay.arrayValueTypes[3].value = recorder.paceStr;
-                RecordPageDisplay.arrayValueTypes[4].value = recorder.paceaverageStr;
-                RecordPageDisplay.arrayValueTypes[5].value = recorder.speed.toFixed(1);
-                RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
-                RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
-                RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);                
+                RecordPageDisplay.arrayValueTypes[3].value = (settings.measureSystem === 0) ? recorder.paceStr : recorder.paceImperialStr;
+                RecordPageDisplay.arrayValueTypes[4].value = (settings.measureSystem === 0) ? recorder.paceaverageStr : recorder.paceaverageImperialStr;
+                RecordPageDisplay.arrayValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed.toFixed(1));
+                RecordPageDisplay.arrayValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage.toFixed(1));
+                RecordPageDisplay.arrayValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude);
+                RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial((recorder.distance/1000).toFixed(1));
 
                 JSTools.arrayPebbleValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
                 JSTools.arrayPebbleValueTypes[3].value = recorder.paceStr;
                 JSTools.arrayPebbleValueTypes[4].value = recorder.paceaverageStr;
-                JSTools.arrayPebbleValueTypes[5].value = recorder.speed.toFixed(1);
-                JSTools.arrayPebbleValueTypes[6].value = recorder.speedaverage.toFixed(1);
-                JSTools.arrayPebbleValueTypes[7].value = recorder.altitude;
-                JSTools.arrayPebbleValueTypes[8].value = (recorder.distance/1000).toFixed(1);
+                JSTools.arrayPebbleValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed.toFixed(1));
+                JSTools.arrayPebbleValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage.toFixed(1));
+                JSTools.arrayPebbleValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude);
+                JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial((recorder.distance/1000).toFixed(1));
             }
             if (recorder.running)
             {
@@ -358,7 +375,13 @@ Page
                 }
             }
         }
-    }        
+    }
+
+    function fncSetMapUncertainty()
+    {
+        if (map.metersPerPixel > 0)
+            map.setPaintProperty("location-uncertainty", "circle-radius", (recorder.accuracy / map.metersPerPixel));
+    }
 
     function fncChangeValueField()
     {
@@ -394,32 +417,32 @@ Page
     function fncSetHeaderFooterTexts()
     {                      
         idTXT_1_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(1);
-        idTXT_1_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(1) + " ";
+        idTXT_1_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(1, settings.measureSystem) + " ";
         idTXT_1_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(1);
         idTXT_1_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(1) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(1);
 
         idTXT_2_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(2);
-        idTXT_2_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(2);
+        idTXT_2_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(2, settings.measureSystem);
         idTXT_2_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(2);
         idTXT_2_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(2) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(2);
 
         idTXT_3_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(3);
-        idTXT_3_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(3) + " ";
+        idTXT_3_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(3, settings.measureSystem) + " ";
         idTXT_3_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(3);
         idTXT_3_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(3) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(3);
 
         idTXT_4_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(4);
-        idTXT_4_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(4);
+        idTXT_4_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(4, settings.measureSystem);
         idTXT_4_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(4);
         idTXT_4_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(4) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(4);
 
         idTXT_5_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(5);
-        idTXT_5_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(5) + " ";
+        idTXT_5_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(5, settings.measureSystem) + " ";
         idTXT_5_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(5);
         idTXT_5_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(5) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(5);
 
         idTXT_6_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(6);
-        idTXT_6_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(6);
+        idTXT_6_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(6, settings.measureSystem);
         idTXT_6_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(6);
         idTXT_6_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(6) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(6);
     }
@@ -559,7 +582,7 @@ Page
             map.updateSourceLine(sTrackLine, vTrackLinePoints);
 
             if (settings.mapMode === 1 && !bMapMaximized) //center track on map
-                map.fitView(sTrackLine);
+                map.fitView(vTrackLinePoints);
         }
     }
 
@@ -573,14 +596,25 @@ Page
 
             //Create current position point on map
             map.addSourcePoint(sCurrentPosition,  coordinate);
-            map.addImagePath("image", Qt.resolvedUrl("../img/position-circle-blue.png"));
-            map.addLayer("image_layer", {"type": "symbol", "source": sCurrentPosition});
-            map.setLayoutProperty("image_layer", "icon-image", "image");
-            map.setLayoutProperty("image_layer", "icon-size", 1.0 / map.pixelRatio);
-            map.setLayoutProperty("image_layer", "visibility", "visible");
+
+            map.addLayer("location-uncertainty", {"type": "circle", "source": sCurrentPosition});
+            map.setPaintProperty("location-uncertainty", "circle-radius", (300 / map.metersPerPixel));
+            map.setPaintProperty("location-uncertainty", "circle-color", "#87cefa");
+            map.setPaintProperty("location-uncertainty", "circle-opacity", 0.25);
+
+            map.addLayer("location-case", {"type": "circle", "source": sCurrentPosition});
+            map.setPaintProperty("location-case", "circle-radius", 10);
+            map.setPaintProperty("location-case", "circle-color", "white");
+
+            map.addLayer("location", {"type": "circle", "source": sCurrentPosition});
+            map.setPaintProperty("location", "circle-radius", 6);
+            map.setPaintProperty("location", "circle-color", "#98CCFD");
         }
         else
+        {
             map.updateSourcePoint(sCurrentPosition, coordinate);
+            fncSetMapUncertainty();
+        }
 
         if (settings.mapMode === 0  && !bMapMaximized)
             map.center = coordinate;

@@ -1,13 +1,13 @@
 ---- ToDo for next release to openrepos: 0.9.7 -----
 
-- current point on record page needs workover
-- no tracks on record page
+- current point on record page needs workover							-> OK
+- no tracks on record page												-> OK
 
 - scale bar on map needs imperial units
-- imperial units for record page
+- imperial units for record page										-> OK
 - imperial units for start page
 
-
+- start page: select pace/speed
 
 - add settigs:
 	- token for mapbox
