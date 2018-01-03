@@ -40,7 +40,7 @@ Page {
     O2 {
         id: o2strava
         clientId: "13707"
-        clientSecret: "6080ff1ae302088ddd3d3b0a310c722d0829fd6b"
+        clientSecret: STRAVA_CLIENT_SECRET
         scope: "write"
         requestUrl: "https://www.strava.com/oauth/authorize"
         tokenUrl: "https://www.strava.com/oauth/token"

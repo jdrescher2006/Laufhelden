@@ -34,8 +34,17 @@
 #include "light.h"
 #include "pebblemanagercomm.h"
 #include "pebblewatchcomm.h"
-//#include "oauth2service.h"
 #include "o2/src/o2.h"
+
+QByteArray encryptDecrypt(QByteArray toEncrypt) {
+    char key = 'K';
+    QByteArray output = toEncrypt;
+
+    for (int i = 0; i < toEncrypt.size(); i++)
+        output[i] = toEncrypt.at(i) ^key;
+
+    return output;
+}
 
 int main(int argc, char *argv[]) {
     QGuiApplication *app = SailfishApp::application(argc, argv);
@@ -58,11 +67,9 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<PebbleWatchComm,1>("harbour.laufhelden", 1, 0, "PebbleWatchComm");
     qmlRegisterType<O2>("com.pipacs.o2", 1, 0, "O2");
 
-    //OAuth2Service StravaOAuthService("https://www.strava.com/oauth/authorize", "https://www.strava.com/oauth/token","13707", "6080ff1ae302088ddd3d3b0a310c722d0829fd6b", "write");
-
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());
-    //view->rootContext()->setContextProperty("StravaOAuthService", &StravaOAuthService);
+    view->rootContext()->setContextProperty("STRAVA_CLIENT_SECRET", encryptDecrypt("}{s{--z*.x{y{ss///x/x){*xz{(|yy/{syr-/})"));
 
     view->setSource(SailfishApp::pathTo("qml/harbour-laufhelden.qml"));
     view->showFullScreen();
