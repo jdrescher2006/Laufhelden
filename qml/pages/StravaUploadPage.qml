@@ -175,8 +175,6 @@ Page {
         xmlhttp.setRequestHeader('Cache-Control', 'no-cache');
         xmlhttp.setRequestHeader('Authorization', "Bearer " + o2strava.token);
 
-        console.log(o2strava.token);
-
         xmlhttp.onreadystatechange=function(){
             console.log("Ready state changed:", xmlhttp.readyState, xmlhttp.responseType, xmlhttp.responseText, xmlhttp.status, xmlhttp.statusText);
             if (xmlhttp.readyState==4 && xmlhttp.status==201){
