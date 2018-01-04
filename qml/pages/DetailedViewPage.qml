@@ -24,6 +24,7 @@ import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
 import "../tools/SportsTracker.js" as ST
 import "../tools/SharedResources.js" as SharedResources
+import com.pipacs.o2 1.0
 
 Page
 {
@@ -350,6 +351,29 @@ Page
                     });
 
                  }
+            }
+            MenuItem
+            {
+                text: qsTr("Send to Strava")
+                visible: o2strava.linked
+                onClicked: {
+
+                    var dialog = pageStack.push(Qt.resolvedUrl("StravaUploadPage.qml"));
+                    dialog.activityID = filename;
+                    var gpx = trackLoader.readGpx();
+                    dialog.gpx = gpx;
+                    dialog.activityName = name;
+                    dialog.activityDescription = stComment;
+                }
+
+                O2 {
+                    id: o2strava
+                    clientId: "13707"
+                    clientSecret: STRAVA_CLIENT_SECRET
+                    scope: "write"
+                    requestUrl: "https://www.strava.com/oauth/authorize"
+                    tokenUrl: "https://www.strava.com/oauth/token"
+                }
             }
         }
 

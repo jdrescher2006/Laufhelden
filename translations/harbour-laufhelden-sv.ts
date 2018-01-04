@@ -204,6 +204,10 @@
         <source>Elevation up/down:</source>
         <translation>Höjd upp/ner:</translation>
     </message>
+    <message>
+        <source>Send to Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
@@ -737,6 +741,10 @@
         <source>Voice output settings</source>
         <translation>Inställningar för röstutmatning</translation>
     </message>
+    <message>
+        <source>Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -971,6 +979,76 @@
     <message>
         <source>Public</source>
         <translation>Allmänt</translation>
+    </message>
+</context>
+<context>
+    <name>StravaSettingsPage</name>
+    <message>
+        <source>Strava settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaUploadPage</name>
+    <message>
+        <source>Activity name for Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished">Beskrivning</translation>
+    </message>
+    <message>
+        <source>Activity description for Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activity Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Riding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation type="unfinished">Löpning</translation>
+    </message>
+    <message>
+        <source>Swimming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Walking</source>
+        <translation type="unfinished">Gång</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation type="unfinished">Privat</translation>
+    </message>
+    <message>
+        <source>Commute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploading data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking upload...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown error occurred</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activity upload complete</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
