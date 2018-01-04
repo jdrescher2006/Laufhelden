@@ -206,7 +206,7 @@
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Skicka till Strava</translation>
     </message>
 </context>
 <context>
@@ -673,19 +673,19 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished"></translation>
+        <translation>min/mi</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished"></translation>
+        <translation type=>mi/t</translation>
     </message>
     <message>
         <source>ft</source>
-        <translation type="unfinished"></translation>
+        <translation>ft</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation>mi</translation>
     </message>
 </context>
 <context>
@@ -743,7 +743,7 @@
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava</translation>
     </message>
 </context>
 <context>
@@ -806,7 +806,7 @@
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Notera att denna inställning tillämpas först efter omstart av appen.</translation>
     </message>
 </context>
 <context>
@@ -985,14 +985,14 @@
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava Inställningar</translation>
     </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivitetsnamn för Strava</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1000,31 +1000,31 @@
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivitetsbeskrivning för Strava</translation>
     </message>
     <message>
         <source>Activity Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivitetstyp</translation>
     </message>
     <message>
         <source>Riding</source>
-        <translation type="unfinished"></translation>
+        <translation>Ridning</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished">Löpning</translation>
+        <translation>Löpning</translation>
     </message>
     <message>
         <source>Swimming</source>
-        <translation type="unfinished"></translation>
+        <translation >Simning</translation>
     </message>
     <message>
         <source>Workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Workout</translation>
     </message>
     <message>
         <source>Walking</source>
-        <translation type="unfinished">Gång</translation>
+        <translation>Gång</translation>
     </message>
     <message>
         <source>Private</source>
@@ -1032,23 +1032,23 @@
     </message>
     <message>
         <source>Commute</source>
-        <translation type="unfinished"></translation>
+        <translation>Växla</translation>
     </message>
     <message>
         <source>Uploading data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Laddar upp data...</translation>
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrollerar uppladdning...</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett okänt fel inträffade</translation>
     </message>
     <message>
         <source>Activity upload complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppladdning slutförd</translation>
     </message>
 </context>
 <context>
