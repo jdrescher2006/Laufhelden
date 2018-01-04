@@ -126,12 +126,35 @@
         <translation>Stoppad</translation>
     </message>
     <message>
-        <source> bpm</source>
-        <translation> bpm</translation>
-    </message>
-    <message>
         <source>Paused</source>
         <translation type="unfinished">Pausad</translation>
+    </message>
+</context>
+<context>
+    <name>CoverSettingsPage</name>
+    <message>
+        <source>Cover page settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select values to be shown on the Cover Page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>First field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished">Detta värde är redan tilldelat!</translation>
+    </message>
+    <message>
+        <source>Second field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Third field:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -677,7 +700,7 @@
     </message>
     <message>
         <source>mi/h</source>
-        <translation type=>mi/t</translation>
+        <translation>mi/t</translation>
     </message>
     <message>
         <source>ft</source>
@@ -744,6 +767,10 @@
     <message>
         <source>Strava</source>
         <translation>Strava</translation>
+    </message>
+    <message>
+        <source>Coverpage settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1016,7 +1043,7 @@
     </message>
     <message>
         <source>Swimming</source>
-        <translation >Simning</translation>
+        <translation>Simning</translation>
     </message>
     <message>
         <source>Workout</source>

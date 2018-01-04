@@ -43,6 +43,7 @@ class Settings : public QObject
     Q_PROPERTY(QString mapStyle READ mapStyle WRITE setMapStyle)
     Q_PROPERTY(int mapCache READ mapCache WRITE setMapCache)
     Q_PROPERTY(int measureSystem READ measureSystem WRITE setMeasureSystem)
+    Q_PROPERTY(QString valueCoverFields READ valueCoverFields WRITE setValueCoverFields)
 
     //Voice output
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
@@ -110,6 +111,9 @@ public:
 
     bool mapShowOnly4Fields() const;
     void setmapShowOnly4Fields(bool mapShowOnly4Fields);
+
+    QString valueCoverFields() const;
+    void setValueCoverFields(QString valueCoverFields);
 
     bool enablePebble() const;
     void setEnablePebble(bool enablePebble);

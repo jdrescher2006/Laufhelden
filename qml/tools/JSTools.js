@@ -66,17 +66,17 @@ function fncConvertSpeedToImperial(iSpeed)
 
 var arrayPebbleValueTypes =
 [
-    { index: 0, fieldID: 0, value: "", header: qsTr("Empty") },
-    { index: 1, fieldID: 0, value: "0", header: qsTr("Heartrate") },
-    { index: 2, fieldID: 0, value: "0", header: qsTr("Heartrate") + "∅" },
-    { index: 3, fieldID: 3, value: "0", header: qsTr("Pace") },
-    { index: 4, fieldID: 0, value: "0", header: qsTr("Pace") + "∅" },
-    { index: 5, fieldID: 0, value: "0", header: qsTr("Speed") },
-    { index: 6, fieldID: 0, value: "0", header: qsTr("Speed") + "∅" },
-    { index: 7, fieldID: 0, value: "0", header: qsTr("Altitude") },
-    { index: 8, fieldID: 2, value: "0", header: qsTr("Distance") },
-    { index: 9, fieldID: 0, value: "0", header: qsTr("Pause") },
-    { index: 10, fieldID: 1, value: "0", header: qsTr("Duration") }
+    { index: 0, fieldID: 0, fieldIDCoverPage: 0, value:  "", header: qsTr("Empty"), unit: "", imperialUnit: "" },
+    { index: 1, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Heartrate"), unit: "bpm", imperialUnit: "bpm" },
+    { index: 2, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Heartrate") + "∅", unit: "bpm", imperialUnit: "bpm" },
+    { index: 3, fieldID: 3, fieldIDCoverPage: 3, value: "0", header: qsTr("Pace"), unit: "min/km", imperialUnit: "min/mi" },
+    { index: 4, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Pace") + "∅", unit: "min/km", imperialUnit: "min/mi" },
+    { index: 5, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Speed"), unit: "km/h", imperialUnit: "mi/h" },
+    { index: 6, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Speed") + "∅", unit: "km/h", imperialUnit: "mi/h" },
+    { index: 7, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Altitude"), unit: "m", imperialUnit: "ft" },
+    { index: 8, fieldID: 2, fieldIDCoverPage: 2, value: "0", header: qsTr("Distance"), unit: "km", imperialUnit: "mi" },
+    { index: 9, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Pause"), unit: "", imperialUnit: "" },
+    { index: 10, fieldID: 1, fieldIDCoverPage: 1, value: "0", header: qsTr("Duration"), unit: "", imperialUnit: "" }
 ]
 
 //Create lookup table for pebble value fields.
@@ -138,5 +138,64 @@ function fncConvertArrayToSaveString()
     return sSaveString;
 }
 
+//*************** CoverPage functions *****************
+
+//Create lookup table for cover page value fields.
+//This is a helper table to easier access the main table.
+var arrayLookupCoverPageValueTypesByFieldID = {};
+fncGenerateHelperArrayCoverPage();
+
+function fncGenerateHelperArrayCoverPage()
+{
+    for (var i = 0; i < arrayPebbleValueTypes.length; i++)
+    {
+        arrayLookupCoverPageValueTypesByFieldID[arrayPebbleValueTypes[i].fieldIDCoverPage] = arrayPebbleValueTypes[i];
+    }
+}
+
+function fncConvertSaveStringToArrayCoverPage(sSaveString)
+{
+    //"10,8,3"
+
+    if (sSaveString === undefined || sSaveString === "")
+        return;
+
+    var arValueTypes = sSaveString.split(",");
+
+    if (arValueTypes.length !== 3)    //This is the amount pebble fields
+        return;
+
+    arValueTypes[0] = parseInt(arValueTypes[0]);
+    arValueTypes[1] = parseInt(arValueTypes[1]);
+    arValueTypes[2] = parseInt(arValueTypes[2]);
+
+    //Go through value types
+    for (var i = 0; i < arrayPebbleValueTypes.length; i++)
+    {
+        if (i === arValueTypes[0])
+            arrayPebbleValueTypes[i].fieldIDCoverPage = 1;
+        else if (i === arValueTypes[1])
+            arrayPebbleValueTypes[i].fieldIDCoverPage = 2;
+        else if (i === arValueTypes[2])
+            arrayPebbleValueTypes[i].fieldIDCoverPage = 3;
+        else
+            arrayPebbleValueTypes[i].fieldIDCoverPage = 0;
+    }
+
+    fncGenerateHelperArrayCoverPage();
+}
+
+function fncConvertArrayToSaveStringCoverPage()
+{
+    //"10,8,3"
+
+    var sSaveString = "";
+
+    sSaveString = arrayLookupCoverPageValueTypesByFieldID[1].index.toString();
+    sSaveString = sSaveString + arrayLookupCoverPageValueTypesByFieldID[2].index.toString();
+    sSaveString = sSaveString + arrayLookupCoverPageValueTypesByFieldID[3].index.toString();
+
+    return sSaveString;
+}
 
 

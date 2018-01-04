@@ -158,6 +158,16 @@ void Settings::setmapShowOnly4Fields(bool mapShowOnly4Fields)
 {
      m_settings->setValue("mapsettings/mapShowOnly4Fields", mapShowOnly4Fields);
 }
+
+QString Settings::valueCoverFields() const
+{
+    return m_settings->value("generalsettings/valueCoverFields", "10,8,3").toString();
+}
+void Settings::setValueCoverFields(QString valueCoverFields)
+{
+    m_settings->setValue("generalsettings/valueCoverFields", valueCoverFields);
+}
+
 bool Settings::enablePebble() const
 {
     return m_settings->value("pebblesettings/enablePebble", false).toBool();

@@ -126,11 +126,34 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> bpm</source>
+        <source>Paused</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CoverSettingsPage</name>
+    <message>
+        <source>Cover page settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Paused</source>
+        <source>Select values to be shown on the Cover Page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>First field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Second field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Third field:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -743,6 +766,10 @@
     </message>
     <message>
         <source>Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Coverpage settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

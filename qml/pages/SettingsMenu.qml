@@ -43,6 +43,11 @@ Page
         }
         ListElement
         {
+            page: "CoverSettingsPage.qml"
+            title: qsTr("Coverpage settings")
+        }
+        ListElement
+        {
             page: "ThresholdSettingsPage.qml"
             title: qsTr("Alarm thresholds")
         }

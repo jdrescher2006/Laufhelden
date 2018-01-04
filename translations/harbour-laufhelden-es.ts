@@ -126,12 +126,35 @@
         <translation>Parado</translation>
     </message>
     <message>
-        <source> bpm</source>
-        <translation>ppm</translation>
-    </message>
-    <message>
         <source>Paused</source>
         <translation>Pausado</translation>
+    </message>
+</context>
+<context>
+    <name>CoverSettingsPage</name>
+    <message>
+        <source>Cover page settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select values to be shown on the Cover Page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished">Este valor ya está asignado!</translation>
+    </message>
+    <message>
+        <source>First field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Second field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Third field:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -743,6 +766,10 @@
     </message>
     <message>
         <source>Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Coverpage settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

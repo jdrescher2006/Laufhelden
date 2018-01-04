@@ -21,6 +21,23 @@ import "../tools/JSTools.js" as JSTools
 
 CoverBackground
 {   
+    Timer
+    {
+        id: idTimerUpdateCycleCoverPage
+        interval: 1000
+        repeat: true
+        running: recorder.running
+        onTriggered:
+        {
+            id_LBL_Value1.text = (settings.measureSystem === 0) ? JSTools.arrayLookupCoverPageValueTypesByFieldID[1].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].unit :
+                                                                  JSTools.arrayLookupCoverPageValueTypesByFieldID[1].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].imperialUnit;
+            id_LBL_Value2.text = (settings.measureSystem === 0) ? JSTools.arrayLookupCoverPageValueTypesByFieldID[2].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].unit :
+                                                                  JSTools.arrayLookupCoverPageValueTypesByFieldID[2].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].imperialUnit;
+            id_LBL_Value3.text = (settings.measureSystem === 0) ? JSTools.arrayLookupCoverPageValueTypesByFieldID[3].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].unit :
+                                                                  JSTools.arrayLookupCoverPageValueTypesByFieldID[3].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].imperialUnit;
+        }
+    }
+
     Image
     {
         anchors.margins: Theme.paddingMedium
@@ -32,41 +49,87 @@ CoverBackground
         source: "../laufhelden.png"
     }
 
-    Column
+
+    Item
     {
         anchors.top: parent.top
         width: parent.width
+        height: parent.height * 0.2
+
         Label
         {
+            anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             text: !recorder.running ? qsTr("Stopped") : (recorder.pause ? qsTr("Paused") : qsTr("Recording"))
-            font.pixelSize: Theme.fontSizeLarge
-        }
-        Label
-        {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(2) + " km" : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(2) + " mi";
-            font.pixelSize: Theme.fontSizeMedium
-        }
-        Label
-        {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: recorder.time
-            font.pixelSize: Theme.fontSizeMedium
-        }
-        Label
-        {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: sHeartRate + qsTr(" bpm")
-            //visible: sHRMAddress !== "" && settings.useHRMdevice
-            font.pixelSize: Theme.fontSizeMedium
+            fontSizeMode: Theme.fontSizeMedium
         }
     }
 
+    Item
+    {
+        anchors.verticalCenter: parent.verticalCenter
+        height: parent.height * 0.6
+        width: parent.width
+
+        Item
+        {
+            height: parent.height * 0.333
+            width: parent.width
+            anchors.top: parent.top
+
+            Text
+            {
+                color: Theme.highlightColor
+                id: id_LBL_Value1
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                anchors.centerIn: parent
+                fontSizeMode: Text.Fit
+                font.pointSize: 4000
+            }
+        }
+        Item
+        {
+            height: parent.height * 0.333
+            width: parent.width
+            anchors.verticalCenter: parent.verticalCenter
+
+            Text
+            {
+                color: Theme.highlightColor
+                id: id_LBL_Value2
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                anchors.centerIn: parent
+                fontSizeMode: Text.Fit
+                font.pointSize: 4000
+            }
+        }
+        Item
+        {
+            height: parent.height * 0.333
+            width: parent.width
+            anchors.bottom: parent.bottom
+
+            Text
+            {
+                color: Theme.highlightColor
+                id: id_LBL_Value3
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                anchors.centerIn: parent
+                fontSizeMode: Text.Fit
+                font.pointSize: 4000
+            }
+        }
+    }
     CoverActionList
     {
         id: coverAction
-        enabled: recorder.running
+        //enabled: recorder.running     //TODO!
         CoverAction
         {
             iconSource: !recorder.pause ? "image://theme/icon-cover-pause" : "image://theme/icon-cover-play"

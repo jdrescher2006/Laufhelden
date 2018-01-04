@@ -18,7 +18,7 @@
 	- positioning online/offline										-> OK
 	- start, stop, pause, resume workout								-> OK
 
-
+- #define SERVER_INTERFACE "org.rockwork.Pebble" is double
 	
 
 Do not forget:
