@@ -796,6 +796,10 @@
         <source>Imperial</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Note that this setting will be applied after restart of the application.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SharedResources</name>

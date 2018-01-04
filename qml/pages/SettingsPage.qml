@@ -76,6 +76,7 @@ Page {
             {
                 id: id_CMB_MeasureSystem
                 label: qsTr("Unit of measurement")
+                description: qsTr("Note that this setting will be applied after restart of the application.")
                 menu: ContextMenu
                 {
                     MenuItem { text: qsTr("Metric") }

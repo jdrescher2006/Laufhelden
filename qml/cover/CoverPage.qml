@@ -17,6 +17,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../tools/JSTools.js" as JSTools
 
 CoverBackground
 {   
@@ -44,7 +45,7 @@ CoverBackground
         Label
         {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: (recorder.distance/1000).toFixed(2) + " km"
+            text: (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(2) + " km" : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(2) + " mi";
             font.pixelSize: Theme.fontSizeMedium
         }
         Label

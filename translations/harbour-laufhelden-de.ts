@@ -796,6 +796,10 @@
         <source>Imperial</source>
         <translation>Imperial</translation>
     </message>
+    <message>
+        <source>Note that this setting will be applied after restart of the application.</source>
+        <translation>Die Einstellung wird erst nach Neustart der App aktiviert.</translation>
+    </message>
 </context>
 <context>
     <name>SharedResources</name>

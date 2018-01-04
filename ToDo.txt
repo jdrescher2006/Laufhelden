@@ -1,33 +1,24 @@
----- ToDo for next release to openrepos: 0.9.7 -----
+---- ToDo for next release to openrepos: 0.9.8 -----
 
 - current point on record page needs workover							-> OK
 - no tracks on record page												-> OK
 
-- scale bar on map needs imperial units
+- scale bar on map needs imperial units									-> OK
 - imperial units for record page										-> OK
-- imperial units for start page
-
-- start page: select pace/speed
+- imperial units for start page											-> OK
+- imperial units for cover page											-> OK
 
 - add settigs:
-	- token for mapbox
 	- event voice announcements											-> OK
 
-- add buttons to map, >center mode</>track mode< ?
 - add min/max elevation to detailspage/trackloader
 - fix map bug in horizontal mode										-> OK
-- meerun imports have no max. speed
-- add max pace to detailspage/trackloader
-- fix elevation up/down
+
 - event voice announcements	
 	- positioning online/offline										-> OK
 	- start, stop, pause, resume workout								-> OK
 
 
-- choose metrics/american/britisch
-	- british: 	mph/mi/yd
-	- american: mph/mi/ft
-	- metric:	kmh/km/m
 	
 
 Do not forget:
@@ -40,15 +31,17 @@ Do not forget:
 
 
 
------ ToDo for second next release to openrepos: 0.9.8 -----
+----- ToDo for second next release to openrepos: 0.9.9 -----
+- add max pace to detailspage/trackloader
+- meerun imports have no max. speed
+- fix elevation up/down bad values
+- look into old map tiles folder and delete files there. Ask user!
+- map on record page: zoom into map automatically. Save and restore last zoom setting.
 - pebble: if speed is choosen for third field, set unit to speed. Same with pace.
 - add new feature: autopause if speed goes below certain threshold
-- add buttons to map
-	- center position
-	- center track
+- start page: select pace/speed
 - add icons for indicating over/below average speed, average pace and average heart rate to record page
 - introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
-
 - cyclic voice announcements	
 	- every 0,5-10 km
 	- maximum three parameters

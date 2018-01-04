@@ -115,8 +115,8 @@ Page
                 }
 
                 //We need to set parameters to the dialog/pebble
-                RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial((recorder.distance/1000).toFixed(1));
-                JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial((recorder.distance/1000).toFixed(1));
+                RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
             }
 
             console.log("---RecordPage first active leave---");
@@ -186,7 +186,7 @@ Page
         if (id_Light === undefined)
             return;
 
-        console.log("Brightness: " + id_Light.brightness.toString());
+        //console.log("Brightness: " + id_Light.brightness.toString());
 
         iAutoNightModeValue = iAutoNightModeValue + id_Light.brightness;
     }
@@ -214,7 +214,7 @@ Page
                 //Read from light sensor of smartphone
                 id_Light.refresh();
 
-                console.log("Brightness: " + id_Light.brightness.toString());
+                //console.log("Brightness: " + id_Light.brightness.toString());
 
                 iAutoNightModeValue = iAutoNightModeValue + id_Light.brightness;
 
@@ -273,18 +273,18 @@ Page
                 RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
                 RecordPageDisplay.arrayValueTypes[3].value = (settings.measureSystem === 0) ? recorder.paceStr : recorder.paceImperialStr;
                 RecordPageDisplay.arrayValueTypes[4].value = (settings.measureSystem === 0) ? recorder.paceaverageStr : recorder.paceaverageImperialStr;
-                RecordPageDisplay.arrayValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed.toFixed(1));
-                RecordPageDisplay.arrayValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage.toFixed(1));
+                RecordPageDisplay.arrayValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
+                RecordPageDisplay.arrayValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage).toFixed(1);
                 RecordPageDisplay.arrayValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude);
-                RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial((recorder.distance/1000).toFixed(1));
+                RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
 
                 JSTools.arrayPebbleValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
                 JSTools.arrayPebbleValueTypes[3].value = recorder.paceStr;
                 JSTools.arrayPebbleValueTypes[4].value = recorder.paceaverageStr;
-                JSTools.arrayPebbleValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed.toFixed(1));
-                JSTools.arrayPebbleValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage.toFixed(1));
+                JSTools.arrayPebbleValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
+                JSTools.arrayPebbleValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage).toFixed(1);
                 JSTools.arrayPebbleValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude);
-                JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial((recorder.distance/1000).toFixed(1));
+                JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
             }
             if (recorder.running)
             {
@@ -1759,6 +1759,8 @@ Page
         cacheDatabaseDefaultPath: true
 
         styleUrl: settings.mapStyle
+
+        visible: bShowMap
 
         Item
         {
