@@ -134,15 +134,15 @@
     <name>CoverSettingsPage</name>
     <message>
         <source>Cover page settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatyrinställningar</translation>
     </message>
     <message>
         <source>Select values to be shown on the Cover Page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj värden för visning på programminiatyren.</translation>
     </message>
     <message>
         <source>First field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Första fältet:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -150,11 +150,11 @@
     </message>
     <message>
         <source>Second field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Andra fältet:</translation>
     </message>
     <message>
         <source>Third field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tredje fältet:</translation>
     </message>
 </context>
 <context>
@@ -770,7 +770,7 @@
     </message>
     <message>
         <source>Coverpage settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatyrinställningar</translation>
     </message>
 </context>
 <context>
