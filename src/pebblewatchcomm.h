@@ -4,7 +4,7 @@
 #include <QtDBus/QtDBus>
 #include <QObject>
 
-#define SERVER_INTERFACE "org.rockwork.Pebble"
+#define SERVER_INTERFACE_PEBBLE "org.rockwork.Pebble"
 #define SERVER_SERVICE "org.rockwork"
 
 class PebbleWatchComm : public QObject

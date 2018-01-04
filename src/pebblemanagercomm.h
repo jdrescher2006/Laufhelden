@@ -4,7 +4,7 @@
 #include <QtDBus/QtDBus>
 #include <QObject>
 
-#define SERVER_INTERFACE "org.rockwork.Manager"
+#define SERVER_INTERFACE_MANAGER "org.rockwork.Manager"
 #define SERVER_SERVICE "org.rockwork"
 #define SERVER_PATH "/org/rockwork/Manager"
 

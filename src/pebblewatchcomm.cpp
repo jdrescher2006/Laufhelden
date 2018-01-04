@@ -13,7 +13,7 @@ PebbleWatchComm::~PebbleWatchComm()
 
 void PebbleWatchComm::setServicePath(QString sServicePath)
 {
-    this->dbusPebble = new QDBusInterface(SERVER_SERVICE, sServicePath, SERVER_INTERFACE, QDBusConnection::sessionBus(), this);
+    this->dbusPebble = new QDBusInterface(SERVER_SERVICE, sServicePath, SERVER_INTERFACE_PEBBLE, QDBusConnection::sessionBus(), this);
 }
 
 QString PebbleWatchComm::getAddress()

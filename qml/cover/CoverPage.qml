@@ -129,7 +129,7 @@ CoverBackground
     CoverActionList
     {
         id: coverAction
-        //enabled: recorder.running     //TODO!
+        enabled: recorder.running
         CoverAction
         {
             iconSource: !recorder.pause ? "image://theme/icon-cover-pause" : "image://theme/icon-cover-play"

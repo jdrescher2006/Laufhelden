@@ -4,7 +4,7 @@
 PebbleManagerComm::PebbleManagerComm(QObject *parent) : QObject(parent)
 {
     //Initialize DBus interface
-    this->dbusPebbleManager = new QDBusInterface(SERVER_SERVICE, SERVER_PATH, SERVER_INTERFACE, QDBusConnection::sessionBus(), this);
+    this->dbusPebbleManager = new QDBusInterface(SERVER_SERVICE, SERVER_PATH, SERVER_INTERFACE_MANAGER, QDBusConnection::sessionBus(), this);
 }
 
 PebbleManagerComm::~PebbleManagerComm()
