@@ -1,37 +1,20 @@
 ---- ToDo for next release to openrepos: 0.9.8 -----
 
-- current point on record page needs workover							-> OK
-- no tracks on record page												-> OK
 
-- scale bar on map needs imperial units									-> OK
-- imperial units for record page										-> OK
-- imperial units for start page											-> OK
-- imperial units for cover page											-> OK
-
-- add settigs:
-	- event voice announcements											-> OK
-
-- add min/max elevation to detailspage/trackloader
-- fix map bug in horizontal mode										-> OK
-
-- event voice announcements	
-	- positioning online/offline										-> OK
-	- start, stop, pause, resume workout								-> OK
-
-- #define SERVER_INTERFACE "org.rockwork.Pebble" is double
 	
 
 Do not forget:
-- set changelog and release date to .changes file																	
-- compile with translations and complete translation to german language										
-- set new version number to yaml and spec files							
-- clean project and compile on release for arm and 486														
+- set changelog and release date to .changes file							-> OK																
+- compile with translations and complete translation to german language		-> OK							
+- set new version number to yaml and spec files								-> OK
+- clean project and compile on release for arm and 486						-> OK													
 
 
 
 
 
 ----- ToDo for second next release to openrepos: 0.9.9 -----
+- add min/max elevation to detailspage/trackloader
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
 - fix elevation up/down bad values
@@ -76,7 +59,7 @@ Do not forget:
 		- current, minimum, maximum height (gps)
 		- up/down travelled height
 		- energy kcal
-		- average speed/tempo -> OK
+		- average speed/tempo 
 		- speed/tempo of last 100m/1km
 		- top speed/tempo
 		- average, minimum, maximum heart rate 
@@ -114,6 +97,18 @@ Bugs:
 
 
 Completed:
+- current point on record page needs workover							
+- no tracks on record page							
+- scale bar on map needs imperial units									
+- imperial units for record page										
+- imperial units for start page											
+- imperial units for cover page											
+- add settigs: event voice announcements								
+- fix map bug in horizontal mode										
+- event voice announcements	
+	- positioning online/offline										
+	- start, stop, pause, resume workout								
+- #define SERVER_INTERFACE "org.rockwork.Pebble" is double				
 - fixed a bug: mediaplayer pause/resume was not working
 - add Pebble support:
 	- new setting: use Pebble yes/no				

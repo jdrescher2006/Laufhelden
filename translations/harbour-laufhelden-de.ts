@@ -41,7 +41,7 @@
     </message>
     <message>
         <source>Polish</source>
-        <translation>&gt;Polnisch</translation>
+        <translation>Polnisch</translation>
     </message>
     <message>
         <source>Swedish</source>
@@ -150,11 +150,11 @@
     </message>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished">App-Cover Einstellungen</translation>
+        <translation>App-Cover Einstellungen</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation type="unfinished">Wählen Sie die Werte für das App-Cover. Diese Werte werden auch für den Sperrbildschirm verwendet.</translation>
+        <translation>Wählen Sie die Werte für das App-Cover. Diese Werte werden auch für den Sperrbildschirm verwendet.</translation>
     </message>
 </context>
 <context>
@@ -774,7 +774,7 @@
     </message>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished">App-Cover Einstellungen</translation>
+        <translation>App-Cover Einstellungen</translation>
     </message>
 </context>
 <context>

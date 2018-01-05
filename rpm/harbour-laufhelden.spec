@@ -26,6 +26,7 @@ Requires:   qt5-qtlocation >= 5.2.0
 Requires:   qt5-qtdeclarative-import-location >= 5.2.0
 Requires:   qt5-qtdeclarative-import-positioning >= 5.2.0
 Requires:   qt5-qtconnectivity-qtbluetooth >= 5.2.0
+Requires: mapboxgl-qml
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)

@@ -113,7 +113,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Date: ") + "19.12.2017";
+                text: qsTr("Date: ") + "05.01.2018";
             }
             Label
             {
@@ -162,7 +162,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: "niemisenjussi"
+                text: "niemisenjussi<br>piggz"
             }            
             Item
             {

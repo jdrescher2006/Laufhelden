@@ -1,13 +1,18 @@
-* Wed Jan 19 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.8-9
+* Fri Jan 05 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.8-9
 - new map plugin MapBox
     - allows offline maps via OSM Scout Server
+    - double tap to zoom in on tap position
     - vertical lines bug should be fixed
     - different map styles in online mode
     - open-gl acceleration
     - linear map zoom
 - added new feature/settings: imperial units
+- complete rework of app cover, values can now be selected
+- added lock screen dialog with 3 values (same values as on app cover)
 - added voice output for events (pause/resume, start/stop, positioning online/offline)
 - automatic night mode is now enabled in darker conditions
+- added support for uploading to Strava (thanks to @piggz)
+- fixed a few bugs
 
 * Wed Dec 19 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.7-8
 - added new feature/settings: Pebble smartwatch support
