@@ -133,14 +133,6 @@
 <context>
     <name>CoverSettingsPage</name>
     <message>
-        <source>Cover page settings</source>
-        <translation>Miniatyrinställningar</translation>
-    </message>
-    <message>
-        <source>Select values to be shown on the Cover Page.</source>
-        <translation>Välj värden för visning på programminiatyren.</translation>
-    </message>
-    <message>
         <source>First field:</source>
         <translation>Första fältet:</translation>
     </message>
@@ -155,6 +147,14 @@
     <message>
         <source>Third field:</source>
         <translation>Tredje fältet:</translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -639,6 +639,10 @@
         <source>Restart Pebble App</source>
         <translation>Starta om Pebble-appen</translation>
     </message>
+    <message>
+        <source>Lock screen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
@@ -769,8 +773,8 @@
         <translation>Strava</translation>
     </message>
     <message>
-        <source>Coverpage settings</source>
-        <translation>Miniatyrinställningar</translation>
+        <source>App cover settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -54,6 +54,10 @@ Page
     property int iSelectedValue: -1
     property int iOldValue: -1
 
+
+
+    property bool bShowLockScreen: false
+
     //Automatic night mode
     property int iAutoNightModeLoop: 0
     property int iAutoNightModeValue: 0
@@ -131,6 +135,7 @@ Page
             RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
 
             JSTools.fncConvertSaveStringToArray(settings.valuePebbleFields);
+            JSTools.fncConvertSaveStringToArrayCoverPage(settings.valueCoverFields);
 
             //Set header and footer to text fields
             fncSetHeaderFooterTexts();
@@ -290,9 +295,12 @@ Page
             {
                 //This is the pause duration
                 RecordPageDisplay.arrayValueTypes[9].value = recorder.pauseTime;
-
                 JSTools.arrayPebbleValueTypes[9].value = recorder.pebblePauseTime;
+                JSTools.arrayPebbleValueTypes[9].valueCoverPage = recorder.pauseTime;
+
+                //This is the duration
                 JSTools.arrayPebbleValueTypes[10].value = recorder.pebbleTime;
+                JSTools.arrayPebbleValueTypes[10].valueCoverPage = recorder.time;
             }
 
             //Set values from JS array to dialog text fields
@@ -322,6 +330,48 @@ Page
             {
                 pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': JSTools.arrayLookupPebbleValueTypesByFieldID[1].value, '1': JSTools.arrayLookupPebbleValueTypesByFieldID[2].value, '2': JSTools.arrayLookupPebbleValueTypesByFieldID[3].value});
             }
+
+            //Set values for LockScreen
+            var sValue1, sValue2, sValue3;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[1])
+                sValue1 = JSTools.arrayLookupCoverPageValueTypesByFieldID[1].valueCoverPage;
+            else
+                sValue1 = JSTools.arrayLookupCoverPageValueTypesByFieldID[1].value;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[2])
+                sValue2 = JSTools.arrayLookupCoverPageValueTypesByFieldID[2].valueCoverPage;
+            else
+                sValue2 = JSTools.arrayLookupCoverPageValueTypesByFieldID[2].value;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[3])
+                sValue3 = JSTools.arrayLookupCoverPageValueTypesByFieldID[3].valueCoverPage;
+            else
+                sValue3 = JSTools.arrayLookupCoverPageValueTypesByFieldID[3].value;
+
+
+            id_LBL_Value1.text = (settings.measureSystem === 0) ? sValue1 + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].unit :
+                                                                  sValue1 + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].imperialUnit;
+            id_LBL_Value2.text = (settings.measureSystem === 0) ? sValue2 + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].unit :
+                                                                  sValue2 + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].imperialUnit;
+            id_LBL_Value3.text = (settings.measureSystem === 0) ? sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].unit :
+                                                                  sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].imperialUnit;
+        }
+    }
+
+    Timer
+    {
+        id: idTimerLockScreenPadding
+        interval: 30000
+        repeat: true
+        running: bShowLockScreen
+        onTriggered:
+        {
+            var iAvailableHeight = page.height - id_ITM_LockScreen.height;
+
+            var iTopMarginRandom = JSTools.fncGetRandomInt(0, iAvailableHeight);
+
+            id_ITM_LockScreen.anchors.topMargin = iTopMarginRandom;
         }
     }
 
@@ -731,6 +781,7 @@ Page
         PullDownMenu
         {
             id: menu
+            visible: !bShowLockScreen
 
             MenuItem
             {
@@ -769,7 +820,23 @@ Page
         }
         PushUpMenu
         {
-            id: menuUP            
+            id: menuUP
+            visible: !bShowLockScreen
+
+            MenuItem
+            {
+                text: qsTr("Lock screen")
+                onClicked:
+                {
+                    if (!bShowLockScreen)
+                    {
+                        bShowMap = false;
+                        bShowLockScreen = true;
+                    }
+                    else
+                        bShowLockScreen = false;
+                }
+            }
 
             MenuItem
             {
@@ -808,8 +875,93 @@ Page
 
         Rectangle
         {
-            visible: (iKeepPressingButton !== 4)
+            visible: bShowLockScreen
+            color: (iDisplayMode !== 3) ? cBackColor : "black"
+            anchors.fill: parent
             z: 2
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onClicked:
+                {
+                    if (!bShowLockScreen)
+                        return;
+
+                    //Check if an other value field was pressed before.
+                    //Use 99 for LockScreen
+                    if (iValueFieldPressed !== 99)
+                    {
+                        iValueFieldPressed = 99;
+                        iKeepPressingButton = 3;
+                    }
+                    else
+                        iKeepPressingButton--;
+
+                    if (iKeepPressingButton === 0)
+                    {
+                        idTimerKeepTappingReset.stop();
+                        iKeepPressingButton = 4;
+
+                        bShowLockScreen = false;
+                    }
+                    else
+                        idTimerKeepTappingReset.restart();
+                }
+            }
+
+            Item
+            {
+                id: id_ITM_LockScreen
+                anchors.top: parent.top
+                anchors.topMargin: 0
+                width: parent.width
+                height: parent.height / 4
+
+                Text
+                {
+                    color: cPrimaryTextColor
+                    id: id_LBL_Value1
+                    width: parent.width
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.top: parent.top
+                    fontSizeMode: Text.Fit
+                    font.pointSize: Theme.fontSizeLarge
+                }
+                Text
+                {
+                    color: cPrimaryTextColor
+                    id: id_LBL_Value2
+                    width: parent.width
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    fontSizeMode: Text.Fit
+                    font.pointSize: Theme.fontSizeLarge
+                }
+                Text
+                {
+                    color: cPrimaryTextColor
+                    id: id_LBL_Value3
+                    width: parent.width
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottom: parent.bottom
+                    fontSizeMode: Text.Fit
+                    font.pointSize: Theme.fontSizeLarge
+                }
+            }
+        }
+
+
+        Rectangle
+        {
+            visible: (iKeepPressingButton !== 4)
+            z: 3
             color: "steelblue"
             width: parent.width
             height: parent.height/10
@@ -827,7 +979,7 @@ Page
         Rectangle
         {
             visible: iButtonLoop < 3
-            z: 2
+            z: 3
             color: "steelblue"
             width: parent.width
             height: parent.height/10
@@ -964,6 +1116,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 1)
                     {
@@ -1071,6 +1226,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 2)
                     {
@@ -1171,6 +1329,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 3)
                     {
@@ -1278,6 +1439,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 4)
                     {
@@ -1380,6 +1544,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 5)
                     {
@@ -1488,6 +1655,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 6)
                     {
@@ -1682,6 +1852,9 @@ Page
                     enabled: !recorder.isEmpty //pause or continue only if workout was really started
                     onClicked:
                     {
+                        if (bShowLockScreen)
+                            return;
+
                         recorder.pause = !recorder.pause;
                     }
                 }
@@ -1717,6 +1890,9 @@ Page
                     anchors.fill: parent
                     onPressed:
                     {
+                        if (bShowLockScreen)
+                            return;
+
                         if (!recorder.running && recorder.isEmpty)
                         {
                             //Check accuracy
@@ -1734,6 +1910,9 @@ Page
                     }
                     onReleased:
                     {
+                        if (bShowLockScreen)
+                            return;
+
                         bEndLoop = true;
                     }
                 }
@@ -1779,6 +1958,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     console.log("centerButton pressed");
                     map.center = recorder.currentPosition;
                 }
@@ -1806,6 +1988,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     console.log("minmaxButton pressed");
                     bMapMaximized = !bMapMaximized;
                 }
@@ -1833,6 +2018,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     console.log("settingsButton pressed");
                     pageStack.push(Qt.resolvedUrl("MapSettingsPage.qml"));
                 }
@@ -1854,11 +2042,17 @@ Page
 
             onDoubleClicked:
             {
+                if (bShowLockScreen)
+                    return;
+
                 //console.log("onDoubleClicked: " + mouse)
                 map.setZoomLevel(map.zoomLevel + 1, Qt.point(mouse.x, mouse.y) );
             }
             onDoubleClickedGeo:
             {
+                if (bShowLockScreen)
+                    return;
+
                 //console.log("onDoubleClickedGeo: " + geocoordinate);
                 map.center = geocoordinate;
             }

@@ -78,12 +78,14 @@ Page
             spacing: Theme.paddingLarge
             PageHeader
             {
-                title: qsTr("Cover page settings")
+                title: qsTr("App cover settings")
             }
             Label
             {
-                text: qsTr("Select values to be shown on the Cover Page.")
+                width: parent.width
+                text: qsTr("Select values to be shown on the App cover. The values are also used for the lock screen on the record page.")
                 font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.WordWrap
             }
             ComboBox
             {

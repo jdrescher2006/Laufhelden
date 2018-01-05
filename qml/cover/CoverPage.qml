@@ -29,12 +29,30 @@ CoverBackground
         running: recorder.running
         onTriggered:
         {
-            id_LBL_Value1.text = (settings.measureSystem === 0) ? JSTools.arrayLookupCoverPageValueTypesByFieldID[1].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].unit :
-                                                                  JSTools.arrayLookupCoverPageValueTypesByFieldID[1].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].imperialUnit;
-            id_LBL_Value2.text = (settings.measureSystem === 0) ? JSTools.arrayLookupCoverPageValueTypesByFieldID[2].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].unit :
-                                                                  JSTools.arrayLookupCoverPageValueTypesByFieldID[2].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].imperialUnit;
-            id_LBL_Value3.text = (settings.measureSystem === 0) ? JSTools.arrayLookupCoverPageValueTypesByFieldID[3].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].unit :
-                                                                  JSTools.arrayLookupCoverPageValueTypesByFieldID[3].value + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].imperialUnit;
+            var sValue1, sValue2, sValue3;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[1])
+                sValue1 = JSTools.arrayLookupCoverPageValueTypesByFieldID[1].valueCoverPage;
+            else
+                sValue1 = JSTools.arrayLookupCoverPageValueTypesByFieldID[1].value;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[2])
+                sValue2 = JSTools.arrayLookupCoverPageValueTypesByFieldID[2].valueCoverPage;
+            else
+                sValue2 = JSTools.arrayLookupCoverPageValueTypesByFieldID[2].value;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[3])
+                sValue3 = JSTools.arrayLookupCoverPageValueTypesByFieldID[3].valueCoverPage;
+            else
+                sValue3 = JSTools.arrayLookupCoverPageValueTypesByFieldID[3].value;
+
+
+            id_LBL_Value1.text = (settings.measureSystem === 0) ? sValue1 + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].unit :
+                                                                  sValue1 + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].imperialUnit;
+            id_LBL_Value2.text = (settings.measureSystem === 0) ? sValue2 + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].unit :
+                                                                  sValue2 + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].imperialUnit;
+            id_LBL_Value3.text = (settings.measureSystem === 0) ? sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].unit :
+                                                                  sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].imperialUnit;
         }
     }
 
@@ -86,7 +104,7 @@ CoverBackground
                 verticalAlignment: Text.AlignVCenter
                 anchors.centerIn: parent
                 fontSizeMode: Text.Fit
-                font.pointSize: 4000
+                font.pointSize: Theme.fontSizeLarge
             }
         }
         Item
@@ -104,7 +122,7 @@ CoverBackground
                 verticalAlignment: Text.AlignVCenter
                 anchors.centerIn: parent
                 fontSizeMode: Text.Fit
-                font.pointSize: 4000
+                font.pointSize: Theme.fontSizeLarge
             }
         }
         Item
@@ -122,7 +140,7 @@ CoverBackground
                 verticalAlignment: Text.AlignVCenter
                 anchors.centerIn: parent
                 fontSizeMode: Text.Fit
-                font.pointSize: 4000
+                font.pointSize: Theme.fontSizeLarge
             }
         }
     }

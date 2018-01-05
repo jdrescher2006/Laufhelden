@@ -44,7 +44,7 @@ Page
         ListElement
         {
             page: "CoverSettingsPage.qml"
-            title: qsTr("Coverpage settings")
+            title: qsTr("App cover settings")
         }
         ListElement
         {

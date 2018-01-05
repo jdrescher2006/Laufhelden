@@ -133,28 +133,28 @@
 <context>
     <name>CoverSettingsPage</name>
     <message>
-        <source>Cover page settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select values to be shown on the Cover Page.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished">Dieser Wert ist bereits zugewiesen!</translation>
+        <translation>Dieser Wert ist bereits zugewiesen!</translation>
     </message>
     <message>
         <source>First field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Erstes Feld:</translation>
     </message>
     <message>
         <source>Second field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweites Feld:</translation>
     </message>
     <message>
         <source>Third field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Drittes Feld:</translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation type="unfinished">App-Cover Einstellungen</translation>
+    </message>
+    <message>
+        <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
+        <translation type="unfinished">Wählen Sie die Werte für das App-Cover. Diese Werte werden auch für den Sperrbildschirm verwendet.</translation>
     </message>
 </context>
 <context>
@@ -229,7 +229,7 @@
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf Strava hochladen</translation>
     </message>
 </context>
 <context>
@@ -639,6 +639,10 @@
         <source>Restart Pebble App</source>
         <translation>Pebble App neu starten</translation>
     </message>
+    <message>
+        <source>Lock screen</source>
+        <translation>Sperrbildschirm</translation>
+    </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
@@ -766,11 +770,11 @@
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava</translation>
     </message>
     <message>
-        <source>Coverpage settings</source>
-        <translation type="unfinished"></translation>
+        <source>App cover settings</source>
+        <translation type="unfinished">App-Cover Einstellungen</translation>
     </message>
 </context>
 <context>
@@ -1012,26 +1016,26 @@
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava Einstellungen</translation>
     </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der Aktivität</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Beschreibung</translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreibung der Aktivität</translation>
     </message>
     <message>
         <source>Activity Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivität</translation>
     </message>
     <message>
         <source>Riding</source>
@@ -1039,23 +1043,23 @@
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished">Laufen</translation>
+        <translation>Laufen</translation>
     </message>
     <message>
         <source>Swimming</source>
-        <translation type="unfinished"></translation>
+        <translation>Schwimmen</translation>
     </message>
     <message>
         <source>Workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Workout</translation>
     </message>
     <message>
         <source>Walking</source>
-        <translation type="unfinished">Walking</translation>
+        <translation>Walking</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished">Privat</translation>
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Commute</source>
@@ -1063,19 +1067,19 @@
     </message>
     <message>
         <source>Uploading data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten hochladen...</translation>
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation type="unfinished"></translation>
+        <translation>Überprüfe...</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein unbekannter Fehler ist aufgetreten</translation>
     </message>
     <message>
         <source>Activity upload complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Hochladen abgeschlossen</translation>
     </message>
 </context>
 <context>

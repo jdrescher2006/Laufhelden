@@ -133,14 +133,6 @@
 <context>
     <name>CoverSettingsPage</name>
     <message>
-        <source>Cover page settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select values to be shown on the Cover Page.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This value is already assigned!</source>
         <translation type="unfinished">Este valor ya está asignado!</translation>
     </message>
@@ -154,6 +146,14 @@
     </message>
     <message>
         <source>Third field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -639,6 +639,10 @@
         <source>Restart Pebble App</source>
         <translation>Restaurar apl Pebble</translation>
     </message>
+    <message>
+        <source>Lock screen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
@@ -769,7 +773,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Coverpage settings</source>
+        <source>App cover settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

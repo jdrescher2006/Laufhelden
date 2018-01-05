@@ -17,6 +17,14 @@
 
 .pragma library
 
+//gives back random int. min is inclusive and max is exclusive.
+function fncGetRandomInt(min, max)
+{
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
 function fncPadZeros(number, size)
 {
   number = number.toString();
@@ -75,9 +83,20 @@ var arrayPebbleValueTypes =
     { index: 6, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Speed") + "∅", unit: "km/h", imperialUnit: "mi/h" },
     { index: 7, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Altitude"), unit: "m", imperialUnit: "ft" },
     { index: 8, fieldID: 2, fieldIDCoverPage: 2, value: "0", header: qsTr("Distance"), unit: "km", imperialUnit: "mi" },
-    { index: 9, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Pause"), unit: "", imperialUnit: "" },
-    { index: 10, fieldID: 1, fieldIDCoverPage: 1, value: "0", header: qsTr("Duration"), unit: "", imperialUnit: "" }
+    { index: 9, fieldID: 0, fieldIDCoverPage: 0, value: "0", valueCoverPage: "0", header: qsTr("Pause"), unit: "", imperialUnit: "" },
+    { index: 10, fieldID: 1, fieldIDCoverPage: 1, value: "0", valueCoverPage: "0", header: qsTr("Duration"), unit: "", imperialUnit: "" }
 ]
+
+fncTest();
+
+function fncTest()
+{
+    console.log(("valueCoverPage" in arrayPebbleValueTypes[0]).toString());
+    console.log(("valueCoverPage" in arrayPebbleValueTypes[1]).toString());
+    console.log(("valueCoverPage" in arrayPebbleValueTypes[9]).toString());
+    console.log(("valueCoverPage" in arrayPebbleValueTypes[10]).toString());
+}
+
 
 //Create lookup table for pebble value fields.
 //This is a helper table to easier access the main table.
