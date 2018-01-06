@@ -150,11 +150,11 @@
     </message>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatyrinställningar</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj de värden som skall visas på programminiatyren. Värdena används också för låsskärmen på inspelningssidan.</translation>
     </message>
 </context>
 <context>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Lock screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Låsskärm</translation>
     </message>
 </context>
 <context>
@@ -774,7 +774,7 @@
     </message>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Miniatyrinställningar</translation>
     </message>
 </context>
 <context>
