@@ -13,7 +13,7 @@
     </message>
     <message>
         <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dátum: </translation>
     </message>
     <message>
         <source>Feedback, bugs:</source>
@@ -80,7 +80,7 @@
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation type="unfinished"></translation>
+        <translation>Bluetooth eszköz észlelve:</translation>
     </message>
     <message>
         <source>Heart rate device</source>
@@ -130,15 +130,15 @@
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. sebesség/⌀:</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lépés ⌀:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzus min/max/⌀:</translation>
     </message>
     <message>
         <source>Diagrams</source>
@@ -160,469 +160,469 @@
     </message>
     <message>
         <source>Settings</source>
-        <translation>Beállíátsok</translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Új edzés</translation>
     </message>
     <message>
         <source>Welcome to Laufhelden</source>
-        <translation type="unfinished"></translation>
+        <translation>Üdvözöl a Laufhelden</translation>
     </message>
     <message>
         <source>No earlier workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincsenek korábbi edzésadatok</translation>
     </message>
     <message>
         <source>Workouts: </source>
-        <translation type="unfinished"></translation>
+        <translation>Edzések: </translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"></translation>
+        <translation>ennyiből</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>GPX fájlok betöltése...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzés törlése</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzés törlése folyamatban...</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Vannak be nem fejezett edzések!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Folytatás</translation>
     </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
     <message>
         <source>Map settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Térkép beállítások</translation>
     </message>
     <message>
         <source>Optimize screen in map mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Képernyőkihasználtság optimalizálása térkép módban</translation>
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak 4 érték megjelenítése (6 helyett) a térkép nézetben</translation>
     </message>
     <message>
         <source>Map center mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Térkép központozás módja</translation>
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenlegi helyzet legyen középen</translation>
     </message>
     <message>
         <source>Center track on map</source>
-        <translation type="unfinished"></translation>
+        <translation>A megtett táv legyen középre igazítva</translation>
     </message>
 </context>
 <context>
     <name>PreRecordPage</name>
     <message>
         <source>Let&apos;s go!</source>
-        <translation type="unfinished"></translation>
+        <translation>Indulhatunk!</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzés:</translation>
     </message>
     <message>
         <source>Use HRM device</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzusszámláló használata</translation>
     </message>
     <message>
         <source>Use heart rate monitor in this workout.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzusmérő használata az edzéshez.</translation>
     </message>
     <message>
         <source>Disable screen blanking</source>
-        <translation type="unfinished"></translation>
+        <translation>Képernyő kikapcsolásának tiltása</translation>
     </message>
     <message>
-        <source>Disable screen blanking when recording.</source>
-        <translation type="unfinished"></translation>
+        <source>Disbale screen blanking when recording.</source>
+        <translation>Képernyő kikapcsolásának tiltása rögzítés alatt</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil kiválasztása</translation>
     </message>
     <message>
         <source>GPS positioning started!</source>
-        <translation type="unfinished"></translation>
+        <translation>GPS helymeghatározás elindítva!</translation>
     </message>
 </context>
 <context>
     <name>RecordPage</name>
     <message>
         <source>AMOLED mode</source>
-        <translation type="unfinished"></translation>
+        <translation>AMOLED mód</translation>
     </message>
     <message>
         <source>LCD mode</source>
-        <translation type="unfinished"></translation>
+        <translation>LCD mód</translation>
     </message>
     <message>
         <source>Night mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Éjszakai mód</translation>
     </message>
     <message>
         <source>Silica mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Silica mód</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <source>Hide Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Térkép elrejtése</translation>
     </message>
     <message>
         <source>Show Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Térkép megjelenítése</translation>
     </message>
     <message>
         <source>Disconnect HRM</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzusmérő leválasztása</translation>
     </message>
     <message>
         <source>Reconnect HRM</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzusmérő újracsatlakoztatása</translation>
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Kijelzés mód megváltoztatása</translation>
     </message>
     <message>
         <source>hold button for: </source>
-        <translation type="unfinished"></translation>
+        <translation>tartsd a gombot, hogy </translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
-        <translation type="unfinished"></translation>
+        <translation>GPS pontosság:</translation>
     </message>
     <message>
         <source>No position</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs meg a pozíció</translation>
     </message>
     <message>
         <source>too low: </source>
-        <translation type="unfinished"></translation>
+        <translation>túl alacsony: </translation>
     </message>
     <message>
         <source>Recording</source>
-        <translation type="unfinished"></translation>
+        <translation>Rögzítés</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Megállítva</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>Szüneteltetve</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Időtartam:</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Szünet</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Folytatás</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Kezdete</translation>
     </message>
     <message>
         <source>End</source>
-        <translation type="unfinished"></translation>
+        <translation>Vége</translation>
     </message>
     <message>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Elfogadás</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Mégsem</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation type="unfinished"></translation>
+        <translation>Válassz értéket!</translation>
     </message>
     <message>
         <source>keep tapping button: </source>
-        <translation type="unfinished"></translation>
+        <translation>tartsd a gombot lenyomva: </translation>
     </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
     <message>
         <source>Distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Távolság</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished"></translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzus</translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished"></translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished"></translation>
+        <translation>Lépés</translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished"></translation>
+        <translation>min6km</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sebesség</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished"></translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>m</source>
-        <translation type="unfinished"></translation>
+        <translation>m</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation type="unfinished"></translation>
+        <translation>Magasság</translation>
     </message>
     <message>
         <source>Bat.:</source>
-        <translation type="unfinished"></translation>
+        <translation>Akku:</translation>
     </message>
     <message>
         <source>Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Üres</translation>
     </message>
 </context>
 <context>
     <name>SaveDialog</name>
     <message>
         <source>Save track</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Megnevezés</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Leírás</translation>
     </message>
 </context>
 <context>
     <name>SettingsMenu</name>
     <message>
         <source>General settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Általános beállítások</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation type="unfinished"></translation>
+        <translation>Riasztási küszöbszintek</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzusmérő</translation>
     </message>
     <message>
         <source>Map settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Térkép beállítások</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
         <source>General settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Általános beállítások</translation>
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Maradjon álló módban.</translation>
     </message>
     <message>
         <source>Write log file</source>
-        <translation type="unfinished"></translation>
+        <translation>Log fájl írása</translation>
     </message>
     <message>
         <source>File: $HOME/Laufhelden/log.txt</source>
-        <translation type="unfinished"></translation>
+        <translation>Ide: $HOME/Laufhelden/log.txt</translation>
     </message>
     <message>
         <source>Record page portrait mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Rögzítés lap álló módja</translation>
     </message>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished"></translation>
+        <translation>Hang nyelve</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished"></translation>
+        <translation>Angol férfi</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished"></translation>
+        <translation>Német nő</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Teszt</translation>
     </message>
     <message>
         <source>Show grid lines</source>
-        <translation type="unfinished"></translation>
+        <translation>Rácsvonalak megjelenítése</translation>
     </message>
     <message>
         <source>Show grid lines on record page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rácsvonalak megjelenítése az edzés nézetben.</translation>
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatikus mentés engedélyezése</translation>
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem szükséges nevet adni az edzésnek a végén.</translation>
     </message>
     <message>
         <source>Automatic night mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatikus éjszakai üzemmód</translation>
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kijelzés éjszakai módba kapcsolása automatikusan a környezeti fényviszonyok alapján.</translation>
     </message>
 </context>
 <context>
     <name>SharedResources</name>
     <message>
         <source>Running</source>
-        <translation type="unfinished"></translation>
+        <translation>Futás</translation>
     </message>
     <message>
         <source>Roadbike</source>
-        <translation type="unfinished"></translation>
+        <translation>Országúti kerékpár</translation>
     </message>
     <message>
         <source>Mountainbike</source>
-        <translation type="unfinished"></translation>
+        <translation>Hegyikerékpár</translation>
     </message>
     <message>
         <source>Walking</source>
-        <translation type="unfinished"></translation>
+        <translation>Séta</translation>
     </message>
     <message>
         <source>Inline skating</source>
-        <translation type="unfinished"></translation>
+        <translation>Görkorcsolya</translation>
     </message>
 </context>
 <context>
     <name>ThresholdSettingsPage</name>
     <message>
         <source>Upper heart rate limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Felső pulzus limit</translation>
     </message>
     <message>
         <source>Alarm if limit is exceeded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Riasztási küszöb elérve.</translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished"></translation>
+        <translation>/perc</translation>
     </message>
     <message>
         <source>Lower heart rate limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Alsó pulzus limit</translation>
     </message>
     <message>
         <source>Upper pace limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Felső lépés limit</translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished"></translation>
+        <translation>perc/km</translation>
     </message>
     <message>
         <source>Lower pace limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Lépésszám alsó küszöb</translation>
     </message>
     <message>
         <source>Edit profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil nevének szerkesztése</translation>
     </message>
     <message>
         <source>Only text, no special characters!</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak betűk megengedettek!</translation>
     </message>
     <message>
         <source>Threshold profile name</source>
-        <translation type="unfinished"></translation>
+        <translation>Riasztási profil neve</translation>
     </message>
     <message>
         <source>Add profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Új profil</translation>
     </message>
     <message>
         <source>Rename profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil átnevezése</translation>
     </message>
     <message>
         <source>Remove profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil törlése</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil kiválasztása</translation>
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Riasztás ha küszöbszint alá kerül.</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation type="unfinished"></translation>
+        <translation>Riasztási szintek</translation>
     </message>
 </context>
 <context>
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
-        <translation type="unfinished"></translation>
+        <translation>Riasztások kikapcsolva</translation>
     </message>
 </context>
 </TS>
