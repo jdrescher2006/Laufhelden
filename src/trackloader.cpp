@@ -17,6 +17,8 @@
 
 #include <QStandardPaths>
 #include <QFile>
+#include <QSaveFile>
+#include <QXmlStreamWriter>
 #include <QGeoCoordinate>
 #include <QDebug>
 #include <qmath.h>
@@ -33,39 +35,165 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_maxSpeed = 0;
     m_pace = 0;
     m_duration = 0;
+    m_pause_duration = 0;
     m_distance = 0;
     m_heartRate = 0;
     m_heartRatePoints = 0;
     m_heartRateMin = 9999999;
     m_heartRateMax = 0;
+    m_sTkey = "";
+    m_elevationUp = 0;
+    m_elevationDown = 0;
 }
 
-void TrackLoader::load() {
-    if(m_filename.isEmpty()) {
-        // No filename set, nothing to do
-        //qDebug()<<"No filename set";
+QString TrackLoader::readGpx(){
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/" + m_filename;
+    qDebug()<<"Reading File:"<<fullFilename;
+
+    QFile f(fullFilename);
+    if (!f.open(QFile::ReadOnly | QFile::Text)) return "";
+    QTextStream in(&f);
+    return in.readAll();
+}
+
+//Returns Sports-Tracker.com unique workoutkey.
+QString TrackLoader::sTworkoutKey(){
+    return m_sTkey;
+}
+
+void TrackLoader::vReadFile(QString sFilename)
+{
+    this->sFileStringArray.clear();
+
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/" + sFilename;
+    qDebug()<<"Reading File:"<<fullFilename;
+
+    QFile f(fullFilename);
+    if (!f.open(QFile::ReadWrite | QFile::Text)) return;
+    QTextStream in(&f);
+
+    while (!in.atEnd())
+    {
+        this->sFileStringArray.append(in.readLine());
+    }
+
+    f.close();
+}
+
+void TrackLoader::vSetNewProperties(QString sOldName, QString sOldDesc, QString sOldWorkout, QString sName, QString sDesc, QString sWorkout)
+{
+    //Search for a line
+    bool bNameFound = false;
+    bool bDescFound = false;
+    bool bMeerunFound = false;
+
+    for (int i = 0; i < this->sFileStringArray.length(); i++)
+    {
+        if (!bDescFound && this->sFileStringArray.at(i).contains(sOldDesc) && this->sFileStringArray.at(i).contains("<desc>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</desc>", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found description: "<<this->sFileStringArray.at(i);
+            bDescFound = true;
+
+            this->sFileStringArray.replace(i, "        <desc>" + sDesc + "</desc>");
+            /*
+            //Extract description
+            QString sDescription = this->sFileStringArray.at(i).trimmed();
+            sDescription.chop(7);
+            sDescription = sDescription.remove(0,6);
+
+            qDebug()<<"Description: "<<sDescription;
+            */
+        }
+
+        if (!bNameFound && this->sFileStringArray.at(i).contains(sOldName) && this->sFileStringArray.at(i).contains("<name>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</name>", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found name: "<<this->sFileStringArray.at(i);
+            bNameFound = true;
+
+            this->sFileStringArray.replace(i, "        <name>" + sName + "</name>");
+        }
+
+        if (!bMeerunFound && this->sFileStringArray.at(i).contains("<meerun", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("activity=", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found meerun: "<<this->sFileStringArray.at(i);
+            bMeerunFound = true;
+
+            QString sMeerun = this->sFileStringArray.at(i);
+            int iActivityPosition = this->sFileStringArray.at(i).indexOf("activity=", 0);
+            sMeerun = sMeerun.remove(iActivityPosition, 9 + 2 + sOldWorkout.length());
+            //qDebug()<<"Meerun: "<<sMeerun;
+
+            sMeerun = sMeerun.insert(iActivityPosition, "activity=\"" + sWorkout + "\"");
+            //qDebug()<<"Meerun: "<<sMeerun;
+
+            this->sFileStringArray.replace(i, sMeerun);
+        }
+
+        if (bDescFound && bNameFound && bMeerunFound)
+            break;
+    }
+}
+
+void TrackLoader::vWriteFile(QString sFilename)
+{
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/" + sFilename;
+    qDebug()<<"Writing File:"<<fullFilename;
+
+
+    QFile fOut(fullFilename);
+    if (fOut.open(QFile::WriteOnly | QFile::Text))
+    {
+        QTextStream s(&fOut);
+        for (int i = 0; i < this->sFileStringArray.size(); ++i)
+        {
+            s << this->sFileStringArray.at(i) << '\n';
+        }
+    }
+    else
+    {
+        qDebug() << "error opening output file\n";
+        return;
+    }
+    fOut.close();
+}
+
+void TrackLoader::load()
+{
+    if(m_filename.isEmpty())
+    {
         return;
     }
     QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
     QString fullFilename = dirName + "/" + m_filename;
     QFile file(fullFilename);
 
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
         qDebug()<<"Error opening"<<fullFilename;
         m_error = true;
         return;
     }
     QXmlStreamReader xml(&file);
-    if(!xml.readNextStartElement()) {
+    if(!xml.readNextStartElement())
+    {
         qDebug()<<m_filename<<"is not xml file?";
         m_error = true;
         return;
     }
-    if( !(xml.name() == "gpx" && xml.attributes().value("version") == "1.1") ) {
+    if( !(xml.name() == "gpx" && xml.attributes().value("version") == "1.1") )
+    {
         qDebug()<<m_filename<<"is not gpx 1.1 file";
         m_error = true;
         return;
     }
+
+    //count track segments
+    int iSegments = 0;
+    bool bPauseFound = false;
+
 
     // Loading considered succeeded at this point
     m_loaded = true;
@@ -98,6 +226,12 @@ void TrackLoader::load() {
                                 m_workout = xml.attributes().value("activity").toString();
                                 emit workoutChanged();
                             }
+                            else if(xml.name() == "sportstracker")
+                            {
+                                m_sTkey = xml.attributes().value("workoutkey").toString();
+                                m_workout = xml.attributes().value("activity").toString();
+                                emit workoutChanged();
+                            }
                             else
                             {
                                 xml.skipCurrentElement();
@@ -116,6 +250,16 @@ void TrackLoader::load() {
                 {
                     if(xml.name() == "trkseg")
                     {
+                        //Count segments
+                        iSegments++;
+
+                        //If this is NOT the first segment, we are here after a pause in the track
+                        if (iSegments > 1)
+                        {
+                            //mark that we have found a pause
+                            bPauseFound = true;
+                        }
+
                         while(xml.readNextStartElement())
                         {
                             if(xml.name() == "trkpt")
@@ -129,10 +273,18 @@ void TrackLoader::load() {
                                 point.magneticVariation = 0;
                                 point.horizontalAccuracy = 0;
                                 point.verticalAccuracy = 0;
-                                point.heartrate = 0;                                
-
+                                point.heartrate = 0;
                                 point.latitude = xml.attributes().value("lat").toDouble();
                                 point.longitude = xml.attributes().value("lon").toDouble();
+
+                                //if a pause is right before this track point, we have to save the index of this track point
+                                if (bPauseFound)
+                                {
+                                    qDebug()<<"Pause found: "<<QString::number(m_points.length());
+
+                                    m_pause_positions.append(m_points.length()-1);
+                                    bPauseFound = false;
+                                }
 
                                 while(xml.readNextStartElement())
                                 {
@@ -188,6 +340,82 @@ void TrackLoader::load() {
                             }
                         }
                     }
+                    else if(xml.name() == "trkpt")
+                    {
+                        TrackPoint point;
+
+                        point.elevation = 0;
+                        point.direction = 0;
+                        point.groundSpeed = 0;
+                        point.verticalSpeed = 0;
+                        point.magneticVariation = 0;
+                        point.horizontalAccuracy = 0;
+                        point.verticalAccuracy = 0;
+                        point.heartrate = 0;
+                        point.latitude = xml.attributes().value("lat").toDouble();
+                        point.longitude = xml.attributes().value("lon").toDouble();
+
+                        //if a pause is right before this track point, we have to save the index of this track point
+                        if (bPauseFound)
+                        {
+                            qDebug()<<"Pause found: "<<QString::number(m_points.length());
+
+                            m_pause_positions.append(m_points.length()-1);
+                            bPauseFound = false;
+                        }
+
+                        while(xml.readNextStartElement())
+                        {
+                            if(xml.name() == "time") {
+                                point.time = QDateTime::fromString(xml.readElementText(),Qt::ISODate);
+                            } else if(xml.name() == "ele") {
+                                point.elevation = xml.readElementText().toDouble();
+                            } else if(xml.name() == "extensions") {
+                                while(xml.readNextStartElement())
+                                {
+                                    if(xml.name() == "dir")
+                                    {
+                                        point.direction = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "g_spd")
+                                    {
+                                        point.groundSpeed = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "v_spd")
+                                    {
+                                        point.verticalSpeed = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "m_var")
+                                    {
+                                        point.magneticVariation = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "h_acc")
+                                    {
+                                        point.horizontalAccuracy = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "v_acc")
+                                    {
+                                        point.verticalAccuracy = xml.readElementText().toDouble();
+                                    }
+                                    else if(xml.name() == "TrackPointExtension")
+                                    {
+                                        while(xml.readNextStartElement())
+                                        {
+                                            if(xml.name() == "hr")
+                                            {
+                                                point.heartrate = xml.readElementText().toInt();
+                                            }
+                                            else
+                                                xml.skipCurrentElement();
+                                        }
+                                    }
+                                    else
+                                        xml.skipCurrentElement();
+                                }
+                            }
+                        }
+                        m_points.append(point);
+                    }
                 }
             }
             else
@@ -197,21 +425,42 @@ void TrackLoader::load() {
         }
     }
 
+    //qDebug()<<"Segments found: "<<QString::number(iSegments);
+
     if(m_points.size() > 1)
     {
         QDateTime firstTime(m_points.at(0).time);
         QDateTime secondTime(m_points.at(m_points.size()-1).time);
         m_duration = firstTime.secsTo(secondTime);
-        emit durationChanged();
+
         m_time = firstTime.toLocalTime();
-        emit timeChanged();
+
         m_distance = 0;
+
+        int iPausePositionsIndex = 0;
+
+        qreal rElevationLastValue = 0;
+
         for(int i=1;i<m_points.size();i++)
         {
-            QGeoCoordinate first(m_points.at(i-1).latitude,m_points.at(i-1).longitude);
-            QGeoCoordinate second(m_points.at(i).latitude,m_points.at(i).longitude);
-            m_distance += first.distanceTo(second);
-            if(m_points.at(i).groundSpeed > m_maxSpeed) {
+            //We need to find out if this point is the end of a pause
+            if (this->pausePositionsCount() > 0 && i==(this->pausePositionAt(iPausePositionsIndex) + 1))
+            {
+                //Here we are at a point where a pause ends. We can calculate the pause duration here
+                QDateTime firstTime(m_points.at(i-1).time);
+                QDateTime secondTime(m_points.at(i).time);
+                m_pause_duration = m_pause_duration + firstTime.secsTo(secondTime);
+            }
+            else
+            {
+                QGeoCoordinate first(m_points.at(i-1).latitude,m_points.at(i-1).longitude);
+                QGeoCoordinate second(m_points.at(i).latitude,m_points.at(i).longitude);
+
+                m_distance += first.distanceTo(second);
+            }
+
+            if(m_points.at(i).groundSpeed > m_maxSpeed)
+            {
                 m_maxSpeed = m_points.at(i).groundSpeed;
             }
             //If this point has a heart rate
@@ -225,20 +474,44 @@ void TrackLoader::load() {
                 if (m_points.at(i).heartrate < m_heartRateMin)
                     m_heartRateMin = m_points.at(i).heartrate;
             }
+
+            //Elevation Up/Down
+            if (i > 1)
+            {
+                if (m_points.at(i).elevation > rElevationLastValue)
+                    m_elevationUp = m_elevationUp + (m_points.at(i).elevation - rElevationLastValue);
+
+                if (m_points.at(i).elevation < rElevationLastValue)
+                    m_elevationDown = m_elevationDown + (rElevationLastValue - m_points.at(i).elevation);
+            }
+
+            //Save this elevation value for next iteration
+            rElevationLastValue = m_points.at(i).elevation;
         }
+
+        //We need to substract the pause duration from the overall duration
+        m_duration = m_duration - m_pause_duration;
+
+        m_speed = m_distance / m_duration;
+        m_pace = m_duration / m_distance * 1000 / 60;
+        m_heartRate = m_heartRate / m_heartRatePoints;
+
+        emit paceChanged();
+        emit heartRateChanged();
+        emit speedChanged();
         emit heartRateMinChanged();
         emit heartRateMaxChanged();
         emit distanceChanged();
         emit maxSpeedChanged();
-        m_speed = m_distance / m_duration;
-        emit speedChanged();       
-        m_pace = m_duration / m_distance * 1000 / 60;
-        emit paceChanged();        
-        m_heartRate = m_heartRate / m_heartRatePoints;
-        emit heartRateChanged();        
-    } else {
+        emit durationChanged();
+        emit timeChanged();
+        emit elevationChanged();
+    }
+    else
+    {
         qDebug()<<"Not enough trackpoints to calculate duration, distance and speed";
-        if(m_points.size() > 0) {
+        if(m_points.size() > 0)
+        {
             QDateTime firstTime(m_points.at(0).time);
             m_time = firstTime.toLocalTime();
             emit timeChanged();
@@ -247,7 +520,8 @@ void TrackLoader::load() {
     emit trackChanged();
 }
 
-QString TrackLoader::filename() const {
+QString TrackLoader::filename() const
+{
     return m_filename;
 }
 
@@ -323,7 +597,8 @@ QString TrackLoader::timeStr() {
     return m_time.toString(Qt::SystemLocaleShortDate);
 }
 
-uint TrackLoader::duration() {
+uint TrackLoader::duration()
+{
     if(!m_loaded && !m_error) {
         load();
     }
@@ -332,6 +607,42 @@ uint TrackLoader::duration() {
         return 0;
     }
     return m_duration;
+}
+
+uint TrackLoader::pauseDuration()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_pause_duration;
+}
+
+qreal TrackLoader::elevationUp()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_elevationUp;
+}
+
+qreal TrackLoader::elevationDown()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_elevationDown;
 }
 
 QString TrackLoader::paceStr()
@@ -356,6 +667,30 @@ QString TrackLoader::paceStr()
     return strPace;
 }
 
+QString TrackLoader::paceImperialStr()
+{
+    if(!m_loaded && !m_error)
+    {
+        load();
+    }
+    if(!m_loaded || m_error)
+    {
+        // Nothing to load or error in loading
+        return QString();
+    }
+
+    qreal m_pace_imperial = m_pace * 1.609344;
+
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
 QString TrackLoader::durationStr() {
     if(!m_loaded && !m_error) {
         load();
@@ -368,6 +703,36 @@ QString TrackLoader::durationStr() {
     uint hours = m_duration / (60*60);
     uint minutes = (m_duration - hours*60*60) / 60;
     uint seconds = m_duration - hours*60*60 - minutes*60;
+    if(hours == 0) {
+        if(minutes == 0) {
+            return QString("%3s").arg(seconds);
+        }
+        return QString("%2m %3s")
+                .arg(minutes)
+                .arg(seconds, 2, 10, QLatin1Char('0'));
+    }
+    return QString("%1h %2m %3s")
+            .arg(hours)
+            .arg(minutes, 2, 10, QLatin1Char('0'))
+            .arg(seconds, 2, 10, QLatin1Char('0'));
+}
+
+QString TrackLoader::pauseDurationStr() {
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return QString();
+    }
+
+    //If there is no pause, return
+    if (this->pausePositionsCount() == 0)
+        return QString();
+
+    uint hours = m_pause_duration / (60*60);
+    uint minutes = (m_pause_duration - hours*60*60) / 60;
+    uint seconds = m_pause_duration - hours*60*60 - minutes*60;
     if(hours == 0) {
         if(minutes == 0) {
             return QString("%3s").arg(seconds);
@@ -463,6 +828,25 @@ bool TrackLoader::loaded() {
     return m_loaded;
 }
 
+int TrackLoader::pausePositionsCount()
+{
+    if(!m_loaded && !m_error)
+    {
+        load();
+    }
+    if(!m_loaded || m_error)
+    {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_pause_positions.size();
+}
+
+int TrackLoader::pausePositionAt(int index)
+{
+    return m_pause_positions[index];
+}
+
 int TrackLoader::trackPointCount() {
     if(!m_loaded && !m_error) {
         load();
@@ -474,7 +858,8 @@ int TrackLoader::trackPointCount() {
     return m_points.size();
 }
 
-QGeoCoordinate TrackLoader::trackPointAt(int index) {
+QGeoCoordinate TrackLoader::trackPointAt(int index)
+{
     return QGeoCoordinate(m_points.at(index).latitude,
                           m_points.at(index).longitude,
                           m_points.at(index).elevation);

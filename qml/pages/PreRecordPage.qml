@@ -37,10 +37,7 @@ Page
             bLockOnCompleted = true;
 
             bLockFirstPageLoad = false;
-            console.log("First Active PreRecordPage");
-
-            //start positioning
-            recorder.vStartGPS();
+            console.log("First Active PreRecordPage");           
 
             //This is a crazy thing, but at least it returns the index :-)
             console.log("Index of workout type: " + SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType));
@@ -70,10 +67,7 @@ Page
             //Set selected threshold profile to combobox
             idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
 
-            pageStack.pushAttached(Qt.resolvedUrl("RecordPage.qml"));
-
-            //inform user about starting positioning now
-            fncShowMessage(1,qsTr("GPS positioning started!"), 2000);
+            pageStack.pushAttached(Qt.resolvedUrl("RecordPage.qml"));           
 
             bLockOnCompleted = false;
         }
@@ -94,8 +88,17 @@ Page
 
             //We might returned from record page and HR reconnect is still active. Switch it off.
             if (bRecordDialogRequestHRM)
-                bRecordDialogRequestHRM = false;
+                bRecordDialogRequestHRM = false;           
 
+            //Check if pebble is connected
+            if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
+                bPebbleConnected = id_PebbleWatchComm.isConnected();
+
+            //Launch pebble sport app
+            if (sPebblePath !== "" && settings.enablePebble && bPebbleConnected)
+                pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
+
+            bPebbleSportAppRequired = settings.enablePebble;
         }
 
         if (status === PageStatus.Inactive)

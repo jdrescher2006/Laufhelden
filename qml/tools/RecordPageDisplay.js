@@ -19,15 +19,16 @@
 
 var arrayValueTypes =
 [
-    { index: 0, fieldID: "0", value: 0, header: qsTr("Empty"), footer: "", footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 1, fieldID: "2", value: 0, header: qsTr("Heartrate"), footer: qsTr("bpm"), footnote: true, footnoteText: qsTr("Bat.:"), footnoteValue: 0 },
-    { index: 2, fieldID: "3", value: 0, header: qsTr("Heartrate") + "∅", footer: qsTr("bpm"),footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 3, fieldID: "4", value: 0, header: qsTr("Pace"), footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 4, fieldID: "5", value: 0, header: qsTr("Pace") + "∅", footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 5, fieldID: "6", value: 0, header: qsTr("Speed"), footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 6, fieldID: "0", value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 7, fieldID: "0", value: 0, header: qsTr("Altitude"), footer: qsTr("m"), footnote: false, footnoteText: "", footnoteValue: 0 },
-    { index: 8, fieldID: "1", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0 }
+    { index: 0, fieldID: "0", value: 0, header: qsTr("Empty"), footer: "", footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: "" },
+    { index: 1, fieldID: "2", value: 0, header: qsTr("Heartrate"), footer: qsTr("bpm"), footnote: true, footnoteText: qsTr("Bat.:"), footnoteValue: 0, footerImperial: "" },
+    { index: 2, fieldID: "3", value: 0, header: qsTr("Heartrate") + "∅", footer: qsTr("bpm"),footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: "" },
+    { index: 3, fieldID: "4", value: 0, header: qsTr("Pace"), footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: qsTr("min/mi") },
+    { index: 4, fieldID: "5", value: 0, header: qsTr("Pace") + "∅", footer: qsTr("min/km"), footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: qsTr("min/mi") },
+    { index: 5, fieldID: "6", value: 0, header: qsTr("Speed"), footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: qsTr("mi/h") },
+    { index: 6, fieldID: "0", value: 0, header: qsTr("Speed") + "∅", footer: qsTr("km/h"), footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: qsTr("mi/h") },
+    { index: 7, fieldID: "0", value: 0, header: qsTr("Altitude"), footer: qsTr("m"), footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: qsTr("ft") },
+    { index: 8, fieldID: "1", value: 0, header: qsTr("Distance"), footer: qsTr("km"), footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: qsTr("mi") },
+    { index: 9, fieldID: "0", value: 0, header: qsTr("Pause"), footer: "", footnote: false, footnoteText: "", footnoteValue: 0, footerImperial: "" }
 ]
 
 function fncAddFieldIDByIndex(iIndex, iFieldID)
@@ -151,7 +152,7 @@ function fncGetHeaderTextByFieldID(iFieldID)
     return "";
 }
 
-function fncGetFooterTextByFieldID(iFieldID)
+function fncGetFooterTextByFieldID(iFieldID, iMeasureSystem)
 {
     //Go through value types array
     for (var i = 0; i < arrayValueTypes.length; i++)
@@ -164,7 +165,10 @@ function fncGetFooterTextByFieldID(iFieldID)
             //If the current item fits the current value field
             if (parseInt(arFieldIDString[j]) === iFieldID)
             {
-                return arrayValueTypes[i].footer;
+                if (iMeasureSystem === 1 && arrayValueTypes[i].footerImperial !== "")
+                    return arrayValueTypes[i].footerImperial;
+                else
+                    return arrayValueTypes[i].footer;
             }
         }
     }
@@ -241,7 +245,20 @@ function fncConvertSaveStringToArray(sSaveString, iWorkoutType, iWorkoutTypesCou
 
     var arValueTypesByWorkout = sSaveString.split("|");
 
-    if (arValueTypesByWorkout.length !== iWorkoutTypesCount) //This is the amount of known workout types, currently 5
+    //If the app knows more workout types than the save string, we have to add default sets
+    while(iWorkoutTypesCount > arValueTypesByWorkout.length)
+    {
+        arValueTypesByWorkout.push("5,6,1,2,7,8");
+    }
+
+    //If the app knows less workout types than the save string, we have to kill them
+    while(iWorkoutTypesCount < arValueTypesByWorkout.length)
+    {
+        arValueTypesByWorkout.pop();
+    }
+
+    //Now the amount of workout types in the app and the save string should match!
+    if (arValueTypesByWorkout.length !== iWorkoutTypesCount)
         return;
 
     //Pick the one for the selected workout
@@ -283,9 +300,22 @@ function fncConvertArrayToSaveString(sSaveString, iWorkoutType, iWorkoutTypesCou
     var sReturnString = "";
     var sWorkoutString = "";
 
-    var arValueTypesByWorkout = sSaveString.split("|");
+    var arValueTypesByWorkout = sSaveString.split("|");    
 
-    if (arValueTypesByWorkout.length !== iWorkoutTypesCount) //This is the amount of known workout types, currently 5
+    //If the app knows more workout types than the save string, we have to add default sets
+    while(iWorkoutTypesCount > arValueTypesByWorkout.length)
+    {
+        arValueTypesByWorkout.push("5,6,1,2,7,8");
+    }
+
+    //If the app knows less workout types than the save string, we have to kill them
+    while(iWorkoutTypesCount < arValueTypesByWorkout.length)
+    {
+        arValueTypesByWorkout.pop();
+    }
+
+    //Now the amount of workout types in the app and the save string should match!
+    if (arValueTypesByWorkout.length !== iWorkoutTypesCount)
         return;
 
     //Go through value fields

@@ -21,10 +21,6 @@ import org.nemomobile.dbus 2.0
 Item
 {
     id: mediaPlayerControl
-    property var services:
-    [
-        "org.mpris.MediaPlayer2.jolla-mediaplayer",        
-    ]
 
     function pause()
     {        
@@ -39,7 +35,7 @@ Item
     function getPlayerStatus()
     {
         return interfaceDBUS.getProperty('PlaybackStatus');
-    }
+    }   
 
     DBusInterface
     {

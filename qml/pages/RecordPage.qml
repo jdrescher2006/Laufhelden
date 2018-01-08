@@ -18,7 +18,9 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtLocation 5.0
+//import QtLocation 5.0
+import QtPositioning 5.3
+import MapboxMap 1.0
 import "../tools/SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
 import "../tools/JSTools.js" as JSTools
@@ -31,7 +33,7 @@ Page
     allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All
 
     //If pause and we have no data and the map is not big, going back is possible
-    backNavigation: (recorder.pause && recorder.isEmpty && !map.gesture.enabled)
+    backNavigation: (!recorder.running && recorder.isEmpty && !bMapMaximized)
 
     property bool bShowMap: settings.showMapRecordPage  
 
@@ -52,6 +54,10 @@ Page
     property int iSelectedValue: -1
     property int iOldValue: -1
 
+
+
+    property bool bShowLockScreen: false
+
     //Automatic night mode
     property int iAutoNightModeLoop: 0
     property int iAutoNightModeValue: 0
@@ -65,6 +71,27 @@ Page
     property double iPrimaryTextHeightFactor: 1.8
     property double iSecondaryTextHeightFactor: 3.6
 
+    //Map
+    property bool bMapMaximized: false
+    property var vTrackLinePoints
+    property string sTrackLine
+    property string sCurrentPosition: ""
+    property int iPausePositionsIndex: 0
+
+    //Map buttons
+    property bool showSettingsButton: true
+    property bool showMinMaxButton: true
+    property bool showCenterButton: true
+
+    Connections
+    {
+        target: map
+        onMetersPerPixelChanged:
+        {
+            fncSetMapUncertainty();
+        }
+    }
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -74,17 +101,27 @@ Page
 
             bLockFirstPageLoad = false;                        
 
+            //start positioning
+            recorder.vStartGPS();
+
             recorder.newTrackPoint.connect(newTrackPoint);
-            map.addMapItem(positionMarker);
-            console.log("RecordPage: Plotting track line");
-            for(var i=0;i<recorder.points;i++)
+            recorder.currentPositionChanged.connect(fncCurrentPositionChanged);
+
+            console.log("Is track empty: " + recorder.isEmpty.toString())
+
+            //Check if recorder is empty. If this is not the case, there is data from an autoload.
+            if (recorder.isEmpty === false)
             {
-                trackLine.addCoordinate(recorder.trackPointAt(i));
+                //Now we have to view this data
+                for(var i=0;i<recorder.points;i++)
+                {
+                    fncSetMapPoint(recorder.trackPointAt(i), i);
+                }
+
+                //We need to set parameters to the dialog/pebble
+                RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
             }
-            console.log("RecordPage: Appending track line to map");
-            map.addMapItem(trackLine);
-            console.log("RecordPage: Setting map viewport");
-            setMapViewport();
 
             console.log("---RecordPage first active leave---");
         }
@@ -97,6 +134,9 @@ Page
             //Set value types for fields in JS array
             RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
 
+            JSTools.fncConvertSaveStringToArray(settings.valuePebbleFields);
+            JSTools.fncConvertSaveStringToArrayCoverPage(settings.valueCoverFields);
+
             //Set header and footer to text fields
             fncSetHeaderFooterTexts();
 
@@ -107,11 +147,29 @@ Page
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(true);
 
+            if (sPebblePath !== "" && settings.enablePebble && bPebbleConnected)
+            {
+                if (settings.measureSystem === 0)
+                {
+                    //Set metric unit
+                    pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': 1});
+                }
+                else
+                {
+                    //Set imperial unit
+                    pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'3': 0});
+                }
+            }
+
             if (sHRMAddress !== "" && settings.useHRMdevice && bRecordDialogRequestHRM === false)
             {
                 id_BluetoothData.connect(sHRMAddress, 1);
                 bRecordDialogRequestHRM = true;
             }
+
+            //Check if pebble is connected
+            if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
+                bPebbleConnected = id_PebbleWatchComm.isConnected();
 
             //Load threshold settings and convert them to JS array
             Thresholds.fncConvertSaveStringToArray(settings.thresholds);
@@ -133,7 +191,7 @@ Page
         if (id_Light === undefined)
             return;
 
-        console.log("Brightness: " + id_Light.brightness.toString());
+        //console.log("Brightness: " + id_Light.brightness.toString());
 
         iAutoNightModeValue = iAutoNightModeValue + id_Light.brightness;
     }
@@ -180,7 +238,7 @@ Page
                     iAutoNightModeLoop = 0;
 
                     //If we are currently in night mode, and original mode was something else than night mode, check if light is bright enough to leave night mode
-                    if (iDisplayMode === 2 && iOldDisplayMode !== 2 && (iAutoNightModeValue / 3) > 30)
+                    if (iDisplayMode === 2 && iOldDisplayMode !== 2 && (iAutoNightModeValue / 3) > 20)
                     {
                         //Set mode to original mode.
                         iDisplayMode = iOldDisplayMode;
@@ -189,7 +247,7 @@ Page
                     }
 
                     //If we are currently NOT in night mode, check if it is dark enough to enter night mode
-                    if (iDisplayMode !== 2 && (iAutoNightModeValue / 3) <= 30)
+                    if (iDisplayMode !== 2 && (iAutoNightModeValue / 3) <= 20)
                     {
                         //Save current display mode
                         iOldDisplayMode = iDisplayMode
@@ -210,18 +268,39 @@ Page
             {
                 RecordPageDisplay.arrayValueTypes[1].value = sHeartRate;
                 RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
+
+                JSTools.arrayPebbleValueTypes[1].value = sHeartRate;
             }
             //Set values to JS array if recorder is running
-            if (!recorder.pause)
+            if (recorder.running && !recorder.pause)
             {
                 //0 is empty and 1 is heartrate!
                 RecordPageDisplay.arrayValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
-                RecordPageDisplay.arrayValueTypes[3].value = recorder.paceStr;
-                RecordPageDisplay.arrayValueTypes[4].value = recorder.paceaverageStr;
-                RecordPageDisplay.arrayValueTypes[5].value = recorder.speed.toFixed(1);
-                RecordPageDisplay.arrayValueTypes[6].value = recorder.speedaverage.toFixed(1);
-                RecordPageDisplay.arrayValueTypes[7].value = recorder.altitude;
-                RecordPageDisplay.arrayValueTypes[8].value = (recorder.distance/1000).toFixed(1);
+                RecordPageDisplay.arrayValueTypes[3].value = (settings.measureSystem === 0) ? recorder.paceStr : recorder.paceImperialStr;
+                RecordPageDisplay.arrayValueTypes[4].value = (settings.measureSystem === 0) ? recorder.paceaverageStr : recorder.paceaverageImperialStr;
+                RecordPageDisplay.arrayValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
+                RecordPageDisplay.arrayValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage).toFixed(1);
+                RecordPageDisplay.arrayValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(2);
+                RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+
+                JSTools.arrayPebbleValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
+                JSTools.arrayPebbleValueTypes[3].value = recorder.paceStr;
+                JSTools.arrayPebbleValueTypes[4].value = recorder.paceaverageStr;
+                JSTools.arrayPebbleValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
+                JSTools.arrayPebbleValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage).toFixed(1);
+                JSTools.arrayPebbleValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
+                JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+            }
+            if (recorder.running)
+            {
+                //This is the pause duration
+                RecordPageDisplay.arrayValueTypes[9].value = recorder.pauseTime;
+                JSTools.arrayPebbleValueTypes[9].value = recorder.pebblePauseTime;
+                JSTools.arrayPebbleValueTypes[9].valueCoverPage = recorder.pauseTime;
+
+                //This is the duration
+                JSTools.arrayPebbleValueTypes[10].value = recorder.pebbleTime;
+                JSTools.arrayPebbleValueTypes[10].valueCoverPage = recorder.time;
             }
 
             //Set values from JS array to dialog text fields
@@ -246,6 +325,53 @@ Page
             //Set current daytime to dialog.
             var newDate = new Date();
             idCurrentDayTime.text = JSTools.fncPadZeros(newDate.getHours(),2) + ":" + JSTools.fncPadZeros(newDate.getMinutes(),2) + ":" + JSTools.fncPadZeros(newDate.getSeconds(),2) + " ";
+
+            if (sPebblePath !== "" && settings.enablePebble)
+            {
+                pebbleComm.fncSendDataToPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970", {'0': JSTools.arrayLookupPebbleValueTypesByFieldID[1].value, '1': JSTools.arrayLookupPebbleValueTypesByFieldID[2].value, '2': JSTools.arrayLookupPebbleValueTypesByFieldID[3].value});
+            }
+
+            //Set values for LockScreen
+            var sValue1, sValue2, sValue3;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[1])
+                sValue1 = JSTools.arrayLookupCoverPageValueTypesByFieldID[1].valueCoverPage;
+            else
+                sValue1 = JSTools.arrayLookupCoverPageValueTypesByFieldID[1].value;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[2])
+                sValue2 = JSTools.arrayLookupCoverPageValueTypesByFieldID[2].valueCoverPage;
+            else
+                sValue2 = JSTools.arrayLookupCoverPageValueTypesByFieldID[2].value;
+
+            if ("valueCoverPage" in JSTools.arrayLookupCoverPageValueTypesByFieldID[3])
+                sValue3 = JSTools.arrayLookupCoverPageValueTypesByFieldID[3].valueCoverPage;
+            else
+                sValue3 = JSTools.arrayLookupCoverPageValueTypesByFieldID[3].value;
+
+
+            id_LBL_Value1.text = (settings.measureSystem === 0) ? sValue1 + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].unit :
+                                                                  sValue1 + JSTools.arrayLookupCoverPageValueTypesByFieldID[1].imperialUnit;
+            id_LBL_Value2.text = (settings.measureSystem === 0) ? sValue2 + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].unit :
+                                                                  sValue2 + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].imperialUnit;
+            id_LBL_Value3.text = (settings.measureSystem === 0) ? sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].unit :
+                                                                  sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].imperialUnit;
+        }
+    }
+
+    Timer
+    {
+        id: idTimerLockScreenPadding
+        interval: 30000
+        repeat: true
+        running: bShowLockScreen
+        onTriggered:
+        {
+            var iAvailableHeight = page.height - id_ITM_LockScreen.height;
+
+            var iTopMarginRandom = JSTools.fncGetRandomInt(0, iAvailableHeight);
+
+            id_ITM_LockScreen.anchors.topMargin = iTopMarginRandom;
         }
     }
 
@@ -292,14 +418,20 @@ Page
                 sHeartRate: ""
                 sBatteryLevel: ""
 
-                recorder.pause = true;
+                recorder.running = false;
                 if(!recorder.isEmpty)
                 {
                     showSaveDialog();
                 }
             }
         }
-    }        
+    }
+
+    function fncSetMapUncertainty()
+    {
+        if (map.metersPerPixel > 0)
+            map.setPaintProperty("location-uncertainty", "circle-radius", (recorder.accuracy / map.metersPerPixel));
+    }
 
     function fncChangeValueField()
     {
@@ -335,32 +467,32 @@ Page
     function fncSetHeaderFooterTexts()
     {                      
         idTXT_1_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(1);
-        idTXT_1_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(1) + " ";
+        idTXT_1_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(1, settings.measureSystem) + " ";
         idTXT_1_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(1);
         idTXT_1_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(1) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(1);
 
         idTXT_2_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(2);
-        idTXT_2_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(2);
+        idTXT_2_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(2, settings.measureSystem);
         idTXT_2_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(2);
         idTXT_2_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(2) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(2);
 
         idTXT_3_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(3);
-        idTXT_3_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(3) + " ";
+        idTXT_3_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(3, settings.measureSystem) + " ";
         idTXT_3_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(3);
         idTXT_3_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(3) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(3);
 
         idTXT_4_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(4);
-        idTXT_4_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(4);
+        idTXT_4_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(4, settings.measureSystem);
         idTXT_4_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(4);
         idTXT_4_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(4) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(4);
 
         idTXT_5_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(5);
-        idTXT_5_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(5) + " ";
+        idTXT_5_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(5, settings.measureSystem) + " ";
         idTXT_5_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(5);
         idTXT_5_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(5) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(5);
 
         idTXT_6_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(6);
-        idTXT_6_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(6);
+        idTXT_6_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(6, settings.measureSystem);
         idTXT_6_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(6);
         idTXT_6_Footnote.text = " " + RecordPageDisplay.fncGetFootnoteTextByFieldID(6) + " " + RecordPageDisplay.fncGetFootnoteValueByFieldID(6);
     }
@@ -373,7 +505,6 @@ Page
             console.log("Autosaving workout");
             recorder.exportGpx(SharedResources.arrayLookupWorkoutTableByName[settings.workoutType].labeltext + " - " + recorder.startingDateTime + " - " + (recorder.distance/1000).toFixed(1) + "km", "");
             recorder.clearTrack();  // TODO: Make sure save was successful?
-            trackLine.path = [];
 
             //Mainpage must load history data to get this new workout in the list
             bLoadHistoryData = true;
@@ -389,7 +520,6 @@ Page
                 console.log("Saving workout");
                 recorder.exportGpx(dialog.name, dialog.description);
                 recorder.clearTrack();  // TODO: Make sure save was successful?
-                trackLine.path = [];
 
                 //Mainpage must load history data to get this new workout in the list
                 bLoadHistoryData = true;
@@ -401,7 +531,6 @@ Page
             {
                 console.log("Cancel workout");
                 recorder.clearTrack();
-                trackLine.path = [];
 
                 //We must return here to the mainpage.
                 pageStack.pop(vMainPageObject, PageStackAction.Immediate);
@@ -409,65 +538,149 @@ Page
         }
     }   
 
-    function setMapViewport()
+    function fncSetMapPoint(coordinate, iPointIndex)
     {
-        if(recorder.accuracy < 0 && recorder.points < 1)
+        var vLineArray = [];
+
+        //console.log("Index: " + iPointIndex.toString());               
+
+        //Recognize the start of a workout
+        if (iPointIndex === 0 && recorder.running && !recorder.isEmpty)
         {
-            return;
+            //This is the first data point, draw the start icon
+            map.addSourcePoint("pointStartImage",  coordinate);
+            map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
+            map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
+            map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
+            map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerStartLayer", "visibility", "visible");
+
+            //Create temp line array
+            vLineArray = [];
+            //Write first coordinate to line array
+            vLineArray.push(coordinate);
+            //Save that to global array
+            vTrackLinePoints = vLineArray;
+
+            sTrackLine = "lineEndTrack";
+
+            //We have to create a track line here.
+            map.addSourceLine(sTrackLine, vTrackLinePoints)
+            map.addLayer("layerEndTrack", { "type": "line", "source": sTrackLine })
+            map.setLayoutProperty("layerEndTrack", "line-join", "round");
+            map.setLayoutProperty("layerEndTrack", "line-cap", "round");
+            map.setPaintProperty("layerEndTrack", "line-color", "red");
+            map.setPaintProperty("layerEndTrack", "line-width", 2.0);            
         }
 
-        var accuracyZoom;
-        if(recorder.accuracy > 0) {
-            var windowPixels;
-            if(map.width < map.height) {
-                windowPixels = map.width;
-            } else {
-                windowPixels = map.height;
-            }
-            var latCor = Math.cos(recorder.currentPosition.latitude*Math.PI/180);
-            // Earth equator length in WGS-84: 40075.016686 km
-            // Tile size: 256 pixels
-            var innerFunction = windowPixels/256.0 * 40075016.686/(2*recorder.accuracy) * latCor
-            // 2 base logarithm is ln(x)/ln(2)
-            accuracyZoom = Math.min(map.maximumZoomLevel, Math.floor(Math.log(innerFunction) / Math.log(2)));
-        } else {
-            accuracyZoom = map.maximumZoomLevel;
+        //Recognize the start of a pause
+        if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === false && recorder.pausePointAt(iPointIndex) === true)
+        {
+            //Draw the pause start icon
+            map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(),  coordinate);
+            map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_pause.png"));
+            map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");          
+
+            //set indexer to next pause position.
+            iPausePositionsIndex++;
         }
 
-        var trackZoom = Math.min(map.maximumZoomLevel, recorder.fitZoomLevel(map.width, map.height));
+        //Recognize the end of a pause
+        if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === true && recorder.pausePointAt(iPointIndex) === false)
+        {
+            //So this is a track point where a pause starts. The next one is the pause end!
+            //Draw the pause start icon
+            map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(), coordinate);
+            map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_resume.png"));
+            map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
 
-        if(accuracyZoom <= trackZoom && recorder.accuracy > 0) {
-            map.zoomLevel = accuracyZoom;
-        } else {
-            map.zoomLevel = trackZoom;
+            //Start new trackline here
+            //Create fresh temp line array
+            vLineArray = [];
+            //Write first coordinate of new track segment to line array
+            vLineArray.push(coordinate);
+            //Save that to global array
+            vTrackLinePoints = vLineArray;
+
+            sTrackLine = "lineTrack" + iPausePositionsIndex.toString();
+
+            //We have to create a track line here.
+            map.addSourceLine(sTrackLine, vTrackLinePoints)
+            map.addLayer("layerTrack" + iPausePositionsIndex.toString(), { "type": "line", "source": sTrackLine })
+            map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-join", "round");
+            map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-cap", "round");
+            map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-color", "red");
+            map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-width", 2.0);
         }
-        if(recorder.isEmpty)
+
+        //If the current point is not the first one and not a pause point, add it to the current track
+        if (recorder.running && !recorder.isEmpty && iPointIndex !== 0 && recorder.pausePointAt(iPointIndex) === false)
         {
-            map.center = recorder.currentPosition;
-        }
-        else
-        {
-            //center current position on map
-            if (settings.mapMode === 0)
-                map.center = recorder.currentPosition;
-            else if (settings.mapMode === 1)
-                map.center = recorder.trackCenter();
-            else
-                map.center = recorder.currentPosition;
+            //Create temp line array and set current points array to it. Must use a JS array here necause QML arrays don't allow for push!
+            vLineArray = vTrackLinePoints;
+            //Write first coordinate to line array
+            vLineArray.push(coordinate);
+            //Save that to global array
+            vTrackLinePoints = vLineArray;
+
+            map.updateSourceLine(sTrackLine, vTrackLinePoints);
+
+            if (settings.mapMode === 1 && !bMapMaximized) //center track on map
+                map.fitView(vTrackLinePoints);
         }
     }
 
-    function newTrackPoint(coordinate)
+    function fncCurrentPositionChanged(coordinate)
+    {
+        console.log("CurrentPositionChanged");
+
+        if (sCurrentPosition === undefined || sCurrentPosition === "")
+        {
+            sCurrentPosition = "currentPosition";
+
+            //Create current position point on map
+            map.addSourcePoint(sCurrentPosition,  coordinate);
+
+            map.addLayer("location-uncertainty", {"type": "circle", "source": sCurrentPosition});
+            map.setPaintProperty("location-uncertainty", "circle-radius", (300 / map.metersPerPixel));
+            map.setPaintProperty("location-uncertainty", "circle-color", "#87cefa");
+            map.setPaintProperty("location-uncertainty", "circle-opacity", 0.25);
+
+            map.addLayer("location-case", {"type": "circle", "source": sCurrentPosition});
+            map.setPaintProperty("location-case", "circle-radius", 10);
+            map.setPaintProperty("location-case", "circle-color", "white");
+
+            map.addLayer("location", {"type": "circle", "source": sCurrentPosition});
+            map.setPaintProperty("location", "circle-radius", 6);
+            map.setPaintProperty("location", "circle-color", "#98CCFD");
+        }
+        else
+        {
+            map.updateSourcePoint(sCurrentPosition, coordinate);
+            fncSetMapUncertainty();
+        }
+
+        if (settings.mapMode === 0  && !bMapMaximized)
+            map.center = coordinate;
+    }
+
+    function newTrackPoint(coordinate, iPointIndex)
     {
         //console.log("Position: " + recorder.currentPosition);
-        console.log("newTrackPoint");               
+        console.log("newTrackPoint");                       
 
-        trackLine.addCoordinate(coordinate);
-        if(!map.gesture.enabled)
-        {
-            // Set viewport only when not browsing
-            setMapViewport();
-        }
+        fncSetMapPoint(coordinate, iPointIndex);
+
+
+        //Thresholds processing needs to be disabled if recording is paused
+        if (recorder.pause)
+            return;
 
         var iThresholdTriggered = Thresholds.fncCheckHRThresholds(sHeartRate);
 
@@ -556,50 +769,6 @@ Page
         }
     }
 
-    MapCircle
-    {
-        id: positionMarker
-        center: recorder.currentPosition
-        radius: recorder.accuracy
-        color: "blue"
-        border.color: "white"
-        border.width: 6
-        opacity: 0.3        
-        onRadiusChanged:
-        {
-            if(!map.gesture.enabled) {  // When not browsing the map
-                setMapViewport()
-            }
-        }
-        onCenterChanged:
-        {
-            if(!map.gesture.enabled) {  // When not browsing the map
-                setMapViewport()
-            }
-        }        
-        /* this stuff comes from Rena but was not working there either
-        Behavior on radius
-        {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.latitude
-        {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.longitude
-        {
-            NumberAnimation { duration: 200 }
-        }*/
-    }
-
-    MapPolyline
-    {
-        id: trackLine
-        visible: path.length > 1
-        line.color: "red"
-        line.width: 5
-        smooth: true
-    }
 
     SilicaFlickable
     {
@@ -612,6 +781,7 @@ Page
         PullDownMenu
         {
             id: menu
+            visible: !bShowLockScreen
 
             MenuItem
             {
@@ -650,7 +820,23 @@ Page
         }
         PushUpMenu
         {
-            id: menuUP            
+            id: menuUP
+            visible: !bShowLockScreen
+
+            MenuItem
+            {
+                text: qsTr("Lock screen")
+                onClicked:
+                {
+                    if (!bShowLockScreen)
+                    {
+                        bShowMap = false;
+                        bShowLockScreen = true;
+                    }
+                    else
+                        bShowLockScreen = false;
+                }
+            }
 
             MenuItem
             {
@@ -672,7 +858,16 @@ Page
                     bRecordDialogRequestHRM = true;
                 }
             }
-
+            MenuItem
+            {
+                text: qsTr("Restart Pebble App")
+                visible: settings.enablePebble
+                onClicked:
+                {
+                    //Launch pebble sport app
+                    pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
+                }
+            }
         }
 
         //contentHeight: column.height + Theme.paddingLarge
@@ -680,8 +875,93 @@ Page
 
         Rectangle
         {
-            visible: (iKeepPressingButton !== 4)
+            visible: bShowLockScreen
+            color: (iDisplayMode !== 3) ? cBackColor : "black"
+            anchors.fill: parent
             z: 2
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onClicked:
+                {
+                    if (!bShowLockScreen)
+                        return;
+
+                    //Check if an other value field was pressed before.
+                    //Use 99 for LockScreen
+                    if (iValueFieldPressed !== 99)
+                    {
+                        iValueFieldPressed = 99;
+                        iKeepPressingButton = 3;
+                    }
+                    else
+                        iKeepPressingButton--;
+
+                    if (iKeepPressingButton === 0)
+                    {
+                        idTimerKeepTappingReset.stop();
+                        iKeepPressingButton = 4;
+
+                        bShowLockScreen = false;
+                    }
+                    else
+                        idTimerKeepTappingReset.restart();
+                }
+            }
+
+            Item
+            {
+                id: id_ITM_LockScreen
+                anchors.top: parent.top
+                anchors.topMargin: 0
+                width: parent.width
+                height: parent.height / 4
+
+                Text
+                {
+                    color: cPrimaryTextColor
+                    id: id_LBL_Value1
+                    width: parent.width
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.top: parent.top
+                    fontSizeMode: Text.Fit
+                    font.pointSize: Theme.fontSizeLarge
+                }
+                Text
+                {
+                    color: cPrimaryTextColor
+                    id: id_LBL_Value2
+                    width: parent.width
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    fontSizeMode: Text.Fit
+                    font.pointSize: Theme.fontSizeLarge
+                }
+                Text
+                {
+                    color: cPrimaryTextColor
+                    id: id_LBL_Value3
+                    width: parent.width
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottom: parent.bottom
+                    fontSizeMode: Text.Fit
+                    font.pointSize: Theme.fontSizeLarge
+                }
+            }
+        }
+
+
+        Rectangle
+        {
+            visible: (iKeepPressingButton !== 4)
+            z: 3
             color: "steelblue"
             width: parent.width
             height: parent.height/10
@@ -699,7 +979,7 @@ Page
         Rectangle
         {
             visible: iButtonLoop < 3
-            z: 2
+            z: 3
             color: "steelblue"
             width: parent.width
             height: parent.height/10
@@ -797,14 +1077,14 @@ Page
             {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
-                color: !recorder.pause ? "red" : (recorder.isEmpty ? "green" : "orange")
+                color: !recorder.running ? "green" : (recorder.pause ? "orange" : "red")
                 falloffRadius: 0.15
                 radius: 1.0
                 cache: false
             }
             Text
             {
-                text: !recorder.pause ? qsTr("Recording") : (recorder.isEmpty ? qsTr("Stopped") : qsTr("Paused"))
+                text: !recorder.running ? qsTr("Stopped") : (recorder.pause ? qsTr("Paused") : qsTr("Recording"))
                 anchors.centerIn: parent
                 height: parent.height
                 width: parent.width
@@ -836,6 +1116,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 1)
                     {
@@ -943,6 +1226,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 2)
                     {
@@ -1043,6 +1329,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 3)
                     {
@@ -1150,6 +1439,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 4)
                     {
@@ -1252,6 +1544,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 5)
                     {
@@ -1360,6 +1655,9 @@ Page
                 anchors.fill: parent
                 onReleased:
                 {
+                    if (bShowLockScreen)
+                        return;
+
                     //Check if an other value field was pressed before.
                     if (iValueFieldPressed !== 6)
                     {
@@ -1554,6 +1852,9 @@ Page
                     enabled: !recorder.isEmpty //pause or continue only if workout was really started
                     onClicked:
                     {
+                        if (bShowLockScreen)
+                            return;
+
                         recorder.pause = !recorder.pause;
                     }
                 }
@@ -1564,7 +1865,7 @@ Page
                 height: parent.height
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.paddingSmall
-                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (recorder.pause && recorder.isEmpty ? "#389632" : "salmon")
+                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (!recorder.running && recorder.isEmpty ? "#389632" : "salmon")
                 border.color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
                 border.width: 2
                 radius: 10
@@ -1573,7 +1874,7 @@ Page
                     height: parent.height
                     anchors.left: parent.left
                     fillMode: Image.PreserveAspectFit
-                    source: recorder.pause && recorder.isEmpty ? "image://theme/icon-l-add" :  "image://theme/icon-l-clear"
+                    source: !recorder.running && recorder.isEmpty ? "image://theme/icon-l-add" :  "image://theme/icon-l-clear"
                 }
                 Label
                 {
@@ -1582,20 +1883,23 @@ Page
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeLarge
                     color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
-                    text: recorder.pause && recorder.isEmpty ? qsTr("Start") : qsTr("End")
+                    text: !recorder.running && recorder.isEmpty ? qsTr("Start") : qsTr("End")
                 }
                 MouseArea
                 {
                     anchors.fill: parent
                     onPressed:
                     {
-                        if (recorder.pause && recorder.isEmpty)
+                        if (bShowLockScreen)
+                            return;
+
+                        if (!recorder.running && recorder.isEmpty)
                         {
                             //Check accuracy
                             if (recorder.accuracy > 0 && recorder.accuracy < 30)
                             {
                                 //Start workout
-                                recorder.pause = false;
+                                recorder.running = true;
                             }
                         }
                         else
@@ -1606,163 +1910,229 @@ Page
                     }
                     onReleased:
                     {
+                        if (bShowLockScreen)
+                            return;
+
                         bEndLoop = true;
                     }
                 }
             }
         }
     }
-    Map
+    MapboxMap
     {
         id: map
-        width: parent.width
-        //height: map.gesture.enabled ? page.height : width * 3/4
-        height: map.gesture.enabled ? page.height : parent.height / 2.5
-        anchors.bottom: parent.bottom
-        clip: true
-        gesture.enabled: false
-        visible: bShowMap
-        plugin: Plugin
-        {
-            name: "osm"
-            PluginParameter
-            {
-                name: "useragent"                
-                value: "Laufhelden(SailfishOS)"
-            }
-            //PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
-        }
-        center {
-            latitude: 0.0
-            longitude: 0.0
-        }
-        zoomLevel: minimumZoomLevel
-        onHeightChanged: setMapViewport()
-        onWidthChanged: setMapViewport()
-        Behavior on height {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on zoomLevel {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.latitude {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.longitude {
-            NumberAnimation { duration: 200 }
-        }       
 
-        MapQuickItem {
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            sourceItem: Rectangle {
-                color: "white"
-                opacity: 0.6
-                width: contributionLabel.width
-                height: contributionLabel.height
-                Label {
-                    id: contributionLabel
-                    font.pixelSize: Theme.fontSizeTiny
-                    color: "black"
-                    text: "(C) OpenStreetMap contributors"
+        width: parent.width
+        height: bMapMaximized ? page.height : page.height / 3
+        anchors.bottom: parent.bottom
+
+        center: QtPositioning.coordinate(51.9854, 9.2743)
+        zoomLevel: 8.0
+        minimumZoomLevel: 0
+        maximumZoomLevel: 20
+        pixelRatio: 3.0
+
+        accessToken: "pk.eyJ1IjoiamRyZXNjaGVyIiwiYSI6ImNqYmVta256YTJsdjUzMm1yOXU0cmxibGoifQ.JiMiONJkWdr0mVIjajIFZQ"
+        cacheDatabaseMaximalSize: (settings.mapCache)*1024*1024
+        cacheDatabaseDefaultPath: true
+
+        styleUrl: settings.mapStyle
+
+        visible: bShowMap
+
+        Item
+        {
+            id: centerButton
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.paddingSmall
+            anchors.top: parent.top
+            anchors.topMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showCenterButton && bMapMaximized
+            z: 200
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onReleased:
+                {
+                    if (bShowLockScreen)
+                        return;
+
+                    console.log("centerButton pressed");
+                    map.center = recorder.currentPosition;
                 }
             }
+            Image
+            {
+                anchors.fill: parent
+                source: "../img/map_btn_center.png"
+            }
         }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                map.gesture.enabled = !map.gesture.enabled;
-                if(map.gesture.enabled)
+        Item
+        {
+            id: minmaxButton
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.paddingSmall
+            anchors.top: parent.top
+            anchors.topMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showMinMaxButton
+            z: 200
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onReleased:
                 {
-                    //distanceLabel.opacity = 0.0;
-                    //timeLabel.opacity = 0.0;
-                    //accuracyLabel.opacity = 0.0;
-                    //page.allowedOrientations = Orientation.All;
+                    if (bShowLockScreen)
+                        return;
+
+                    console.log("minmaxButton pressed");
+                    bMapMaximized = !bMapMaximized;
                 }
-                else
+            }
+            Image
+            {
+                anchors.fill: parent
+                source: (map.height === page.height) ? "../img/map_btn_min.png" : "../img/map_btn_max.png"
+            }
+        }
+        Item
+        {
+            id: settingsButton
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.paddingSmall
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showSettingsButton
+            z: 200
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onReleased:
                 {
-                    //distanceLabel.opacity = 1.0;
-                    //timeLabel.opacity = 1.0;
-                    //accuracyLabel.opacity = 1.0;
-                    //page.allowedOrientations = Orientation.All;
+                    if (bShowLockScreen)
+                        return;
+
+                    console.log("settingsButton pressed");
+                    pageStack.push(Qt.resolvedUrl("MapSettingsPage.qml"));
                 }
-                //page.forwardNavigation = !map.gesture.enabled;
-                flickable.interactive = !map.gesture.enabled;
-                menu.visible = !map.gesture.enabled;
+            }
+            Image
+            {
+                anchors.fill: parent
+                source: "../img/map_btn_settings.png"
+            }
+        }
+
+        MapboxMapGestureArea
+        {
+            id: mouseArea
+            map: map
+            activeClickedGeo: true
+            activeDoubleClickedGeo: true
+            activePressAndHoldGeo: false
+
+            onDoubleClicked:
+            {
+                if (bShowLockScreen)
+                    return;
+
+                //console.log("onDoubleClicked: " + mouse)
+                map.setZoomLevel(map.zoomLevel + 1, Qt.point(mouse.x, mouse.y) );
+            }
+            onDoubleClickedGeo:
+            {
+                if (bShowLockScreen)
+                    return;
+
+                //console.log("onDoubleClickedGeo: " + geocoordinate);
+                map.center = geocoordinate;
             }
         }
     }
+
     Component
     {
         id: id_Dialog_ChooseValue
 
-
         Dialog
         {
+            id: diagDialog
             width: parent.width
+            height: parent.height
             canAccept: true
             acceptDestination: page
-            acceptDestinationAction: PageStackAction.Pop
+            acceptDestinationAction: PageStackAction.Pop            
 
-            Column
+            DialogHeader
             {
-                width: parent.width
+                id: diagTitle
+                title: qsTr("Select value!")
+                defaultAcceptText: qsTr("Accept")
+                defaultCancelText: qsTr("Cancel")
+            }
 
-                DialogHeader
+            SilicaListView
+            {
+                id: listView
+                anchors.top: diagTitle.bottom
+                anchors.bottom: diagDialog.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                //header: PageHeader {}
+                model: RecordPageDisplay.arrayValueTypes;
+
+                //TODO: scrappy thing does not work, no idea :-((
+                VerticalScrollDecorator {}
+
+                delegate: ListItem
                 {
-                    title: qsTr("Select value!")
-                    defaultAcceptText: qsTr("Accept")
-                    defaultCancelText: qsTr("Cancel")
-                }
-
-                SilicaListView
-                {
-                    id: listView
-                    width: parent.width
-                    height: contentItem.childrenRect.height
-                    //header: PageHeader {}
-                    model: RecordPageDisplay.arrayValueTypes;
-
-                    delegate: ListItem
+                    width: listView.width
+                    Label
                     {
-                        width: listView.width                        
-                        Label
-                        {
-                            id: idLBLValueName
-                            text: modelData.header
-                            //color: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index) ? Theme.highlightColor : Theme.primaryColor
-                            anchors.verticalCenter: parent.verticalCenter
-                            x: Theme.paddingLarge
-                        }
-                        GlassItem //this is the item for the old value field
-                        {
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: (iSelectedValue === -1 || iSelectedValue === modelData.index) ? "green" : "grey"
-                            falloffRadius: 0.15
-                            radius: 1.0
-                            cache: false
-                            visible: (iSelectedValue !== modelData.index && (RecordPageDisplay.fncGetIndexByFieldID(iValueFieldPressed) === modelData.index))
-                        }
-                        GlassItem //this is the item for the currently selected value field
-                        {
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: "green"
-                            falloffRadius: 0.15
-                            radius: 1.0
-                            cache: false
-                            visible: (iSelectedValue !== -1 && iSelectedValue === modelData.index)
-                        }                        
-
-                        onClicked:
-                        {
-                            console.log("Clicked index: " + modelData.index.toString());
-                            iSelectedValue = modelData.index;
-                        }
+                        id: idLBLValueName
+                        text: modelData.header
+                        //color: (iValueFieldPressed === modelData.fieldID || iSelectedValue === modelData.index) ? Theme.highlightColor : Theme.primaryColor
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: Theme.paddingLarge
+                    }
+                    GlassItem //this is the item for the old value field
+                    {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: (iSelectedValue === -1 || iSelectedValue === modelData.index) ? "green" : "grey"
+                        falloffRadius: 0.15
+                        radius: 1.0
+                        cache: false
+                        visible: (iSelectedValue !== modelData.index && (RecordPageDisplay.fncGetIndexByFieldID(iValueFieldPressed) === modelData.index))
+                    }
+                    GlassItem //this is the item for the currently selected value field
+                    {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "green"
+                        falloffRadius: 0.15
+                        radius: 1.0
+                        cache: false
+                        visible: (iSelectedValue !== -1 && iSelectedValue === modelData.index)
                     }
 
+                    onClicked:
+                    {
+                        console.log("Clicked index: " + modelData.index.toString());
+                        iSelectedValue = modelData.index;
+                    }
                 }
+
             }
         }
     }

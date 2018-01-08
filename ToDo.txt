@@ -1,37 +1,40 @@
-ToDo for next release to openrepos:
-
-1.) GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.
-1.) there is a bug with pause function. Time is runnning further. Must be debugged in live mode.
-2.) add new featuer: autopause
-
-- set release date to .changes file														
-- compile with translation generation and complete translation to german language		
-- set new version number to yaml and spec files											
-- clean project and compile on release														
+---- ToDo for next release to openrepos: 0.9.8 -----
 
 
+	
 
-ToDo for second next release to openrepos:
+Do not forget:
+- set changelog and release date to .changes file							-> OK																
+- compile with translations and complete translation to german language		-> OK							
+- set new version number to yaml and spec files								-> OK
+- clean project and compile on release for arm and 486						-> OK													
 
-- Edit workout and save to GPX
-- add buttons to map
-	- center position
-	- switch between center position/center track mode
-- add icons to map (start/stop/pause)
-- add over/below average speed, average pace and average heart rate to record page
-- introduce configurable lock page (LCD mode, AMOLED mode)
-- event voice announcements	
-	- GPS online/offline
-	- start, stop, pause, resume workout
-	- ...
+
+
+
+
+----- ToDo for second next release to openrepos: 0.9.9 -----
+- add min/max elevation to detailspage/trackloader
+- add max pace to detailspage/trackloader
+- meerun imports have no max. speed
+- fix elevation up/down bad values
+- look into old map tiles folder and delete files there. Ask user!
+- map on record page: zoom into map automatically. Save and restore last zoom setting.
+- pebble: if speed is choosen for third field, set unit to speed. Same with pace.
+- add new feature: autopause if speed goes below certain threshold
+- start page: select pace/speed
+- add icons for indicating over/below average speed, average pace and average heart rate to record page
+- introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
 - cyclic voice announcements	
 	- every 0,5-10 km
 	- maximum three parameters
 	- distance, speed, pace, HR
+- add leading 0 to values on recordpage
 
 
 
-ToDo on the long run:
+
+----- Other planned features for the far future: -----
 - check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
 - implement workout comparison. Compare current workout with virtual workout in the past
 - AM/PM mode for recordpage
@@ -56,7 +59,7 @@ ToDo on the long run:
 		- current, minimum, maximum height (gps)
 		- up/down travelled height
 		- energy kcal
-		- average speed/tempo -> OK
+		- average speed/tempo 
 		- speed/tempo of last 100m/1km
 		- top speed/tempo
 		- average, minimum, maximum heart rate 
@@ -69,7 +72,7 @@ ToDo on the long run:
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
 - support workouts without gps e.g. indoor activities
-- choose metrics, km/miles
+
 - new workout icons
 - pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
 - use scout server as map tile provider (waiting for Jolla: https://talk.maemo.org/showpost.php?p=1528801&postcount=257)
@@ -79,6 +82,9 @@ ToDo on the long run:
 
 
 Bugs:
+- on the map in recordpage there are stragne horizontal lines coming from tracklines
+- strange bug in recordpage when opening the values select menu: [W] unknown:38 - file:///usr/lib/qt5/qml/Sailfish/Silica/private/Util.js:38: TypeError: Cannot read property 'parent' of null
+- there are strange files in the ~/Laufhelden folder, e.g. "running-Di. Nov. 7 16:00:36 2017-7.5km.gpx.wZ8116" or "running-Mi. Nov. 8 15:46:48 2017-0.5km.gpx.M27425"
 - sometimes there is a view problem on mainpage after a completed workout.
 - if HRM is active and record page is left and then opened again, we get a BT error.
 - after bt scan and finding new HRM device, not able to connect. First need to restart app.
@@ -91,6 +97,45 @@ Bugs:
 
 
 Completed:
+- current point on record page needs workover							
+- no tracks on record page							
+- scale bar on map needs imperial units									
+- imperial units for record page										
+- imperial units for start page											
+- imperial units for cover page											
+- add settigs: event voice announcements								
+- fix map bug in horizontal mode										
+- event voice announcements	
+	- positioning online/offline										
+	- start, stop, pause, resume workout								
+- #define SERVER_INTERFACE "org.rockwork.Pebble" is double				
+- fixed a bug: mediaplayer pause/resume was not working
+- add Pebble support:
+	- new setting: use Pebble yes/no				
+	- new setting: choose value for fields on pebble
+	- add settings page:
+		- check if rockpool is there in the right version?	
+		- toggle Pebble support ON/OFF						
+		- choose value for fields							
+		- view if pebble is connected and model and BT address	
+		- test button to launch/close sport app					
+	- add warning to prerecord page if pebble is not connected	
+	- launch sport app on prerecord page, close it on main page	
+	- on record page set values to pebble						
+	- on pebble button press, pause/resume workout				
+- edit workout (name/description/workout type) and save to GPX	
+- add icons to map in trackloader (start/stop/pause)														
+- add icons to map in trackrecorder (start/stop/pause)														
+- add pause duration to detailpage																			
+- add new parameter for record page: pause duration															
+- add skiing to workout types																				
+- GPX from meerun is not imported correctly, that is a bug in meerun										
+- While recording and leaving and returning to recordpage, track and track icons are screwed				
+- GPS starts with app start. Make it start with prerecordpage. This is related to the pause problem.		
+- there is a bug with pause function. Time is runnning further. Must be debugged in live mode.				
+- if an autosave is loaded, it is on stop and can not be resumed further									
+- repair verticalscrolldecorator in change value dialog on recordage										
+- write values to screen after restoring autosave															
 - place map settings on new settings page
 - when map is shown, make field 5&6 invisible
 - Mainpage and PreRecordpage need horizontal layout lock function

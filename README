@@ -14,11 +14,14 @@ This application orginates from a fork of Rena by Simoma: https://github.com/Sim
 
 Credits go to:
 - Messagebox: Kimmo Lindholm, https://github.com/kimmoli/paint/blob/master/qml/components/Messagebox.qml
+- Localization: Caballlero, atlochowski, eson57, niemisenjussi
+- Sports-Tracker support: niemisenjussi
+- Strava support: piggz
 
 Workout icons are from here: https://de.icons8.com/ They are under this license: https://creativecommons.org/licenses/by-nd/3.0/
 
 License: GNU General Public License (GNU GPLv3)
 
-Copyright 2017 Jens Drescher
+Copyright 2017-2018 Jens Drescher
 
 If you like, you can donate for this project (it might boost my motivation a little bit ;-)): https://www.paypal.me/JensDrescher

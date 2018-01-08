@@ -31,11 +31,14 @@ class TrackRecorder : public QObject
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
     Q_PROPERTY(QString paceStr READ paceStr NOTIFY paceChanged)
+    Q_PROPERTY(QString paceImperialStr READ paceImperialStr NOTIFY paceChanged)
     Q_PROPERTY(qreal speedaverage READ speedaverage NOTIFY speedaverageChanged)
     Q_PROPERTY(qreal paceaverage READ paceaverage NOTIFY paceaverageChanged)
     Q_PROPERTY(qreal heartrateaverage READ heartrateaverage NOTIFY heartrateaverageChanged)
+    Q_PROPERTY(QString paceaverageImperialStr READ paceaverageImperialStr NOTIFY paceaverageChanged)
     Q_PROPERTY(QString paceaverageStr READ paceaverageStr NOTIFY paceaverageChanged)
-    Q_PROPERTY(QString time READ time NOTIFY timeChanged)
+    Q_PROPERTY(QString time READ time NOTIFY timeChanged)    
+    Q_PROPERTY(QString pebbleTime READ pebbleTime NOTIFY pebbleTimeChanged)
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY isEmptyChanged)
     Q_PROPERTY(QGeoCoordinate currentPosition READ currentPosition NOTIFY currentPositionChanged)
     Q_PROPERTY(int updateInterval READ updateInterval WRITE setUpdateInterval NOTIFY updateIntervalChanged)
@@ -43,10 +46,14 @@ class TrackRecorder : public QObject
     Q_PROPERTY(QString startingDateTime READ startingDateTime)
     Q_PROPERTY(double altitude READ altitude NOTIFY valuesChanged)
     Q_PROPERTY(bool pause READ pause WRITE setPause NOTIFY pauseChanged)
+    Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
+    Q_PROPERTY(QString pauseTime READ pauseTime NOTIFY pauseTimeChanged)
+    Q_PROPERTY(QString pebblePauseTime READ pebblePauseTime NOTIFY pauseTimeChanged)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);
     ~TrackRecorder();
+    Q_INVOKABLE bool writeStGpxToFile(QString gpxcontent, QString filename, QString desc, QString sTkey, QString activity);
     Q_INVOKABLE void exportGpx(QString name="", QString desc="");
     Q_INVOKABLE void clearTrack();
     Q_INVOKABLE void vSetCurrentHeartRate(uint heartRate);
@@ -59,11 +66,16 @@ public:
     qreal speed() const;
     qreal pace() const;
     QString paceStr() const;
+    QString paceImperialStr() const;
     qreal speedaverage() const;
     qreal paceaverage() const;
     qreal heartrateaverage() const;
     QString paceaverageStr() const;
-    QString time() const;   
+    QString paceaverageImperialStr() const;
+    QString time() const;
+    QString pebbleTime() const;
+    QString pebblePauseTime() const;
+    QString pauseTime() const;
     bool isEmpty() const;
     QGeoCoordinate currentPosition() const;
     int updateInterval() const;
@@ -73,8 +85,12 @@ public:
     QString startingDateTime() const;
     double altitude() const;
     bool pause() const;
+    bool running() const;
+    void setPause(bool pause);
+    void setRunning(bool running);
 
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
+    Q_INVOKABLE bool pausePointAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);
@@ -90,12 +106,15 @@ signals:
     void paceaverageChanged();
     void heartrateaverageChanged();
     void timeChanged();    
+    void pebbleTimeChanged();
     void isEmptyChanged();
-    void currentPositionChanged();
+    void currentPositionChanged(QGeoCoordinate coordinate);
     void updateIntervalChanged();
     void valuesChanged();
-    void newTrackPoint(QGeoCoordinate coordinate);
+    void newTrackPoint(QGeoCoordinate coordinate, int iPointIndex);
     void pauseChanged();
+    void runningChanged();
+    void pauseTimeChanged();
 
 public slots:
     void positionUpdated(const QGeoPositionInfo &newPos);
@@ -129,6 +148,8 @@ private:
     QString sWorkoutType;
     double m_altitude;
     bool m_pause;
+    bool m_running;
+    quint32 m_PauseDuration;
     };
 
 #endif // TRACKRECORDER_H

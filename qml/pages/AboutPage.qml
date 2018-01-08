@@ -99,7 +99,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: "Copyright \u00A9 2017 Jens Drescher, Germany"
+                text: qsTr("Copyright") + " \u00A9 2017 Jens Drescher, " + qsTr("Germany")
             }
             Label
             {
@@ -113,7 +113,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Date: ") + "31.10.2017";
+                text: qsTr("Date: ") + "05.01.2018";
             }
             Label
             {
@@ -121,6 +121,68 @@ Page
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
                 text: qsTr("License: GPLv3")
+            }            
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                text: qsTr("Credits for localization:")
+            }
+            Label
+            {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                text: qsTr("Spanish") + " - Caballlero<br>" + qsTr("Polish") + " - atlochowski<br>" + qsTr("Swedish") + " - eson57<br>" + qsTr("Finnish") + " - niemisenjussi"
+            }            
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                text: qsTr("Credits for code contribution:")
+            }
+            Label
+            {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                text: "niemisenjussi<br>piggz"
+            }            
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                text: qsTr("If you like this app you can donate for it:")
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                property string urlstring: "https://www.paypal.me/JensDrescher"
+                text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
+                onLinkActivated: Qt.openUrlExternally(link)
             }
             Item
             {
@@ -141,27 +203,6 @@ Page
                 property string urlstring: "https://github.com/jdrescher2006/Laufhelden"
                 text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
                 onLinkActivated: Qt.openUrlExternally(link)
-            }
-            Item
-            {
-                width: parent.width
-                height: Theme.paddingLarge
-            }
-            Label
-            {
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
-                text: qsTr("Credits for localization:")
-            }
-            Label
-            {
-                width: parent.width
-                wrapMode: Text.WordWrap
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
-                text: qsTr("Spanish") + " - Caballlero, " + qsTr("Polish") + " - atlochowski, " + qsTr("Swedish") + " - eson57"
             }
             Item
             {

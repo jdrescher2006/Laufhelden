@@ -1,3 +1,35 @@
+* Fri Jan 05 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.8-9
+- new map plugin MapBox
+    - allows offline maps via OSM Scout Server
+    - double tap to zoom in on tap position
+    - vertical lines bug should be fixed
+    - different map styles in online mode
+    - open-gl acceleration
+    - linear map zoom
+- added new feature/settings: imperial units
+- complete rework of app cover, values can now be selected
+- added lock screen dialog with 3 values (same values as on app cover)
+- added voice output for events (pause/resume, start/stop, positioning online/offline)
+- automatic night mode is now enabled in darker conditions
+- added support for uploading to Strava (thanks to @piggz)
+- fixed a few bugs
+
+* Wed Dec 19 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.7-8
+- added new feature/settings: Pebble smartwatch support
+- added new feature: edit workout name/description/type
+- fixed a bug: mediaplayer pause/resume was not working
+- optimizations for sports-tracker.com (thanks to @niemisenjussi)
+
+* Thu Nov 16 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.6-7
+- fixed many bugs in pause function
+- new value for record page: pause duration
+- added map icons (start, stop, pause)
+- added skiing as new workout type
+- positioning starts now on recordpage (not on start of app)
+- workouts can be uploaded to sports-tracker.com (thanks to @niemisenjussi)
+- added finnish translation (thanks to @niemisenjussi)
+- some bugfixes
+
 * Tue Oct 31 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.5-6
 - Startpage and PreRecordpage will also stay in portrait mode if selected in settings
 - if workout is not started and map is in full screen mode, scrolling left on map is now working properly

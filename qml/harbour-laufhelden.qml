@@ -47,6 +47,14 @@ ApplicationWindow
     property int iVibrationCounter: 0       //this is used for the vibration function
     property bool bPlayerWasPlaying: false     //this is used if playing music needs to be resumed after audio output
 
+    //*** Pebble Start ***
+    property bool bPebbleConnected: false
+    property bool bPebbleSportAppRequired: false
+    property string sPebblePath: ""
+    property string sPebbleNameAddress: ""
+    //*** Pebble End ***   
+
+    property real rLastAccuracy: -1
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }
@@ -56,10 +64,74 @@ ApplicationWindow
     Settings{ id: settings }
     PlotWidget{ id: id_PlotWidget }
     Light{ id: id_Light }
+    PebbleManagerComm{ id: id_PebbleManagerComm }
+    PebbleWatchComm{ id: id_PebbleWatchComm }
     TrackRecorder
     {
         id: recorder        
         updateInterval: settings.updateInterval
+
+        onPauseChanged:
+        {
+            if (!settings.voicePauseContinueWorkout)
+                return;
+
+            var sVoiceLanguage = "_en_male.wav";
+            //check voice language and generate last part of audio filename
+            if (settings.voiceLanguage === 0)        //english male
+                sVoiceLanguage = "_en_male.wav";
+            else if (settings.voiceLanguage === 1)   //german male
+                sVoiceLanguage = "_de_male.wav";
+
+
+            if (pause)
+                fncPlaySound("audio/break_workout" + sVoiceLanguage);
+            else
+                fncPlaySound("audio/continue_workout" + sVoiceLanguage);
+        }
+
+        onRunningChanged:
+        {
+            if (!settings.voiceStartEndWorkout)
+                return;
+
+            var sVoiceLanguage = "_en_male.wav";
+            //check voice language and generate last part of audio filename
+            if (settings.voiceLanguage === 0)        //english male
+                sVoiceLanguage = "_en_male.wav";
+            else if (settings.voiceLanguage === 1)   //german male
+                sVoiceLanguage = "_de_male.wav";
+
+
+            if (running)
+                fncPlaySound("audio/start_workout" + sVoiceLanguage);
+            else
+                fncPlaySound("audio/end_workout" + sVoiceLanguage);
+        }
+
+        onAccuracyChanged:
+        {
+            if (!settings.voiceGPSConnectLost)
+                return;
+
+            var sVoiceLanguage = "_en_male.wav";
+            //check voice language and generate last part of audio filename
+            if (settings.voiceLanguage === 0)        //english male
+                sVoiceLanguage = "_en_male.wav";
+            else if (settings.voiceLanguage === 1)   //german male
+                sVoiceLanguage = "_de_male.wav";
+
+            if (accuracy < 30 && accuracy !== -1 && (rLastAccuracy >= 30 || rLastAccuracy === -1))
+            {
+                fncPlaySound("audio/gps_connected" + sVoiceLanguage);
+            }
+            if ((accuracy >= 30 || accuracy === -1) && rLastAccuracy < 30 && rLastAccuracy !== -1)
+            {
+                fncPlaySound("audio/gps_disconnected" + sVoiceLanguage);
+            }
+
+            rLastAccuracy = accuracy;
+        }
     }
 
     //These are connections to c++ events
@@ -343,6 +415,11 @@ ApplicationWindow
        id: mediaPlayerControl
     }
 
+    PebbleComm
+    {
+        id: pebbleComm
+    }
+
     Media.SoundEffect
     {
         id: playSoundEffect
@@ -372,7 +449,7 @@ ApplicationWindow
         playSoundEffect.source = sFile;
         playSoundEffect.play();
     }
-
+         
     initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All

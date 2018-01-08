@@ -109,14 +109,6 @@ void Settings::setDisplayMode(int displayMode)
 {
     m_settings->setValue("recordsettings/displayMode", displayMode);
 }
-int Settings::voiceLanguage() const
-{
-    return m_settings->value("generalsettings/voiceLanguage", 0).toInt();
-}
-void Settings::setVoiceLanguage(int voiceLanguage)
-{
-    m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
-}
 bool Settings::showBorderLines() const
 {
     return m_settings->value("generalsettings/showBorderLines", true).toBool();
@@ -165,4 +157,139 @@ bool Settings::mapShowOnly4Fields() const
 void Settings::setmapShowOnly4Fields(bool mapShowOnly4Fields)
 {
      m_settings->setValue("mapsettings/mapShowOnly4Fields", mapShowOnly4Fields);
+}
+
+QString Settings::valueCoverFields() const
+{
+    return m_settings->value("generalsettings/valueCoverFields", "10,8,3").toString();
+}
+void Settings::setValueCoverFields(QString valueCoverFields)
+{
+    m_settings->setValue("generalsettings/valueCoverFields", valueCoverFields);
+}
+
+bool Settings::enablePebble() const
+{
+    return m_settings->value("pebblesettings/enablePebble", false).toBool();
+}
+void Settings::setEnablePebble(bool enablePebble)
+{
+     m_settings->setValue("pebblesettings/enablePebble", enablePebble);
+}
+QString Settings::valuePebbleFields() const
+{
+    return m_settings->value("pebblesettings/valuePebbleFields", "10,8,3").toString();
+}
+void Settings::setValuePebbleFields(QString valuePebbleFields)
+{
+    m_settings->setValue("pebblesettings/valuePebbleFields", valuePebbleFields);
+}
+
+QString Settings::mapStyle() const
+{
+    return m_settings->value("mapsettings/mapStyle", "mapbox://styles/mapbox/outdoors-v10").toString();
+}
+void Settings::setMapStyle(QString mapStyle)
+{
+    m_settings->setValue("mapsettings/mapStyle", mapStyle);
+}
+
+int Settings::mapCache() const
+{
+    return m_settings->value("mapsettings/mapCache", 50).toInt();
+}
+void Settings::setMapCache(int mapCache)
+{
+    m_settings->setValue("mapsettings/mapCache", mapCache);
+}
+int Settings::measureSystem() const
+{
+    return m_settings->value("generalsettings/measureSystem", 0).toInt();
+}
+void Settings::setMeasureSystem(int measureSystem)
+{
+    m_settings->setValue("generalsettings/measureSystem", measureSystem);
+}
+
+//Voice output
+int Settings::voiceLanguage() const
+{
+    return m_settings->value("generalsettings/voiceLanguage", 0).toInt();
+}
+void Settings::setVoiceLanguage(int voiceLanguage)
+{
+    m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
+}
+bool Settings::voiceStartEndWorkout() const
+{
+    return m_settings->value("generalsettings/voiceStartEndWorkout", true).toBool();
+}
+void Settings::setVoiceStartEndWorkout(bool voiceStartEndWorkout)
+{
+     m_settings->setValue("generalsettings/voiceStartEndWorkout", voiceStartEndWorkout);
+}
+bool Settings::voicePauseContinueWorkout() const
+{
+    return m_settings->value("generalsettings/voicePauseContinueWorkout", true).toBool();
+}
+void Settings::setVoicePauseContinueWorkout(bool voicePauseContinueWorkout)
+{
+     m_settings->setValue("generalsettings/voicePauseContinueWorkout", voicePauseContinueWorkout);
+}
+bool Settings::voiceGPSConnectLost() const
+{
+    return m_settings->value("generalsettings/voiceGPSConnectLost", true).toBool();
+}
+void Settings::setVoiceGPSConnectLost(bool voiceGPSConnectLost)
+{
+     m_settings->setValue("generalsettings/voiceGPSConnectLost", voiceGPSConnectLost);
+}
+
+//Sports-Tracker.com Sharing functions
+void Settings::setStUsername(QString username)
+{
+    return m_settings->setValue("sportstracker/username", username);
+}
+QString Settings::stUsername() const
+{
+    return m_settings->value("sportstracker/username").toString();
+}
+
+void Settings::setStPassword(QString password)
+{
+    return m_settings->setValue("sportstracker/password", password);
+}
+QString Settings::stPassword() const
+{
+    return m_settings->value("sportstracker/password").toString();
+}
+
+void Settings::setStAutoUpload(bool stAutoUpload)
+{
+     m_settings->setValue("sportstracker/autoupload", stAutoUpload);
+}
+
+bool Settings::stAutoUpload() const
+{
+    return m_settings->value("sportstracker/autoupload", true).toBool();
+}
+
+void Settings::setStSharing(int stSharing)
+{
+     m_settings->setValue("sportstracker/sharing", stSharing);
+}
+
+int Settings::stSharing() const
+{
+    return m_settings->value("sportstracker/sharing", 0).toInt(); //Defaults Private option = 0
+}
+
+void Settings::setStSessionkey(QString key)
+{
+    return m_settings->setValue("sportstracker/sessionkey", key);
+}
+
+QString Settings::stSessionkey() const
+{
+    return m_settings->value("sportstracker/sessionkey").toString();
 }

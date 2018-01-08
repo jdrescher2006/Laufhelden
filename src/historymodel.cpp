@@ -41,6 +41,8 @@ TrackItem loadTrack(TrackItem track) {
     data.duration = loader.duration();
     data.distance = loader.distance();
     data.speed = loader.speed();
+    data.description = loader.description();
+    data.stKey = loader.sTworkoutKey(); //Sports-Tracker workoutkey
     return data;
 }
 
@@ -72,6 +74,7 @@ QHash<int, QByteArray> HistoryModel::roleNames() const {
     roles[DurationRole] = "duration";
     roles[DistanceRole] = "distance";
     roles[SpeedRole] = "speed";
+    roles[DescriptionRole] = "description";
 
     return roles;
 }
@@ -90,6 +93,13 @@ int HistoryModel::iDuration()
 {
     return this->iWorkoutDuration;
 
+}
+
+QString HistoryModel::getSportsTrackerKey(const int index) const{
+    if (index > 0 && index < m_trackList.length()){
+        return m_trackList.at(index).stKey;
+    }
+    return "";
 }
 
 QVariant HistoryModel::data(const QModelIndex &index, int role) const {
@@ -146,16 +156,25 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const {
     if(role == DistanceRole) {
         if(!m_trackList.at(index.row()).ready) {
             // Data not loaded yet
-            return QString("-km");
+            return qreal(0);
         }
-        return QString("%1km").arg(m_trackList.at(index.row()).distance / 1000, 0, 'f', 1);
+        //return QString("%1km").arg(m_trackList.at(index.row()).distance / 1000, 0, 'f', 1);
+        return m_trackList.at(index.row()).distance;
     }
     if(role == SpeedRole) {
         if(!m_trackList.at(index.row()).ready) {
             // Data not loaded yet
-            return QString("-km/h");
+            return qreal(0);
         }
-        return QString("%1km/h").arg(m_trackList.at(index.row()).speed * 3.6, 0, 'f', 1);
+        //return QString("%1km/h").arg(m_trackList.at(index.row()).speed * 3.6, 0, 'f', 1);
+        return (m_trackList.at(index.row()).speed * 3.6);
+    }
+    if(role == DescriptionRole) {
+        if(!m_trackList.at(index.row()).ready) {
+            // Data not loaded yet
+            return QString("-");
+        }
+        return m_trackList.at(index.row()).description;
     }
     return QVariant();
 }
@@ -246,6 +265,17 @@ void HistoryModel::readDirectory() {
     dir.setNameFilters(QStringList("*.gpx"));
     QStringList entries = dir.entryList();
 
+    //Check if amount of files is greater than list of already loaded files.
+    if (entries.size() > m_trackList.length())
+    {
+        //There are now more files than before. Keep array of loaded files in memory.
+    }
+    else
+    {
+        //Clear array of loaded files.
+        this->m_trackList.clear();
+    }
+
     emit this->sigAmountGPXFiles(entries.size());
 
     for(int i=0;i<entries.size();i++)
@@ -269,6 +299,7 @@ void HistoryModel::readDirectory() {
         if (bAlreadyHaveItem)
             continue;
 
+
         TrackItem item;
         item.id = i;
         item.filename = entries.at(i);
@@ -279,6 +310,7 @@ void HistoryModel::readDirectory() {
         item.duration = 0;
         item.distance = 0;
         item.speed = 0;
+        item.description = "";
 
         m_trackList.append(item);
     }

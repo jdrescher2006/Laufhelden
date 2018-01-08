@@ -4,22 +4,6 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <source>License: GPLv3</source>
-        <translation>Lizenz: GPLv3</translation>
-    </message>
-    <message>
-        <source>Source code:</source>
-        <translation>Quellcode:</translation>
-    </message>
-    <message>
-        <source>Date: </source>
-        <translation>Datum: </translation>
-    </message>
-    <message>
-        <source>Feedback, bugs:</source>
-        <translation>Feedback, Probleme:</translation>
-    </message>
-    <message>
         <source>About Laufhelden</source>
         <translation>Über Laufhelden</translation>
     </message>
@@ -28,8 +12,28 @@
         <translation>Sport Tracker App für Sailfish OS</translation>
     </message>
     <message>
+        <source>Copyright</source>
+        <translation>Copyright</translation>
+    </message>
+    <message>
+        <source>Germany</source>
+        <translation>Deutschland</translation>
+    </message>
+    <message>
+        <source>Date: </source>
+        <translation>Datum: </translation>
+    </message>
+    <message>
+        <source>License: GPLv3</source>
+        <translation>Lizenz: GPLv3</translation>
+    </message>
+    <message>
+        <source>Source code:</source>
+        <translation>Quellcode:</translation>
+    </message>
+    <message>
         <source>Credits for localization:</source>
-        <translation>Danke für die Übersetzung geht an:</translation>
+        <translation>Dank für die Übersetzung geht an:</translation>
     </message>
     <message>
         <source>Spanish</source>
@@ -42,6 +46,22 @@
     <message>
         <source>Swedish</source>
         <translation>Schwedisch</translation>
+    </message>
+    <message>
+        <source>Feedback, bugs:</source>
+        <translation>Feedback, Probleme:</translation>
+    </message>
+    <message>
+        <source>Finnish</source>
+        <translation>Finnisch</translation>
+    </message>
+    <message>
+        <source>Credits for code contribution:</source>
+        <translation>Credits für Beiträge zur Entwicklung:</translation>
+    </message>
+    <message>
+        <source>If you like this app you can donate for it:</source>
+        <translation>Wenn Sie diese App mögen, können Sie dafür spenden:</translation>
     </message>
 </context>
 <context>
@@ -106,12 +126,47 @@
         <translation>Angehalten</translation>
     </message>
     <message>
-        <source> bpm</source>
-        <translation> bpm</translation>
+        <source>Paused</source>
+        <translation>Pausiert</translation>
+    </message>
+</context>
+<context>
+    <name>CoverSettingsPage</name>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation>Dieser Wert ist bereits zugewiesen!</translation>
+    </message>
+    <message>
+        <source>First field:</source>
+        <translation>Erstes Feld:</translation>
+    </message>
+    <message>
+        <source>Second field:</source>
+        <translation>Zweites Feld:</translation>
+    </message>
+    <message>
+        <source>Third field:</source>
+        <translation>Drittes Feld:</translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation>App-Cover Einstellungen</translation>
+    </message>
+    <message>
+        <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
+        <translation>Wählen Sie die Werte für das App-Cover. Diese Werte werden auch für den Sperrbildschirm verwendet.</translation>
     </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation>Diagramme</translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation>Beschreibung:</translation>
+    </message>
     <message>
         <source>Starting time:</source>
         <translation>Startzeit:</translation>
@@ -123,10 +178,6 @@
     <message>
         <source>Distance:</source>
         <translation>Distanz:</translation>
-    </message>
-    <message>
-        <source>Description:</source>
-        <translation>Beschreibung:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
@@ -141,8 +192,44 @@
         <translation>Herzfrequenz min/max/⌀:</translation>
     </message>
     <message>
-        <source>Diagrams</source>
-        <translation>Diagramme</translation>
+        <source>Pause number/duration:</source>
+        <translation>Pausen/Pausendauer:</translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation>Senden an Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Logging in...</source>
+        <translation>Einloggen...</translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
+        <translation>Hochladen...</translation>
+    </message>
+    <message>
+        <source>Edit workout</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation>Aktivität:</translation>
+    </message>
+    <message>
+        <source>Elevation up/down:</source>
+        <translation>Höhe hoch/runter:</translation>
+    </message>
+    <message>
+        <source>Send to Strava</source>
+        <translation>Auf Strava hochladen</translation>
     </message>
 </context>
 <context>
@@ -150,6 +237,41 @@
     <message>
         <source>Diagrams</source>
         <translation>Diagramme</translation>
+    </message>
+</context>
+<context>
+    <name>JSTools</name>
+    <message>
+        <source>Empty</source>
+        <translation>Leeres Feld</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation>Herzfrequenz</translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation>Tempo</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>Geschwindigkeit</translation>
+    </message>
+    <message>
+        <source>Altitude</source>
+        <translation>Höhe</translation>
+    </message>
+    <message>
+        <source>Distance</source>
+        <translation>Distanz</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation>Pause</translation>
+    </message>
+    <message>
+        <source>Duration</source>
+        <translation>Dauer</translation>
     </message>
 </context>
 <context>
@@ -202,6 +324,22 @@
         <source>Resume</source>
         <translation>Fortsetzen</translation>
     </message>
+    <message>
+        <source>Edit workout</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation>Training:</translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -228,6 +366,136 @@
     <message>
         <source>Center track on map</source>
         <translation>Track auf der Karte zentrieren</translation>
+    </message>
+    <message>
+        <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
+        <translation>Diese Einstellung wird erst nach Neustart der App übernommen.</translation>
+    </message>
+    <message>
+        <source>Cache size</source>
+        <translation>Cache Grösse</translation>
+    </message>
+    <message>
+        <source>Choose map style.</source>
+        <translation>Kartenstil wählen.</translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation>Karte</translation>
+    </message>
+    <message>
+        <source>Streets</source>
+        <translation>Strassen</translation>
+    </message>
+    <message>
+        <source>Outdoors</source>
+        <translation>Outdoor/Gelände</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Hell</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Dunkel</translation>
+    </message>
+    <message>
+        <source>Satellite</source>
+        <translation>Satellit</translation>
+    </message>
+    <message>
+        <source>Satellite Streets</source>
+        <translation>Satellit mit Strassen</translation>
+    </message>
+    <message>
+        <source>OSM Scout Server</source>
+        <translation>OSM Scout Server</translation>
+    </message>
+</context>
+<context>
+    <name>PebbleComm</name>
+    <message>
+        <source>Pebble connected</source>
+        <translation>Pebble Verbunden</translation>
+    </message>
+    <message>
+        <source>Pebble disconnected</source>
+        <translation>Pebble Getrennt</translation>
+    </message>
+</context>
+<context>
+    <name>PebbleSettingsPage</name>
+    <message>
+        <source>set metric units</source>
+        <translation>Metrische Einheiten</translation>
+    </message>
+    <message>
+        <source>sending data 1</source>
+        <translation>Sende Daten 1</translation>
+    </message>
+    <message>
+        <source>sending data 2</source>
+        <translation>Sende Daten 2</translation>
+    </message>
+    <message>
+        <source>sending data 3</source>
+        <translation>Sende Daten 3</translation>
+    </message>
+    <message>
+        <source>closing sport app</source>
+        <translation>Schliesse Sport App</translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation>Pebble Einstellungen</translation>
+    </message>
+    <message>
+        <source>Test Pebble</source>
+        <translation>Test</translation>
+    </message>
+    <message>
+        <source>starting sport app</source>
+        <translation>Starte Sport App</translation>
+    </message>
+    <message>
+        <source>Connected:</source>
+        <translation>Verbunden:</translation>
+    </message>
+    <message>
+        <source>Enable Pebble support</source>
+        <translation>Pebble Ausgabe</translation>
+    </message>
+    <message>
+        <source>1 DURATION field:</source>
+        <translation>1 DURATION Feld</translation>
+    </message>
+    <message>
+        <source>2 DISTANCE field:</source>
+        <translation>1 DISTANCE Feld</translation>
+    </message>
+    <message>
+        <source>3 PACE/SPEED field:</source>
+        <translation>1 PACE/SPEED Feld</translation>
+    </message>
+    <message>
+        <source>View workout data on Pebble Smartwatch.</source>
+        <translation>Zeige Trainingsdaten auf der Pebble Smartwatch an.</translation>
+    </message>
+    <message>
+        <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
+        <translation>Keine Pebble gefunden.&lt;br&gt;Rockpool installieren und&lt;br&gt;dann Pebble verbinden!</translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation>Dieser Wert ist bereits zugewiesen!</translation>
+    </message>
+    <message>
+        <source>Choose values for Pebble fields!</source>
+        <translation>Werte für Pebble-Felder auswählen</translation>
+    </message>
+    <message>
+        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
+        <translation>Rockpool muss installiert sein&lt;br&gt;mindestens in Version 1.4-1.&lt;br&gt;Installiert ist: </translation>
     </message>
 </context>
 <context>
@@ -259,10 +527,6 @@
     <message>
         <source>Select thresholds profile</source>
         <translation>Schwellwertprofil auswählen</translation>
-    </message>
-    <message>
-        <source>GPS positioning started!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -356,6 +620,10 @@
         <translation>Ende</translation>
     </message>
     <message>
+        <source>keep tapping button: </source>
+        <translation>Weiter drücken: </translation>
+    </message>
+    <message>
         <source>Accept</source>
         <translation>Übernehmen</translation>
     </message>
@@ -365,11 +633,15 @@
     </message>
     <message>
         <source>Select value!</source>
-        <translation>Neuen Wert aussuchen!</translation>
+        <translation>Wert Auswählen!</translation>
     </message>
     <message>
-        <source>keep tapping button: </source>
-        <translation>Weiter drücken: </translation>
+        <source>Restart Pebble App</source>
+        <translation>Pebble App neu starten</translation>
+    </message>
+    <message>
+        <source>Lock screen</source>
+        <translation>Sperrbildschirm</translation>
     </message>
 </context>
 <context>
@@ -422,6 +694,26 @@
         <source>Empty</source>
         <translation>Leeres Feld</translation>
     </message>
+    <message>
+        <source>Pause</source>
+        <translation>Pause</translation>
+    </message>
+    <message>
+        <source>min/mi</source>
+        <translation>min/mi</translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation>mi/h</translation>
+    </message>
+    <message>
+        <source>ft</source>
+        <translation>ft</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
+    </message>
 </context>
 <context>
     <name>SaveDialog</name>
@@ -464,6 +756,26 @@
         <source>Map settings</source>
         <translation>Karten Einstellungen</translation>
     </message>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Pebble settings</source>
+        <translation>Pebble Einstellungen</translation>
+    </message>
+    <message>
+        <source>Voice output settings</source>
+        <translation>Sprachausgabe Einstellungen</translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation>Strava</translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation>App-Cover Einstellungen</translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -486,22 +798,6 @@
     <message>
         <source>Record page portrait mode</source>
         <translation>Aufzeichnen im Portraitmodus</translation>
-    </message>
-    <message>
-        <source>Voice language</source>
-        <translation>Sprache der Stimme</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation>Englisch Mann</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation>Deutsch Mann</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
     </message>
     <message>
         <source>Show grid lines</source>
@@ -527,6 +823,22 @@
         <source>Switch display to night mode if ambiance light is low.</source>
         <translation>Nacht-Modus einschalten bei schwachem Umgebungslicht.</translation>
     </message>
+    <message>
+        <source>Unit of measurement</source>
+        <translation>Maßeinheiten</translation>
+    </message>
+    <message>
+        <source>Metric</source>
+        <translation>Metrisch</translation>
+    </message>
+    <message>
+        <source>Imperial</source>
+        <translation>Imperial</translation>
+    </message>
+    <message>
+        <source>Note that this setting will be applied after restart of the application.</source>
+        <translation>Die Einstellung wird erst nach Neustart der App aktiviert.</translation>
+    </message>
 </context>
 <context>
     <name>SharedResources</name>
@@ -549,6 +861,225 @@
     <message>
         <source>Inline skating</source>
         <translation>Inlineskating</translation>
+    </message>
+    <message>
+        <source>Skiing</source>
+        <translation>Skifahren</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTracker</name>
+    <message>
+        <source>Oops, username or password error</source>
+        <translation>Oops, Username oder Passwort Fehler</translation>
+    </message>
+    <message>
+        <source>Some kind of error happened on GPX import</source>
+        <translation>Beim GPX-Import ist ein Fehler aufgetreten</translation>
+    </message>
+    <message>
+        <source>Workout uploaded!</source>
+        <translation>Trainingsdaten hochgeladen!</translation>
+    </message>
+    <message>
+        <source>Some kind of error happened on Saving data</source>
+        <translation>Beim Speichern ist ein Fehler aufgetreten</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerSettingsPage</name>
+    <message>
+        <source>Sports-Tracker.com settings</source>
+        <translation>Sports-Tracker.com Einstellungen</translation>
+    </message>
+    <message>
+        <source>Auto upload</source>
+        <translation>Auto. hochladen</translation>
+    </message>
+    <message>
+        <source>Send workout automatically to Sports-Tracker.com after exercise</source>
+        <translation>Nach dem Training automatisch nach Sports-Tracker.com senden</translation>
+    </message>
+    <message>
+        <source>Enter Username</source>
+        <translation>Usernamen eingeben</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Username</translation>
+    </message>
+    <message>
+        <source>Enter Password</source>
+        <translation>Passwort eingeben</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Passwort</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Default Sharing option</source>
+        <translation>Freigabeoption</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>Follower</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>Öffentlich</translation>
+    </message>
+    <message>
+        <source>Test login...</source>
+        <translation>Test Login...</translation>
+    </message>
+    <message>
+        <source>Already authenticated</source>
+        <translation>Bereits Authentifiziert</translation>
+    </message>
+    <message>
+        <source>Login success!</source>
+        <translation>Einloggen erfolgreich</translation>
+    </message>
+    <message>
+        <source>Login error, Check username or password</source>
+        <translation>Login-Fehler, Benutzername oder Passwort überprüfen</translation>
+    </message>
+    <message>
+        <source>Loading workouts...</source>
+        <translation>Lade Trainingsdaten...</translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation>von</translation>
+    </message>
+    <message>
+        <source> unique workout downloaded!</source>
+        <translation> Training heruntergeladen!</translation>
+    </message>
+    <message>
+        <source>Test login</source>
+        <translation>Test login</translation>
+    </message>
+    <message>
+        <source>Download workouts</source>
+        <translation>Trainings Herunterladen</translation>
+    </message>
+    <message>
+        <source>Maximum number to download</source>
+        <translation>Maximale Anzahl zum Herunterladen</translation>
+    </message>
+    <message>
+        <source>Downloading GPX files</source>
+        <translation>Herunterladen von GPX-Dateien</translation>
+    </message>
+    <message>
+        <source>Track write error</source>
+        <translation>Fehler beim schreiben des Tracks</translation>
+    </message>
+</context>
+<context>
+    <name>SportsTrackerUploadPage</name>
+    <message>
+        <source>Give workout description to Sports-Tracker.com</source>
+        <translation>Trainingsbeschreibung an Sports-Tracker.com senden</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Training mit anderen teilen</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Followers</source>
+        <translation>Follower</translation>
+    </message>
+    <message>
+        <source>Public</source>
+        <translation>Öffentlich</translation>
+    </message>
+</context>
+<context>
+    <name>StravaSettingsPage</name>
+    <message>
+        <source>Strava settings</source>
+        <translation>Strava Einstellungen</translation>
+    </message>
+</context>
+<context>
+    <name>StravaUploadPage</name>
+    <message>
+        <source>Activity name for Strava</source>
+        <translation>Name der Aktivität</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Activity description for Strava</source>
+        <translation>Beschreibung der Aktivität</translation>
+    </message>
+    <message>
+        <source>Activity Type</source>
+        <translation>Aktivität</translation>
+    </message>
+    <message>
+        <source>Riding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Laufen</translation>
+    </message>
+    <message>
+        <source>Swimming</source>
+        <translation>Schwimmen</translation>
+    </message>
+    <message>
+        <source>Workout</source>
+        <translation>Workout</translation>
+    </message>
+    <message>
+        <source>Walking</source>
+        <translation>Walking</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Commute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploading data...</source>
+        <translation>Daten hochladen...</translation>
+    </message>
+    <message>
+        <source>Checking upload...</source>
+        <translation>Überprüfe...</translation>
+    </message>
+    <message>
+        <source>An unknown error occurred</source>
+        <translation>Ein unbekannter Fehler ist aufgetreten</translation>
+    </message>
+    <message>
+        <source>Activity upload complete</source>
+        <translation>Hochladen abgeschlossen</translation>
     </message>
 </context>
 <context>
@@ -623,6 +1154,45 @@
     <message>
         <source>Thresholds off</source>
         <translation>Schwellwerte Aus</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>Voice output settings</source>
+        <translation>Sprachausgabe Einstellungen</translation>
+    </message>
+    <message>
+        <source>Start/end workout</source>
+        <translation>Training Start/Ende</translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation>Training Pause/Fortsetzen</translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation>GPS Verbunden/Getrennt</translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation>Sprache der Stimme</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation>Englisch Mann</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation>Deutsch Mann</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
+    </message>
+    <message>
+        <source>Voice outputs on events</source>
+        <translation>Sprachausgaben für Ereignisse</translation>
     </message>
 </context>
 </TS>

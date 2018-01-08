@@ -42,6 +42,8 @@ TrackRecorder::TrackRecorder(QObject *parent) :
     m_altitude = 0;  
     m_posSrc = NULL;
     m_pause = false;
+    m_running = false;
+    m_PauseDuration = 0;
 
     // Load autosaved track if left from previous session
     loadAutoSave();
@@ -81,6 +83,7 @@ void TrackRecorder::vStartGPS()
 {    
     if (m_posSrc != NULL)
     {
+        qDebug()<<"Starting GPS";
         m_posSrc->startUpdates();
     }
 }
@@ -89,111 +92,65 @@ void TrackRecorder::vEndGPS()
 {
     if (m_posSrc != NULL)
     {
-        m_posSrc->stopUpdates();
-        m_posSrc->disconnect();
-        m_posSrc = NULL;
+        qDebug()<<"Stopping GPS";
+        m_posSrc->stopUpdates();        
     }
 }
 
 void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 {
-    if(newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy))
+    if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy))
     {
         m_accuracy = newPos.attribute(QGeoPositionInfo::HorizontalAccuracy);
-    } else
+    }
+    else
     {
         m_accuracy = -1;
     }
     emit accuracyChanged();
 
-    m_currentPosition = newPos.coordinate();
-    emit currentPositionChanged();
+    //qDebug()<<"m_accuracy: " << QString::number(m_accuracy);
 
-    if(newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) &&
-            (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0)) {
+
+    m_currentPosition = newPos.coordinate();
+    emit currentPositionChanged(newPos.coordinate());
+
+    //If recorder is running and is paused
+    if(this->m_running == true && this->m_pause == true)
+    {
+        m_PauseDuration = m_PauseDuration + 1; //add one second (update interval)
+        emit pauseTimeChanged();
+    }
+
+
+    //Check if horizontal accuracy is enough
+    if (newPos.hasAttribute(QGeoPositionInfo::HorizontalAccuracy) == false || (newPos.attribute(QGeoPositionInfo::HorizontalAccuracy) > 30.0))
+    {
         return;
     }
 
+    //qDebug()<<"Groundspeed: " << QString::number(newPos.GroundSpeed);
 
-    m_points.append(newPos);
-
-    m_heartrate.append(this->iCurrentHeartRate);
-    m_pausearray.append(this->m_pause);
-
-    if (iCurrentHeartRate != 9999 && iCurrentHeartRate != 0)
-        m_heartrateadded = m_heartrateadded + iCurrentHeartRate;
-
-    this->iCurrentHeartRate = 9999;
-
-    emit pointsChanged();
-    emit timeChanged();
-    if(m_isEmpty) {
-        m_isEmpty = false;
-        m_minLat = m_maxLat = newPos.coordinate().latitude();
-        m_minLon = m_maxLon = newPos.coordinate().longitude();
-        emit isEmptyChanged();
-    }
-
-    if(m_points.size() > 1)
+    if(m_running)
     {
-        // Next line triggers following compiler warning?
-        // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
+        m_points.append(newPos);
+        m_heartrate.append(this->iCurrentHeartRate);
+        m_pausearray.append(this->m_pause);
 
-        //Calculate average heartrate
-        if (m_heartrate.size() > 0)
+        if (iCurrentHeartRate != 9999 && iCurrentHeartRate != 0)
+            m_heartrateadded = m_heartrateadded + iCurrentHeartRate;
+
+        this->iCurrentHeartRate = 9999;
+
+        emit pointsChanged();
+
+        if(m_isEmpty)
         {
-            m_heartrateaverage = m_heartrateadded / m_heartrate.size();
-            emit heartrateaverageChanged();
+            m_isEmpty = false;
+            m_minLat = m_maxLat = newPos.coordinate().latitude();
+            m_minLon = m_maxLon = newPos.coordinate().longitude();
+            emit isEmptyChanged();
         }
-
-        //Calculate distance in meter [m]
-        qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
-        qDebug()<<"Distance :"<<rCurrentDistance;
-        m_distance += rCurrentDistance;
-        emit distanceChanged();
-
-        //Fill distance array. Save the last few values to have a better speed/pace calculation.
-        if (m_distancearray.length() == 7)
-            m_distancearray.removeFirst();
-        m_distancearray.append(rCurrentDistance);
-
-        rCurrentDistance = 0.0;
-        //Calculate distance over the last few gps points
-        for(int i=0 ; i < m_distancearray.length(); i++)
-        {
-            rCurrentDistance += m_distancearray[i];
-        }
-        qDebug()<<"Added distance: "<<rCurrentDistance;
-        qDebug()<<"Update interval:"<<updateInterval();
-
-        //Calculate speed in [km/h]
-        m_speed = (rCurrentDistance / 1000.0) / (((updateInterval() * m_distancearray.length()) / 1000) / 3600.0);
-        qDebug()<<"Speed:"<<m_speed;
-        emit speedChanged();
-
-        //Calculate pace in [min/km]
-        m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);
-
-        qDebug()<<"Pace:"<<m_pace;
-        emit paceChanged();
-
-        //Calculate workout time
-        QDateTime first = m_points.at(0).timestamp();
-        QDateTime last = m_points.at(m_points.size()-1).timestamp();
-        qint64 iWorkoutTimeSec = first.secsTo(last);
-
-        //Calculate average speed
-        m_speedaverage = (m_distance / 1000.0) / (iWorkoutTimeSec / 3600.0);
-        qDebug()<<"AVG speed:"<<m_speedaverage;
-        emit speedaverageChanged();
-
-        //Calculate average pace
-        m_paceaverage = (iWorkoutTimeSec / 60.0) / (m_distance / 1000.0);
-        qDebug()<<"AVG pace:"<<m_paceaverage;
-        emit paceaverageChanged();
-
-        //Get altitude
-        m_altitude = newPos.coordinate().altitude();
 
         if(newPos.coordinate().latitude() < m_minLat)
         {
@@ -210,17 +167,206 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             m_maxLon = newPos.coordinate().longitude();
         }
 
-        emit valuesChanged();
-    }
-    emit newTrackPoint(newPos.coordinate());
+        emit newTrackPoint(newPos.coordinate(), m_points.size()-1);
 
+        if(m_points.size() > 1 && this->m_pause == false)
+        {
+            // Next line triggers following compiler warning?
+            // \usr\include\qt5\QtCore\qlist.h:452: warning: assuming signed overflow does not occur when assuming that (X - c) > X is always false [-Wstrict-overflow]
+
+
+            //Calculate average heartrate
+            if (m_heartrate.size() > 0)
+            {
+                m_heartrateaverage = m_heartrateadded / m_heartrate.size();
+                emit heartrateaverageChanged();
+            }
+
+            //Calculate distance in meter [m]
+            qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
+            qDebug()<<"Distance :"<<rCurrentDistance;
+            m_distance += rCurrentDistance;
+            emit distanceChanged();
+
+            //Fill distance array. Save the last few values to have a better speed/pace calculation.
+            if (m_distancearray.length() == 7)
+                m_distancearray.removeFirst();
+            m_distancearray.append(rCurrentDistance);
+
+            rCurrentDistance = 0.0;
+            //Calculate distance over the last few gps points
+            for(int i=0 ; i < m_distancearray.length(); i++)
+            {
+                rCurrentDistance += m_distancearray[i];
+            }
+            qDebug()<<"Added distance: "<<rCurrentDistance;
+            qDebug()<<"Update interval:"<<updateInterval();
+
+            //Calculate speed in [km/h]
+            m_speed = (rCurrentDistance / 1000.0) / (((updateInterval() * m_distancearray.length()) / 1000) / 3600.0);
+            qDebug()<<"Speed:"<<m_speed;
+            emit speedChanged();
+
+            //Calculate pace in [min/km]
+            m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);
+
+            qDebug()<<"Pace:"<<m_pace;
+            emit paceChanged();
+
+            //Calculate workout time
+            QDateTime first = m_points.at(0).timestamp();
+            QDateTime last = m_points.at(m_points.size()-1).timestamp();
+            qint64 iWorkoutTimeSec = first.secsTo(last);
+
+            //Calculate average speed
+            m_speedaverage = (m_distance / 1000.0) / (iWorkoutTimeSec / 3600.0);
+            qDebug()<<"AVG speed:"<<m_speedaverage;
+            emit speedaverageChanged();
+
+            //Calculate average pace
+            m_paceaverage = (iWorkoutTimeSec / 60.0) / (m_distance / 1000.0);
+            qDebug()<<"AVG pace:"<<m_paceaverage;
+            emit paceaverageChanged();
+
+            //Get altitude
+            m_altitude = newPos.coordinate().altitude();
+
+
+            emit valuesChanged();
+            emit timeChanged();            
+        }        
+    }
 }
 
-void TrackRecorder::positioningError(QGeoPositionInfoSource::Error error) {
+void TrackRecorder::positioningError(QGeoPositionInfoSource::Error error)
+{
     qDebug()<<"Positioning error:"<<error;
 }
 
-void TrackRecorder::exportGpx(QString name, QString desc) {
+/*
+ Writes given GPXcontent to Laufhelden folder in the device. This is used by Sports-Tracker.com downloader
+*/
+bool TrackRecorder::writeStGpxToFile(QString gpxcontent, QString filename, QString desc, QString sTkey, QString activity){
+    QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    QString subDir = "Laufhelden";
+    filename = filename + ".gpx";
+
+    qDebug()<<"File:"<<homeDir<<"/"<<subDir<<"/"<<filename;
+
+    QDir home = QDir(homeDir);
+    if(!home.exists(subDir)){
+        qDebug()<<"Directory does not exist, creating";
+        if(home.mkdir(subDir)) {
+            qDebug()<<"Directory created";
+        }
+        else{
+            qDebug()<<"Directory creation failed, aborting";
+            return false;
+        }
+    }
+
+    QXmlStreamReader xml(gpxcontent);
+    if(!xml.readNextStartElement()) {
+        qDebug()<<"Downloaded content is not xml format?";
+        return false;
+    }
+
+    //Read elements under metadata tag and only add elements which are missing
+    bool nameFound = false;
+    bool descFound = false;
+    bool extensionsFound = false;
+    bool stFound = false;
+    //bool meerunFound = false;
+
+    while(!xml.atEnd()){
+        while(xml.readNextStartElement()){
+            if(xml.name() == "metadata"){
+                while(xml.readNextStartElement()){
+                    if(xml.name() == "name"){
+                        nameFound = true;
+                    }
+                    else if(xml.name() == "desc"){
+                        descFound = true;
+                    }
+                    else if(xml.name() == "extensions"){
+                        extensionsFound = true;
+                        while(xml.readNextStartElement()){
+                            if(xml.name() == "sportstracker"){
+                                stFound = true;
+                            }
+                            /*else if (xml.name() == "meerun"){ //meerun tags are removed when exported to Sporst-tracker.
+                                meerunFound = true;
+                            }*/
+                            else
+                            {
+                                xml.skipCurrentElement();
+                            }
+                        }
+                    }
+                    else{
+                        xml.skipCurrentElement();
+                    }
+                }
+                break;
+            }
+            xml.skipCurrentElement();
+        }
+    }
+
+    QFile file;
+    file.setFileName(homeDir + "/" + subDir + "/" + filename);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug()<<"File opening failed, aborting";
+        return false;
+    }
+
+    // Inject data depending what exist in GPX.
+
+    QString injectElement = "";
+    if (!nameFound){
+        injectElement += "  <name>"+desc+"</name>\n"; //Add name, for now same as description
+        qDebug() << " <name> injected "<<desc;
+    }
+    if (!descFound){
+        injectElement += "    <desc>"+desc+"</desc>\n"; //Add description if not found
+        qDebug() << " <desc> injected "<<desc;
+    }
+
+    //Store Sports-Tracker.com key so we detect which are downloaded from there
+    if (stFound == false && extensionsFound == false){
+        //If extensions is missing
+        injectElement +=  "    <extensions>\n";
+        injectElement +=  "        <sportstracker workoutkey=\""+sTkey+"\" activity=\""+activity+"\"></sportstracker>\n";
+        injectElement +=  "    </extensions>\n";
+        qDebug() << " <sportstracker workoutkey injected "<<sTkey;
+    }
+    else{
+        qDebug() << "sports-tracker key found, extensions found and meerun found";
+    }
+
+    //Finally inject name, desc and extensions if they are still missing
+    injectElement += "</metadata>";
+    gpxcontent = gpxcontent.replace("</metadata>",injectElement);
+
+
+    //Write QString to file using stream
+    QTextStream stream(&file);
+    stream << gpxcontent;
+    file.flush();
+    file.close();
+
+    if(file.error()){
+        qDebug()<<"Error in writing to a file";
+        qDebug()<<file.errorString();
+        return false;
+    } else{
+        qDebug()<<"GPX file successfully written";
+        return true;
+    }
+}
+
+void TrackRecorder::exportGpx(QString name, QString desc)
+{
     qDebug()<<"Exporting track to gpx";
     if(m_points.size() < 1) {
         qDebug()<<"Nothing to save";
@@ -232,23 +378,18 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
 
     filename = sWorkoutType + "-" + m_points.at(0).timestamp().toLocalTime().toString() + "-" + QString("%1km").arg(m_distance / 1000, 0, 'f', 1) + ".gpx";
 
-    /*
-    if(!sWorkoutType.isEmpty()) {
-        filename = m_points.at(0).timestamp().toUTC().toString(Qt::ISODate)
-                + " - " + sWorkoutType + ".gpx";
-    } else {
-        filename = m_points.at(0).timestamp().toUTC().toString(Qt::ISODate)
-                + ".gpx";
-    }
-    */
     qDebug()<<"File:"<<homeDir<<"/"<<subDir<<"/"<<filename;
 
     QDir home = QDir(homeDir);
-    if(!home.exists(subDir)) {
+    if(!home.exists(subDir))
+    {
         qDebug()<<"Directory does not exist, creating";
-        if(home.mkdir(subDir)) {
+        if(home.mkdir(subDir))
+        {
             qDebug()<<"Directory created";
-        } else {
+        }
+        else
+        {
             qDebug()<<"Directory creation failed, aborting";
             return;
         }
@@ -295,58 +436,74 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
 
     xml.writeEndElement(); // metadata
 
-
     xml.writeStartElement("trk");
-    xml.writeStartElement("trkseg");
 
-    for(int i=0 ; i < m_points.size(); i++) {
-        if(m_points.at(i).coordinate().type() == QGeoCoordinate::InvalidCoordinate) {
-            break; // No position info, skip this point
-        }
-        xml.writeStartElement("trkpt");
-        xml.writeAttribute("lat", QString::number(m_points.at(i).coordinate().latitude(), 'g', 15));
-        xml.writeAttribute("lon", QString::number(m_points.at(i).coordinate().longitude(), 'g', 15));
+    for(int i=0 ; i < m_points.size(); i++)
+    {
+        qDebug()<<"i: "<<QString::number(i);
 
-        xml.writeTextElement("time", m_points.at(i).timestamp().toUTC().toString(Qt::ISODate));
-        if(m_points.at(i).coordinate().type() == QGeoCoordinate::Coordinate3D) {
-            xml.writeTextElement("ele", QString::number(m_points.at(i).coordinate().altitude(), 'g', 15));
-        }
-
-        xml.writeStartElement("extensions");
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::Direction)) {
-            xml.writeTextElement("dir", QString::number(m_points.at(i).attribute(QGeoPositionInfo::Direction), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::GroundSpeed)) {
-            xml.writeTextElement("g_spd", QString::number(m_points.at(i).attribute(QGeoPositionInfo::GroundSpeed), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalSpeed)) {
-            xml.writeTextElement("v_spd", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalSpeed), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::MagneticVariation)) {
-            xml.writeTextElement("m_var", QString::number(m_points.at(i).attribute(QGeoPositionInfo::MagneticVariation), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::HorizontalAccuracy)) {
-            xml.writeTextElement("h_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::HorizontalAccuracy), 'g', 15));
-        }
-        if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalAccuracy)) {
-            xml.writeTextElement("v_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalAccuracy), 'g', 15));
-        }
-
-        if(m_heartrate.count() > 0 && m_heartrate.at(i) != 9999)
+        //If we have the first point or the start of a pause, we have to start a new track segment
+        if (i == 0 || (i > 0 && m_pausearray.at(i) == false && m_pausearray.at(i-1) == true))
         {
-            xml.writeStartElement("gpxtpx:TrackPointExtension");
-            xml.writeTextElement("gpxtpx:hr", QString::number(m_heartrate.at(i), 'g', 15));
-            xml.writeEndElement(); // gpxtpx:TrackPointExtension
+            xml.writeStartElement("trkseg");
         }
 
-        xml.writeEndElement(); // extensions
+        //Check if the coordinates are invalid or if this is a pause point
+        if(m_points.at(i).coordinate().type() == QGeoCoordinate::InvalidCoordinate || m_pausearray.at(i) == true)
+        {
+            // No position info or this is a pause point, skip this point
+        }
+        else
+        {
+            xml.writeStartElement("trkpt");
+            xml.writeAttribute("lat", QString::number(m_points.at(i).coordinate().latitude(), 'g', 15));
+            xml.writeAttribute("lon", QString::number(m_points.at(i).coordinate().longitude(), 'g', 15));
 
-        xml.writeEndElement(); // trkpt
-    }
+            xml.writeTextElement("time", m_points.at(i).timestamp().toUTC().toString(Qt::ISODate));
+            if(m_points.at(i).coordinate().type() == QGeoCoordinate::Coordinate3D) {
+                xml.writeTextElement("ele", QString::number(m_points.at(i).coordinate().altitude(), 'g', 15));
+            }
 
-    xml.writeEndElement(); // trkseg
+            xml.writeStartElement("extensions");
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::Direction)) {
+                xml.writeTextElement("dir", QString::number(m_points.at(i).attribute(QGeoPositionInfo::Direction), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::GroundSpeed)) {
+                xml.writeTextElement("g_spd", QString::number(m_points.at(i).attribute(QGeoPositionInfo::GroundSpeed), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalSpeed)) {
+                xml.writeTextElement("v_spd", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalSpeed), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::MagneticVariation)) {
+                xml.writeTextElement("m_var", QString::number(m_points.at(i).attribute(QGeoPositionInfo::MagneticVariation), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::HorizontalAccuracy)) {
+                xml.writeTextElement("h_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::HorizontalAccuracy), 'g', 15));
+            }
+            if(m_points.at(i).hasAttribute(QGeoPositionInfo::VerticalAccuracy)) {
+                xml.writeTextElement("v_acc", QString::number(m_points.at(i).attribute(QGeoPositionInfo::VerticalAccuracy), 'g', 15));
+            }
+
+            if(m_heartrate.count() > 0 && m_heartrate.at(i) != 9999)
+            {
+                xml.writeStartElement("gpxtpx:TrackPointExtension");
+                xml.writeTextElement("gpxtpx:hr", QString::number(m_heartrate.at(i), 'g', 15));
+                xml.writeEndElement(); // gpxtpx:TrackPointExtension
+            }
+
+            xml.writeEndElement(); // extensions
+
+            xml.writeEndElement(); // trkpt
+        }
+
+        //If we have the last point or the end of a pause, we need to end the current track segment
+        if (i == (m_points.size() - 1) || (i < (m_points.size() - 1) && m_pausearray.at(i) == false && m_pausearray.at(i+1) == true))
+        {
+            xml.writeEndElement(); // trkseg
+        }
+    }   
+
     xml.writeEndElement(); // trk
-
     xml.writeEndElement(); // gpx
     xml.writeEndDocument();
 
@@ -367,12 +524,26 @@ void TrackRecorder::exportGpx(QString name, QString desc) {
 
 void TrackRecorder::clearTrack()
 {
+    //Clear all variables
+    m_distance = 0.0;
+    m_speed = 0.0;
+    m_pace = 0.0;
+    m_speedaverage = 0.0;
+    m_paceaverage = 0.0;
+    m_heartrateaverage = 0.0;
+    m_isEmpty = true;
+    m_autoSavePosition = 0;
+    iCurrentHeartRate = 0;
+    m_heartrateadded = 0;
+    m_altitude = 0;
+    m_pause = false;
+    m_running = false;
+    m_PauseDuration = 0;
+    //Clear all arrays
     m_points.clear();
     m_heartrate.clear();
     m_pausearray.clear();
-    m_heartrateadded = 0;
-    m_distance = 0;
-    m_isEmpty = true;
+
 
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Laufhelden";
@@ -381,6 +552,7 @@ void TrackRecorder::clearTrack()
 
     emit distanceChanged();
     emit timeChanged();
+    emit pauseTimeChanged();
     emit isEmptyChanged();
     emit pointsChanged();
 }
@@ -422,6 +594,20 @@ double TrackRecorder::altitude() const
     return m_altitude;
 }
 
+
+bool TrackRecorder::running() const
+{
+    return m_running;
+}
+
+void TrackRecorder::setRunning(bool running)
+{
+    this->m_running = running;
+
+    emit runningChanged();
+}
+
+
 bool TrackRecorder::pause() const
 {
     return m_pause;
@@ -434,7 +620,7 @@ void TrackRecorder::setPause(bool pause)
         qDebug()<<"Can't pause, position source not initialized!";
         return;
     }
-    m_posSrc->setPause(pause);
+    this->m_pause = pause;
 
     emit pauseChanged();
 }
@@ -445,6 +631,20 @@ QString TrackRecorder::paceStr() const
 
     qreal rMinutes = qFloor(m_pace);
     qreal rSeconds = qCeil((m_pace * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
+QString TrackRecorder::paceImperialStr() const
+{
+    QString strPace = "";
+
+    qreal m_pace_imperial = m_pace * 1.609344;
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
 
     strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
 
@@ -463,6 +663,20 @@ QString TrackRecorder::paceaverageStr() const
     return strPace;
 }
 
+QString TrackRecorder::paceaverageImperialStr() const
+{
+    QString strPace = "";
+
+    qreal m_pace_imperial = m_paceaverage * 1.609344;
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
 QString TrackRecorder::startingDateTime() const
 {
     if(m_points.size() < 2)
@@ -471,17 +685,55 @@ QString TrackRecorder::startingDateTime() const
         return m_points.at(0).timestamp().toLocalTime().toString();
 }
 
-QString TrackRecorder::time() const {
+QString TrackRecorder::pauseTime() const
+{
     uint hours, minutes, seconds;
 
-    if(m_points.size() < 2) {
+    hours = this->m_PauseDuration / (60*60);
+    minutes = (this->m_PauseDuration - hours*60*60) / 60;
+    seconds = this->m_PauseDuration - hours*60*60 - minutes*60;
+
+    QString timeStr = QString("%1h %2m %3s")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(minutes, 2, 10, QLatin1Char('0'))
+            .arg(seconds, 2, 10, QLatin1Char('0'));
+
+    return timeStr;
+}
+
+QString TrackRecorder::pebblePauseTime() const
+{
+    uint hours, minutes;
+
+    hours = this->m_PauseDuration / (60*60);
+    minutes = (this->m_PauseDuration - hours*60*60) / 60;
+
+    QString timeStr = QString("%1:%2")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(minutes, 2, 10, QLatin1Char('0'));
+
+    return timeStr;
+}
+
+QString TrackRecorder::time() const
+{
+    uint hours, minutes, seconds;
+
+    if(m_points.size() < 2)
+    {
         hours = 0;
         minutes = 0;
         seconds = 0;
-    } else {
+    }
+    else
+    {
         QDateTime first = m_points.at(0).timestamp();
         QDateTime last = m_points.at(m_points.size()-1).timestamp();
         qint64 difference = first.secsTo(last);
+
+        //Substract the pause time from the overall time
+        difference = difference - this->m_PauseDuration;
+
         hours = difference / (60*60);
         minutes = (difference - hours*60*60) / 60;
         seconds = difference - hours*60*60 - minutes*60;
@@ -491,6 +743,35 @@ QString TrackRecorder::time() const {
             .arg(hours, 2, 10, QLatin1Char('0'))
             .arg(minutes, 2, 10, QLatin1Char('0'))
             .arg(seconds, 2, 10, QLatin1Char('0'));
+
+    return timeStr;
+}
+
+QString TrackRecorder::pebbleTime() const
+{
+    uint hours, minutes;
+
+    if(m_points.size() < 2)
+    {
+        hours = 0;
+        minutes = 0;
+    }
+    else
+    {
+        QDateTime first = m_points.at(0).timestamp();
+        QDateTime last = m_points.at(m_points.size()-1).timestamp();
+        qint64 difference = first.secsTo(last);
+
+        //Substract the pause time from the overall time
+        difference = difference - this->m_PauseDuration;
+
+        hours = difference / (60*60);
+        minutes = (difference - hours*60*60) / 60;
+    }
+
+    QString timeStr = QString("%1:%2")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(minutes, 2, 10, QLatin1Char('0'));
 
     return timeStr;
 }
@@ -517,10 +798,26 @@ void TrackRecorder::setUpdateInterval(int updateInterval) {
     emit updateIntervalChanged();
 }
 
-QGeoCoordinate TrackRecorder::trackPointAt(int index) {
-    if(index < m_points.length()) {
+bool TrackRecorder::pausePointAt(int index)
+{
+    if(index < m_pausearray.length())
+    {
+        return m_pausearray.at(index);
+    }
+    else
+    {
+        return false;
+    }
+}
+
+QGeoCoordinate TrackRecorder::trackPointAt(int index)
+{
+    if(index < m_points.length())
+    {
         return m_points.at(index).coordinate();
-    } else {
+    }
+    else
+    {
         return QGeoCoordinate();
     }
 }
@@ -660,6 +957,8 @@ void TrackRecorder::loadAutoSave()
     }
     QTextStream stream(&file);
 
+    int iPointIndex = 0;
+
     while(!stream.atEnd())
     {
         QGeoPositionInfo point;
@@ -713,9 +1012,10 @@ void TrackRecorder::loadAutoSave()
         m_heartrate.append(iHeartrate);
         m_pausearray.append(bPause);
 
+        iPointIndex++;
 
-
-        if(m_points.size() > 1) {
+        if(m_points.size() > 1)
+        {
             if(point.coordinate().latitude() < m_minLat) {
                 m_minLat = point.coordinate().latitude();
             } else if(point.coordinate().latitude() > m_maxLat) {
@@ -726,34 +1026,49 @@ void TrackRecorder::loadAutoSave()
             } else if(point.coordinate().longitude() > m_maxLon) {
                 m_maxLon = point.coordinate().longitude();
             }
-        } else {
+        }
+        else
+        {
             m_minLat = m_maxLat = point.coordinate().latitude();
             m_minLon = m_maxLon = point.coordinate().longitude();
         }
-        emit newTrackPoint(point.coordinate());
+        emit newTrackPoint(point.coordinate(), iPointIndex);
     }
     m_autoSavePosition = m_points.size();
     file.close();
 
     qDebug()<<m_autoSavePosition<<"track points loaded";
 
-    emit pointsChanged();
-    emit timeChanged();
-
     if(m_points.size() > 1)
     {
         for(int i=1;i<m_points.size();i++)
         {
+            //Sum up pause duration
+            if (m_pausearray.at(i) == true)
+            {
+                m_PauseDuration = m_PauseDuration + 1; //add one second (update interval)
+            }
+
             m_distance += m_points.at(i-1).coordinate().distanceTo(m_points.at(i).coordinate());
 
             if (m_heartrate.at(i - 1) != 9999 && m_heartrate.at(i - 1) != 0)
                 m_heartrateadded = m_heartrateadded + m_heartrate.at(i - 1);
         }
         emit distanceChanged();
+        emit pointsChanged();
+        emit timeChanged();
+        emit pauseTimeChanged();
+
+        this->m_pause = true;
+        this->m_running = true;
+
+        emit pauseChanged();
+        emit runningChanged();
     }
 
-    if(!m_points.isEmpty()) {
-        m_isEmpty = false;
+    if(!m_points.isEmpty())
+    {
+        this->m_isEmpty = false;
         emit isEmptyChanged();
     }
 }

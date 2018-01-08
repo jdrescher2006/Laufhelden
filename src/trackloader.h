@@ -34,15 +34,24 @@ class TrackLoader : public QObject
     Q_PROPERTY(QString timeStr READ timeStr NOTIFY timeChanged)
     Q_PROPERTY(int duration READ duration NOTIFY durationChanged)
     Q_PROPERTY(QString durationStr READ durationStr NOTIFY durationChanged)
+
+    Q_PROPERTY(int pauseDuration READ pauseDuration NOTIFY durationChanged)
+    Q_PROPERTY(QString pauseDurationStr READ pauseDurationStr NOTIFY durationChanged)
+
     Q_PROPERTY(qreal distance READ distance NOTIFY distanceChanged)
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(qreal maxSpeed READ maxSpeed NOTIFY maxSpeedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
     Q_PROPERTY(QString paceStr READ paceStr NOTIFY paceChanged)
+    Q_PROPERTY(QString paceImperialStr READ paceImperialStr NOTIFY paceChanged)
     Q_PROPERTY(qreal heartRate READ heartRate NOTIFY heartRateChanged)
     Q_PROPERTY(uint heartRateMin READ heartRateMin NOTIFY heartRateMinChanged)
     Q_PROPERTY(uint heartRateMax READ heartRateMax NOTIFY heartRateMaxChanged)
     Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
+    Q_PROPERTY(qreal elevationUp READ elevationUp NOTIFY elevationChanged)
+    Q_PROPERTY(qreal elevationDown READ elevationDown NOTIFY elevationChanged)
+
+
 
 public:
     struct TrackPoint
@@ -60,7 +69,6 @@ public:
         uint heartrate;
     };
 
-
     explicit TrackLoader(QObject *parent = 0);
     QString filename() const;
     void setFilename(QString filename);
@@ -71,24 +79,37 @@ public:
     QString timeStr();
     uint duration();
     QString durationStr();
+    uint pauseDuration();
+    QString pauseDurationStr();
     qreal distance();
     qreal speed();
     qreal maxSpeed();
     qreal pace();
-    QString paceStr();
+    QString paceStr();    
+    QString paceImperialStr();
     qreal heartRate();
     uint heartRateMin();
     uint heartRateMax();
+    qreal elevationUp();
+    qreal elevationDown();
     bool loaded();
+
+    Q_INVOKABLE QString readGpx();
+    Q_INVOKABLE QString sTworkoutKey();
     Q_INVOKABLE int trackPointCount();
+    Q_INVOKABLE int pausePositionsCount();
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
+    Q_INVOKABLE int pausePositionAt(int index);
     Q_INVOKABLE uint heartRateAt(int index);
     Q_INVOKABLE qreal elevationAt(int index);
-
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);
     Q_INVOKABLE QGeoCoordinate center();
+
+    Q_INVOKABLE void vReadFile(QString sFilename);
+    Q_INVOKABLE void vSetNewProperties(QString sOldName, QString sOldDesc, QString sOldWorkout, QString sName, QString sDesc, QString sWorkout);
+    Q_INVOKABLE void vWriteFile(QString sFilename);
 
 signals:
     void filenameChanged();
@@ -106,13 +127,16 @@ signals:
     void heartRateChanged();
     void heartRateMinChanged();
     void heartRateMaxChanged();
+    void elevationChanged();
 
 public slots:
 
-private:    
+private:
     void load();
 
     QList<TrackPoint> m_points;
+    QList<int> m_pause_positions;
+    QList<QString> sFileStringArray;
     bool m_loaded;
     bool m_error;
     QString m_filename;
@@ -121,6 +145,7 @@ private:
     QString m_description;
     QDateTime m_time;
     uint m_duration;
+    uint m_pause_duration;
     qreal m_distance;
     qreal m_speed;
     qreal m_maxSpeed;
@@ -129,7 +154,10 @@ private:
     qreal m_heartRatePoints;
     uint m_heartRateMin;
     uint m_heartRateMax;
+    QString m_sTkey; //Sports-Tracker.com workout key
     QGeoCoordinate m_center;
+    qreal m_elevationUp;
+    qreal m_elevationDown;
 };
 
 #endif // TRACKLOADER_H
