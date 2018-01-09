@@ -521,7 +521,7 @@
         <translation>Desactivar borrado de pantalla</translation>
     </message>
     <message>
-        <source>Disbale screen blanking when recording.</source>
+        <source>Disable screen blanking when recording.</source>
         <translation>Desactiva el borrado de la pantalla durante la grabación.</translation>
     </message>
     <message>

@@ -217,7 +217,7 @@ Page
             {
                 id: txtswRecordPagePreventScreenBlank
                 text: qsTr("Disable screen blanking")
-                description: qsTr("Disbale screen blanking when recording.")
+                description: qsTr("Disable screen blanking when recording.")
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted)

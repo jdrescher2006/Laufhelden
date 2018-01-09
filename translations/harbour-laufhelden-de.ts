@@ -521,7 +521,7 @@
         <translation>Bildschirmschoner abschalten</translation>
     </message>
     <message>
-        <source>Disbale screen blanking when recording.</source>
+        <source>Disable screen blanking when recording.</source>
         <translation>Bildschirmschoner abschalten während Training</translation>
     </message>
     <message>

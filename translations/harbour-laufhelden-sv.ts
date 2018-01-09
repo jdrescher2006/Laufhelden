@@ -521,7 +521,7 @@
         <translation>Inaktivera skärmsläckning</translation>
     </message>
     <message>
-        <source>Disbale screen blanking when recording.</source>
+        <source>Disable screen blanking when recording.</source>
         <translation>Inaktivera skärmsläckning vid inspelning</translation>
     </message>
     <message>

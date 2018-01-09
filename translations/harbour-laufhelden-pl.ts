@@ -521,7 +521,7 @@
         <translation>Wyłącz wygaszanie ekranu</translation>
     </message>
     <message>
-        <source>Disbale screen blanking when recording.</source>
+        <source>Disable screen blanking when recording.</source>
         <translation>Wyłącz wygaszanie ekranu podczas rejetrowania treningu.</translation>
     </message>
     <message>
