@@ -411,6 +411,14 @@
         <source>OSM Scout Server</source>
         <translation>OSM Scout Server</translation>
     </message>
+    <message>
+        <source>Disable map on record page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is useful on Jolla 1 phones because the app may crash if the map is shown.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PebbleComm</name>

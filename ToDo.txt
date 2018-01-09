@@ -1,4 +1,8 @@
----- ToDo for next release to openrepos: 0.9.8 -----
+---- ToDo for next release to openrepos: 0.9.8-2 -----
+
+- switch off map completely while in record page. This is Jolla 1 mode.
+
+- imperial units on threshold settings page
 
 
 	

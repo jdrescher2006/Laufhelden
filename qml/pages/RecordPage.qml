@@ -35,7 +35,7 @@ Page
     //If pause and we have no data and the map is not big, going back is possible
     backNavigation: (!recorder.running && recorder.isEmpty && !bMapMaximized)
 
-    property bool bShowMap: settings.showMapRecordPage  
+    property bool bShowMap: false
 
     property bool bLockFirstPageLoad: true
     property int iButtonLoop : 3
@@ -54,7 +54,7 @@ Page
     property int iSelectedValue: -1
     property int iOldValue: -1
 
-
+    property bool bRestoreWorkout: false
 
     property bool bShowLockScreen: false
 
@@ -83,6 +83,8 @@ Page
     property bool showMinMaxButton: true
     property bool showCenterButton: true
 
+    property bool bDisableMap: settings.mapDisableRecordPage
+
     Connections
     {
         target: map
@@ -101,6 +103,13 @@ Page
 
             bLockFirstPageLoad = false;                        
 
+            //This setting determines if the map should be completely disabled.
+            bDisableMap = settings.mapDisableRecordPage;
+            if (bDisableMap)
+                bShowMap = false;
+            else
+                bShowMap = settings.showMapRecordPage;
+
             //start positioning
             recorder.vStartGPS();
 
@@ -112,10 +121,22 @@ Page
             //Check if recorder is empty. If this is not the case, there is data from an autoload.
             if (recorder.isEmpty === false)
             {
-                //Now we have to view this data
-                for(var i=0;i<recorder.points;i++)
+                if (!bDisableMap)
                 {
-                    fncSetMapPoint(recorder.trackPointAt(i), i);
+                    //Now we have to view this data
+                    bRestoreWorkout = true;
+
+                    console.log("Autosave: " + recorder.points.toString());
+
+                    for(var i=0;i<recorder.points;i++)
+                    {
+                        fncSetMapPoint(recorder.trackPointAt(i), i);
+                    }
+
+                    //We need to set the last track to the map.
+                    map.updateSourceLine(sTrackLine, vTrackLinePoints);
+
+                    bRestoreWorkout = false;
                 }
 
                 //We need to set parameters to the dialog/pebble
@@ -194,8 +215,7 @@ Page
         //console.log("Brightness: " + id_Light.brightness.toString());
 
         iAutoNightModeValue = iAutoNightModeValue + id_Light.brightness;
-    }
-
+    }    
 
     Timer
     {
@@ -571,7 +591,7 @@ Page
             map.setLayoutProperty("layerEndTrack", "line-cap", "round");
             map.setPaintProperty("layerEndTrack", "line-color", "red");
             map.setPaintProperty("layerEndTrack", "line-width", 2.0);            
-        }
+        }        
 
         //Recognize the start of a pause
         if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === false && recorder.pausePointAt(iPointIndex) === true)
@@ -600,6 +620,11 @@ Page
             map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
             map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
 
+            //If we are restoring a workout e.g. from autosave, we must avoid calling updateSourceLine too often.
+            //Therefore we call it here before a new track line array is started.
+            if (bRestoreWorkout)
+                map.updateSourceLine(sTrackLine, vTrackLinePoints);
+
             //Start new trackline here
             //Create fresh temp line array
             vLineArray = [];
@@ -622,14 +647,17 @@ Page
         //If the current point is not the first one and not a pause point, add it to the current track
         if (recorder.running && !recorder.isEmpty && iPointIndex !== 0 && recorder.pausePointAt(iPointIndex) === false)
         {
-            //Create temp line array and set current points array to it. Must use a JS array here necause QML arrays don't allow for push!
+            //Create temp line array and set current points array to it. Must use a JS array here because QML arrays don't allow for push!
             vLineArray = vTrackLinePoints;
             //Write first coordinate to line array
             vLineArray.push(coordinate);
             //Save that to global array
             vTrackLinePoints = vLineArray;
 
-            map.updateSourceLine(sTrackLine, vTrackLinePoints);
+            //If we are restoring a workout e.g. from autosave, we must avoid calling updateSourceLine too often.
+            //Normally this call adds each position to the track individually. This is way too often for restoring a workout.
+            if (!bRestoreWorkout)
+                map.updateSourceLine(sTrackLine, vTrackLinePoints);
 
             if (settings.mapMode === 1 && !bMapMaximized) //center track on map
                 map.fitView(vTrackLinePoints);
@@ -639,6 +667,15 @@ Page
     function fncCurrentPositionChanged(coordinate)
     {
         console.log("CurrentPositionChanged");
+
+        if (bDisableMap)
+        {
+            console.log("before return");
+            return;
+        }
+
+        console.log("after return");
+
 
         if (sCurrentPosition === undefined || sCurrentPosition === "")
         {
@@ -675,7 +712,8 @@ Page
         //console.log("Position: " + recorder.currentPosition);
         console.log("newTrackPoint");                       
 
-        fncSetMapPoint(coordinate, iPointIndex);
+        if (!bDisableMap)
+            fncSetMapPoint(coordinate, iPointIndex);
 
 
         //Thresholds processing needs to be disabled if recording is paused
@@ -811,6 +849,7 @@ Page
             MenuItem
             {
                 text: bShowMap ? qsTr("Hide Map") : qsTr("Show Map")
+                visible: !bDisableMap
                 onClicked:
                 {
                     bShowMap = !bShowMap;

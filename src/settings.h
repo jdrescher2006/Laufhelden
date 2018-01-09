@@ -44,6 +44,7 @@ class Settings : public QObject
     Q_PROPERTY(int mapCache READ mapCache WRITE setMapCache)
     Q_PROPERTY(int measureSystem READ measureSystem WRITE setMeasureSystem)
     Q_PROPERTY(QString valueCoverFields READ valueCoverFields WRITE setValueCoverFields)
+    Q_PROPERTY(bool mapDisableRecordPage READ mapDisableRecordPage WRITE setMapDisableRecordPage)
 
     //Voice output
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
@@ -129,6 +130,9 @@ public:
 
     int measureSystem() const;
     void setMeasureSystem(int measureSystem);
+
+    bool mapDisableRecordPage() const;
+    void setMapDisableRecordPage(bool mapDisableRecordPage);
 
     //Voice output
     int voiceLanguage() const;

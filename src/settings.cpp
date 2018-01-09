@@ -211,6 +211,15 @@ void Settings::setMeasureSystem(int measureSystem)
     m_settings->setValue("generalsettings/measureSystem", measureSystem);
 }
 
+bool Settings::mapDisableRecordPage() const
+{
+    return m_settings->value("mapsettings/mapDisableRecordPage", false).toBool();
+}
+void Settings::setMapDisableRecordPage(bool mapDisableRecordPage)
+{
+     m_settings->setValue("mapsettings/mapDisableRecordPage", mapDisableRecordPage);
+}
+
 //Voice output
 int Settings::voiceLanguage() const
 {

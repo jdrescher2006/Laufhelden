@@ -36,6 +36,8 @@ Page {
             bLockFirstPageLoad = false;
             console.log("First Active MapSettingsPage");
 
+            id_TextSwitch_mapDisableOnRecordPage.checked = settings.mapDisableRecordPage;
+
             id_TextSwitch_mapShowOnly4Fields.checked = settings.mapShowOnly4Fields;
             id_CMB_MapCenterMode.currentIndex = settings.mapMode;
 
@@ -94,7 +96,23 @@ Page {
             PageHeader
             {
                 title: qsTr("Map settings")
-            }                        
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_mapDisableOnRecordPage
+                text: qsTr("Disable map on record page")
+                description: qsTr("This is useful on Jolla 1 phones because the app may crash if the map is shown.")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.mapDisableRecordPage = checked;
+                }
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
             TextSwitch
             {
                 id: id_TextSwitch_mapShowOnly4Fields
