@@ -156,6 +156,9 @@ Page
         {
             console.log("---RecordPage active enter---");            
 
+            //Set map style
+            map.styleUrl = settings.mapStyle;
+
             //Set value types for fields in JS array
             RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
 

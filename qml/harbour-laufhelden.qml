@@ -28,6 +28,11 @@ ApplicationWindow
 {
     id: appWindow
 
+    onApplicationActiveChanged:
+    {
+        console.log("onApplicationActiveChanged: " + applicationActive);
+    }
+
     //Define global variables
 
     //*** HRM Start ***
@@ -55,6 +60,8 @@ ApplicationWindow
     //*** Pebble End ***   
 
     property real rLastAccuracy: -1
+
+    //property bool bApplicationIsActive: fal
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }

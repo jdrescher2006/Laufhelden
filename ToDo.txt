@@ -1,5 +1,11 @@
 ---- ToDo for next release to openrepos: 0.9.8-2 -----
 
+- record page didn't change map style										-> OK
+
+- end of pause icon is not drawn on map if map was invisible
+
+- if record page is ended, fncCurrentPositionChanged is still called. The instance is not deleted.
+
 - switch off map completely while in record page. This is Jolla 1 mode.
 
 - imperial units on threshold settings page
