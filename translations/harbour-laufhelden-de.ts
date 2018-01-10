@@ -413,7 +413,7 @@
     </message>
     <message>
         <source>Disable map on record page</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte deaktivieren</translation>
     </message>
     <message>
         <source>This is useful on Jolla 1 phones because the app may crash if the map is shown.</source>

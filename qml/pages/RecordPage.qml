@@ -77,6 +77,8 @@ Page
     property string sTrackLine
     property string sCurrentPosition: ""
     property int iPausePositionsIndex: 0
+    property var vTempTrackLinePoints
+    property var vTempTrackLinePointsIndex
 
     //Map buttons
     property bool showSettingsButton: true
@@ -89,8 +91,12 @@ Page
     {
         target: map
         onMetersPerPixelChanged:
-        {
-            fncSetMapUncertainty();
+        {            
+            //Map interaction is only done when map is really shown
+            if (!bDisableMap && visible && bShowMap && appWindow.applicationActive)
+            {
+                fncSetMapUncertainty();
+            }
         }
     }
 
@@ -120,24 +126,22 @@ Page
 
             //Check if recorder is empty. If this is not the case, there is data from an autoload.
             if (recorder.isEmpty === false)
-            {
-                if (!bDisableMap)
+            {                
+                //Now we have to view this data
+                bRestoreWorkout = true;
+
+                console.log("Autosave: " + recorder.points.toString());
+
+                for(var i=0;i<recorder.points;i++)
                 {
-                    //Now we have to view this data
-                    bRestoreWorkout = true;
-
-                    console.log("Autosave: " + recorder.points.toString());
-
-                    for(var i=0;i<recorder.points;i++)
-                    {
-                        fncSetMapPoint(recorder.trackPointAt(i), i);
-                    }
-
-                    //We need to set the last track to the map.
-                    map.updateSourceLine(sTrackLine, vTrackLinePoints);
-
-                    bRestoreWorkout = false;
+                    fncSetMapPoint(recorder.trackPointAt(i), i);
                 }
+
+                //We need to set the last track to the map.
+                map.updateSourceLine(sTrackLine, vTrackLinePoints);
+
+                bRestoreWorkout = false;
+
 
                 //We need to set parameters to the dialog/pebble
                 RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
@@ -450,7 +454,9 @@ Page
     function fncSetMapUncertainty()
     {
         if (map.metersPerPixel > 0)
+        {
             map.setPaintProperty("location-uncertainty", "circle-radius", (recorder.accuracy / map.metersPerPixel));
+        }
     }
 
     function fncChangeValueField()
@@ -559,9 +565,78 @@ Page
     }   
 
     function fncSetMapPoint(coordinate, iPointIndex)
+    {                       
+        var vLineArray = [];
+        var vIndexArray =  [];
+
+        //Map interaction is only done when map is really shown
+        if (bDisableMap || !visible || !bShowMap || !appWindow.applicationActive)
+        {
+            console.log("Map invisible. Point: " + iPointIndex.toString());
+
+            //Now the map is not shown at the moment. Save current coordinate to a temp array. Also save the current index to a temp array.
+            if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0)
+            {
+               vLineArray = vTempTrackLinePoints;
+               vIndexArray = vTempTrackLinePointsIndex;
+            }
+            vLineArray.push(coordinate);
+            vIndexArray.push(iPointIndex);
+            //Save that to global array
+            vTempTrackLinePoints = vLineArray;
+            vTempTrackLinePointsIndex = vIndexArray;
+
+            //Break here.
+            return;
+        }
+
+        console.log("Map visible. Point: " + iPointIndex.toString());
+
+        //If we are here, the map is shown and we can do things with it.
+        //First check if there is something in the temp array
+        if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0)
+        {
+            console.log("vTempTrackLinePoints length: " + vTempTrackLinePoints.length.toString());
+
+            vLineArray = vTempTrackLinePoints;
+            vIndexArray = vTempTrackLinePointsIndex;
+
+            //Save the current coordinate also the temp array
+            vLineArray.push(coordinate);
+            vIndexArray.push(iPointIndex);
+
+            //The global arrays now will be processed so clear them both.
+            var vCleanArray = [];
+            vTempTrackLinePoints = vCleanArray;
+            vTempTrackLinePointsIndex = vCleanArray;
+
+            bRestoreWorkout = true;
+
+            console.log("Temp points: " + vLineArray.length.toString());
+
+            //Go through the temp array
+            for (var i = 0; i < vLineArray.length; i++)
+            {
+                //Draw the coordinate points from the temp array on the map
+                fncSetMapPointToMap(vLineArray[i], vIndexArray[i]);
+            }
+
+            //We need to set the last track to the map.
+            map.updateSourceLine(sTrackLine, vTrackLinePoints);
+
+            bRestoreWorkout = false;
+        }
+        else
+        {
+            //Here we are if the map is currently shown and there are no temporary saved coordinate points.
+            //Show the current point directly to the map.
+            fncSetMapPointToMap(coordinate, iPointIndex);
+        }
+    }
+
+    function fncSetMapPointToMap(coordinate, iPointIndex)
     {
         var vLineArray = [];
-
         //console.log("Index: " + iPointIndex.toString());               
 
         //Recognize the start of a workout
@@ -620,10 +695,8 @@ Page
             map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
             map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
 
-            //If we are restoring a workout e.g. from autosave, we must avoid calling updateSourceLine too often.
-            //Therefore we call it here before a new track line array is started.
-            if (bRestoreWorkout)
-                map.updateSourceLine(sTrackLine, vTrackLinePoints);
+            //Doing the update here is OK because there should not be too many pauses.
+            map.updateSourceLine(sTrackLine, vTrackLinePoints);
 
             //Start new trackline here
             //Create fresh temp line array
@@ -668,14 +741,16 @@ Page
     {
         console.log("CurrentPositionChanged");
 
-        if (bDisableMap)
+        console.log("bDisableMap: " + bDisableMap.toString());
+        console.log("visible: " + visible.toString());
+        console.log("bShowMap: " + bShowMap.toString());
+        console.log("ApplicationWindow.applicationActive: " + appWindow.applicationActive.toString());
+
+        //Map interaction is only done when map is really shown
+        if (bDisableMap || !visible || !bShowMap || !appWindow.applicationActive)
         {
-            console.log("before return");
             return;
         }
-
-        console.log("after return");
-
 
         if (sCurrentPosition === undefined || sCurrentPosition === "")
         {
@@ -712,9 +787,7 @@ Page
         //console.log("Position: " + recorder.currentPosition);
         console.log("newTrackPoint");                       
 
-        if (!bDisableMap)
-            fncSetMapPoint(coordinate, iPointIndex);
-
+        fncSetMapPoint(coordinate, iPointIndex);
 
         //Thresholds processing needs to be disabled if recording is paused
         if (recorder.pause)

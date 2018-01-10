@@ -18,10 +18,8 @@ Do not forget:
 
 
 ----- ToDo for second next release to openrepos: 0.9.9 -----
-- add min/max elevation to detailspage/trackloader
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
-- fix elevation up/down bad values
 - look into old map tiles folder and delete files there. Ask user!
 - map on record page: zoom into map automatically. Save and restore last zoom setting.
 - pebble: if speed is choosen for third field, set unit to speed. Same with pace.
@@ -39,7 +37,9 @@ Do not forget:
 
 
 ----- Other planned features for the far future: -----
-- check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
+- add min/max elevation to detailspage/trackloader
+- fix elevation up/down bad values. This is a big thing. Elevation data needs to be corrected with appropriate algorithms.
+- check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation -> seems to contain no information
 - implement workout comparison. Compare current workout with virtual workout in the past
 - AM/PM mode for recordpage
 - support all workout types from meerun (is not possible because export function in meerun is broken for many workout types, even on android)
