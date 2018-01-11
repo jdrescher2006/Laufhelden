@@ -1,12 +1,16 @@
 ---- ToDo for next release to openrepos: 0.9.8-2 -----
 
+- increase wait time for night mode											-> OK
+
+- change color for continue/end button										-> OK
+
 - record page didn't change map style										-> OK
 
 - end of pause icon is not drawn on map if map was invisible
 
-- if record page is ended, fncCurrentPositionChanged is still called. The instance is not deleted.
+- when record page was closed signals where not disconnected				-> OK
 
-- switch off map completely while in record page. This is Jolla 1 mode.
+- switch off map completely while in record page. This is Jolla 1 mode.		-> OK
 
 - imperial units on threshold settings page
 
@@ -24,6 +28,7 @@ Do not forget:
 
 
 ----- ToDo for second next release to openrepos: 0.9.9 -----
+- add interval feature for voice assistant
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
 - look into old map tiles folder and delete files there. Ask user!

@@ -91,7 +91,7 @@ Page
     {
         target: map
         onMetersPerPixelChanged:
-        {            
+        {
             //Map interaction is only done when map is really shown
             if (!bDisableMap && visible && bShowMap && appWindow.applicationActive)
             {
@@ -102,6 +102,9 @@ Page
 
     onStatusChanged:
     {
+        console.log("Record onStatusChanged: " + status);
+        //console.log("Record page: " + pageStack.currentPage.toString());
+
         //This is loaded only the first time the page is displayed
         if (status === PageStatus.Active && bLockFirstPageLoad)
         {
@@ -117,10 +120,7 @@ Page
                 bShowMap = settings.showMapRecordPage;
 
             //start positioning
-            recorder.vStartGPS();
-
-            recorder.newTrackPoint.connect(newTrackPoint);
-            recorder.currentPositionChanged.connect(fncCurrentPositionChanged);
+            recorder.vStartGPS();            
 
             console.log("Is track empty: " + recorder.isEmpty.toString())
 
@@ -158,6 +158,9 @@ Page
 
             //Set map style
             map.styleUrl = settings.mapStyle;
+
+            recorder.newTrackPoint.connect(newTrackPoint);
+            recorder.currentPositionChanged.connect(fncCurrentPositionChanged);
 
             //Set value types for fields in JS array
             RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
@@ -207,10 +210,13 @@ Page
 
         if (status === PageStatus.Inactive)
         {            
-            console.log("RecordPage inactive");            
+            console.log("RecordPage inactive");                        
 
             if (settings.disableScreenBlanking)
                 fncEnableScreenBlank(false);                    
+
+            recorder.newTrackPoint.disconnect(newTrackPoint);
+            recorder.currentPositionChanged.disconnect(fncCurrentPositionChanged);
         }
     }
 
@@ -253,8 +259,8 @@ Page
 
                 iAutoNightModeLoop++;
 
-                //After 3 seconds, check value
-                if (iAutoNightModeLoop >= 4)
+                //After wait time, check light value
+                if (iAutoNightModeLoop >= 10)
                 {
                     //console.log("iAutoNightModeLoop: " + iAutoNightModeLoop.toString());
                     //console.log("iDisplayMode: " + iDisplayMode.toString());
@@ -744,10 +750,12 @@ Page
     {
         console.log("CurrentPositionChanged");
 
-        console.log("bDisableMap: " + bDisableMap.toString());
-        console.log("visible: " + visible.toString());
-        console.log("bShowMap: " + bShowMap.toString());
-        console.log("ApplicationWindow.applicationActive: " + appWindow.applicationActive.toString());
+        //console.log("Record page 2: " + pageStack.currentPage.toString());
+
+        //console.log("bDisableMap: " + bDisableMap.toString());
+        //console.log("visible: " + visible.toString());
+        //console.log("bShowMap: " + bShowMap.toString());
+        //console.log("ApplicationWindow.applicationActive: " + appWindow.applicationActive.toString());
 
         //Map interaction is only done when map is really shown
         if (bDisableMap || !visible || !bShowMap || !appWindow.applicationActive)
@@ -1941,7 +1949,7 @@ Page
                 anchors.leftMargin: Theme.paddingSmall
                 width: ((parent.width/2) - (Theme.paddingLarge/2))
                 height: parent.height
-                color: recorder.isEmpty ? "dimgrey" : "lightsalmon"
+                color: recorder.isEmpty ? "dimgrey" : (recorder.pause ? "mediumseagreen" : "lightsalmon")
                 border.color: recorder.isEmpty ? "grey" : "white"
                 border.width: 2
                 radius: 10
@@ -1980,7 +1988,7 @@ Page
                 height: parent.height
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.paddingSmall
-                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (!recorder.running && recorder.isEmpty ? "#389632" : "salmon")
+                color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "dimgrey" : (!recorder.running && recorder.isEmpty ? "#389632" : "indianred")
                 border.color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
                 border.width: 2
                 radius: 10
