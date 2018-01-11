@@ -6,7 +6,7 @@
 
 - record page didn't change map style										-> OK
 
-- end of pause icon is not drawn on map if map was invisible
+- end of pause icon is not drawn on map if map was invisible				-> OK
 
 - when record page was closed signals where not disconnected				-> OK
 
@@ -18,10 +18,10 @@
 	
 
 Do not forget:
-- set changelog and release date to .changes file							-> OK																
-- compile with translations and complete translation to german language		-> OK							
-- set new version number to yaml and spec files								-> OK
-- clean project and compile on release for arm and 486						-> OK													
+- set changelog and release date to .changes file																							
+- compile with translations and complete translation to german language						
+- set new version number to yaml and spec files								
+- clean project and compile on release for arm and 486																
 
 
 

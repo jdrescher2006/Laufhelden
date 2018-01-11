@@ -696,13 +696,13 @@ Page
         if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === true && recorder.pausePointAt(iPointIndex) === false)
         {
             //So this is a track point where a pause starts. The next one is the pause end!
-            //Draw the pause start icon
-            map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(), coordinate);
-            map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_resume.png"));
-            map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
-            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
-            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
+            //Draw the pause end icon
+            map.addSourcePoint("pointPauseEndImage" + iPausePositionsIndex.toString(), coordinate);
+            map.addImagePath("imagePauseEndImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_resume.png"));
+            map.addLayer("layerPauseEndLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseEndImage" + iPausePositionsIndex.toString()});
+            map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseEndImage" + iPausePositionsIndex.toString());
+            map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
 
             //Doing the update here is OK because there should not be too many pauses.
             map.updateSourceLine(sTrackLine, vTrackLinePoints);
