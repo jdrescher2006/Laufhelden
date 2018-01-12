@@ -237,14 +237,49 @@ Page
         repeat: true
         running: true
         onTriggered:
-        {
-            //This timer is called every update cycle. Should be every second.            
-
+        {            
             //Really strange thing: this timer is called even when the page is NOT opened!
             //If the prerecord page is open, the timer is called!
             //So we need to find out wether this page is opened anf if not return here.
             if (page.status === 0)
                 return;
+
+
+            //We might be in a state when there are coordinates saved to the temp array because the map was invisible before.
+            //If this is the case we can now draw the coordinates to the map.
+            //We only need to do this if the accuracy is bad because otherwise this will be triggered by a new coordinate event.
+            if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0 && !bDisableMap && visible && bShowMap && appWindow.applicationActive && recorder.accuracy >= 30)
+            {
+                var vLineArray = [];
+                var vIndexArray =  [];
+
+                console.log("vTempTrackLinePoints length: " + vTempTrackLinePoints.length.toString());
+
+                vLineArray = vTempTrackLinePoints;
+                vIndexArray = vTempTrackLinePointsIndex;
+
+                //The global arrays now will be processed so clear them both.
+                var vCleanArray = [];
+                vTempTrackLinePoints = vCleanArray;
+                vTempTrackLinePointsIndex = vCleanArray;
+
+                bRestoreWorkout = true;
+
+                console.log("Temp points: " + vLineArray.length.toString());
+
+                //Go through the temp array
+                for (var i = 0; i < vLineArray.length; i++)
+                {
+                    //Draw the coordinate points from the temp array on the map
+                    fncSetMapPointToMap(vLineArray[i], vIndexArray[i]);
+                }
+
+                //We need to set the last track to the map.
+                map.updateSourceLine(sTrackLine, vTrackLinePoints);
+
+                bRestoreWorkout = false;
+            }
+
 
             //Get current light in LUX
             if (settings.autoNightMode)
@@ -953,6 +988,12 @@ Page
                 {
                     if (!bShowLockScreen)
                     {
+                        var iAvailableHeight = page.height - id_ITM_LockScreen.height;
+
+                        var iTopMarginRandom = JSTools.fncGetRandomInt(0, iAvailableHeight);
+
+                        id_ITM_LockScreen.anchors.topMargin = iTopMarginRandom;
+
                         bShowMap = false;
                         bShowLockScreen = true;
                     }

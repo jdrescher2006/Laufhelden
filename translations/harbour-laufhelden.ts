@@ -1156,6 +1156,10 @@
         <source>Alarm thresholds</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>min/mi</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Thresholds</name>

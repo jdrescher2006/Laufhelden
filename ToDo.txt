@@ -12,10 +12,16 @@
 
 - switch off map completely while in record page. This is Jolla 1 mode.		-> OK
 
-- imperial units on threshold settings page
+- imperial units on threshold settings page									-> OK
 
+- if map gets visible again, track is only updated when triggered by GPS
 
-	
+- start lockscreen in random position or middle								-> OK
+
+- when editing workout from main page, the workout type is always set to running	-> OK
+
+- when walking was selected before and prerecord page is entered, workout type is not given to recorder		-> OK
+
 
 Do not forget:
 - set changelog and release date to .changes file																							
@@ -28,6 +34,7 @@ Do not forget:
 
 
 ----- ToDo for second next release to openrepos: 0.9.9 -----
+- make the app start faster by scanning the GPX files directory and comparing that to a database
 - add interval feature for voice assistant
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
@@ -37,7 +44,6 @@ Do not forget:
 - add new feature: autopause if speed goes below certain threshold
 - start page: select pace/speed
 - add icons for indicating over/below average speed, average pace and average heart rate to record page
-- introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
 - cyclic voice announcements	
 	- every 0,5-10 km
 	- maximum three parameters
@@ -112,6 +118,7 @@ Bugs:
 
 
 Completed:
+- introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
 - current point on record page needs workover							
 - no tracks on record page							
 - scale bar on map needs imperial units									

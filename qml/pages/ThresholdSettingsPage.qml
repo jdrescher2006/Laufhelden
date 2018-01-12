@@ -307,7 +307,7 @@ Page {
                 id: id_Slider_UpperPaceThreshold
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
-                valueText: Math.floor(value) + ":" + Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)) + qsTr("min/km")
+                valueText: (settings.measureSystem === 0) ? Math.floor(value) + ":" + Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)) + qsTr("min/km") : Math.floor(value * 1.609344) + ":" + Math.ceil((value * 1.609344 * 60.0) - (Math.floor(value * 1.609344) * 60.0)) + qsTr("min/mi")
                 label: qsTr("Upper pace limit")
                 minimumValue: 0.1
                 maximumValue: 10.0
@@ -350,7 +350,7 @@ Page {
                 id: id_Slider_BottomPaceThreshold
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
-                valueText: Math.floor(value) + ":" + Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)) + qsTr("min/km")
+                valueText: (settings.measureSystem === 0) ? Math.floor(value) + ":" + Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)) + qsTr("min/km") : Math.floor(value * 1.609344) + ":" + Math.ceil((value * 1.609344 * 60.0) - (Math.floor(value * 1.609344) * 60.0)) + qsTr("min/mi")
                 label: qsTr("Lower pace limit")
                 minimumValue: 0.1
                 maximumValue: 10.0

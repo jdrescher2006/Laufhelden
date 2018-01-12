@@ -44,6 +44,10 @@ Page
 
             cmbWorkout.currentIndex = SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType);
             imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType)].icon;
+            //Set workout type to recorder
+            recorder.workoutType = SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType)].name;
+
+
 
             if (sHRMAddress === "")
                 txtswUseHRMdevice.checked = false;
@@ -66,6 +70,7 @@ Page
 
             //Set selected threshold profile to combobox
             idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
+
 
             pageStack.pushAttached(Qt.resolvedUrl("RecordPage.qml"));           
 

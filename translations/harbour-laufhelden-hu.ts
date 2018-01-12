@@ -1152,6 +1152,10 @@
         <source>Alarm thresholds</source>
         <translation>Riasztási szintek</translation>
     </message>
+    <message>
+        <source>min/mi</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Thresholds</name>

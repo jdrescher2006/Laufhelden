@@ -348,10 +348,10 @@ Page
                     {
                         console.log("Filename: " + filename);
                         console.log("name: " + name);
-                        console.log("name: " + workout);
+                        console.log("type: " + workout);
                         console.log("description: " + description);
 
-                        iCurrentWorkout = SharedResources.fncGetIndexByName(trackLoader.workout);
+                        iCurrentWorkout = SharedResources.fncGetIndexByName(workout);
 
                         var dialog = pageStack.push(id_Dialog_EditWorkout);
                         dialog.sName = name;

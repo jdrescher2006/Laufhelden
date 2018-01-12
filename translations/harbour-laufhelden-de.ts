@@ -1156,6 +1156,10 @@
         <source>Alarm thresholds</source>
         <translation>Alarm Schwellen</translation>
     </message>
+    <message>
+        <source>min/mi</source>
+        <translation type="unfinished">min/mi</translation>
+    </message>
 </context>
 <context>
     <name>Thresholds</name>
