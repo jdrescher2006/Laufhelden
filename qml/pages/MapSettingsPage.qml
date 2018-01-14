@@ -100,8 +100,8 @@ Page {
             TextSwitch
             {
                 id: id_TextSwitch_mapDisableOnRecordPage
-                text: qsTr("Disable map on record page")
-                description: qsTr("This is useful on Jolla 1 phones because the app may crash if the map is shown.")
+                text: qsTr("Disable map")
+                description: qsTr("Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.")
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted)

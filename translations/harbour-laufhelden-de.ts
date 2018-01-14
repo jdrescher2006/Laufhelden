@@ -52,16 +52,16 @@
         <translation>Feedback, Probleme:</translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation>Finnisch</translation>
-    </message>
-    <message>
         <source>Credits for code contribution:</source>
         <translation>Credits für Beiträge zur Entwicklung:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
         <translation>Wenn Sie diese App mögen, können Sie dafür spenden:</translation>
+    </message>
+    <message>
+        <source>Hungarian</source>
+        <translation>Ungarisch</translation>
     </message>
 </context>
 <context>
@@ -412,12 +412,12 @@
         <translation>OSM Scout Server</translation>
     </message>
     <message>
-        <source>Disable map on record page</source>
-        <translation>Karte deaktivieren</translation>
+        <source>Disable map</source>
+        <translation>Karte nicht anzeigen</translation>
     </message>
     <message>
-        <source>This is useful on Jolla 1 phones because the app may crash if the map is shown.</source>
-        <translation type="unfinished"></translation>
+        <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
+        <translation>Die Karte wird nicht mehr angezeigt. Dies ist nützlich bei Jolla 1-Telefonen (mit schwacher GPU), da die Karte die App zum Absturz bringen kann.</translation>
     </message>
 </context>
 <context>
@@ -1158,7 +1158,7 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished">min/mi</translation>
+        <translation>min/mi</translation>
     </message>
 </context>
 <context>

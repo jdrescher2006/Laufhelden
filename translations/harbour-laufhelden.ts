@@ -52,15 +52,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Credits for code contribution:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hungarian</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -412,11 +412,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disable map on record page</source>
+        <source>Disable map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This is useful on Jolla 1 phones because the app may crash if the map is shown.</source>
+        <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

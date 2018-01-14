@@ -48,9 +48,15 @@ Page
 
     property int iCurrentWorkout: 0
 
-    onStatusChanged: {
+    property bool bDisableMap: settings.mapDisableRecordPage
+
+    onStatusChanged:
+    {
         if (status === PageStatus.Active)
         {
+            //This setting determines if the map should be completely disabled.
+            bDisableMap = settings.mapDisableRecordPage;
+
             trackLoader.filename = filename;
 
             console.log("settings.mapStyle: " + settings.mapStyle);
@@ -156,80 +162,86 @@ Page
                 //Check if we have the first data point.
                 if (i===0)
                 {
-                    //This is the first data point, draw the start icon
-                    map.addSourcePoint("pointStartImage",  trackLoader.trackPointAt(i));
-                    map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
-                    map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
-                    map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
-                    map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
-                    map.setLayoutProperty("layerStartLayer", "visibility", "visible");
+                    if (!bDisableMap)
+                    {
+                        //This is the first data point, draw the start icon
+                        map.addSourcePoint("pointStartImage",  trackLoader.trackPointAt(i));
+                        map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
+                        map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
+                        map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
+                        map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
+                        map.setLayoutProperty("layerStartLayer", "visibility", "visible");
+                    }
                 }
 
                 //Check if we have the last data point, draw the stop icon
                 if (i===(trackLength - 1))
                 {
-                    map.addSourcePoint("pointEndImage",  trackLoader.trackPointAt(i));
-                    map.addImagePath("imageEndImage", Qt.resolvedUrl("../img/map_stop.png"));
-                    map.addLayer("layerEndLayer", {"type": "symbol", "source": "pointEndImage"});
-                    map.setLayoutProperty("layerEndLayer", "icon-image", "imageEndImage");
-                    map.setLayoutProperty("layerEndLayer", "icon-size", 1.0 / map.pixelRatio);
-                    map.setLayoutProperty("layerEndLayer", "visibility", "visible");
+                    if (!bDisableMap)
+                    {
+                        map.addSourcePoint("pointEndImage",  trackLoader.trackPointAt(i));
+                        map.addImagePath("imageEndImage", Qt.resolvedUrl("../img/map_stop.png"));
+                        map.addLayer("layerEndLayer", {"type": "symbol", "source": "pointEndImage"});
+                        map.setLayoutProperty("layerEndLayer", "icon-image", "imageEndImage");
+                        map.setLayoutProperty("layerEndLayer", "icon-size", 1.0 / map.pixelRatio);
+                        map.setLayoutProperty("layerEndLayer", "visibility", "visible");
 
-                    //We have to create a track line here.
-                    map.addSourceLine("lineEndTrack", trackPointsTemporary)
-                    map.addLayer("layerEndTrack", { "type": "line", "source": "lineEndTrack" })
-                    map.setLayoutProperty("layerEndTrack", "line-join", "round");
-                    map.setLayoutProperty("layerEndTrack", "line-cap", "round");
-                    map.setPaintProperty("layerEndTrack", "line-color", "red");
-                    map.setPaintProperty("layerEndTrack", "line-width", 2.0);
+                        //We have to create a track line here.
+                        map.addSourceLine("lineEndTrack", trackPointsTemporary)
+                        map.addLayer("layerEndTrack", { "type": "line", "source": "lineEndTrack" })
+                        map.setLayoutProperty("layerEndTrack", "line-join", "round");
+                        map.setLayoutProperty("layerEndTrack", "line-cap", "round");
+                        map.setPaintProperty("layerEndTrack", "line-color", "red");
+                        map.setPaintProperty("layerEndTrack", "line-width", 2.0);
 
-                    vTrackLinePoints = trackPointsTemporary;
-                    map.fitView(trackPointsTemporary);
+                        vTrackLinePoints = trackPointsTemporary;
+                        map.fitView(trackPointsTemporary);
+                    }
                 }
 
                 //now check if we have a point where a pause starts
                 if (trackLoader.pausePositionsCount() > 0 && i===trackLoader.pausePositionAt(iPausePositionsIndex))
                 {
-                    //So this is a track point where a pause starts. The next one is the pause end!
-                    //Draw the pause start icon
-                    map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(),  trackLoader.trackPointAt(i));
-                    map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_pause.png"));
-                    map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
-                    map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
-                    map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-                    map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
+                    if (!bDisableMap)
+                    {
+                        //So this is a track point where a pause starts. The next one is the pause end!
+                        //Draw the pause start icon
+                        map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(),  trackLoader.trackPointAt(i));
+                        map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_pause.png"));
+                        map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
+                        map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
+                        map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+                        map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
 
-                    //Draw the pause end icon
-                    map.addSourcePoint("pointPauseEndImage" + iPausePositionsIndex.toString(),  trackLoader.trackPointAt(i+1));
-                    map.addImagePath("imagePauseEndImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_resume.png"));
-                    map.addLayer("layerPauseEndLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseEndImage" + iPausePositionsIndex.toString()});
-                    map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseEndImage" + iPausePositionsIndex.toString());
-                    map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-                    map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
+                        //Draw the pause end icon
+                        map.addSourcePoint("pointPauseEndImage" + iPausePositionsIndex.toString(),  trackLoader.trackPointAt(i+1));
+                        map.addImagePath("imagePauseEndImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_resume.png"));
+                        map.addLayer("layerPauseEndLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseEndImage" + iPausePositionsIndex.toString()});
+                        map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseEndImage" + iPausePositionsIndex.toString());
+                        map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+                        map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
 
-                    //put pause items to the map
-                    //trackMap.addMapItem(pauseItemStart);
-                    //trackMap.addMapItem(pauseItemEnd);
+                        //put pause items to the map
+                        //trackMap.addMapItem(pauseItemStart);
+                        //trackMap.addMapItem(pauseItemEnd);
 
-                    //We can now create the track from start or end of last pause to start of this pause
-                    map.addSourceLine("lineTrack" + iPausePositionsIndex.toString(), trackPointsTemporary)
-                    map.addLayer("layerTrack" + iPausePositionsIndex.toString(), { "type": "line", "source": "lineTrack" + iPausePositionsIndex.toString() })
-                    map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-join", "round");
-                    map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-cap", "round");
-                    map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-color", "red");
-                    map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-width", 2.0);
+                        //We can now create the track from start or end of last pause to start of this pause
+                        map.addSourceLine("lineTrack" + iPausePositionsIndex.toString(), trackPointsTemporary)
+                        map.addLayer("layerTrack" + iPausePositionsIndex.toString(), { "type": "line", "source": "lineTrack" + iPausePositionsIndex.toString() })
+                        map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-join", "round");
+                        map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-cap", "round");
+                        map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-color", "red");
+                        map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-width", 2.0);
 
-                    //now we can delete the temp track array
-                    trackPointsTemporary = [];
+                        //now we can delete the temp track array
+                        trackPointsTemporary = [];
+                    }
 
                     //set indexer to next pause position. But only if there is a further pause.
                     if ((iPausePositionsIndex + 1) < trackLoader.pausePositionsCount())
                         iPausePositionsIndex++;
                 }
             }
-
-
-            //trackMap.fitViewportToMapItems(); // Not working
 
             if (trackLoader.pausePositionsCount() === 0)
                 pauseData.text = "-" ;
@@ -284,7 +296,7 @@ Page
             top: parent.top
             left: parent.left
             right: parent.right
-            bottom: map.top
+            bottom: bDisableMap ? parent.bottom : map.top
         }
         clip: true
         contentHeight: header.height + gridContainer.height + Theme.paddingLarge
@@ -574,6 +586,8 @@ Page
 
         styleUrl: settings.mapStyle
 
+        visible: !bDisableMap
+
         Item
         {
             id: centerButton
@@ -686,7 +700,7 @@ Page
         anchors.leftMargin: Theme.paddingLarge
         height: base.height + text.height + text.anchors.bottomMargin
         opacity: 0.9
-        visible: scaleWidth > 0
+        visible: scaleWidth > 0 && !bDisableMap
         z: 100
 
         property real   scaleWidth: 0

@@ -1,11 +1,13 @@
-* Fri Jan 12 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-1
+* Sun Jan 14 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-1
+- new setting for Jolla 1: switch off map to avoid app crash
 - multiple bug fixing and small enhancements:
     - fix app freezing/crashing after long workout
     - fix app freezing/crashing after loading autosave
     - fix record page didn't change map style
     - increase wait time for night mode
     - change color of buttons on record page
-    - new setting for Jolla 1: switch off map on record page
+    - imperial units for threshold settings page
+    - other fixes
 
 * Fri Jan 05 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.8-9
 - new map plugin MapBox

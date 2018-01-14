@@ -52,16 +52,16 @@
         <translation>Återkoppling och fel:</translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation>Finska</translation>
-    </message>
-    <message>
         <source>Credits for code contribution:</source>
         <translation>Tack för kodbidrag</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
         <translation>Om du gillar den här appen kan du donera för vidare utveckling:</translation>
+    </message>
+    <message>
+        <source>Hungarian</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -412,12 +412,12 @@
         <translation>OSM Scout Server</translation>
     </message>
     <message>
-        <source>Disable map on record page</source>
-        <translation>Inaktivera kartan på inspelningssidan</translation>
+        <source>Disable map</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This is useful on Jolla 1 phones because the app may crash if the map is shown.</source>
-        <translation>Användbrt på Jolla 1-telefoner, eftersom appen kan krascha när kartan visas.</translation>
+        <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

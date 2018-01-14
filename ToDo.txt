@@ -10,11 +10,11 @@
 
 - when record page was closed signals where not disconnected				-> OK
 
-- switch off map completely while in record page. This is Jolla 1 mode.		-> OK
+- switch off map completely. This is Jolla 1 mode.							-> OK
 
-- imperial units on threshold settings page									-> OK
+- imperial units on threshold settings page.								-> OK
 
-- if map gets visible again, track is only updated when triggered by GPS
+- if map gets visible again, track is only updated when triggered by GPS	-> OK
 
 - start lockscreen in random position or middle								-> OK
 
@@ -24,10 +24,10 @@
 
 
 Do not forget:
-- set changelog and release date to .changes file																							
-- compile with translations and complete translation to german language						
-- set new version number to yaml and spec files								
-- clean project and compile on release for arm and 486																
+- set changelog and release date to .changes file							OK
+- compile with translations and complete translation to german language		OK				
+- set new version number to yaml and spec files								OK
+- clean project and compile on release for arm and 486						OK
 
 
 
@@ -35,6 +35,26 @@ Do not forget:
 
 ----- ToDo for second next release to openrepos: 0.9.9 -----
 - make the app start faster by scanning the GPX files directory and comparing that to a database
+	- need file with array for every workout.
+	- array structure is as following: 
+		- string:	name of file
+		- int:		size of file byte wise
+		- string: 	date of file
+		- bool:		file was found (while scanning the directory)
+		- bool:		file is consistent (with size and date)
+		- string:	name of workout
+		- string?:	date of workout
+		- int:		distance of workout
+		- int:		time of workout
+		- int:		average speed
+	- 1 step: read database file with array
+	- 2 step: go through every file in directory
+	- 3 step: search array entry for each file in directory 
+	- 4 step: check consistency
+	- 5 step: if file is not in array, push to array
+	- 6 step: if scanning directory is complete, load all inconsistent files in array
+
+
 - add interval feature for voice assistant
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed

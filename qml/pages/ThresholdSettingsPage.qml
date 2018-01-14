@@ -19,6 +19,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../tools/Thresholds.js" as Thresholds
+import "../tools/JSTools.js" as JSTools
 
 
 Page {
@@ -307,7 +308,7 @@ Page {
                 id: id_Slider_UpperPaceThreshold
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
-                valueText: (settings.measureSystem === 0) ? Math.floor(value) + ":" + Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)) + qsTr("min/km") : Math.floor(value * 1.609344) + ":" + Math.ceil((value * 1.609344 * 60.0) - (Math.floor(value * 1.609344) * 60.0)) + qsTr("min/mi")
+                valueText: (settings.measureSystem === 0) ? Math.floor(value) + ":" + JSTools.fncPadZeros(Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)),2) + qsTr("min/km") : Math.floor(JSTools.fncConvertPacetoImperial(value)) + ":" + JSTools.fncPadZeros(Math.ceil((JSTools.fncConvertPacetoImperial(value) * 60.0) - (Math.floor(JSTools.fncConvertPacetoImperial(value)) * 60.0)),2) + qsTr("min/mi")
                 label: qsTr("Upper pace limit")
                 minimumValue: 0.1
                 maximumValue: 10.0
@@ -350,7 +351,7 @@ Page {
                 id: id_Slider_BottomPaceThreshold
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
-                valueText: (settings.measureSystem === 0) ? Math.floor(value) + ":" + Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)) + qsTr("min/km") : Math.floor(value * 1.609344) + ":" + Math.ceil((value * 1.609344 * 60.0) - (Math.floor(value * 1.609344) * 60.0)) + qsTr("min/mi")
+                valueText: (settings.measureSystem === 0) ? Math.floor(value) + ":" + JSTools.fncPadZeros(Math.ceil((value * 60.0) - (Math.floor(value) * 60.0)),2) + qsTr("min/km") : Math.floor(JSTools.fncConvertPacetoImperial(value)) + ":" + JSTools.fncPadZeros(Math.ceil((JSTools.fncConvertPacetoImperial(value) * 60.0) - (Math.floor(JSTools.fncConvertPacetoImperial(value)) * 60.0)),2) + qsTr("min/mi")
                 label: qsTr("Lower pace limit")
                 minimumValue: 0.1
                 maximumValue: 10.0
