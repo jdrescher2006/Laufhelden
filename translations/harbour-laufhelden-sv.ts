@@ -413,11 +413,11 @@
     </message>
     <message>
         <source>Disable map on record page</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktivera kartan på inspelningssidan</translation>
     </message>
     <message>
         <source>This is useful on Jolla 1 phones because the app may crash if the map is shown.</source>
-        <translation type="unfinished"></translation>
+        <translation>Användbrt på Jolla 1-telefoner, eftersom appen kan krascha när kartan visas.</translation>
     </message>
 </context>
 <context>
