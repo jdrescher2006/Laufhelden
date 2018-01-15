@@ -1,5 +1,6 @@
-* Sun Jan 14 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-1
+* Mon Jan 15 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-1
 - new setting for Jolla 1: switch off map to avoid app crash
+- added hungarian translation (thanks to @martonmiklos)
 - multiple bug fixing and small enhancements:
     - fix app freezing/crashing after long workout
     - fix app freezing/crashing after loading autosave

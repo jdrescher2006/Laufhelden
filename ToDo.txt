@@ -1,39 +1,5 @@
----- ToDo for next release to openrepos: 0.9.8-2 -----
-
-- increase wait time for night mode											-> OK
-
-- change color for continue/end button										-> OK
-
-- record page didn't change map style										-> OK
-
-- end of pause icon is not drawn on map if map was invisible				-> OK
-
-- when record page was closed signals where not disconnected				-> OK
-
-- switch off map completely. This is Jolla 1 mode.							-> OK
-
-- imperial units on threshold settings page.								-> OK
-
-- if map gets visible again, track is only updated when triggered by GPS	-> OK
-
-- start lockscreen in random position or middle								-> OK
-
-- when editing workout from main page, the workout type is always set to running	-> OK
-
-- when walking was selected before and prerecord page is entered, workout type is not given to recorder		-> OK
-
-
-Do not forget:
-- set changelog and release date to .changes file							OK
-- compile with translations and complete translation to german language		OK				
-- set new version number to yaml and spec files								OK
-- clean project and compile on release for arm and 486						OK
-
-
-
-
-
------ ToDo for second next release to openrepos: 0.9.9 -----
+---- ToDo for next release to openrepos: 1.0.0-1 -----
+- add interval feature for voice assistant
 - make the app start faster by scanning the GPX files directory and comparing that to a database
 	- need file with array for every workout.
 	- array structure is as following: 
@@ -55,7 +21,20 @@ Do not forget:
 	- 6 step: if scanning directory is complete, load all inconsistent files in array
 
 
-- add interval feature for voice assistant
+
+
+
+Do not forget:
+- set changelog and release date to .changes file
+- compile with translations and complete translation to german language
+- set new version number to yaml and spec files
+- clean project and compile on release for arm and 486
+
+
+
+
+
+----- ToDo for second next release to openrepos: 1.0.1 -----
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
 - look into old map tiles folder and delete files there. Ask user!
@@ -138,6 +117,17 @@ Bugs:
 
 
 Completed:
+- increase wait time for night mode
+- change color for continue/end button
+- record page didn't change map style
+- end of pause icon is not drawn on map if map was invisible
+- when record page was closed signals where not disconnected
+- switch off map completely. This is Jolla 1 mode.
+- imperial units on threshold settings page.
+- if map gets visible again, track is only updated when triggered by GPS
+- start lockscreen in random position or middle
+- when editing workout from main page, the workout type is always set to running
+- when walking was selected before and prerecord page is entered, workout type is not given to recorder
 - introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
 - current point on record page needs workover							
 - no tracks on record page							
