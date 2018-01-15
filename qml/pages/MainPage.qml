@@ -21,6 +21,7 @@ import harbour.laufhelden 1.0
 import "../tools/SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
 import "../tools/JSTools.js" as JSTools
+import com.pipacs.o2 1.0
 
 Page
 {
@@ -225,6 +226,24 @@ Page
             {
                 text: qsTr("Start new workout")
                 onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
+            }
+            MenuItem
+            {
+                text: qsTr("My Strava Activities")
+                visible: o2strava.linked
+                onClicked: {
+
+                    var dialog = pageStack.push(Qt.resolvedUrl("MyStravaActivities.qml"));
+                }
+
+                O2 {
+                    id: o2strava
+                    clientId: "13707"
+                    clientSecret: STRAVA_CLIENT_SECRET
+                    scope: "write"
+                    requestUrl: "https://www.strava.com/oauth/authorize"
+                    tokenUrl: "https://www.strava.com/oauth/token"
+                }
             }
         }
 

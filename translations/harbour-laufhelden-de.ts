@@ -344,6 +344,10 @@
         <source>Workout:</source>
         <translation>Training:</translation>
     </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -422,6 +426,17 @@
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
         <translation>Die Karte wird nicht mehr angezeigt. Dies ist nützlich bei Jolla 1-Telefonen (mit schwacher GPU), da die Karte die App zum Absturz bringen kann.</translation>
+    </message>
+</context>
+<context>
+    <name>MyStravaActivities</name>
+    <message>
+        <source>Download Activity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
