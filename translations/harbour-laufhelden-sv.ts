@@ -61,7 +61,7 @@
     </message>
     <message>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungerska</translation>
     </message>
 </context>
 <context>
@@ -413,11 +413,11 @@
     </message>
     <message>
         <source>Disable map</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktivera kartan</translation>
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartan visas inte mer. Detta är användbart på Jolla 1-telefoner (med klen GPU), eftersom kartan kan få appen att krascha.</translation>
     </message>
 </context>
 <context>
