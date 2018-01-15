@@ -161,7 +161,11 @@ var arrayWorkoutTypes =
     { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png" },
     { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" },    
     { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png" },
-    { name: "skiing", labeltext: qsTr("Skiing"), icon: "../workouticons/skiing.png" }
+    { name: "skiing", labeltext: qsTr("Skiing"), icon: "../workouticons/skiing.png" },
+    { name: "run", labeltext: qsTr("Running"), icon: "../workouticons/running.png" },
+    { name: "ride", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png" },
+    { name: "walk", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" },
+
 ]
 
 //Create lookup table for workout types.
