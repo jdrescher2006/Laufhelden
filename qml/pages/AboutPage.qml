@@ -113,7 +113,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Date: ") + "15.01.2018";
+                text: qsTr("Date: ") + "16.01.2018";
             }
             Label
             {
@@ -141,7 +141,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Spanish") + " - Caballlero<br>" + qsTr("Polish") + " - atlochowski<br>" + qsTr("Swedish") + " - eson57<br>" + qsTr("Hungarian") + " - martonmiklos"
+                text: qsTr("Spanish") + " - Caballlero<br>" + qsTr("Polish") + " - atlochowski<br>" + qsTr("Swedish") + " - eson57<br>" + qsTr("Finnish") + " - niemisenjussi<br>" + qsTr("Hungarian") + " - martonmiklos"
             }            
             Item
             {

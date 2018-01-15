@@ -1,3 +1,7 @@
+* Tue Jan 16 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-2
+- fixed finnish translation
+- updated swedish translation
+
 * Mon Jan 15 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-1
 - new setting for Jolla 1: switch off map to avoid app crash
 - added hungarian translation (thanks to @martonmiklos)
