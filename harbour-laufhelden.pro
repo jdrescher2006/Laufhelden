@@ -131,5 +131,6 @@ DISTFILES += \
     qml/pages/SportsTrackerUploadPage.qml \
     qml/pages/SportsTrackerSettingsPage.qml \
     qml/pages/PebbleSettingsPage.qml \
-    qml/tools/PebbleComm.qml
+    qml/tools/PebbleComm.qml \
+    qml/pages/StravaActivityPage.qml
 

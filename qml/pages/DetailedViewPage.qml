@@ -376,6 +376,7 @@ Page
                     dialog.gpx = gpx;
                     dialog.activityName = name;
                     dialog.activityDescription = stComment;
+                    dialog.activityType = trackLoader.workout
                 }
 
                 O2 {

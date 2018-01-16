@@ -427,11 +427,11 @@
 <context>
     <name>MyStravaActivities</name>
     <message>
-        <source>Download Activity</source>
+        <source>My Strava Activities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>My Strava Activities</source>
+        <source>Download Activity</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1036,6 +1036,45 @@
     </message>
 </context>
 <context>
+    <name>StravaActivityPage</name>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kudos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Achievements:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation Gain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
@@ -1054,30 +1093,6 @@
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Activity Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Riding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Swimming</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Workout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Walking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1102,6 +1117,10 @@
     </message>
     <message>
         <source>Activity upload complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
