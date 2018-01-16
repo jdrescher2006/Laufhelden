@@ -431,11 +431,11 @@
 <context>
     <name>MyStravaActivities</name>
     <message>
-        <source>Download Activity</source>
+        <source>My Strava Activities</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>My Strava Activities</source>
+        <source>Download Activity</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1040,6 +1040,45 @@
     </message>
 </context>
 <context>
+    <name>StravaActivityPage</name>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished">Beskrivning</translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation type="unfinished">Starttid:</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Varaktighet:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished">Distans:</translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished">Hastighet max/⌀:</translation>
+    </message>
+    <message>
+        <source>Kudos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Achievements:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation Gain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
@@ -1059,30 +1098,6 @@
     <message>
         <source>Activity description for Strava</source>
         <translation>Aktivitetsbeskrivning för Strava</translation>
-    </message>
-    <message>
-        <source>Activity Type</source>
-        <translation>Aktivitetstyp</translation>
-    </message>
-    <message>
-        <source>Riding</source>
-        <translation>Ridning</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Löpning</translation>
-    </message>
-    <message>
-        <source>Swimming</source>
-        <translation>Simning</translation>
-    </message>
-    <message>
-        <source>Workout</source>
-        <translation>Workout</translation>
-    </message>
-    <message>
-        <source>Walking</source>
-        <translation>Gång</translation>
     </message>
     <message>
         <source>Private</source>
@@ -1107,6 +1122,10 @@
     <message>
         <source>Activity upload complete</source>
         <translation>Uppladdning slutförd</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
