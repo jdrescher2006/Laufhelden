@@ -63,6 +63,10 @@
         <source>Hungarian</source>
         <translation>Ungarisch</translation>
     </message>
+    <message>
+        <source>Finnish</source>
+        <translation>Finnisch</translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>

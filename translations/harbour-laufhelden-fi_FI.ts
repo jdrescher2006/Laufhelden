@@ -63,6 +63,10 @@
         <source>If you like this app you can donate for it:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -411,6 +415,14 @@
         <source>OSM Scout Server</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Disable map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PebbleComm</name>
@@ -521,12 +533,12 @@
         <translation>Estä näytön sammuminen</translation>
     </message>
     <message>
-        <source>Disbale screen blanking when recording.</source>
-        <translation>Estää näytön sammumisen harjoituksen aikana</translation>
-    </message>
-    <message>
         <source>Select thresholds profile</source>
         <translation>Valitse raja-arvot</translation>
+    </message>
+    <message>
+        <source>Disable screen blanking when recording.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1147,6 +1159,10 @@
     <message>
         <source>Alarm thresholds</source>
         <translation>Hälytysrajat</translation>
+    </message>
+    <message>
+        <source>min/mi</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
