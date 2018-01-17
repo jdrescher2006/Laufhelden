@@ -1098,11 +1098,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Achievements:</source>
+        <source>Elevation Gain:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Elevation Gain:</source>
+        <source>Achievements/PRs:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

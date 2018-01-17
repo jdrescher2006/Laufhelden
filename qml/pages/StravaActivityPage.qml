@@ -22,12 +22,14 @@ import MapboxMap 1.0
 import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
 import "../tools/SharedResources.js" as SharedResources
+import "../tools/polyline.js" as Polyline
 import com.pipacs.o2 1.0
 
 Page {
     id: stravaActivityPage
     property bool busy: false
     property var activity
+    property var vTrackLinePoints
 
     //Map buttons
     property bool showSettingsButton: true
@@ -100,7 +102,7 @@ Page {
                 {
                     id: descriptionData
                     width: parent.width - descriptionLabel.width - 2*Theme.paddingLarge
-                    text: activity.description==="" ? "-" : activity.description
+                    text: activity.description===null ? "-" : activity.description
                     wrapMode: Text.WordWrap
                 }
                 Label
@@ -176,13 +178,13 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Achievements:")
+                    text: qsTr("Achievements/PRs:")
                 }
                 Label
                 {
                     id: achievementData
                     width: descriptionData.width
-                    text: activity.achievement_count
+                    text: activity.achievement_count + "/" + activity.pr_count
                 }
                 Label
                 {
@@ -258,6 +260,10 @@ Page {
         styleUrl: settings.mapStyle
 
         visible: !bDisableMap
+
+        Behavior on height {
+            NumberAnimation { duration: 150 }
+        }
 
         Item
         {
@@ -515,6 +521,7 @@ Page {
                 //console.log("Get Response:", xmlhttp.responseText);
                 activity = JSON.parse(xmlhttp.responseText);
 
+                addActivityToMap();
             }
             busy = false;
             gridContainer.opacity = 1.0
@@ -522,5 +529,74 @@ Page {
         };
 
         xmlhttp.send();
+    }
+
+    function addActivityToMap()
+    {
+        if (!bDisableMap) {
+            //This is the actialy activity route
+            vTrackLinePoints = decode(activity.map.polyline);
+            map.addSourceLine("linesrc", vTrackLinePoints, "line")
+
+            map.addLayer("line", { "type": "line", "source": "linesrc" })
+            map.setLayoutProperty("line", "line-join", "round");
+            map.setLayoutProperty("line", "line-cap", "round");
+            map.setPaintProperty("line", "line-color", "red");
+            map.setPaintProperty("line", "line-width", 2.0);
+
+            map.fitView(vTrackLinePoints);
+
+            //This is the start point of the activity
+            //map.addSourcePoint("pointStartImage",  QtPositioning.coordinate(activity.start_latlng[0],activity.start_latlng[1]));
+            map.addSourcePoint("pointStartImage",  vTrackLinePoints[0]);
+            map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
+            map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
+            map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
+            map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerStartLayer", "visibility", "visible");
+
+            //This is the end point of the activity
+           // map.addSourcePoint("pointEndImage",  QtPositioning.coordinate(activity.end_latlng[0],activity.end_latlng[1]));
+            map.addSourcePoint("pointEndImage",  vTrackLinePoints[vTrackLinePoints.length - 1]);
+            map.addImagePath("imageEndImage", Qt.resolvedUrl("../img/map_stop.png"));
+            map.addLayer("layerEndLayer", {"type": "symbol", "source": "pointEndImage"});
+            map.setLayoutProperty("layerEndLayer", "icon-image", "imageEndImage");
+            map.setLayoutProperty("layerEndLayer", "icon-size", 1.0 / map.pixelRatio);
+            map.setLayoutProperty("layerEndLayer", "visibility", "visible");
+        }
+    }
+
+    function decode(encoded){
+
+        // array that holds the points
+
+        var points=[ ]
+        var index = 0, len = encoded.length;
+        var lat = 0, lng = 0;
+        while (index < len) {
+            var b, shift = 0, result = 0;
+            do {
+
+                b = encoded.charAt(index++).charCodeAt(0) - 63;//finds ascii                                                                                    //and substract it by 63
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+
+
+            var dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
+            shift = 0;
+            result = 0;
+            do {
+                b = encoded.charAt(index++).charCodeAt(0) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            var dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+
+            points.push(QtPositioning.coordinate(( lat / 1E5), ( lng / 1E5)));
+        }
+        return points
     }
 }
