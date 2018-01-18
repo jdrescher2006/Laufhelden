@@ -348,6 +348,10 @@
         <source>My Strava Activities</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -1098,16 +1102,40 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Starting time:</source>
+        <translation type="unfinished">Czas startu:</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Czas trwania:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished">Dystans:</translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished">Prędkość max/⌀</translation>
+    </message>
+    <message>
+        <source>Kudos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation Gain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Achievements/PRs:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>StravaSettingsPage</name>
-    <message>
-        <source>Swimming</source>
-        <translation>Pływanie</translation>
-    </message>
     <message>
         <source>Strava settings</source>
         <translation type="unfinished"></translation>
@@ -1158,6 +1186,10 @@
     <message>
         <source>Activity upload complete</source>
         <translation>Wysyłanie aktywności zakończone</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type</source>

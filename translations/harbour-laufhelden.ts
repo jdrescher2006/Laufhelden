@@ -1,3 +1,4 @@
+        <translation type="unfinished"></translation>
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1">
@@ -1076,6 +1077,7 @@
 </context>
 <context>
     <name>StravaSettingsPage</name>
+    <source>Strava settings</source>
     <message>
         <source>Strava settings</source>
         <translation type="unfinished"></translation>

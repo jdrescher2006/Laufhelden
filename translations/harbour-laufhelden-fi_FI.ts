@@ -440,6 +440,17 @@
     </message>
 </context>
 <context>
+    <name>MyStravaActivities</name>
+    <message>
+        <source>Download Activity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
