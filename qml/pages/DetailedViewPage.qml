@@ -381,7 +381,7 @@ Page
 
                 O2 {
                     id: o2strava
-                    clientId: "13707"
+                    clientId: STRAVA_CLIENT_ID
                     clientSecret: STRAVA_CLIENT_SECRET
                     scope: "write"
                     requestUrl: "https://www.strava.com/oauth/authorize"
@@ -588,6 +588,10 @@ Page
         styleUrl: settings.mapStyle
 
         visible: !bDisableMap
+
+        Behavior on height {
+            NumberAnimation { duration: 150 }
+        }
 
         Item
         {
