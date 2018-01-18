@@ -70,6 +70,7 @@ int main(int argc, char *argv[]) {
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());
     view->rootContext()->setContextProperty("STRAVA_CLIENT_SECRET", encryptDecrypt("}{s{--z*.x{y{ss///x/x){*xz{(|yy/{syr-/})"));
+    view->rootContext()->setContextProperty("STRAVA_CLIENT_ID", "13707");
 
     view->setSource(SailfishApp::pathTo("qml/harbour-laufhelden.qml"));
     view->showFullScreen();

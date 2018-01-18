@@ -17,6 +17,7 @@
 
 import QtQuick 2.2
 import Sailfish.Silica 1.0
+import harbour.laufhelden 1.0
 import com.pipacs.o2 1.0
 import "../tools"
 import "../tools/SharedResources.js" as SharedResources
@@ -27,7 +28,7 @@ Page {
 
     O2 {
         id: o2strava
-        clientId: "13707"
+        clientId: STRAVA_CLIENT_ID
         clientSecret: STRAVA_CLIENT_SECRET
         scope: "write"
         requestUrl: "https://www.strava.com/oauth/authorize"
@@ -55,13 +56,6 @@ Page {
         delegate: ListItem {
             id: listItem
             contentHeight: distLabel.y + distLabel.height + Theme.paddingMedium
-            menu: ContextMenu
-            {
-                MenuItem
-                {
-                    text: qsTr("Download Activity")
-                }
-            }
 
             Image
             {
@@ -95,27 +89,58 @@ Page {
                 text: (new Date(stravaList.model[index]["start_date"])).toDateString()
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
+            Image {
+                id: distangeImage
+                anchors.top: nameLabel.bottom
+                anchors.left: workoutImage.right
+                anchors.leftMargin: Theme.paddingMedium
+                source: "../img/pin.png"
+                height: distLabel.height
+                width: height
+            }
+
             Label
             {
                 id: distLabel
-                anchors.top: nameLabel.bottom
-                anchors.left: workoutImage.right
+                anchors.top: distangeImage.top
+                anchors.left: distangeImage.right
                 anchors.leftMargin: Theme.paddingMedium
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
                 text: (settings.measureSystem === 0) ? (stravaList.model[index]["distance"]/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(stravaList.model[index]["distance"]/1000).toFixed(2) + "mi"
             }
+            Image {
+                id: timeImage
+                anchors.top: timeLabel.top
+                anchors.right: timeLabel.left
+                anchors.rightMargin: Theme.paddingSmall
+                source: "../img/time.png"
+                height: timeLabel.height
+                width: height
+            }
             Label
             {
+                id: timeLabel
                 anchors.top: nameLabel.bottom
                 x: (parent.width - width) / 2
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
                 text: Math.floor(stravaList.model[index]["elapsed_time"] / 60) + "min"
             }
+            Image {
+                id: elevationImage
+                anchors.top: nameLabel.bottom
+                anchors.right: elevationLabel.left
+                anchors.rightMargin: Theme.paddingSmall
+                source: "../img/elevation.png"
+                height: elevationLabel.height
+                width: height
+            }
+
             Label
             {
-                anchors.top: nameLabel.bottom
+                id: elevationLabel
+                anchors.top: elevationImage.top
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.paddingSmall
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
