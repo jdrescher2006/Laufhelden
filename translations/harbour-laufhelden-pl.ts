@@ -344,6 +344,14 @@
         <source>Workout:</source>
         <translation>Trening:</translation>
     </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -421,6 +429,13 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MyStravaActivities</name>
+    <message>
+        <source>My Strava Activities</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1025,14 +1040,15 @@
     </message>
 </context>
 <context>
-    <name>StravaSettingsPage</name>
+    <name>StravaActivityPage</name>
     <message>
         <source>Strava settings</source>
         <translation>Ustawienia Strava</translation>
     </message>
-</context>
-<context>
-    <name>StravaUploadPage</name>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished">Opis</translation>
+    </message>
     <message>
         <source>Activity name for Strava</source>
         <translation>Nazwa aktywności dla Stravy</translation>
@@ -1058,9 +1074,75 @@
         <translation>Bieganie</translation>
     </message>
     <message>
-        <source>Swimming</source>
-        <translation>Pływanie</translation>
+        <source>Starting time:</source>
+        <translation type="unfinished">Czas startu:</translation>
     </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Czas trwania:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished">Dystans:</translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished">Prędkość max/⌀</translation>
+    </message>
+    <message>
+        <source>Kudos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation Gain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation type="unfinished">Czas startu:</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Czas trwania:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished">Dystans:</translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished">Prędkość max/⌀</translation>
+    </message>
+    <message>
+        <source>Kudos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation Gain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Achievements/PRs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaSettingsPage</name>
+    <message>
+        <source>Strava settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaUploadPage</name>
     <message>
         <source>Workout</source>
         <translation>Trening</translation>
@@ -1068,6 +1150,18 @@
     <message>
         <source>Walking</source>
         <translation>Spacer</translation>
+    </message>
+    <message>
+        <source>Activity name for Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished">Opis</translation>
+    </message>
+    <message>
+        <source>Activity description for Strava</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Private</source>
@@ -1092,6 +1186,14 @@
     <message>
         <source>Activity upload complete</source>
         <translation>Wysyłanie aktywności zakończone</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

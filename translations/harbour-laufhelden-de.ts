@@ -344,6 +344,10 @@
         <source>Workout:</source>
         <translation>Training:</translation>
     </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -422,6 +426,13 @@
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
         <translation>Die Karte wird nicht mehr angezeigt. Dies ist nützlich bei Jolla 1-Telefonen (mit schwacher GPU), da die Karte die App zum Absturz bringen kann.</translation>
+    </message>
+</context>
+<context>
+    <name>MyStravaActivities</name>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1025,6 +1036,45 @@
     </message>
 </context>
 <context>
+    <name>StravaActivityPage</name>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished">Beschreibung:</translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation type="unfinished">Startzeit:</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Dauer:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished">Distanz:</translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished">Geschw. max/⌀:</translation>
+    </message>
+    <message>
+        <source>Kudos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation Gain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Achievements/PRs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
@@ -1044,30 +1094,6 @@
     <message>
         <source>Activity description for Strava</source>
         <translation>Beschreibung der Aktivität</translation>
-    </message>
-    <message>
-        <source>Activity Type</source>
-        <translation>Aktivität</translation>
-    </message>
-    <message>
-        <source>Riding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Laufen</translation>
-    </message>
-    <message>
-        <source>Swimming</source>
-        <translation>Schwimmen</translation>
-    </message>
-    <message>
-        <source>Workout</source>
-        <translation>Workout</translation>
-    </message>
-    <message>
-        <source>Walking</source>
-        <translation>Walking</translation>
     </message>
     <message>
         <source>Private</source>
@@ -1092,6 +1118,10 @@
     <message>
         <source>Activity upload complete</source>
         <translation>Hochladen abgeschlossen</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

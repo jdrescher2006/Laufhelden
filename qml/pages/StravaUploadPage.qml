@@ -18,6 +18,7 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 import com.pipacs.o2 1.0
+import "../tools/SharedResources.js" as SharedResources
 
 Page {
     id: stravaDialog
@@ -70,7 +71,6 @@ Page {
             placeholderText: qsTr("Activity name for Strava")
             label: qsTr("Description")
         }
-
         TextArea {
             id: st_description
             width: parent.width
@@ -78,56 +78,14 @@ Page {
             placeholderText: qsTr("Activity description for Strava")
             label: qsTr("Description")
         }
-        ComboBox
-        {
+        TextField {
             id: st_activityType
-            label: qsTr("Activity Type")
-            menu: ContextMenu
-            {
-                MenuItem
-                {
-                    text: qsTr("Riding")
-                    onClicked:
-                    {
-                        activityType = "ride";
-                    }
-
-                }
-                MenuItem
-                {
-                    text: qsTr("Running")
-                    onClicked:
-                    {
-                        activityType = "run";
-                    }
-
-                }
-                MenuItem
-                {
-                    text: qsTr("Swimming")
-                    onClicked:
-                    {
-                        activityType = "swim";
-                    }
-                }
-                MenuItem
-                {
-                    text: qsTr("Workout")
-                    onClicked:
-                    {
-                        activityType = "workout";
-                    }
-                }
-                MenuItem
-                {
-                    text: qsTr("Walking")
-                    onClicked:
-                    {
-                        activityType = "walk";
-                    }
-                }
-            }
+            width: parent.width
+            text: SharedResources.toStravaType(activityType)
+            enabled: false
+            label: qsTr("Type")
         }
+
         TextSwitch {
             id: chkPrivate
             text: qsTr("Private");
