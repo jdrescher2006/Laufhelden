@@ -53,7 +53,7 @@
     </message>
     <message>
         <source>Credits for code contribution:</source>
-        <translation>Tack för kodbidrag</translation>
+        <translation>Tack för kodbidrag:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
@@ -131,7 +131,7 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Pausad</translation>
+        <translation>Pausad</translation>
     </message>
 </context>
 <context>
@@ -142,7 +142,7 @@
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished">Detta värde är redan tilldelat!</translation>
+        <translation>Detta värde är redan tilldelat!</translation>
     </message>
     <message>
         <source>Second field:</source>
@@ -165,11 +165,11 @@
     <name>DetailedViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Diagram</translation>
+        <translation>Diagram</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Beskrivning</translation>
+        <translation>Beskrivning:</translation>
     </message>
     <message>
         <source>Starting time:</source>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Varaktighet:</translation>
+        <translation>Varaktighet:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -197,7 +197,7 @@
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation>Paus antal/varaktighet</translation>
+        <translation>Paus antal/varaktighet:</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
@@ -225,7 +225,7 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Träningspass:</translation>
+        <translation>Träningspass:</translation>
     </message>
     <message>
         <source>Elevation up/down:</source>
@@ -247,31 +247,31 @@
     <name>JSTools</name>
     <message>
         <source>Empty</source>
-        <translation type="unfinished">Tomt</translation>
+        <translation>Tomt</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished">Hjätfrekvens</translation>
+        <translation>Hjätfrekvens</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished">Tempo</translation>
+        <translation>Tempo</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Hastighet</translation>
+        <translation>Hastighet</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation type="unfinished">Altitud</translation>
+        <translation>Altitud</translation>
     </message>
     <message>
         <source>Distance</source>
-        <translation type="unfinished">Distans</translation>
+        <translation>Distans</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Pausa</translation>
+        <translation>Pausa</translation>
     </message>
     <message>
         <source>Duration</source>
@@ -342,7 +342,7 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Träningspass:</translation>
+        <translation>Träningspass:</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation>Välj kartstil</translation>
+        <translation>Välj kartstil.</translation>
     </message>
     <message>
         <source>Map</source>
@@ -426,13 +426,6 @@
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
         <translation>Kartan visas inte mer. Detta är användbart på Jolla 1-telefoner (med klen GPU), eftersom kartan kan få appen att krascha.</translation>
-    </message>
-</context>
-<context>
-    <name>MyStravaActivities</name>
-    <message>
-        <source>My Strava Activities</source>
-        <translation>Mina Strava-aktiviteter</translation>
     </message>
 </context>
 <context>
@@ -525,7 +518,7 @@
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation type="unfinished">Rockpool måste vara installerat&lt;br&gt;lägst version 1.4-4&lt;br&gt;Installerad version är:  {1.4-1.?}</translation>
+        <translation>Rockpool måste vara installerat&lt;br&gt;lägst version 1.4-4&lt;br&gt;Installerad version är: </translation>
     </message>
 </context>
 <context>
@@ -544,7 +537,7 @@
     </message>
     <message>
         <source>Use heart rate monitor in this workout.</source>
-        <translation>Använd hjärtfrekvensmätare i detta träningspass</translation>
+        <translation>Använd hjärtfrekvensmätare i detta träningspass.</translation>
     </message>
     <message>
         <source>Disable screen blanking</source>
@@ -552,11 +545,11 @@
     </message>
     <message>
         <source>Disable screen blanking when recording.</source>
-        <translation>Inaktivera skärmsläckning vid inspelning</translation>
+        <translation>Inaktivera skärmsläckning vid inspelning.</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation type="unfinished">Välj tröskelvärdesprofil</translation>
+        <translation>Välj tröskelvärdesprofil</translation>
     </message>
 </context>
 <context>
@@ -682,7 +675,7 @@
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>Heartrate</source>
@@ -690,7 +683,7 @@
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished">bpm</translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Pace</source>
@@ -698,7 +691,7 @@
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished">min/km</translation>
+        <translation>min/km</translation>
     </message>
     <message>
         <source>Speed</source>
@@ -706,7 +699,7 @@
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/t</translation>
+        <translation>km/t</translation>
     </message>
     <message>
         <source>m</source>
@@ -726,7 +719,7 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Pausa</translation>
+        <translation>Paus</translation>
     </message>
     <message>
         <source>min/mi</source>
@@ -988,7 +981,7 @@
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">av</translation>
+        <translation>av</translation>
     </message>
     <message>
         <source> unique workout downloaded!</source>
@@ -1023,7 +1016,7 @@
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Beskrivning</translation>
+        <translation>Beskrivning</translation>
     </message>
     <message>
         <source>Share workout</source>
@@ -1046,23 +1039,23 @@
     <name>StravaActivityPage</name>
     <message>
         <source>Description:</source>
-        <translation type="unfinished">Beskrivning</translation>
+        <translation>Beskrivning:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished">Starttid:</translation>
+        <translation>Starttid:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Varaktighet:</translation>
+        <translation>Varaktighet:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Distans:</translation>
+        <translation>Distans:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished">Hastighet max/⌀:</translation>
+        <translation>Hastighet max/⌀:</translation>
     </message>
     <message>
         <source>Kudos:</source>
@@ -1074,7 +1067,7 @@
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation>Höjdökning</translation>
+        <translation>Höjdökning:</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
@@ -1096,7 +1089,7 @@
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Beskrivning</translation>
+        <translation>Beskrivning</translation>
     </message>
     <message>
         <source>Activity description for Strava</source>
@@ -1104,7 +1097,7 @@
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished">Privat</translation>
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Commute</source>
@@ -1199,7 +1192,7 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished">min/mi</translation>
+        <translation>min/mi</translation>
     </message>
 </context>
 <context>
