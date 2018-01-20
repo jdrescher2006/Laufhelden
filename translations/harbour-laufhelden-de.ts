@@ -346,7 +346,7 @@
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Strava Aktivitäten</translation>
     </message>
 </context>
 <context>
@@ -432,7 +432,7 @@
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Strava Aktivitäten</translation>
     </message>
 </context>
 <context>
@@ -889,6 +889,10 @@
         <source>Skiing</source>
         <translation>Skifahren</translation>
     </message>
+    <message>
+        <source>Hiking</source>
+        <translation>Wandern</translation>
+    </message>
 </context>
 <context>
     <name>SportsTracker</name>
@@ -1039,39 +1043,39 @@
     <name>StravaActivityPage</name>
     <message>
         <source>Description:</source>
-        <translation type="unfinished">Beschreibung:</translation>
+        <translation>Beschreibung:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished">Startzeit:</translation>
+        <translation>Startzeit:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Dauer:</translation>
+        <translation>Dauer:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Distanz:</translation>
+        <translation>Distanz:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished">Geschw. max/⌀:</translation>
+        <translation>Geschw. max/⌀:</translation>
     </message>
     <message>
         <source>Kudos:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kudos:</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommmentare:</translation>
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höhengewinn:</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Erfolge/PRs</translation>
     </message>
 </context>
 <context>
@@ -1101,7 +1105,7 @@
     </message>
     <message>
         <source>Commute</source>
-        <translation type="unfinished"></translation>
+        <translation>Commute</translation>
     </message>
     <message>
         <source>Uploading data...</source>
@@ -1121,7 +1125,7 @@
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
 </context>
 <context>

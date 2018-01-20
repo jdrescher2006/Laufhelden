@@ -889,6 +889,10 @@
         <source>Skiing</source>
         <translation>Narciarstwo</translation>
     </message>
+    <message>
+        <source>Hiking</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SportsTracker</name>

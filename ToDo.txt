@@ -1,5 +1,7 @@
 ---- ToDo for next release to openrepos: 1.0.0-1 -----
-- add interval feature for voice assistant
+
+- add workout icon on details page							-> OK
+
 - make the app start faster by scanning the GPX files directory and comparing that to a database
 	- need file with array for every workout.
 	- array structure is as following: 
@@ -27,7 +29,7 @@
 Do not forget:
 - set changelog and release date to .changes file
 - compile with translations and complete translation to german language
-- set new version number to yaml and spec files
+- set new version number to yaml and spec files								->OK
 - clean project and compile on release for arm and 486
 
 
@@ -35,6 +37,7 @@ Do not forget:
 
 
 ----- ToDo for second next release to openrepos: 1.0.1 -----
+- add interval feature for voice assistant
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
 - look into old map tiles folder and delete files there. Ask user!

@@ -13,8 +13,8 @@ Name:       harbour-laufhelden
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Laufhelden - Sport tracker
-Version:    0.9.9
-Release:    2
+Version:    1.0.0
+Release:    1
 Group:      Qt/Qt
 License:    GPL
 URL:        http://example.org/

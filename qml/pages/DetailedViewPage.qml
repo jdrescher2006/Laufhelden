@@ -390,6 +390,18 @@ Page
             }
         }
 
+        Image
+        {
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.topMargin: Theme.paddingSmall
+            anchors.leftMargin: Theme.paddingSmall
+            width: parent.width / 4
+            height: parent.width / 4
+            z: 2
+            source: SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(trackLoader.workout)].icon;
+        }
+
         Column
         {
             width: parent.width
