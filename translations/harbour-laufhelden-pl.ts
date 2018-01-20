@@ -348,10 +348,6 @@
         <source>My Strava Activities</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -506,7 +502,7 @@
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation>Zobacz dane treningu na Smartwatch'u Pebble.</translation>
+        <translation>Zobacz dane treningu na Smartwatch&apos;u Pebble.</translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
@@ -1042,66 +1038,6 @@
 <context>
     <name>StravaActivityPage</name>
     <message>
-        <source>Strava settings</source>
-        <translation>Ustawienia Strava</translation>
-    </message>
-    <message>
-        <source>Description:</source>
-        <translation type="unfinished">Opis</translation>
-    </message>
-    <message>
-        <source>Activity name for Strava</source>
-        <translation>Nazwa aktywności dla Stravy</translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <translation>Opis</translation>
-    </message>
-    <message>
-        <source>Activity description for Strava</source>
-        <translation>Opis aktywności dla Stravy</translation>
-    </message>
-    <message>
-        <source>Activity Type</source>
-        <translation>Rodzaj aktywności</translation>
-    </message>
-    <message>
-        <source>Riding</source>
-        <translation>Jazda</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Bieganie</translation>
-    </message>
-    <message>
-        <source>Starting time:</source>
-        <translation type="unfinished">Czas startu:</translation>
-    </message>
-    <message>
-        <source>Duration:</source>
-        <translation type="unfinished">Czas trwania:</translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation type="unfinished">Dystans:</translation>
-    </message>
-    <message>
-        <source>Speed max/⌀:</source>
-        <translation type="unfinished">Prędkość max/⌀</translation>
-    </message>
-    <message>
-        <source>Kudos:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Comments:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Elevation Gain:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Starting time:</source>
         <translation type="unfinished">Czas startu:</translation>
     </message>
@@ -1133,6 +1069,10 @@
         <source>Achievements/PRs:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished">Opis</translation>
+    </message>
 </context>
 <context>
     <name>StravaSettingsPage</name>
@@ -1143,14 +1083,6 @@
 </context>
 <context>
     <name>StravaUploadPage</name>
-    <message>
-        <source>Workout</source>
-        <translation>Trening</translation>
-    </message>
-    <message>
-        <source>Walking</source>
-        <translation>Spacer</translation>
-    </message>
     <message>
         <source>Activity name for Strava</source>
         <translation type="unfinished"></translation>
@@ -1186,10 +1118,6 @@
     <message>
         <source>Activity upload complete</source>
         <translation>Wysyłanie aktywności zakończone</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type</source>
@@ -1286,7 +1214,7 @@
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation Wstrzymaj/kontunuuj trening></translation>
+        <translation>Wstrzymaj/kontunuuj trening</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
