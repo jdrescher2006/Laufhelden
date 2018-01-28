@@ -21,9 +21,10 @@ import harbour.laufhelden 1.0
 import com.pipacs.o2 1.0
 import "../tools"
 import "../tools/SharedResources.js" as SharedResources
+import "../tools/JSTools.js" as JSTools
 
 Page {
-    id: myStravaActivities
+    id: stravaKudos
     property bool busy: false
 
     O2 {
@@ -45,123 +46,42 @@ Page {
     SilicaListView
     {
         anchors.fill: parent
-        id: stravaList
+        id: kudosList
 
         VerticalScrollDecorator {}
 
         header: PageHeader {
-            title: qsTr("My Strava Activities")
+            title: qsTr("Kudos")
         }
 
         delegate: ListItem {
             id: listItem
-            contentHeight: distLabel.y + distLabel.height + Theme.paddingMedium
+            contentHeight: image.y + image.height + Theme.paddingMedium
 
             Image
             {
-                id: workoutImage
+                id: image
                 anchors.top: parent.top
                 anchors.topMargin: Theme.paddingMedium
-                x: Theme.paddingMedium
-                width: Theme.paddingMedium * 3
-                height: Theme.paddingMedium * 3
-                source: stravaList.model[index]["type"]==="" ? "" : SharedResources.arrayLookupWorkoutTableByName[SharedResources.fromStravaType(stravaList.model[index]["type"]).toLowerCase()].icon
+                x: Theme.paddingLarge
+                width: Theme.paddingLarge * 3
+                height: width
+                source: kudosList.model[index]["profile_medium"]
             }
             Label
             {
                 id: nameLabel
-                width: parent.width - dateLabel.width - 2*Theme.paddingLarge
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                anchors.left: workoutImage.right
+                width: parent.width - image.width - 2*Theme.paddingLarge
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: image.right
                 anchors.leftMargin: Theme.paddingMedium
                 truncationMode: TruncationMode.Fade
-                text: stravaList.model[index]["name"]
-                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-            }
-            Label
-            {
-                id: dateLabel
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.paddingSmall
-                text: (new Date(stravaList.model[index]["start_date"])).toDateString()
-                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-            }
-            Image {
-                id: distangeImage
-                anchors.top: nameLabel.bottom
-                anchors.left: workoutImage.right
-                anchors.leftMargin: Theme.paddingMedium
-                source: "../img/pin.png"
-                height: distLabel.height
-                width: height
-            }
-
-            Label
-            {
-                id: distLabel
-                anchors.top: distangeImage.top
-                anchors.left: distangeImage.right
-                anchors.leftMargin: Theme.paddingMedium
-                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                text: (settings.measureSystem === 0) ? (stravaList.model[index]["distance"]/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(stravaList.model[index]["distance"]/1000).toFixed(2) + "mi"
-            }
-            Image {
-                id: timeImage
-                anchors.top: timeLabel.top
-                anchors.right: timeLabel.left
-                anchors.rightMargin: Theme.paddingSmall
-                source: "../img/time.png"
-                height: timeLabel.height
-                width: height
-            }
-            Label
-            {
-                id: timeLabel
-                anchors.top: nameLabel.bottom
-                x: (parent.width - width) / 2
-                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                text: Math.floor(stravaList.model[index]["elapsed_time"] / 60) + "min"
-            }
-            Image {
-                id: elevationImage
-                anchors.top: nameLabel.bottom
-                anchors.right: elevationLabel.left
-                anchors.rightMargin: Theme.paddingSmall
-                source: "../img/elevation.png"
-                height: elevationLabel.height
-                width: height
-            }
-
-            Label
-            {
-                id: elevationLabel
-                anchors.top: elevationImage.top
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.paddingSmall
-                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                text: stravaList.model[index]["total_elevation_gain"] + "m"
-            }
-            onClicked: {
-                var activityPage = pageStack.push(Qt.resolvedUrl("StravaActivityPage.qml"));
-                activityPage.loadActivity(stravaList.model[index]["id"]);
+                text: kudosList.model[index]["firstname"] + " " + kudosList.model[index]["lastname"]
             }
         }
     }
 
-
-
-
-    Component.onCompleted: {
-        loadActivities(0);
-    }
-
-    function loadActivities(page) {
+    function loadKudos(id) {
         if (!o2strava.linked){
             console.log("Not linked to Strava");
             return;
@@ -171,26 +91,14 @@ Page {
 
         var xmlhttp = new XMLHttpRequest();
 
-        xmlhttp.open("GET", "https://www.strava.com/api/v3/athlete/activities");
-        //xmlhttp.open("GET", "https://www.strava.com/api/v3/activities/following");  //This is the 'partner' api endpoint, not available to mere regular devs
-        xmlhttp.setRequestHeader('Accept-Encoding', 'text');
-        xmlhttp.setRequestHeader('Connection', 'keep-alive');
-        xmlhttp.setRequestHeader('Pragma', 'no-cache');
-        xmlhttp.setRequestHeader('Content-Type', 'application/json');
-        xmlhttp.setRequestHeader('Accept', 'application/json, text/plain, */*');
-        xmlhttp.setRequestHeader('Cache-Control', 'no-cache');
-        xmlhttp.setRequestHeader('Authorization', "Bearer " + o2strava.token);
-
-        xmlhttp.onreadystatechange=function(){
+        JSTools.stravaGet(xmlhttp, "https://www.strava.com/api/v3/activities/" + id + "/kudos", o2strava.token , function(){
             busy = true;
             console.log("Ready state changed:", xmlhttp.readyState, xmlhttp.responseType, xmlhttp.responseText, xmlhttp.status, xmlhttp.statusText);
-            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+            if (xmlhttp.readyState===4 && xmlhttp.status===200){
                 console.log("Get Response:", xmlhttp.responseText);
-                stravaList.model = JSON.parse(xmlhttp.responseText);
+                kudosList.model = JSON.parse(xmlhttp.responseText);
             }
             busy = false;
-        };
-
-        xmlhttp.send();
+        })
     }
 }
