@@ -50,7 +50,7 @@ TrackItem loadTrack(TrackItem track)
     QString fullFilename = dirName + "/" + data.filename;
     QFileInfo infoObject(fullFilename);
     data.fileSize = QString::number(infoObject.size());
-    data.fileLastModified = infoObject.lastModified().toString();
+    data.fileLastModified = infoObject.lastModified().toString(Qt::ISODate);
 
     return data;
 }
@@ -379,7 +379,7 @@ void HistoryModel::loadAccelerationFile()
 			{
 				//OK, file exists. Now check if file is consistent			
                 QString sFileSize = QString::number(infoObject.size());
-				QString sLastModified = infoObject.lastModified().toString();
+				QString sLastModified = infoObject.lastModified().toString(Qt::ISODate);
 
                 //qDebug()<<"item nr: "<<item.id;
                 //qDebug()<<"sFileSize: "<<sFileSize;

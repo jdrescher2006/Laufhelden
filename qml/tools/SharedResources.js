@@ -173,6 +173,7 @@ var arrayStravaWorkoutTypes =
     { name: "walking", stravaType: "Walk" },
     { name: "inlineSkating", stravaType: "InlineSkate" },
     { name: "skiing", stravaType: "AlpineSki" },
+    { name: "hiking", stravaType: "hike" }
 ]
 
 function toStravaType(t)
