@@ -3,26 +3,23 @@
 - add workout icon on details page							-> OK
 
 - make the app start faster by scanning the GPX files directory and comparing that to a database
-	- need file with array for every workout.
-	- array structure is as following: 
-		- string:	name of file
-		- int:		size of file byte wise
-		- string: 	date of file
-		- bool:		file was found (while scanning the directory)
-		- bool:		file is consistent (with size and date)
-		- string:	name of workout
-		- string?:	date of workout
-		- int:		distance of workout
-		- int:		time of workout
-		- int:		average speed
-	- 1 step: read database file with array
-	- 2 step: go through every file in directory
-	- 3 step: search array entry for each file in directory 
-	- 4 step: check consistency
-	- 5 step: if file is not in array, push to array
-	- 6 step: if scanning directory is complete, load all inconsistent files in array
-
-
+	- App start:
+		- load acceleration file, parse to array and check consistecy with GPX files -> gpxFilesChanged: loadAccelerationFile()
+		- check if there are more GPX files and add those files to the m_trackList array: readDirectory()
+		- go through trackList array and load all GPX files which have ready==false: loadAllTracks();
+		- there may be changes in GPX files which is given by variable gpxFilesChanged, so: saveAccelerationFile() is always entered after loadAllTracks()
+	- Remove workout:
+		- remove GPX file from directory
+		- if GXP was removed successfully: remove track from m_trackList array
+		- if GXP was removed successfully: set variable gpxFilesChanged to true and: saveAccelerationFile() 
+	- Edit workout:
+		- change workout data in m_trackList array by index: editTrack()
+		- load that one GPX file and save to m_trackList
+		- set variable gpxFilesChanged to true and: saveAccelerationFile()
+	- Add workout:
+		- add workout data in m_trackList array:
+		- set variable gpxFilesChanged to true and: saveAccelerationFile()	
+	- bug in consistency checking, wrong date format: "Sat Jan 20 20:39:23 2018" / "Sa. Jan. 20 20:39:23 2018"
 
 
 

@@ -87,17 +87,6 @@ var arrayPebbleValueTypes =
     { index: 10, fieldID: 1, fieldIDCoverPage: 1, value: "0", valueCoverPage: "0", header: qsTr("Duration"), unit: "", imperialUnit: "" }
 ]
 
-fncTest();
-
-function fncTest()
-{
-    console.log(("valueCoverPage" in arrayPebbleValueTypes[0]).toString());
-    console.log(("valueCoverPage" in arrayPebbleValueTypes[1]).toString());
-    console.log(("valueCoverPage" in arrayPebbleValueTypes[9]).toString());
-    console.log(("valueCoverPage" in arrayPebbleValueTypes[10]).toString());
-}
-
-
 //Create lookup table for pebble value fields.
 //This is a helper table to easier access the main table.
 var arrayLookupPebbleValueTypesByFieldID = {};

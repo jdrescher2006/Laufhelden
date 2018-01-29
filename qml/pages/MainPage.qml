@@ -116,6 +116,14 @@ Page
             {
                 bPebbleConnected = id_PebbleWatchComm.isConnected();
             }
+
+			//On start of App load acceleration array file
+			id_HistoryModel.loadAccelerationFile();
+			//Check if there are more GPX files and add those files to the m_trackList array
+			id_HistoryModel.readDirectory();
+			//Go through trackList array and load all GPX files which have ready==false
+			id_HistoryModel.loadAllTracks();
+			
         }
 
         //This is loaded everytime the page is displayed
@@ -143,7 +151,7 @@ Page
 
                 bLoadingFiles = true;
 
-                id_HistoryModel.readDirectory();
+                //id_HistoryModel.readDirectory();
 
                 bLoadHistoryData = false;
             }
