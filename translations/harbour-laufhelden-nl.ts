@@ -154,11 +154,11 @@
     </message>
     <message>
         <source>App cover settings</source>
-        <translation>Apphoesinstellingen</translation>
+        <translation>Appomslaginstellingen</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation>Selecteer waarden om op de apphoes weer te geven. De waarden worden ook gebruikt voor het vergrendelscherm op de opnamepagina.</translation>
+        <translation>Selecteer waarden om op de appomslag weer te geven. De waarden worden ook gebruikt voor het vergrendelscherm op de opnamepagina.</translation>
     </message>
 </context>
 <context>
@@ -797,7 +797,7 @@
     </message>
     <message>
         <source>App cover settings</source>
-        <translation>Apphoesinstellingen</translation>
+        <translation>Appomslaginstellingen</translation>
     </message>
 </context>
 <context>
