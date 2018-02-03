@@ -99,7 +99,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Copyright") + " \u00A9 2017 Jens Drescher, " + qsTr("Germany")
+                text: qsTr("Copyright") + " \u00A9 2017-2018 Jens Drescher, " + qsTr("Germany")
             }
             Label
             {
@@ -141,7 +141,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Spanish") + " - Caballlero<br>" + qsTr("Polish") + " - atlochowski<br>" + qsTr("Swedish") + " - eson57<br>" + qsTr("Finnish") + " - niemisenjussi<br>" + qsTr("Hungarian") + " - martonmiklos"
+                text: qsTr("Spanish") + " - Caballlero<br>" + qsTr("Polish") + " - atlochowski<br>" + qsTr("Swedish") + " - eson57<br>" + qsTr("Finnish") + " - niemisenjussi<br>" + qsTr("Hungarian") + " - martonmiklos" + qsTr("Dutch") + " - d9h20f"
             }            
             Item
             {

@@ -13,14 +13,14 @@
 		- if GXP was removed successfully: remove track from m_trackList array
 		- if GXP was removed successfully: set variable gpxFilesChanged to true and: saveAccelerationFile() 
 	- Edit workout:
-		- change workout data in m_trackList array by index: editTrack()
-		- load that one GPX file and save to m_trackList
+		- set ready flag to false in m_trackList array by index and gpxFilesChanged to true: editTrack(index)
+		- go through all tracks and load that one with ready==false:  loadAllTracks()
 		- set variable gpxFilesChanged to true and: saveAccelerationFile()
 	- Add workout:
-		- add workout data in m_trackList array:
+		- in mainpage in block if (bLoadHistoryData), scan for new GPX files and add them to m_trackList: readDirectory()
 		- set variable gpxFilesChanged to true and: saveAccelerationFile()	
-	- bug in consistency checking, wrong date format: "Sat Jan 20 20:39:23 2018" / "Sa. Jan. 20 20:39:23 2018"
-
+	- bug in consistency checking, wrong date format: "Sat Jan 20 20:39:23 2018" / "Sa. Jan. 20 20:39:23 2018"		-> OK
+	- bug: manual delete GPX files then start APP. App will crash.
 
 
 Do not forget:

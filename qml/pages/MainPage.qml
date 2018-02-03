@@ -120,10 +120,9 @@ Page
 			//On start of App load acceleration array file
 			id_HistoryModel.loadAccelerationFile();
 			//Check if there are more GPX files and add those files to the m_trackList array
-			id_HistoryModel.readDirectory();
+            //id_HistoryModel.readDirectory();
 			//Go through trackList array and load all GPX files which have ready==false
-			id_HistoryModel.loadAllTracks();
-			
+            //id_HistoryModel.loadAllTracks();
         }
 
         //This is loaded everytime the page is displayed
@@ -144,14 +143,16 @@ Page
             vMainPageObject = pageStack.currentPage;
             console.log("vMainPageObject: " + vMainPageObject.toString());
 
-            //Load history model.
+            //Load history model. This is triggered if a workout was edited on the detailspage.
             if (bLoadHistoryData)
-            {
+            {                
                 iLoadFileGPX = 0;
-
                 bLoadingFiles = true;
 
-                //id_HistoryModel.readDirectory();
+                //Check if there are more GPX files and add those files to the m_trackList array
+                id_HistoryModel.readDirectory();
+                //Go through trackList array and load all GPX files which have ready==false
+                id_HistoryModel.loadAllTracks();
 
                 bLoadHistoryData = false;
             }
@@ -392,10 +393,11 @@ Page
                             trackLoader.vSetNewProperties(name, description, workout, dialog.sName, dialog.sDesc, dialog.sWorkout)
                             trackLoader.vWriteFile(filename);
 
-                            //Reload all GPX files
                             iLoadFileGPX = 0;
                             bLoadingFiles = true;
-                            id_HistoryModel.readDirectory();
+
+                            id_HistoryModel.editTrack(index);
+                            id_HistoryModel.loadAllTracks();
                         })
                     }
                 }
@@ -462,7 +464,7 @@ Page
                 text: (settings.measureSystem === 0) ? speed.toFixed(1) + "km/h" : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + "mi/h"
             }
             onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
-                                      {filename: filename, name: name})
+                                      {filename: filename, name: name, index: index})
         }
     }
     Component

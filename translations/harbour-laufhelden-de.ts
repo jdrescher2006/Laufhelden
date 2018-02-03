@@ -67,6 +67,10 @@
         <source>Finnish</source>
         <translation>Finnisch</translation>
     </message>
+    <message>
+        <source>Dutch</source>
+        <translation>Niederländisch</translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>

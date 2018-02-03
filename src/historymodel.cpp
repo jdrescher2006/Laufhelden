@@ -203,16 +203,14 @@ QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int 
 
 void HistoryModel::editTrack(int index)
 {
-	QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
-    QDir dir = QDir(dirName);
-    if(!dir.exists()) 
-	{
-        qDebug()<<"Directory doesn't exist";
-        return;
-	}
-	QString filename = m_trackList.at(index).filename;
+    //We have to read this GPX file because it was edited
+    TrackItem item;
+    item = m_trackList.at(index);
+    item.ready = false;
+    m_trackList.replace(index, item);
 
-	
+    //Mark that GPX file has changed
+    this->bGPXFilesChanged = true;
 }
 
 bool HistoryModel::removeTrack(int index)
@@ -342,8 +340,6 @@ void HistoryModel::loadAccelerationFile()
 		    item.fileSize = "";
 		    item.fileLastModified = "";
 			item.stKey = "";
-
-			iIndexCounter++;
 		}
 		else if (sLine.startsWith("2: "))
 			item.name = sLine.mid(3);
@@ -397,8 +393,14 @@ void HistoryModel::loadAccelerationFile()
                     qDebug()<<"sLastModified/item.fileLastModified: "<<sLastModified<<"/"<<item.fileLastModified;
 				}
 
+                iIndexCounter++;
+
 				m_trackList.append(item);
 			}
+            else
+            {
+                qDebug()<<"File not existant: "<<item.filename;
+            }
 		}
 	}	
 }

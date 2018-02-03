@@ -35,6 +35,8 @@ Page
 
     property string filename
     property string name
+    property int index
+
     property int stSharing: 0
     property string stComment: ""
     property var vTrackLinePoints
@@ -333,6 +335,8 @@ Page
                         //Set edited values to dialog
                         header.title = dialog.sName;
                         descriptionData.text = dialog.sDesc;
+
+                        id_HistoryModel.editTrack(index);
 
                         //Mainpage must reload all GPX files
                         bLoadHistoryData = true;
