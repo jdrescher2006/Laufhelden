@@ -48,13 +48,12 @@ Page {
 
         delegate: ListItem {
             id: listItem
-            contentHeight: image.y + image.height + Theme.paddingMedium
+            contentHeight: distangeImage.y + distangeImage.height + Theme.paddingMedium
 
             Image
             {
                 id: image
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
+                anchors.verticalCenter: parent.verticalCenter
                 x: Theme.paddingLarge
                 width: Theme.paddingLarge * 3
                 height: width
@@ -71,6 +70,46 @@ Page {
                 anchors.leftMargin: Theme.paddingMedium
                 truncationMode: TruncationMode.Fade
                 text: segments[index].name
+            }
+            Image {
+                id: distangeImage
+                anchors.top: nameLabel.bottom
+                anchors.left: nameLabel.left
+                anchors.topMargin: Theme.paddingMedium
+                source: "../img/pin.png"
+                height: distLabel.height
+                width: height
+            }
+
+            Label
+            {
+                id: distLabel
+                anchors.top: distangeImage.top
+                anchors.left: distangeImage.right
+                anchors.leftMargin: Theme.paddingMedium
+                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                text: (settings.measureSystem === 0) ? (segmentList.model[index]["distance"]/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(segmentList.model[index]["distance"]/1000).toFixed(2) + "mi"
+            }
+
+            Image {
+                id: timeImage
+                anchors.top: nameLabel.bottom
+                anchors.right: timeLabel.left
+                anchors.topMargin: Theme.paddingMedium
+                source: "../img/time.png"
+                height: timeLabel.height
+                width: height
+            }
+            Label
+            {
+                id: timeLabel
+                anchors.top: nameLabel.bottom
+                anchors.topMargin: Theme.paddingMedium
+                x: (parent.width - width) / 2
+                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                text: Math.floor(segmentList.model[index]["elapsed_time"] / 60) + "min"
             }
         }
     }
