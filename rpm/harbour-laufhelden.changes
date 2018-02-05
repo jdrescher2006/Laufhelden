@@ -1,10 +1,10 @@
-* Fri Jan 26 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.0.0-1
+* Mon Feb 05 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.0.0-1
 - added activity browser for strava by @piggz
 - new workout type: hiking
-- acceleration of app boot
+- app startup is now much faster
 - added dutch translation (thanks to @d9h20f)
 - minor changes/improvements
-- updated translations swedish and polish
+- updated translations german, swedish and polish
 
 * Tue Jan 16 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-2
 - fixed finnish translation
