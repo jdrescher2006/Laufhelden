@@ -22,7 +22,6 @@ import MapboxMap 1.0
 import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
 import "../tools/SharedResources.js" as SharedResources
-import "../tools/polyline.js" as Polyline
 import com.pipacs.o2 1.0
 
 Page {
@@ -178,7 +177,17 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
+                    font.bold: true
                     text: qsTr("Achievements/PRs:")
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Loading segments");
+                            var segmentsPage = pageStack.push(Qt.resolvedUrl("StravaSegments.qml"));
+                            segmentsPage.segments = activity.segment_efforts;
+                        }
+                    }
                 }
                 Label
                 {
@@ -194,7 +203,17 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
+                    font.bold: true
+
                     text: qsTr("Kudos:")
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Loading kudos");
+                            var kudosPage = pageStack.push(Qt.resolvedUrl("StravaKudos.qml"));
+                            kudosPage.loadKudos(activity.id);
+                        }
+                    }
                 }
                 Label
                 {
@@ -211,7 +230,17 @@ Page {
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
+                    font.bold: true
+
                     text: qsTr("Comments:")
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("Loading comments");
+                            var commentsPage = pageStack.push(Qt.resolvedUrl("StravaComments.qml"));
+                            commentsPage.loadComments(activity.id);
+                        }
+                    }
                 }
                 Label
                 {

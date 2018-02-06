@@ -206,4 +206,20 @@ function fncConvertArrayToSaveStringCoverPage()
     return sSaveString;
 }
 
+function stravaGet(xmlhttp, url, token, onready)
+{
+    console.log("Loading from ", url);
 
+    xmlhttp.open("GET", url);
+    xmlhttp.setRequestHeader('Accept-Encoding', 'text');
+    xmlhttp.setRequestHeader('Connection', 'keep-alive');
+    xmlhttp.setRequestHeader('Pragma', 'no-cache');
+    xmlhttp.setRequestHeader('Content-Type', 'application/json');
+    xmlhttp.setRequestHeader('Accept', 'application/json, text/plain, */*');
+    xmlhttp.setRequestHeader('Cache-Control', 'no-cache');
+    xmlhttp.setRequestHeader('Authorization', "Bearer " + token);
+
+    xmlhttp.onreadystatechange=onready;
+
+    xmlhttp.send();
+}

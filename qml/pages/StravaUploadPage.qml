@@ -57,57 +57,66 @@ Page {
         }
     }
 
-    Column {
-        id: input_fields
-        width: parent.width
+    SilicaFlickable
+    {
+        anchors.fill: parent
+        contentHeight: input_fields.height
+        contentWidth: input_fields.width
 
-        PageHeader {
-            title: "Strava Upload"
-        }
+        VerticalScrollDecorator{}
 
-        TextField {
-            id: st_name
-            width: parent.width
-            placeholderText: qsTr("Activity name for Strava")
-            label: qsTr("Description")
-        }
-        TextArea {
-            id: st_description
-            width: parent.width
-            height: stravaDialog.height / 6
-            placeholderText: qsTr("Activity description for Strava")
-            label: qsTr("Description")
-        }
-        TextField {
-            id: st_activityType
-            width: parent.width
-            text: SharedResources.toStravaType(activityType)
-            enabled: false
-            label: qsTr("Type")
-        }
+        Column {
+            id: input_fields
+            width: stravaDialog.width
 
-        TextSwitch {
-            id: chkPrivate
-            text: qsTr("Private");
-        }
-        TextSwitch {
-            id: chkCommute
-            text: qsTr("Commute");
-        }
-
-        Button {
-            text: "Upload"
-            anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: {
-                busy = true;
-                uploadGPX();
+            PageHeader {
+                title: "Strava Upload"
             }
-        }
-        TextArea {
-            id: lblStatus
-            readOnly: true
-            width: parent.width
-            height: stravaDialog.height / 6
+
+            TextField {
+                id: st_name
+                width: parent.width
+                placeholderText: qsTr("Activity name for Strava")
+                label: qsTr("Description")
+            }
+            TextArea {
+                id: st_description
+                width: parent.width
+                height: width * 0.6
+                placeholderText: qsTr("Activity description for Strava")
+                label: qsTr("Description")
+            }
+            TextField {
+                id: st_activityType
+                width: parent.width
+                text: SharedResources.toStravaType(activityType)
+                enabled: false
+                label: qsTr("Type")
+            }
+
+            TextSwitch {
+                id: chkPrivate
+                text: qsTr("Private");
+            }
+            TextSwitch {
+                id: chkCommute
+                text: qsTr("Commute");
+            }
+
+            Button {
+                text: "Upload"
+                anchors.horizontalCenter: parent.horizontalCenter
+                onClicked: {
+                    busy = true;
+                    uploadGPX();
+                }
+            }
+            TextArea {
+                id: lblStatus
+                readOnly: true
+                width: parent.width
+                height: width * 0.6
+            }
         }
     }
 
@@ -242,6 +251,6 @@ Page {
     }
 
     function isNumeric(n) {
-      return !isNaN(parseFloat(n)) && isFinite(n);
+        return !isNaN(parseFloat(n)) && isFinite(n);
     }
 }

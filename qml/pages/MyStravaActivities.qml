@@ -172,6 +172,7 @@ Page {
         var xmlhttp = new XMLHttpRequest();
 
         xmlhttp.open("GET", "https://www.strava.com/api/v3/athlete/activities");
+        //xmlhttp.open("GET", "https://www.strava.com/api/v3/activities/following");  //This is the 'partner' api endpoint, not available to mere regular devs
         xmlhttp.setRequestHeader('Accept-Encoding', 'text');
         xmlhttp.setRequestHeader('Connection', 'keep-alive');
         xmlhttp.setRequestHeader('Pragma', 'no-cache');
@@ -182,9 +183,9 @@ Page {
 
         xmlhttp.onreadystatechange=function(){
             busy = true;
-            //console.log("Ready state changed:", xmlhttp.readyState, xmlhttp.responseType, xmlhttp.responseText, xmlhttp.status, xmlhttp.statusText);
+            console.log("Ready state changed:", xmlhttp.readyState, xmlhttp.responseType, xmlhttp.responseText, xmlhttp.status, xmlhttp.statusText);
             if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                //console.log("Get Response:", xmlhttp.responseText);
+                console.log("Get Response:", xmlhttp.responseText);
                 stravaList.model = JSON.parse(xmlhttp.responseText);
             }
             busy = false;
