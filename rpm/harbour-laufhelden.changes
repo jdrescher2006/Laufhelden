@@ -1,5 +1,11 @@
-* Mon Feb 05 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.0.0-1
-- added activity browser for strava by @piggz
+* Tue Feb 06 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.0.0-1
+- many improvements for strava by @piggz
+    - browser for activities with map view
+    - comment view
+    - kudos view
+    - segment/achievement view
+    - fixed bug in upload page
+    - tidied up the implementation of API calls
 - new workout type: hiking
 - app startup is now much faster
 - added dutch translation (thanks to @d9h20f)

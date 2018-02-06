@@ -36,7 +36,6 @@ Do not forget:
 - implement workout comparison. Compare current workout with virtual workout in the past
 - AM/PM mode for recordpage
 - support all workout types from meerun (is not possible because export function in meerun is broken for many workout types, even on android)
-- rename workouts on mainpage
 - introduce reward system:
 	- fastest run 5/10/20/40 km
 	- longest run (distance/time)
@@ -69,10 +68,6 @@ Do not forget:
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
 - support workouts without gps e.g. indoor activities
-
-- new workout icons
-- pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
-- use scout server as map tile provider (waiting for Jolla: https://talk.maemo.org/showpost.php?p=1528801&postcount=257)
 - introduce lap function
 - CRC check for Zephyr HxM data packets
 - BLE heart rate devices support (currently waiting for kimmoli to bring this to OPX)
