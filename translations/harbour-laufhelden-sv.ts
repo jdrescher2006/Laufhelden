@@ -69,7 +69,7 @@
     </message>
     <message>
         <source>Dutch</source>
-        <translation>Holländska</translation>
+        <translation>Nederländska</translation>
     </message>
 </context>
 <context>
