@@ -87,17 +87,6 @@ var arrayPebbleValueTypes =
     { index: 10, fieldID: 1, fieldIDCoverPage: 1, value: "0", valueCoverPage: "0", header: qsTr("Duration"), unit: "", imperialUnit: "" }
 ]
 
-fncTest();
-
-function fncTest()
-{
-    console.log(("valueCoverPage" in arrayPebbleValueTypes[0]).toString());
-    console.log(("valueCoverPage" in arrayPebbleValueTypes[1]).toString());
-    console.log(("valueCoverPage" in arrayPebbleValueTypes[9]).toString());
-    console.log(("valueCoverPage" in arrayPebbleValueTypes[10]).toString());
-}
-
-
 //Create lookup table for pebble value fields.
 //This is a helper table to easier access the main table.
 var arrayLookupPebbleValueTypesByFieldID = {};
@@ -217,4 +206,20 @@ function fncConvertArrayToSaveStringCoverPage()
     return sSaveString;
 }
 
+function stravaGet(xmlhttp, url, token, onready)
+{
+    console.log("Loading from ", url);
 
+    xmlhttp.open("GET", url);
+    xmlhttp.setRequestHeader('Accept-Encoding', 'text');
+    xmlhttp.setRequestHeader('Connection', 'keep-alive');
+    xmlhttp.setRequestHeader('Pragma', 'no-cache');
+    xmlhttp.setRequestHeader('Content-Type', 'application/json');
+    xmlhttp.setRequestHeader('Accept', 'application/json, text/plain, */*');
+    xmlhttp.setRequestHeader('Cache-Control', 'no-cache');
+    xmlhttp.setRequestHeader('Authorization', "Bearer " + token);
+
+    xmlhttp.onreadystatechange=onready;
+
+    xmlhttp.send();
+}

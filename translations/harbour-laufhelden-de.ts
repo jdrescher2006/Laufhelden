@@ -67,6 +67,10 @@
         <source>Finnish</source>
         <translation>Finnisch</translation>
     </message>
+    <message>
+        <source>Dutch</source>
+        <translation>Niederländisch</translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -1076,6 +1080,27 @@
     <message>
         <source>Achievements/PRs:</source>
         <translation>Erfolge/PRs</translation>
+    </message>
+</context>
+<context>
+    <name>StravaComments</name>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentare</translation>
+    </message>
+</context>
+<context>
+    <name>StravaKudos</name>
+    <message>
+        <source>Kudos</source>
+        <translation>Kudos</translation>
+    </message>
+</context>
+<context>
+    <name>StravaSegments</name>
+    <message>
+        <source>Segments</source>
+        <translation>Segmente</translation>
     </message>
 </context>
 <context>

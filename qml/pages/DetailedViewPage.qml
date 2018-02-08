@@ -35,6 +35,8 @@ Page
 
     property string filename
     property string name
+    property int index
+
     property int stSharing: 0
     property string stComment: ""
     property var vTrackLinePoints
@@ -170,7 +172,7 @@ Page
                         map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
                         map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
                         map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
-                        map.setLayoutProperty("layerStartLayer", "visibility", "visible");
+						map.setLayoutProperty("layerStartLayer", "icon-allow-overlap", true);
                     }
                 }
 
@@ -184,7 +186,7 @@ Page
                         map.addLayer("layerEndLayer", {"type": "symbol", "source": "pointEndImage"});
                         map.setLayoutProperty("layerEndLayer", "icon-image", "imageEndImage");
                         map.setLayoutProperty("layerEndLayer", "icon-size", 1.0 / map.pixelRatio);
-                        map.setLayoutProperty("layerEndLayer", "visibility", "visible");
+						map.setLayoutProperty("layerEndLayer", "icon-allow-overlap", true);
 
                         //We have to create a track line here.
                         map.addSourceLine("lineEndTrack", trackPointsTemporary)
@@ -211,7 +213,7 @@ Page
                         map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
                         map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
                         map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-                        map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
+						map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);
 
                         //Draw the pause end icon
                         map.addSourcePoint("pointPauseEndImage" + iPausePositionsIndex.toString(),  trackLoader.trackPointAt(i+1));
@@ -219,11 +221,8 @@ Page
                         map.addLayer("layerPauseEndLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseEndImage" + iPausePositionsIndex.toString()});
                         map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseEndImage" + iPausePositionsIndex.toString());
                         map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-                        map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
-
-                        //put pause items to the map
-                        //trackMap.addMapItem(pauseItemStart);
-                        //trackMap.addMapItem(pauseItemEnd);
+						map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);
+				
 
                         //We can now create the track from start or end of last pause to start of this pause
                         map.addSourceLine("lineTrack" + iPausePositionsIndex.toString(), trackPointsTemporary)
@@ -333,6 +332,8 @@ Page
                         //Set edited values to dialog
                         header.title = dialog.sName;
                         descriptionData.text = dialog.sDesc;
+
+                        id_HistoryModel.editTrack(index);
 
                         //Mainpage must reload all GPX files
                         bLoadHistoryData = true;

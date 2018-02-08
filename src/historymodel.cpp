@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jens Drescher, Germany
+ * Copyright (C) 2017-2018 Jens Drescher, Germany
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,8 @@
 #include "historymodel.h"
 #include "trackloader.h"
 
-TrackItem loadTrack(TrackItem track) {
+TrackItem loadTrack(TrackItem track)
+{
     TrackItem data = track;
     qDebug()<<"Loading"<<data.filename;
 
@@ -43,6 +44,14 @@ TrackItem loadTrack(TrackItem track) {
     data.speed = loader.speed();
     data.description = loader.description();
     data.stKey = loader.sTworkoutKey(); //Sports-Tracker workoutkey
+
+    //Get file properties
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/" + data.filename;
+    QFileInfo infoObject(fullFilename);
+    data.fileSize = QString::number(infoObject.size());
+    data.fileLastModified = infoObject.lastModified().toString(Qt::ISODate);
+
     return data;
 }
 
@@ -51,6 +60,7 @@ HistoryModel::HistoryModel(QObject *parent) :
 {
     this->iWorkoutDuration = 0;
     this->rWorkoutDistance = 0.0;
+	this->bGPXFilesChanged = true;
 
     qDebug()<<"HistoryModel constructor";
     connect(&trackLoading, SIGNAL(resultReadyAt(int)), SLOT(newTrackData(int)));
@@ -191,28 +201,58 @@ QVariant HistoryModel::headerData(int section, Qt::Orientation orientation, int 
     }
 }
 
-bool HistoryModel::removeTrack(int index) {
+void HistoryModel::editTrack(int index)
+{
+    //We have to read this GPX file because it was edited
+    TrackItem item;
+    item = m_trackList.at(index);
+    item.ready = false;
+    m_trackList.replace(index, item);
+
+    //Mark that GPX file has changed
+    this->bGPXFilesChanged = true;
+}
+
+bool HistoryModel::removeTrack(int index)
+{
     QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
     QDir dir = QDir(dirName);
-    if(!dir.exists()) {
+    if(!dir.exists()) 
+	{
         qDebug()<<"Directory doesn't exist";
         return false;
     }
     QString filename = m_trackList.at(index).filename;
     bool success = dir.remove(filename);
-    if(success) {
+    if(success)
+    {
         beginRemoveRows(QModelIndex(), index, index);
         m_trackList.removeAt(index);
         endRemoveRows();
         qDebug()<<"Removed:"<<filename;
+
+        this->bGPXFilesChanged = true;
+        this->saveAccelerationFile();
+
         return true;
-    } else {
+    } else
+    {
         qDebug()<<"Removing failed:"<<filename;
         return false;
     }
 }
 
-void HistoryModel::newTrackData(int num) {
+bool HistoryModel::gpxFilesChanged() const
+{
+    return this->bGPXFilesChanged;
+}
+void HistoryModel::setGpxFilesChanged(bool gpxFilesChanged)
+{
+	this->bGPXFilesChanged = gpxFilesChanged;
+}
+
+void HistoryModel::newTrackData(int num)
+{
     TrackItem data = trackLoading.resultAt(num);
     qDebug()<<"Finished loading"<<data.filename;
     m_trackList[data.id] = data;
@@ -233,6 +273,8 @@ void HistoryModel::loadingFinished()
         this->iWorkoutDuration = this->iWorkoutDuration + m_trackList.at(j).duration;
         this->rWorkoutDistance = this->rWorkoutDistance + m_trackList.at(j).distance;               
     }
+	
+    this->saveAccelerationFile();
 
     //Now we should sort the array after date!
     qSort(m_trackList.begin(), m_trackList.end(), HistoryModel::bCompareDates);
@@ -245,8 +287,179 @@ bool HistoryModel::bCompareDates(const TrackItem &ti1, const TrackItem &ti2)
     return ti1.time > ti2.time;
 }
 
-void HistoryModel::readDirectory() {
-    if(trackLoading.isRunning()) {
+void HistoryModel::loadAccelerationFile()
+{
+	//Clear tracklist	
+	if (m_trackList.length() >= 0)
+		this->m_trackList.clear();
+
+	QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/AccelerationHelper.dat";
+    qDebug()<<"Reading helper file:"<<fullFilename;
+
+	QFile fileObject(fullFilename);
+
+	if(!fileObject.exists()) 
+	{
+        qDebug()<<"No acceleration file found!";
+        return;
+    }
+
+	if(!fileObject.open(QIODevice::ReadOnly | QIODevice::Text)) 
+	{
+        qDebug()<<"Acceleration file opening failed, aborting";
+        return;
+    }
+
+    QTextStream streamObject(&fileObject);
+    streamObject.setCodec("UTF-8");
+    TrackItem item;
+
+	//Assume everything OK while reading the file. Should then be consistent with GPX files in directory.
+	this->bGPXFilesChanged = false;	
+
+	int iIndexCounter = 0;
+
+	while(!streamObject.atEnd())
+    {
+		QString sLine = streamObject.readLine();
+	
+		//Check if we are at the start of a new track item.
+		if (sLine.startsWith("1: "))
+		{
+            item.id = iIndexCounter;
+		    item.filename = sLine.mid(3);
+		    item.ready = false;
+		    item.name = "";
+		    item.workout = "";
+		    item.time = QDateTime();
+		    item.duration = 0;
+		    item.distance = 0;
+		    item.speed = 0;
+		    item.description = "";
+		    item.fileSize = "";
+		    item.fileLastModified = "";
+			item.stKey = "";
+		}
+		else if (sLine.startsWith("2: "))
+			item.name = sLine.mid(3);
+		else if (sLine.startsWith("3: "))
+			item.workout = sLine.mid(3);
+		else if (sLine.startsWith("4: "))
+            item.time = QDateTime::fromString(sLine.mid(3),Qt::ISODate);
+		else if (sLine.startsWith("5: "))
+            item.duration = sLine.mid(3).toInt();
+		else if (sLine.startsWith("6: "))
+            item.distance = sLine.mid(3).toDouble();
+		else if (sLine.startsWith("7: "))
+            item.speed = sLine.mid(3).toDouble();
+		else if (sLine.startsWith("8: "))
+			item.description = sLine.mid(3);
+		else if (sLine.startsWith("9: "))
+			item.fileSize = sLine.mid(3);
+		else if (sLine.startsWith("10: "))
+			item.fileLastModified = sLine.mid(4);
+		else if (sLine.startsWith("11: "))
+		{
+			//Now, this is the last parameter for this track item.
+			item.stKey = sLine.mid(4);
+
+
+			//Get file properties
+			QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+			fullFilename = dirName + "/" + item.filename;
+			QFileInfo infoObject(fullFilename);
+
+			//Check if file exists
+			if (infoObject.exists())
+			{
+				//OK, file exists. Now check if file is consistent			
+                QString sFileSize = QString::number(infoObject.size());
+				QString sLastModified = infoObject.lastModified().toString(Qt::ISODate);
+
+                //qDebug()<<"item nr: "<<item.id;
+                //qDebug()<<"sFileSize: "<<sFileSize;
+
+
+				if (sFileSize == item.fileSize && sLastModified == item.fileLastModified)
+					item.ready = true;
+				else
+				{
+					item.ready = false;
+                    this->bGPXFilesChanged = true;	//GPX file will be reloaded due to item.ready=false
+
+                    qDebug()<<"File not consistent: "<<item.filename;
+                    qDebug()<<"sFileSize/item.fileSize: "<<sFileSize<<"/"<<item.fileSize;
+                    qDebug()<<"sLastModified/item.fileLastModified: "<<sLastModified<<"/"<<item.fileLastModified;
+				}
+
+                iIndexCounter++;
+
+				m_trackList.append(item);
+			}
+            else
+            {
+                qDebug()<<"File not existant: "<<item.filename;
+            }
+		}
+	}	
+}
+
+void HistoryModel::saveAccelerationFile()
+{
+	//If there are no changes in the GPX files, don't do anything here
+	if (this->bGPXFilesChanged == false)
+		return;
+
+    if (m_trackList.length() <= 0)
+        return;
+
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/AccelerationHelper.dat";
+    qDebug()<<"Writing helper file:"<<fullFilename;
+
+    QFile fileObject(fullFilename);
+
+    if (fileObject.open(QFile::WriteOnly | QFile::Text))
+    {
+        QTextStream streamObject(&fileObject);
+        streamObject.setCodec("UTF-8");
+
+        for(int i=0; i<m_trackList.length(); i++)
+        {
+            streamObject << "1: " << this->m_trackList.at(i).filename << '\n';
+            streamObject << "2: " << this->m_trackList.at(i).name << '\n';
+            streamObject << "3: " << this->m_trackList.at(i).workout << '\n';
+            streamObject << "4: " << this->m_trackList.at(i).time.toString(Qt::ISODate) << '\n';
+            streamObject << "5: " << this->m_trackList.at(i).duration << '\n';
+            streamObject << "6: " << this->m_trackList.at(i).distance << '\n';
+            streamObject << "7: " << this->m_trackList.at(i).speed << '\n';
+            streamObject << "8: " << this->m_trackList.at(i).description << '\n';
+            streamObject << "9: " << this->m_trackList.at(i).fileSize << '\n';
+            streamObject << "10: " << this->m_trackList.at(i).fileLastModified << '\n';
+            streamObject << "11: " << this->m_trackList.at(i).stKey << '\n';
+            streamObject << '\n';
+        }
+    }
+    else
+    {
+        qDebug() << "error opening helper file\n";
+        return;
+    }
+
+    fileObject.flush();
+    fileObject.close();
+}
+
+void HistoryModel::loadAllTracks()
+{
+	trackLoading.setFuture(QtConcurrent::mapped(m_trackList, loadTrack));    
+}
+
+void HistoryModel::readDirectory()
+{
+    if(trackLoading.isRunning())
+    {
         trackLoading.cancel();
         trackLoading.waitForFinished();
     }
@@ -263,27 +476,16 @@ void HistoryModel::readDirectory() {
     dir.setFilter(QDir::Files);
     dir.setSorting(QDir::Name | QDir::Reversed);
     dir.setNameFilters(QStringList("*.gpx"));
-    QStringList entries = dir.entryList();
-
-    //Check if amount of files is greater than list of already loaded files.
-    if (entries.size() > m_trackList.length())
-    {
-        //There are now more files than before. Keep array of loaded files in memory.
-    }
-    else
-    {
-        //Clear array of loaded files.
-        this->m_trackList.clear();
-    }
+    QStringList entries = dir.entryList();       
 
     emit this->sigAmountGPXFiles(entries.size());
 
     for(int i=0;i<entries.size();i++)
-    {
+    {        
         //Check if we already have an item with the current filename
         bool bAlreadyHaveItem = false;
 
-        qDebug()<<"CurrentFilename: "<<entries.at(i);
+        //qDebug()<<"CurrentFilename: "<<entries.at(i);
 
         for(int j=0;j<m_trackList.length();j++)
         {
@@ -299,9 +501,11 @@ void HistoryModel::readDirectory() {
         if (bAlreadyHaveItem)
             continue;
 
+		//There are more GPX files in the directory which need to be loaded.
+		this->bGPXFilesChanged = true;
 
         TrackItem item;
-        item.id = i;
+        item.id = m_trackList.length();
         item.filename = entries.at(i);
         item.ready = false;
         item.name = item.filename;
@@ -311,8 +515,10 @@ void HistoryModel::readDirectory() {
         item.distance = 0;
         item.speed = 0;
         item.description = "";
+        item.fileSize = "";
+        item.fileLastModified = "";
+		item.stKey = "";
 
         m_trackList.append(item);
     }
-    trackLoading.setFuture(QtConcurrent::mapped(m_trackList, loadTrack));
 }

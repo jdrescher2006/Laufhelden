@@ -1,36 +1,10 @@
 ---- ToDo for next release to openrepos: 1.0.0-1 -----
 
-- add workout icon on details page							-> OK
-
-- make the app start faster by scanning the GPX files directory and comparing that to a database
-	- need file with array for every workout.
-	- array structure is as following: 
-		- string:	name of file
-		- int:		size of file byte wise
-		- string: 	date of file
-		- bool:		file was found (while scanning the directory)
-		- bool:		file is consistent (with size and date)
-		- string:	name of workout
-		- string?:	date of workout
-		- int:		distance of workout
-		- int:		time of workout
-		- int:		average speed
-	- 1 step: read database file with array
-	- 2 step: go through every file in directory
-	- 3 step: search array entry for each file in directory 
-	- 4 step: check consistency
-	- 5 step: if file is not in array, push to array
-	- 6 step: if scanning directory is complete, load all inconsistent files in array
-
-
-
-
-
 Do not forget:
-- set changelog and release date to .changes file
-- compile with translations and complete translation to german language
-- set new version number to yaml and spec files								->OK
-- clean project and compile on release for arm and 486
+- set changelog and release date to .changes file							-> OK
+- compile with translations and complete translation to german language		-> OK
+- set new version number to yaml and spec files								-> OK
+- clean project and compile on release for arm and 486						-> OK
 
 
 
@@ -62,7 +36,6 @@ Do not forget:
 - implement workout comparison. Compare current workout with virtual workout in the past
 - AM/PM mode for recordpage
 - support all workout types from meerun (is not possible because export function in meerun is broken for many workout types, even on android)
-- rename workouts on mainpage
 - introduce reward system:
 	- fastest run 5/10/20/40 km
 	- longest run (distance/time)
@@ -95,10 +68,6 @@ Do not forget:
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
 - support workouts without gps e.g. indoor activities
-
-- new workout icons
-- pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
-- use scout server as map tile provider (waiting for Jolla: https://talk.maemo.org/showpost.php?p=1528801&postcount=257)
 - introduce lap function
 - CRC check for Zephyr HxM data packets
 - BLE heart rate devices support (currently waiting for kimmoli to bring this to OPX)
@@ -120,6 +89,26 @@ Bugs:
 
 
 Completed:
+- add workout icon on details page							-> OK
+- make the app start faster by scanning the GPX files directory and comparing that to a database		-> OK
+	- App start:
+		- load acceleration file, parse to array and check consistecy with GPX files -> gpxFilesChanged: loadAccelerationFile()
+		- check if there are more GPX files and add those files to the m_trackList array: readDirectory()
+		- go through trackList array and load all GPX files which have ready==false: loadAllTracks();
+		- there may be changes in GPX files which is given by variable gpxFilesChanged, so: saveAccelerationFile() is always entered after loadAllTracks()
+	- Remove workout:
+		- remove GPX file from directory
+		- if GXP was removed successfully: remove track from m_trackList array
+		- if GXP was removed successfully: set variable gpxFilesChanged to true and: saveAccelerationFile() 
+	- Edit workout:
+		- set ready flag to false in m_trackList array by index and gpxFilesChanged to true: editTrack(index)
+		- go through all tracks and load that one with ready==false:  loadAllTracks()
+		- set variable gpxFilesChanged to true and: saveAccelerationFile()
+	- Add workout:
+		- in mainpage in block if (bLoadHistoryData), scan for new GPX files and add them to m_trackList: readDirectory()
+		- set variable gpxFilesChanged to true and: saveAccelerationFile()	
+	- bug in consistency checking, wrong date format: "Sat Jan 20 20:39:23 2018" / "Sa. Jan. 20 20:39:23 2018"		-> OK
+	- bug: manual delete GPX files then start APP. App will crash.													-> OK
 - increase wait time for night mode
 - change color for continue/end button
 - record page didn't change map style

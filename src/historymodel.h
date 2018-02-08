@@ -36,6 +36,8 @@ struct TrackItem
     qreal speed;
     QString stKey;
     QString description;
+    QString fileSize;
+    QString fileLastModified;
 };
 
 class HistoryModel : public QAbstractListModel
@@ -56,12 +58,20 @@ public:
 
     explicit HistoryModel(QObject *parent = 0);
     ~HistoryModel();
+
+	Q_PROPERTY(bool gpxFilesChanged READ gpxFilesChanged WRITE setGpxFilesChanged)
+
     QHash<int, QByteArray> roleNames() const;
     int rowCount(const QModelIndex&) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     Q_INVOKABLE bool removeTrack(int index);
+    Q_INVOKABLE void editTrack(int index);
+
     Q_INVOKABLE void readDirectory();
+    Q_INVOKABLE void loadAllTracks();
+	Q_INVOKABLE void saveAccelerationFile();
+	Q_INVOKABLE void loadAccelerationFile();
 
     Q_INVOKABLE int iDuration();
     Q_INVOKABLE qreal rDistance();
@@ -78,12 +88,17 @@ public slots:
     void newTrackData(int num);
     void loadingFinished();
 
+public:
+	bool gpxFilesChanged() const;
+    void setGpxFilesChanged(bool gpxFilesChanged);
+
 private:    
     QList<TrackItem> m_trackList;
     QFutureWatcher<TrackItem> trackLoading;
-    int iWorkoutDuration;
+    int iWorkoutDuration;	
     qreal rWorkoutDistance;
-    static bool bCompareDates(const TrackItem &ti1, const TrackItem &ti2);
+	bool bGPXFilesChanged;
+    static bool bCompareDates(const TrackItem &ti1, const TrackItem &ti2);    
 };
 
 #endif // HISTORYMODEL_H

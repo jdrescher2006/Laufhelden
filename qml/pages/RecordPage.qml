@@ -692,7 +692,7 @@ Page
             map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
             map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
             map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
-            map.setLayoutProperty("layerStartLayer", "visibility", "visible");
+			map.setLayoutProperty("layerStartLayer", "icon-allow-overlap", true);
 
             //Create temp line array
             vLineArray = [];
@@ -721,7 +721,7 @@ Page
             map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
             map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
             map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "visibility", "visible");          
+			map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);        
 
             //set indexer to next pause position.
             iPausePositionsIndex++;
@@ -737,7 +737,7 @@ Page
             map.addLayer("layerPauseEndLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseEndImage" + iPausePositionsIndex.toString()});
             map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseEndImage" + iPausePositionsIndex.toString());
             map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-            map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "visibility", "visible");
+			map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true); 
 
             //Doing the update here is OK because there should not be too many pauses.
             map.updateSourceLine(sTrackLine, vTrackLinePoints);
