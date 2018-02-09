@@ -1269,5 +1269,25 @@
         <source>Voice outputs on events</source>
         <translation>Röstutmatning vid händelser</translation>
     </message>
+    <message>
+        <source>Cyclic voice outputs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice outputs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 parameter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 parameter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 parameter:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

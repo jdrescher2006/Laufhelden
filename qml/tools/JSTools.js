@@ -223,3 +223,99 @@ function stravaGet(xmlhttp, url, token, onready)
 
     xmlhttp.send();
 }
+
+//*************** Voice output functions *****************
+
+var arrayVoiceValueTypes =
+[
+    { index: 0, fieldID: 3, fieldIDCoverPage: 0, value: "0", header: qsTr("Heartrate"), unit: "bpm", imperialUnit: "bpm" },
+    { index: 1, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Heartrate") + "∅", unit: "bpm", imperialUnit: "bpm" },
+    { index: 2, fieldID: 2, fieldIDCoverPage: 3, value: "0", header: qsTr("Pace"), unit: "min/km", imperialUnit: "min/mi" },
+    { index: 3, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Pace") + "∅", unit: "min/km", imperialUnit: "min/mi" },
+    { index: 4, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Speed"), unit: "km/h", imperialUnit: "mi/h" },
+    { index: 5, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Speed") + "∅", unit: "km/h", imperialUnit: "mi/h" },
+    { index: 6, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Altitude"), unit: "m", imperialUnit: "ft" },
+    { index: 7, fieldID: 1, fieldIDCoverPage: 2, value: "0", header: qsTr("Distance"), unit: "km", imperialUnit: "mi" }
+]
+
+function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
+{
+    var arraySoundArray = [];
+    var sNumberToPlay = "";
+    var sVoiceLanguage = "_en_male.wav";
+
+    //check voice language and generate last part of audio filename
+    if (iVoiceLanguage === 0)        //english male
+        sVoiceLanguage = "_en_male.wav";
+    else if (iVoiceLanguage === 1)   //german male
+        sVoiceLanguage = "_de_male.wav";
+
+    //add the unit
+    if (sUnit !== "")
+    {
+        arraySoundArray.push(sUnit + sVoiceLanguage);
+    }
+
+    var sHundreds = "";
+
+    if (isInteger(number))		//Check if it's an integer
+    {
+        //Check limits
+        if (number > 999 || number < 0)
+            return;
+
+        if (number >= 100)
+        {
+            sHundreds = parseInt(number.toString().substr(0,1) + "00");
+
+            //Cut off hundreds
+            number = parseInt(number.toString().substr(1));
+        }
+
+        arraySoundArray.push(number.toString() + sVoiceLanguage);
+        if (sHundreds !== "") arraySoundArray.push(sHundreds.toString() + sVoiceLanguage);
+    }
+    else if (isFloat(number))		//Check if it's a float
+    {
+        var sFloatArray = number.toString().split(".");
+
+        if (typeof sFloatArray === 'undefined' || sFloatArray.length !== 2)
+            sFloatArray = number.toString.split(",");
+
+        if (typeof sFloatArray === 'undefined' || sFloatArray.length !== 2)
+            return;
+
+        //we only use one decimal point, check that.
+        if (sFloatArray[1].length > 1)
+            sFloatArray[1] = sFloatArray[1].substr(0,1);
+
+        //first push decimal place
+        arraySoundArray.push("point" + sFloatArray[1] + sVoiceLanguage);
+
+        //push first place. First check for size over hundred.
+        if (parseInt(sFloatArray[0]) >= 100)
+        {
+            sHundreds = parseInt(sFloatArray[0].substr(0,1) + "00");
+
+          //Cut off hundreds
+          sFloatArray[0] = parseInt(sFloatArray[0].substr(1));
+        }
+
+        arraySoundArray.push(sFloatArray[0] + sVoiceLanguage);
+        if (sHundreds !== "") arraySoundArray.push(sHundreds.toString() + sVoiceLanguage);
+    }
+    else		//if number is not int and not float, return
+        return;
+
+    return arraySoundArray;
+}
+
+function isFloat(n)
+{
+    return n === +n && n !== (n|0);
+}
+
+function isInteger(n)
+{
+    return n === +n && n === (n|0);
+}

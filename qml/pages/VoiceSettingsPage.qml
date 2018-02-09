@@ -17,6 +17,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../tools/JSTools.js" as JSTools
 
 Page
 {
@@ -66,6 +67,74 @@ Page
             {
                 title: qsTr("Voice output settings")
             }
+            SectionHeader
+            {
+                text: qsTr("Cyclic voice outputs")
+            }
+            Slider
+            {
+                id: id_Slider_CyclicVoiceOutputsAmount
+                width: parent.width
+                valueText: value.toFixed(0)
+                label: qsTr("Voice outputs")
+                minimumValue: 0
+                maximumValue: 3
+                onValueChanged:
+                {
+                    if (bLockOnCompleted)
+                        return;
+
+                }
+            }
+            ComboBox
+            {
+                visible: id_Slider_CyclicVoiceOutputsAmount.value > 0
+                id: id_CMB_ValueField1
+                label: qsTr("1 parameter:")
+                menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
+                onCurrentItemChanged:
+                {
+                    if (!bLockOnCompleted && !bLockFirstPageLoad)
+                    {
+                        console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
+
+
+                    }
+                }
+            }
+            ComboBox
+            {
+                visible: id_Slider_CyclicVoiceOutputsAmount.value > 1
+                id: id_CMB_ValueField2
+                label: qsTr("2 parameter:")
+                menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
+                onCurrentItemChanged:
+                {
+                    if (!bLockOnCompleted && !bLockFirstPageLoad)
+                    {
+                        console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
+
+
+                    }
+                }
+            }
+            ComboBox
+            {
+                visible: id_Slider_CyclicVoiceOutputsAmount.value > 2
+                id: id_CMB_ValueField3
+                label: qsTr("3 parameter:")
+                menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
+                onCurrentItemChanged:
+                {
+                    if (!bLockOnCompleted && !bLockFirstPageLoad)
+                    {
+                        console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
+
+
+                    }
+                }
+            }
+
             SectionHeader
             {
                 text: qsTr("Voice outputs on events")

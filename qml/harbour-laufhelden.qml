@@ -61,6 +61,8 @@ ApplicationWindow
 
     property real rLastAccuracy: -1
 
+    property bool bPlayingSound: false
+
     //property bool bApplicationIsActive: fal
 
     //Init C++ classes, libraries
@@ -439,11 +441,20 @@ ApplicationWindow
             {
                 mediaPlayerControl.resume();
             }
+
+            if (playing === false)
+                bPlayingSound = false;
         }
     }
 
     function fncPlaySound(sFile)
     {
+        //Check if a sound is already playing. If so, return!
+        if (bPlayingSound)
+            return;
+        else
+            bPlayingSound = true;
+
         //detect if SFOS music player is currently playing
         if (mediaPlayerControl.getPlayerStatus() === "Playing")
         {
