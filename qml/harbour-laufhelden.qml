@@ -62,6 +62,9 @@ ApplicationWindow
     property real rLastAccuracy: -1
 
     property bool bPlayingSound: false
+    property int iPlayLoop: 0
+    property variant arrayPlaySounds: 0
+
 
     //property bool bApplicationIsActive: fal
 
@@ -466,6 +469,37 @@ ApplicationWindow
 
         playSoundEffect.source = sFile;
         playSoundEffect.play();
+    }
+
+    function fncPlaySoundArray(arraySoundArray)
+    {
+        //Check if a sound is already playing. If so, return!
+        if (bPlayingSound)
+            return;
+        else
+            bPlayingSound = true;
+
+        arrayPlaySounds = arraySoundArray;
+
+        iPlayLoop = 0;
+        playSoundEffect.source = arrayPlaySounds[iPlayLoop];
+        playSoundEffect.play();
+    }
+
+    Timer
+    {
+        id: timerPlaySoundArray
+        running: false
+        repeat: false
+        interval: 50
+        onTriggered:
+        {
+            if (iPlayLoop > arrayPlaySounds.length)
+                return;
+
+            playSoundEffect.source = arrayPlaySounds[iPlayLoop];
+            playSoundEffect.play();
+        }
     }
          
     initialPage: Component { MainPage { } }

@@ -88,7 +88,7 @@ Page
             }
             ComboBox
             {
-                visible: id_Slider_CyclicVoiceOutputsAmount.value > 0
+                visible: id_Slider_CyclicVoiceOutputsAmount.value.toFixed(0) > 0
                 id: id_CMB_ValueField1
                 label: qsTr("1 parameter:")
                 menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
@@ -104,7 +104,7 @@ Page
             }
             ComboBox
             {
-                visible: id_Slider_CyclicVoiceOutputsAmount.value > 1
+                visible: id_Slider_CyclicVoiceOutputsAmount.value.toFixed(0) > 1
                 id: id_CMB_ValueField2
                 label: qsTr("2 parameter:")
                 menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
@@ -120,7 +120,7 @@ Page
             }
             ComboBox
             {
-                visible: id_Slider_CyclicVoiceOutputsAmount.value > 2
+                visible: id_Slider_CyclicVoiceOutputsAmount.value.toFixed(0) > 2
                 id: id_CMB_ValueField3
                 label: qsTr("3 parameter:")
                 menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}

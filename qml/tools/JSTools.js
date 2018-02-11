@@ -248,15 +248,7 @@ function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
     if (iVoiceLanguage === 0)        //english male
         sVoiceLanguage = "_en_male.wav";
     else if (iVoiceLanguage === 1)   //german male
-        sVoiceLanguage = "_de_male.wav";
-
-    //add the unit
-    if (sUnit !== "")
-    {
-        arraySoundArray.push(sUnit + sVoiceLanguage);
-    }
-
-    var sHundreds = "";
+        sVoiceLanguage = "_de_male.wav";   
 
     if (isInteger(number))		//Check if it's an integer
     {
@@ -266,14 +258,15 @@ function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
 
         if (number >= 100)
         {
-            sHundreds = parseInt(number.toString().substr(0,1) + "00");
+            var sHundreds = parseInt(number.toString().substr(0,1) + "00");
 
             //Cut off hundreds
             number = parseInt(number.toString().substr(1));
+
+            arraySoundArray.push(sHundreds.toString() + sVoiceLanguage);
         }
 
         arraySoundArray.push(number.toString() + sVoiceLanguage);
-        if (sHundreds !== "") arraySoundArray.push(sHundreds.toString() + sVoiceLanguage);
     }
     else if (isFloat(number))		//Check if it's a float
     {
@@ -285,27 +278,33 @@ function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
         if (typeof sFloatArray === 'undefined' || sFloatArray.length !== 2)
             return;
 
+        //push first place. First check for size over hundred.
+        if (parseInt(sFloatArray[0]) >= 100)
+        {
+            var sHundreds = parseInt(sFloatArray[0].substr(0,1) + "00");
+
+            //Cut off hundreds
+            sFloatArray[0] = parseInt(sFloatArray[0].substr(1));
+
+            arraySoundArray.push(sHundreds.toString() + sVoiceLanguage);
+        }
+        arraySoundArray.push(sFloatArray[0] + sVoiceLanguage);
+
         //we only use one decimal point, check that.
         if (sFloatArray[1].length > 1)
             sFloatArray[1] = sFloatArray[1].substr(0,1);
 
-        //first push decimal place
+        //push decimal place
         arraySoundArray.push("point" + sFloatArray[1] + sVoiceLanguage);
-
-        //push first place. First check for size over hundred.
-        if (parseInt(sFloatArray[0]) >= 100)
-        {
-            sHundreds = parseInt(sFloatArray[0].substr(0,1) + "00");
-
-          //Cut off hundreds
-          sFloatArray[0] = parseInt(sFloatArray[0].substr(1));
-        }
-
-        arraySoundArray.push(sFloatArray[0] + sVoiceLanguage);
-        if (sHundreds !== "") arraySoundArray.push(sHundreds.toString() + sVoiceLanguage);
     }
     else		//if number is not int and not float, return
         return;
+
+    //add the unit
+    if (sUnit !== "")
+    {
+        arraySoundArray.push(sUnit + sVoiceLanguage);
+    }
 
     return arraySoundArray;
 }
