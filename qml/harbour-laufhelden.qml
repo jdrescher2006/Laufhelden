@@ -439,37 +439,41 @@ ApplicationWindow
         volume: 1.0; //Full 1.0
         onPlayingChanged:
         {
-            //console.log("onPlayingChanged: " + playing);
-            if (playing === false && bPlayerWasPlaying)
+            //console.log("onPlayingChanged: " + playing.toString());
+
+			//Check if playing a sound is done.
+			if (playing == false)
             {
-                mediaPlayerControl.resume();
-            }
+				//Set index to next sound in array
+                iPlayLoop++;
+	
+                //console.log("iPlayLoop: " + iPlayLoop.toString());
 
-            if (playing === false)
-                bPlayingSound = false;
+				//Check if we are ready with playing sounds, all sounds in the array were played.			
+				if (arrayPlaySounds.length === 0 || iPlayLoop >= arrayPlaySounds.length)
+				{
+					//Check if the system audio player was playing before
+					if (bPlayerWasPlaying)
+					{
+						//Resume system audio player
+					    mediaPlayerControl.resume();
+					}
+
+					//We are done now with playing sounds. Mark that.
+					bPlayingSound = false;
+
+                    //console.log("onPlayingChanged, the END!");
+				}
+				else
+				{
+					//There is still something to play in the array. Restart play timer.
+                    timerPlaySoundArray.start();
+
+                    //console.log("onPlayingChanged, starting timer!");
+				}				
+			}
         }
-    }
-
-    function fncPlaySound(sFile)
-    {
-        //Check if a sound is already playing. If so, return!
-        if (bPlayingSound)
-            return;
-        else
-            bPlayingSound = true;
-
-        //detect if SFOS music player is currently playing
-        if (mediaPlayerControl.getPlayerStatus() === "Playing")
-        {
-            bPlayerWasPlaying = true;
-            mediaPlayerControl.pause();
-        }
-        else
-            bPlayerWasPlaying = false;
-
-        playSoundEffect.source = sFile;
-        playSoundEffect.play();
-    }
+    }    
 
     function fncPlaySoundArray(arraySoundArray)
     {
@@ -478,6 +482,15 @@ ApplicationWindow
             return;
         else
             bPlayingSound = true;
+
+		//detect if SFOS music player is currently playing
+        if (mediaPlayerControl.getPlayerStatus() === "Playing")
+        {
+            bPlayerWasPlaying = true;
+            mediaPlayerControl.pause();
+        }
+        else
+            bPlayerWasPlaying = false;
 
         arrayPlaySounds = arraySoundArray;
 
@@ -494,12 +507,36 @@ ApplicationWindow
         interval: 50
         onTriggered:
         {
-            if (iPlayLoop > arrayPlaySounds.length)
-                return;
+            //console.log("timerPlaySoundArray: " + iPlayLoop.toString());
 
             playSoundEffect.source = arrayPlaySounds[iPlayLoop];
             playSoundEffect.play();
         }
+    }
+
+	function fncPlaySound(sFile)
+    {
+        //Check if a sound is already playing. If so, return!
+        if (bPlayingSound)
+            return;
+        else
+            bPlayingSound = true;
+
+		var arTemp = [];
+		arrayPlaySounds = arTemp;
+        iPlayLoop = 0;
+
+        //detect if SFOS music player is currently playing
+        if (mediaPlayerControl.getPlayerStatus() === "Playing")
+        {
+            bPlayerWasPlaying = true;
+            mediaPlayerControl.pause();
+        }
+        else
+            bPlayerWasPlaying = false;
+
+        playSoundEffect.source = sFile;
+        playSoundEffect.play();
     }
          
     initialPage: Component { MainPage { } }

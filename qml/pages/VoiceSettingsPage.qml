@@ -219,6 +219,15 @@ Page
                         sVoiceLanguage = "_de_male.wav";
 
                     fncPlaySound("audio/hr_toohigh" + sVoiceLanguage);
+
+                    /*
+					var arTemp = [];
+                    arTemp.push("audio/start_workout_en_male.wav");
+                    arTemp.push("audio/hr_toohigh_en_male.wav");
+                    arTemp.push("audio/pace_toohigh_en_male.wav");
+                    arTemp.push("audio/end_workout_en_male.wav");
+					fncPlaySoundArray(arTemp);
+                    */
                 }
             }
         }
