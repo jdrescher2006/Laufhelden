@@ -61,15 +61,15 @@
     </message>
     <message>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation>Húngaro</translation>
     </message>
     <message>
         <source>Finnish</source>
-        <translation type="unfinished"></translation>
+        <translation>Finlandés</translation>
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>Holandés</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Cancelar escaneo</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Current BT device</source>
@@ -146,23 +146,23 @@
     </message>
     <message>
         <source>First field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Primer campo:</translation>
     </message>
     <message>
         <source>Second field:</source>
-        <translation type="unfinished"></translation>
+        <translation>segundo campo:</translation>
     </message>
     <message>
         <source>Third field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tercer campo:</translation>
     </message>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes de cubierta de apls</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Elejir valores que se mostrarán en la portada de apl. Los valores también se usan para la pantalla de bloqueo en la página de registro.</translation>
     </message>
 </context>
 <context>
@@ -181,7 +181,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation>duración:</translation>
+        <translation>Duración:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -205,7 +205,7 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Enviar para Sports-Tracker.com </translation>
+        <translation>Enviar a Sports-Tracker.com </translation>
     </message>
     <message>
         <source>Logging in...</source>
@@ -217,27 +217,27 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar entrenamiento</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de entrenamiento</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation>Detalles de entrenamiento</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Ejercicio:</translation>
+        <translation>Entrenamiento:</translation>
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Elevación arriba/abajo</translation>
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar a Strava</translation>
     </message>
 </context>
 <context>
@@ -294,7 +294,7 @@
     </message>
     <message>
         <source>Start new workout</source>
-        <translation>Empezar</translation>
+        <translation>Iniciar</translation>
     </message>
     <message>
         <source>Welcome to Laufhelden</source>
@@ -302,11 +302,11 @@
     </message>
     <message>
         <source>No earlier workouts</source>
-        <translation>No hay ejercicios</translation>
+        <translation>No hay entrenamientos</translation>
     </message>
     <message>
         <source>Workouts: </source>
-        <translation>Ejercicios:</translation>
+        <translation>Entrenamientos:</translation>
     </message>
     <message>
         <source>of</source>
@@ -318,15 +318,15 @@
     </message>
     <message>
         <source>Remove workout</source>
-        <translation>Remover ejercicio</translation>
+        <translation>Remover entrenamiento</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation>Removiendo ejercicio...</translation>
+        <translation>Removiendo entrenamiento...</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation>Encontrado un ejercicio incompleto!</translation>
+        <translation>Un entrenamiento incompleto!</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -334,23 +334,23 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar entrenamiento</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de entrenamiento</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation>Detalles de entrenamiento</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Ejercicio:</translation>
+        <translation>Entrenamiento:</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Mis actividades Strava</translation>
     </message>
 </context>
 <context>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Limitando el almacenamiento en caché de teselas garantiza la actualización de los mapas y mantiene el uso del disco bajo control, pero carga los mapas más lentamente y causa más tráfico de datos. Tenga en cuenta que la configuración del tamaño de caché se aplicará después de reiniciar la aplicación.</translation>
     </message>
     <message>
         <source>Cache size</source>
@@ -393,39 +393,39 @@
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapa</translation>
     </message>
     <message>
         <source>Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Calles</translation>
     </message>
     <message>
         <source>Outdoors</source>
-        <translation type="unfinished"></translation>
+        <translation>Al aire</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Luz</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscuro</translation>
     </message>
     <message>
         <source>Satellite</source>
-        <translation type="unfinished"></translation>
+        <translation>Satélite</translation>
     </message>
     <message>
         <source>Satellite Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Calles satelitales</translation>
     </message>
     <message>
         <source>OSM Scout Server</source>
-        <translation type="unfinished"></translation>
+        <translation>OSM Scout Server</translation>
     </message>
     <message>
         <source>Disable map</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar mapa</translation>
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
@@ -436,7 +436,7 @@
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Mis actividades Strava</translation>
     </message>
 </context>
 <context>
@@ -482,7 +482,7 @@
     </message>
     <message>
         <source>starting sport app</source>
-        <translation>Empezando la apl deportiva</translation>
+        <translation>Empezar la apl deportiva</translation>
     </message>
     <message>
         <source>Connected:</source>
@@ -533,7 +533,7 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Ejercicio:</translation>
+        <translation>Entremaniento:</translation>
     </message>
     <message>
         <source>Use HRM device</source>
@@ -640,7 +640,7 @@
     </message>
     <message>
         <source>Start</source>
-        <translation>Empezar</translation>
+        <translation>Iniciar</translation>
     </message>
     <message>
         <source>End</source>
@@ -668,7 +668,7 @@
     </message>
     <message>
         <source>Lock screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloquear pantalla</translation>
     </message>
 </context>
 <context>
@@ -727,19 +727,19 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished"></translation>
+        <translation>min/mi</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished"></translation>
+        <translation>mi/h</translation>
     </message>
     <message>
         <source>ft</source>
-        <translation type="unfinished"></translation>
+        <translation>ps</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation>mi</translation>
     </message>
 </context>
 <context>
@@ -781,7 +781,7 @@
     </message>
     <message>
         <source>Map settings</source>
-        <translation>Ajustes del mapa</translation>
+        <translation>Configuración de mapa</translation>
     </message>
     <message>
         <source>Sports-Tracker.com</source>
@@ -793,15 +793,15 @@
     </message>
     <message>
         <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración de salida de voz</translation>
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava</translation>
     </message>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración de cubierta de aplicaciones</translation>
     </message>
 </context>
 <context>
@@ -852,19 +852,19 @@
     </message>
     <message>
         <source>Unit of measurement</source>
-        <translation type="unfinished"></translation>
+        <translation>Unidad de medida</translation>
     </message>
     <message>
         <source>Metric</source>
-        <translation type="unfinished"></translation>
+        <translation>Métrico</translation>
     </message>
     <message>
         <source>Imperial</source>
-        <translation type="unfinished"></translation>
+        <translation>Imperial</translation>
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ten en cuenta que este ajuste se aplicará después de reiniciar la aplicación</translation>
     </message>
 </context>
 <context>
@@ -895,7 +895,7 @@
     </message>
     <message>
         <source>Hiking</source>
-        <translation type="unfinished"></translation>
+        <translation>Excursionar</translation>
     </message>
 </context>
 <context>
@@ -1009,7 +1009,7 @@
     </message>
     <message>
         <source>Downloading GPX files</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargando archivos GPX</translation>
     </message>
     <message>
         <source>Track write error</source>
@@ -1036,7 +1036,7 @@
     </message>
     <message>
         <source>Followers</source>
-        <translation>seguidor</translation>
+        <translation>seguidores</translation>
     </message>
     <message>
         <source>Public</source>
@@ -1047,23 +1047,23 @@
     <name>StravaActivityPage</name>
     <message>
         <source>Description:</source>
-        <translation type="unfinished">Descripción:</translation>
+        <translation>Descripción:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished">Tiempo de empezar:</translation>
+        <translation type="unfinished">Tiempo de iniciar:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">duración:</translation>
+        <translation>Duración:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Distancia:</translation>
+        <translation>Distancia:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished">Velocidad máx/⌀:</translation>
+        <translation>Velocidad máx/⌀:</translation>
     </message>
     <message>
         <source>Kudos:</source>
@@ -1071,7 +1071,7 @@
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Comentarios:</translation>
     </message>
     <message>
         <source>Elevation Gain:</source>
@@ -1086,7 +1086,7 @@
     <name>StravaComments</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Comentarios</translation>
     </message>
 </context>
 <context>
@@ -1235,15 +1235,15 @@
     <name>VoiceSettingsPage</name>
     <message>
         <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes de salida de voz</translation>
     </message>
     <message>
         <source>Start/end workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar/Fin entrenamiento</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausa/Continuar entrenamiento</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
@@ -1251,43 +1251,43 @@
     </message>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished">Lenguaje de voz</translation>
+        <translation>Lenguaje de voz</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished">Hombre inglés</translation>
+        <translation>Hombre inglés</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished">Hombre alemán</translation>
+        <translation>Hombre alemán</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished">Probar</translation>
+        <translation>Probar</translation>
     </message>
     <message>
         <source>Voice outputs on events</source>
-        <translation type="unfinished"></translation>
+        <translation>Salidas de voz en eventos</translation>
     </message>
     <message>
         <source>Cyclic voice outputs</source>
-        <translation type="unfinished"></translation>
+        <translation>Salidas cíclicas de voz</translation>
     </message>
     <message>
         <source>Voice outputs</source>
-        <translation type="unfinished"></translation>
+        <translation>Salidas de voz</translation>
     </message>
     <message>
         <source>1 parameter:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 parámetro:</translation>
     </message>
     <message>
         <source>2 parameter:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 parámetro:</translation>
     </message>
     <message>
         <source>3 parameter:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 parámetro:</translation>
     </message>
 </context>
 </TS>
