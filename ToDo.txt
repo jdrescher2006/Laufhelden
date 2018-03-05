@@ -1,17 +1,24 @@
----- ToDo for next release to openrepos: 1.0.0-1 -----
+---- ToDo for next release to openrepos: 1.0.1-1 -----
+
+- cyclic voice announcements	
+	- every 0,5-10 km
+	- maximum three parameters
+	- distance, speed, pace, HR
+
+
 
 Do not forget:
-- set changelog and release date to .changes file							-> OK
-- compile with translations and complete translation to german language		-> OK
-- set new version number to yaml and spec files								-> OK
-- clean project and compile on release for arm and 486						-> OK
+- set changelog and release date to .changes file							
+- compile with translations and complete translation to german language		
+- set new version number to yaml and spec files								
+- clean project and compile on release for arm and 486						
 
 
 
 
 
------ ToDo for second next release to openrepos: 1.0.1 -----
-- add interval feature for voice assistant
+----- ToDo for second next release to openrepos: 1.0.2 -----
+- sometimes the mediaplayer would not set playing to false. Need a watchdog for that.
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
 - look into old map tiles folder and delete files there. Ask user!
@@ -20,10 +27,6 @@ Do not forget:
 - add new feature: autopause if speed goes below certain threshold
 - start page: select pace/speed
 - add icons for indicating over/below average speed, average pace and average heart rate to record page
-- cyclic voice announcements	
-	- every 0,5-10 km
-	- maximum three parameters
-	- distance, speed, pace, HR
 - add leading 0 to values on recordpage
 
 
