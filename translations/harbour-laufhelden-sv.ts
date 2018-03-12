@@ -69,7 +69,7 @@
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>Nederländska</translation>
     </message>
 </context>
 <context>
@@ -1086,14 +1086,14 @@
     <name>StravaComments</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentarer</translation>
     </message>
 </context>
 <context>
     <name>StravaKudos</name>
     <message>
         <source>Kudos</source>
-        <translation type="unfinished"></translation>
+        <translation>Kudos</translation>
     </message>
 </context>
 <context>
@@ -1123,7 +1123,7 @@
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
-        <translation type="unfinished"></translation>
+        <translation>Segment</translation>
     </message>
 </context>
 <context>
@@ -1295,6 +1295,26 @@
     <message>
         <source>Voice outputs on events</source>
         <translation>Röstutmatning vid händelser</translation>
+    </message>
+    <message>
+        <source>Cyclic voice outputs</source>
+        <translation>Återkommande röstutmatningar</translation>
+    </message>
+    <message>
+        <source>Voice outputs</source>
+        <translation>Röstutmatningar</translation>
+    </message>
+    <message>
+        <source>1 parameter:</source>
+        <translation>1 parameter:</translation>
+    </message>
+    <message>
+        <source>2 parameter:</source>
+        <translation>2 parameter:</translation>
+    </message>
+    <message>
+        <source>3 parameter:</source>
+        <translation>3 parameter:</translation>
     </message>
 </context>
 </TS>

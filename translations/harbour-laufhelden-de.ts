@@ -494,15 +494,15 @@
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation>1 DURATION Feld</translation>
+        <translation>1 DURATION Feld:</translation>
     </message>
     <message>
         <source>2 DISTANCE field:</source>
-        <translation>1 DISTANCE Feld</translation>
+        <translation>2 DISTANCE Feld:</translation>
     </message>
     <message>
         <source>3 PACE/SPEED field:</source>
-        <translation>1 PACE/SPEED Feld</translation>
+        <translation>3 PACE/SPEED Feld:</translation>
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
@@ -1086,14 +1086,14 @@
     <name>StravaComments</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentare</translation>
     </message>
 </context>
 <context>
     <name>StravaKudos</name>
     <message>
         <source>Kudos</source>
-        <translation type="unfinished"></translation>
+        <translation>Kudos</translation>
     </message>
 </context>
 <context>
@@ -1123,7 +1123,7 @@
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
-        <translation type="unfinished"></translation>
+        <translation>Segmente</translation>
     </message>
 </context>
 <context>
@@ -1295,6 +1295,26 @@
     <message>
         <source>Voice outputs on events</source>
         <translation>Sprachausgaben für Ereignisse</translation>
+    </message>
+    <message>
+        <source>Cyclic voice outputs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice outputs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 parameter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 parameter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 parameter:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
