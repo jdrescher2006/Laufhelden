@@ -25,10 +25,11 @@ import "../tools/SharedResources.js" as SharedResources
 import com.pipacs.o2 1.0
 
 Page {
-    id: stravaActivityPage
+    id: stravaSegmentPage
     property bool busy: false
-    property var activity
+    property var effort
     property var vTrackLinePoints
+    property var segment
 
     //Map buttons
     property bool showSettingsButton: true
@@ -58,7 +59,6 @@ Page {
     SilicaFlickable
     {
         anchors.fill: parent
-        id: stravaList
 
         VerticalScrollDecorator{}
 
@@ -68,7 +68,7 @@ Page {
             PageHeader
             {
                 id: header
-                title: activity.name === "" ? "-" : activity.name
+                title: effort.name === "" ? "-" : effort.name
                 Behavior on opacity {
                     FadeAnimation {}
                 }
@@ -85,44 +85,9 @@ Page {
                 {
                     FadeAnimation {}
                 }
-
                 Label
                 {
-                    id: descriptionLabel
                     width: parent.width / 3
-                    height:descriptionData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Description:")
-                }
-                Label
-                {
-                    id: descriptionData
-                    width: parent.width - descriptionLabel.width - 2*Theme.paddingLarge
-                    text: activity.description===null ? "-" : activity.description
-                    wrapMode: Text.WordWrap
-                }
-                Label
-                {
-                    width: descriptionLabel.width
-                    height:timeData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Starting time:")
-                }
-                Label
-                {
-                    id: timeData
-                    width: descriptionData.width
-                    text: (new Date(activity.start_date)).toUTCString()
-                }
-                Label
-                {
-                    width: descriptionLabel.width
                     height:durationData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
@@ -134,11 +99,11 @@ Page {
                 {
                     id: durationData
                     width: descriptionData.width
-                    text: JSTools.fncCovertMinutesToString(activity.elapsed_time)
+                    text: JSTools.fncCovertMinutesToString(effort.elapsed_time)
                 }
                 Label
                 {
-                    width: descriptionLabel.width
+                    width: parent.width / 3
                     height:distanceData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
@@ -150,120 +115,59 @@ Page {
                 {
                     id: distanceData
                     width: descriptionData.width
-                    text: (settings.measureSystem === 0) ? ((activity.distance/1000).toFixed(2) + " km") : (JSTools.fncConvertDistanceToImperial(activity.distance/1000).toFixed(2) + " mi")
+                    text: (settings.measureSystem === 0) ? ((effort.distance/1000).toFixed(2) + " km") : (JSTools.fncConvertDistanceToImperial(effort.distance/1000).toFixed(2) + " mi")
                 }
-                Label
-                {
-                    width: descriptionLabel.width
-                    height:speedData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    id: avgSpeedLabel
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Speed max/⌀:")
-                }
-                Label
-                {
-                    id: speedData
-                    width: descriptionData.width
-                    text: (settings.measureSystem === 0) ? (activity.max_speed*3.6).toFixed(1) + "/" + (activity.average_speed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(activity.max_speed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(activity.average_speed*3.6)).toFixed(1) + " mi/h"
-                }
-                Label
-                {
-                    width: descriptionLabel.width
-                    height:kudosData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    font.bold: true
-                    text: qsTr("Achievements/PRs:")
 
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            console.log("Loading segments");
-                            var segmentsPage = pageStack.push(Qt.resolvedUrl("StravaSegments.qml"));
-                            segmentsPage.segments = activity.segment_efforts;
-                        }
-                    }
-                }
                 Label
                 {
-                    id: achievementData
-                    width: descriptionData.width
-                    text: activity.achievement_count + "/" + activity.pr_count
-                }
-                Label
-                {
-                    width: descriptionLabel.width
-                    height:kudosData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    font.bold: true
-
-                    text: qsTr("Kudos:")
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            console.log("Loading kudos");
-                            var kudosPage = pageStack.push(Qt.resolvedUrl("StravaKudos.qml"));
-                            kudosPage.loadKudos(activity.id);
-                        }
-                    }
-                }
-                Label
-                {
-                    id: kudosData
-                    width: descriptionData.width
-                    text: activity.kudos_count
-                }
-                Label
-                {
-                    id: commentLabel
-                    height:commentData.height
-                    width: descriptionLabel.width
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    font.bold: true
-
-                    text: qsTr("Comments:")
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            console.log("Loading comments");
-                            var commentsPage = pageStack.push(Qt.resolvedUrl("StravaComments.qml"));
-                            commentsPage.loadComments(activity.id);
-                        }
-                    }
-                }
-                Label
-                {
-                    id: commentData
-                    width: descriptionData.width
-                    text: activity.comment_count
-                }
-                Label
-                {
-                    width: descriptionLabel.width
-                    id: pauseLabel
+                    width: parent.width / 3
+                    id: elevLabel
                     height:heartRateData.height
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Elevation Gain:")
+                    text: qsTr("Elevation Diff:")
                 }
                 Label
                 {
                     id: elevData
                     width: descriptionData.width
-                    text: (settings.measureSystem === 0) ? ((activity.total_elevation_gain).toFixed(2) + " m") : (JSTools.fncConvertDistanceToImperial(activity.total_elevation_gain).toFixed(2) + " ft")
+                    text: (settings.measureSystem === 0) ? ((effort.segment.elevation_high - effort.segment.elevation_low).toFixed(2) + " m") : (JSTools.fncConvertDistanceToImperial(effort.segment.elevation_high - effort.segment.elevation_low).toFixed(2) + " ft")
+                }
+                Label
+                {
+                    width: parent.width / 3
+                    id: climbLabel
+                    height:heartRateData.height
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignBottom
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: qsTr("Climb Category:")
+                }
+                Label
+                {
+                    id: climbData
+                    width: descriptionData.width
+                    text: segment.climb_category
+                }
+                Label
+                {
+                    width: parent.width / 3
+                    id: bestLabel
+                    height:heartRateData.height
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignBottom
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: qsTr("Best Effort:")
+                }
+                Label
+                {
+                    id: bestData
+                    width: descriptionData.width
+                    text: JSTools.fncCovertMinutesToString(segment.athlete_segment_stats.pr_elapsed_time) + " on " + segment.athlete_segment_stats.pr_date
                 }
             }
         }
@@ -273,7 +177,7 @@ Page {
         id: map
 
         width: parent.width
-        height: bMapMaximized ? stravaActivityPage.height : stravaActivityPage.height / 3
+        height: bMapMaximized ? stravaSegmentPage.height : stravaSegmentPage.height / 2
         anchors.bottom: parent.bottom
 
         center: QtPositioning.coordinate(51.9854, 9.2743)
@@ -345,7 +249,7 @@ Page {
             Image
             {
                 anchors.fill: parent
-                source: (map.height === stravaActivityPage.height) ? "../img/map_btn_min.png" : "../img/map_btn_max.png"
+                source: (map.height === stravaSegmentPage.height) ? "../img/map_btn_min.png" : "../img/map_btn_max.png"
             }
         }
         Item
@@ -522,9 +426,9 @@ Page {
         }
     }
 
-    function loadActivity(id) {
+    function loadSegment(id){
 
-        console.log("Loading activity ", id);
+        console.log("Loading segment ", id);
 
         if (!o2strava.linked){
             console.log("Not linked to Strava");
@@ -534,37 +438,26 @@ Page {
 
         var xmlhttp = new XMLHttpRequest();
 
-        xmlhttp.open("GET", "https://www.strava.com/api/v3/activities/" + id);
-        xmlhttp.setRequestHeader('Accept-Encoding', 'text');
-        xmlhttp.setRequestHeader('Connection', 'keep-alive');
-        xmlhttp.setRequestHeader('Pragma', 'no-cache');
-        xmlhttp.setRequestHeader('Content-Type', 'application/json');
-        xmlhttp.setRequestHeader('Accept', 'application/json, text/plain, */*');
-        xmlhttp.setRequestHeader('Cache-Control', 'no-cache');
-        xmlhttp.setRequestHeader('Authorization', "Bearer " + o2strava.token);
-
-        xmlhttp.onreadystatechange=function(){
+        JSTools.stravaGet(xmlhttp, "https://www.strava.com/api/v3/segments/" + id, o2strava.token , function(){
             busy = true;
             //console.log("Ready state changed:", xmlhttp.readyState, xmlhttp.responseType, xmlhttp.responseText, xmlhttp.status, xmlhttp.statusText);
             if (xmlhttp.readyState==4 && xmlhttp.status==200){
                 //console.log("Get Response:", xmlhttp.responseText);
-                activity = JSON.parse(xmlhttp.responseText);
+                segment = JSON.parse(xmlhttp.responseText);
 
-                addActivityToMap();
+                addSegmentToMap();
             }
             busy = false;
             gridContainer.opacity = 1.0
             map.opacity = 1.0
-        };
-
-        xmlhttp.send();
+        });
     }
 
-    function addActivityToMap()
+    function addSegmentToMap()
     {
         if (!bDisableMap) {
             //This is the actialy activity route
-            vTrackLinePoints = decode(activity.map.polyline);
+            vTrackLinePoints = decode(segment.map.polyline);
             map.addSourceLine("linesrc", vTrackLinePoints, "line")
 
             map.addLayer("line", { "type": "line", "source": "linesrc" })

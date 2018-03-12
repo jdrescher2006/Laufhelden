@@ -111,6 +111,11 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 text: Math.floor(segmentList.model[index]["elapsed_time"] / 60) + "min"
             }
+            onClicked: {
+                var segmentPage = pageStack.push(Qt.resolvedUrl("StravaSegment.qml"));
+                segmentPage.effort = segmentList.model[index]
+                segmentPage.loadSegment(segmentList.model[index]["segment"]["id"]);
+            }
         }
     }
 }

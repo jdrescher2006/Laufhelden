@@ -77,7 +77,7 @@ Page {
                 id: st_name
                 width: parent.width
                 placeholderText: qsTr("Activity name for Strava")
-                label: qsTr("Description")
+                label: qsTr("Name")
             }
             TextArea {
                 id: st_description
