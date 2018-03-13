@@ -61,15 +61,15 @@
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jos pidät sovelluksesta voit lahjoittaa:</translation>
     </message>
     <message>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation>Unkarin</translation>
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>Hollanti</translation>
     </message>
 </context>
 <context>
@@ -142,27 +142,27 @@
     <name>CoverSettingsPage</name>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished"></translation>
+        <translation>Arvo on jo määritetty!</translation>
     </message>
     <message>
         <source>First field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ensimmäinen kenttä:</translation>
     </message>
     <message>
         <source>Second field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Toinen kenttä:</translation>
     </message>
     <message>
         <source>Third field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolmas kenttä:</translation>
     </message>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kansinäkymän asetukset</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse arvot joka näytetään sovelluksen kansinäkymässä. Arvoja käytetään myös lukitusnäkymässä harjoitustilassa.</translation>
     </message>
 </context>
 <context>
@@ -201,7 +201,7 @@
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation>Keskeytykset/kesto:</translation>
+        <translation>Pysähdykset/kesto:</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
@@ -217,27 +217,27 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Muokkaa harkoitusta</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Harjoituksen nimi</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation>Harjoituksen kuvaus</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Harjoitus:</translation>
+        <translation>Harjoitus:</translation>
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Korkeusero Ylös/Alas</translation>
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetä Stravaan</translation>
     </message>
 </context>
 <context>
@@ -251,35 +251,35 @@
     <name>JSTools</name>
     <message>
         <source>Empty</source>
-        <translation type="unfinished">Tyhjä</translation>
+        <translation>Tyhjä</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished">Syke</translation>
+        <translation>Syke</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished">Tahdin</translation>
+        <translation>Tahti</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Nopeus</translation>
+        <translation>Nopeus</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation type="unfinished">Korkeus</translation>
+        <translation>Korkeus</translation>
     </message>
     <message>
         <source>Distance</source>
-        <translation type="unfinished">Matka</translation>
+        <translation>Matka</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Pysäytä</translation>
+        <translation>Pysäytä</translation>
     </message>
     <message>
         <source>Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Kesto</translation>
     </message>
 </context>
 <context>
@@ -334,23 +334,23 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Muokkaa harjoitusta</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Harjoituksen nimi</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation>Harjoituksen kuvaus</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Harjoitus:</translation>
+        <translation>Harjoitus:</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Minun Strava Aktiviteetit</translation>
     </message>
 </context>
 <context>
@@ -381,148 +381,148 @@
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rajoittamalla palasten välimuistia varmistaa kartan ajantasaisuuden ja pitää levyntilan käytön kurissa, mutta samalla hidastaa käyttöä ja lisää datankäyttöä. Asetus tulee voimaan uudelleenkäynnistyksen jälkeen.</translation>
     </message>
     <message>
         <source>Cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Välimuistin koko</translation>
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse kartan tyyli.</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Kartta</translation>
     </message>
     <message>
         <source>Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Kadu</translation>
     </message>
     <message>
         <source>Outdoors</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulkoilu</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Kevyt</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Tumma</translation>
     </message>
     <message>
         <source>Satellite</source>
-        <translation type="unfinished"></translation>
+        <translation>Satelliitti</translation>
     </message>
     <message>
         <source>Satellite Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Satelliitti Kadut</translation>
     </message>
     <message>
         <source>OSM Scout Server</source>
-        <translation type="unfinished"></translation>
+        <translation>OSM Scout Server</translation>
     </message>
     <message>
         <source>Disable map</source>
-        <translation type="unfinished"></translation>
+        <translation>Piilota kartta</translation>
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation type="unfinished"></translation>
+        <translation>Karttaa ei enää näytetä. Tämä on hyödyllinen Jolla 1 puhelimelle, koska kartta voi kaataa sovelluksen.</translation>
     </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Minun Strava Aktiviteetit</translation>
     </message>
 </context>
 <context>
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble yhdistetty</translation>
     </message>
     <message>
         <source>Pebble disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble irrotettu</translation>
     </message>
 </context>
 <context>
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation type="unfinished"></translation>
+        <translation>Aseta yksiköt</translation>
     </message>
     <message>
         <source>sending data 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetetään tietoja 1</translation>
     </message>
     <message>
         <source>sending data 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetetään tietoja 2</translation>
     </message>
     <message>
         <source>sending data 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetetään tietoja 3</translation>
     </message>
     <message>
         <source>closing sport app</source>
-        <translation type="unfinished"></translation>
+        <translation>Suljetaan urheilusovellus</translation>
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation type="unfinished">Pebble asetukset</translation>
+        <translation>Pebble asetukset</translation>
     </message>
     <message>
         <source>Test Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Testaa Pebble</translation>
     </message>
     <message>
         <source>starting sport app</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistetään urheilusovellus</translation>
     </message>
     <message>
         <source>Connected:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhdistetty:</translation>
     </message>
     <message>
         <source>Enable Pebble support</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivoi Pebble tuki</translation>
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 KESTO kenttä:</translation>
     </message>
     <message>
         <source>2 DISTANCE field:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 MATKA kenttä:</translation>
     </message>
     <message>
         <source>3 PACE/SPEED field:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 TAHTI/NOPEUS kenttä:</translation>
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä harjoitustiedot Pebble älykellossa</translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebbleä ei löytynyt. &lt;br&gt;Asenna Rockpool ja&lt;br&gt;yhdistä Pebble!</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä arvo on jo määritetty!</translation>
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse arvot Pebble kentille!</translation>
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Rockpool pitää olla asennettuna&lt;br&gt;vähintään versio 1.4-1.&lt;br&gt;Asennettu versio on: </translation>
     </message>
 </context>
 <context>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Disable screen blanking when recording.</source>
-        <translation type="unfinished"></translation>
+        <translation>Estä ruudun sammuminen kun tallennetaan.</translation>
     </message>
 </context>
 <context>
@@ -664,11 +664,11 @@
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation type="unfinished"></translation>
+        <translation>Uudelleenkäynnistä Pebble Sovellus</translation>
     </message>
     <message>
         <source>Lock screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Lukitse näyttö</translation>
     </message>
 </context>
 <context>
@@ -727,19 +727,19 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished"></translation>
+        <translation>min/mi</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished"></translation>
+        <translation>mi/h</translation>
     </message>
     <message>
         <source>ft</source>
-        <translation type="unfinished"></translation>
+        <translation>ft</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation>mi</translation>
     </message>
 </context>
 <context>
@@ -793,15 +793,15 @@
     </message>
     <message>
         <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ääniasetukset</translation>
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava</translation>
     </message>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Sovelluskannen asetukset</translation>
     </message>
 </context>
 <context>
@@ -852,19 +852,19 @@
     </message>
     <message>
         <source>Unit of measurement</source>
-        <translation type="unfinished"></translation>
+        <translation>Mittausyksikkö</translation>
     </message>
     <message>
         <source>Metric</source>
-        <translation type="unfinished"></translation>
+        <translation>Metrinen</translation>
     </message>
     <message>
         <source>Imperial</source>
-        <translation type="unfinished"></translation>
+        <translation>Brittiläinen</translation>
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä asetus tulee voimaan uudelleenkäynnistyksen jälkeen.</translation>
     </message>
 </context>
 <context>
@@ -895,7 +895,7 @@
     </message>
     <message>
         <source>Hiking</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaeltaminen</translation>
     </message>
 </context>
 <context>
@@ -1047,109 +1047,109 @@
     <name>StravaActivityPage</name>
     <message>
         <source>Description:</source>
-        <translation type="unfinished">Kuvaus:</translation>
+        <translation>Kuvaus:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished">Alotusaika:</translation>
+        <translation>Alotusaika:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Kesto:</translation>
+        <translation>Kesto:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Matka:</translation>
+        <translation>Matka:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished">Nopeus max/⌀:</translation>
+        <translation>Nopeus max/⌀:</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Saavutukset:</translation>
     </message>
     <message>
         <source>Kudos:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kudos:</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentit:</translation>
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Korkeusero:</translation>
     </message>
 </context>
 <context>
     <name>StravaComments</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentit</translation>
     </message>
 </context>
 <context>
     <name>StravaKudos</name>
     <message>
         <source>Kudos</source>
-        <translation type="unfinished"></translation>
+        <translation>Kudos</translation>
     </message>
 </context>
 <context>
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Kesto:</translation>
+        <translation>Kesto:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Matka:</translation>
+        <translation>Matka:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation type="unfinished"></translation>
+        <translation>Korkeusero:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiipeämis kategoria:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation type="unfinished"></translation>
+        <translation>Paras yritys:</translation>
     </message>
 </context>
 <context>
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
-        <translation type="unfinished"></translation>
+        <translation>Osioita:</translation>
     </message>
 </context>
 <context>
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava asetukset</translation>
     </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Harjoituksen nimi Stravaan</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Kuvaus</translation>
+        <translation>Kuvaus</translation>
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Harjoituksen kuvaus Stravaan</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished">Privaatti</translation>
+        <translation>Privaatti</translation>
     </message>
     <message>
         <source>Commute</source>
@@ -1157,27 +1157,27 @@
     </message>
     <message>
         <source>Uploading data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lähetetään tietoja...</translation>
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarkistetaan lähetystä...</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Tapahtui tuntematon virhe</translation>
     </message>
     <message>
         <source>Activity upload complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Harjoitus lähetetty</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tyyppi</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nimi</translation>
+        <translation>Nimi</translation>
     </message>
 </context>
 <context>
@@ -1248,7 +1248,7 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished"></translation>
+        <translation>min/mi</translation>
     </message>
 </context>
 <context>
@@ -1262,59 +1262,59 @@
     <name>VoiceSettingsPage</name>
     <message>
         <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ääniasetukset</translation>
     </message>
     <message>
         <source>Start/end workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloita/lopeta harjoitus</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Pysäytä/jatka harjoitusta</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation type="unfinished"></translation>
+        <translation>Yhdistä/Katkaise GPS</translation>
     </message>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished">Ääni-ilmoitusten kieli</translation>
+        <translation>Ääni-ilmoitusten kieli</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished">Englanti mies</translation>
+        <translation>Englanti mies</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished">Saksa mies</translation>
+        <translation>Saksa mies</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished">Testaa ääniä</translation>
+        <translation>Testaa ääniä</translation>
     </message>
     <message>
         <source>Voice outputs on events</source>
-        <translation type="unfinished"></translation>
+        <translation>Äänimerkit tapahtumista</translation>
     </message>
     <message>
         <source>Cyclic voice outputs</source>
-        <translation type="unfinished"></translation>
+        <translation>Toistuvat ilmoitukset</translation>
     </message>
     <message>
         <source>Voice outputs</source>
-        <translation type="unfinished"></translation>
+        <translation>Äänien määrä</translation>
     </message>
     <message>
         <source>1 parameter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ensimmäinen parametri:</translation>
     </message>
     <message>
         <source>2 parameter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Toinen parametri:</translation>
     </message>
     <message>
         <source>3 parameter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolmas parametri:</translation>
     </message>
 </context>
 </TS>

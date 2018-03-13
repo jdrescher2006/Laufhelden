@@ -16,11 +16,11 @@
 */
 
 var SESSIONKEY = ""; //Sessionkey is filled automatically after login.
-var loginurl = "http://www.sports-tracker.com/apiserver/v1/login";
-var importurl = "http://www.sports-tracker.com/apiserver/v1/workout/importGpx";
-var saveurl = "http://www.sports-tracker.com/apiserver/v1/workouts/header";
-var workoutsurl = "http://www.sports-tracker.com/apiserver/v1/workouts";
-var exportgpxurl = "http://www.sports-tracker.com/apiserver/v1/workout/exportGpx/";
+var loginurl = "https://www.sports-tracker.com/apiserver/v1/login";
+var importurl = "https://www.sports-tracker.com/apiserver/v1/workout/importGpx";
+var saveurl = "https://www.sports-tracker.com/apiserver/v1/workouts/header";
+var workoutsurl = "https://www.sports-tracker.com/apiserver/v1/workouts";
+var exportgpxurl = "https://www.sports-tracker.com/apiserver/v1/workout/exportGpx/";
 var recycledlogin = false;
 var loginstate = 0;
 var writecallback;        //Write file to disk callback which is called after download
