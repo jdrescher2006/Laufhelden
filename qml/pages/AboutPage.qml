@@ -99,7 +99,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Copyright") + " \u00A9 2017 Jens Drescher, " + qsTr("Germany")
+                text: qsTr("Copyright") + " \u00A9 2017-2018 Jens Drescher, " + qsTr("Germany")
             }
             Label
             {
@@ -113,7 +113,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Date: ") + "16.11.2017";
+                text: qsTr("Date: ") + "06.02.2018";
             }
             Label
             {
@@ -121,27 +121,7 @@ Page
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
                 text: qsTr("License: GPLv3")
-            }
-            Item
-            {
-                width: parent.width
-                height: Theme.paddingLarge
-            }
-            Label
-            {
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
-                text: qsTr("Source code:")
-            }
-            Label
-            {
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeExtraSmall
-                property string urlstring: "https://github.com/jdrescher2006/Laufhelden"
-                text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
-                onLinkActivated: Qt.openUrlExternally(link)
-            }
+            }            
             Item
             {
                 width: parent.width
@@ -161,7 +141,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Spanish") + " - Caballlero, " + qsTr("Polish") + " - atlochowski, " + qsTr("Swedish") + " - eson57, " + qsTr("Finnish") + " - niemisenjussi"
+                text: qsTr("Spanish") + " - Caballlero<br>" + qsTr("Polish") + " - atlochowski<br>" + qsTr("Swedish") + " - eson57<br>" + qsTr("Finnish") + " - niemisenjussi<br>" + qsTr("Hungarian") + " - martonmiklos<br>" + qsTr("Dutch") + " - d9h20f"
             }            
             Item
             {
@@ -182,7 +162,47 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: "niemisenjussi"
+                text: "niemisenjussi<br>piggz"
+            }            
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                text: qsTr("If you like this app you can donate for it:")
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                property string urlstring: "https://www.paypal.me/JensDrescher"
+                text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                color: Theme.secondaryColor
+                text: qsTr("Source code:")
+            }
+            Label
+            {
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pixelSize: Theme.fontSizeExtraSmall
+                property string urlstring: "https://github.com/jdrescher2006/Laufhelden"
+                text: "<a href=\"" + urlstring + "\">" +  urlstring + "<\a>"
+                onLinkActivated: Qt.openUrlExternally(link)
             }
             Item
             {

@@ -44,6 +44,10 @@ Page
 
             cmbWorkout.currentIndex = SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType);
             imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType)].icon;
+            //Set workout type to recorder
+            recorder.workoutType = SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType)].name;
+
+
 
             if (sHRMAddress === "")
                 txtswUseHRMdevice.checked = false;
@@ -67,15 +71,8 @@ Page
             //Set selected threshold profile to combobox
             idComboBoxThresholdProfiles.currentIndex = Thresholds.fncGetCurrentProfileIndex();
 
+
             pageStack.pushAttached(Qt.resolvedUrl("RecordPage.qml"));           
-
-            if (settings.enablePebble)
-            {
-                //Launch pebble sport app
-                pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
-
-            }
-
 
             bLockOnCompleted = false;
         }
@@ -96,8 +93,17 @@ Page
 
             //We might returned from record page and HR reconnect is still active. Switch it off.
             if (bRecordDialogRequestHRM)
-                bRecordDialogRequestHRM = false;
+                bRecordDialogRequestHRM = false;           
 
+            //Check if pebble is connected
+            if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
+                bPebbleConnected = id_PebbleWatchComm.isConnected();
+
+            //Launch pebble sport app
+            if (sPebblePath !== "" && settings.enablePebble && bPebbleConnected)
+                pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
+
+            bPebbleSportAppRequired = settings.enablePebble;
         }
 
         if (status === PageStatus.Inactive)
@@ -216,7 +222,7 @@ Page
             {
                 id: txtswRecordPagePreventScreenBlank
                 text: qsTr("Disable screen blanking")
-                description: qsTr("Disbale screen blanking when recording.")
+                description: qsTr("Disable screen blanking when recording.")
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted)

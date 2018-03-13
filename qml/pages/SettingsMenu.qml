@@ -33,8 +33,18 @@ Page
         }
         ListElement
         {
+            page: "VoiceSettingsPage.qml"
+            title: qsTr("Voice output settings")
+        }
+        ListElement
+        {
             page: "MapSettingsPage.qml"
             title: qsTr("Map settings")
+        }
+        ListElement
+        {
+            page: "CoverSettingsPage.qml"
+            title: qsTr("App cover settings")
         }
         ListElement
         {
@@ -50,6 +60,11 @@ Page
         {
             page: "SportsTrackerSettingsPage.qml"
             title: qsTr("Sports-Tracker.com")
+        }
+        ListElement
+        {
+            page: "StravaSettingsPage.qml"
+            title: qsTr("Strava")
         }
         ListElement
         {

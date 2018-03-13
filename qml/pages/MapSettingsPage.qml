@@ -36,9 +36,40 @@ Page {
             bLockFirstPageLoad = false;
             console.log("First Active MapSettingsPage");
 
-            id_TextSwitch_mapShowOnly4Fields.checked = settings.mapShowOnly4Fields;
+            id_TextSwitch_mapDisableOnRecordPage.checked = settings.mapDisableRecordPage;
 
+            id_TextSwitch_mapShowOnly4Fields.checked = settings.mapShowOnly4Fields;
             id_CMB_MapCenterMode.currentIndex = settings.mapMode;
+
+
+            if (settings.mapStyle === "mapbox://styles/mapbox/streets-v10")
+                id_CMB_MapStyle.currentIndex = 0;
+            else if (settings.mapStyle === "mapbox://styles/mapbox/outdoors-v10")
+                id_CMB_MapStyle.currentIndex = 1;
+            else if (settings.mapStyle === "mapbox://styles/mapbox/light-v9")
+                id_CMB_MapStyle.currentIndex = 2;
+            else if (settings.mapStyle === "mapbox://styles/mapbox/dark-v9")
+                id_CMB_MapStyle.currentIndex = 3;
+            else if (settings.mapStyle === "mapbox://styles/mapbox/satellite-v9")
+                id_CMB_MapStyle.currentIndex = 4;
+            else if (settings.mapStyle === "mapbox://styles/mapbox/satellite-streets-v10")
+                id_CMB_MapStyle.currentIndex = 5;
+            else if (settings.mapStyle === "http://localhost:8553/v1/mbgl/style?style=osmbright")
+                id_CMB_MapStyle.currentIndex = 6;
+            else
+                id_CMB_MapStyle.currentIndex = 1;
+
+
+            if (settings.mapCache === 25)
+                id_CMB_MapCache.currentIndex = 0;
+            else if (settings.mapCache === 50)
+                id_CMB_MapCache.currentIndex = 1;
+            else if (settings.mapCache === 100)
+                id_CMB_MapCache.currentIndex = 2;
+            else if (settings.mapCache === 250)
+                id_CMB_MapCache.currentIndex = 3;
+            else
+                id_CMB_MapCache.currentIndex = 1;
 
             bLockOnCompleted = false;
         }
@@ -65,7 +96,23 @@ Page {
             PageHeader
             {
                 title: qsTr("Map settings")
-            }                        
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_mapDisableOnRecordPage
+                text: qsTr("Disable map")
+                description: qsTr("Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.mapDisableRecordPage = checked;
+                }
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
             TextSwitch
             {
                 id: id_TextSwitch_mapShowOnly4Fields
@@ -111,7 +158,85 @@ Page {
                         }
                     }
                 }
-            }            
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            ComboBox
+            {
+                id: id_CMB_MapStyle
+                description: qsTr("Choose map style.")
+                label: qsTr("Map")
+                menu: ContextMenu
+                {
+                    MenuItem { text: qsTr("Streets") }
+                    MenuItem { text: qsTr("Outdoors") }
+                    MenuItem { text: qsTr("Light") }
+                    MenuItem { text: qsTr("Dark") }
+                    MenuItem { text: qsTr("Satellite") }
+                    MenuItem { text: qsTr("Satellite Streets") }
+                    MenuItem { text: qsTr("OSM Scout Server") }
+                }                
+                onCurrentIndexChanged:
+                {
+                    if (bLockOnCompleted)
+                        return;
+
+                    if (currentIndex === 0)
+                        settings.mapStyle = "mapbox://styles/mapbox/streets-v10";
+                    else if (currentIndex === 1)
+                        settings.mapStyle = "mapbox://styles/mapbox/outdoors-v10";
+                    else if (currentIndex === 2)
+                        settings.mapStyle = "mapbox://styles/mapbox/light-v9";
+                    else if (currentIndex === 3)
+                        settings.mapStyle = "mapbox://styles/mapbox/dark-v9";
+                    else if (currentIndex === 4)
+                        settings.mapStyle = "mapbox://styles/mapbox/satellite-v9";
+                    else if (currentIndex === 5)
+                        settings.mapStyle = "mapbox://styles/mapbox/satellite-streets-v10";
+                    else if (currentIndex === 6)
+                        settings.mapStyle = "http://localhost:8553/v1/mbgl/style?style=osmbright";
+                    else
+                        settings.mapStyle = "mapbox://styles/mapbox/outdoors-v10";
+                }
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            ComboBox
+            {
+                id: id_CMB_MapCache
+                description: qsTr("Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. " +
+                                    "Note that the cache size settings will be applied after restart of the application.")
+                label: qsTr("Cache size")
+                menu: ContextMenu
+                {
+                    MenuItem { text: "25 MB" }
+                    MenuItem { text: "50 MB" }
+                    MenuItem { text: "100 MB" }
+                    MenuItem { text: "250 MB" }
+                }                
+                onCurrentIndexChanged:
+                {
+                    if (bLockOnCompleted)
+                        return;
+
+                    if (currentIndex === 0)
+                        settings.mapCache = 25;
+                    else if (currentIndex === 1)
+                        settings.mapCache = 50;
+                    else if (currentIndex === 2)
+                        settings.mapCache = 100;
+                    else if (currentIndex === 3)
+                        settings.mapCache = 250;
+                    else
+                        settings.mapCache = 50;
+                }
+            }
         }
     }
 }

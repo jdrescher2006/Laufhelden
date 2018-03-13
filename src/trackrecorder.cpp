@@ -109,8 +109,11 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
     }
     emit accuracyChanged();
 
+    //qDebug()<<"m_accuracy: " << QString::number(m_accuracy);
+
+
     m_currentPosition = newPos.coordinate();
-    emit currentPositionChanged();
+    emit currentPositionChanged(newPos.coordinate());
 
     //If recorder is running and is paused
     if(this->m_running == true && this->m_pause == true)
@@ -126,7 +129,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
         return;
     }
 
-    qDebug()<<"Groundspeed: " << QString::number(newPos.GroundSpeed);
+    //qDebug()<<"Groundspeed: " << QString::number(newPos.GroundSpeed);
 
     if(m_running)
     {
@@ -634,12 +637,40 @@ QString TrackRecorder::paceStr() const
     return strPace;
 }
 
+QString TrackRecorder::paceImperialStr() const
+{
+    QString strPace = "";
+
+    qreal m_pace_imperial = m_pace * 1.609344;
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
 QString TrackRecorder::paceaverageStr() const
 {
     QString strPace = "";
 
     qreal rMinutes = qFloor(m_paceaverage);
     qreal rSeconds = qCeil((m_paceaverage * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
+QString TrackRecorder::paceaverageImperialStr() const
+{
+    QString strPace = "";
+
+    qreal m_pace_imperial = m_paceaverage * 1.609344;
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
 
     strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
 
@@ -666,6 +697,20 @@ QString TrackRecorder::pauseTime() const
             .arg(hours, 2, 10, QLatin1Char('0'))
             .arg(minutes, 2, 10, QLatin1Char('0'))
             .arg(seconds, 2, 10, QLatin1Char('0'));
+
+    return timeStr;
+}
+
+QString TrackRecorder::pebblePauseTime() const
+{
+    uint hours, minutes;
+
+    hours = this->m_PauseDuration / (60*60);
+    minutes = (this->m_PauseDuration - hours*60*60) / 60;
+
+    QString timeStr = QString("%1:%2")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(minutes, 2, 10, QLatin1Char('0'));
 
     return timeStr;
 }
@@ -1016,6 +1061,9 @@ void TrackRecorder::loadAutoSave()
 
         this->m_pause = true;
         this->m_running = true;
+
+        emit pauseChanged();
+        emit runningChanged();
     }
 
     if(!m_points.isEmpty())

@@ -52,12 +52,24 @@
         <translation>Återkoppling och fel:</translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation type="unfinished"></translation>
+        <source>Credits for code contribution:</source>
+        <translation>Tack för kodbidrag:</translation>
     </message>
     <message>
-        <source>Credits for code contribution:</source>
-        <translation type="unfinished"></translation>
+        <source>If you like this app you can donate for it:</source>
+        <translation>Om du gillar den här appen kan du donera för vidare utveckling:</translation>
+    </message>
+    <message>
+        <source>Hungarian</source>
+        <translation>Ungerska</translation>
+    </message>
+    <message>
+        <source>Finnish</source>
+        <translation>Finska</translation>
+    </message>
+    <message>
+        <source>Dutch</source>
+        <translation>Nederländska</translation>
     </message>
 </context>
 <context>
@@ -122,23 +134,46 @@
         <translation>Stoppad</translation>
     </message>
     <message>
-        <source> bpm</source>
-        <translation> bpm</translation>
+        <source>Paused</source>
+        <translation>Pausad</translation>
+    </message>
+</context>
+<context>
+    <name>CoverSettingsPage</name>
+    <message>
+        <source>First field:</source>
+        <translation>Första fältet:</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="unfinished">Pausad</translation>
+        <source>This value is already assigned!</source>
+        <translation>Detta värde är redan tilldelat!</translation>
+    </message>
+    <message>
+        <source>Second field:</source>
+        <translation>Andra fältet:</translation>
+    </message>
+    <message>
+        <source>Third field:</source>
+        <translation>Tredje fältet:</translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation>Miniatyrinställningar</translation>
+    </message>
+    <message>
+        <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
+        <translation>Välj de värden som skall visas på programminiatyren. Värdena används också för låsskärmen på inspelningssidan.</translation>
     </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Diagram</translation>
+        <translation>Diagram</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Beskrivning</translation>
+        <translation>Beskrivning:</translation>
     </message>
     <message>
         <source>Starting time:</source>
@@ -146,7 +181,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Varaktighet:</translation>
+        <translation>Varaktighet:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -166,7 +201,7 @@
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation>Paus antal/varaktighet</translation>
+        <translation>Paus antal/varaktighet:</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
@@ -174,11 +209,35 @@
     </message>
     <message>
         <source>Logging in...</source>
-        <translation type="unfinished"></translation>
+        <translation>Loggar in...</translation>
     </message>
     <message>
         <source>Uploading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Laddar upp...</translation>
+    </message>
+    <message>
+        <source>Edit workout</source>
+        <translation>Redigera träningspass</translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation>Träningspassnamn</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation>Träningsbeskrivning</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation>Träningspass:</translation>
+    </message>
+    <message>
+        <source>Elevation up/down:</source>
+        <translation>Höjd upp/ner:</translation>
+    </message>
+    <message>
+        <source>Send to Strava</source>
+        <translation>Skicka till Strava</translation>
     </message>
 </context>
 <context>
@@ -186,6 +245,41 @@
     <message>
         <source>Diagrams</source>
         <translation>Diagram</translation>
+    </message>
+</context>
+<context>
+    <name>JSTools</name>
+    <message>
+        <source>Empty</source>
+        <translation>Tomt</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation>Hjätfrekvens</translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation>Tempo</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>Hastighet</translation>
+    </message>
+    <message>
+        <source>Altitude</source>
+        <translation>Altitud</translation>
+    </message>
+    <message>
+        <source>Distance</source>
+        <translation>Distans</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation>Pausa</translation>
+    </message>
+    <message>
+        <source>Duration</source>
+        <translation>Varaktighet</translation>
     </message>
 </context>
 <context>
@@ -238,6 +332,26 @@
         <source>Resume</source>
         <translation>Fortsätt</translation>
     </message>
+    <message>
+        <source>Edit workout</source>
+        <translation>Redigera träningspass</translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation>Träningspassnamn</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation>Träningsbeskrivning</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation>Träningspass:</translation>
+    </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation>Mina Strava-aktiviteter</translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -265,52 +379,150 @@
         <source>Center track on map</source>
         <translation>Centrera spåret på kartan</translation>
     </message>
+    <message>
+        <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
+        <translation>Begränsad cachelagring säkerställer uppdaterade kartor och håller diskanvändningen under kontroll, men orsakar långsammare kartinläsning och mer datatrafik. Notera att inställning av cachestorlek tillämpas först efter omstart av appen.</translation>
+    </message>
+    <message>
+        <source>Cache size</source>
+        <translation>Cachestorlek</translation>
+    </message>
+    <message>
+        <source>Choose map style.</source>
+        <translation>Välj kartstil.</translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation>Karta</translation>
+    </message>
+    <message>
+        <source>Streets</source>
+        <translation>Gator</translation>
+    </message>
+    <message>
+        <source>Outdoors</source>
+        <translation>Utomhus</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Ljus</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Mörk</translation>
+    </message>
+    <message>
+        <source>Satellite</source>
+        <translation>Satellit</translation>
+    </message>
+    <message>
+        <source>Satellite Streets</source>
+        <translation>Satellitgator</translation>
+    </message>
+    <message>
+        <source>OSM Scout Server</source>
+        <translation>OSM Scout Server</translation>
+    </message>
+    <message>
+        <source>Disable map</source>
+        <translation>Inaktivera kartan</translation>
+    </message>
+    <message>
+        <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
+        <translation>Kartan visas inte mer. Detta är användbart på Jolla 1-telefoner (med klen GPU), eftersom kartan kan få appen att krascha.</translation>
+    </message>
+</context>
+<context>
+    <name>MyStravaActivities</name>
+    <message>
+        <source>My Strava Activities</source>
+        <translation>Mina Strava-aktiviteter</translation>
+    </message>
+</context>
+<context>
+    <name>PebbleComm</name>
+    <message>
+        <source>Pebble connected</source>
+        <translation>Pebble ansluten</translation>
+    </message>
+    <message>
+        <source>Pebble disconnected</source>
+        <translation>Pebble bortkopplad</translation>
+    </message>
 </context>
 <context>
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation type="unfinished"></translation>
+        <translation>anger metriska enheter</translation>
     </message>
     <message>
         <source>sending data 1</source>
-        <translation type="unfinished"></translation>
+        <translation>skickar data 1</translation>
     </message>
     <message>
         <source>sending data 2</source>
-        <translation type="unfinished"></translation>
+        <translation>skickar data 2</translation>
     </message>
     <message>
         <source>sending data 3</source>
-        <translation type="unfinished"></translation>
+        <translation>skickar data 3</translation>
     </message>
     <message>
         <source>closing sport app</source>
-        <translation type="unfinished"></translation>
+        <translation>stänger sport-appen</translation>
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable Pebble</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Value 1 field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble-inställningar</translation>
     </message>
     <message>
         <source>Test Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Testa Pebble</translation>
     </message>
     <message>
         <source>starting sport app</source>
-        <translation type="unfinished"></translation>
+        <translation>startar sport-appen</translation>
     </message>
     <message>
-        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
-        <translation type="unfinished"></translation>
+        <source>Connected:</source>
+        <translation>Ansluten:</translation>
+    </message>
+    <message>
+        <source>Enable Pebble support</source>
+        <translation>Aktivera Pebble-stöd</translation>
+    </message>
+    <message>
+        <source>1 DURATION field:</source>
+        <translation>1 VARAKTIGHET:</translation>
+    </message>
+    <message>
+        <source>2 DISTANCE field:</source>
+        <translation>2 DISTANS:</translation>
+    </message>
+    <message>
+        <source>3 PACE/SPEED field:</source>
+        <translation>3 TEMPO/HASTIGHET:</translation>
+    </message>
+    <message>
+        <source>View workout data on Pebble Smartwatch.</source>
+        <translation>Visa träningsdata på Pebble Smartwatch.</translation>
+    </message>
+    <message>
+        <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
+        <translation>Ingen Pebble hittades.&lt;br&gt;Installera Rockpool och&lt;br&gt;anslut sedan Pebble!</translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation>Detta värde är redan tilldelat!</translation>
+    </message>
+    <message>
+        <source>Choose values for Pebble fields!</source>
+        <translation>Välj värden för Pebble-fälten!</translation>
+    </message>
+    <message>
+        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
+        <translation>Rockpool måste vara installerat&lt;br&gt;lägst version 1.4-4&lt;br&gt;Installerad version är: </translation>
     </message>
 </context>
 <context>
@@ -329,19 +541,19 @@
     </message>
     <message>
         <source>Use heart rate monitor in this workout.</source>
-        <translation>Använd hjärtfrekvensmätare i detta träningspass</translation>
+        <translation>Använd hjärtfrekvensmätare i detta träningspass.</translation>
     </message>
     <message>
         <source>Disable screen blanking</source>
         <translation>Inaktivera skärmsläckning</translation>
     </message>
     <message>
-        <source>Disbale screen blanking when recording.</source>
-        <translation>Inaktivera skärmsläckning vid inspelning</translation>
+        <source>Disable screen blanking when recording.</source>
+        <translation>Inaktivera skärmsläckning vid inspelning.</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation type="unfinished">Välj tröskelvärdesprofil</translation>
+        <translation>Välj tröskelvärdesprofil</translation>
     </message>
 </context>
 <context>
@@ -450,6 +662,14 @@
         <source>Select value!</source>
         <translation>Välj värde!</translation>
     </message>
+    <message>
+        <source>Restart Pebble App</source>
+        <translation>Starta om Pebble-appen</translation>
+    </message>
+    <message>
+        <source>Lock screen</source>
+        <translation>Låsskärm</translation>
+    </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
@@ -459,7 +679,7 @@
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>Heartrate</source>
@@ -467,7 +687,7 @@
     </message>
     <message>
         <source>bpm</source>
-        <translation type="unfinished">bpm</translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Pace</source>
@@ -475,7 +695,7 @@
     </message>
     <message>
         <source>min/km</source>
-        <translation type="unfinished">min/km</translation>
+        <translation>min/km</translation>
     </message>
     <message>
         <source>Speed</source>
@@ -483,15 +703,15 @@
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/t</translation>
-    </message>
-    <message>
-        <source>Altitude</source>
-        <translation>Altitud</translation>
+        <translation>km/t</translation>
     </message>
     <message>
         <source>m</source>
         <translation>m</translation>
+    </message>
+    <message>
+        <source>Altitude</source>
+        <translation>Altitud</translation>
     </message>
     <message>
         <source>Bat.:</source>
@@ -503,7 +723,23 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Pausa</translation>
+        <translation>Paus</translation>
+    </message>
+    <message>
+        <source>min/mi</source>
+        <translation>min/mi</translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation>mi/t</translation>
+    </message>
+    <message>
+        <source>ft</source>
+        <translation>ft</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
     </message>
 </context>
 <context>
@@ -553,7 +789,19 @@
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble-inställningar</translation>
+    </message>
+    <message>
+        <source>Voice output settings</source>
+        <translation>Inställningar för röstutmatning</translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation>Strava</translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation>Miniatyrinställningar</translation>
     </message>
 </context>
 <context>
@@ -579,22 +827,6 @@
         <translation>Inspelningssida i stående läge</translation>
     </message>
     <message>
-        <source>Voice language</source>
-        <translation>Röstspråk</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation>Engelska manlig</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation>Tyska kvinnlig</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
         <source>Show grid lines</source>
         <translation>Visa stödlinjer</translation>
     </message>
@@ -617,6 +849,22 @@
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
         <translation>Byt till nattläge om atmosfärljuset är svagt.</translation>
+    </message>
+    <message>
+        <source>Unit of measurement</source>
+        <translation>Måttenhet</translation>
+    </message>
+    <message>
+        <source>Metric</source>
+        <translation>Meter</translation>
+    </message>
+    <message>
+        <source>Imperial</source>
+        <translation>Brittisk standard</translation>
+    </message>
+    <message>
+        <source>Note that this setting will be applied after restart of the application.</source>
+        <translation>Notera att denna inställning tillämpas först efter omstart av appen.</translation>
     </message>
 </context>
 <context>
@@ -645,24 +893,28 @@
         <source>Skiing</source>
         <translation>Skidor</translation>
     </message>
+    <message>
+        <source>Hiking</source>
+        <translation>Fotvandring</translation>
+    </message>
 </context>
 <context>
     <name>SportsTracker</name>
     <message>
         <source>Oops, username or password error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoppsan, användarnamn- eller lösenordsfel</translation>
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation type="unfinished"></translation>
+        <translation>Något fel uppstod vid GPX-import</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
-        <translation type="unfinished"></translation>
+        <translation>Träningspass uppladdat!</translation>
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
-        <translation type="unfinished"></translation>
+        <translation>Något fel uppstod när data skulle sparas</translation>
     </message>
 </context>
 <context>
@@ -717,51 +969,51 @@
     </message>
     <message>
         <source>Test login...</source>
-        <translation type="unfinished"></translation>
+        <translation>Testinloggning...</translation>
     </message>
     <message>
         <source>Already authenticated</source>
-        <translation type="unfinished"></translation>
+        <translation>Redan autentiserad</translation>
     </message>
     <message>
         <source>Login success!</source>
-        <translation type="unfinished"></translation>
+        <translation>Inloggningen lyckades!</translation>
     </message>
     <message>
         <source>Login error, Check username or password</source>
-        <translation type="unfinished"></translation>
+        <translation>Inloggningsfel! Kontrollera användarnamn och lösenord</translation>
     </message>
     <message>
         <source>Loading workouts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Läser in träningspass...</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">av</translation>
+        <translation>av</translation>
     </message>
     <message>
         <source> unique workout downloaded!</source>
-        <translation type="unfinished"></translation>
+        <translation> unikt träningspass nerladdat!</translation>
     </message>
     <message>
         <source>Test login</source>
-        <translation type="unfinished"></translation>
+        <translation>Testa inloggning</translation>
     </message>
     <message>
         <source>Download workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladda ner träningspass</translation>
     </message>
     <message>
         <source>Maximum number to download</source>
-        <translation type="unfinished"></translation>
+        <translation>Max antal att ladda ner</translation>
     </message>
     <message>
         <source>Downloading GPX files</source>
-        <translation type="unfinished"></translation>
+        <translation>Laddar ner GPX-filer</translation>
     </message>
     <message>
         <source>Track write error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel vid spårskrivning</translation>
     </message>
 </context>
 <context>
@@ -772,7 +1024,7 @@
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Beskrivning</translation>
+        <translation>Beskrivning</translation>
     </message>
     <message>
         <source>Share workout</source>
@@ -789,6 +1041,143 @@
     <message>
         <source>Public</source>
         <translation>Allmänt</translation>
+    </message>
+</context>
+<context>
+    <name>StravaActivityPage</name>
+    <message>
+        <source>Description:</source>
+        <translation>Beskrivning:</translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation>Starttid:</translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation>Varaktighet:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation>Distans:</translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation>Hastighet max/⌀:</translation>
+    </message>
+    <message>
+        <source>Kudos:</source>
+        <translation>Kudos:</translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation>Kommentarer:</translation>
+    </message>
+    <message>
+        <source>Elevation Gain:</source>
+        <translation>Höjdökning:</translation>
+    </message>
+    <message>
+        <source>Achievements/PRs:</source>
+        <translation>Insatser/kodbidrag:</translation>
+    </message>
+</context>
+<context>
+    <name>StravaComments</name>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentarer</translation>
+    </message>
+</context>
+<context>
+    <name>StravaKudos</name>
+    <message>
+        <source>Kudos</source>
+        <translation>Kudos</translation>
+    </message>
+</context>
+<context>
+    <name>StravaSegment</name>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Varaktighet:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished">Distans:</translation>
+    </message>
+    <message>
+        <source>Elevation Diff:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Climb Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best Effort:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaSegments</name>
+    <message>
+        <source>Segments</source>
+        <translation>Segment</translation>
+    </message>
+</context>
+<context>
+    <name>StravaSettingsPage</name>
+    <message>
+        <source>Strava settings</source>
+        <translation>Strava Inställningar</translation>
+    </message>
+</context>
+<context>
+    <name>StravaUploadPage</name>
+    <message>
+        <source>Activity name for Strava</source>
+        <translation>Aktivitetsnamn för Strava</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beskrivning</translation>
+    </message>
+    <message>
+        <source>Activity description for Strava</source>
+        <translation>Aktivitetsbeskrivning för Strava</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>Privat</translation>
+    </message>
+    <message>
+        <source>Commute</source>
+        <translation>Växla</translation>
+    </message>
+    <message>
+        <source>Uploading data...</source>
+        <translation>Laddar upp data...</translation>
+    </message>
+    <message>
+        <source>Checking upload...</source>
+        <translation>Kontrollerar uppladdning...</translation>
+    </message>
+    <message>
+        <source>An unknown error occurred</source>
+        <translation>Ett okänt fel inträffade</translation>
+    </message>
+    <message>
+        <source>Activity upload complete</source>
+        <translation>Uppladdning slutförd</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Namn</translation>
     </message>
 </context>
 <context>
@@ -857,12 +1246,75 @@
         <source>Alarm thresholds</source>
         <translation>Varningsnivåer</translation>
     </message>
+    <message>
+        <source>min/mi</source>
+        <translation>min/mi</translation>
+    </message>
 </context>
 <context>
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
         <translation>Tröskelvärden av</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>Voice output settings</source>
+        <translation>Inställningar för röstutmatning</translation>
+    </message>
+    <message>
+        <source>Start/end workout</source>
+        <translation>Starta/Avsluta träningspass</translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation>Pausa/Fortsätta träningspass</translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation>Ansluta/Koppla ner GPS</translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation>Röstspråk</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation>Engelska manlig</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation>Tyska manlig</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Testa</translation>
+    </message>
+    <message>
+        <source>Voice outputs on events</source>
+        <translation>Röstutmatning vid händelser</translation>
+    </message>
+    <message>
+        <source>Cyclic voice outputs</source>
+        <translation>Återkommande röstutmatningar</translation>
+    </message>
+    <message>
+        <source>Voice outputs</source>
+        <translation>Röstutmatningar</translation>
+    </message>
+    <message>
+        <source>1 parameter:</source>
+        <translation>1 parameter:</translation>
+    </message>
+    <message>
+        <source>2 parameter:</source>
+        <translation>2 parameter:</translation>
+    </message>
+    <message>
+        <source>3 parameter:</source>
+        <translation>3 parameter:</translation>
     </message>
 </context>
 </TS>

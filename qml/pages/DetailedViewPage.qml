@@ -18,29 +18,51 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtLocation 5.0
-
+import QtPositioning 5.3
+import MapboxMap 1.0
 import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
 import "../tools/SportsTracker.js" as ST
+import "../tools/SharedResources.js" as SharedResources
+import com.pipacs.o2 1.0
 
-Page {
+Page
+{
     id: detailPage
-    allowedOrientations: Orientation.Portrait
+    allowedOrientations: bMapMaximized ? Orientation.All : Orientation.Portrait
+    //No back navigation if the map is big
+    backNavigation: !bMapMaximized
+
     property string filename
     property string name
+    property int index
+
     property int stSharing: 0
     property string stComment: ""
+    property var vTrackLinePoints
 
-    function setMapViewport() {
-        trackMap.zoomLevel = Math.min(trackMap.maximumZoomLevel,
-                                      trackLoader.fitZoomLevel(trackMap.width, trackMap.height));
-        trackMap.center = trackLoader.center();
-    }
+    //Map buttons
+    property bool showSettingsButton: true
+    property bool showMinMaxButton: true
+    property bool showCenterButton: true
 
-    onStatusChanged: {
-        if (status === PageStatus.Active) {
+    property bool bMapMaximized: false
+
+    property int iCurrentWorkout: 0
+
+    property bool bDisableMap: settings.mapDisableRecordPage
+
+    onStatusChanged:
+    {
+        if (status === PageStatus.Active)
+        {
+            //This setting determines if the map should be completely disabled.
+            bDisableMap = settings.mapDisableRecordPage;
+
             trackLoader.filename = filename;
+
+            console.log("settings.mapStyle: " + settings.mapStyle);
+            map.styleUrl = settings.mapStyle;
         }
     }
 
@@ -107,7 +129,7 @@ Page {
         onTriggered: {
             detail_busy.running = false;
             detail_flick.visible = true;
-            trackMap.opacity = 1.0
+            map.opacity = 1.0
             detail_busy.visible = false;
             load_text.visible = false;
             ntimer.restart();
@@ -121,22 +143,19 @@ Page {
         onTrackChanged:
         {
             var trackLength = trackLoader.trackPointCount();
-            var trackPoints = [];
 
             JSTools.arrayDataPoints = [];
 
             for(var i=0; i<trackLength; i++)
             {
-                trackPoints.push(trackLoader.trackPointAt(i));
-
                 JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), 0);
-            }           
+            }
 
             var trackPointsTemporary = [];
-
             var iPausePositionsIndex = 0;
 
-            //Go through JS array with track data points
+
+            //Go through array with track data points
             for (i=0; i<trackLength; i++)
             {
                 //add this track point to temporary array. This will be used for drawing the track line
@@ -145,65 +164,83 @@ Page {
                 //Check if we have the first data point.
                 if (i===0)
                 {
-                    //This is the first data point, draw the start icon
-                    idItemTrackStart.coordinate = trackLoader.trackPointAt(i);
-                    idItemTrackStart.visible = true;
+                    if (!bDisableMap)
+                    {
+                        //This is the first data point, draw the start icon
+                        map.addSourcePoint("pointStartImage",  trackLoader.trackPointAt(i));
+                        map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
+                        map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
+                        map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
+                        map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
+						map.setLayoutProperty("layerStartLayer", "icon-allow-overlap", true);
+                    }
                 }
 
                 //Check if we have the last data point, draw the stop icon
                 if (i===(trackLength - 1))
                 {
-                    idItemTrackEnd.coordinate = trackLoader.trackPointAt(i);
-                    idItemTrackEnd.visible = true;                    
+                    if (!bDisableMap)
+                    {
+                        map.addSourcePoint("pointEndImage",  trackLoader.trackPointAt(i));
+                        map.addImagePath("imageEndImage", Qt.resolvedUrl("../img/map_stop.png"));
+                        map.addLayer("layerEndLayer", {"type": "symbol", "source": "pointEndImage"});
+                        map.setLayoutProperty("layerEndLayer", "icon-image", "imageEndImage");
+                        map.setLayoutProperty("layerEndLayer", "icon-size", 1.0 / map.pixelRatio);
+						map.setLayoutProperty("layerEndLayer", "icon-allow-overlap", true);
 
-                    //We have to create a track line here. Either it comes from a pause end or from start of track
-                    var componentTrack = Qt.createComponent("../tools/MapPolyLine.qml");
-                    var track = componentTrack.createObject(trackMap);
-                    track.path = trackPointsTemporary;
-                    //Add track to map
-                    trackMap.addMapItem(track);
-                }                
+                        //We have to create a track line here.
+                        map.addSourceLine("lineEndTrack", trackPointsTemporary)
+                        map.addLayer("layerEndTrack", { "type": "line", "source": "lineEndTrack" })
+                        map.setLayoutProperty("layerEndTrack", "line-join", "round");
+                        map.setLayoutProperty("layerEndTrack", "line-cap", "round");
+                        map.setPaintProperty("layerEndTrack", "line-color", "red");
+                        map.setPaintProperty("layerEndTrack", "line-width", 2.0);
+
+                        vTrackLinePoints = trackPointsTemporary;
+                        map.fitView(trackPointsTemporary);
+                    }
+                }
 
                 //now check if we have a point where a pause starts
                 if (trackLoader.pausePositionsCount() > 0 && i===trackLoader.pausePositionAt(iPausePositionsIndex))
                 {
-                    //So this is a track point where a pause starts. The next one is the pause end!
-                    //Draw the pause start icon
-                    var componentStart = Qt.createComponent("../tools/MapPauseItem.qml");
-                    var pauseItemStart = componentStart.createObject(trackMap);
-                    pauseItemStart.coordinate = trackLoader.trackPointAt(i);
-                    pauseItemStart.iSize = (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
-                    pauseItemStart.bPauseStart = true;
-                    //Draw the pause end icon
-                    var componentEnd = Qt.createComponent("../tools/MapPauseItem.qml");
-                    var pauseItemEnd = componentEnd.createObject(trackMap);
-                    pauseItemEnd.coordinate = trackLoader.trackPointAt(i+1);
-                    pauseItemEnd.iSize = (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
-                    pauseItemEnd.bPauseStart = false;
+                    if (!bDisableMap)
+                    {
+                        //So this is a track point where a pause starts. The next one is the pause end!
+                        //Draw the pause start icon
+                        map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(),  trackLoader.trackPointAt(i));
+                        map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_pause.png"));
+                        map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
+                        map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
+                        map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+						map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);
 
-                    //put pause items to the map
-                    trackMap.addMapItem(pauseItemStart);
-                    trackMap.addMapItem(pauseItemEnd);
+                        //Draw the pause end icon
+                        map.addSourcePoint("pointPauseEndImage" + iPausePositionsIndex.toString(),  trackLoader.trackPointAt(i+1));
+                        map.addImagePath("imagePauseEndImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_resume.png"));
+                        map.addLayer("layerPauseEndLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseEndImage" + iPausePositionsIndex.toString()});
+                        map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseEndImage" + iPausePositionsIndex.toString());
+                        map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
+						map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);
+				
 
-                    //We can now create the track from start or end of last pause to start of this pause
-                    var componentPauseTrack = Qt.createComponent("../tools/MapPolyLine.qml");
-                    var pauseTrack = componentPauseTrack.createObject(trackMap);
-                    pauseTrack.path = trackPointsTemporary;
-                    //Add track to map
-                    trackMap.addMapItem(pauseTrack);
+                        //We can now create the track from start or end of last pause to start of this pause
+                        map.addSourceLine("lineTrack" + iPausePositionsIndex.toString(), trackPointsTemporary)
+                        map.addLayer("layerTrack" + iPausePositionsIndex.toString(), { "type": "line", "source": "lineTrack" + iPausePositionsIndex.toString() })
+                        map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-join", "round");
+                        map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-cap", "round");
+                        map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-color", "red");
+                        map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-width", 2.0);
 
+                        //now we can delete the temp track array
+                        trackPointsTemporary = [];
+                    }
 
-                    //now we can delete the temp track array
-                    trackPointsTemporary = [];
-
-                    //set indexer to next pause position. Bu only if there is a further pause.
+                    //set indexer to next pause position. But only if there is a further pause.
                     if ((iPausePositionsIndex + 1) < trackLoader.pausePositionsCount())
                         iPausePositionsIndex++;
                 }
             }
-
-            //trackMap.fitViewportToMapItems(); // Not working
-            setMapViewport(); // Workaround for above
 
             if (trackLoader.pausePositionsCount() === 0)
                 pauseData.text = "-" ;
@@ -211,12 +248,14 @@ Page {
                 pauseData.text = trackLoader.pausePositionsCount().toString() + "/" + trackLoader.pauseDurationStr;
 
             console.log("onTrackChanged: " + JSTools.arrayDataPoints.length.toString());
+
+
         }
         onLoadedChanged:
         {
             gridContainer.opacity = 1.0
-            trackMap.opacity = 1.0
-        }       
+            map.opacity = 1.0
+        }
     }
 
     BusyIndicator
@@ -256,7 +295,7 @@ Page {
             top: parent.top
             left: parent.left
             right: parent.right
-            bottom: trackMap.top
+            bottom: bDisableMap ? parent.bottom : map.top
         }
         clip: true
         contentHeight: header.height + gridContainer.height + Theme.paddingLarge
@@ -273,6 +312,36 @@ Page {
             }
             MenuItem
             {
+                text: qsTr("Edit workout")
+                onClicked:
+                {
+                    iCurrentWorkout = SharedResources.fncGetIndexByName(trackLoader.workout);
+
+                    var dialog = pageStack.push(id_Dialog_EditWorkout);
+                    dialog.sName = trackLoader.name;
+                    dialog.sDesc = trackLoader.description;
+                    dialog.iWorkout = SharedResources.fncGetIndexByName(trackLoader.workout);
+
+                    dialog.accepted.connect(function()
+                    {
+                        //Edit and save GPX file
+                        trackLoader.vReadFile(filename);
+                        trackLoader.vSetNewProperties(name, trackLoader.description, trackLoader.workout, dialog.sName, dialog.sDesc, dialog.sWorkout)
+                        trackLoader.vWriteFile(filename);
+
+                        //Set edited values to dialog
+                        header.title = dialog.sName;
+                        descriptionData.text = dialog.sDesc;
+
+                        id_HistoryModel.editTrack(index);
+
+                        //Mainpage must reload all GPX files
+                        bLoadHistoryData = true;
+                    })
+                }
+            }
+            MenuItem
+            {
                 text: qsTr("Send to Sports-Tracker.com")
                 visible: settings.stUsername === "" ? false:true
                 onClicked: {
@@ -284,7 +353,7 @@ Page {
                         detail_busy.visible = true;
                         load_text.visible = true;
                         detail_flick.visible = false;
-                        trackMap.opacity = 0.0;
+                        map.opacity = 0.0;
 
                         console.log("accepted");
                         uploadToSportsTracker(dialog.sharing*1, dialog.stcomment); //TODO ENABLE ME AFTER TESTING
@@ -296,6 +365,42 @@ Page {
 
                  }
             }
+            MenuItem
+            {
+                text: qsTr("Send to Strava")
+                visible: o2strava.linked
+                onClicked: {
+
+                    var dialog = pageStack.push(Qt.resolvedUrl("StravaUploadPage.qml"));
+                    dialog.activityID = filename;
+                    var gpx = trackLoader.readGpx();
+                    dialog.gpx = gpx;
+                    dialog.activityName = name;
+                    dialog.activityDescription = trackLoader.description;
+                    dialog.activityType = trackLoader.workout
+                }
+
+                O2 {
+                    id: o2strava
+                    clientId: STRAVA_CLIENT_ID
+                    clientSecret: STRAVA_CLIENT_SECRET
+                    scope: "write"
+                    requestUrl: "https://www.strava.com/oauth/authorize"
+                    tokenUrl: "https://www.strava.com/oauth/token"
+                }
+            }
+        }
+
+        Image
+        {
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.topMargin: Theme.paddingSmall
+            anchors.leftMargin: Theme.paddingSmall
+            width: parent.width / 4
+            height: parent.width / 4
+            z: 2
+            source: SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(trackLoader.workout)].icon;
         }
 
         Column
@@ -304,7 +409,7 @@ Page {
             PageHeader
             {
                 id: header
-                title: name==="" ? "-" : name
+                title: trackLoader.name === "" ? "-" : trackLoader.name
                 Behavior on opacity {
                     FadeAnimation {}
                 }
@@ -386,7 +491,7 @@ Page {
                 {
                     id: distanceData
                     width: descriptionData.width
-                    text: (trackLoader.distance/1000).toFixed(2) + " km"
+                    text: (settings.measureSystem === 0) ? ((trackLoader.distance/1000).toFixed(2) + " km") : (JSTools.fncConvertDistanceToImperial(trackLoader.distance/1000).toFixed(2) + " mi")
                 }
                 Label
                 {
@@ -403,8 +508,8 @@ Page {
                 {
                     id: speedData
                     width: descriptionData.width
-                    text: (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h"
-                }                
+                    text: (settings.measureSystem === 0) ? (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(trackLoader.maxSpeed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(trackLoader.speed*3.6)).toFixed(1) + " mi/h"
+                }
                 Label
                 {
                     width: hearRateLabel.width
@@ -419,7 +524,7 @@ Page {
                 {
                     id: paceData
                     width: descriptionData.width
-                    text: trackLoader.paceStr + " min/km"
+                    text: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
                 }
                 Label
                 {
@@ -453,118 +558,385 @@ Page {
                     id: pauseData
                     width: descriptionData.width
                 }
+                Label
+                {
+                    width: hearRateLabel.width
+                    id: elevationbLabel
+                    height:heartRateData.height
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignBottom
+                    color: Theme.secondaryColor
+                    font.pixelSize: Theme.fontSizeSmall
+                    text: qsTr("Elevation up/down:")
+                    visible: false
+                }
+                Label
+                {
+                    id: elevationData
+                    width: descriptionData.width
+                    text: trackLoader.elevationUp.toFixed(1) + "/" + trackLoader.elevationDown.toFixed(1)
+                    visible: false
+                }
             }
         }
     }
-    Map {
-        id: trackMap
+    MapboxMap
+    {
+        id: map
+
         width: parent.width
-        height: trackMap.gesture.enabled ? detailPage.height : trackMap.width*3/4;
+        height: bMapMaximized ? detailPage.height : detailPage.height / 3
         anchors.bottom: parent.bottom
-        clip: true
-        gesture.enabled: false
-        plugin: Plugin {
-            name: "osm"
-            PluginParameter
-            {
-                name: "useragent"                
-                value: "Laufhelden(SailfishOS)"
-            }
-            //PluginParameter { name: "osm.mapping.host"; value: "http://localhost:8553/v1/tile/" }
-        }
-        // Following definition of map center does not work without QtPositioning!?
-        center {
-            latitude: 0
-            longitude: 0
-        }
-        zoomLevel: minimumZoomLevel
-        onHeightChanged: setMapViewport()
-        onWidthChanged: setMapViewport()
-        opacity: 0.1
+
+        center: QtPositioning.coordinate(51.9854, 9.2743)
+        zoomLevel: 8.0
+        minimumZoomLevel: 0
+        maximumZoomLevel: 20
+        pixelRatio: 3.0
+
+        accessToken: "pk.eyJ1IjoiamRyZXNjaGVyIiwiYSI6ImNqYmVta256YTJsdjUzMm1yOXU0cmxibGoifQ.JiMiONJkWdr0mVIjajIFZQ"
+        cacheDatabaseMaximalSize: (settings.mapCache)*1024*1024
+        cacheDatabaseDefaultPath: true
+
+        styleUrl: settings.mapStyle
+
+        visible: !bDisableMap
+
         Behavior on height {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on opacity {
-            FadeAnimation {}
-        }
-        Behavior on zoomLevel {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.latitude {
-            NumberAnimation { duration: 200 }
-        }
-        Behavior on center.longitude {
-            NumberAnimation { duration: 200 }
+            NumberAnimation { duration: 150 }
         }
 
-        MapQuickItem {
+        Item
+        {
+            id: centerButton
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.paddingSmall
+            anchors.top: parent.top
+            anchors.topMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showCenterButton
+            z: 200
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onReleased:
+                {
+                    console.log("centerButton pressed");
+                    map.fitView(vTrackLinePoints);
+                }
+            }
+            Image
+            {
+                anchors.fill: parent
+                source: "../img/map_btn_center.png"
+            }
+        }
+        Item
+        {
+            id: minmaxButton
             anchors.right: parent.right
+            anchors.rightMargin: Theme.paddingSmall
+            anchors.top: parent.top
+            anchors.topMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showMinMaxButton
+            z: 200
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onReleased:
+                {
+                    console.log("minmaxButton pressed");
+                    bMapMaximized = !bMapMaximized;
+                }
+            }
+            Image
+            {
+                anchors.fill: parent
+                source: (map.height === detailPage.height) ? "../img/map_btn_min.png" : "../img/map_btn_max.png"
+            }
+        }
+        Item
+        {
+            id: settingsButton
+            anchors.right: parent.right
+            anchors.rightMargin: Theme.paddingSmall
             anchors.bottom: parent.bottom
-            sourceItem: Rectangle {
-                color: "white"
-                opacity: 0.6
-                width: contributionLabel.width
-                height: contributionLabel.height
-                    Label {
-                        id: contributionLabel
-                        font.pixelSize: Theme.fontSizeTiny
-                        color: "black"
-                        text: "(C) OpenStreetMap contributors"
+            anchors.bottomMargin: Theme.paddingSmall
+            width: parent.width / 10
+            height: parent.width / 10
+            visible: showSettingsButton
+            z: 200
+
+            MouseArea
+            {
+                anchors.fill: parent
+                onReleased:
+                {
+                    console.log("settingsButton pressed");
+                    pageStack.push(Qt.resolvedUrl("MapSettingsPage.qml"));
                 }
             }
-        }
-        MapQuickItem
-        {
-            id: idItemTrackStart
-            anchorPoint.x: sourceItem.width/2
-            anchorPoint.y: sourceItem.height/2
-            visible: false
-            z: 1    //this means that pause icons are placed on top
-            sourceItem: Item
+            Image
             {
-                height: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
-                width: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
-                Image
+                anchors.fill: parent
+                source: "../img/map_btn_settings.png"
+            }
+        }
+
+        MapboxMapGestureArea
+        {
+            id: mouseArea
+            map: map
+            activeClickedGeo: true
+            activeDoubleClickedGeo: true
+            activePressAndHoldGeo: false
+
+            onDoubleClicked:
+            {
+                //console.log("onDoubleClicked: " + mouse)
+                map.setZoomLevel(map.zoomLevel + 1, Qt.point(mouse.x, mouse.y) );
+            }
+            onDoubleClickedGeo:
+            {
+                //console.log("onDoubleClickedGeo: " + geocoordinate);
+                map.center = geocoordinate;
+            }
+        }
+    }
+
+    Item
+    {
+        id: scaleBar
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Theme.paddingLarge
+        anchors.left: parent.left
+        anchors.leftMargin: Theme.paddingLarge
+        height: base.height + text.height + text.anchors.bottomMargin
+        opacity: 0.9
+        visible: scaleWidth > 0 && !bDisableMap
+        z: 100
+
+        property real   scaleWidth: 0
+        property string text: ""
+
+        Rectangle {
+            id: base
+            anchors.bottom: scaleBar.bottom
+            color: "#98CCFD"
+            height: Math.floor(Theme.pixelRatio * 3)
+            width: scaleBar.scaleWidth
+        }
+
+        Rectangle {
+            anchors.bottom: base.top
+            anchors.left: base.left
+            color: "#98CCFD"
+            height: Math.floor(Theme.pixelRatio * 10)
+            width: Math.floor(Theme.pixelRatio * 3)
+        }
+
+        Rectangle {
+            anchors.bottom: base.top
+            anchors.right: base.right
+            color: "#98CCFD"
+            height: Math.floor(Theme.pixelRatio * 10)
+            width: Math.floor(Theme.pixelRatio * 3)
+        }
+
+        Text {
+            id: text
+            anchors.bottom: base.top
+            anchors.bottomMargin: Math.floor(Theme.pixelRatio * 4)
+            anchors.horizontalCenter: base.horizontalCenter
+            color: "black"
+            font.bold: true
+            font.family: "sans-serif"
+            font.pixelSize: Math.round(Theme.pixelRatio * 18)
+            horizontalAlignment: Text.AlignHCenter
+            text: scaleBar.text
+        }
+
+        function siground(x, n) {
+            // Round x to n significant digits.
+            var mult = Math.pow(10, n - Math.floor(Math.log(x) / Math.LN10) - 1);
+            return Math.round(x * mult) / mult;
+        }
+
+        function roundedDistace(dist)
+        {
+            // Return dist rounded to an even amount of user-visible units,
+            // but keeping the value as meters.
+
+            if (settings.measureSystem === 0)
+            {
+                return siground(dist, 1);
+            }
+            else
+            {
+                return dist >= 1609.34 ?
+                    siground(dist / 1609.34, 1) * 1609.34 :
+                    siground(dist * 3.28084, 1) / 3.28084;
+            }          
+        }
+
+        function update()
+        {
+            // Update scalebar for current zoom level and latitude.
+
+            var meters = map.metersPerPixel * map.width / 4;
+            var dist = scaleBar.roundedDistace(meters);
+
+            scaleBar.scaleWidth = dist / map.metersPerPixel
+
+            console.log("dist: " + dist);
+
+            var sUnit = "";
+            var iDistance = 0;
+
+            if (settings.measureSystem === 0)
+            {
+                sUnit = "m";
+                iDistance = Math.ceil(dist);
+                if (dist >= 1000)
+                {
+                    sUnit = "km";
+                    iDistance = dist / 1000.0;
+                    iDistance = Math.ceil(iDistance);
+                }
+            }
+            else
+            {
+                dist = dist * 3.28084;  //convert to feet
+
+                sUnit = "ft";
+                iDistance = Math.ceil(dist);
+                if (dist >= 5280)
+                {
+                    sUnit = "mi";
+                    iDistance = dist / 5280.0;
+                    iDistance = Math.ceil(iDistance);
+                }
+            }
+
+            scaleBar.text = iDistance.toString() + " " + sUnit
+        }
+
+        Connections
+        {
+            target: map
+            onMetersPerPixelChanged: scaleBar.update()
+            onWidthChanged: scaleBar.update()
+        }
+    }
+
+    Component
+    {
+        id: id_Dialog_EditWorkout
+
+
+        Dialog
+        {
+            property string sName
+            property string sDesc
+            property int iWorkout
+            property string sWorkout
+
+            canAccept: true
+            acceptDestination: detailPage
+            acceptDestinationAction:
+            {
+                sName = id_TXF_WorkoutName.text;
+                sDesc = id_TXF_WorkoutDesc.text;
+                iWorkout = cmbWorkout.currentIndex;
+
+                PageStackAction.Pop;
+            }
+
+            Flickable
+            {
+                width: parent.width
+                height: parent.height
+                interactive: false
+
+                Column
                 {
                     width: parent.width
-                    height: parent.height
-                    source: "../img/map_play.png"
+
+                    DialogHeader { title: qsTr("Edit workout") }
+
+                    TextField
+                    {
+                        id: id_TXF_WorkoutName
+                        width: parent.width
+                        label: qsTr("Workout name")
+                        placeholderText: qsTr("Workout name")
+                        text: sName
+                        inputMethodHints: Qt.ImhNoPredictiveText
+                        focus: true
+                        horizontalAlignment: TextInput.AlignLeft
+                    }
+                    Item
+                    {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                    }
+                    TextField
+                    {
+                        id: id_TXF_WorkoutDesc
+                        width: parent.width
+                        label: qsTr("Workout description")
+                        placeholderText: qsTr("Workout description")
+                        text: sDesc
+                        inputMethodHints: Qt.ImhNoPredictiveText
+                        focus: true
+                        horizontalAlignment: TextInput.AlignLeft
+                    }
+                    Item
+                    {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                    }
+                    Row
+                    {
+                        spacing: Theme.paddingSmall
+                        width:parent.width;
+                        Image
+                        {
+                            id: imgWorkoutImage
+                            height: parent.width / 8
+                            width: parent.width / 8
+                            fillMode: Image.PreserveAspectFit
+                        }
+                        ComboBox
+                        {
+                            id: cmbWorkout
+                            width: (parent.width / 8) * 7
+                            label: qsTr("Workout:")
+                            currentIndex: iCurrentWorkout
+                            menu: ContextMenu
+                            {
+                                Repeater
+                                {
+                                    model: SharedResources.arrayWorkoutTypes;
+                                    MenuItem { text: modelData.labeltext }
+                                }
+                            }
+                            onCurrentItemChanged:
+                            {
+                                console.log("Workout changed!");
+
+                                imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
+                                iWorkout = currentIndex;
+                                sWorkout = SharedResources.arrayWorkoutTypes[currentIndex].name;
+                            }
+                        }
+                    }
                 }
-            }
-        }
-        MapQuickItem
-        {
-            id: idItemTrackEnd
-            anchorPoint.x: sourceItem.width/2
-            anchorPoint.y: sourceItem.height/2
-            visible: false
-            z: 1    //this means that pause icons are placed on top
-            sourceItem: Item
-            {
-                height: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
-                width: (detailPage.orientation == Orientation.Portrait || detailPage.orientation == Orientation.PortraitInverted) ? detailPage.width / 14 : detailPage.height / 14
-                Image
-                {
-                    width: parent.width
-                    height: parent.height
-                    source: "../img/map_stop.png"
-                }
-            }
-        }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                trackMap.gesture.enabled = !trackMap.gesture.enabled;
-                if(trackMap.gesture.enabled) {
-                    gridContainer.opacity = 0.0;
-                    header.opacity = 0.0;
-                    //detailPage.allowedOrientations = Orientation.All;
-                } else {
-                    gridContainer.opacity = 1.0;
-                    header.opacity = 1.0;
-                    //detailPage.allowedOrientations = Orientation.Portrait;
-                }
-                detailPage.backNavigation = !trackMap.gesture.enabled;
             }
         }
     }

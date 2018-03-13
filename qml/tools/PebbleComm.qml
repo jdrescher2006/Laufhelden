@@ -24,31 +24,73 @@ Item
 
     function fncLaunchPebbleApp(sAppID)
     {
-        interfaceDBUS.call('LaunchApp', sAppID);
+        interfaceDBUSPebble.call('LaunchApp', sAppID);
     }
 
     function fncClosePebbleApp(sAppID)
     {
-        interfaceDBUS.call('CloseApp', sAppID);
+        interfaceDBUSPebble.call('CloseApp', sAppID);
     }
 
     function fncSendDataToPebbleApp(sAppID, oData)
     {
-        interfaceDBUS.call('SendAppData', [sAppID, oData]);
-    }
-
-    function bIsPebbleConnected()
-    {
-        var sTester = interfaceDBUS.call('IsConnected');
-        console.log("isConnected: " + sTester.toString());
-        return true;
+        interfaceDBUSPebble.call('SendAppData', [sAppID, oData]);
     }
 
     DBusInterface
     {
-        id:interfaceDBUS
+        id:interfaceDBUSPebble
         service: 'org.rockwork'
-        path: '/org/rockwork/B0_B4_48_62_63_F7'
+        path: sPebblePath
         iface: 'org.rockwork.Pebble'
-    }
+        signalsEnabled: true
+
+        function connected()
+        {
+            console.log("Pebble connected");
+            
+            if (!bPebbleConnected)
+            {
+                fncShowMessage(2,qsTr("Pebble connected"), 1200);
+
+                sPebbleNameAddress = id_PebbleWatchComm.getName() + ", " + id_PebbleWatchComm.getAddress();
+            }
+
+            //Pebble just got connected, check if sport app is required
+            if (bPebbleSportAppRequired && !bPebbleConnected)
+                pebbleComm.fncLaunchPebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
+
+            bPebbleConnected = true;                       
+        }
+        function disconnected()
+        {
+            console.log("Pebble disconnected");
+
+            if (bPebbleConnected)
+                fncShowMessage(3,qsTr("Pebble disconnected"), 1200);
+
+            bPebbleConnected = false;
+        }
+        function appButtonPressed(uuid, key)
+        {
+            console.log("appbuttonpressed, " + uuid + ": " + key.toString());
+
+            //If the pause key was pressed within pebble sport app
+            if (uuid.toString().indexOf("4dab81a6-d2fc-458a-992c-7a1f3b96a970") !== -1 && key.toString() === "4")
+            {
+                console.log("Pause button pressed!")
+
+                //Only toggle pause if recorder is running
+                if (recorder.running)
+                    recorder.pause = !recorder.pause;
+
+                //If recorder is not running, start workout
+                if (!recorder.running && recorder.accuracy > 0 && recorder.accuracy < 30)
+                {
+                    recorder.pause = false;
+                    recorder.running = true;
+                }
+            }
+        }
+    } 
 }

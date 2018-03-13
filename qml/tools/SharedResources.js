@@ -161,8 +161,48 @@ var arrayWorkoutTypes =
     { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png" },
     { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" },    
     { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png" },
-    { name: "skiing", labeltext: qsTr("Skiing"), icon: "../workouticons/skiing.png" }
+    { name: "skiing", labeltext: qsTr("Skiing"), icon: "../workouticons/skiing.png" },
+    { name: "hiking", labeltext: qsTr("Hiking"), icon: "../workouticons/hiking.png" }
 ]
+
+var arrayStravaWorkoutTypes =
+[
+    { name: "running", stravaType: "Run" },
+    { name: "biking", stravaType: "Ride" },
+    { name: "mountainBiking", stravaType: "Ride" },
+    { name: "walking", stravaType: "Walk" },
+    { name: "inlineSkating", stravaType: "InlineSkate" },
+    { name: "skiing", stravaType: "AlpineSki" },
+    { name: "hiking", stravaType: "hike" }
+]
+
+function toStravaType(t)
+{
+    var ret = "";
+    for (var i = 0; i < arrayStravaWorkoutTypes.length; i++)
+    {
+        if (arrayStravaWorkoutTypes[i].name === t) {
+            ret = arrayStravaWorkoutTypes[i].stravaType;
+            break;
+        }
+    }
+    return ret;
+}
+
+
+function fromStravaType(t)
+{
+    console.log("looking for type ", t);
+    var ret = "";
+    for (var i = 0; i < arrayStravaWorkoutTypes.length; i++)
+    {
+        if (arrayStravaWorkoutTypes[i].stravaType === t) {
+            ret = arrayStravaWorkoutTypes[i].name;
+            break;
+        }
+    }
+    return ret;
+}
 
 //Create lookup table for workout types.
 //This is a helper table to easier access the workout type table.
@@ -170,6 +210,19 @@ var arrayLookupWorkoutTableByName = {};
 for (var i = 0; i < arrayWorkoutTypes.length; i++)
 {
     arrayLookupWorkoutTableByName[arrayWorkoutTypes[i].name] = arrayWorkoutTypes[i];
+}
+
+function fncGetIndexByName(sWorkoutName)
+{    
+    for (var i = 0; i < arrayWorkoutTypes.length; i++)
+    {
+        if (arrayWorkoutTypes[i].name === sWorkoutName)
+        {
+            return i;           
+        }
+    }
+
+    return 0;
 }
 
 /*--------------END workout table --------------*/

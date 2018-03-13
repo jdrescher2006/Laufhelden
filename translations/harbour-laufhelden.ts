@@ -52,11 +52,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Credits for code contribution:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you like this app you can donate for it:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hungarian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Finnish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Credits for code contribution:</source>
+        <source>Dutch</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -122,11 +134,34 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> bpm</source>
+        <source>Paused</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CoverSettingsPage</name>
+    <message>
+        <source>This value is already assigned!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Paused</source>
+        <source>First field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Second field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Third field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -180,11 +215,70 @@
         <source>Uploading...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Edit workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation up/down:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>JSTools</name>
+    <message>
+        <source>Empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Altitude</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -238,6 +332,26 @@
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Edit workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -263,6 +377,76 @@
     </message>
     <message>
         <source>Center track on map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cache size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose map style.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Streets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Outdoors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Satellite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Satellite Streets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OSM Scout Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MyStravaActivities</name>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PebbleComm</name>
+    <message>
+        <source>Pebble connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -293,14 +477,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable Pebble</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Value 1 field:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Test Pebble</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,7 +485,43 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Send workout data to pebble. Make sure you have Rockpool (&gt;= v1.4-4) installed!</source>
+        <source>Connected:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Pebble support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 DURATION field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 DISTANCE field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 PACE/SPEED field:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View workout data on Pebble Smartwatch.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose values for Pebble fields!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -336,7 +548,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disbale screen blanking when recording.</source>
+        <source>Disable screen blanking when recording.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -450,6 +662,14 @@
         <source>Select value!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Restart Pebble App</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock screen</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
@@ -505,6 +725,22 @@
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>min/mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ft</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SaveDialog</name>
@@ -555,6 +791,18 @@
         <source>Pebble settings</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>App cover settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -579,22 +827,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Voice language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show grid lines</source>
         <translation type="unfinished"></translation>
     </message>
@@ -616,6 +848,22 @@
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unit of measurement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Metric</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Imperial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note that this setting will be applied after restart of the application.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -643,6 +891,10 @@
     </message>
     <message>
         <source>Skiing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hiking</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -792,6 +1044,143 @@
     </message>
 </context>
 <context>
+    <name>StravaActivityPage</name>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kudos:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation Gain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Achievements/PRs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaComments</name>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaKudos</name>
+    <message>
+        <source>Kudos</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaSegment</name>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation Diff:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Climb Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best Effort:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaSegments</name>
+    <message>
+        <source>Segments</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaSettingsPage</name>
+    <message>
+        <source>Strava settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StravaUploadPage</name>
+    <message>
+        <source>Activity name for Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activity description for Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploading data...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking upload...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An unknown error occurred</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activity upload complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ThresholdSettingsPage</name>
     <message>
         <source>Upper heart rate limit</source>
@@ -857,11 +1246,74 @@
         <source>Alarm thresholds</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>min/mi</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>Voice output settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice outputs on events</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cyclic voice outputs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice outputs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 parameter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 parameter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 parameter:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

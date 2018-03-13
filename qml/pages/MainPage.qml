@@ -17,8 +17,11 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import harbour.laufhelden 1.0
 import "../tools/SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
+import "../tools/JSTools.js" as JSTools
+import com.pipacs.o2 1.0
 
 Page
 {
@@ -33,6 +36,13 @@ Page
 
     property string sWorkoutDuration: ""
     property string sWorkoutDistance: ""
+
+    property int iCurrentWorkout: 0
+
+    TrackLoader
+    {
+        id: trackLoader
+    }
 
     function fncCheckAutosave()
     {
@@ -84,6 +94,35 @@ Page
                 sHRMAddress = "";
                 sHRMDeviceName = "";
             }
+
+            //Search for pebble watch
+            if (settings.enablePebble)
+            {
+                var sPebbleList = id_PebbleManagerComm.getListWatches();
+                console.log("sPebbleList: " + sPebbleList);
+
+                if (sPebbleList !== undefined && sPebbleList.length > 0)
+                {
+                    sPebblePath = sPebbleList[0];
+                    id_PebbleWatchComm.setServicePath(sPebblePath); //This sets the path with the BT address to the C++ class and inits the DBUS communication object
+                }
+            }
+
+            //Sport app on the pebble is no longer required
+            bPebbleSportAppRequired = false;
+
+            //If pebble is NOT connected, check if it's connected now
+            if (sPebblePath !== "" && settings.enablePebble && !bPebbleConnected)
+            {
+                bPebbleConnected = id_PebbleWatchComm.isConnected();
+            }
+
+			//On start of App load acceleration array file
+			id_HistoryModel.loadAccelerationFile();
+			//Check if there are more GPX files and add those files to the m_trackList array
+            //id_HistoryModel.readDirectory();
+			//Go through trackList array and load all GPX files which have ready==false
+            //id_HistoryModel.loadAllTracks();
         }
 
         //This is loaded everytime the page is displayed
@@ -95,7 +134,7 @@ Page
             recorder.vEndGPS();
 
             //close pebble sport app
-            if (settings.enablePebble)
+            if (sPebblePath !== "" && settings.enablePebble)
             {
                 pebbleComm.fncClosePebbleApp("4dab81a6-d2fc-458a-992c-7a1f3b96a970");
             }
@@ -104,12 +143,16 @@ Page
             vMainPageObject = pageStack.currentPage;
             console.log("vMainPageObject: " + vMainPageObject.toString());
 
-            //Load history model.
+            //Load history model. This is triggered if a workout was edited on the detailspage.
             if (bLoadHistoryData)
-            {
+            {                
+                iLoadFileGPX = 0;
                 bLoadingFiles = true;
 
+                //Check if there are more GPX files and add those files to the m_trackList array
                 id_HistoryModel.readDirectory();
+                //Go through trackList array and load all GPX files which have ready==false
+                id_HistoryModel.loadAllTracks();
 
                 bLoadHistoryData = false;
             }
@@ -135,7 +178,11 @@ Page
             var iSeconds = Math.floor(id_HistoryModel.iDuration() - (iHours * 3600) - (iMinutes * 60));
 
             sWorkoutDuration = iHours + "h " + iMinutes + "m " + iSeconds + "s";
-            sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
+
+            if (settings.measureSystem === 0)
+                sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
+            else
+                sWorkoutDistance = (JSTools.fncConvertDistanceToImperial(id_HistoryModel.rDistance()/1000)).toFixed(1);
 
             historyList.model = undefined;
             historyList.model = id_HistoryModel;            
@@ -189,6 +236,24 @@ Page
                 text: qsTr("Start new workout")
                 onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
             }
+            MenuItem
+            {
+                text: qsTr("My Strava Activities")
+                visible: o2strava.linked
+                onClicked: {
+
+                    var dialog = pageStack.push(Qt.resolvedUrl("MyStravaActivities.qml"));
+                }
+
+                O2 {
+                    id: o2strava
+                    clientId: "13707"
+                    clientSecret: STRAVA_CLIENT_SECRET
+                    scope: "write"
+                    requestUrl: "https://www.strava.com/oauth/authorize"
+                    tokenUrl: "https://www.strava.com/oauth/token"
+                }
+            }
         }
 
         header: Column
@@ -229,7 +294,7 @@ Page
                         anchors.verticalCenter: parent.verticalCenter
                         x: Theme.paddingLarge
                         truncationMode: TruncationMode.Fade
-                        text: sWorkoutDistance + "km"
+                        text: (settings.measureSystem === 0) ? sWorkoutDistance + "km" : sWorkoutDistance + "mi"
                         color: Theme.highlightColor
                     }
                 }
@@ -304,6 +369,38 @@ Page
                     text: qsTr("Remove workout")
                     onClicked: remorseAction(qsTr("Removing workout..."), listItem.deleteTrack)
                 }
+                MenuItem
+                {
+                    text: qsTr("Edit workout")
+                    onClicked:
+                    {
+                        console.log("Filename: " + filename);
+                        console.log("name: " + name);
+                        console.log("type: " + workout);
+                        console.log("description: " + description);
+
+                        iCurrentWorkout = SharedResources.fncGetIndexByName(workout);
+
+                        var dialog = pageStack.push(id_Dialog_EditWorkout);
+                        dialog.sName = name;
+                        dialog.sDesc = description;
+                        dialog.iWorkout = SharedResources.fncGetIndexByName(workout);
+
+                        dialog.accepted.connect(function()
+                        {
+                            //Edit and save GPX file
+                            trackLoader.vReadFile(filename);
+                            trackLoader.vSetNewProperties(name, description, workout, dialog.sName, dialog.sDesc, dialog.sWorkout)
+                            trackLoader.vWriteFile(filename);
+
+                            iLoadFileGPX = 0;
+                            bLoadingFiles = true;
+
+                            id_HistoryModel.editTrack(index);
+                            id_HistoryModel.loadAllTracks();
+                        })
+                    }
+                }
             }
 
             function deleteTrack()
@@ -347,7 +444,7 @@ Page
                 x: Theme.paddingLarge * 2
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
-                text: distance
+                text: (settings.measureSystem === 0) ? (distance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(distance/1000).toFixed(2) + "mi"
             }
             Label
             {
@@ -364,10 +461,10 @@ Page
                 anchors.rightMargin: Theme.paddingSmall
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
-                text: speed
+                text: (settings.measureSystem === 0) ? speed.toFixed(1) + "km/h" : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + "mi/h"
             }
             onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
-                                      {filename: filename, name: name})
+                                      {filename: filename, name: name, index: index})
         }
     }
     Component
@@ -396,6 +493,112 @@ Page
                     {
                         title: qsTr("Uncompleted workout found!")
                         defaultAcceptText: qsTr("Resume")
+                    }
+                }
+            }
+        }
+    }
+    Component
+    {
+        id: id_Dialog_EditWorkout
+
+
+        Dialog
+        {
+            property string sName
+            property string sDesc
+            property int iWorkout
+            property string sWorkout
+
+            canAccept: true
+            acceptDestination: mainPage
+            acceptDestinationAction:
+            {
+                sName = id_TXF_WorkoutName.text;
+                sDesc = id_TXF_WorkoutDesc.text;
+                iWorkout = cmbWorkout.currentIndex;
+
+                PageStackAction.Pop;
+            }
+
+            Flickable
+            {
+                width: parent.width
+                height: parent.height
+                interactive: false
+
+                Column
+                {
+                    width: parent.width
+
+                    DialogHeader { title: qsTr("Edit workout") }
+
+                    TextField
+                    {
+                        id: id_TXF_WorkoutName
+                        width: parent.width
+                        label: qsTr("Workout name")
+                        placeholderText: qsTr("Workout name")
+                        text: sName
+                        inputMethodHints: Qt.ImhNoPredictiveText
+                        focus: true
+                        horizontalAlignment: TextInput.AlignLeft
+                    }
+                    Item
+                    {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                    }
+                    TextField
+                    {
+                        id: id_TXF_WorkoutDesc
+                        width: parent.width
+                        label: qsTr("Workout description")
+                        placeholderText: qsTr("Workout description")
+                        text: sDesc
+                        inputMethodHints: Qt.ImhNoPredictiveText
+                        focus: true
+                        horizontalAlignment: TextInput.AlignLeft
+                    }
+                    Item
+                    {
+                        width: parent.width
+                        height: Theme.paddingLarge
+                    }
+                    Row
+                    {
+                        spacing: Theme.paddingSmall
+                        width:parent.width;
+                        Image
+                        {
+                            id: imgWorkoutImage
+                            height: parent.width / 8
+                            width: parent.width / 8
+                            fillMode: Image.PreserveAspectFit
+                        }
+                        ComboBox
+                        {
+                            id: cmbWorkout
+                            width: (parent.width / 8) * 7
+                            label: qsTr("Workout:")
+                            currentIndex: iCurrentWorkout
+                            menu: ContextMenu
+                            {
+                                Repeater
+                                {
+                                    model: SharedResources.arrayWorkoutTypes;
+                                    MenuItem { text: modelData.labeltext }
+                                }
+                            }
+                            onCurrentItemChanged:
+                            {
+                                console.log("Workout changed!");
+
+                                imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
+                                iWorkout = currentIndex;
+                                sWorkout = SharedResources.arrayWorkoutTypes[currentIndex].name;
+                            }
+                        }
                     }
                 }
             }

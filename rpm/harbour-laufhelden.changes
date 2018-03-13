@@ -1,3 +1,55 @@
+* Tue Feb 06 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.0.0-1
+- many improvements for strava by @piggz
+    - browser for activities with map view
+    - comment view
+    - kudos view
+    - segment/achievement view
+    - fixed bug in upload page
+    - tidied up the implementation of API calls
+- new workout type: hiking
+- app startup is now much faster
+- added dutch translation (thanks to @d9h20f)
+- minor changes/improvements
+- updated translations german, swedish and polish
+
+* Tue Jan 16 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-2
+- fixed finnish translation
+- updated swedish translation
+
+* Mon Jan 15 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.9-1
+- new setting for Jolla 1: switch off map to avoid app crash
+- added hungarian translation (thanks to @martonmiklos)
+- multiple bug fixing and small enhancements:
+    - fix app freezing/crashing after long workout
+    - fix app freezing/crashing after loading autosave
+    - fix record page didn't change map style
+    - increase wait time for night mode
+    - change color of buttons on record page
+    - imperial units for threshold settings page
+    - other fixes
+
+* Fri Jan 05 2018 Jens Drescher <jens.drescher.lippe@web.de> 0.9.8-9
+- new map plugin MapBox
+    - allows offline maps via OSM Scout Server
+    - double tap to zoom in on tap position
+    - vertical lines bug should be fixed
+    - different map styles in online mode
+    - open-gl acceleration
+    - linear map zoom
+- added new feature/settings: imperial units
+- complete rework of app cover, values can now be selected
+- added lock screen dialog with 3 values (same values as on app cover)
+- added voice output for events (pause/resume, start/stop, positioning online/offline)
+- automatic night mode is now enabled in darker conditions
+- added support for uploading to Strava (thanks to @piggz)
+- fixed a few bugs
+
+* Wed Dec 19 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.7-8
+- added new feature/settings: Pebble smartwatch support
+- added new feature: edit workout name/description/type
+- fixed a bug: mediaplayer pause/resume was not working
+- optimizations for sports-tracker.com (thanks to @niemisenjussi)
+
 * Thu Nov 16 2017 Jens Drescher <jens.drescher.lippe@web.de> 0.9.6-7
 - fixed many bugs in pause function
 - new value for record page: pause duration

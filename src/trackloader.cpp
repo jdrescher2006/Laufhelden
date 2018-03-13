@@ -17,6 +17,8 @@
 
 #include <QStandardPaths>
 #include <QFile>
+#include <QSaveFile>
+#include <QXmlStreamWriter>
 #include <QGeoCoordinate>
 #include <QDebug>
 #include <qmath.h>
@@ -40,6 +42,8 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_heartRateMin = 9999999;
     m_heartRateMax = 0;
     m_sTkey = "";
+    m_elevationUp = 0;
+    m_elevationDown = 0;
 }
 
 QString TrackLoader::readGpx(){
@@ -58,13 +62,108 @@ QString TrackLoader::sTworkoutKey(){
     return m_sTkey;
 }
 
+void TrackLoader::vReadFile(QString sFilename)
+{
+    this->sFileStringArray.clear();
+
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/" + sFilename;
+    qDebug()<<"Reading File:"<<fullFilename;
+
+    QFile f(fullFilename);
+    if (!f.open(QFile::ReadWrite | QFile::Text)) return;
+    QTextStream in(&f);
+
+    while (!in.atEnd())
+    {
+        this->sFileStringArray.append(in.readLine());
+    }
+
+    f.close();
+}
+
+void TrackLoader::vSetNewProperties(QString sOldName, QString sOldDesc, QString sOldWorkout, QString sName, QString sDesc, QString sWorkout)
+{
+    //Search for a line
+    bool bNameFound = false;
+    bool bDescFound = false;
+    bool bMeerunFound = false;
+
+    for (int i = 0; i < this->sFileStringArray.length(); i++)
+    {
+        if (!bDescFound && this->sFileStringArray.at(i).contains(sOldDesc) && this->sFileStringArray.at(i).contains("<desc>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</desc>", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found description: "<<this->sFileStringArray.at(i);
+            bDescFound = true;
+
+            this->sFileStringArray.replace(i, "        <desc>" + sDesc + "</desc>");
+            /*
+            //Extract description
+            QString sDescription = this->sFileStringArray.at(i).trimmed();
+            sDescription.chop(7);
+            sDescription = sDescription.remove(0,6);
+
+            qDebug()<<"Description: "<<sDescription;
+            */
+        }
+
+        if (!bNameFound && this->sFileStringArray.at(i).contains(sOldName) && this->sFileStringArray.at(i).contains("<name>", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("</name>", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found name: "<<this->sFileStringArray.at(i);
+            bNameFound = true;
+
+            this->sFileStringArray.replace(i, "        <name>" + sName + "</name>");
+        }
+
+        if (!bMeerunFound && this->sFileStringArray.at(i).contains("<meerun", Qt::CaseInsensitive) && this->sFileStringArray.at(i).contains("activity=", Qt::CaseInsensitive))
+        {
+            qDebug()<<"Found meerun: "<<this->sFileStringArray.at(i);
+            bMeerunFound = true;
+
+            QString sMeerun = this->sFileStringArray.at(i);
+            int iActivityPosition = this->sFileStringArray.at(i).indexOf("activity=", 0);
+            sMeerun = sMeerun.remove(iActivityPosition, 9 + 2 + sOldWorkout.length());
+            //qDebug()<<"Meerun: "<<sMeerun;
+
+            sMeerun = sMeerun.insert(iActivityPosition, "activity=\"" + sWorkout + "\"");
+            //qDebug()<<"Meerun: "<<sMeerun;
+
+            this->sFileStringArray.replace(i, sMeerun);
+        }
+
+        if (bDescFound && bNameFound && bMeerunFound)
+            break;
+    }
+}
+
+void TrackLoader::vWriteFile(QString sFilename)
+{
+    QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
+    QString fullFilename = dirName + "/" + sFilename;
+    qDebug()<<"Writing File:"<<fullFilename;
+
+
+    QFile fOut(fullFilename);
+    if (fOut.open(QFile::WriteOnly | QFile::Text))
+    {
+        QTextStream s(&fOut);
+        for (int i = 0; i < this->sFileStringArray.size(); ++i)
+        {
+            s << this->sFileStringArray.at(i) << '\n';
+        }
+    }
+    else
+    {
+        qDebug() << "error opening output file\n";
+        return;
+    }
+    fOut.close();
+}
 
 void TrackLoader::load()
 {
     if(m_filename.isEmpty())
     {
-        // No filename set, nothing to do
-        //qDebug()<<"No filename set";
         return;
     }
     QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
@@ -156,7 +255,7 @@ void TrackLoader::load()
 
                         //If this is NOT the first segment, we are here after a pause in the track
                         if (iSegments > 1)
-                        {                            
+                        {
                             //mark that we have found a pause
                             bPauseFound = true;
                         }
@@ -324,7 +423,7 @@ void TrackLoader::load()
                 xml.skipCurrentElement();
             }
         }
-    }    
+    }
 
     //qDebug()<<"Segments found: "<<QString::number(iSegments);
 
@@ -339,6 +438,8 @@ void TrackLoader::load()
         m_distance = 0;
 
         int iPausePositionsIndex = 0;
+
+        qreal rElevationLastValue = 0;
 
         for(int i=1;i<m_points.size();i++)
         {
@@ -373,13 +474,26 @@ void TrackLoader::load()
                 if (m_points.at(i).heartrate < m_heartRateMin)
                     m_heartRateMin = m_points.at(i).heartrate;
             }
+
+            //Elevation Up/Down
+            if (i > 1)
+            {
+                if (m_points.at(i).elevation > rElevationLastValue)
+                    m_elevationUp = m_elevationUp + (m_points.at(i).elevation - rElevationLastValue);
+
+                if (m_points.at(i).elevation < rElevationLastValue)
+                    m_elevationDown = m_elevationDown + (rElevationLastValue - m_points.at(i).elevation);
+            }
+
+            //Save this elevation value for next iteration
+            rElevationLastValue = m_points.at(i).elevation;
         }
 
         //We need to substract the pause duration from the overall duration
         m_duration = m_duration - m_pause_duration;
 
-        m_speed = m_distance / m_duration;        
-        m_pace = m_duration / m_distance * 1000 / 60;        
+        m_speed = m_distance / m_duration;
+        m_pace = m_duration / m_distance * 1000 / 60;
         m_heartRate = m_heartRate / m_heartRatePoints;
 
         emit paceChanged();
@@ -391,6 +505,7 @@ void TrackLoader::load()
         emit maxSpeedChanged();
         emit durationChanged();
         emit timeChanged();
+        emit elevationChanged();
     }
     else
     {
@@ -506,6 +621,30 @@ uint TrackLoader::pauseDuration()
     return m_pause_duration;
 }
 
+qreal TrackLoader::elevationUp()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_elevationUp;
+}
+
+qreal TrackLoader::elevationDown()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_elevationDown;
+}
+
 QString TrackLoader::paceStr()
 {
     if(!m_loaded && !m_error)
@@ -522,6 +661,30 @@ QString TrackLoader::paceStr()
 
     qreal rMinutes = qFloor(m_pace);
     qreal rSeconds = qCeil((m_pace * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+
+QString TrackLoader::paceImperialStr()
+{
+    if(!m_loaded && !m_error)
+    {
+        load();
+    }
+    if(!m_loaded || m_error)
+    {
+        // Nothing to load or error in loading
+        return QString();
+    }
+
+    qreal m_pace_imperial = m_pace * 1.609344;
+
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
 
     strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
 

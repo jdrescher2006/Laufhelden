@@ -28,6 +28,11 @@ ApplicationWindow
 {
     id: appWindow
 
+    onApplicationActiveChanged:
+    {
+        console.log("onApplicationActiveChanged: " + applicationActive);
+    }
+
     //Define global variables
 
     //*** HRM Start ***
@@ -47,6 +52,21 @@ ApplicationWindow
     property int iVibrationCounter: 0       //this is used for the vibration function
     property bool bPlayerWasPlaying: false     //this is used if playing music needs to be resumed after audio output
 
+    //*** Pebble Start ***
+    property bool bPebbleConnected: false
+    property bool bPebbleSportAppRequired: false
+    property string sPebblePath: ""
+    property string sPebbleNameAddress: ""
+    //*** Pebble End ***   
+
+    property real rLastAccuracy: -1
+
+    property bool bPlayingSound: false
+    property int iPlayLoop: 0
+    property variant arrayPlaySounds: 0
+
+
+    //property bool bApplicationIsActive: fal
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }
@@ -56,10 +76,74 @@ ApplicationWindow
     Settings{ id: settings }
     PlotWidget{ id: id_PlotWidget }
     Light{ id: id_Light }
+    PebbleManagerComm{ id: id_PebbleManagerComm }
+    PebbleWatchComm{ id: id_PebbleWatchComm }
     TrackRecorder
     {
         id: recorder        
         updateInterval: settings.updateInterval
+
+        onPauseChanged:
+        {
+            if (!settings.voicePauseContinueWorkout)
+                return;
+
+            var sVoiceLanguage = "_en_male.wav";
+            //check voice language and generate last part of audio filename
+            if (settings.voiceLanguage === 0)        //english male
+                sVoiceLanguage = "_en_male.wav";
+            else if (settings.voiceLanguage === 1)   //german male
+                sVoiceLanguage = "_de_male.wav";
+
+
+            if (pause)
+                fncPlaySound("audio/break_workout" + sVoiceLanguage);
+            else
+                fncPlaySound("audio/continue_workout" + sVoiceLanguage);
+        }
+
+        onRunningChanged:
+        {
+            if (!settings.voiceStartEndWorkout)
+                return;
+
+            var sVoiceLanguage = "_en_male.wav";
+            //check voice language and generate last part of audio filename
+            if (settings.voiceLanguage === 0)        //english male
+                sVoiceLanguage = "_en_male.wav";
+            else if (settings.voiceLanguage === 1)   //german male
+                sVoiceLanguage = "_de_male.wav";
+
+
+            if (running)
+                fncPlaySound("audio/start_workout" + sVoiceLanguage);
+            else
+                fncPlaySound("audio/end_workout" + sVoiceLanguage);
+        }
+
+        onAccuracyChanged:
+        {
+            if (!settings.voiceGPSConnectLost)
+                return;
+
+            var sVoiceLanguage = "_en_male.wav";
+            //check voice language and generate last part of audio filename
+            if (settings.voiceLanguage === 0)        //english male
+                sVoiceLanguage = "_en_male.wav";
+            else if (settings.voiceLanguage === 1)   //german male
+                sVoiceLanguage = "_de_male.wav";
+
+            if (accuracy < 30 && accuracy !== -1 && (rLastAccuracy >= 30 || rLastAccuracy === -1))
+            {
+                fncPlaySound("audio/gps_connected" + sVoiceLanguage);
+            }
+            if ((accuracy >= 30 || accuracy === -1) && rLastAccuracy < 30 && rLastAccuracy !== -1)
+            {
+                fncPlaySound("audio/gps_disconnected" + sVoiceLanguage);
+            }
+
+            rLastAccuracy = accuracy;
+        }
     }
 
     //These are connections to c++ events
@@ -355,16 +439,93 @@ ApplicationWindow
         volume: 1.0; //Full 1.0
         onPlayingChanged:
         {
-            //console.log("onPlayingChanged: " + playing);
-            if (playing === false && bPlayerWasPlaying)
+            //console.log("onPlayingChanged: " + playing.toString());
+
+			//Check if playing a sound is done.
+			if (playing == false)
             {
-                mediaPlayerControl.resume();
-            }
+				//Set index to next sound in array
+                iPlayLoop++;
+	
+                //console.log("iPlayLoop: " + iPlayLoop.toString());
+
+				//Check if we are ready with playing sounds, all sounds in the array were played.			
+				if (arrayPlaySounds.length === 0 || iPlayLoop >= arrayPlaySounds.length)
+				{
+					//Check if the system audio player was playing before
+					if (bPlayerWasPlaying)
+					{
+						//Resume system audio player
+					    mediaPlayerControl.resume();
+					}
+
+					//We are done now with playing sounds. Mark that.
+					bPlayingSound = false;
+
+                    //console.log("onPlayingChanged, the END!");
+				}
+				else
+				{
+					//There is still something to play in the array. Restart play timer.
+                    timerPlaySoundArray.start();
+
+                    //console.log("onPlayingChanged, starting timer!");
+				}				
+			}
+        }
+    }    
+
+    function fncPlaySoundArray(arraySoundArray)
+    {
+        //Check if a sound is already playing. If so, return!
+        if (bPlayingSound)
+            return;
+        else
+            bPlayingSound = true;
+
+		//detect if SFOS music player is currently playing
+        if (mediaPlayerControl.getPlayerStatus() === "Playing")
+        {
+            bPlayerWasPlaying = true;
+            mediaPlayerControl.pause();
+        }
+        else
+            bPlayerWasPlaying = false;
+
+        arrayPlaySounds = arraySoundArray;
+
+        iPlayLoop = 0;
+        playSoundEffect.source = arrayPlaySounds[iPlayLoop];
+        playSoundEffect.play();
+    }
+
+    Timer
+    {
+        id: timerPlaySoundArray
+        running: false
+        repeat: false
+        interval: 50
+        onTriggered:
+        {
+            //console.log("timerPlaySoundArray: " + iPlayLoop.toString());
+
+            playSoundEffect.source = arrayPlaySounds[iPlayLoop];
+            playSoundEffect.play();
         }
     }
 
-    function fncPlaySound(sFile)
+	function fncPlaySound(sFile)
     {
+        //Check if a sound is already playing. If so, return!
+        if (bPlayingSound)
+            return;
+        else
+            bPlayingSound = true;
+
+		var arTemp = [];
+		arrayPlaySounds = arTemp;
+        iPlayLoop = 0;
+
         //detect if SFOS music player is currently playing
         if (mediaPlayerControl.getPlayerStatus() === "Playing")
         {
@@ -377,7 +538,7 @@ ApplicationWindow
         playSoundEffect.source = sFile;
         playSoundEffect.play();
     }
-
+         
     initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All

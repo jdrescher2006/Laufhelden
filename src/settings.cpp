@@ -109,14 +109,6 @@ void Settings::setDisplayMode(int displayMode)
 {
     m_settings->setValue("recordsettings/displayMode", displayMode);
 }
-int Settings::voiceLanguage() const
-{
-    return m_settings->value("generalsettings/voiceLanguage", 0).toInt();
-}
-void Settings::setVoiceLanguage(int voiceLanguage)
-{
-    m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
-}
 bool Settings::showBorderLines() const
 {
     return m_settings->value("generalsettings/showBorderLines", true).toBool();
@@ -167,6 +159,15 @@ void Settings::setmapShowOnly4Fields(bool mapShowOnly4Fields)
      m_settings->setValue("mapsettings/mapShowOnly4Fields", mapShowOnly4Fields);
 }
 
+QString Settings::valueCoverFields() const
+{
+    return m_settings->value("generalsettings/valueCoverFields", "10,8,3").toString();
+}
+void Settings::setValueCoverFields(QString valueCoverFields)
+{
+    m_settings->setValue("generalsettings/valueCoverFields", valueCoverFields);
+}
+
 bool Settings::enablePebble() const
 {
     return m_settings->value("pebblesettings/enablePebble", false).toBool();
@@ -174,6 +175,83 @@ bool Settings::enablePebble() const
 void Settings::setEnablePebble(bool enablePebble)
 {
      m_settings->setValue("pebblesettings/enablePebble", enablePebble);
+}
+QString Settings::valuePebbleFields() const
+{
+    return m_settings->value("pebblesettings/valuePebbleFields", "10,8,3").toString();
+}
+void Settings::setValuePebbleFields(QString valuePebbleFields)
+{
+    m_settings->setValue("pebblesettings/valuePebbleFields", valuePebbleFields);
+}
+
+QString Settings::mapStyle() const
+{
+    return m_settings->value("mapsettings/mapStyle", "mapbox://styles/mapbox/outdoors-v10").toString();
+}
+void Settings::setMapStyle(QString mapStyle)
+{
+    m_settings->setValue("mapsettings/mapStyle", mapStyle);
+}
+
+int Settings::mapCache() const
+{
+    return m_settings->value("mapsettings/mapCache", 50).toInt();
+}
+void Settings::setMapCache(int mapCache)
+{
+    m_settings->setValue("mapsettings/mapCache", mapCache);
+}
+int Settings::measureSystem() const
+{
+    return m_settings->value("generalsettings/measureSystem", 0).toInt();
+}
+void Settings::setMeasureSystem(int measureSystem)
+{
+    m_settings->setValue("generalsettings/measureSystem", measureSystem);
+}
+
+bool Settings::mapDisableRecordPage() const
+{
+    return m_settings->value("mapsettings/mapDisableRecordPage", false).toBool();
+}
+void Settings::setMapDisableRecordPage(bool mapDisableRecordPage)
+{
+     m_settings->setValue("mapsettings/mapDisableRecordPage", mapDisableRecordPage);
+}
+
+//Voice output
+int Settings::voiceLanguage() const
+{
+    return m_settings->value("generalsettings/voiceLanguage", 0).toInt();
+}
+void Settings::setVoiceLanguage(int voiceLanguage)
+{
+    m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
+}
+bool Settings::voiceStartEndWorkout() const
+{
+    return m_settings->value("generalsettings/voiceStartEndWorkout", true).toBool();
+}
+void Settings::setVoiceStartEndWorkout(bool voiceStartEndWorkout)
+{
+     m_settings->setValue("generalsettings/voiceStartEndWorkout", voiceStartEndWorkout);
+}
+bool Settings::voicePauseContinueWorkout() const
+{
+    return m_settings->value("generalsettings/voicePauseContinueWorkout", true).toBool();
+}
+void Settings::setVoicePauseContinueWorkout(bool voicePauseContinueWorkout)
+{
+     m_settings->setValue("generalsettings/voicePauseContinueWorkout", voicePauseContinueWorkout);
+}
+bool Settings::voiceGPSConnectLost() const
+{
+    return m_settings->value("generalsettings/voiceGPSConnectLost", true).toBool();
+}
+void Settings::setVoiceGPSConnectLost(bool voiceGPSConnectLost)
+{
+     m_settings->setValue("generalsettings/voiceGPSConnectLost", voiceGPSConnectLost);
 }
 
 //Sports-Tracker.com Sharing functions

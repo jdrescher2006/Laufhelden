@@ -1,59 +1,44 @@
----- ToDo for next release to openrepos: 0.9.7 -----
+---- ToDo for next release to openrepos: 1.0.1-1 -----
 
-- fixed a bug: mediaplayer pause/resume was not working					-> OK
-
-- add Pebble support:
-	- new setting: use Pebble yes/no [bool]
-	- new setting: choose value for third field on pebble [int]
-	- add settings page:
-		- check if rockpool is there in the right version?
-		- toggle Pebble support ON/OFF
-		- choose value for third field
-		- view if pebble is connected and model and BT address
-		- test button to launch/close sport app
-	- add warning to prerecord page if pebble is not connected
-	- launch sport app on prerecord page, close it on main page
-	- on record page set values to pebble
-	
-
-- edit workout (name/description/workout type) and save to GPX
-
-Do not forget:
-- set changelog and release date to .changes file															
-- compile with translations and complete translation to german language										
-- set new version number to yaml and spec files																
-- clean project and compile on release for arm and 486														
-
-
-
-
-
------ ToDo for second next release to openrepos: 0.9.8 -----
-- add new feature: autopause
-- add buttons to map
-	- center position
-	- center track
-- add icons for indicating over/below average speed, average pace and average heart rate to record page
-- introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
-- event voice announcements	
-	- positioning online/offline
-	- start, stop, pause, resume workout
-	- ...
 - cyclic voice announcements	
 	- every 0,5-10 km
 	- maximum three parameters
 	- distance, speed, pace, HR
+
+
+
+Do not forget:
+- set changelog and release date to .changes file							
+- compile with translations and complete translation to german language		
+- set new version number to yaml and spec files								
+- clean project and compile on release for arm and 486						
+
+
+
+
+
+----- ToDo for second next release to openrepos: 1.0.2 -----
+- sometimes the mediaplayer would not set playing to false. Need a watchdog for that.
+- add max pace to detailspage/trackloader
+- meerun imports have no max. speed
+- look into old map tiles folder and delete files there. Ask user!
+- map on record page: zoom into map automatically. Save and restore last zoom setting.
+- pebble: if speed is choosen for third field, set unit to speed. Same with pace.
+- add new feature: autopause if speed goes below certain threshold
+- start page: select pace/speed
+- add icons for indicating over/below average speed, average pace and average heart rate to record page
 - add leading 0 to values on recordpage
 
 
 
 
 ----- Other planned features for the far future: -----
-- check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation
+- add min/max elevation to detailspage/trackloader
+- fix elevation up/down bad values. This is a big thing. Elevation data needs to be corrected with appropriate algorithms.
+- check if speedoverground in QGeoPositionInfo is eventually better then own speed calculation -> seems to contain no information
 - implement workout comparison. Compare current workout with virtual workout in the past
 - AM/PM mode for recordpage
 - support all workout types from meerun (is not possible because export function in meerun is broken for many workout types, even on android)
-- rename workouts on mainpage
 - introduce reward system:
 	- fastest run 5/10/20/40 km
 	- longest run (distance/time)
@@ -73,7 +58,7 @@ Do not forget:
 		- current, minimum, maximum height (gps)
 		- up/down travelled height
 		- energy kcal
-		- average speed/tempo -> OK
+		- average speed/tempo 
 		- speed/tempo of last 100m/1km
 		- top speed/tempo
 		- average, minimum, maximum heart rate 
@@ -86,10 +71,6 @@ Do not forget:
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
 - support workouts without gps e.g. indoor activities
-- choose metrics, km/miles
-- new workout icons
-- pebble integration (currently waiting for abranson: https://talk.maemo.org/showpost.php?p=1528627&postcount=634)
-- use scout server as map tile provider (waiting for Jolla: https://talk.maemo.org/showpost.php?p=1528801&postcount=257)
 - introduce lap function
 - CRC check for Zephyr HxM data packets
 - BLE heart rate devices support (currently waiting for kimmoli to bring this to OPX)
@@ -111,6 +92,65 @@ Bugs:
 
 
 Completed:
+- add workout icon on details page							-> OK
+- make the app start faster by scanning the GPX files directory and comparing that to a database		-> OK
+	- App start:
+		- load acceleration file, parse to array and check consistecy with GPX files -> gpxFilesChanged: loadAccelerationFile()
+		- check if there are more GPX files and add those files to the m_trackList array: readDirectory()
+		- go through trackList array and load all GPX files which have ready==false: loadAllTracks();
+		- there may be changes in GPX files which is given by variable gpxFilesChanged, so: saveAccelerationFile() is always entered after loadAllTracks()
+	- Remove workout:
+		- remove GPX file from directory
+		- if GXP was removed successfully: remove track from m_trackList array
+		- if GXP was removed successfully: set variable gpxFilesChanged to true and: saveAccelerationFile() 
+	- Edit workout:
+		- set ready flag to false in m_trackList array by index and gpxFilesChanged to true: editTrack(index)
+		- go through all tracks and load that one with ready==false:  loadAllTracks()
+		- set variable gpxFilesChanged to true and: saveAccelerationFile()
+	- Add workout:
+		- in mainpage in block if (bLoadHistoryData), scan for new GPX files and add them to m_trackList: readDirectory()
+		- set variable gpxFilesChanged to true and: saveAccelerationFile()	
+	- bug in consistency checking, wrong date format: "Sat Jan 20 20:39:23 2018" / "Sa. Jan. 20 20:39:23 2018"		-> OK
+	- bug: manual delete GPX files then start APP. App will crash.													-> OK
+- increase wait time for night mode
+- change color for continue/end button
+- record page didn't change map style
+- end of pause icon is not drawn on map if map was invisible
+- when record page was closed signals where not disconnected
+- switch off map completely. This is Jolla 1 mode.
+- imperial units on threshold settings page.
+- if map gets visible again, track is only updated when triggered by GPS
+- start lockscreen in random position or middle
+- when editing workout from main page, the workout type is always set to running
+- when walking was selected before and prerecord page is entered, workout type is not given to recorder
+- introduce lock page (LCD mode, AMOLED mode) with 3 configurable parameters. These parameters will also be shown on cover page.
+- current point on record page needs workover							
+- no tracks on record page							
+- scale bar on map needs imperial units									
+- imperial units for record page										
+- imperial units for start page											
+- imperial units for cover page											
+- add settigs: event voice announcements								
+- fix map bug in horizontal mode										
+- event voice announcements	
+	- positioning online/offline										
+	- start, stop, pause, resume workout								
+- #define SERVER_INTERFACE "org.rockwork.Pebble" is double				
+- fixed a bug: mediaplayer pause/resume was not working
+- add Pebble support:
+	- new setting: use Pebble yes/no				
+	- new setting: choose value for fields on pebble
+	- add settings page:
+		- check if rockpool is there in the right version?	
+		- toggle Pebble support ON/OFF						
+		- choose value for fields							
+		- view if pebble is connected and model and BT address	
+		- test button to launch/close sport app					
+	- add warning to prerecord page if pebble is not connected	
+	- launch sport app on prerecord page, close it on main page	
+	- on record page set values to pebble						
+	- on pebble button press, pause/resume workout				
+- edit workout (name/description/workout type) and save to GPX	
 - add icons to map in trackloader (start/stop/pause)														
 - add icons to map in trackrecorder (start/stop/pause)														
 - add pause duration to detailpage																			

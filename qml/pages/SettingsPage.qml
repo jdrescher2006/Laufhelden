@@ -36,10 +36,10 @@ Page {
             bLockFirstPageLoad = false;
             console.log("First Active SettingsPage");
 
-            id_TextSwitch_RecordPagePortrait.checked = settings.recordPagePortrait;
-            id_TextSwitch_LogFile.checked = settings.enableLogFile;
+            id_CMB_MeasureSystem.currentIndex = settings.measureSystem;
 
-            id_CMB_VoiceLanguage.currentIndex = settings.voiceLanguage;
+            id_TextSwitch_RecordPagePortrait.checked = settings.recordPagePortrait;
+            id_TextSwitch_LogFile.checked = settings.enableLogFile;           
 
             id_TextSwitch_ShowLines.checked = settings.showBorderLines;
 
@@ -71,7 +71,30 @@ Page {
             PageHeader
             {
                 title: qsTr("General settings")
-            }                        
+            }
+            ComboBox
+            {
+                id: id_CMB_MeasureSystem
+                label: qsTr("Unit of measurement")
+                description: qsTr("Note that this setting will be applied after restart of the application.")
+                menu: ContextMenu
+                {
+                    MenuItem { text: qsTr("Metric") }
+                    MenuItem { text: qsTr("Imperial") }
+                }
+                onCurrentIndexChanged:
+                {
+                    if (bLockOnCompleted)
+                        return;
+
+                    settings.measureSystem = currentIndex;
+                }
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
             TextSwitch
             {
                 id: id_TextSwitch_RecordPagePortrait
@@ -135,6 +158,7 @@ Page {
             {
                 color: Theme.highlightColor
                 width: parent.width
+                visible: false
             }
             TextSwitch
             {
@@ -146,53 +170,6 @@ Page {
                 {
                     if (!bLockOnCompleted)
                         settings.enableLogFile = checked;
-                }
-            }
-            ComboBox
-            {
-                id: id_CMB_VoiceLanguage
-                label: qsTr("Voice language")
-                menu: ContextMenu
-                {
-                    MenuItem
-                    {
-                        text: qsTr("English male")
-                        onClicked:
-                        {
-                            if (bLockOnCompleted)
-                                return;
-
-                            settings.voiceLanguage = 0;
-                        }
-                    }
-                    MenuItem
-                    {
-                        text: qsTr("German male")
-                        onClicked:
-                        {
-                            if (bLockOnCompleted)
-                                return;
-
-                            settings.voiceLanguage = 1;
-                        }
-                    }
-                }
-            }
-            Button
-            {
-                width: parent.width - Theme.paddingLarge
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Test")
-                onClicked:
-                {
-                    var sVoiceLanguage = "_en_male.wav";
-                    //check voice language and generate last part of audio filename
-                    if (settings.voiceLanguage === 0)        //english male
-                        sVoiceLanguage = "_en_male.wav";
-                    else if (settings.voiceLanguage === 1)   //german male
-                        sVoiceLanguage = "_de_male.wav";
-
-                    fncPlaySound("audio/hr_toohigh" + sVoiceLanguage);
                 }
             }
         }

@@ -13,8 +13,8 @@ Name:       harbour-laufhelden
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Laufhelden - Sport tracker
-Version:    0.9.7
-Release:    8
+Version:    1.0.0
+Release:    1
 Group:      Qt/Qt
 License:    GPL
 URL:        http://example.org/
@@ -26,6 +26,7 @@ Requires:   qt5-qtlocation >= 5.2.0
 Requires:   qt5-qtdeclarative-import-location >= 5.2.0
 Requires:   qt5-qtdeclarative-import-positioning >= 5.2.0
 Requires:   qt5-qtconnectivity-qtbluetooth >= 5.2.0
+Requires: mapboxgl-qml
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)

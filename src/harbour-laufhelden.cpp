@@ -32,7 +32,19 @@
 #include "logwriter.h"
 #include "plotwidget.h"
 #include "light.h"
+#include "pebblemanagercomm.h"
+#include "pebblewatchcomm.h"
+#include "o2/src/o2.h"
 
+QByteArray encryptDecrypt(QByteArray toEncrypt) {
+    char key = 'K';
+    QByteArray output = toEncrypt;
+
+    for (int i = 0; i < toEncrypt.size(); i++)
+        output[i] = toEncrypt.at(i) ^key;
+
+    return output;
+}
 
 int main(int argc, char *argv[]) {
     QGuiApplication *app = SailfishApp::application(argc, argv);
@@ -51,9 +63,15 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<LogWriter,1>("harbour.laufhelden", 1, 0, "LogWriter");
     qmlRegisterType<PlotWidget,1>("harbour.laufhelden", 1, 0, "PlotWidget");
     qmlRegisterType<Light,1>("harbour.laufhelden", 1, 0, "Light");
+    qmlRegisterType<PebbleManagerComm,1>("harbour.laufhelden", 1, 0, "PebbleManagerComm");
+    qmlRegisterType<PebbleWatchComm,1>("harbour.laufhelden", 1, 0, "PebbleWatchComm");
+    qmlRegisterType<O2>("com.pipacs.o2", 1, 0, "O2");
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());
+    view->rootContext()->setContextProperty("STRAVA_CLIENT_SECRET", encryptDecrypt("}{s{--z*.x{y{ss///x/x){*xz{(|yy/{syr-/})"));
+    view->rootContext()->setContextProperty("STRAVA_CLIENT_ID", "13707");
+
     view->setSource(SailfishApp::pathTo("qml/harbour-laufhelden.qml"));
     view->showFullScreen();
 

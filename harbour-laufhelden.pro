@@ -8,12 +8,15 @@
 #         - icon definition filename in desktop file must be changed
 TARGET = harbour-laufhelden
 
+include (o2/src/src.pri)
+
 # Define the preprocessor macro to get the application version in our application.
 DEFINES += APP_VERSION=\"\\\"$${VERSION}\\\"\"
 
 CONFIG += sailfishapp
 QT += positioning location concurrent
 QT += bluetooth sensors
+QT += dbus
 
 SOURCES += src/harbour-laufhelden.cpp \
     src/trackrecorder.cpp \
@@ -24,7 +27,9 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/bluetoothdata.cpp \
     src/logwriter.cpp \
     src/plotwidget.cpp \
-    src/light.cpp
+    src/light.cpp \
+    src/pebblemanagercomm.cpp \
+    src/pebblewatchcomm.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -48,7 +53,9 @@ TRANSLATIONS += translations/harbour-laufhelden-de.ts \
                 translations/harbour-laufhelden-pl.ts \
                 translations/harbour-laufhelden-es.ts \
                 translations/harbour-laufhelden-sv.ts \
-                translations/harbour-laufhelden-fi_FI.ts
+                translations/harbour-laufhelden-hu.ts \
+                translations/harbour-laufhelden-fi_FI.ts \
+                translations/harbour-laufhelden-nl.ts
 
 HEADERS += \
     src/trackrecorder.h \
@@ -59,7 +66,9 @@ HEADERS += \
     src/bluetoothdata.h \
     src/logwriter.h \
     src/plotwidget.h \
-    src/light.h
+    src/light.h \
+    src/pebblemanagercomm.h \
+    src/pebblewatchcomm.h
 
 DISTFILES += \
     qml/pages/MainPage.qml \
@@ -118,12 +127,11 @@ DISTFILES += \
     qml/img/map_play.png \
     qml/img/map_resume.png \
     qml/img/map_stop.png \
-    qml/tools/MapPauseItem.qml \
-    qml/tools/MapPolyLine.qml \
     qml/workouticons/skiing.png \
     qml/tools/SportsTracker.js \
     qml/pages/SportsTrackerUploadPage.qml \
     qml/pages/SportsTrackerSettingsPage.qml \
     qml/pages/PebbleSettingsPage.qml \
-    qml/tools/PebbleComm.qml
+    qml/tools/PebbleComm.qml \
+    qml/pages/StravaActivityPage.qml
 
