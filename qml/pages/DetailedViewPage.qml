@@ -376,7 +376,7 @@ Page
                     var gpx = trackLoader.readGpx();
                     dialog.gpx = gpx;
                     dialog.activityName = name;
-                    dialog.activityDescription = stComment;
+                    dialog.activityDescription = trackLoader.description;
                     dialog.activityType = trackLoader.workout
                 }
 

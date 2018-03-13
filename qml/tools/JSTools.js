@@ -224,6 +224,15 @@ function stravaGet(xmlhttp, url, token, onready)
     xmlhttp.send();
 }
 
+function fncCovertMinutesToString(min)
+{
+    var iHours = Math.floor(min / 3600);
+    var iMinutes = Math.floor((min - iHours * 3600) / 60);
+    var iSeconds = Math.floor(min - (iHours * 3600) - (iMinutes * 60));
+
+    return (iHours > 0 ? iHours + "h " : "") + (iMinutes > 0 ? iMinutes + "m " : "") + iSeconds + "s";
+}
+
 //*************** Voice output functions *****************
 
 var arrayVoiceValueTypes =

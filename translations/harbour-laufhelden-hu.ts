@@ -1093,6 +1093,29 @@
     </message>
 </context>
 <context>
+    <name>StravaSegment</name>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Időtartam:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished">Távolság:</translation>
+    </message>
+    <message>
+        <source>Elevation Diff:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Climb Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best Effort:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
@@ -1147,6 +1170,10 @@
     <message>
         <source>Type</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Megnevezés</translation>
     </message>
 </context>
 <context>
