@@ -1097,6 +1097,29 @@
     </message>
 </context>
 <context>
+    <name>StravaSegment</name>
+    <message>
+        <source>Duration:</source>
+        <translation type="unfinished">Duración:</translation>
+    </message>
+    <message>
+        <source>Distance:</source>
+        <translation type="unfinished">Distancia:</translation>
+    </message>
+    <message>
+        <source>Elevation Diff:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Climb Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best Effort:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
@@ -1151,6 +1174,10 @@
     <message>
         <source>Type</source>
         <translation>Tipo</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nombre</translation>
     </message>
 </context>
 <context>
@@ -1274,20 +1301,96 @@
         <translation>Salida de voz cíclica</translation>
     </message>
     <message>
-        <source>Voice outputs</source>
-        <translation>Salida de voz</translation>
+        <source>Interval duration</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1 parameter:</source>
-        <translation>Parámetro 1:</translation>
+        <source>Every </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>2 parameter:</source>
-        <translation>Parámetro 2:</translation>
+        <source>500 meters</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>3 parameter:</source>
-        <translation>Parámetro 3:</translation>
+        <source>0.5 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>20 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>20 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every %1 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interval distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>20 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every %1 minute</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
