@@ -134,5 +134,20 @@ DISTFILES += \
     qml/pages/SportsTrackerSettingsPage.qml \
     qml/pages/PebbleSettingsPage.qml \
     qml/tools/PebbleComm.qml \
-    qml/pages/StravaActivityPage.qml
+    qml/pages/StravaActivityPage.qml \
+    qml/units/minkm_de_male.wav \
+    qml/units/minmi_de_male.wav \
+    qml/units/mih_de_male.wav \
+    qml/units/feet_de_male.wav \
+    qml/units/mi_de_male.wav \
+    qml/units/m_de_male.wav \
+    qml/units/km_de_male.wav \
+    qml/units/bpm_de_male.wav \
+    qml/units/kmh_de_male.wav \
+    qml/units/hour_de_male.wav \
+    qml/units/minute_de_male.wav \
+    qml/units/second_de_male.wav \
+    qml/units/hours_de_male.wav \
+    qml/units/minutes_de_male.wav \
+    qml/units/seconds_de_male.wav
 
