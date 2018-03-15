@@ -224,18 +224,28 @@ function stravaGet(xmlhttp, url, token, onready)
     xmlhttp.send();
 }
 
+function fncCovertMinutesToString(min)
+{
+    var iHours = Math.floor(min / 3600);
+    var iMinutes = Math.floor((min - iHours * 3600) / 60);
+    var iSeconds = Math.floor(min - (iHours * 3600) - (iMinutes * 60));
+
+    return (iHours > 0 ? iHours + "h " : "") + (iMinutes > 0 ? iMinutes + "m " : "") + iSeconds + "s";
+}
+
 //*************** Voice output functions *****************
 
 var arrayVoiceValueTypes =
 [
-    { index: 0, fieldID: 3, fieldIDCoverPage: 0, value: "0", header: qsTr("Heartrate"), unit: "bpm", imperialUnit: "bpm" },
-    { index: 1, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Heartrate") + "∅", unit: "bpm", imperialUnit: "bpm" },
-    { index: 2, fieldID: 2, fieldIDCoverPage: 3, value: "0", header: qsTr("Pace"), unit: "min/km", imperialUnit: "min/mi" },
-    { index: 3, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Pace") + "∅", unit: "min/km", imperialUnit: "min/mi" },
-    { index: 4, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Speed"), unit: "km/h", imperialUnit: "mi/h" },
-    { index: 5, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Speed") + "∅", unit: "km/h", imperialUnit: "mi/h" },
-    { index: 6, fieldID: 0, fieldIDCoverPage: 0, value: "0", header: qsTr("Altitude"), unit: "m", imperialUnit: "ft" },
-    { index: 7, fieldID: 1, fieldIDCoverPage: 2, value: "0", header: qsTr("Distance"), unit: "km", imperialUnit: "mi" }
+    { index: 0, fieldID_Duration: 3, fieldID_Distance: 3, value: "0", header: qsTr("Heartrate"), unit: "bpm", imperialUnit: "bpm" },
+    { index: 1, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", unit: "bpm", imperialUnit: "bpm" },
+    { index: 2, fieldID_Duration: 2, fieldID_Distance: 2, value: "0", header: qsTr("Pace"), unit: "minkm", imperialUnit: "minmi" },
+    { index: 3, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", unit: "minkm", imperialUnit: "minmi" },
+    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed"), unit: "kmh", imperialUnit: "mih" },
+    { index: 5, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", unit: "kmh", imperialUnit: "mih" },
+    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Altitude"), unit: "m", imperialUnit: "ft" },
+    { index: 7, fieldID_Duration: 1, fieldID_Distance: 4, value: "0", header: qsTr("Distance"), unit: "km", imperialUnit: "mi" },
+    { index: 8, fieldID_Duration: 4, fieldID_Distance: 1, value: "0", header: qsTr("Duration"), unit: "duration", imperialUnit: "duration" }
 ]
 
 function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)

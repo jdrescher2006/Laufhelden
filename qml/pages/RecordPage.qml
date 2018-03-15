@@ -79,13 +79,16 @@ Page
     property int iPausePositionsIndex: 0
     property var vTempTrackLinePoints
     property var vTempTrackLinePointsIndex
+    property bool bDisableMap: settings.mapDisableRecordPage
 
     //Map buttons
     property bool showSettingsButton: true
     property bool showMinMaxButton: true
     property bool showCenterButton: true
 
-    property bool bDisableMap: settings.mapDisableRecordPage
+    //Cyclic voice output
+    property double iTriggerDistanceVoiceOutput: -1
+
 
     Connections
     {
@@ -204,6 +207,10 @@ Page
 
             //Load threshold settings and convert them to JS array
             Thresholds.fncConvertSaveStringToArray(settings.thresholds);
+
+			//Everytime this dialog is entered, set next distance for cyclic voice output
+			if (settings.voiceCycDistance !== 0)
+				iTriggerDistanceVoiceOutput = settings.voiceCycDistance + (recorder.distance/1000).toFixed(1);
 
             console.log("---RecordPage active leave---");
         }
@@ -338,6 +345,7 @@ Page
                 RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
 
                 JSTools.arrayPebbleValueTypes[1].value = sHeartRate;
+                JSTools.arrayVoiceValueTypes[0].value = sHeartRate;
             }
             //Set values to JS array if recorder is running
             if (recorder.running && !recorder.pause)
@@ -358,6 +366,14 @@ Page
                 JSTools.arrayPebbleValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage).toFixed(1);
                 JSTools.arrayPebbleValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
                 JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+
+				JSTools.arrayVoiceValueTypes[1].value = recorder.heartrateaverage.toFixed(1);
+				JSTools.arrayVoiceValueTypes[2].value = recorder.paceStr;
+				JSTools.arrayVoiceValueTypes[3].value = recorder.paceaverageStr;
+				JSTools.arrayVoiceValueTypes[4].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
+				JSTools.arrayVoiceValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperia
+				JSTools.arrayVoiceValueTypes[6].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
+				JSTools.arrayVoiceValueTypes[7].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
             }
             if (recorder.running)
             {
@@ -369,6 +385,7 @@ Page
                 //This is the duration
                 JSTools.arrayPebbleValueTypes[10].value = recorder.pebbleTime;
                 JSTools.arrayPebbleValueTypes[10].valueCoverPage = recorder.time;
+				JSTools.arrayVoiceValueTypes[8].value = recorder.time;
             }
 
             //Set values from JS array to dialog text fields
@@ -424,6 +441,26 @@ Page
                                                                   sValue2 + JSTools.arrayLookupCoverPageValueTypesByFieldID[2].imperialUnit;
             id_LBL_Value3.text = (settings.measureSystem === 0) ? sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].unit :
                                                                   sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].imperialUnit;
+
+
+            //If recorder is running and not paused
+            if (recorder.running && !recorder.pause)
+            {                               
+                //Check if we have to play a cyclic voice announcement
+
+                //First check if distance is active
+                if (settings.voiceCycDistance !== 0)
+                {
+                    //Get distance from recorder. This is float with 1 decimal place.
+                    var fDistance = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+
+
+                }
+
+
+
+                
+            }
         }
     }
 

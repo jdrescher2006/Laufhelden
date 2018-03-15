@@ -134,7 +134,7 @@ Page {
                 {
                     id: durationData
                     width: descriptionData.width
-                    text: Math.floor(activity.elapsed_time / 60) + "min"
+                    text: JSTools.fncCovertMinutesToString(activity.elapsed_time)
                 }
                 Label
                 {

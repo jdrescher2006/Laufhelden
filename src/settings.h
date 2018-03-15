@@ -52,6 +52,10 @@ class Settings : public QObject
     Q_PROPERTY(bool voicePauseContinueWorkout READ voicePauseContinueWorkout WRITE setVoicePauseContinueWorkout)
     Q_PROPERTY(bool voiceGPSConnectLost READ voiceGPSConnectLost WRITE setVoiceGPSConnectLost)
 
+    //Cyclic voice output
+    Q_PROPERTY(int voiceCycDistance READ voiceCycDistance WRITE setVoiceCycDistance)
+    Q_PROPERTY(int voiceCycDuration READ voiceCycDuration WRITE setVoiceCycDuration)
+
     //Pebble specific setings
     Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
     Q_PROPERTY(QString valuePebbleFields READ valuePebbleFields WRITE setValuePebbleFields)
@@ -146,6 +150,13 @@ public:
 
     bool voiceGPSConnectLost() const;
     void setVoiceGPSConnectLost(bool voiceGPSConnectLost);
+
+    //Cyclic voice output
+    int voiceCycDistance() const;
+    void setVoiceCycDistance(int voiceCycDistance);
+
+    int voiceCycDuration() const;
+    void setVoiceCycDuration(int voiceCycDuration);
 
     //Sporst-Tracker.com functions
     QString stUsername() const;

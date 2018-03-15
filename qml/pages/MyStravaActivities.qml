@@ -21,6 +21,7 @@ import harbour.laufhelden 1.0
 import com.pipacs.o2 1.0
 import "../tools"
 import "../tools/SharedResources.js" as SharedResources
+import "../tools/JSTools.js" as JSTools
 
 Page {
     id: myStravaActivities
@@ -125,7 +126,7 @@ Page {
                 x: (parent.width - width) / 2
                 color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeSmall
-                text: Math.floor(stravaList.model[index]["elapsed_time"] / 60) + "min"
+                text: JSTools.fncCovertMinutesToString(stravaList.model[index]["elapsed_time"])
             }
             Image {
                 id: elevationImage
