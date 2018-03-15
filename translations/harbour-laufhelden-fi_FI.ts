@@ -1301,20 +1301,96 @@
         <translation>Toistuvat ilmoitukset</translation>
     </message>
     <message>
-        <source>Voice outputs</source>
-        <translation>Äänien määrä</translation>
+        <source>Interval duration</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1 parameter:</source>
-        <translation>Ensimmäinen parametri:</translation>
+        <source>Every </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>2 parameter:</source>
-        <translation>Toinen parametri:</translation>
+        <source>500 meters</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>3 parameter:</source>
-        <translation>Kolmas parametri:</translation>
+        <source>0.5 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>20 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>20 mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every %1 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interval distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>5 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>10 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>20 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every %1 minute</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -254,6 +254,25 @@ void Settings::setVoiceGPSConnectLost(bool voiceGPSConnectLost)
      m_settings->setValue("generalsettings/voiceGPSConnectLost", voiceGPSConnectLost);
 }
 
+//Cyclic voice output
+int Settings::voiceCycDistance() const
+{
+    return m_settings->value("generalsettings/voiceCycDistance", 0).toInt();
+}
+void Settings::setVoiceCycDistance(int voiceCycDistance)
+{
+    m_settings->setValue("generalsettings/voiceCycDistance", voiceCycDistance);
+}
+int Settings::voiceCycDuration() const
+{
+    return m_settings->value("generalsettings/voiceCycDuration", 0).toInt();
+}
+void Settings::setVoiceCycDuration(int voiceCycDuration)
+{
+    m_settings->setValue("generalsettings/voiceCycDuration", voiceCycDuration);
+}
+
+
 //Sports-Tracker.com Sharing functions
 void Settings::setStUsername(QString username)
 {

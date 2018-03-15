@@ -71,70 +71,83 @@ Page
             {
                 text: qsTr("Cyclic voice outputs")
             }
-            Slider
+			TextSwitch
             {
-                id: id_Slider_CyclicVoiceOutputsAmount
-                width: parent.width
-                valueText: value.toFixed(0)
-                label: qsTr("Voice outputs")
-                minimumValue: 0
-                maximumValue: 3
-                onValueChanged:
+                id: id_TextSwitch_IntervalDuration
+                text: qsTr("Interval duration")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                    {
+
+					}
+                }
+            }
+			ComboBox
+            {
+                id: id_CMB_IntervalDuration
+                label: qsTr("Every ")
+                menu: ContextMenu
+                {
+                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("500 meters") : qsTr("0.5 mi") }
+                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("1 km") : qsTr("1 mi") }
+                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("2 km") : qsTr("2 mi") }
+                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("5 km") : qsTr("5 mi") }
+                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("10 km") : qsTr("10 mi") }
+                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("20 km") : qsTr("20 mi") }
+                }                
+                onCurrentIndexChanged:
                 {
                     if (bLockOnCompleted)
                         return;
-
                 }
-            }
-            ComboBox
+            }  	
+			Label
+			{
+				text: qsTr("Every %1 km")
+				color: Theme.secondaryColor
+			}		
+			TextSwitch
             {
-                visible: id_Slider_CyclicVoiceOutputsAmount.value.toFixed(0) > 0
-                id: id_CMB_ValueField1
-                label: qsTr("1 parameter:")
-                menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
-                onCurrentItemChanged:
+                id: id_TextSwitch_IntervalDistance
+                text: qsTr("Interval distance")
+                onCheckedChanged:
                 {
-                    if (!bLockOnCompleted && !bLockFirstPageLoad)
-                    {
-                        console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
+                    if (!bLockOnCompleted)
+					{
 
-
-                    }
+					}
                 }
-            }
-            ComboBox
+            }   
+			ComboBox
             {
-                visible: id_Slider_CyclicVoiceOutputsAmount.value.toFixed(0) > 1
-                id: id_CMB_ValueField2
-                label: qsTr("2 parameter:")
-                menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
-                onCurrentItemChanged:
+                id: id_CMB_IntervalDistance
+                label: qsTr("Every ")
+                menu: ContextMenu
                 {
-                    if (!bLockOnCompleted && !bLockFirstPageLoad)
-                    {
-                        console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
-
-
-                    }
+                    MenuItem { text: qsTr("minute") }
+                    MenuItem { text: qsTr("2 minutes") }
+                    MenuItem { text: qsTr("5 minutes") }
+                    MenuItem { text: qsTr("10 minutes") }
+                    MenuItem { text: qsTr("20 minutes") }
+                    MenuItem { text: qsTr("hour") }
+                }                
+                onCurrentIndexChanged:
+                {
+                    if (bLockOnCompleted)
+                        return;
                 }
-            }
-            ComboBox
+            }  	    
+			Label
+			{
+				text: qsTr("Every %1 minute")
+				color: Theme.secondaryColor
+			}		   
+			Separator
             {
-                visible: id_Slider_CyclicVoiceOutputsAmount.value.toFixed(0) > 2
-                id: id_CMB_ValueField3
-                label: qsTr("3 parameter:")
-                menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
-                onCurrentItemChanged:
-                {
-                    if (!bLockOnCompleted && !bLockFirstPageLoad)
-                    {
-                        console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
-
-
-                    }
-                }
-            }
-
+                color: Theme.highlightColor
+                width: parent.width
+            } 
             SectionHeader
             {
                 text: qsTr("Voice outputs on events")
