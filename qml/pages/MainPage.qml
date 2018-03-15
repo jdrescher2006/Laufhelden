@@ -21,6 +21,7 @@ import harbour.laufhelden 1.0
 import "../tools/SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
 import "../tools/JSTools.js" as JSTools
+import "../tools/SportsTracker.js" as ST
 import com.pipacs.o2 1.0
 
 Page
@@ -65,6 +66,48 @@ Page
                 //Cancel means the users wants to delete the workout
                 recorder.clearTrack();
             })
+        }
+    }
+
+    function displayNotification(text, type, delay){
+        console.log(text);
+        load_text.text = text;
+        if (type === "info"){
+            ntimer.interval = delay;
+            load_text.color = Theme.primaryColor;
+        }
+        else if (type === "success"){
+            ntimer.interval = delay;
+            load_text.color = Theme.primaryColor;
+        }
+        else if (type === "error"){
+            if (ST.loginstate == 1 && ST.recycledlogin === true){
+                console.log("Sessionkey might be too old. Trying to login again");
+                settings.stSessionkey = "";
+                ST.SESSIONKEY = "";
+                recycledlogin = false;
+                ST.uploadToSportsTracker(stSharing, stComment, displayNotification);
+            }
+            else{
+                ntimer.interval = delay;
+                load_text.color = Theme.secondaryHighlightColor;
+            }
+        }
+        ntimer.restart();
+        ntimer.start();
+    }
+
+    Timer{
+        id:ntimer;
+        running: false;
+        interval: 2000;
+        repeat: false;
+        onTriggered: {
+            detail_busy.running = false;
+            historyList.visible = true;
+            load_text.visible = false;
+            ntimer.restart();
+            ntimer.start();
         }
     }
 
@@ -157,6 +200,24 @@ Page
                 bLoadHistoryData = false;
             }
         }
+    }
+    BusyIndicator
+    {
+        id: detail_busy
+        visible: false
+        anchors.centerIn: historyList
+        running: true
+        size: BusyIndicatorSize.Large
+    }
+    Label {
+         id:load_text
+         width: parent.width
+         anchors.top: detail_busy.bottom
+         anchors.topMargin: 25;
+         horizontalAlignment: Label.AlignHCenter
+         visible: false
+         text: "loading..."
+         font.pixelSize: Theme.fontSizeMedium
     }
 
 
@@ -400,6 +461,22 @@ Page
                             id_HistoryModel.loadAllTracks();
                         })
                     }
+                }
+                MenuItem
+                {
+                    text: qsTr("Send to Sports-Tracker.com")
+                    visible: settings.stUsername === "" ? false:true
+                    onClicked: {
+                        trackLoader.filename = filename;
+                        var dialog = pageStack.push(Qt.resolvedUrl("SportsTrackerUploadPage.qml"),{ stcomment: description});
+                        dialog.accepted.connect(function() {
+                            detail_busy.running = true;
+                            detail_busy.visible = true;
+                            load_text.visible = true;
+                            historyList.visible = false;
+                            ST.uploadToSportsTracker(dialog.sharing*1, dialog.stcomment, displayNotification);
+                        });
+                     }
                 }
             }
 

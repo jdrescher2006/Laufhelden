@@ -66,33 +66,6 @@ Page
         }
     }
 
-    function uploadToSportsTracker(sharing, comment){
-        ST.loginstate = 0;
-        stComment = comment;
-        stSharing = sharing;
-        if (settings.stSessionkey === ""){
-            displayNotification(qsTr("Logging in..."),"info",25000);
-            ST.loginSportsTracker(sendGPX,
-                                  displayNotification,
-                                  settings.stUsername,
-                                  settings.stPassword);
-        }
-        else{
-            ST.recycledlogin = true;
-            ST.SESSIONKEY = settings.stSessionkey; //Read stored sessionkey and use it.
-            console.log("Already authenticated, trying to use existing sessionkey");
-            sendGPX();
-        }
-    }
-
-    function sendGPX(){
-        ST.loginstate = 1;
-        displayNotification("Reading GPX file...","info", 25000);
-        var gpx = trackLoader.readGpx();
-        displayNotification(qsTr("Uploading..."), "info", 25000);
-        ST.importGPX(gpx, displayNotification, stSharing, stComment);
-    }
-
     function displayNotification(text, type, delay){
         console.log(text);
         load_text.text = text;
@@ -110,7 +83,7 @@ Page
                 settings.stSessionkey = "";
                 ST.SESSIONKEY = "";
                 recycledlogin = false;
-                uploadToSportsTracker(stSharing, stComment);
+                ST.uploadToSportsTracker(stSharing, stComment, displayNotification);
             }
             else{
                 ntimer.interval = delay;
@@ -346,8 +319,7 @@ Page
                 visible: settings.stUsername === "" ? false:true
                 onClicked: {
 
-                    var dialog = pageStack.push(Qt.resolvedUrl("SportsTrackerUploadPage.qml"));//
-                                            //,{"name": header.title})
+                    var dialog = pageStack.push(Qt.resolvedUrl("SportsTrackerUploadPage.qml"),{ stcomment: descriptionData.text});
                     dialog.accepted.connect(function() {
                         detail_busy.running = true;
                         detail_busy.visible = true;
@@ -355,11 +327,9 @@ Page
                         detail_flick.visible = false;
                         map.opacity = 0.0;
 
-                        console.log("accepted");
-                        uploadToSportsTracker(dialog.sharing*1, dialog.stcomment); //TODO ENABLE ME AFTER TESTING
+                        ST.uploadToSportsTracker(dialog.sharing*1, dialog.stcomment, displayNotification);
                     });
                     dialog.rejected.connect(function() {
-                        console.log("rejected");
 
                     });
 

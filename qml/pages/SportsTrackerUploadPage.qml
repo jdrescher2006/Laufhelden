@@ -27,7 +27,9 @@ Dialog {
         if (status === PageStatus.Activating){
             st_sharing.currentIndex = ST.sharingOptionToIndex(settings.stSharing);
             sharing = settings.stSharing;
-            stcomment = "";
+            if (stcomment != "-"){
+                st_description.text = stcomment;
+            }
         }
     }
 

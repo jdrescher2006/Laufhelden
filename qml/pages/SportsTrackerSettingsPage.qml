@@ -124,8 +124,8 @@ Page {
     }
 
 
-    function writeGpxToFile(gpx, name, desc, stkey, activity){
-        var writeok = trackRecorder.writeStGpxToFile(gpx, name, desc, stkey, activity);
+    function writeGpxToFile(gpx, recorded, desc, stkey, activity, distance){
+        var writeok = trackRecorder.writeStGpxToFile(gpx, recorded, desc, stkey, activity, distance);
         if (writeok === false){
             login_message.text = qsTr("Track write error")
             login_message.color = Theme.highlightColor
