@@ -1302,7 +1302,7 @@
     </message>
     <message>
         <source>Interval duration</source>
-        <translation>Duración intervalo</translation>
+        <translation type="unfinished">Duración del intervalo</translation>
     </message>
     <message>
         <source>Every </source>
