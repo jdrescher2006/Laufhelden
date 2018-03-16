@@ -233,7 +233,7 @@
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation>Elevación arriba/abajo:</translation>
+        <translation>Altitud ganada/perdida:</translation>
     </message>
     <message>
         <source>Send to Strava</source>
@@ -1100,23 +1100,23 @@
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Duración:</translation>
+        <translation>Duración:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Distancia:</translation>
+        <translation>Distancia:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dif. altitud:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoría de escalada:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mejor esfuerzo:</translation>
     </message>
 </context>
 <context>
@@ -1177,7 +1177,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Nombre</translation>
     </message>
 </context>
 <context>
@@ -1188,7 +1188,7 @@
     </message>
     <message>
         <source>Alarm if limit is exceeded.</source>
-        <translation>Alerta sonora al exceder el límite.</translation>
+        <translation>Alerta sonora al exceder límite.</translation>
     </message>
     <message>
         <source>bpm</source>
@@ -1240,7 +1240,7 @@
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
-        <translation>Alerta sonora al no superar el límite.</translation>
+        <translation>Alerta sonora al no superar límite.</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
@@ -1302,95 +1302,95 @@
     </message>
     <message>
         <source>Interval duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Duración del intervalo</translation>
     </message>
     <message>
         <source>Every </source>
-        <translation type="unfinished"></translation>
+        <translation>Cada </translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation type="unfinished"></translation>
+        <translation>500 metros</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5 mi</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>1 mi</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation type="unfinished"></translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>2 mi</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation type="unfinished"></translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>5 mi</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation type="unfinished"></translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>10 mi</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation type="unfinished"></translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>20 mi</translation>
     </message>
     <message>
         <source>Every %1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>Cada %1 km</translation>
     </message>
     <message>
         <source>Interval distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalo de distancia</translation>
     </message>
     <message>
         <source>minute</source>
-        <translation type="unfinished"></translation>
+        <translation>minuto</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>2 minutos</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 minutos</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>10 minutos</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>20 minutos</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation type="unfinished"></translation>
+        <translation>hora</translation>
     </message>
     <message>
         <source>Every %1 minute</source>
-        <translation type="unfinished"></translation>
+        <translation>Cada %1 minuto</translation>
     </message>
 </context>
 </TS>
