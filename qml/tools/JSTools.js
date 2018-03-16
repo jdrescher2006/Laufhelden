@@ -248,6 +248,91 @@ var arrayVoiceValueTypes =
     { index: 8, fieldID_Duration: 4, fieldID_Distance: 1, value: "0", header: qsTr("Duration"), unit: "duration", imperialUnit: "duration" }
 ]
 
+//Create lookup table. This is a helper table to easier access the main table.
+var arrayLookupVoiceValueTypesByFieldIDDistance = {};
+fncGenerateHelperArrayFieldIDDistance();
+
+function fncGenerateHelperArrayFieldIDDistance()
+{
+    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
+    {
+        arrayLookupVoiceValueTypesByFieldIDDistance[arrayVoiceValueTypes[i].fieldID_Distance] = arrayVoiceValueTypes[i];
+    }
+}
+
+
+function fncPlayCyclicDistanceVoiceAnnouncement(bMetric, iVoiceLanguage)
+{
+    var arraySoundArray = [];
+    var arrayTempArray = [];    
+
+    //We have a maximum of 4 voice messages to play
+    for (var i = 1; i < 5; i++)
+    {
+        //Check if index exists
+        if (arrayLookupVoiceValueTypesByFieldIDDistance[i] === undefined)
+            continue;
+
+        //Get value
+        var iNumber = (arrayLookupVoiceValueTypesByFieldIDDistance[i].value === "0") ? 0 : arrayLookupVoiceValueTypesByFieldIDDistance[i].value;
+        //Get unit
+        var sUnit = (bMetric) ? arrayLookupVoiceValueTypesByFieldIDDistance[i].unit : arrayLookupVoiceValueTypesByFieldIDDistance[i].imperialUnit;
+
+        //Is it duration? Then we need a special treatment
+        if (sUnit === "duration")
+        {
+            if (iNumber === 0)
+                continue;
+
+            //value is something like >00h 00m 00s<
+            //Separate the three values
+            var sSplitArray = iNumber.split(" ");
+            //SplitArray must have 3 entries (h,m,s)
+            if (sSplitArray.length !== 3)
+                continue;
+            var iHour = parseInt(sSplitArray[0]);
+            var iMinute = parseInt(sSplitArray[1]);
+            var iSecond = parseInt(sSplitArray[2]);
+
+            var sUnitHour = (iHour === 1) ? "hour" : "hours";
+            var sUnitMinute = (iMinute === 1) ? "minute" : "minutes";
+            var sUnitSecond = (iSecond === 1) ? "second" : "seconds";
+
+            arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, iVoiceLanguage);
+            for (var j = 0; j < arrayTempArray.length; j++)
+            {
+                arraySoundArray.push(arrayTempArray[j]);
+            }
+
+            arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, iVoiceLanguage);
+            for (j = 0; j < arrayTempArray.length; j++)
+            {
+                arraySoundArray.push(arrayTempArray[j]);
+            }
+
+            arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, iVoiceLanguage);
+            for (var j = 0; j < arrayTempArray.length; j++)
+            {
+                arraySoundArray.push(arrayTempArray[j]);
+            }
+        }
+        else
+        {
+            //Covert value and unit to audio file array
+            arrayTempArray = fncGenerateSoundArray(iNumber, sUnit, iVoiceLanguage);
+
+            for (var j = 0; j < arrayTempArray.length; j++)
+            {
+                arraySoundArray.push(arrayTempArray[j]);
+            }
+        }
+
+        //ToDo: eventually put in a pause here
+    }
+
+    return arraySoundArray;
+}
+
 function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
 {
     var arraySoundArray = [];
@@ -273,10 +358,10 @@ function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
             //Cut off hundreds
             number = parseInt(number.toString().substr(1));
 
-            arraySoundArray.push(sHundreds.toString() + sVoiceLanguage);
+            arraySoundArray.push("numbers/" + sHundreds.toString() + sVoiceLanguage);
         }
 
-        arraySoundArray.push(number.toString() + sVoiceLanguage);
+        arraySoundArray.push("numbers/" + number.toString() + sVoiceLanguage);
     }
     else if (isFloat(number))		//Check if it's a float
     {
@@ -296,16 +381,16 @@ function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
             //Cut off hundreds
             sFloatArray[0] = parseInt(sFloatArray[0].substr(1));
 
-            arraySoundArray.push(sHundreds.toString() + sVoiceLanguage);
+            arraySoundArray.push("numbers/" + sHundreds.toString() + sVoiceLanguage);
         }
-        arraySoundArray.push(sFloatArray[0] + sVoiceLanguage);
+        arraySoundArray.push("numbers/" + sFloatArray[0] + sVoiceLanguage);
 
         //we only use one decimal point, check that.
         if (sFloatArray[1].length > 1)
             sFloatArray[1] = sFloatArray[1].substr(0,1);
 
         //push decimal place
-        arraySoundArray.push("point" + sFloatArray[1] + sVoiceLanguage);
+        arraySoundArray.push("numbers/" + "point" + sFloatArray[1] + sVoiceLanguage);
     }
     else		//if number is not int and not float, return
         return;
@@ -313,7 +398,7 @@ function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
     //add the unit
     if (sUnit !== "")
     {
-        arraySoundArray.push(sUnit + sVoiceLanguage);
+        arraySoundArray.push("units/" + sUnit + sVoiceLanguage);
     }
 
     return arraySoundArray;

@@ -149,7 +149,7 @@ Page
                 //We need to set parameters to the dialog/pebble
                 RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
                 JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
-            }
+            }            
 
             console.log("---RecordPage first active leave---");
         }
@@ -206,11 +206,7 @@ Page
                 bPebbleConnected = id_PebbleWatchComm.isConnected();
 
             //Load threshold settings and convert them to JS array
-            Thresholds.fncConvertSaveStringToArray(settings.thresholds);
-
-			//Everytime this dialog is entered, set next distance for cyclic voice output
-			if (settings.voiceCycDistance !== 0)
-				iTriggerDistanceVoiceOutput = settings.voiceCycDistance + (recorder.distance/1000).toFixed(1);
+            Thresholds.fncConvertSaveStringToArray(settings.thresholds);            
 
             console.log("---RecordPage active leave---");
         }
@@ -443,6 +439,11 @@ Page
                                                                   sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].imperialUnit;
 
 
+            //************functions for cyclic voice output**************
+            //Initialize trigger distance
+            if (iTriggerDistanceVoiceOutput === -1)
+                iTriggerDistanceVoiceOutput = settings.voiceCycDistance;
+
             //If recorder is running and not paused
             if (recorder.running && !recorder.pause)
             {                               
@@ -452,14 +453,17 @@ Page
                 if (settings.voiceCycDistance !== 0)
                 {
                     //Get distance from recorder. This is float with 1 decimal place.
-                    var fDistance = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                    var iDistance = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                    //Check if current distance is same or higher than trigger distance
+                    if (iDistance >= iTriggerDistanceVoiceOutput)
+                    {
+                        //Play voice announcement
 
 
-                }
-
-
-
-                
+                        //Set value for next trigger distance
+                        iTriggerDistanceVoiceOutput = settings.voiceCycDistance + iDistance;
+                    }
+                }               
             }
         }
     }
@@ -1010,6 +1014,22 @@ Page
                 {
                     bShowMap = !bShowMap;
                     settings.showMapRecordPage = bShowMap;
+                }
+            }
+            MenuItem
+            {
+                text: "Test voice output"
+                onClicked:
+                {
+                    var arSoundArray = JSTools.fncPlayCyclicDistanceVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage);
+                    console.log("arSoundArray.length: " + arSoundArray.length.toString());
+
+                    for (var i = 0; i < arSoundArray.length; i++)
+                    {
+                        console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                    }
+
+                    fncPlaySoundArray(arSoundArray);
                 }
             }
         }
