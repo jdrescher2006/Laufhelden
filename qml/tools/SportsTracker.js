@@ -307,15 +307,10 @@ function decodeType(type){
         default: return "running";
     }
 }
-
-/*
-    Converts Unix -timestamp to ISO String format
-*/
-function timeConverter(UNIX_timestamp){
-    var t = new Date( UNIX_timestamp );
-    console.log(Qt.formatDate(t, "yyyy-MM-ddThh:mm:ss.zzzZ"));
-    return Qt.formatDate(t, "ddd MMMM d hh:mm:ss yyyy");
-}
+var stActivityLookup = ["walking","running","biking","nordic skiing","other 1","other 2","other 3","other 4","other 5","other 6","mountainBiking","hiking","inlineSkating",
+"skiing","paddling","rowing","golf","indoor","parkour","ball games","outdoor gym","swimming","trail running","gym","nordic walking","horseback riding",
+"motorsports","skateboarding","water sports","climbing","snowboarding","ski touring","fitness class","soccer","tennis","basketball","badminton","baseball","volleyball",
+"american football","table tennis","racquet ball","squash","floorball","handball","softball","bowling","cricket","rugby"]
 
 /*
     Takes next workout key from keys -array and tries to download it from the API.
@@ -328,9 +323,7 @@ function exportNextGPX(){
     }
 
     var item = keys[currentitem];
-    var datetime = timeConverter(item.created);
-    console.log("Exporting:"+item.key+" ac:"+item.activity+" created:"+datetime);
-    var filename = decodeType(item.activity)+"_"+datetime;
+    console.log("Exporting:"+item.key+" ac:"+item.activity);
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", exportgpxurl+item.key);
@@ -353,7 +346,7 @@ function exportNextGPX(){
                 desc = keys[currentitem-1]["name"];
             }
             else{
-                desc = timeConverter(item.created);
+                desc = item.activity+"_"+Math.round(keys[currentitem-1]['distance']/2,1);
             }
 
             writecallback(xmlhttp.responseText, item.created, desc, keys[currentitem-1]["key"], decodeType(item.activity), keys[currentitem-1]['distance']);
@@ -368,6 +361,9 @@ function exportNextGPX(){
     return 1;
 }
 
+/*
+    Upload current active track, notificatioCallback is used to show user info
+*/
 function uploadToSportsTracker(sharing, comment, notificationCallback){
     loginstate = 0;
     stComment = comment;
@@ -387,6 +383,10 @@ function uploadToSportsTracker(sharing, comment, notificationCallback){
     }
 }
 
+/*
+    Reads local GPX-file and sends it to Sports-Tracker.com
+    Timeouts are set to 25s
+*/
 function sendGPX(notificationCallback){
     loginstate = 1;
     notificationCallback("Reading GPX file...","info", 25000);
