@@ -22,7 +22,7 @@ import "../tools/SportsTracker.js" as ST
 Dialog {
     property int sharing: 0;
     property string stcomment: "";
-    property string defaultActivity: 0;
+    //property string defaultActivity: 0;
 
     onStatusChanged:{
         if (status === PageStatus.Activating){
@@ -31,10 +31,10 @@ Dialog {
             if (stcomment != "-"){
                 st_description.text = stcomment;
             }
-            for (var i=0; i< ST.stActivityLookup.length; i++){
+            /*for (var i=0; i< ST.stActivityLookup.length; i++){
                 listModel.append({"name": ST.stActivityLookup[i]});
             }
-            st_workout_type.currentIndex = defaultActivity;
+            st_workout_type.currentIndex = defaultActivity;*/
         }
     }
 
@@ -92,7 +92,7 @@ Dialog {
                 }
             }
         }
-        ComboBox
+        /*ComboBox  //Disabled for now. Enabled when tested properly
         {
             id: st_workout_type
             label: qsTr("Workout type")
@@ -102,7 +102,7 @@ Dialog {
                    MenuItem { text: model.name }
                 }
             }
-        }
+        }*/
 
     }
 
