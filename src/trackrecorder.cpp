@@ -246,10 +246,12 @@ void TrackRecorder::positioningError(QGeoPositionInfoSource::Error error)
 /*
  Writes given GPXcontent to Laufhelden folder in the device. This is used by Sports-Tracker.com downloader
 */
-bool TrackRecorder::writeStGpxToFile(QString gpxcontent, QString filename, QString desc, QString sTkey, QString activity){
+bool TrackRecorder::writeStGpxToFile(QString gpxcontent, qint64 recorded, QString desc, QString sTkey, QString activity, float dist){
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString subDir = "Laufhelden";
-    filename = filename + ".gpx";
+    QDateTime dt;
+    dt.setTime_t(recorded/1000);
+    QString filename = activity + "-" + dt.toLocalTime().toString() + "-" + QString("%1km").arg(dist / 1000, 0, 'f', 1) + ".gpx";
 
     qDebug()<<"File:"<<homeDir<<"/"<<subDir<<"/"<<filename;
 

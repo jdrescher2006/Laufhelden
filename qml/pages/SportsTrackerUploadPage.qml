@@ -22,12 +22,19 @@ import "../tools/SportsTracker.js" as ST
 Dialog {
     property int sharing: 0;
     property string stcomment: "";
+    //property string defaultActivity: 0;
 
     onStatusChanged:{
         if (status === PageStatus.Activating){
             st_sharing.currentIndex = ST.sharingOptionToIndex(settings.stSharing);
             sharing = settings.stSharing;
-            stcomment = "";
+            if (stcomment != "-"){
+                st_description.text = stcomment;
+            }
+            /*for (var i=0; i< ST.stActivityLookup.length; i++){
+                listModel.append({"name": ST.stActivityLookup[i]});
+            }
+            st_workout_type.currentIndex = defaultActivity;*/
         }
     }
 
@@ -85,6 +92,18 @@ Dialog {
                 }
             }
         }
+        /*ComboBox  //Disabled for now. Enabled when tested properly
+        {
+            id: st_workout_type
+            label: qsTr("Workout type")
+            menu: ContextMenu {
+                Repeater {
+                   model: ListModel { id: listModel }
+                   MenuItem { text: model.name }
+                }
+            }
+        }*/
+
     }
 
     onAccepted: {
