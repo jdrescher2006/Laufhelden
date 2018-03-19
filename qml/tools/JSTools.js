@@ -237,15 +237,15 @@ function fncCovertMinutesToString(min)
 
 var arrayVoiceValueTypes =
 [
-    { index: 0, fieldID_Duration: 3, fieldID_Distance: 3, value: "0", header: qsTr("Heartrate"), unit: "bpm", imperialUnit: "bpm" },
-    { index: 1, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", unit: "bpm", imperialUnit: "bpm" },
-    { index: 2, fieldID_Duration: 2, fieldID_Distance: 2, value: "0", header: qsTr("Pace"), unit: "minkm", imperialUnit: "minmi" },
-    { index: 3, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", unit: "minkm", imperialUnit: "minmi" },
-    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed"), unit: "kmh", imperialUnit: "mih" },
-    { index: 5, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", unit: "kmh", imperialUnit: "mih" },
-    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Altitude"), unit: "m", imperialUnit: "ft" },
-    { index: 7, fieldID_Duration: 1, fieldID_Distance: 4, value: "0", header: qsTr("Distance"), unit: "km", imperialUnit: "mi" },
-    { index: 8, fieldID_Duration: 4, fieldID_Distance: 1, value: "0", header: qsTr("Duration"), unit: "duration", imperialUnit: "duration" }
+    { index: 0, fieldID_Duration: 3, fieldID_Distance: 3, value: "0", header: qsTr("Heartrate"), headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
+    { index: 1, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
+    { index: 2, fieldID_Duration: 2, fieldID_Distance: 2, value: "0", header: qsTr("Pace"), headline: "pace", unit: "minkm", imperialUnit: "minmi" },
+    { index: 3, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", headline: "pace", unit: "minkm", imperialUnit: "minmi" },
+    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed"), headline: "speed", unit: "kmh", imperialUnit: "mih" },
+    { index: 5, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", headline: "speed", unit: "kmh", imperialUnit: "mih" },
+    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Altitude"), headline: "altitude", unit: "m", imperialUnit: "ft" },
+    { index: 7, fieldID_Duration: 1, fieldID_Distance: 4, value: "0", header: qsTr("Distance"), headline: "distance", unit: "km", imperialUnit: "mi" },
+    { index: 8, fieldID_Duration: 4, fieldID_Distance: 1, value: "0", header: qsTr("Duration"), headline: "duration", unit: "duration", imperialUnit: "duration" }
 ]
 
 //Create lookup table. This is a helper table to easier access the main table.
@@ -277,6 +277,8 @@ function fncPlayCyclicDistanceVoiceAnnouncement(bMetric, iVoiceLanguage)
         var iNumber = (arrayLookupVoiceValueTypesByFieldIDDistance[i].value === "0") ? 0 : arrayLookupVoiceValueTypesByFieldIDDistance[i].value;
         //Get unit
         var sUnit = (bMetric) ? arrayLookupVoiceValueTypesByFieldIDDistance[i].unit : arrayLookupVoiceValueTypesByFieldIDDistance[i].imperialUnit;
+        //Get headline
+        var sHeadline = arrayLookupVoiceValueTypesByFieldIDDistance[i].headline;
 
         //Is it duration? Then we need a special treatment
         if (sUnit === "duration")
@@ -298,19 +300,19 @@ function fncPlayCyclicDistanceVoiceAnnouncement(bMetric, iVoiceLanguage)
             var sUnitMinute = (iMinute === 1) ? "minute" : "minutes";
             var sUnitSecond = (iSecond === 1) ? "second" : "seconds";
 
-            arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, iVoiceLanguage);
+            arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, sHeadline, iVoiceLanguage);
             for (var j = 0; j < arrayTempArray.length; j++)
             {
                 arraySoundArray.push(arrayTempArray[j]);
             }
 
-            arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, iVoiceLanguage);
+            arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, sHeadline, iVoiceLanguage);
             for (j = 0; j < arrayTempArray.length; j++)
             {
                 arraySoundArray.push(arrayTempArray[j]);
             }
 
-            arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, iVoiceLanguage);
+            arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, sHeadline, iVoiceLanguage);
             for (var j = 0; j < arrayTempArray.length; j++)
             {
                 arraySoundArray.push(arrayTempArray[j]);
@@ -319,7 +321,7 @@ function fncPlayCyclicDistanceVoiceAnnouncement(bMetric, iVoiceLanguage)
         else
         {
             //Covert value and unit to audio file array
-            arrayTempArray = fncGenerateSoundArray(iNumber, sUnit, iVoiceLanguage);
+            arrayTempArray = fncGenerateSoundArray(iNumber, sUnit, sHeadline, iVoiceLanguage);
 
             for (var j = 0; j < arrayTempArray.length; j++)
             {
@@ -333,7 +335,7 @@ function fncPlayCyclicDistanceVoiceAnnouncement(bMetric, iVoiceLanguage)
     return arraySoundArray;
 }
 
-function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
+function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
 {
     var arraySoundArray = [];
     var sNumberToPlay = "";
@@ -344,6 +346,12 @@ function fncGenerateSoundArray(number, sUnit, iVoiceLanguage)
         sVoiceLanguage = "_en_male.wav";
     else if (iVoiceLanguage === 1)   //german male
         sVoiceLanguage = "_de_male.wav";   
+
+    //add the headline
+    if (sHeadline !== "")
+    {
+        arraySoundArray.push("headers/" + sHeadline + sVoiceLanguage);
+    }
 
     if (isInteger(number))		//Check if it's an integer
     {

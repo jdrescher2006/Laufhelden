@@ -71,6 +71,10 @@
         <source>Dutch</source>
         <translation>Niederländisch</translation>
     </message>
+    <message>
+        <source>Spanish-Spain</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -208,14 +212,6 @@
         <translation>Senden an Sports-Tracker.com</translation>
     </message>
     <message>
-        <source>Logging in...</source>
-        <translation>Einloggen...</translation>
-    </message>
-    <message>
-        <source>Uploading...</source>
-        <translation>Hochladen...</translation>
-    </message>
-    <message>
         <source>Edit workout</source>
         <translation>Bearbeiten</translation>
     </message>
@@ -351,6 +347,10 @@
     <message>
         <source>My Strava Activities</source>
         <translation>Meine Strava Aktivitäten</translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation type="unfinished">Senden an Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -915,6 +915,14 @@
     <message>
         <source>Some kind of error happened on Saving data</source>
         <translation>Beim Speichern ist ein Fehler aufgetreten</translation>
+    </message>
+    <message>
+        <source>Logging in...</source>
+        <translation type="unfinished">Einloggen...</translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
+        <translation type="unfinished">Hochladen...</translation>
     </message>
 </context>
 <context>

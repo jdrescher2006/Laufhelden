@@ -149,5 +149,11 @@ DISTFILES += \
     qml/units/second_de_male.wav \
     qml/units/hours_de_male.wav \
     qml/units/minutes_de_male.wav \
-    qml/units/seconds_de_male.wav
+    qml/units/seconds_de_male.wav \
+    qml/headers/altitude_de_male.wav \
+    qml/headers/pace_de_male.wav \
+    qml/headers/speed_de_male.wav \
+    qml/headers/distance_de_male.wav \
+    qml/headers/duration_de_male.wav \
+    qml/headers/heartrate_de_male.wav
 

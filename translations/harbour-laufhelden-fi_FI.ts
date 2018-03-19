@@ -71,6 +71,10 @@
         <source>Dutch</source>
         <translation>Hollanti</translation>
     </message>
+    <message>
+        <source>Spanish-Spain</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -1045,10 +1049,6 @@
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
         <translation>Anna kuvaus Sports-Tracker.com:iin</translation>
-    </message>
-    <message>
-        <source>Workout type</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
