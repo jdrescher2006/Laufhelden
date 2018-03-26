@@ -73,7 +73,7 @@
     </message>
     <message>
         <source>Spanish-Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Español de España</translation>
     </message>
 </context>
 <context>
@@ -350,7 +350,7 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Enviar a Sports-Tracker.com</translation>
+        <translation>Enviar a Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -918,11 +918,11 @@
     </message>
     <message>
         <source>Logging in...</source>
-        <translation type="unfinished">Iniciando sesión...</translation>
+        <translation>Iniciando sesión...</translation>
     </message>
     <message>
         <source>Uploading...</source>
-        <translation type="unfinished">Subiendo...</translation>
+        <translation>Subiendo...</translation>
     </message>
 </context>
 <context>
