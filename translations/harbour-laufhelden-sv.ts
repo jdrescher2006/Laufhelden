@@ -71,6 +71,10 @@
         <source>Dutch</source>
         <translation>Nederländska</translation>
     </message>
+    <message>
+        <source>Spanish-Spain</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -208,14 +212,6 @@
         <translation>Skicka till Sports-Tracker.com</translation>
     </message>
     <message>
-        <source>Logging in...</source>
-        <translation>Loggar in...</translation>
-    </message>
-    <message>
-        <source>Uploading...</source>
-        <translation>Laddar upp...</translation>
-    </message>
-    <message>
         <source>Edit workout</source>
         <translation>Redigera träningspass</translation>
     </message>
@@ -351,6 +347,10 @@
     <message>
         <source>My Strava Activities</source>
         <translation>Mina Strava-aktiviteter</translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation type="unfinished">Skicka till Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -916,6 +916,14 @@
         <source>Some kind of error happened on Saving data</source>
         <translation>Något fel uppstod när data skulle sparas</translation>
     </message>
+    <message>
+        <source>Logging in...</source>
+        <translation type="unfinished">Loggar in...</translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
+        <translation type="unfinished">Laddar upp...</translation>
+    </message>
 </context>
 <context>
     <name>SportsTrackerSettingsPage</name>
@@ -1100,23 +1108,23 @@
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Varaktighet:</translation>
+        <translation>Varaktighet:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Distans:</translation>
+        <translation>Distans:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höjdskillnad:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klättringskategori:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bästa insats:</translation>
     </message>
 </context>
 <context>
@@ -1177,7 +1185,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Namn</translation>
+        <translation>Namn</translation>
     </message>
 </context>
 <context>
@@ -1302,95 +1310,95 @@
     </message>
     <message>
         <source>Interval duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervallvaraktighet</translation>
     </message>
     <message>
         <source>Every </source>
-        <translation type="unfinished"></translation>
+        <translation>Varje</translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation type="unfinished"></translation>
+        <translation>500 meter</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5 mi</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>1 mi</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation type="unfinished"></translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>2 mi</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation type="unfinished"></translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>5 mi</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation type="unfinished"></translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>10 mi</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation type="unfinished"></translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>20 mi</translation>
     </message>
     <message>
         <source>Every %1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>Varje %1 km</translation>
     </message>
     <message>
         <source>Interval distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervallavstånd</translation>
     </message>
     <message>
         <source>minute</source>
-        <translation type="unfinished"></translation>
+        <translation>minut</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>2 minuter</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 minuter</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>10 minuter</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>20 minuter</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation type="unfinished"></translation>
+        <translation>timma</translation>
     </message>
     <message>
         <source>Every %1 minute</source>
-        <translation type="unfinished"></translation>
+        <translation>Varje %1 minut</translation>
     </message>
 </context>
 </TS>

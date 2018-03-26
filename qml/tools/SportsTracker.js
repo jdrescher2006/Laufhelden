@@ -31,6 +31,8 @@ var existingkeys = []; //Array of already downloaded workout keys.
 var keys = []; //array of Sports-Tracker workout keys and timestamps
 var numofitems = 0;
 var currentitem = 0;
+var stComment = "";
+var stSharing = 0;
 
 /*
     Decode SportsTracker sharing options to List index values
@@ -233,11 +235,13 @@ function processWorkouts(workouts){
     workouts.forEach( function (feedItem){
         //Add only workouts which are not downloaded yet
         if (existingkeys.indexOf(feedItem.key) === -1){
+            //console.log(JSON.stringify(feedItem));
             keys[keys.length] = {"key":feedItem.key,
                                  "activity":feedItem.activityId,
                                  "created":feedItem['created'],
                                  "desc":feedItem['description'],
-                                 "name":feedItem['workoutName']};
+                                 "name":feedItem['workoutName'],
+                                 "distance":feedItem['totalDistance']};
         }
     });
 
@@ -303,15 +307,10 @@ function decodeType(type){
         default: return "running";
     }
 }
-
-/*
-    Converts Unix -timestamp to ISO String format
-*/
-function timeConverter(UNIX_timestamp){
-    var t = new Date( UNIX_timestamp );
-    var formatted = t.toISOString();
-    return formatted;
-}
+var stActivityLookup = ["walking","running","biking","nordic skiing","other 1","other 2","other 3","other 4","other 5","other 6","mountainBiking","hiking","inlineSkating",
+"skiing","paddling","rowing","golf","indoor","parkour","ball games","outdoor gym","swimming","trail running","gym","nordic walking","horseback riding",
+"motorsports","skateboarding","water sports","climbing","snowboarding","ski touring","fitness class","soccer","tennis","basketball","badminton","baseball","volleyball",
+"american football","table tennis","racquet ball","squash","floorball","handball","softball","bowling","cricket","rugby"]
 
 /*
     Takes next workout key from keys -array and tries to download it from the API.
@@ -324,9 +323,7 @@ function exportNextGPX(){
     }
 
     var item = keys[currentitem];
-    var datetime = timeConverter(item.created);
-    console.log("Exporting:"+item.key+" ac:"+item.activity+" created:"+datetime);
-    var filename = decodeType(item.activity)+"_"+datetime;
+    console.log("Exporting:"+item.key+" ac:"+item.activity);
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", exportgpxurl+item.key);
@@ -349,10 +346,10 @@ function exportNextGPX(){
                 desc = keys[currentitem-1]["name"];
             }
             else{
-                desc = timeConverter(item.created);
+                desc = item.activity+"_"+Math.round(keys[currentitem-1]['distance']/2,1);
             }
 
-            writecallback(xmlhttp.responseText, filename, desc, keys[currentitem-1]["key"], decodeType(item.activity));
+            writecallback(xmlhttp.responseText, item.created, desc, keys[currentitem-1]["key"], decodeType(item.activity), keys[currentitem-1]['distance']);
         }
         else if (xmlhttp.readyState==4 && xmlhttp.status!=200){
             console.log(xmlhttp.responseText);
@@ -362,4 +359,38 @@ function exportNextGPX(){
     xmlhttp.send();
     currentitem += 1;
     return 1;
+}
+
+/*
+    Upload current active track, notificatioCallback is used to show user info
+*/
+function uploadToSportsTracker(sharing, comment, notificationCallback){
+    loginstate = 0;
+    stComment = comment;
+    stSharing = sharing;
+    if (settings.stSessionkey === ""){
+        notificationCallback(qsTr("Logging in..."),"info",25000);
+        ST.loginSportsTracker(sendGPX,
+                              displayNotification,
+                              settings.stUsername,
+                              settings.stPassword);
+    }
+    else{
+        recycledlogin = true;
+        SESSIONKEY = settings.stSessionkey; //Read stored sessionkey and use it.
+        console.log("Already authenticated, trying to use existing sessionkey");
+        sendGPX(notificationCallback);
+    }
+}
+
+/*
+    Reads local GPX-file and sends it to Sports-Tracker.com
+    Timeouts are set to 25s
+*/
+function sendGPX(notificationCallback){
+    loginstate = 1;
+    notificationCallback("Reading GPX file...","info", 25000);
+    var gpx = trackLoader.readGpx();
+    notificationCallback(qsTr("Uploading..."), "info", 25000);
+    importGPX(gpx, notificationCallback, stSharing, stComment);
 }

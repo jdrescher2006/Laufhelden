@@ -53,7 +53,7 @@ class TrackRecorder : public QObject
 public:
     explicit TrackRecorder(QObject *parent = 0);
     ~TrackRecorder();
-    Q_INVOKABLE bool writeStGpxToFile(QString gpxcontent, QString filename, QString desc, QString sTkey, QString activity);
+    Q_INVOKABLE bool writeStGpxToFile(QString gpxcontent, qint64 recorded, QString desc, QString sTkey, QString activity, float dist);
     Q_INVOKABLE void exportGpx(QString name="", QString desc="");
     Q_INVOKABLE void clearTrack();
     Q_INVOKABLE void vSetCurrentHeartRate(uint heartRate);

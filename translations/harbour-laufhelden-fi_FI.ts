@@ -71,6 +71,10 @@
         <source>Dutch</source>
         <translation>Hollanti</translation>
     </message>
+    <message>
+        <source>Spanish-Spain</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -208,14 +212,6 @@
         <translation>Lähetä Sports-Tracker.com</translation>
     </message>
     <message>
-        <source>Logging in...</source>
-        <translation>Kirjaudutaan sisään...</translation>
-    </message>
-    <message>
-        <source>Uploading...</source>
-        <translation>Lähetetään...</translation>
-    </message>
-    <message>
         <source>Edit workout</source>
         <translation>Muokkaa harkoitusta</translation>
     </message>
@@ -351,6 +347,10 @@
     <message>
         <source>My Strava Activities</source>
         <translation>Minun Strava Aktiviteetit</translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation>Lähetä Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -916,6 +916,14 @@
         <source>Some kind of error happened on Saving data</source>
         <translation>Tietojen tallennuksessa tapahtui virhe</translation>
     </message>
+    <message>
+        <source>Logging in...</source>
+        <translation>Kirjaudutaan sisään...</translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
+        <translation>Lähetetään...</translation>
+    </message>
 </context>
 <context>
     <name>SportsTrackerSettingsPage</name>
@@ -1302,15 +1310,15 @@
     </message>
     <message>
         <source>Interval duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervallin kesto</translation>
     </message>
     <message>
         <source>Every </source>
-        <translation type="unfinished"></translation>
+        <translation>Joka</translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation type="unfinished"></translation>
+        <translation>500 metri</translation>
     </message>
     <message>
         <source>0.5 mi</source>
@@ -1318,7 +1326,7 @@
     </message>
     <message>
         <source>1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
@@ -1326,7 +1334,7 @@
     </message>
     <message>
         <source>2 km</source>
-        <translation type="unfinished"></translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
@@ -1334,7 +1342,7 @@
     </message>
     <message>
         <source>5 km</source>
-        <translation type="unfinished"></translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
@@ -1342,7 +1350,7 @@
     </message>
     <message>
         <source>10 km</source>
-        <translation type="unfinished"></translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
@@ -1350,7 +1358,7 @@
     </message>
     <message>
         <source>20 km</source>
-        <translation type="unfinished"></translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
@@ -1358,39 +1366,39 @@
     </message>
     <message>
         <source>Every %1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>Joka %1 km</translation>
     </message>
     <message>
         <source>Interval distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalli matka</translation>
     </message>
     <message>
         <source>minute</source>
-        <translation type="unfinished"></translation>
+        <translation>minuutti</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>2 minuuttia</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 minuuttia</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>10 minuuttia</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>20 minuuttia</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation type="unfinished"></translation>
+        <translation>tunti</translation>
     </message>
     <message>
         <source>Every %1 minute</source>
-        <translation type="unfinished"></translation>
+        <translation>Joka %1 minuutti</translation>
     </message>
 </context>
 </TS>

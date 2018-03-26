@@ -432,14 +432,58 @@ ApplicationWindow
         id: pebbleComm
     }
 
-    Media.SoundEffect
+    Media.Audio
     {
         id: playSoundEffect
-        source: "audio/hr_toohigh.wav"
+        source: "audio/hr_toohigh_de_male.wav"
+
+        onPlaybackStateChanged:
+        {
+            console.log("onPlaybackStateChanged: " + playbackState.toString());
+
+            //Check if playing a sound is done.
+            if (playbackState == 0)
+            {
+                //Set index to next sound in array
+                iPlayLoop++;
+
+                console.log("iPlayLoop: " + iPlayLoop.toString());
+
+                //Check if we are ready with playing sounds, all sounds in the array were played.
+                if (arrayPlaySounds.length === 0 || iPlayLoop >= arrayPlaySounds.length)
+                {
+                    //Check if the system audio player was playing before
+                    if (bPlayerWasPlaying)
+                    {
+                        //Resume system audio player
+                        mediaPlayerControl.resume();
+                    }
+
+                    //We are done now with playing sounds. Mark that.
+                    bPlayingSound = false;
+
+                    console.log("onPlayingChanged, the END!");
+                }
+                else
+                {
+                    //There is still something to play in the array. Restart play timer.
+                    timerPlaySoundArray.start();
+
+                    console.log("onPlayingChanged, starting timer!");
+                }
+            }
+        }
+    }
+
+    //This is not used because the onPlayingChanged often times is not fired after an audio file is played
+    Media.SoundEffect
+    {
+        id: playSoundEffect2
+        source: "audio/hr_toohigh_de_male.wav"
         volume: 1.0; //Full 1.0
         onPlayingChanged:
         {
-            //console.log("onPlayingChanged: " + playing.toString());
+            console.log("onPlayingChanged: " + playing.toString());
 
 			//Check if playing a sound is done.
 			if (playing == false)
@@ -447,7 +491,7 @@ ApplicationWindow
 				//Set index to next sound in array
                 iPlayLoop++;
 	
-                //console.log("iPlayLoop: " + iPlayLoop.toString());
+                console.log("iPlayLoop: " + iPlayLoop.toString());
 
 				//Check if we are ready with playing sounds, all sounds in the array were played.			
 				if (arrayPlaySounds.length === 0 || iPlayLoop >= arrayPlaySounds.length)
@@ -462,14 +506,14 @@ ApplicationWindow
 					//We are done now with playing sounds. Mark that.
 					bPlayingSound = false;
 
-                    //console.log("onPlayingChanged, the END!");
+                    console.log("onPlayingChanged, the END!");
 				}
 				else
 				{
 					//There is still something to play in the array. Restart play timer.
                     timerPlaySoundArray.start();
 
-                    //console.log("onPlayingChanged, starting timer!");
+                    console.log("onPlayingChanged, starting timer!");
 				}				
 			}
         }
@@ -504,10 +548,10 @@ ApplicationWindow
         id: timerPlaySoundArray
         running: false
         repeat: false
-        interval: 50
+        interval: 75
         onTriggered:
         {
-            //console.log("timerPlaySoundArray: " + iPlayLoop.toString());
+            console.log("timerPlaySoundArray: " + iPlayLoop.toString());
 
             playSoundEffect.source = arrayPlaySounds[iPlayLoop];
             playSoundEffect.play();
