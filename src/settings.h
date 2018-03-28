@@ -53,8 +53,12 @@ class Settings : public QObject
     Q_PROPERTY(bool voiceGPSConnectLost READ voiceGPSConnectLost WRITE setVoiceGPSConnectLost)
 
     //Cyclic voice output
-    Q_PROPERTY(int voiceCycDistance READ voiceCycDistance WRITE setVoiceCycDistance)
+    Q_PROPERTY(bool voiceCycDistanceEnable READ voiceCycDistanceEnable WRITE setVoiceCycDistanceEnable)
+    Q_PROPERTY(double voiceCycDistance READ voiceCycDistance WRITE setVoiceCycDistance)
+    Q_PROPERTY(QString voiceCycDistanceFields READ voiceCycDistanceFields WRITE setVoiceCycDistanceFields)
+    Q_PROPERTY(bool voiceCycDurationEnable READ voiceCycDurationEnable WRITE setVoiceCycDurationEnable)
     Q_PROPERTY(int voiceCycDuration READ voiceCycDuration WRITE setVoiceCycDuration)
+    Q_PROPERTY(QString voiceCycDurationFields READ voiceCycDurationFields WRITE setVoiceCycDurationFields)
 
     //Pebble specific setings
     Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
@@ -152,11 +156,23 @@ public:
     void setVoiceGPSConnectLost(bool voiceGPSConnectLost);
 
     //Cyclic voice output
-    int voiceCycDistance() const;
-    void setVoiceCycDistance(int voiceCycDistance);
+    bool voiceCycDistanceEnable() const;
+    void setVoiceCycDistanceEnable(bool voiceCycDistanceEnable);
+
+    double voiceCycDistance() const;
+    void setVoiceCycDistance(double voiceCycDistance);
+
+    QString voiceCycDistanceFields() const;
+    void setVoiceCycDistanceFields(QString voiceCycDistanceFields);
+
+    bool voiceCycDurationEnable() const;
+    void setVoiceCycDurationEnable(bool voiceCycDurationEnable);
 
     int voiceCycDuration() const;
     void setVoiceCycDuration(int voiceCycDuration);
+
+    QString voiceCycDurationFields() const;
+    void setVoiceCycDurationFields(QString voiceCycDurationFields);
 
     //Sporst-Tracker.com functions
     QString stUsername() const;

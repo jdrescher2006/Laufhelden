@@ -206,6 +206,8 @@ function fncConvertArrayToSaveStringCoverPage()
     return sSaveString;
 }
 
+//*************** Strava functions *****************
+
 function stravaGet(xmlhttp, url, token, onready)
 {
     console.log("Loading from ", url);
@@ -237,21 +239,21 @@ function fncCovertMinutesToString(min)
 
 var arrayVoiceValueTypes =
 [
-    { index: 0, fieldID_Duration: 3, fieldID_Distance: 3, value: "0", header: qsTr("Heartrate"), headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
-    { index: 1, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
-    { index: 2, fieldID_Duration: 2, fieldID_Distance: 2, value: "0", header: qsTr("Pace"), headline: "pace", unit: "minkm", imperialUnit: "minmi" },
-    { index: 3, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", headline: "pace", unit: "minkm", imperialUnit: "minmi" },
-    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed"), headline: "speed", unit: "kmh", imperialUnit: "mih" },
-    { index: 5, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", headline: "speed", unit: "kmh", imperialUnit: "mih" },
-    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Altitude"), headline: "altitude", unit: "m", imperialUnit: "ft" },
-    { index: 7, fieldID_Duration: 1, fieldID_Distance: 4, value: "0", header: qsTr("Distance"), headline: "distance", unit: "km", imperialUnit: "mi" },
-    { index: 8, fieldID_Duration: 4, fieldID_Distance: 1, value: "0", header: qsTr("Duration"), headline: "duration", unit: "duration", imperialUnit: "duration" }
+    { index: 0, fieldID_Duration: 0, fieldID_Distance: 0, value: "", header: qsTr("Empty"), headline: "", unit: "", imperialUnit: "" },
+    { index: 1, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate"), headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
+    { index: 2, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
+    { index: 3, fieldID_Duration: 4, fieldID_Distance: 3, value: "0", header: qsTr("Pace"), headline: "pace", unit: "minkm", imperialUnit: "minmi" },
+    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", headline: "pace", unit: "minkm", imperialUnit: "minmi" },
+    { index: 5, fieldID_Duration: 3, fieldID_Distance: 4, value: "0", header: qsTr("Speed"), headline: "speed", unit: "kmh", imperialUnit: "mih" },
+    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", headline: "speed", unit: "kmh", imperialUnit: "mih" },
+    { index: 7, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Altitude"), headline: "altitude", unit: "m", imperialUnit: "ft" },
+    { index: 8, fieldID_Duration: 2, fieldID_Distance: 2, value: "0", header: qsTr("Distance"), headline: "distance", unit: "km", imperialUnit: "mi" },
+    { index: 9, fieldID_Duration: 1, fieldID_Distance: 1, value: "0", header: qsTr("Duration"), headline: "duration", unit: "duration", imperialUnit: "duration" }
 ]
 
 //Create lookup table. This is a helper table to easier access the main table.
 var arrayLookupVoiceValueTypesByFieldIDDistance = {};
 fncGenerateHelperArrayFieldIDDistance();
-
 function fncGenerateHelperArrayFieldIDDistance()
 {
     for (var i = 0; i < arrayVoiceValueTypes.length; i++)
@@ -260,6 +262,113 @@ function fncGenerateHelperArrayFieldIDDistance()
     }
 }
 
+var arrayLookupVoiceValueTypesByFieldIDDuration = {};
+fncGenerateHelperArrayFieldIDDuration();
+function fncGenerateHelperArrayFieldIDDuration()
+{
+    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
+    {
+        arrayLookupVoiceValueTypesByFieldIDDuration[arrayVoiceValueTypes[i].fieldID_Duration] = arrayVoiceValueTypes[i];
+    }
+}
+
+function fncConvertSaveStringToArrayCyclicVoiceDistance(sSaveString)
+{
+    //"8,7,2,4"
+
+    if (sSaveString === undefined || sSaveString === "")
+        return;
+
+    var arValueTypes = sSaveString.split(",");
+
+    if (arValueTypes.length !== 4)    //This is the amount of voice cycle fields
+        return;
+
+    arValueTypes[0] = parseInt(arValueTypes[0]);
+    arValueTypes[1] = parseInt(arValueTypes[1]);
+    arValueTypes[2] = parseInt(arValueTypes[2]);
+    arValueTypes[3] = parseInt(arValueTypes[3]);
+
+    //Go through value types
+    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
+    {
+        if (i === arValueTypes[0])
+            arrayPebbleValueTypes[i].fieldID_Distance = 1;
+        else if (i === arValueTypes[1])
+            arrayPebbleValueTypes[i].fieldID_Distance = 2;
+        else if (i === arValueTypes[2])
+            arrayPebbleValueTypes[i].fieldID_Distance = 3;
+        else if (i === arValueTypes[3])
+            arrayPebbleValueTypes[i].fieldID_Distance = 4;
+        else
+            arrayPebbleValueTypes[i].fieldID_Distance = 0;
+    }
+
+    fncGenerateHelperArrayFieldIDDistance();
+}
+
+function fncConvertArrayToSaveStringCyclicVoiceDistance()
+{
+    //"8,7,2,4"
+
+    var sSaveString = "";
+
+    sSaveString = arrayLookupVoiceValueTypesByFieldIDDistance[1].index.toString();
+    sSaveString = sSaveString + arrayLookupVoiceValueTypesByFieldIDDistance[2].index.toString();
+    sSaveString = sSaveString + arrayLookupVoiceValueTypesByFieldIDDistance[3].index.toString();
+    sSaveString = sSaveString + arrayLookupVoiceValueTypesByFieldIDDistance[4].index.toString();
+
+    return sSaveString;
+}
+
+function fncConvertSaveStringToArrayCyclicVoiceDuration(sSaveString)
+{
+    //"8,7,4,2"
+
+    if (sSaveString === undefined || sSaveString === "")
+        return;
+
+    var arValueTypes = sSaveString.split(",");
+
+    if (arValueTypes.length !== 4)    //This is the amount of voice cycle fields
+        return;
+
+    arValueTypes[0] = parseInt(arValueTypes[0]);
+    arValueTypes[1] = parseInt(arValueTypes[1]);
+    arValueTypes[2] = parseInt(arValueTypes[2]);
+    arValueTypes[3] = parseInt(arValueTypes[3]);
+
+    //Go through value types
+    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
+    {
+        if (i === arValueTypes[0])
+            arrayPebbleValueTypes[i].fieldID_Duration = 1;
+        else if (i === arValueTypes[1])
+            arrayPebbleValueTypes[i].fieldID_Duration = 2;
+        else if (i === arValueTypes[2])
+            arrayPebbleValueTypes[i].fieldID_Duration = 3;
+        else if (i === arValueTypes[3])
+            arrayPebbleValueTypes[i].fieldID_Duration = 4;
+        else
+            arrayPebbleValueTypes[i].fieldID_Duration = 0;
+    }
+
+    fncGenerateHelperArrayFieldIDDistance();
+}
+
+function fncConvertArrayToSaveStringCyclicVoiceDuration()
+{
+    //"8,7,2,4"
+
+    var sSaveString = "";
+
+    sSaveString = arrayLookupVoiceValueTypesByFieldIDDuration[1].index.toString();
+    sSaveString = sSaveString + arrayLookupVoiceValueTypesByFieldIDDuration[2].index.toString();
+    sSaveString = sSaveString + arrayLookupVoiceValueTypesByFieldIDDuration[3].index.toString();
+    sSaveString = sSaveString + arrayLookupVoiceValueTypesByFieldIDDuration[4].index.toString();
+
+    return sSaveString;
+}
 
 function fncPlayCyclicDistanceVoiceAnnouncement(bMetric, iVoiceLanguage)
 {
@@ -271,6 +380,10 @@ function fncPlayCyclicDistanceVoiceAnnouncement(bMetric, iVoiceLanguage)
     {
         //Check if index exists
         if (arrayLookupVoiceValueTypesByFieldIDDistance[i] === undefined)
+            continue;
+
+        //Check if ths is an empty entry
+        if (arrayLookupVoiceValueTypesByFieldIDDistance[i].index === 0)
             continue;
 
         //Get value

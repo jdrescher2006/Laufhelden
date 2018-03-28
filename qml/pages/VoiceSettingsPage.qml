@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jens Drescher, Germany
+ * Copyright (C) 2017-2018 Jens Drescher, Germany
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,236 +17,61 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../tools/JSTools.js" as JSTools
 
 Page
 {
-    id: page
+    id: pageSettingsmenu
 
-    property bool bLockOnCompleted : false;
-    property bool bLockFirstPageLoad: true
-
-    onStatusChanged:
+    ListModel
     {
-        //This is loaded only the first time the page is displayed
-        if (status === PageStatus.Active && bLockFirstPageLoad)
+        id: pagesModel
+
+        ListElement
         {
-            bLockOnCompleted = true;
-
-            bLockFirstPageLoad = false;
-            console.log("First Active SettingsPage");
-
-            id_TextSwitch_StartEndWorkout.checked = settings.voiceStartEndWorkout;
-            id_TextSwitch_PauseContinueWorkout.checked = settings.voicePauseContinueWorkout;
-            id_TextSwitch_GPSConnectLost.checked = settings.voiceGPSConnectLost;
-
-            id_CMB_VoiceLanguage.currentIndex = settings.voiceLanguage;
-
-            bLockOnCompleted = false;
+            page: "VoiceGeneralSettingsPage.qml"
+            title: qsTr("General")
         }
-
-        //This is loaded everytime the page is displayed
-        if (status === PageStatus.Active)
+        ListElement
         {
-            console.log("Active SettingsPage");
-        }        
+            page: "ThresholdSettingsPage.qml"
+            title: qsTr("Alarm thresholds")
+        }
+        ListElement
+        {
+            page: "VoiceEventsSettingsPage.qml"
+            title: qsTr("Event announcements")
+        }
+        ListElement
+        {
+            page: "VoiceCycleDistanceSettingsPage.qml"
+            title: qsTr("Regular announcements by distance")
+        }
+        ListElement
+        {
+            page: "VoiceCycleDurationSettingsPage.qml"
+            title: qsTr("Regular announcements by duration")
+        }
     }
-
-
-    SilicaFlickable
+    SilicaListView
     {
+        id: listView
         anchors.fill: parent
-        contentHeight: column.height + Theme.paddingLarge;
-        VerticalScrollDecorator {}
-        Column
+        model: pagesModel
+        header: PageHeader { title: qsTr("Voice Coach Settings") }
+        delegate: BackgroundItem
         {
-            id: column
-            width: page.width
-            spacing: Theme.paddingLarge
-            PageHeader
+            width: listView.width
+            Label
             {
-                title: qsTr("Voice output settings")
+                id: firstName
+                text: model.title
+                color: highlighted ? Theme.highlightColor : Theme.primaryColor
+                anchors.verticalCenter: parent.verticalCenter
+                x: Theme.horizontalPageMargin
             }
-            SectionHeader
-            {
-                text: qsTr("Cyclic voice outputs")
-            }
-			TextSwitch
-            {
-                id: id_TextSwitch_IntervalDuration
-                text: qsTr("Interval duration")
-                onCheckedChanged:
-                {
-                    if (!bLockOnCompleted)
-                    {
-
-					}
-                }
-            }
-			ComboBox
-            {
-                id: id_CMB_IntervalDuration
-                label: qsTr("Every ")
-                menu: ContextMenu
-                {
-                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("500 meters") : qsTr("0.5 mi") }
-                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("1 km") : qsTr("1 mi") }
-                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("2 km") : qsTr("2 mi") }
-                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("5 km") : qsTr("5 mi") }
-                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("10 km") : qsTr("10 mi") }
-                    MenuItem { text: (settings.measureSystem === 0) ? qsTr("20 km") : qsTr("20 mi") }
-                }                
-                onCurrentIndexChanged:
-                {
-                    if (bLockOnCompleted)
-                        return;
-                }
-            }  	
-			Label
-			{
-				text: qsTr("Every %1 km")
-				color: Theme.secondaryColor
-			}		
-			TextSwitch
-            {
-                id: id_TextSwitch_IntervalDistance
-                text: qsTr("Interval distance")
-                onCheckedChanged:
-                {
-                    if (!bLockOnCompleted)
-					{
-
-					}
-                }
-            }   
-			ComboBox
-            {
-                id: id_CMB_IntervalDistance
-                label: qsTr("Every ")
-                menu: ContextMenu
-                {
-                    MenuItem { text: qsTr("minute") }
-                    MenuItem { text: qsTr("2 minutes") }
-                    MenuItem { text: qsTr("5 minutes") }
-                    MenuItem { text: qsTr("10 minutes") }
-                    MenuItem { text: qsTr("20 minutes") }
-                    MenuItem { text: qsTr("hour") }
-                }                
-                onCurrentIndexChanged:
-                {
-                    if (bLockOnCompleted)
-                        return;
-                }
-            }  	    
-			Label
-			{
-				text: qsTr("Every %1 minute")
-				color: Theme.secondaryColor
-			}		   
-			Separator
-            {
-                color: Theme.highlightColor
-                width: parent.width
-            } 
-            SectionHeader
-            {
-                text: qsTr("Voice outputs on events")
-            }
-            TextSwitch
-            {
-                id: id_TextSwitch_StartEndWorkout
-                text: qsTr("Start/end workout")
-                onCheckedChanged:
-                {
-                    if (!bLockOnCompleted)
-                        settings.voiceStartEndWorkout = checked;
-                }                
-            }
-            TextSwitch
-            {
-                id: id_TextSwitch_PauseContinueWorkout
-                text: qsTr("Pause/continue workout")
-                onCheckedChanged:
-                {
-                    if (!bLockOnCompleted)
-                        settings.voicePauseContinueWorkout = checked;
-                }
-            }
-            TextSwitch
-            {
-                id: id_TextSwitch_GPSConnectLost
-                text: qsTr("Connect/disconnect GPS")
-                onCheckedChanged:
-                {
-                    if (!bLockOnCompleted)
-                        settings.voiceGPSConnectLost = checked;
-                }
-            }
-            Separator
-            {
-                color: Theme.highlightColor
-                width: parent.width
-            }            
-            ComboBox
-            {
-                id: id_CMB_VoiceLanguage
-                label: qsTr("Voice language")
-                menu: ContextMenu
-                {
-                    MenuItem
-                    {
-                        text: qsTr("English male")
-                        onClicked:
-                        {
-                            if (bLockOnCompleted)
-                                return;
-
-                            settings.voiceLanguage = 0;
-                        }
-                    }
-                    MenuItem
-                    {
-                        text: qsTr("German male")
-                        onClicked:
-                        {
-                            if (bLockOnCompleted)
-                                return;
-
-                            settings.voiceLanguage = 1;
-                        }
-                    }
-                }
-            }
-            Button
-            {
-                width: parent.width - Theme.paddingLarge
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Test")
-                onClicked:
-                {
-                    var sVoiceLanguage = "_en_male.wav";
-                    //check voice language and generate last part of audio filename
-                    if (settings.voiceLanguage === 0)        //english male
-                        sVoiceLanguage = "_en_male.wav";
-                    else if (settings.voiceLanguage === 1)   //german male
-                        sVoiceLanguage = "_de_male.wav";
-
-                    fncPlaySound("audio/hr_toohigh" + sVoiceLanguage);
-
-                    /*
-					var arTemp = [];
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/m_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/minkm_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/bpm_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/km_de_male.wav");
-					fncPlaySoundArray(arTemp);                    
-                    */
-                }
-            }
+            onClicked: pageStack.push(Qt.resolvedUrl(page))
         }
+        VerticalScrollDecorator {}
     }
 }
+

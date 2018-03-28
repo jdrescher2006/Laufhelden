@@ -764,14 +764,6 @@
 <context>
     <name>SettingsMenu</name>
     <message>
-        <source>General settings</source>
-        <translation>Yleiset asetukset</translation>
-    </message>
-    <message>
-        <source>Alarm thresholds</source>
-        <translation>Hälytysrajat</translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation>Asetukset</translation>
     </message>
@@ -780,28 +772,32 @@
         <translation>Sykemittari</translation>
     </message>
     <message>
-        <source>Map settings</source>
-        <translation>Kartta-asetukset</translation>
-    </message>
-    <message>
         <source>Sports-Tracker.com</source>
         <translation>Sports-Tracker.com</translation>
-    </message>
-    <message>
-        <source>Pebble settings</source>
-        <translation>Pebble asetukset</translation>
-    </message>
-    <message>
-        <source>Voice output settings</source>
-        <translation>Ääniasetukset</translation>
     </message>
     <message>
         <source>Strava</source>
         <translation>Strava</translation>
     </message>
     <message>
-        <source>App cover settings</source>
-        <translation>Sovelluskannen asetukset</translation>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice coach</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished">Kartta</translation>
+    </message>
+    <message>
+        <source>App cover</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1267,58 +1263,14 @@
     </message>
 </context>
 <context>
-    <name>VoiceSettingsPage</name>
-    <message>
-        <source>Voice output settings</source>
-        <translation>Ääniasetukset</translation>
-    </message>
-    <message>
-        <source>Start/end workout</source>
-        <translation>Aloita/lopeta harjoitus</translation>
-    </message>
-    <message>
-        <source>Pause/continue workout</source>
-        <translation>Pysäytä/jatka harjoitusta</translation>
-    </message>
-    <message>
-        <source>Connect/disconnect GPS</source>
-        <translation>Yhdistä/Katkaise GPS</translation>
-    </message>
-    <message>
-        <source>Voice language</source>
-        <translation>Ääni-ilmoitusten kieli</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation>Englanti mies</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation>Saksa mies</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testaa ääniä</translation>
-    </message>
-    <message>
-        <source>Voice outputs on events</source>
-        <translation>Äänimerkit tapahtumista</translation>
-    </message>
-    <message>
-        <source>Cyclic voice outputs</source>
-        <translation>Toistuvat ilmoitukset</translation>
-    </message>
-    <message>
-        <source>Interval duration</source>
-        <translation>Intervallin kesto</translation>
-    </message>
+    <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation>Joka</translation>
+        <translation type="unfinished">Joka</translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation>500 metri</translation>
+        <translation type="unfinished">500 metri</translation>
     </message>
     <message>
         <source>0.5 mi</source>
@@ -1326,7 +1278,7 @@
     </message>
     <message>
         <source>1 km</source>
-        <translation>1 km</translation>
+        <translation type="unfinished">1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
@@ -1334,7 +1286,7 @@
     </message>
     <message>
         <source>2 km</source>
-        <translation>2 km</translation>
+        <translation type="unfinished">2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
@@ -1342,7 +1294,7 @@
     </message>
     <message>
         <source>5 km</source>
-        <translation>5 km</translation>
+        <translation type="unfinished">5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
@@ -1350,7 +1302,7 @@
     </message>
     <message>
         <source>10 km</source>
-        <translation>10 km</translation>
+        <translation type="unfinished">10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
@@ -1358,47 +1310,171 @@
     </message>
     <message>
         <source>20 km</source>
-        <translation>20 km</translation>
+        <translation type="unfinished">20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Every %1 km</source>
-        <translation>Joka %1 km</translation>
+        <source>Regular announcements by distance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interval distance</source>
-        <translation>Intervalli matka</translation>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>minute</source>
-        <translation>minuutti</translation>
+        <source>1 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceCycleDurationSettingsPage</name>
+    <message>
+        <source>Every </source>
+        <translation type="unfinished">Joka</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation>2 minuuttia</translation>
+        <translation type="unfinished">2 minuuttia</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation>5 minuuttia</translation>
+        <translation type="unfinished">5 minuuttia</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation>10 minuuttia</translation>
+        <translation type="unfinished">10 minuuttia</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation>20 minuuttia</translation>
+        <translation type="unfinished">20 minuuttia</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation>tunti</translation>
+        <translation type="unfinished">tunti</translation>
     </message>
     <message>
-        <source>Every %1 minute</source>
-        <translation>Joka %1 minuutti</translation>
+        <source>Regular announcements by duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>30 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceEventsSettingsPage</name>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished">Aloita/lopeta harjoitus</translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished">Pysäytä/jatka harjoitusta</translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished">Yhdistä/Katkaise GPS</translation>
+    </message>
+    <message>
+        <source>Voice coach events settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceGeneralSettingsPage</name>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished">Ääni-ilmoitusten kieli</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished">Englanti mies</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished">Saksa mies</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished">Testaa ääniä</translation>
+    </message>
+    <message>
+        <source>Voice coach general settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
+        <translation type="unfinished">Hälytysrajat</translation>
+    </message>
+    <message>
+        <source>Event announcements</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular announcements by distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular announcements by duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice Coach Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

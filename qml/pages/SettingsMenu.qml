@@ -22,54 +22,70 @@ Page
 {
     id: pageSettingsmenu
 
+    onOrientationChanged:
+    {
+        console.log("onOrientationChanged: " + pageSettingsmenu.width.toString() + "," + pageSettingsmenu.height.toString());
+    }
+
     ListModel
     {
         id: pagesModel
 
         ListElement
         {
+            color: "red"
             page: "SettingsPage.qml"
-            title: qsTr("General settings")
+            title: qsTr("General")
+            source: "../img/general.png"
         }
         ListElement
         {
+            color: "blue"
             page: "VoiceSettingsPage.qml"
-            title: qsTr("Voice output settings")
+            title: qsTr("Voice coach")
+            source: "../img/voicecoach.png"
         }
         ListElement
         {
+            color: "green"
             page: "MapSettingsPage.qml"
-            title: qsTr("Map settings")
+            title: qsTr("Map")
+            source: "../img/map.png"
         }
         ListElement
         {
+            color: "red"
             page: "CoverSettingsPage.qml"
-            title: qsTr("App cover settings")
-        }
+            title: qsTr("App cover")
+            source: "../img/cover.png"
+        }        
         ListElement
         {
-            page: "ThresholdSettingsPage.qml"
-            title: qsTr("Alarm thresholds")
-        }
-        ListElement
-        {
+            color: "blue"
             page: "BTConnectPage.qml"
             title: qsTr("Heart rate device")
+            source: "../img/heart.png"
         }
         ListElement
         {
+            color: "green"
             page: "SportsTrackerSettingsPage.qml"
             title: qsTr("Sports-Tracker.com")
+            source: "../img/sportstracker.png"
         }
         ListElement
         {
+            color: "red"
             page: "StravaSettingsPage.qml"
             title: qsTr("Strava")
+            source: "../img/strava.png"
         }
         ListElement
         {
+            color: "blue"
             page: "PebbleSettingsPage.qml"
-            title: qsTr("Pebble settings")
+            title: qsTr("Pebble")
+            source: "../img/pebble.png"
         }
     }
     SilicaListView
@@ -81,15 +97,26 @@ Page
         delegate: BackgroundItem
         {
             width: listView.width
+
+            Image
+            {
+                source: model.source
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.bottomMargin: Theme.paddingLarge
+                x: Theme.paddingLarge
+                width: parent.height - Theme.paddingSmall - Theme.paddingSmall //parent.height is the height of the listitem. It cannot be set manually )-:
+                height: parent.height - Theme.paddingSmall - Theme.paddingSmall
+            }
             Label
             {
                 id: firstName
                 text: model.title
                 color: highlighted ? Theme.highlightColor : Theme.primaryColor
                 anchors.verticalCenter: parent.verticalCenter
-                x: Theme.horizontalPageMargin
+                //width: parent.width - parent.height - Theme.paddingSmall - Theme.paddingSmall
+                x: (parent.height - Theme.paddingSmall - Theme.paddingSmall) + Theme.paddingLarge + Theme.paddingLarge
             }
-            onClicked: pageStack.push(Qt.resolvedUrl(page))
+            onClicked: pageStack.push(Qt.resolvedUrl(page))            
         }
         VerticalScrollDecorator {}
     }

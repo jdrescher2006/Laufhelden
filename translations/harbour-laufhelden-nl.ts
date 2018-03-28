@@ -764,14 +764,6 @@
 <context>
     <name>SettingsMenu</name>
     <message>
-        <source>General settings</source>
-        <translation>Algemene instellingen</translation>
-    </message>
-    <message>
-        <source>Alarm thresholds</source>
-        <translation>Drempelwaarden voor alarm</translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation>Instellingen</translation>
     </message>
@@ -780,28 +772,32 @@
         <translation>Hartslagapparaat</translation>
     </message>
     <message>
-        <source>Map settings</source>
-        <translation>Kaartinstellingen</translation>
-    </message>
-    <message>
         <source>Sports-Tracker.com</source>
         <translation>Sports-Tracker.com</translation>
-    </message>
-    <message>
-        <source>Pebble settings</source>
-        <translation>Pebble-instellingen</translation>
-    </message>
-    <message>
-        <source>Voice output settings</source>
-        <translation>Stemuitvoerinstellingen</translation>
     </message>
     <message>
         <source>Strava</source>
         <translation>Strava</translation>
     </message>
     <message>
-        <source>App cover settings</source>
-        <translation>Appomslaginstellingen</translation>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice coach</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished">Kaart</translation>
+    </message>
+    <message>
+        <source>App cover</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pebble</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1267,51 +1263,7 @@
     </message>
 </context>
 <context>
-    <name>VoiceSettingsPage</name>
-    <message>
-        <source>Voice output settings</source>
-        <translation>Stemuitvoerinstellingen</translation>
-    </message>
-    <message>
-        <source>Start/end workout</source>
-        <translation>Training beginnen/beëindigen</translation>
-    </message>
-    <message>
-        <source>Pause/continue workout</source>
-        <translation>Training pauzeren/voortzetten</translation>
-    </message>
-    <message>
-        <source>Connect/disconnect GPS</source>
-        <translation>Verbinden met gps / verbinding verbreken</translation>
-    </message>
-    <message>
-        <source>Voice language</source>
-        <translation>Taal van stem</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation>Engels, man</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation>Duits, man</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Voice outputs on events</source>
-        <translation>Stemuitvoer bij gebeurtenissen</translation>
-    </message>
-    <message>
-        <source>Cyclic voice outputs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interval duration</source>
-        <translation type="unfinished"></translation>
-    </message>
+    <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
         <translation type="unfinished"></translation>
@@ -1365,15 +1317,38 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Every %1 km</source>
+        <source>Regular announcements by distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interval distance</source>
+        <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>minute</source>
+        <source>1 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished">Deze waarde is al toegewezen!</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceCycleDurationSettingsPage</name>
+    <message>
+        <source>Every </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1397,7 +1372,108 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Every %1 minute</source>
+        <source>Regular announcements by duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>30 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished">Deze waarde is al toegewezen!</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceEventsSettingsPage</name>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished">Training beginnen/beëindigen</translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished">Training pauzeren/voortzetten</translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished">Verbinden met gps / verbinding verbreken</translation>
+    </message>
+    <message>
+        <source>Voice coach events settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceGeneralSettingsPage</name>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished">Taal van stem</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished">Engels, man</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished">Duits, man</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished">Test</translation>
+    </message>
+    <message>
+        <source>Voice coach general settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
+        <translation type="unfinished">Drempelwaarden voor alarm</translation>
+    </message>
+    <message>
+        <source>Event announcements</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular announcements by distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular announcements by duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice Coach Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
