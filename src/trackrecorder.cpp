@@ -749,6 +749,27 @@ QString TrackRecorder::time() const
     return timeStr;
 }
 
+qint64 TrackRecorder::timeSeconds() const
+{
+    qint64 difference = 0;
+
+    if(m_points.size() < 2)
+    {
+        difference = 0;
+    }
+    else
+    {
+        QDateTime first = m_points.at(0).timestamp();
+        QDateTime last = m_points.at(m_points.size()-1).timestamp();
+        difference = first.secsTo(last);
+
+        //Substract the pause time from the overall time
+        difference = difference - this->m_PauseDuration;
+    }
+
+    return difference;
+}
+
 QString TrackRecorder::pebbleTime() const
 {
     uint hours, minutes;

@@ -88,6 +88,7 @@ Page
 
     //Cyclic voice output
     property double iTriggerDistanceVoiceOutput: -1
+    property double iTriggerDurationVoiceOutput: -1
 
 
     Connections
@@ -447,12 +448,16 @@ Page
             if (iTriggerDistanceVoiceOutput === -1)
                 iTriggerDistanceVoiceOutput = settings.voiceCycDistance;
 
+            if (iTriggerDurationVoiceOutput === -1)
+                iTriggerDurationVoiceOutput = settings.voiceCycDuration;
+
+
             //If recorder is running and not paused
             if (recorder.running && !recorder.pause)
             {                               
                 //Check if we have to play a cyclic voice announcement
 
-                //First check if distance is active
+                //Check if distance is active
                 if (settings.voiceCycDistanceEnable)
                 {
                     //Get distance from recorder. This is float with 1 decimal place.
@@ -461,7 +466,7 @@ Page
                     if (iDistance >= iTriggerDistanceVoiceOutput)
                     {
                         //Play voice announcement
-                        var arSoundArray = JSTools.fncPlayCyclicDistanceVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage);
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
 
                         //console.log("arSoundArray.length: " + arSoundArray.length.toString());
                         //for (var i = 0; i < arSoundArray.length; i++)
@@ -474,7 +479,29 @@ Page
                         //Set value for next trigger distance
                         iTriggerDistanceVoiceOutput = settings.voiceCycDistance + iDistance;
                     }
-                }               
+                }
+                //Check if duration is active
+                if (settings.voiceCycDurationEnable)
+                {
+                    var iTimeSeconds = recorder.timeSeconds;
+                    //Check if cuurent duration is same or higher than trigger duration
+                    if (iTimeSeconds >= iTriggerDurationVoiceOutput)
+                    {
+                        //Play voice announcement
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false);
+
+                        //console.log("arSoundArray.length: " + arSoundArray.length.toString());
+                        //for (var i = 0; i < arSoundArray.length; i++)
+                        //{
+                            //console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                        //}
+
+                        fncPlaySoundArray(arSoundArray);
+
+                        //Set value for next trigger distance
+                        iTriggerDurationVoiceOutput = settings.voiceCycDuration + iTimeSeconds;
+                    }
+                }
             }
         }
     }
@@ -1032,7 +1059,7 @@ Page
                 text: "Test voice output"
                 onClicked:
                 {
-                    var arSoundArray = JSTools.fncPlayCyclicDistanceVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage);
+                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
                     console.log("arSoundArray.length: " + arSoundArray.length.toString());
 
                     for (var i = 0; i < arSoundArray.length; i++)

@@ -1381,7 +1381,7 @@
     </message>
     <message>
         <source>30 seconds</source>
-        <translation>20 Sekunden</translation>
+        <translation>30 Sekunden</translation>
     </message>
     <message>
         <source>1 minute</source>

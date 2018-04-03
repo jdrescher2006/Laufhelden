@@ -1,5 +1,7 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
+- make output of headline for cyclic voice announcements choosable
+
 - cyclic voice announcements	
 	- every 0,5-10 km
 	- maximum three parameters
