@@ -360,16 +360,16 @@ Page
                 RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
 
                 JSTools.arrayPebbleValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
-                JSTools.arrayPebbleValueTypes[3].value = recorder.paceStr;
-                JSTools.arrayPebbleValueTypes[4].value = recorder.paceaverageStr;
+                JSTools.arrayPebbleValueTypes[3].value = recorder.paceStr;  //TODO -> convert to imperial if needed and convert from decimal to time
+                JSTools.arrayPebbleValueTypes[4].value = recorder.paceaverageStr; //TODO -> convert to imperial if needed and convert from decimal to time
                 JSTools.arrayPebbleValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
                 JSTools.arrayPebbleValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage).toFixed(1);
                 JSTools.arrayPebbleValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
                 JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
 
                 JSTools.arrayVoiceValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
-                JSTools.arrayVoiceValueTypes[3].value = recorder.paceStr;
-                JSTools.arrayVoiceValueTypes[4].value = recorder.paceaverageStr;
+                JSTools.arrayVoiceValueTypes[3].value = recorder.pace;
+                JSTools.arrayVoiceValueTypes[4].value = recorder.paceaverage;
                 JSTools.arrayVoiceValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
                 JSTools.arrayVoiceValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperia
                 JSTools.arrayVoiceValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
@@ -1056,10 +1056,26 @@ Page
             }
             MenuItem
             {
-                text: "Test voice output"
+                text: "Test voice output distance"
+                onClicked:
+                {                                                                               
+                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
+                    console.log("arSoundArray.length: " + arSoundArray.length.toString());
+
+                    for (var i = 0; i < arSoundArray.length; i++)
+                    {
+                        console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                    }
+
+                    fncPlaySoundArray(arSoundArray);
+                }
+            }
+            MenuItem
+            {
+                text: "Test voice output duration"
                 onClicked:
                 {
-                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
+                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false);
                     console.log("arSoundArray.length: " + arSoundArray.length.toString());
 
                     for (var i = 0; i < arSoundArray.length; i++)
