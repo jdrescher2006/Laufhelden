@@ -400,7 +400,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
         var sHeadline = arrayLookUpArray[i].headline;
 
         //Is it duration? Then we need a special treatment
-        if (sUnit === "duration")
+        if (sHeadline === "duration")
         {
             if (iNumber === 0)
                 continue;
@@ -421,6 +421,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
 
             var bPlayHour = (iHour !== 0);
             var bPlayMinute = (iMinute !== 0);
+            var bPlaySecond = (iSecond !== 0);
 
             if (bPlayHour)
                 arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, sHeadline, iVoiceLanguage);
@@ -433,10 +434,13 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 }
             }
 
-            if (bPlayHour && bPlayMinute)
-                arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, "", iVoiceLanguage);
-            else if (!bPlayHour && bPlayMinute)
-                arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, sHeadline, iVoiceLanguage);
+            if (bPlayMinute)
+            {
+                if (bPlayHour)
+                    arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, "", iVoiceLanguage);
+                else
+                    arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, sHeadline, iVoiceLanguage);
+            }
 
             if (arrayTempArray !== undefined)
             {
@@ -446,11 +450,49 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 }
             }
 
-            if (bPlayHour || bPlayMinute)
-                arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, "", iVoiceLanguage);
-            else
-                arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, sHeadline, iVoiceLanguage);
+            if (bPlaySecond)
+            {
+                if (bPlayHour || bPlayMinute)
+                    arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, "", iVoiceLanguage);
+                else
+                    arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, sHeadline, iVoiceLanguage);
+            }
 
+            if (arrayTempArray !== undefined)
+            {
+                for (var j = 0; j < arrayTempArray.length; j++)
+                {
+                    arraySoundArray.push(arrayTempArray[j]);
+                }
+            }
+        }
+        else if (sHeadline === "pace")
+        {
+            if (iNumber === 0)
+                continue;
+
+            //value is something like >00:00<
+            //Separate the three values
+            var sSplitArray = iNumber.split(":");
+            //SplitArray must have 2 entries (m:s)
+            if (sSplitArray.length !== 2)
+                continue;
+            var iMinute = parseInt(sSplitArray[0]);
+            var iSecond = parseInt(sSplitArray[1]);
+
+            var sUnitMinute = (iMinute === 1) ? "minute" : "minutes";
+            var sUnitSecond = (iSecond === 1) ? "second" : "seconds";
+
+            arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, sHeadline, iVoiceLanguage);
+            if (arrayTempArray !== undefined)
+            {
+                for (j = 0; j < arrayTempArray.length; j++)
+                {
+                    arraySoundArray.push(arrayTempArray[j]);
+                }
+            }
+
+            arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, "", iVoiceLanguage);
             if (arrayTempArray !== undefined)
             {
                 for (var j = 0; j < arrayTempArray.length; j++)
