@@ -423,6 +423,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
             var bPlayMinute = (iMinute !== 0);
             var bPlaySecond = (iSecond !== 0);
 
+            arrayTempArray = [];
             if (bPlayHour)
                 arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, sHeadline, iVoiceLanguage);
 
@@ -434,6 +435,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 }
             }
 
+            arrayTempArray = [];
             if (bPlayMinute)
             {
                 if (bPlayHour)
@@ -450,6 +452,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 }
             }
 
+            arrayTempArray = [];
             if (bPlaySecond)
             {
                 if (bPlayHour || bPlayMinute)
@@ -480,6 +483,10 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
             var iMinute = parseInt(sSplitArray[0]);
             var iSecond = parseInt(sSplitArray[1]);
 
+            //if one of the numbers s too high
+            if (iMinute > 699 || iHour > 699)
+                continue;
+
             var sUnitMinute = (iMinute === 1) ? "minute" : "minutes";
             var sUnitSecond = (iSecond === 1) ? "second" : "seconds";
 
@@ -492,6 +499,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 }
             }
 
+            arrayTempArray = [];
             arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, "", iVoiceLanguage);
             if (arrayTempArray !== undefined)
             {
@@ -549,7 +557,7 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
         console.log("Number is INT");
 
         //Check limits
-        if (number > 999 || number < 0)
+        if (number > 699 || number < 0)
             return;
 
         if (number >= 100)
