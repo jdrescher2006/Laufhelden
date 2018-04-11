@@ -33,53 +33,23 @@ Page
 
         ListElement
         {
-            page: "SettingsPage.qml"
-            title: qsTr("General")
-            source: "../img/general.png"
+            page: "SportsTrackerSettingsPage.qml"
+            title: qsTr("Sports-Tracker.com")
+            source: "../img/sportstracker.png"
         }
         ListElement
         {
-            page: "VoiceSettingsPage.qml"
-            title: qsTr("Voice coach")
-            source: "../img/voicecoach.png"
-        }
-        ListElement
-        {
-            page: "MapSettingsPage.qml"
-            title: qsTr("Map")
-            source: "../img/map.png"
-        }
-        ListElement
-        {
-            page: "CoverSettingsPage.qml"
-            title: qsTr("App cover")
-            source: "../img/cover.png"
+            page: "StravaSettingsPage.qml"
+            title: qsTr("Strava")
+            source: "../img/strava.png"
         }        
-        ListElement
-        {
-            page: "BTConnectPage.qml"
-            title: qsTr("Heart rate device")
-            source: "../img/heart.png"
-        }
-        ListElement
-        {
-            page: "SocialMediaMenu.qml"
-            title: qsTr("Share workout")
-            source: "../img/socialmedia.png"
-        }        
-        ListElement
-        {
-            page: "PebbleSettingsPage.qml"
-            title: qsTr("Pebble")
-            source: "../img/pebble.png"
-        }
     }
     SilicaListView
     {
         id: listView
         anchors.fill: parent
         model: pagesModel
-        header: PageHeader { title: qsTr("Settings") }
+        header: PageHeader { title: qsTr("Share workout") }
         delegate: BackgroundItem
         {
             width: listView.width

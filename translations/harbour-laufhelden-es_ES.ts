@@ -772,14 +772,6 @@
         <translation>Sensor de frecuencia cardiaca</translation>
     </message>
     <message>
-        <source>Sports-Tracker.com</source>
-        <translation>Sport-Tracker.com</translation>
-    </message>
-    <message>
-        <source>Strava</source>
-        <translation>Strava</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
@@ -798,6 +790,10 @@
     <message>
         <source>Pebble</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation type="unfinished">Compartir entrenamiento</translation>
     </message>
 </context>
 <context>
@@ -892,6 +888,21 @@
     <message>
         <source>Hiking</source>
         <translation>Senderismo</translation>
+    </message>
+</context>
+<context>
+    <name>SocialMediaMenu</name>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation type="unfinished">Sport-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation type="unfinished">Strava</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation type="unfinished">Compartir entrenamiento</translation>
     </message>
 </context>
 <context>

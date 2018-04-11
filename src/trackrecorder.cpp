@@ -184,7 +184,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 
             //Calculate distance in meter [m]
             qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
-            qDebug()<<"Distance :"<<rCurrentDistance;
+            //qDebug()<<"Distance :"<<rCurrentDistance;
             m_distance += rCurrentDistance;
             emit distanceChanged();
 
@@ -199,18 +199,18 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             {
                 rCurrentDistance += m_distancearray[i];
             }
-            qDebug()<<"Added distance: "<<rCurrentDistance;
-            qDebug()<<"Update interval:"<<updateInterval();
+            //qDebug()<<"Added distance: "<<rCurrentDistance;
+            //qDebug()<<"Update interval:"<<updateInterval();
 
             //Calculate speed in [km/h]
             m_speed = (rCurrentDistance / 1000.0) / (((updateInterval() * m_distancearray.length()) / 1000) / 3600.0);
-            qDebug()<<"Speed:"<<m_speed;
+            //qDebug()<<"Speed:"<<m_speed;
             emit speedChanged();
 
             //Calculate pace in [min/km]
             m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);
 
-            qDebug()<<"Pace:"<<m_pace;
+            //qDebug()<<"Pace:"<<m_pace;
             emit paceChanged();
 
             //Calculate workout time
@@ -220,12 +220,12 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 
             //Calculate average speed
             m_speedaverage = (m_distance / 1000.0) / (iWorkoutTimeSec / 3600.0);
-            qDebug()<<"AVG speed:"<<m_speedaverage;
+            //qDebug()<<"AVG speed:"<<m_speedaverage;
             emit speedaverageChanged();
 
             //Calculate average pace
             m_paceaverage = (iWorkoutTimeSec / 60.0) / (m_distance / 1000.0);
-            qDebug()<<"AVG pace:"<<m_paceaverage;
+            //qDebug()<<"AVG pace:"<<m_paceaverage;
             emit paceaverageChanged();
 
             //Get altitude

@@ -772,14 +772,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Strava</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
@@ -797,6 +789,10 @@
     </message>
     <message>
         <source>Pebble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share workout</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -891,6 +887,21 @@
     </message>
     <message>
         <source>Hiking</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SocialMediaMenu</name>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share workout</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

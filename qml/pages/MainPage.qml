@@ -198,7 +198,7 @@ Page
                 id_HistoryModel.loadAllTracks();
 
                 bLoadHistoryData = false;
-            }
+            }          
         }
     }
     BusyIndicator

@@ -1,9 +1,8 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
 - ToDo for regular voice announcements:
+	- for pace we only need "pro Kilometer" voice file
 	- make output of headline for cyclic voice announcements choosable
-	- fix bug: by distance is only played once
-	- fix bug: pace is never played
 	- improvement: "Kilometer pro Stunde" to "kmh"
 	- improvement: make numbers go faster: "0"
 	- improvement: make units and headlines go faster

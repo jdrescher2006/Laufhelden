@@ -461,7 +461,8 @@ Page
                 if (settings.voiceCycDistanceEnable)
                 {
                     //Get distance from recorder. This is float with 1 decimal place.
-                    var iDistance = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                    var iDistance = (settings.measureSystem === 0) ? parseFloat((recorder.distance/1000).toFixed(1)) : parseFloat(JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1));
+
                     //Check if current distance is same or higher than trigger distance
                     if (iDistance >= iTriggerDistanceVoiceOutput)
                     {
@@ -695,7 +696,7 @@ Page
         //Map interaction is only done when map is really shown
         if (bDisableMap || !visible || !bShowMap || !appWindow.applicationActive)
         {
-            console.log("Map invisible. Point: " + iPointIndex.toString());
+            //console.log("Map invisible. Point: " + iPointIndex.toString());
 
             //Now the map is not shown at the moment. Save current coordinate to a temp array. Also save the current index to a temp array.
             if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0)
@@ -713,13 +714,13 @@ Page
             return;
         }
 
-        console.log("Map visible. Point: " + iPointIndex.toString());
+        //console.log("Map visible. Point: " + iPointIndex.toString());
 
         //If we are here, the map is shown and we can do things with it.
         //First check if there is something in the temp array
         if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0)
         {
-            console.log("vTempTrackLinePoints length: " + vTempTrackLinePoints.length.toString());
+            //console.log("vTempTrackLinePoints length: " + vTempTrackLinePoints.length.toString());
 
             vLineArray = vTempTrackLinePoints;
             vIndexArray = vTempTrackLinePointsIndex;
@@ -735,7 +736,7 @@ Page
 
             bRestoreWorkout = true;
 
-            console.log("Temp points: " + vLineArray.length.toString());
+            //console.log("Temp points: " + vLineArray.length.toString());
 
             //Go through the temp array
             for (var i = 0; i < vLineArray.length; i++)
@@ -862,7 +863,7 @@ Page
 
     function fncCurrentPositionChanged(coordinate)
     {
-        console.log("CurrentPositionChanged");
+        //console.log("CurrentPositionChanged");
 
         //console.log("Record page 2: " + pageStack.currentPage.toString());
 
@@ -910,7 +911,7 @@ Page
     function newTrackPoint(coordinate, iPointIndex)
     {
         //console.log("Position: " + recorder.currentPosition);
-        console.log("newTrackPoint");                       
+        //console.log("newTrackPoint");
 
         fncSetMapPoint(coordinate, iPointIndex);
 

@@ -772,14 +772,6 @@
         <translation>Herzfrequenzmesser</translation>
     </message>
     <message>
-        <source>Sports-Tracker.com</source>
-        <translation>Sports-Tracker.com</translation>
-    </message>
-    <message>
-        <source>Strava</source>
-        <translation>Strava</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Allgemein</translation>
     </message>
@@ -798,6 +790,10 @@
     <message>
         <source>Pebble</source>
         <translation>Pebble</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Training mit anderen teilen</translation>
     </message>
 </context>
 <context>
@@ -892,6 +888,21 @@
     <message>
         <source>Hiking</source>
         <translation>Wandern</translation>
+    </message>
+</context>
+<context>
+    <name>SocialMediaMenu</name>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation>Strava</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Training mit anderen teilen</translation>
     </message>
 </context>
 <context>

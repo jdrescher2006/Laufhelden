@@ -531,10 +531,16 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
 
 function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
 {
-    console.log("number: " + number);
-    console.log("sUnit: " + sUnit);
-    console.log("sHeadline: " + sHeadline);
-    console.log("iVoiceLanguage: " + iVoiceLanguage);
+    //So in german we have a little problem here: the 1.
+    //This number can be as "eins" or "eine" or "ein".
+    //"eins" (1_de_male.wav) : if number is a float we must use this for both left and right of the point.
+    //"eine" (1e_de_male.wav): if unit is time (hour, minute or second) then we use this one. Number should be integer then.
+    //"ein"  (1n_de_male.wav) : if number is an integer and we don't have a time unit, then use this one.
+
+    //console.log("number: " + number);
+    //console.log("sUnit: " + sUnit);
+    //console.log("sHeadline: " + sHeadline);
+    //console.log("iVoiceLanguage: " + iVoiceLanguage);
 
     var arraySoundArray = [];
     var sNumberToPlay = "";
@@ -554,7 +560,7 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
 
     if (isInteger(number))		//Check if it's an integer
     {
-        console.log("Number is INT");
+        //console.log("Number is INT");
 
         //Check limits
         if (number > 699 || number < 0)
@@ -570,11 +576,16 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
             arraySoundArray.push("numbers/" + sHundreds.toString() + sVoiceLanguage);
         }
 
-        arraySoundArray.push("numbers/" + number.toString() + sVoiceLanguage);
+        if (number === 1 && (sUnit === "hour" || sUnit === "minute" || sUnit === "second"))
+            arraySoundArray.push("numbers/1e" + sVoiceLanguage);
+        else if (number === 1)
+            arraySoundArray.push("numbers/1n" + sVoiceLanguage);
+        else
+            arraySoundArray.push("numbers/" + number.toString() + sVoiceLanguage);
     }
     else //should be a float
     {
-        console.log("Number is FLOAT");
+        //console.log("Number is FLOAT");
 
         var sFloatArray = number.toString().split(".");
 
