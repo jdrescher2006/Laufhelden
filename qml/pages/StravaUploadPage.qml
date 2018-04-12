@@ -129,6 +129,7 @@ Page {
             return;
         }
 
+        console.log("Upload GPX...");
         statusMessage(qsTr("Uploading data..."));
 
         var xmlhttp = new XMLHttpRequest();
@@ -138,7 +139,7 @@ Page {
         xmlhttp.setRequestHeader('Accept-Encoding', 'text');
         xmlhttp.setRequestHeader('Connection', 'keep-alive');
         xmlhttp.setRequestHeader('Pragma', 'no-cache');
-        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xmlhttp.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
         xmlhttp.setRequestHeader('Cache-Control', 'no-cache');
         xmlhttp.setRequestHeader('Authorization', "Bearer " + o2strava.token);
 
@@ -160,31 +161,37 @@ Page {
                 }
             }
             else if (xmlhttp.readyState==4 && xmlhttp.status!=201){
+                busy = false;
                 console.log(xmlhttp.status, xmlhttp.responseText);
                 console.log("Some kind of error happened");
                 var errStatus = JSON.parse(xmlhttp.responseText);
-                console.log(errStatus["error"]);
-                if (errStatus["error"] !== null){
-                    statusMessage(errStatus["error"]);
+                console.log(errStatus["message"]);
+                if (errStatus["message"] !== null){
+                    statusMessage(errStatus["message"]);
                 } else {
                     statusMessage(qsTr("An unknown error occurred"));
                 }
-                busy = false;
+
             }
         };
 
+        //Create a multipart form the manual way!
         var  part ="";
-        part += 'Content-Disposition: form-data; ';
-        part += 'activity_type=' + activityType + '; ';
-        part += 'name='+ st_name.text + '; ';
-        part += 'description='+ st_description.text + '; ';
-        part += 'private=' + (chkPrivate.checked ? "1" : "0") + '; ';
-        part += 'commute=' + (chkCommute.checked ? "1" : "0") + '; ';
-        part += 'data_type=gpx' + '; ';
-        part += 'external_id=' + activityID + '; ';
-        part += 'data=' + encodeURI(gpx) + '; ';
+        part += 'Content-Disposition: form-data; name="activity_type"\r\n\r\n' + activityType + '\r\n--' + boundary + '\r\n';
+        part += 'Content-Disposition: form-data; name="name"\r\n\r\n' + st_name.text + '\r\n--' + boundary + '\r\n';
+        part += 'Content-Disposition: form-data; name="description"\r\n\r\n' + st_description.text + '\r\n--' + boundary + '\r\n';
+        part += 'Content-Disposition: form-data; name="private"\r\n\r\n' + (chkPrivate.checked ? "1" : "0") + '\r\n--' + boundary + '\r\n';
+        part += 'Content-Disposition: form-data; name="commute""\r\n\r\n' + (chkCommute.checked ? "1" : "0") + '\r\n--' + boundary + '\r\n';
+        part += 'Content-Disposition: form-data; name="data_type"\r\n\r\n' + "gpx" + '\r\n--' + boundary + '\r\n';
+        part += 'Content-Disposition: form-data; name="external_id"\r\n\r\n' + activityID + '\r\n--' + boundary + '\r\n';
+        part += 'Content-Disposition: form-data; name="file"; filename="' + activityID + '"\r\n';
+        part += "Content-Type: text/plain";
+        part += "\r\n\r\n";
+        part += gpx;
+        part += "--" + boundary + "--" + "\r\n";
 
         console.log("Sending to strava...");
+
         xmlhttp.send(part);
     }
 
@@ -229,12 +236,14 @@ Page {
                 }
             }
             else if (xmlhttp.readyState==4 && xmlhttp.status!=200){
-                console.log(xmlhttp.status, xmlhttp.responseText);
+                //console.log(xmlhttp.status, xmlhttp.responseText);
+                var strerr = xmlhttp.responseText;
+                console.log(strerr);
                 console.log("Some kind of error happened");
                 var errStatus = JSON.parse(xmlhttp.responseText);
-                console.log(errStatus["error"]);
-                if (errStatus["error"] !== null){
-                    statusMessage(errStatus["error"]);
+                console.log(errStatus);
+                if (errStatus.message !== null){
+                    statusMessage(errStatus["message"]);
                 } else {
                     statusMessage(qsTr("An unknown error occurred"));
                 }
