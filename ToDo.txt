@@ -1,6 +1,9 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
+- when loading autosave and while not resuming workout in recordpage, the duration gets smaller
+
 - ToDo for regular voice announcements:
+	- 0_de_male.wav is not correct
 	- for pace we only need "pro Kilometer" voice file
 	- make output of headline for cyclic voice announcements choosable
 	- improvement: "Kilometer pro Stunde" to "kmh"
