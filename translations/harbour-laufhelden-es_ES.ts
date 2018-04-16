@@ -429,7 +429,7 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>El mapa no se muestra. Es útil en teléfonos Jolla1 (con poca GPU) porque el mapa podría hacer que la aplicación se cuelgue.</translation>
+        <translation>El mapa no se muestra. Es útil en teléfonos Jolla 1 (con poca GPU) porque el mapa podría hacer que la aplicación se cuelgue.</translation>
     </message>
 </context>
 <context>
@@ -773,27 +773,27 @@
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>General</translation>
     </message>
     <message>
         <source>Voice coach</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrenador por voz</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Mapa</translation>
+        <translation>Mapa</translation>
     </message>
     <message>
         <source>App cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Cubierta de la aplicación</translation>
     </message>
     <message>
         <source>Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished">Compartir entrenamiento</translation>
+        <translation>Compartir entrenamiento</translation>
     </message>
 </context>
 <context>
@@ -894,15 +894,15 @@
     <name>SocialMediaMenu</name>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation type="unfinished">Sport-Tracker.com</translation>
+        <translation>Sport-Tracker.com</translation>
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished">Strava</translation>
+        <translation>Strava</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished">Compartir entrenamiento</translation>
+        <translation>Compartir entrenamiento</translation>
     </message>
 </context>
 <context>
@@ -1277,215 +1277,215 @@
     <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished">Cada </translation>
+        <translation>Cada </translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation type="unfinished">500 metros</translation>
+        <translation>500 metros</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation type="unfinished">0.5 mi</translation>
+        <translation>0.5 mi</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation type="unfinished">1 km</translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation type="unfinished">1 mi</translation>
+        <translation>1 mi</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation type="unfinished">2 km</translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation type="unfinished">2 mi</translation>
+        <translation>2 mi</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation type="unfinished">5 km</translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation type="unfinished">5 mi</translation>
+        <translation>5 mi</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation type="unfinished">10 km</translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation type="unfinished">10 mi</translation>
+        <translation>10 mi</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation type="unfinished">20 km</translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation type="unfinished">20 mi</translation>
+        <translation>20 mi</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuncios normales por distancia</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Activado</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 anuncio:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 anuncio:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 anuncio:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>4 anuncio:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished">¡Este valor ya está asignado!</translation>
+        <translation>¡Este valor ya está asignado!</translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished">Cada </translation>
+        <translation>Cada </translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation type="unfinished">2 minutos</translation>
+        <translation>2 minutos</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished">5 minutos</translation>
+        <translation>5 minutos</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished">10 minutos</translation>
+        <translation>10 minutos</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished">20 minutos</translation>
+        <translation>20 minutos</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation type="unfinished">hora</translation>
+        <translation>hora</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuncios normales por duración</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Activado</translation>
     </message>
     <message>
         <source>30 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>30 segundos</translation>
     </message>
     <message>
         <source>1 minute</source>
-        <translation type="unfinished"></translation>
+        <translation>1 minuto</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 anuncio:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 anuncio:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 anuncio:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>4 anuncio:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished">¡Este valor ya está asignado!</translation>
+        <translation>¡Este valor ya está asignado!</translation>
     </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
-        <translation type="unfinished">Inicio/fin entrenamiento</translation>
+        <translation>Inicio/fin entrenamiento</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation type="unfinished">Pausar/continuar entrenamiento</translation>
+        <translation>Pausar/continuar entrenamiento</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation type="unfinished">Conectar/desconectar GPS</translation>
+        <translation>Conectar/desconectar GPS</translation>
     </message>
     <message>
         <source>Voice coach events settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes de eventos del entrenador por voz</translation>
     </message>
 </context>
 <context>
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished">Idioma de la voz</translation>
+        <translation>Idioma de la voz</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished">Inglés masculino</translation>
+        <translation>Inglés masculino</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished">Alemán masculino</translation>
+        <translation>Alemán masculino</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished">Probar</translation>
+        <translation>Probar</translation>
     </message>
     <message>
         <source>Voice coach general settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes generales del entrenador por voz</translation>
     </message>
 </context>
 <context>
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>General</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation type="unfinished">Límites de alerta sonora</translation>
+        <translation>Límites de alerta sonora</translation>
     </message>
     <message>
         <source>Event announcements</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuncios de eventos</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuncios normales por distancia</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuncios normales por duración</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustes del entrenador por voz</translation>
     </message>
 </context>
 </TS>
