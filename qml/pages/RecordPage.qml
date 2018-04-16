@@ -88,6 +88,7 @@ Page
 
     //Cyclic voice output
     property double iTriggerDistanceVoiceOutput: -1
+    property double iTriggerDurationVoiceOutput: -1
 
 
     Connections
@@ -146,9 +147,10 @@ Page
                 bRestoreWorkout = false;
 
 
-                //We need to set parameters to the dialog/pebble
+                //We need to set parameters to the dialog/pebble/cyclic voice
                 RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
                 JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                JSTools.arrayVoiceValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
             }            
 
             console.log("---RecordPage first active leave---");
@@ -167,9 +169,11 @@ Page
 
             //Set value types for fields in JS array
             RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
-
             JSTools.fncConvertSaveStringToArray(settings.valuePebbleFields);
             JSTools.fncConvertSaveStringToArrayCoverPage(settings.valueCoverFields);
+            JSTools.fncConvertSaveStringToArrayCyclicVoiceDistance(settings.voiceCycDistanceFields);
+            JSTools.fncConvertSaveStringToArrayCyclicVoiceDuration(settings.voiceCycDurationFields);
+
 
             //Set header and footer to text fields
             fncSetHeaderFooterTexts();
@@ -341,7 +345,7 @@ Page
                 RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
 
                 JSTools.arrayPebbleValueTypes[1].value = sHeartRate;
-                JSTools.arrayVoiceValueTypes[0].value = sHeartRate;
+                JSTools.arrayVoiceValueTypes[1].value = sHeartRate;
             }
             //Set values to JS array if recorder is running
             if (recorder.running && !recorder.pause)
@@ -356,20 +360,20 @@ Page
                 RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
 
                 JSTools.arrayPebbleValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
-                JSTools.arrayPebbleValueTypes[3].value = recorder.paceStr;
-                JSTools.arrayPebbleValueTypes[4].value = recorder.paceaverageStr;
+                JSTools.arrayPebbleValueTypes[3].value = (settings.measureSystem === 0) ? recorder.paceStr : recorder.paceImperialStr;
+                JSTools.arrayPebbleValueTypes[4].value = (settings.measureSystem === 0) ? recorder.paceaverageStr : recorder.paceaverageImperialStr;
                 JSTools.arrayPebbleValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
                 JSTools.arrayPebbleValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage).toFixed(1);
                 JSTools.arrayPebbleValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
                 JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
 
-				JSTools.arrayVoiceValueTypes[1].value = recorder.heartrateaverage.toFixed(1);
-				JSTools.arrayVoiceValueTypes[2].value = recorder.paceStr;
-				JSTools.arrayVoiceValueTypes[3].value = recorder.paceaverageStr;
-				JSTools.arrayVoiceValueTypes[4].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
-				JSTools.arrayVoiceValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperia
-				JSTools.arrayVoiceValueTypes[6].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
-				JSTools.arrayVoiceValueTypes[7].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                JSTools.arrayVoiceValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
+                JSTools.arrayVoiceValueTypes[3].value = (settings.measureSystem === 0) ? recorder.paceStr : recorder.paceImperialStr;
+                JSTools.arrayVoiceValueTypes[4].value = (settings.measureSystem === 0) ? recorder.paceaverageStr : recorder.paceaverageImperialStr;
+                JSTools.arrayVoiceValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
+                JSTools.arrayVoiceValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperia
+                JSTools.arrayVoiceValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
+                JSTools.arrayVoiceValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
             }
             if (recorder.running)
             {
@@ -381,7 +385,7 @@ Page
                 //This is the duration
                 JSTools.arrayPebbleValueTypes[10].value = recorder.pebbleTime;
                 JSTools.arrayPebbleValueTypes[10].valueCoverPage = recorder.time;
-				JSTools.arrayVoiceValueTypes[8].value = recorder.time;
+                JSTools.arrayVoiceValueTypes[9].value = recorder.time;
             }
 
             //Set values from JS array to dialog text fields
@@ -444,26 +448,61 @@ Page
             if (iTriggerDistanceVoiceOutput === -1)
                 iTriggerDistanceVoiceOutput = settings.voiceCycDistance;
 
+            if (iTriggerDurationVoiceOutput === -1)
+                iTriggerDurationVoiceOutput = settings.voiceCycDuration;
+
+
             //If recorder is running and not paused
             if (recorder.running && !recorder.pause)
             {                               
                 //Check if we have to play a cyclic voice announcement
 
-                //First check if distance is active
-                if (settings.voiceCycDistance !== 0)
+                //Check if distance is active
+                if (settings.voiceCycDistanceEnable)
                 {
                     //Get distance from recorder. This is float with 1 decimal place.
-                    var iDistance = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                    var iDistance = (settings.measureSystem === 0) ? parseFloat((recorder.distance/1000).toFixed(1)) : parseFloat(JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1));
+
                     //Check if current distance is same or higher than trigger distance
                     if (iDistance >= iTriggerDistanceVoiceOutput)
                     {
                         //Play voice announcement
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
 
+                        //console.log("arSoundArray.length: " + arSoundArray.length.toString());
+                        //for (var i = 0; i < arSoundArray.length; i++)
+                        //{
+                          //  console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                        //}
+
+                        fncPlaySoundArray(arSoundArray);
 
                         //Set value for next trigger distance
                         iTriggerDistanceVoiceOutput = settings.voiceCycDistance + iDistance;
                     }
-                }               
+                }
+                //Check if duration is active
+                if (settings.voiceCycDurationEnable)
+                {
+                    var iTimeSeconds = recorder.timeSeconds;
+                    //Check if cuurent duration is same or higher than trigger duration
+                    if (iTimeSeconds >= iTriggerDurationVoiceOutput)
+                    {
+                        //Play voice announcement
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false);
+
+                        //console.log("arSoundArray.length: " + arSoundArray.length.toString());
+                        //for (var i = 0; i < arSoundArray.length; i++)
+                        //{
+                            //console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                        //}
+
+                        fncPlaySoundArray(arSoundArray);
+
+                        //Set value for next trigger distance
+                        iTriggerDurationVoiceOutput = settings.voiceCycDuration + iTimeSeconds;
+                    }
+                }
             }
         }
     }
@@ -657,7 +696,7 @@ Page
         //Map interaction is only done when map is really shown
         if (bDisableMap || !visible || !bShowMap || !appWindow.applicationActive)
         {
-            console.log("Map invisible. Point: " + iPointIndex.toString());
+            //console.log("Map invisible. Point: " + iPointIndex.toString());
 
             //Now the map is not shown at the moment. Save current coordinate to a temp array. Also save the current index to a temp array.
             if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0)
@@ -675,13 +714,13 @@ Page
             return;
         }
 
-        console.log("Map visible. Point: " + iPointIndex.toString());
+        //console.log("Map visible. Point: " + iPointIndex.toString());
 
         //If we are here, the map is shown and we can do things with it.
         //First check if there is something in the temp array
         if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0)
         {
-            console.log("vTempTrackLinePoints length: " + vTempTrackLinePoints.length.toString());
+            //console.log("vTempTrackLinePoints length: " + vTempTrackLinePoints.length.toString());
 
             vLineArray = vTempTrackLinePoints;
             vIndexArray = vTempTrackLinePointsIndex;
@@ -697,7 +736,7 @@ Page
 
             bRestoreWorkout = true;
 
-            console.log("Temp points: " + vLineArray.length.toString());
+            //console.log("Temp points: " + vLineArray.length.toString());
 
             //Go through the temp array
             for (var i = 0; i < vLineArray.length; i++)
@@ -824,7 +863,7 @@ Page
 
     function fncCurrentPositionChanged(coordinate)
     {
-        console.log("CurrentPositionChanged");
+        //console.log("CurrentPositionChanged");
 
         //console.log("Record page 2: " + pageStack.currentPage.toString());
 
@@ -872,7 +911,7 @@ Page
     function newTrackPoint(coordinate, iPointIndex)
     {
         //console.log("Position: " + recorder.currentPosition);
-        console.log("newTrackPoint");                       
+        //console.log("newTrackPoint");
 
         fncSetMapPoint(coordinate, iPointIndex);
 
@@ -1018,10 +1057,26 @@ Page
             }
             MenuItem
             {
-                text: "Test voice output"
+                text: "Test voice output distance"
+                onClicked:
+                {                                                                               
+                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
+                    console.log("arSoundArray.length: " + arSoundArray.length.toString());
+
+                    for (var i = 0; i < arSoundArray.length; i++)
+                    {
+                        console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                    }
+
+                    fncPlaySoundArray(arSoundArray);
+                }
+            }
+            MenuItem
+            {
+                text: "Test voice output duration"
                 onClicked:
                 {
-                    var arSoundArray = JSTools.fncPlayCyclicDistanceVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage);
+                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false);
                     console.log("arSoundArray.length: " + arSoundArray.length.toString());
 
                     for (var i = 0; i < arSoundArray.length; i++)

@@ -155,5 +155,12 @@ DISTFILES += \
     qml/headers/speed_de_male.wav \
     qml/headers/distance_de_male.wav \
     qml/headers/duration_de_male.wav \
-    qml/headers/heartrate_de_male.wav
+    qml/headers/heartrate_de_male.wav \
+    qml/img/cover.png \
+    qml/img/general.png \
+    qml/img/map.png \
+    qml/img/pebble.png \
+    qml/img/sportstracker.png \
+    qml/img/strava.png \
+    qml/img/voicecoach.png
 

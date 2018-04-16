@@ -23,8 +23,8 @@ var iHRAboveTopCounter = 0;
 var iHRBelowTopCounter = 0;
 var iHRAboveBottomCounter = 0;
 var iHRBelowBottomCounter = 0;
-var iHRUpperCounter = 3;    //these are the update cycles which are used as waiting time before triggering threshold
-var iHRLowerCounter = 3;    //these are the update cycles which are used as waiting time before triggering threshold
+var iHRUpperCounter = 4;    //these are the update cycles which are used as waiting time before triggering threshold
+var iHRLowerCounter = 4;    //these are the update cycles which are used as waiting time before triggering threshold
 
 
 var iLastPaceArea = -1;
@@ -32,8 +32,8 @@ var iPaceAboveTopCounter = 0;
 var iPaceBelowTopCounter = 0;
 var iPaceAboveBottomCounter = 0;
 var iPaceBelowBottomCounter = 0 ;
-var iPaceUpperCounter = 4;  //these are the update cycles which are used as waiting time before triggering threshold
-var iPaceLowerCounter = 4;  //these are the update cycles which are used as waiting time before triggering threshold
+var iPaceUpperCounter = 8;  //these are the update cycles which are used as waiting time before triggering threshold
+var iPaceLowerCounter = 8;  //these are the update cycles which are used as waiting time before triggering threshold
 
 
 var arrayThresholdProfiles =

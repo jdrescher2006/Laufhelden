@@ -22,6 +22,11 @@ Page
 {
     id: pageSettingsmenu
 
+    onOrientationChanged:
+    {
+        console.log("onOrientationChanged: " + pageSettingsmenu.width.toString() + "," + pageSettingsmenu.height.toString());
+    }
+
     ListModel
     {
         id: pagesModel
@@ -29,47 +34,44 @@ Page
         ListElement
         {
             page: "SettingsPage.qml"
-            title: qsTr("General settings")
+            title: qsTr("General")
+            source: "../img/general.png"
         }
         ListElement
         {
             page: "VoiceSettingsPage.qml"
-            title: qsTr("Voice output settings")
+            title: qsTr("Voice coach")
+            source: "../img/voicecoach.png"
         }
         ListElement
         {
             page: "MapSettingsPage.qml"
-            title: qsTr("Map settings")
+            title: qsTr("Map")
+            source: "../img/map.png"
         }
         ListElement
         {
             page: "CoverSettingsPage.qml"
-            title: qsTr("App cover settings")
-        }
-        ListElement
-        {
-            page: "ThresholdSettingsPage.qml"
-            title: qsTr("Alarm thresholds")
-        }
+            title: qsTr("App cover")
+            source: "../img/cover.png"
+        }        
         ListElement
         {
             page: "BTConnectPage.qml"
             title: qsTr("Heart rate device")
+            source: "../img/heart.png"
         }
         ListElement
         {
-            page: "SportsTrackerSettingsPage.qml"
-            title: qsTr("Sports-Tracker.com")
-        }
-        ListElement
-        {
-            page: "StravaSettingsPage.qml"
-            title: qsTr("Strava")
-        }
+            page: "SocialMediaMenu.qml"
+            title: qsTr("Share workout")
+            source: "../img/socialmedia.png"
+        }        
         ListElement
         {
             page: "PebbleSettingsPage.qml"
-            title: qsTr("Pebble settings")
+            title: qsTr("Pebble")
+            source: "../img/pebble.png"
         }
     }
     SilicaListView
@@ -81,15 +83,26 @@ Page
         delegate: BackgroundItem
         {
             width: listView.width
+
+            Image
+            {
+                source: model.source
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.bottomMargin: Theme.paddingLarge
+                x: Theme.paddingLarge
+                width: parent.height - Theme.paddingSmall - Theme.paddingSmall //parent.height is the height of the listitem. It cannot be set manually )-:
+                height: parent.height - Theme.paddingSmall - Theme.paddingSmall
+            }
             Label
             {
                 id: firstName
                 text: model.title
                 color: highlighted ? Theme.highlightColor : Theme.primaryColor
                 anchors.verticalCenter: parent.verticalCenter
-                x: Theme.horizontalPageMargin
+                //width: parent.width - parent.height - Theme.paddingSmall - Theme.paddingSmall
+                x: (parent.height - Theme.paddingSmall - Theme.paddingSmall) + Theme.paddingLarge + Theme.paddingLarge
             }
-            onClicked: pageStack.push(Qt.resolvedUrl(page))
+            onClicked: pageStack.push(Qt.resolvedUrl(page))            
         }
         VerticalScrollDecorator {}
     }

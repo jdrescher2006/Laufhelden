@@ -425,7 +425,7 @@ Page
                         if (currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex)
                         {
                             fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
-                            return
+                            return;
                         }
 
                         //Check if the other comboboxes are OK
@@ -469,7 +469,7 @@ Page
                         if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex)
                         {
                             fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
-                            return
+                            return;
                         }
 
                         //Check if the other comboboxes are OK
@@ -513,7 +513,7 @@ Page
                         if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex)
                         {
                             fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
-                            return
+                            return;
                         }
 
                         //Check if the other comboboxes are OK

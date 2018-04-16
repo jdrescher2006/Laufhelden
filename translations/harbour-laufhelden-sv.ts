@@ -764,14 +764,6 @@
 <context>
     <name>SettingsMenu</name>
     <message>
-        <source>General settings</source>
-        <translation>Generella inställningar</translation>
-    </message>
-    <message>
-        <source>Alarm thresholds</source>
-        <translation>Tröskelvärden för varning</translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation>Inställningar</translation>
     </message>
@@ -780,28 +772,28 @@
         <translation>Hjärtfrekvensenhet</translation>
     </message>
     <message>
-        <source>Map settings</source>
-        <translation>Kartinställningar</translation>
+        <source>General</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sports-Tracker.com</source>
-        <translation>Sports-Tracker.com</translation>
+        <source>Voice coach</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pebble settings</source>
-        <translation>Pebble-inställningar</translation>
+        <source>Map</source>
+        <translation type="unfinished">Karta</translation>
     </message>
     <message>
-        <source>Voice output settings</source>
-        <translation>Inställningar för röstutmatning</translation>
+        <source>App cover</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Strava</source>
-        <translation>Strava</translation>
+        <source>Pebble</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>App cover settings</source>
-        <translation>Miniatyrinställningar</translation>
+        <source>Share workout</source>
+        <translation type="unfinished">Dela träningspass</translation>
     </message>
 </context>
 <context>
@@ -896,6 +888,21 @@
     <message>
         <source>Hiking</source>
         <translation>Fotvandring</translation>
+    </message>
+</context>
+<context>
+    <name>SocialMediaMenu</name>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation type="unfinished">Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation type="unfinished">Strava</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation type="unfinished">Dela träningspass</translation>
     </message>
 </context>
 <context>
@@ -1267,138 +1274,218 @@
     </message>
 </context>
 <context>
-    <name>VoiceSettingsPage</name>
-    <message>
-        <source>Voice output settings</source>
-        <translation>Inställningar för röstutmatning</translation>
-    </message>
-    <message>
-        <source>Start/end workout</source>
-        <translation>Starta/Avsluta träningspass</translation>
-    </message>
-    <message>
-        <source>Pause/continue workout</source>
-        <translation>Pausa/Fortsätta träningspass</translation>
-    </message>
-    <message>
-        <source>Connect/disconnect GPS</source>
-        <translation>Ansluta/Koppla ner GPS</translation>
-    </message>
-    <message>
-        <source>Voice language</source>
-        <translation>Röstspråk</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation>Engelska manlig</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation>Tyska manlig</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Testa</translation>
-    </message>
-    <message>
-        <source>Voice outputs on events</source>
-        <translation>Röstutmatning vid händelser</translation>
-    </message>
-    <message>
-        <source>Cyclic voice outputs</source>
-        <translation>Återkommande röstutmatningar</translation>
-    </message>
-    <message>
-        <source>Interval duration</source>
-        <translation>Intervallvaraktighet</translation>
-    </message>
+    <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation>Varje</translation>
+        <translation type="unfinished">Varje</translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation>500 meter</translation>
+        <translation type="unfinished">500 meter</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation>0.5 mi</translation>
+        <translation type="unfinished">0.5 mi</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation>1 km</translation>
+        <translation type="unfinished">1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation>1 mi</translation>
+        <translation type="unfinished">1 mi</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation>2 km</translation>
+        <translation type="unfinished">2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation>2 mi</translation>
+        <translation type="unfinished">2 mi</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation>5 km</translation>
+        <translation type="unfinished">5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation>5 mi</translation>
+        <translation type="unfinished">5 mi</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation>10 km</translation>
+        <translation type="unfinished">10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation>10 mi</translation>
+        <translation type="unfinished">10 mi</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation>20 km</translation>
+        <translation type="unfinished">20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation>20 mi</translation>
+        <translation type="unfinished">20 mi</translation>
     </message>
     <message>
-        <source>Every %1 km</source>
-        <translation>Varje %1 km</translation>
+        <source>Regular announcements by distance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interval distance</source>
-        <translation>Intervallavstånd</translation>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>minute</source>
-        <translation>minut</translation>
+        <source>1 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished">Detta värde är redan tilldelat!</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceCycleDurationSettingsPage</name>
+    <message>
+        <source>Every </source>
+        <translation type="unfinished">Varje</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation>2 minuter</translation>
+        <translation type="unfinished">2 minuter</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation>5 minuter</translation>
+        <translation type="unfinished">5 minuter</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation>10 minuter</translation>
+        <translation type="unfinished">10 minuter</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation>20 minuter</translation>
+        <translation type="unfinished">20 minuter</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation>timma</translation>
+        <translation type="unfinished">timma</translation>
     </message>
     <message>
-        <source>Every %1 minute</source>
-        <translation>Varje %1 minut</translation>
+        <source>Regular announcements by duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>30 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished">Detta värde är redan tilldelat!</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceEventsSettingsPage</name>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished">Starta/Avsluta träningspass</translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished">Pausa/Fortsätta träningspass</translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished">Ansluta/Koppla ner GPS</translation>
+    </message>
+    <message>
+        <source>Voice coach events settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceGeneralSettingsPage</name>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished">Röstspråk</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished">Engelska manlig</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished">Tyska manlig</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished">Testa</translation>
+    </message>
+    <message>
+        <source>Voice coach general settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
+        <translation type="unfinished">Varningsnivåer</translation>
+    </message>
+    <message>
+        <source>Event announcements</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular announcements by distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular announcements by duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice Coach Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

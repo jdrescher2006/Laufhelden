@@ -255,21 +255,55 @@ void Settings::setVoiceGPSConnectLost(bool voiceGPSConnectLost)
 }
 
 //Cyclic voice output
-int Settings::voiceCycDistance() const
+bool Settings::voiceCycDistanceEnable() const
 {
-    return m_settings->value("generalsettings/voiceCycDistance", 0).toInt();
+    return m_settings->value("voicecyclesettings/voiceCycDistanceEnable", false).toBool();
 }
-void Settings::setVoiceCycDistance(int voiceCycDistance)
+void Settings::setVoiceCycDistanceEnable(bool voiceCycDistanceEnable)
 {
-    m_settings->setValue("generalsettings/voiceCycDistance", voiceCycDistance);
+     m_settings->setValue("voicecyclesettings/voiceCycDistanceEnable", voiceCycDistanceEnable);
+}
+double Settings::voiceCycDistance() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDistance", 1.0).toDouble();
+}
+void Settings::setVoiceCycDistance(double voiceCycDistance)
+{
+    m_settings->setValue("voicecyclesettings/voiceCycDistance", voiceCycDistance);
+}
+QString Settings::voiceCycDistanceFields() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDistanceFields", "9,8,3,5").toString();
+}
+void Settings::setVoiceCycDistanceFields(QString voiceCycDistanceFields)
+{
+    m_settings->setValue("voicecyclesettings/voiceCycDistanceFields", voiceCycDistanceFields);
+}
+
+
+bool Settings::voiceCycDurationEnable() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDurationEnable", false).toBool();
+}
+void Settings::setVoiceCycDurationEnable(bool voiceCycDurationEnable)
+{
+     m_settings->setValue("voicecyclesettings/voiceCycDurationEnable", voiceCycDurationEnable);
 }
 int Settings::voiceCycDuration() const
 {
-    return m_settings->value("generalsettings/voiceCycDuration", 0).toInt();
+    return m_settings->value("voicecyclesettings/voiceCycDuration", 60).toInt();
 }
 void Settings::setVoiceCycDuration(int voiceCycDuration)
 {
-    m_settings->setValue("generalsettings/voiceCycDuration", voiceCycDuration);
+    m_settings->setValue("voicecyclesettings/voiceCycDuration", voiceCycDuration);
+}
+QString Settings::voiceCycDurationFields() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDurationFields", "9,8,5,3").toString();
+}
+void Settings::setVoiceCycDurationFields(QString voiceCycDurationFields)
+{
+    m_settings->setValue("voicecyclesettings/voiceCycDurationFields", voiceCycDurationFields);
 }
 
 

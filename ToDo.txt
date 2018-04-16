@@ -1,27 +1,16 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
-- cyclic voice announcements	
-	- every 0,5-10 km
-	- maximum three parameters
-	- distance, speed, pace, HR
+- when loading autosave and while not resuming workout in recordpage, the duration gets smaller
 
+- ToDo for regular voice announcements:
+	- 0_de_male.wav is not correct
+	- for pace we only need "pro Kilometer" voice file
+	- make output of headline for cyclic voice announcements choosable
+	- improvement: "Kilometer pro Stunde" to "kmh"
+	- improvement: make numbers go faster: "0"
+	- improvement: make units and headlines go faster
+	- record english voice files
 
- ComboBox
-            {
-                visible: id_Slider_CyclicVoiceOutputsAmount.value.toFixed(0) > 0
-                id: id_CMB_ValueField1
-                label: qsTr("1 parameter:")
-                menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
-                onCurrentItemChanged:
-                {
-                    if (!bLockOnCompleted && !bLockFirstPageLoad)
-                    {
-                        console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
-
-
-                    }
-                }
-            }
 
 
 Do not forget:
@@ -83,7 +72,7 @@ Do not forget:
 - save pause time to gpx file. Look in Meerun gpx file where to save pause data.
 - Style first page list view like in meerun (upper part of page should not scroll)
 - enable night mode automatically. 
-- view diagrams on the statistics page. See app "Rush Hour" which is on openrepos.
+- view diagrams on the statistics page. See app "Rush Hour" and "SystemDataScope" which are on openrepos.
 - make volume of audio messages adjustable
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)

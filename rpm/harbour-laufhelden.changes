@@ -1,8 +1,10 @@
 * Tue Mar 24 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-1
 - many improvements for Strava by @piggz
 - many improvements for Sports Tracker by @niemisenjussi
-- added cyclic voice announcements
+- added regular announcements for voice coach
+- restructuring of main menu
 - updated translations
+- alarm thresholds are triggered less nervous
 
 * Tue Feb 06 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.0.0-1
 - many improvements for strava by @piggz

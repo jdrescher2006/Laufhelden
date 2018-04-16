@@ -187,45 +187,45 @@ ApplicationWindow
         //Save received data to packet string. This must be done because a packet is not always consistent.
         sHeartRateHexString = sHeartRateHexString + sData.toLowerCase();
 
-        console.log("sHeartRateHexString: " + sHeartRateHexString);
+        //console.log("sHeartRateHexString: " + sHeartRateHexString);
 
         //Check for minimal length
         if (sHeartRateHexString.length < 8)
         {
-            console.log("Packet is too small!");
+            //console.log("Packet is too small!");
             return;
         }
 
         //Search for vaid telegrams
         //Check for Zephyr control characters start and enddelimiter
-        console.log("Header: " + sHeartRateHexString.substr(0,4));
-        console.log("Enddelimiter: " + sHeartRateHexString.substr(sHeartRateHexString.length - 2));
+        //console.log("Header: " + sHeartRateHexString.substr(0,4));
+        //console.log("Enddelimiter: " + sHeartRateHexString.substr(sHeartRateHexString.length - 2));
 
         if (sHeartRateHexString.substr(0,4).indexOf("0226") !== -1 && sHeartRateHexString.substr(sHeartRateHexString.length-2).indexOf("03") !== -1)
         {
             //This should be a Zyphyr packet
 
-            console.log("Valid Zepyhr HxM data packet found!");
+            //console.log("Valid Zepyhr HxM data packet found!");
 
             //Extract length
             iPacketLength = parseInt(sHeartRateHexString.substr(4,2),16);
-            console.log("Length: " + iPacketLength.toString());
+            //console.log("Length: " + iPacketLength.toString());
 
             //Extract CRC
             var sCRC = sHeartRateHexString.substr(-4);
             sCRC = sCRC.substr(0,2);
-            console.log("CRC: " + sCRC);
+            //console.log("CRC: " + sCRC);
 
             //Extract heart rate data
             sHeartRateHexString = sHeartRateHexString.substring(6,sHeartRateHexString.length - 4);
 
-            console.log("HR data: " + sHeartRateHexString);
-            console.log("HR data length: " + sHeartRateHexString.length);
+            //console.log("HR data: " + sHeartRateHexString);
+            //console.log("HR data length: " + sHeartRateHexString.length);
 
             //Check if length match is given
             if (sHeartRateHexString.length !== (iPacketLength*2))
             {
-                console.log("Length does not match, scrap packet!");
+                //console.log("Length does not match, scrap packet!");
                 sHeartRateHexString = "";
                 return;
             }
@@ -235,11 +235,11 @@ ApplicationWindow
 
             //Extract battery level
             sBatteryLevelTemp = (parseInt(sHeartRateHexString.substr(16,2),16)).toString();
-            console.log("Battery level: " + sBatteryLevelTemp);
+            //console.log("Battery level: " + sBatteryLevelTemp);
 
             //Extract heart rate at byte 12
             sHeartRateTemp = (parseInt(sHeartRateHexString.substr(18,2),16)).toString();
-            console.log("Heartrate: " + sHeartRateTemp);
+            //console.log("Heartrate: " + sHeartRateTemp);
 
             //If we found a valid packet, delete the packet memory string
             sHeartRateHexString = "";
@@ -250,7 +250,7 @@ ApplicationWindow
 
             //Check if packet is at correct length
             iPacketLength = parseInt(sHeartRateHexString.substr(2,2), 16);
-            console.log("iPacketLength: " + iPacketLength);
+            //console.log("iPacketLength: " + iPacketLength);
             if (sHeartRateHexString.length < (iPacketLength * 2))
             {
                 sHeartRateHexString = "";
@@ -258,16 +258,16 @@ ApplicationWindow
             }
             //Check check byte, 255 - packet length
             var iCheckByte = parseInt(sHeartRateHexString.substr(4,2), 16);
-            console.log("iCheckByte: " + iCheckByte);
+            //console.log("iCheckByte: " + iCheckByte);
             if (iCheckByte !== (255 - iPacketLength))
             {
                 sHeartRateHexString = "";
-                console.log("Check byte is not valid!");
+                //console.log("Check byte is not valid!");
                 return; //Check byte is not valid
             }
             //Check sequence valid
             var iSequenceValid = parseInt(sHeartRateHexString.substr(6,2), 16);
-            console.log("iSequenceValid: " + iSequenceValid);
+            //console.log("iSequenceValid: " + iSequenceValid);
             if (iSequenceValid >= 16)
             {
                 sHeartRateHexString = "";
@@ -276,13 +276,13 @@ ApplicationWindow
 
             //Check status byte
             var iStatus = parseInt(sHeartRateHexString.substr(8,2), 16);
-            console.log("iStatus: " + iStatus);
+            //console.log("iStatus: " + iStatus);
             //Check battery state
             sBatteryLevelTemp = parseInt(sHeartRateHexString.substr(8,1), 16);
-            console.log("iBattery: " + sBatteryLevelTemp);
+            //console.log("iBattery: " + sBatteryLevelTemp);
             //Extract heart rate
             sHeartRateTemp = (parseInt(sHeartRateHexString.substr(10,2), 16)).toString();
-            console.log("HeartRateTemp: " + sHeartRateTemp);
+            //console.log("HeartRateTemp: " + sHeartRateTemp);
 
             var sTemp = ((100/15) * sBatteryLevelTemp).toString();
             if (sTemp.indexOf(".") != -1)
@@ -294,7 +294,7 @@ ApplicationWindow
             if (sHeartRateHexString.length > (iPacketLength * 2))
             {
                 sHeartRateHexString = sHeartRateHexString.substring((iPacketLength * 2));
-                console.log("Found additional data: " + sHeartRateHexString);
+                //console.log("Found additional data: " + sHeartRateHexString);
                 fncCheckHeartrate("");
             }
             else
@@ -303,7 +303,7 @@ ApplicationWindow
         else
         {
             //We have a strange start delimiter. Kill data...
-            console.log("Strange data found. Kill data.");
+            //console.log("Strange data found. Kill data.");
             sHeartRateHexString = "";
         }
 
@@ -360,7 +360,7 @@ ApplicationWindow
         repeat: false
         onTriggered:
         {
-            console.log("Timer for HRM reconnection is running.");
+            //console.log("Timer for HRM reconnection is running.");
 
             id_BluetoothData.connect(sHRMAddress, 1);
 
@@ -439,7 +439,7 @@ ApplicationWindow
 
         onPlaybackStateChanged:
         {
-            console.log("onPlaybackStateChanged: " + playbackState.toString());
+            //console.log("onPlaybackStateChanged: " + playbackState.toString());
 
             //Check if playing a sound is done.
             if (playbackState == 0)
@@ -447,7 +447,7 @@ ApplicationWindow
                 //Set index to next sound in array
                 iPlayLoop++;
 
-                console.log("iPlayLoop: " + iPlayLoop.toString());
+                //console.log("iPlayLoop: " + iPlayLoop.toString());
 
                 //Check if we are ready with playing sounds, all sounds in the array were played.
                 if (arrayPlaySounds.length === 0 || iPlayLoop >= arrayPlaySounds.length)
@@ -462,14 +462,14 @@ ApplicationWindow
                     //We are done now with playing sounds. Mark that.
                     bPlayingSound = false;
 
-                    console.log("onPlayingChanged, the END!");
+                    //console.log("onPlayingChanged, the END!");
                 }
                 else
                 {
                     //There is still something to play in the array. Restart play timer.
                     timerPlaySoundArray.start();
 
-                    console.log("onPlayingChanged, starting timer!");
+                    //console.log("onPlayingChanged, starting timer!");
                 }
             }
         }
@@ -483,7 +483,7 @@ ApplicationWindow
         volume: 1.0; //Full 1.0
         onPlayingChanged:
         {
-            console.log("onPlayingChanged: " + playing.toString());
+            //console.log("onPlayingChanged: " + playing.toString());
 
 			//Check if playing a sound is done.
 			if (playing == false)
@@ -491,7 +491,7 @@ ApplicationWindow
 				//Set index to next sound in array
                 iPlayLoop++;
 	
-                console.log("iPlayLoop: " + iPlayLoop.toString());
+                //console.log("iPlayLoop: " + iPlayLoop.toString());
 
 				//Check if we are ready with playing sounds, all sounds in the array were played.			
 				if (arrayPlaySounds.length === 0 || iPlayLoop >= arrayPlaySounds.length)
@@ -506,14 +506,14 @@ ApplicationWindow
 					//We are done now with playing sounds. Mark that.
 					bPlayingSound = false;
 
-                    console.log("onPlayingChanged, the END!");
+                    //console.log("onPlayingChanged, the END!");
 				}
 				else
 				{
 					//There is still something to play in the array. Restart play timer.
                     timerPlaySoundArray.start();
 
-                    console.log("onPlayingChanged, starting timer!");
+                    //console.log("onPlayingChanged, starting timer!");
 				}				
 			}
         }
@@ -551,7 +551,7 @@ ApplicationWindow
         interval: 75
         onTriggered:
         {
-            console.log("timerPlaySoundArray: " + iPlayLoop.toString());
+            //console.log("timerPlaySoundArray: " + iPlayLoop.toString());
 
             playSoundEffect.source = arrayPlaySounds[iPlayLoop];
             playSoundEffect.play();
