@@ -290,13 +290,6 @@ function fncConvertSaveStringToArrayCyclicVoiceDistance(sSaveString)
     arValueTypes[3] = parseInt(arValueTypes[3]);
 
     //Go through value types
-    //arrayVoiceValueTypes[0].fieldID_Distance =
-
-    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
-    {
-        console.log(i.toString() + "," + arrayVoiceValueTypes[i].fieldID_Distance.toString());
-    }
-
     for (var i = 1; i < arrayVoiceValueTypes.length; i++)
     {
         if (i === arValueTypes[0])
@@ -309,12 +302,7 @@ function fncConvertSaveStringToArrayCyclicVoiceDistance(sSaveString)
             arrayVoiceValueTypes[i].fieldID_Distance = 4;
         else
             arrayVoiceValueTypes[i].fieldID_Distance = 0;
-    }
-
-    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
-    {
-        console.log(i.toString() + "," + arrayVoiceValueTypes[i].fieldID_Distance.toString());
-    }
+    }   
 
     fncGenerateHelperArrayFieldIDDistance();
 }
