@@ -1263,7 +1263,7 @@ Page
             Label
             {
                 color: "white"
-                text: qsTr("hold button for: ") + iButtonLoop.toString() + "s";
+                text: qsTr("hold button for: %1 s").arg(iButtonLoop.toString());
                 font.pixelSize: Theme.fontSizeMedium
                 anchors.centerIn: parent
             }
