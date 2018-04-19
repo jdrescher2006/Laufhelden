@@ -1,10 +1,18 @@
 * Tue Mar 24 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-1
 - many improvements for Strava by @piggz
+    - fixed Strava upload and error handling
+    - added a 'Segment' view, showing just the segment, and current/best times
+    - fixed the upload description
+    - made the display of times better/consistent
 - many improvements for Sports Tracker by @niemisenjussi
+    - added upload option to workout list on main page
+    - workout name is used for Sport Tracker upload
+    - file format improvements / other improvements
 - added regular announcements for voice coach
-- restructuring of main menu
+- restructuring of settings menu
 - updated translations
-- alarm thresholds are triggered less nervous
+- added Spanish(Spain) language by @carmenfdezb
+- alarm thresholds are triggered less nervously
 
 * Tue Feb 06 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.0.0-1
 - many improvements for strava by @piggz

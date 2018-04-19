@@ -26,6 +26,25 @@ Page
     property bool bLockOnCompleted : false;
     property bool bLockFirstPageLoad: true
 
+    function fncCheckBoxesOK()
+    {
+        //The comboboxes must be checked, because the values need to be different. Except index 0, this may be same for all boxes.
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex)
+            return false;
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex)
+            return false;
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+        if (id_CMB_ValueField2.currentIndex !== 0 && id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex)
+            return false;
+        if (id_CMB_ValueField2.currentIndex !== 0 && id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+        if (id_CMB_ValueField3.currentIndex !== 0 && id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+
+        return true;
+    }
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -177,10 +196,11 @@ Page
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDurationFields.split(",");
                     if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
@@ -225,10 +245,11 @@ Page
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDurationFields.split(",");
                     if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
@@ -273,10 +294,11 @@ Page
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDurationFields.split(",");
                     if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
@@ -321,10 +343,11 @@ Page
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDurationFields.split(",");
                     if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields

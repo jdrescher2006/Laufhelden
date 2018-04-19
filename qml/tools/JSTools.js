@@ -290,18 +290,30 @@ function fncConvertSaveStringToArrayCyclicVoiceDistance(sSaveString)
     arValueTypes[3] = parseInt(arValueTypes[3]);
 
     //Go through value types
+    //arrayVoiceValueTypes[0].fieldID_Distance =
+
     for (var i = 0; i < arrayVoiceValueTypes.length; i++)
     {
+        console.log(i.toString() + "," + arrayVoiceValueTypes[i].fieldID_Distance.toString());
+    }
+
+    for (var i = 1; i < arrayVoiceValueTypes.length; i++)
+    {
         if (i === arValueTypes[0])
-            arrayPebbleValueTypes[i].fieldID_Distance = 1;
+            arrayVoiceValueTypes[i].fieldID_Distance = 1;
         else if (i === arValueTypes[1])
-            arrayPebbleValueTypes[i].fieldID_Distance = 2;
+            arrayVoiceValueTypes[i].fieldID_Distance = 2;
         else if (i === arValueTypes[2])
-            arrayPebbleValueTypes[i].fieldID_Distance = 3;
+            arrayVoiceValueTypes[i].fieldID_Distance = 3;
         else if (i === arValueTypes[3])
-            arrayPebbleValueTypes[i].fieldID_Distance = 4;
+            arrayVoiceValueTypes[i].fieldID_Distance = 4;
         else
-            arrayPebbleValueTypes[i].fieldID_Distance = 0;
+            arrayVoiceValueTypes[i].fieldID_Distance = 0;
+    }
+
+    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
+    {
+        console.log(i.toString() + "," + arrayVoiceValueTypes[i].fieldID_Distance.toString());
     }
 
     fncGenerateHelperArrayFieldIDDistance();
@@ -339,18 +351,18 @@ function fncConvertSaveStringToArrayCyclicVoiceDuration(sSaveString)
     arValueTypes[3] = parseInt(arValueTypes[3]);
 
     //Go through value types
-    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
+    for (var i = 1; i < arrayVoiceValueTypes.length; i++)
     {
         if (i === arValueTypes[0])
-            arrayPebbleValueTypes[i].fieldID_Duration = 1;
+            arrayVoiceValueTypes[i].fieldID_Duration = 1;
         else if (i === arValueTypes[1])
-            arrayPebbleValueTypes[i].fieldID_Duration = 2;
+            arrayVoiceValueTypes[i].fieldID_Duration = 2;
         else if (i === arValueTypes[2])
-            arrayPebbleValueTypes[i].fieldID_Duration = 3;
+            arrayVoiceValueTypes[i].fieldID_Duration = 3;
         else if (i === arValueTypes[3])
-            arrayPebbleValueTypes[i].fieldID_Duration = 4;
+            arrayVoiceValueTypes[i].fieldID_Duration = 4;
         else
-            arrayPebbleValueTypes[i].fieldID_Duration = 0;
+            arrayVoiceValueTypes[i].fieldID_Duration = 0;
     }
 
     fncGenerateHelperArrayFieldIDDistance();
@@ -508,6 +520,17 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                     arraySoundArray.push(arrayTempArray[j]);
                 }
             }
+
+            //lastly we need to add the unit
+            arrayTempArray = [];
+            arrayTempArray = fncGenerateSoundArray("", sUnit, "", iVoiceLanguage);
+            if (arrayTempArray !== undefined)
+            {
+                for (var j = 0; j < arrayTempArray.length; j++)
+                {
+                    arraySoundArray.push(arrayTempArray[j]);
+                }
+            }
         }
         else
         {
@@ -558,7 +581,11 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
         arraySoundArray.push("headers/" + sHeadline + sVoiceLanguage);
     }
 
-    if (isInteger(number))		//Check if it's an integer
+    if (number === "")  //This is for when number should not be played
+    {
+
+    }
+    else if (isInteger(number))		//Check if it's an integer
     {
         //console.log("Number is INT");
 

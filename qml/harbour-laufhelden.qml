@@ -548,7 +548,7 @@ ApplicationWindow
         id: timerPlaySoundArray
         running: false
         repeat: false
-        interval: 75
+        interval: 25
         onTriggered:
         {
             //console.log("timerPlaySoundArray: " + iPlayLoop.toString());

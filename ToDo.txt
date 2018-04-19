@@ -1,13 +1,18 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
 - when loading autosave and while not resuming workout in recordpage, the duration gets smaller
+- there is a problem with umlauts in the filenames while loading GPX files.
 
 - ToDo for regular voice announcements:
-	- 0_de_male.wav is not correct
-	- for pace we only need "pro Kilometer" voice file
+	- sound files needed for average headers
+	- in general options, make music player pausing enable/disable
+	- it should be possible to have multiple empty parameter fields
+	- changes of parameters are not used
+	- 0_de_male.wav is not correct											-> OK
+	- for pace we only need "pro Kilometer" voice file						-> OK
 	- make output of headline for cyclic voice announcements choosable
-	- improvement: "Kilometer pro Stunde" to "kmh"
-	- improvement: make numbers go faster: "0"
+	- improvement: "Kilometer pro Stunde" to "kmh"							-> OK
+	- improvement: make numbers go faster: "0"								-> OK
 	- improvement: make units and headlines go faster
 	- record english voice files
 
@@ -24,6 +29,7 @@ Do not forget:
 
 
 ----- ToDo for second next release to openrepos: 1.0.2 -----
+- show battery state of phone with charging icon on record page
 - sometimes the mediaplayer would not set playing to false. Need a watchdog for that.
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
