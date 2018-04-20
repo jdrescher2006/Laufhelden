@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>AboutPage</name>
     <message>
@@ -45,35 +45,35 @@
     </message>
     <message>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerzői jogok</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Németország</translation>
     </message>
     <message>
         <source>Credits for code contribution:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forráskódhoz hozzájárultak:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha kedveled az alkalmazást itt támogathatod a fejlsztőt:</translation>
     </message>
     <message>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation>Magyar</translation>
     </message>
     <message>
         <source>Finnish</source>
-        <translation type="unfinished"></translation>
+        <translation>Finn</translation>
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>Holland</translation>
     </message>
     <message>
         <source>Spanish-Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Spanyol</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@
     </message>
     <message>
         <source>hold button for: </source>
-        <translation>tartsd a gombot, hogy </translation>
+        <translation>Tartsd nyomva még: </translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
@@ -640,11 +640,11 @@
     </message>
     <message>
         <source>Start</source>
-        <translation>Kezdete</translation>
+        <translation>Indítás</translation>
     </message>
     <message>
         <source>End</source>
-        <translation>Vége</translation>
+        <translation>Befejezés</translation>
     </message>
     <message>
         <source>Accept</source>
@@ -664,11 +664,11 @@
     </message>
     <message>
         <source>Lock screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Képernyőzár</translation>
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble app újraindítása</translation>
     </message>
 </context>
 <context>
@@ -723,23 +723,23 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished"></translation>
+        <translation>min/mi</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished"></translation>
+        <translation>mérföld/ó</translation>
     </message>
     <message>
         <source>ft</source>
-        <translation type="unfinished"></translation>
+        <translation>láb</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation>mérföld</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Szünet</translation>
+        <translation>Szünet</translation>
     </message>
 </context>
 <context>
@@ -773,7 +773,7 @@
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Általános</translation>
     </message>
     <message>
         <source>Voice coach</source>
@@ -781,19 +781,19 @@
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Térkép</translation>
     </message>
     <message>
         <source>App cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Alkalmazás miniatűr nézete</translation>
     </message>
     <message>
         <source>Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok megosztása</translation>
     </message>
 </context>
 <context>
@@ -844,19 +844,19 @@
     </message>
     <message>
         <source>Unit of measurement</source>
-        <translation type="unfinished"></translation>
+        <translation>Mértékegység</translation>
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>A beállítások az alkalmazás újraindítása után lépnek érvénybe.</translation>
     </message>
     <message>
         <source>Metric</source>
-        <translation type="unfinished"></translation>
+        <translation>Metrikus</translation>
     </message>
     <message>
         <source>Imperial</source>
-        <translation type="unfinished"></translation>
+        <translation>Angolszász</translation>
     </message>
 </context>
 <context>
@@ -883,148 +883,148 @@
     </message>
     <message>
         <source>Skiing</source>
-        <translation type="unfinished"></translation>
+        <translation>Síelés</translation>
     </message>
     <message>
         <source>Hiking</source>
-        <translation type="unfinished"></translation>
+        <translation>Túrázás</translation>
     </message>
 </context>
 <context>
     <name>SocialMediaMenu</name>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzés adatainak megosztása</translation>
     </message>
 </context>
 <context>
     <name>SportsTracker</name>
     <message>
         <source>Oops, username or password error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoppá, hibás felhasználónév vagy jelszó</translation>
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a GPX importálása során</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok sikeresen feltöltve!</translation>
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt az adatok mentése során</translation>
     </message>
     <message>
         <source>Logging in...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejelentkezés...</translation>
     </message>
     <message>
         <source>Uploading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltés...</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Test login...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejelentkezési adatok tesztelése...</translation>
     </message>
     <message>
         <source>Already authenticated</source>
-        <translation type="unfinished"></translation>
+        <translation>Már azonosítva van</translation>
     </message>
     <message>
         <source>Login success!</source>
-        <translation type="unfinished"></translation>
+        <translation>Sikeres bejelentkezés!</translation>
     </message>
     <message>
         <source>Login error, Check username or password</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejelentkezési hiba, ellenőrízd a felhasználónevet és a jelszavad</translation>
     </message>
     <message>
         <source>Loading workouts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok betöltése...</translation>
     </message>
     <message>
         <source>Track write error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba a GPX fájl kiírása során</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">ennyiből</translation>
+        <translation>ennyiből</translation>
     </message>
     <message>
         <source> unique workout downloaded!</source>
-        <translation type="unfinished"></translation>
+        <translation> edzés letöltve!</translation>
     </message>
     <message>
         <source>Sports-Tracker.com settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Sports-Tracker.com beállítások</translation>
     </message>
     <message>
         <source>Auto upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Automata feltöltés</translation>
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok automatikus feltöltése a Sports-Tracker.com-ra</translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználónév</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználónév</translation>
     </message>
     <message>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelszó</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelszó</translation>
     </message>
     <message>
         <source>Default Sharing option</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett megosztási beállítások</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privát</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>Követők</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Publikus</translation>
     </message>
     <message>
         <source>Test login</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejelentkezési adatok tesztelése</translation>
     </message>
     <message>
         <source>Download workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok letöltése</translation>
     </message>
     <message>
         <source>Maximum number to download</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltendő edszések maximális száma</translation>
     </message>
     <message>
         <source>Downloading GPX files</source>
-        <translation type="unfinished"></translation>
+        <translation>GPX fájlok letöltése</translation>
     </message>
 </context>
 <context>
