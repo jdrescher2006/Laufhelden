@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="nl">
+<TS version="2.1" language="nl_BE">
 <context>
     <name>AboutPage</name>
     <message>
@@ -33,7 +33,7 @@
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation>Met dank aan volgende personen voor hun vertalingen:</translation>
+        <translation>Merci aan de volgende personen voor hun vertalingen:</translation>
     </message>
     <message>
         <source>Spanish</source>
@@ -53,11 +53,11 @@
     </message>
     <message>
         <source>Credits for code contribution:</source>
-        <translation>Met dank aan volgende personen voor hun codebijdragen:</translation>
+        <translation>Merci aan de volgende personen voor hun codebijdragen:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation>Als je deze app leuk vindt, kan je een donatie geven:</translation>
+        <translation>Als ge dezen app kund appreciëren, kunde een donatie doen:</translation>
     </message>
     <message>
         <source>Hungarian</source>
@@ -112,7 +112,7 @@
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation>Gevonden BT-apparaten (tik om te verbinden):</translation>
+        <translation>Gevonden BT-apparaten (tikt voor te verbinden):</translation>
     </message>
     <message>
         <source>Heart rate device</source>
@@ -166,7 +166,7 @@
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation>Selecteer waarden om op de appomslag weer te geven. De waarden worden ook gebruikt voor het vergrendelscherm op de opnamepagina.</translation>
+        <translation>Selecteerd waarden voor op den appomslag weer te geven. De waarden worden ook gebruikt voor het vergrendelscherm op de opnamepagina.</translation>
     </message>
 </context>
 <context>
@@ -290,7 +290,7 @@
     </message>
     <message>
         <source>Start new workout</source>
-        <translation>Nieuwe training beginnen</translation>
+        <translation>Nieuwen training beginnen</translation>
     </message>
     <message>
         <source>Welcome to Laufhelden</source>
@@ -318,11 +318,11 @@
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation>Training wordt verwijderd…</translation>
+        <translation>Training word verwijderd…</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation>Onvoltooide training gevonden</translation>
+        <translation>Onvoltooiden training gevonden!</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -365,7 +365,7 @@
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation>Toon slechts 4 waardevelden (in plaats van 6) wanneer de kaart weergegeven wordt</translation>
+        <translation>Toond slechts 4 waardevelden (in plek van 6) wanneer dat de kaart weergegeven word</translation>
     </message>
     <message>
         <source>Map center mode</source>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation>Inperken van tegelcache zorgt ervoor dat je kaarten up-to-date blijven en houdt het geheugengebruik onder controle, maar zorgt er ook voor dat kaarten minder snel laden en verhoogt het gegevensverbruik. Let op: de cachegrootteinstelling wordt pas toegepast na herstarten van de app.</translation>
+        <translation>Inperken van tegelcache zorgd dervoor dat uw kaarten up-to-date blijven en houd het geheugengebruik onder controle, maar zorgd der ook voor dat kaarten minder snel laden en verhoogd het gegevensverbruik. Let op: de cachegrootteinstelling word pas toegepast na nen herstart van den app.</translation>
     </message>
     <message>
         <source>Cache size</source>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation>Kies een kaartstijl.</translation>
+        <translation>Kiesd ne kaartstijl.</translation>
     </message>
     <message>
         <source>Map</source>
@@ -429,7 +429,7 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>De kaart zal niet meer weergegeven worden. Dit is handig op Jolla 1-telefoons, omdat hun zwakke GPU ertoe kan leiden dat het weergeven van de kaart de app doet crashen.</translation>
+        <translation>De kaart zal niet meer weergegeven worden. Dit is handig op Jolla 1-gsm’s, omdat hunne zwakke GPU dertoe kan leiden dat het weergeven van de kaart den app doet crashen.</translation>
     </message>
 </context>
 <context>
@@ -506,11 +506,11 @@
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation>Bekijk je trainingsgegevens op je Pebble-smartwatch.</translation>
+        <translation>Bekijkt uw trainingsgegevens op uwe Pebble-smartwatch.</translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>Geen Pebble gevonden.&lt;br&gt;Installeer Rockpool en&lt;br&gt;verbind je Pebble!</translation>
+        <translation>Gene Pebble gevonden.&lt;br&gt;Installeerd Rockpool en&lt;br&gt;verbind uwe Pebble!</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -518,7 +518,7 @@
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
-        <translation>Kies waarden voor Pebble-velden!</translation>
+        <translation>Kiesd waarden voor Pebble-velden!</translation>
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
@@ -529,7 +529,7 @@
     <name>PreRecordPage</name>
     <message>
         <source>Let&apos;s go!</source>
-        <translation>Tijd om te vertrekken!</translation>
+        <translation>Tijd voor te vertrekken!</translation>
     </message>
     <message>
         <source>Workout:</source>
@@ -541,7 +541,7 @@
     </message>
     <message>
         <source>Use heart rate monitor in this workout.</source>
-        <translation>Gebruik een hartslagmonitor tijdens deze training.</translation>
+        <translation>Gebruikt nen hartslagmonitor tijdens deze training.</translation>
     </message>
     <message>
         <source>Disable screen blanking</source>
@@ -549,11 +549,11 @@
     </message>
     <message>
         <source>Disable screen blanking when recording.</source>
-        <translation>Schakel automatisch uitschakelen van scherm uit tijdens opnames.</translation>
+        <translation>Schakeld automatisch uitschakelen van scherm uit tijdens opnames.</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation>Selecteer een drempelwaardeprofiel</translation>
+        <translation>Selecteerd een drempelwaardeprofiel</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@
     </message>
     <message>
         <source>hold button for: </source>
-        <translation>hou de knop ingedrukt voor: </translation>
+        <translation>houd de knop ingedrukt voor: </translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
@@ -648,7 +648,7 @@
     </message>
     <message>
         <source>keep tapping button: </source>
-        <translation>blijf tikken op de knop: </translation>
+        <translation>blijfd tikken op de knop: </translation>
     </message>
     <message>
         <source>Accept</source>
@@ -660,7 +660,7 @@
     </message>
     <message>
         <source>Select value!</source>
-        <translation>Selecteer een waarde!</translation>
+        <translation>Selecteerd een waarde!</translation>
     </message>
     <message>
         <source>Restart Pebble App</source>
@@ -804,7 +804,7 @@
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>Hou de opnamepagina in portretmodus.</translation>
+        <translation>Houd de opnamepagina in portretmodus.</translation>
     </message>
     <message>
         <source>Write log file</source>
@@ -824,7 +824,7 @@
     </message>
     <message>
         <source>Show grid lines on record page.</source>
-        <translation>Toon rasterlijnen op de opnamepagina.</translation>
+        <translation>Toond rasterlijnen op de opnamepagina.</translation>
     </message>
     <message>
         <source>Enable autosave</source>
@@ -832,7 +832,7 @@
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation>Hiermee is het niet nodig aan het eind van een training een naam voor de training in te voeren.</translation>
+        <translation>Hiermee is het niet nodig voor aan het eind van nen training ne naam voor den training in te voeren.</translation>
     </message>
     <message>
         <source>Automatic night mode</source>
@@ -840,7 +840,7 @@
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation>Schakel scherm op nachtmodus wanneer omgevingslicht te laag is.</translation>
+        <translation>Schakelt scherm op nachtmodus wanneer dat het omgevingslicht te laag is.</translation>
     </message>
     <message>
         <source>Unit of measurement</source>
@@ -856,7 +856,7 @@
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation>Let op: deze instelling wordt pas toegepast na herstarten van de app.</translation>
+        <translation>Let op: deze instelling word pas toegepast na nen herstart van den app.</translation>
     </message>
 </context>
 <context>
@@ -909,11 +909,11 @@
     <name>SportsTracker</name>
     <message>
         <source>Oops, username or password error</source>
-        <translation>Oeps, gebruikersnaam- of wachtwoordfout</translation>
+        <translation>Oeps, gebruikersnaam- of paswoordfout</translation>
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation>Er trad een fout op bij het importeren van GPX-bestanden</translation>
+        <translation>Der is een fout opgetreden bij het importeren van GPX-bestanden</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
@@ -921,7 +921,7 @@
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
-        <translation>Er trad een fout op bij het opslaan van gegevens</translation>
+        <translation>Der is een fout opgetreden bij het opslaan van gegevens</translation>
     </message>
     <message>
         <source>Logging in...</source>
@@ -944,11 +944,11 @@
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation>Stuur voltooide trainingen automatisch naar Sports-Tracker.com</translation>
+        <translation>Stuurd voltooide trainingen automatisch naar Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation>Voer je gebruikersnaam in</translation>
+        <translation>Voerd uwe gebruikersnaam in</translation>
     </message>
     <message>
         <source>Username</source>
@@ -956,11 +956,11 @@
     </message>
     <message>
         <source>Enter Password</source>
-        <translation>Voer je wachtwoord in</translation>
+        <translation>Voerd uw paswoord in</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Wachtwoord</translation>
+        <translation>Paswoord</translation>
     </message>
     <message>
         <source></source>
@@ -988,15 +988,15 @@
     </message>
     <message>
         <source>Already authenticated</source>
-        <translation>Je bent al aangemeld</translation>
+        <translation>Ge zijd al aangemeld</translation>
     </message>
     <message>
         <source>Login success!</source>
-        <translation>Je bent aangemeld!</translation>
+        <translation>Ge zijd aangemeld!</translation>
     </message>
     <message>
         <source>Login error, Check username or password</source>
-        <translation>Fout bij aanmelden, controleer je gebruikersnaam en wachtwoord</translation>
+        <translation>Fout bij aanmelden, controleerd uw gebruikersnaam en paswoord</translation>
     </message>
     <message>
         <source>Loading workouts...</source>
@@ -1008,7 +1008,7 @@
     </message>
     <message>
         <source> unique workout downloaded!</source>
-        <translation> unieke training gedownload!</translation>
+        <translation> unieken training gedownload!</translation>
     </message>
     <message>
         <source>Test login</source>
@@ -1035,7 +1035,7 @@
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation>Voer een beschrijving voor de training in voor Sports-Tracker.com</translation>
+        <translation>Voerd een beschrijving voor den training in voor Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1180,7 +1180,7 @@
     </message>
     <message>
         <source>An unknown error occurred</source>
-        <translation>Er is een onbekende fout opgetreden</translation>
+        <translation>Der is een onbekende fout opgetreden</translation>
     </message>
     <message>
         <source>Activity upload complete</source>
@@ -1203,7 +1203,7 @@
     </message>
     <message>
         <source>Alarm if limit is exceeded.</source>
-        <translation>Doet een alarm afgaan wanneer deze limiet overschreven wordt.</translation>
+        <translation>Doed een alarm afgaan wanneer dat deze limiet overschreven word.</translation>
     </message>
     <message>
         <source>bpm</source>
@@ -1251,11 +1251,11 @@
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation>Selecteer een drempelwaardeprofiel</translation>
+        <translation>Selecteerd een drempelwaardeprofiel</translation>
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
-        <translation>Doet een alarm afgaan wanneer deze limiet onderschreden wordt.</translation>
+        <translation>Doed een alarm afgaan wanneer dat deze limiet onderschreden word.</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
@@ -1384,7 +1384,7 @@
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>Regulier aankondigingen gebaseerd op duur</translation>
+        <translation>Reguliere aankondigingen gebaseerd op duur</translation>
     </message>
     <message>
         <source>Enabled</source>
