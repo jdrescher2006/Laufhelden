@@ -741,7 +741,7 @@ QString TrackRecorder::time() const
         seconds = difference - hours*60*60 - minutes*60;
     }
 
-    QString timeStr = QString("%1h %2m %3s")
+    QString timeStr = tr("%1h %2m %3s")
             .arg(hours, 2, 10, QLatin1Char('0'))
             .arg(minutes, 2, 10, QLatin1Char('0'))
             .arg(seconds, 2, 10, QLatin1Char('0'));
