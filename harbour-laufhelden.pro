@@ -162,5 +162,8 @@ DISTFILES += \
     qml/img/pebble.png \
     qml/img/sportstracker.png \
     qml/img/strava.png \
-    qml/img/voicecoach.png
+    qml/img/voicecoach.png \
+    qml/headers/paceavg_de_male.wav \
+    qml/headers/speedavg_de_male.wav \
+    qml/headers/heartrateavg_de_male.wav
 

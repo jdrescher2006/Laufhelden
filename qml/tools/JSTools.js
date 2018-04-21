@@ -241,11 +241,11 @@ var arrayVoiceValueTypes =
 [
     { index: 0, fieldID_Duration: 0, fieldID_Distance: 0, value: "", header: qsTr("Empty"), headline: "", unit: "", imperialUnit: "" },
     { index: 1, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate"), headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
-    { index: 2, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
+    { index: 2, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", headline: "heartrateavg", unit: "bpm", imperialUnit: "bpm" },
     { index: 3, fieldID_Duration: 4, fieldID_Distance: 3, value: "0", header: qsTr("Pace"), headline: "pace", unit: "minkm", imperialUnit: "minmi" },
-    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", headline: "pace", unit: "minkm", imperialUnit: "minmi" },
+    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", headline: "paceavg", unit: "minkm", imperialUnit: "minmi" },
     { index: 5, fieldID_Duration: 3, fieldID_Distance: 4, value: "0", header: qsTr("Speed"), headline: "speed", unit: "kmh", imperialUnit: "mih" },
-    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", headline: "speed", unit: "kmh", imperialUnit: "mih" },
+    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", headline: "speedavg", unit: "kmh", imperialUnit: "mih" },
     { index: 7, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Altitude"), headline: "altitude", unit: "m", imperialUnit: "ft" },
     { index: 8, fieldID_Duration: 2, fieldID_Distance: 2, value: "0", header: qsTr("Distance"), headline: "distance", unit: "km", imperialUnit: "mi" },
     { index: 9, fieldID_Duration: 1, fieldID_Distance: 1, value: "0", header: qsTr("Duration"), headline: "duration", unit: "duration", imperialUnit: "duration" }

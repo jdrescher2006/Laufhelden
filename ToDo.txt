@@ -2,6 +2,7 @@
 
 - when loading autosave and while not resuming workout in recordpage, the duration gets smaller
 - there is a problem with umlauts in the filenames while loading GPX files.
+- HistoryModel::loadAccelerationFile:402 - File not existant:  "running-Fr. M?rz 16 19:38:57 2018-11.7km.gpx"
 
 - ToDo for regular voice announcements:
 	- sound files needed for average headers
