@@ -668,7 +668,7 @@
     </message>
     <message>
         <source>hold button for: %1 s</source>
-        <translation type="unfinished"></translation>
+        <translation>Långtryck på knappen i: %1 s</translation>
     </message>
 </context>
 <context>
