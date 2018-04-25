@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="hu_HU">
+<TS version="2.1" language="hu_HU">
 <context>
     <name>AboutPage</name>
     <message>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Térkép</translation>
     </message>
     <message>
         <source>Streets</source>
@@ -599,10 +599,6 @@
         <translation>Kijelzés mód megváltoztatása</translation>
     </message>
     <message>
-        <source>hold button for: </source>
-        <translation>Tartsd nyomva még: </translation>
-    </message>
-    <message>
         <source>GPS accuracy:</source>
         <translation>GPS pontosság:</translation>
     </message>
@@ -669,6 +665,10 @@
     <message>
         <source>Restart Pebble App</source>
         <translation>Pebble app újraindítása</translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1043,15 +1043,15 @@
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Privát</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Követők</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Publikus</translation>
     </message>
 </context>
 <context>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Privát</translation>
     </message>
     <message>
         <source>Commute</source>
@@ -1259,7 +1259,7 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">min/mi</translation>
     </message>
 </context>
 <context>
@@ -1267,6 +1267,13 @@
     <message>
         <source>Thresholds off</source>
         <translation>Riasztások kikapcsolva</translation>
+    </message>
+</context>
+<context>
+    <name>TrackRecorder</name>
+    <message>
+        <source>%1h %2m %3s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1461,7 +1468,7 @@
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Általános</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>

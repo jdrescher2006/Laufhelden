@@ -58,6 +58,9 @@ TrackItem loadTrack(TrackItem track)
 HistoryModel::HistoryModel(QObject *parent) :
     QAbstractListModel(parent)
 {
+    //Maybe that helps reading filenames with umlauts?
+    //QTextCodec::codecForName("UTF-8");
+
     this->iWorkoutDuration = 0;
     this->rWorkoutDistance = 0.0;
 	this->bGPXFilesChanged = true;
@@ -458,6 +461,8 @@ void HistoryModel::loadAllTracks()
 
 void HistoryModel::readDirectory()
 {
+
+
     if(trackLoading.isRunning())
     {
         trackLoading.cancel();
@@ -485,7 +490,8 @@ void HistoryModel::readDirectory()
         //Check if we already have an item with the current filename
         bool bAlreadyHaveItem = false;
 
-        //qDebug()<<"CurrentFilename: "<<entries.at(i);
+        qDebug()<<"CurrentFilename: "<<entries.at(i);
+        qDebug()<<"CurrentFilename(UTF-8): "<<entries.at(i).toUtf8();
 
         for(int j=0;j<m_trackList.length();j++)
         {

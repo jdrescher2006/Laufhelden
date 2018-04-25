@@ -556,6 +556,7 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
     var arraySoundArray = [];
     var sNumberToPlay = "";
     var sVoiceLanguage = "_en_male.wav";
+    var bOneIsSingular = false;
 
     //check voice language and generate last part of audio filename
     if (iVoiceLanguage === 0)        //english male
@@ -575,6 +576,10 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
     }
     else if (isInteger(number))		//Check if it's an integer
     {
+        //Check if we need a singular voice file for the unit. Plural is default.
+        if (number === 1)
+            bOneIsSingular = true;
+
         //console.log("Number is INT");
 
         //Check limits
@@ -608,7 +613,7 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
             sFloatArray = number.toString().split(",");
 
         if (typeof sFloatArray === 'undefined' || sFloatArray.length !== 2)
-            return;
+            return;       
 
         //push first place. First check for size over hundred.
         if (parseInt(sFloatArray[0]) >= 100)
@@ -632,8 +637,11 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
 
     //add the unit
     if (sUnit !== "")
-    {
-        arraySoundArray.push("units/" + sUnit + sVoiceLanguage);
+    {    
+        if (bOneIsSingular && (sUnit === "km" || sUnit === "mi") || sUnit === "m")
+            arraySoundArray.push("units/" + sUnit + "_singular" + sVoiceLanguage);    //this is for singular unit e.g. 1 kilometer
+        else
+            arraySoundArray.push("units/" + sUnit + sVoiceLanguage);                 //This is for plural unit e.g. 2 kilometers
     }
 
     return arraySoundArray;

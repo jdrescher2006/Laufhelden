@@ -599,10 +599,6 @@
         <translation>Schermmodus wisselen</translation>
     </message>
     <message>
-        <source>hold button for: </source>
-        <translation>houd de knop ingedrukt voor: </translation>
-    </message>
-    <message>
         <source>GPS accuracy:</source>
         <translation>Nauwkeurigheid van gps:</translation>
     </message>
@@ -669,6 +665,10 @@
     <message>
         <source>Lock screen</source>
         <translation>Vergrendelscherm</translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1271,6 +1271,13 @@
     <message>
         <source>Thresholds off</source>
         <translation>Drempelwaarden uit</translation>
+    </message>
+</context>
+<context>
+    <name>TrackRecorder</name>
+    <message>
+        <source>%1h %2m %3s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

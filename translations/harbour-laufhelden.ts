@@ -599,10 +599,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>hold button for: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>GPS accuracy:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -668,6 +664,10 @@
     </message>
     <message>
         <source>Lock screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1270,6 +1270,13 @@
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TrackRecorder</name>
+    <message>
+        <source>%1h %2m %3s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

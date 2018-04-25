@@ -599,10 +599,6 @@
         <translation>Cambiar visualización</translation>
     </message>
     <message>
-        <source>hold button for: </source>
-        <translation>Mantener pulsado el botón para:</translation>
-    </message>
-    <message>
         <source>GPS accuracy:</source>
         <translation>Precisión GPS:</translation>
     </message>
@@ -669,6 +665,10 @@
     <message>
         <source>Lock screen</source>
         <translation>Bloquear pantalla</translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1271,6 +1271,13 @@
     <message>
         <source>Thresholds off</source>
         <translation>Umbrales desactivados</translation>
+    </message>
+</context>
+<context>
+    <name>TrackRecorder</name>
+    <message>
+        <source>%1h %2m %3s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

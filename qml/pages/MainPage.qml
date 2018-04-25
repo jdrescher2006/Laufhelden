@@ -315,27 +315,6 @@ Page
                     tokenUrl: "https://www.strava.com/oauth/token"
                 }
             }
-            MenuItem
-            {
-                text: "Test audio"
-                onClicked:
-                {
-                    //playSoundEffect2.play();
-
-
-                    var arTemp = [];
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/m_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/minkm_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/bpm_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/km_de_male.wav");
-                    fncPlaySoundArray(arTemp);
-
-                }
-            }
         }
 
         header: Column
