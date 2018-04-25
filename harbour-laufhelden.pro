@@ -51,7 +51,6 @@ CONFIG += sailfishapp_i18n
 
 TRANSLATIONS += translations/harbour-laufhelden-de.ts \
                 translations/harbour-laufhelden-pl.ts \
-                translations/harbour-laufhelden-es.ts \
                 translations/harbour-laufhelden-sv.ts \
                 translations/harbour-laufhelden-hu.ts \
                 translations/harbour-laufhelden-fi_FI.ts \
