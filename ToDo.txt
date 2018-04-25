@@ -3,11 +3,11 @@
 - there is a problem with umlauts in the filenames while loading GPX files.
 	- HistoryModel::loadAccelerationFile:402 - File not existant:  "running-Fr. M?rz 16 19:38:57 2018-11.7km.gpx"
 
-- solve commit conflict with spanish language
+- solve commit conflict with spanish language										-> OK
 
 - ToDo for regular voice announcements:
-	- record english voice files													-> 50% done
-	- for english language there are differences in the unit:
+	- record english voice files													-> 99% done
+	- for english language there are differences in the unit:						-> OK
 		- mile/miles
 		- kilometer/kilometers
 		- meter/meters	

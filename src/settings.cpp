@@ -229,6 +229,14 @@ void Settings::setVoiceLanguage(int voiceLanguage)
 {
     m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
 }
+bool Settings::voicePauseMusic() const
+{
+    return m_settings->value("generalsettings/voicePauseMusic", true).toBool();
+}
+void Settings::setVoicePauseMusic(bool voicePauseMusic)
+{
+     m_settings->setValue("generalsettings/voicePauseMusic", voicePauseMusic);
+}
 bool Settings::voiceStartEndWorkout() const
 {
     return m_settings->value("generalsettings/voiceStartEndWorkout", true).toBool();

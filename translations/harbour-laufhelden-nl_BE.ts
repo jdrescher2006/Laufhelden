@@ -1467,6 +1467,14 @@
         <source>Voice coach general settings</source>
         <translation>Algemene instellingen voor stemcoach</translation>
     </message>
+    <message>
+        <source>Pause/resume music player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VoiceSettingsPage</name>

@@ -48,9 +48,10 @@ class Settings : public QObject
 
     //Voice output
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
+    Q_PROPERTY(bool voicePauseMusic READ voicePauseMusic WRITE setVoicePauseMusic)
     Q_PROPERTY(bool voiceStartEndWorkout READ voiceStartEndWorkout WRITE setVoiceStartEndWorkout)
     Q_PROPERTY(bool voicePauseContinueWorkout READ voicePauseContinueWorkout WRITE setVoicePauseContinueWorkout)
-    Q_PROPERTY(bool voiceGPSConnectLost READ voiceGPSConnectLost WRITE setVoiceGPSConnectLost)
+    Q_PROPERTY(bool voiceGPSConnectLost READ voiceGPSConnectLost WRITE setVoiceGPSConnectLost)    
 
     //Cyclic voice output
     Q_PROPERTY(bool voiceCycDistanceEnable READ voiceCycDistanceEnable WRITE setVoiceCycDistanceEnable)
@@ -145,6 +146,9 @@ public:
     //Voice output
     int voiceLanguage() const;
     void setVoiceLanguage(int voiceLanguage);
+
+    bool voicePauseMusic() const;
+    void setVoicePauseMusic(bool voicePauseMusic);
 
     bool voiceStartEndWorkout() const;
     void setVoiceStartEndWorkout(bool voiceStartEndWorkout);
