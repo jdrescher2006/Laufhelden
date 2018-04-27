@@ -57,6 +57,8 @@ Page
 
             id_TextSwitch_IntervalDuration.checked = settings.voiceCycDurationEnable;
 
+            id_TextSwitch_PlayHeadlineDuration.checked = settings.voiceCycDurationHeadlineEnable;
+
             if (settings.voiceCycDuration === 30)
                 id_CMB_IntervalDuration.currentIndex = 0;
             else if (settings.voiceCycDuration === 60)
@@ -167,6 +169,26 @@ Page
                         settings.voiceCycDuration = 3600;
                     else
                         settings.voiceCycDuration = 60
+                }
+            }
+            Separator
+            {
+                visible: id_TextSwitch_IntervalDuration.checked
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_PlayHeadlineDuration
+                visible: id_TextSwitch_IntervalDuration.checked
+                text: qsTr("Play value announcement")
+                description: qsTr("Before a value is played, the type of value is announced e.g \"Distance:\". This makes the voice announcement last longer.")
+                onCheckedChanged:
+                {
+                    if (bLockOnCompleted || bLockFirstPageLoad)
+                        return;
+
+                    settings.voiceCycDurationHeadlineEnable = checked;
                 }
             }
             Separator

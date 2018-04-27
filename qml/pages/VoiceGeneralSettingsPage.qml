@@ -69,7 +69,7 @@ Page
             {
                 id: id_TextSwitch_PauseMusic
                 text: qsTr("Pause/resume music player")
-                description: qsTr("")
+                description: qsTr("If enabled, the music player is paused when a voice message is played and afterwards resumed.")
                 onCheckedChanged:
                 {
                     if (bLockOnCompleted || bLockFirstPageLoad)
@@ -78,7 +78,11 @@ Page
                     settings.voicePauseMusic = checked;
                 }
             }
-            
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
             ComboBox
             {
                 id: id_CMB_VoiceLanguage

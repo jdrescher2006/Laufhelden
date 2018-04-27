@@ -287,8 +287,6 @@ void Settings::setVoiceCycDistanceFields(QString voiceCycDistanceFields)
 {
     m_settings->setValue("voicecyclesettings/voiceCycDistanceFields", voiceCycDistanceFields);
 }
-
-
 bool Settings::voiceCycDurationEnable() const
 {
     return m_settings->value("voicecyclesettings/voiceCycDurationEnable", false).toBool();
@@ -313,7 +311,22 @@ void Settings::setVoiceCycDurationFields(QString voiceCycDurationFields)
 {
     m_settings->setValue("voicecyclesettings/voiceCycDurationFields", voiceCycDurationFields);
 }
-
+bool Settings::voiceCycDistanceHeadlineEnable() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDistanceHeadlineEnable", true).toBool();
+}
+void Settings::setVoiceCycDistanceHeadlineEnable(bool voiceCycDistanceHeadlineEnable)
+{
+     m_settings->setValue("voicecyclesettings/voiceCycDistanceHeadlineEnable", voiceCycDistanceHeadlineEnable);
+}
+bool Settings::voiceCycDurationHeadlineEnable() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDurationHeadlineEnable", true).toBool();
+}
+void Settings::setVoiceCycDurationHeadlineEnable(bool voiceCycDurationHeadlineEnable)
+{
+     m_settings->setValue("voicecyclesettings/voiceCycDurationHeadlineEnable", voiceCycDurationHeadlineEnable);
+}
 
 //Sports-Tracker.com Sharing functions
 void Settings::setStUsername(QString username)

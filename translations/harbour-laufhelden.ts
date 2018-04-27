@@ -1362,6 +1362,14 @@
         <source>This value is already assigned!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
@@ -1425,6 +1433,14 @@
         <source>This value is already assigned!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
@@ -1473,6 +1489,10 @@
     </message>
     <message>
         <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -57,6 +57,8 @@ Page
 
             id_TextSwitch_IntervalDistance.checked = settings.voiceCycDistanceEnable;
 
+            id_TextSwitch_PlayHeadlineDistance.checked = settings.voiceCycDistanceHeadlineEnable;
+
             if (settings.voiceCycDistance === 0.5)
                 id_CMB_IntervalDistance.currentIndex = 0;
             else if (settings.voiceCycDistance === 1.0)
@@ -163,6 +165,26 @@ Page
                         settings.voiceCycDistance = 20.0;
                     else
                         settings.voiceCycDistance = 1.0
+                }
+            }
+            Separator
+            {
+                visible: id_TextSwitch_IntervalDistance.checked
+                color: Theme.highlightColor
+                width: parent.width
+            }
+            TextSwitch
+            {
+                id: id_TextSwitch_PlayHeadlineDistance
+                visible: id_TextSwitch_IntervalDistance.checked
+                text: qsTr("Play value announcement")
+                description: qsTr("Before a value is played, the type of value is announced e.g \"Distance:\". This makes the voice announcement last longer.")
+                onCheckedChanged:
+                {
+                    if (bLockOnCompleted || bLockFirstPageLoad)
+                        return;
+
+                    settings.voiceCycDistanceHeadlineEnable = checked;
                 }
             }
             Separator

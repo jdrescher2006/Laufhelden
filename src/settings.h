@@ -60,6 +60,8 @@ class Settings : public QObject
     Q_PROPERTY(bool voiceCycDurationEnable READ voiceCycDurationEnable WRITE setVoiceCycDurationEnable)
     Q_PROPERTY(int voiceCycDuration READ voiceCycDuration WRITE setVoiceCycDuration)
     Q_PROPERTY(QString voiceCycDurationFields READ voiceCycDurationFields WRITE setVoiceCycDurationFields)
+    Q_PROPERTY(bool voiceCycDistanceHeadlineEnable READ voiceCycDistanceHeadlineEnable WRITE setVoiceCycDistanceHeadlineEnable)
+    Q_PROPERTY(bool voiceCycDurationHeadlineEnable READ voiceCycDurationHeadlineEnable WRITE setVoiceCycDurationHeadlineEnable)
 
     //Pebble specific setings
     Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
@@ -176,7 +178,13 @@ public:
     void setVoiceCycDuration(int voiceCycDuration);
 
     QString voiceCycDurationFields() const;
-    void setVoiceCycDurationFields(QString voiceCycDurationFields);
+    void setVoiceCycDurationFields(QString voiceCycDurationFields);    
+
+    bool voiceCycDistanceHeadlineEnable() const;
+    void setVoiceCycDistanceHeadlineEnable(bool voiceCycDistanceHeadlineEnable);
+
+    bool voiceCycDurationHeadlineEnable() const;
+    void setVoiceCycDurationHeadlineEnable(bool voiceCycDurationHeadlineEnable);
 
     //Sporst-Tracker.com functions
     QString stUsername() const;
