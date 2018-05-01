@@ -370,7 +370,7 @@ function fncConvertArrayToSaveStringCyclicVoiceDuration()
     return sSaveString;
 }
 
-function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
+function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance, bPlayHeadline)
 {
     var arraySoundArray = [];
     var arrayTempArray = [];    
@@ -425,7 +425,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
 
             arrayTempArray = [];
             if (bPlayHour)
-                arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, sHeadline, iVoiceLanguage);
+                arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
 
             if (arrayTempArray !== undefined)
             {
@@ -441,7 +441,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 if (bPlayHour)
                     arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, "", iVoiceLanguage);
                 else
-                    arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, sHeadline, iVoiceLanguage);
+                    arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
             }
 
             if (arrayTempArray !== undefined)
@@ -458,7 +458,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 if (bPlayHour || bPlayMinute)
                     arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, "", iVoiceLanguage);
                 else
-                    arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, sHeadline, iVoiceLanguage);
+                    arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
             }
 
             if (arrayTempArray !== undefined)
@@ -490,7 +490,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
             var sUnitMinute = (iMinute === 1) ? "minute" : "minutes";
             var sUnitSecond = (iSecond === 1) ? "second" : "seconds";
 
-            arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, sHeadline, iVoiceLanguage);
+            arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
             if (arrayTempArray !== undefined)
             {
                 for (j = 0; j < arrayTempArray.length; j++)
@@ -523,7 +523,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
         else
         {
             //Covert value and unit to audio file array
-            arrayTempArray = fncGenerateSoundArray(iNumber, sUnit, sHeadline, iVoiceLanguage);
+            arrayTempArray = fncGenerateSoundArray(iNumber, sUnit, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
 
             if (arrayTempArray !== undefined)
             {

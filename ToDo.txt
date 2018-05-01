@@ -6,13 +6,13 @@
 - solve commit conflict with spanish language										-> OK
 
 - ToDo for regular voice announcements:
-	- record english voice files													-> 99% done
+	- record english voice files													-> OK
 	- for english language there are differences in the unit:						-> OK
 		- mile/miles
 		- kilometer/kilometers
 		- meter/meters	
-	- in general options for voice coach, make music player pausing enable/disable
-	- make output of headline for cyclic voice announcements choosable
+	- in general options for voice coach, make music player pausing enable/disable	-> OK
+	- make output of headline for cyclic voice announcements choosable				-> OK
 	- sound files needed for average headers										-> OK
 	- it should be possible to have multiple empty parameter fields					-> OK
 	- changes of parameters are not used											-> OK

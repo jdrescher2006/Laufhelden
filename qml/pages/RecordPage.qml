@@ -467,7 +467,7 @@ Page
                     if (iDistance >= iTriggerDistanceVoiceOutput)
                     {
                         //Play voice announcement
-                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true, settings.voiceCycDistanceHeadlineEnable);
 
                         //console.log("arSoundArray.length: " + arSoundArray.length.toString());
                         //for (var i = 0; i < arSoundArray.length; i++)
@@ -489,7 +489,7 @@ Page
                     if (iTimeSeconds >= iTriggerDurationVoiceOutput)
                     {
                         //Play voice announcement
-                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false);
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false, settings.voiceCycDurationHeadlineEnable);
 
                         //console.log("arSoundArray.length: " + arSoundArray.length.toString());
                         //for (var i = 0; i < arSoundArray.length; i++)
@@ -1054,39 +1054,7 @@ Page
                     bShowMap = !bShowMap;
                     settings.showMapRecordPage = bShowMap;
                 }
-            }
-            MenuItem
-            {
-                text: "Test voice output distance"
-                onClicked:
-                {                                                                               
-                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
-                    console.log("arSoundArray.length: " + arSoundArray.length.toString());
-
-                    for (var i = 0; i < arSoundArray.length; i++)
-                    {
-                        console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
-                    }
-
-                    fncPlaySoundArray(arSoundArray);
-                }
-            }
-            MenuItem
-            {
-                text: "Test voice output duration"
-                onClicked:
-                {
-                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false);
-                    console.log("arSoundArray.length: " + arSoundArray.length.toString());
-
-                    for (var i = 0; i < arSoundArray.length; i++)
-                    {
-                        console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
-                    }
-
-                    fncPlaySoundArray(arSoundArray);
-                }
-            }
+            }            
         }
         PushUpMenu
         {
