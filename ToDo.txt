@@ -2,6 +2,7 @@
 
 - there is a problem with umlauts in the filenames while loading GPX files.
 	- HistoryModel::loadAccelerationFile:402 - File not existant:  "running-Fr. M?rz 16 19:38:57 2018-11.7km.gpx"
+	- seems to only occure when app is started directly by Sailfish OS IDE. If app is started from desktop launcher all is OK.
 
 - solve commit conflict with spanish language										-> OK
 
@@ -22,7 +23,7 @@
 	- improvement: make numbers go faster: "0"										-> OK
 	- improvement: make units and headlines go faster								-> OK
 
-- when loading autosave and while not resuming workout in recordpage, the duration gets smaller
+
 
 
 
@@ -37,6 +38,7 @@ Do not forget:
 
 
 ----- ToDo for second next release to openrepos: 1.0.2 -----
+- when loading autosave and while not resuming workout in recordpage, the duration gets smaller
 - show battery state of phone with charging icon on record page
 - sometimes the mediaplayer would not set playing to false. Need a watchdog for that.
 - add max pace to detailspage/trackloader
