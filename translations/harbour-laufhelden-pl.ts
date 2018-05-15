@@ -69,11 +69,11 @@
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>holenderski</translation>
     </message>
     <message>
         <source>Spanish-Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>hiszpański - Hiszpania</translation>
     </message>
 </context>
 <context>
@@ -346,11 +346,11 @@
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Moje aktywności Strava</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Prześlij do Sports-Tracker.com</translation>
+        <translation>Prześlij do Sports-Tracker.com</translation>
     </message>
 </context>
 <context>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczanie buforowania kafelków zapewnia aktualność map i kontroluje użycie dysku, ale ładuje mapy wolniej i powoduje większy ruch danych. Należy pamiętać, że ustawienia rozmiaru pamięci podręcznej zostaną zastosowane po ponownym uruchomieniu aplikacji.</translation>
     </message>
     <message>
         <source>Cache size</source>
@@ -429,14 +429,14 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation type="unfinished"></translation>
+        <translation>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</translation>
     </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Moje aktywności Strava</translation>
     </message>
 </context>
 <context>
@@ -510,7 +510,7 @@
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie znaleziono Pebble.&lt;br&gt;Zainstaluj Rockpool i&lt;br&gt;potem podłącz Pebble!</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -522,7 +522,7 @@
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Rockpool musi być zainstalowany&lt;br&gt;minimum w werji 1.4-1.&lt;lt;br&gt;Zainstalowana wersja to: </translation>
     </message>
 </context>
 <context>
@@ -668,7 +668,7 @@
     </message>
     <message>
         <source>hold button for: %1 s</source>
-        <translation type="unfinished"></translation>
+        <translation>przytrzymaj przycisk przez: %1 s</translation>
     </message>
 </context>
 <context>
@@ -773,27 +773,27 @@
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogólny</translation>
     </message>
     <message>
         <source>Voice coach</source>
-        <translation type="unfinished"></translation>
+        <translation>Głos trenera</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Mapa</translation>
+        <translation>Mapa</translation>
     </message>
     <message>
         <source>App cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Okładka aplikacji</translation>
     </message>
     <message>
         <source>Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished">Udostępnij trening</translation>
+        <translation>Udostępnij trening</translation>
     </message>
 </context>
 <context>
@@ -887,22 +887,22 @@
     </message>
     <message>
         <source>Hiking</source>
-        <translation type="unfinished"></translation>
+        <translation>Wędrówka</translation>
     </message>
 </context>
 <context>
     <name>SocialMediaMenu</name>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation type="unfinished">Sports-Tracker.com</translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished">Strava</translation>
+        <translation>Strava</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished">Udostępnij trening</translation>
+        <translation>Udostępnij trening</translation>
     </message>
 </context>
 <context>
@@ -925,11 +925,11 @@
     </message>
     <message>
         <source>Logging in...</source>
-        <translation type="unfinished">w...</translation>
+        <translation>Logowanie ...</translation>
     </message>
     <message>
         <source>Uploading...</source>
-        <translation type="unfinished">Wysyłanie...</translation>
+        <translation>Wysyłanie...</translation>
     </message>
 </context>
 <context>
@@ -1062,105 +1062,105 @@
     <name>StravaActivityPage</name>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished">Czas startu:</translation>
+        <translation>Czas rozpoczęcia:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Czas trwania:</translation>
+        <translation>Czas trwania:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Dystans:</translation>
+        <translation>Dystans:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished">Prędkość max/⌀</translation>
+        <translation>Prędkość max/⌀</translation>
     </message>
     <message>
         <source>Kudos:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kudos:</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Komentarze:</translation>
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przewyższenie:</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Osiągnięcia:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
 </context>
 <context>
     <name>StravaComments</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Komentarze</translation>
     </message>
 </context>
 <context>
     <name>StravaKudos</name>
     <message>
         <source>Kudos</source>
-        <translation type="unfinished"></translation>
+        <translation>Kudos</translation>
     </message>
 </context>
 <context>
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Czas trwania:</translation>
+        <translation>Czas trwania:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Dystans:</translation>
+        <translation>Dystans:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przewyższenie:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodzaj wspinaczki:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation type="unfinished"></translation>
+        <translation>Najlepsze osiągnięcie:</translation>
     </message>
 </context>
 <context>
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
-        <translation type="unfinished"></translation>
+        <translation>Segmenty</translation>
     </message>
 </context>
 <context>
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia Stravy</translation>
     </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa aktywniości dla Stravy</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Opis aktywności dla Stravy</translation>
     </message>
     <message>
         <source>Private</source>
@@ -1188,11 +1188,11 @@
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodzaj</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Imię</translation>
+        <translation>Nazwa</translation>
     </message>
 </context>
 <context>
@@ -1277,90 +1277,90 @@
     <name>TrackRecorder</name>
     <message>
         <source>%1h %2m %3s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1h %2m %3s</translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished"></translation>
+        <translation>Każdy </translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation type="unfinished"></translation>
+        <translation>500 metrów</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5 mi</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>1 mi</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation type="unfinished"></translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>2 mi</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation type="unfinished"></translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>5 mi</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation type="unfinished"></translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>10 mi</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation type="unfinished"></translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>20 mi</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Regularne informowanie o dystansie</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Włączony</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 powiadomienie:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 powiadomienia:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 powiadomienia:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>4 powiadomienia:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished">Ta wartość jest już przypisana!</translation>
+        <translation>Ta wartość jest już przypisana!</translation>
     </message>
     <message>
         <source>Play value announcement</source>
@@ -1375,27 +1375,27 @@
     <name>VoiceCycleDurationSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished"></translation>
+        <translation>Każdy </translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>2 minuty</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 minut</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>10 minut</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>20 minut</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation type="unfinished"></translation>
+        <translation>godzina</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
@@ -1403,35 +1403,35 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Włączone</translation>
     </message>
     <message>
         <source>30 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>30 sekund</translation>
     </message>
     <message>
         <source>1 minute</source>
-        <translation type="unfinished"></translation>
+        <translation>1 minuta</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 powiadomienie:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 powiadomienia:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 powiadomienia:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation">4 powiadomienia:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished">Ta wartość jest już przypisana!</translation>
+        <translation>Ta wartość jest już przypisana!</translation>
     </message>
     <message>
         <source>Play value announcement</source>
@@ -1446,15 +1446,15 @@
     <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
-        <translation type="unfinished">Rozpocznij/zakończ trening</translation>
+        <translation>Rozpocznij/zakończ trening</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation type="unfinished">Wstrzymaj/kontunuuj trening</translation>
+        <translation>Wstrzymaj/kontunuuj trening</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation type="unfinished">Połącz/rozłącz GPS</translation>
+        <translation>Połącz/rozłącz GPS</translation>
     </message>
     <message>
         <source>Voice coach events settings</source>
@@ -1465,19 +1465,19 @@
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished">Język lektora</translation>
+        <translation>Język lektora</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished">Angielski, mężczyzna</translation>
+        <translation>Angielski, mężczyzna</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished">Niemiecki, mężczyzna</translation>
+        <translation>Niemiecki, mężczyzna</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished">Test</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Voice coach general settings</source>
@@ -1504,7 +1504,7 @@
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation type="unfinished">Alarm progów</translation>
+        <translation>Alarm progów</translation>
     </message>
     <message>
         <source>Event announcements</source>
