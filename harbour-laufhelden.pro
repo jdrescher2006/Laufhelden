@@ -56,7 +56,7 @@ TRANSLATIONS += translations/harbour-laufhelden-de.ts \
                 translations/harbour-laufhelden-fi_FI.ts \
                 translations/harbour-laufhelden-nl.ts \
                 translations/harbour-laufhelden-nl_BE.ts \
-                translations/harbour-laufhelden-es_ES.ts
+                translations/harbour-laufhelden-es.ts
 
 HEADERS += \
     src/trackrecorder.h \
