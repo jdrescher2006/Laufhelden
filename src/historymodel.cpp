@@ -20,6 +20,7 @@
 #include <QDir>
 #include <QDebug>
 #include "historymodel.h"
+#include "timeformatter.h"
 #include "trackloader.h"
 
 TrackItem loadTrack(TrackItem track)
@@ -148,23 +149,13 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const {
     if(role == DurationRole) {
         if(!m_trackList.at(index.row()).ready) {
             // Data not loaded yet
-            return QString("--h --m --s");
+            return tr("--h --m --s");
         }
+
         uint hours = m_trackList.at(index.row()).duration / (60*60);
         uint minutes = (m_trackList.at(index.row()).duration - hours*60*60) / 60;
         uint seconds = m_trackList.at(index.row()).duration - hours*60*60 - minutes*60;
-        if(hours == 0) {
-            if(minutes == 0) {
-                return QString("%3s").arg(seconds);
-            }
-            return QString("%2m %3s")
-                    .arg(minutes)
-                    .arg(seconds, 2, 10, QLatin1Char('0'));
-        }
-        return QString("%1h %2m %3s")
-                .arg(hours)
-                .arg(minutes, 2, 10, QLatin1Char('0'))
-                .arg(seconds, 2, 10, QLatin1Char('0'));
+        return TimeFormatter::formatHMS(hours, minutes, seconds);
     }
     if(role == DistanceRole) {
         if(!m_trackList.at(index.row()).ready) {

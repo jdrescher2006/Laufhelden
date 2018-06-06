@@ -244,6 +244,13 @@
     </message>
 </context>
 <context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
@@ -554,6 +561,13 @@
     <message>
         <source>Select thresholds profile</source>
         <translation>Välj tröskelvärdesprofil</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1271,13 +1285,6 @@
     <message>
         <source>Thresholds off</source>
         <translation>Tröskelvärden av</translation>
-    </message>
-</context>
-<context>
-    <name>TrackRecorder</name>
-    <message>
-        <source>%1h %2m %3s</source>
-        <translation>%1t %2m %3s</translation>
     </message>
 </context>
 <context>

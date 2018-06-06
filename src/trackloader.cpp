@@ -22,6 +22,8 @@
 #include <QGeoCoordinate>
 #include <QDebug>
 #include <qmath.h>
+
+#include "timeformatter.h"
 #include "trackloader.h"
 
 TrackLoader::TrackLoader(QObject *parent) :
@@ -703,18 +705,7 @@ QString TrackLoader::durationStr() {
     uint hours = m_duration / (60*60);
     uint minutes = (m_duration - hours*60*60) / 60;
     uint seconds = m_duration - hours*60*60 - minutes*60;
-    if(hours == 0) {
-        if(minutes == 0) {
-            return QString("%3s").arg(seconds);
-        }
-        return QString("%2m %3s")
-                .arg(minutes)
-                .arg(seconds, 2, 10, QLatin1Char('0'));
-    }
-    return QString("%1h %2m %3s")
-            .arg(hours)
-            .arg(minutes, 2, 10, QLatin1Char('0'))
-            .arg(seconds, 2, 10, QLatin1Char('0'));
+    return TimeFormatter::formatHMS(hours, minutes, seconds);
 }
 
 QString TrackLoader::pauseDurationStr() {
@@ -733,18 +724,7 @@ QString TrackLoader::pauseDurationStr() {
     uint hours = m_pause_duration / (60*60);
     uint minutes = (m_pause_duration - hours*60*60) / 60;
     uint seconds = m_pause_duration - hours*60*60 - minutes*60;
-    if(hours == 0) {
-        if(minutes == 0) {
-            return QString("%3s").arg(seconds);
-        }
-        return QString("%2m %3s")
-                .arg(minutes)
-                .arg(seconds, 2, 10, QLatin1Char('0'));
-    }
-    return QString("%1h %2m %3s")
-            .arg(hours)
-            .arg(minutes, 2, 10, QLatin1Char('0'))
-            .arg(seconds, 2, 10, QLatin1Char('0'));
+    return TimeFormatter::formatHMS(hours, minutes, seconds);
 }
 
 qreal TrackLoader::distance() {

@@ -244,6 +244,13 @@
     </message>
 </context>
 <context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
@@ -554,6 +561,13 @@
     <message>
         <source>Disable screen blanking when recording.</source>
         <translation>Estä ruudun sammuminen kun tallennetaan.</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1271,13 +1285,6 @@
     <message>
         <source>Thresholds off</source>
         <translation>Hälytysrajat pois</translation>
-    </message>
-</context>
-<context>
-    <name>TrackRecorder</name>
-    <message>
-        <source>%1h %2m %3s</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
