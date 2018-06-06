@@ -19,7 +19,7 @@ QString TimeFormatter::formatHMS(uint hours, uint minutes, uint seconds)
         if(minutes == 0) {
             return QObject::tr("%1s").arg(seconds);
         }
-        return QString("%1:%2")
+        return QObject::tr("%1m %2s")
                 .arg(minutes)
                 .arg(seconds, 2, 10, QLatin1Char('0'));
     }
