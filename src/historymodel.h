@@ -74,6 +74,8 @@ public:
 	Q_INVOKABLE void loadAccelerationFile();
 
     Q_INVOKABLE int iDuration();
+    Q_INVOKABLE QString sDuration() const;
+
     Q_INVOKABLE qreal rDistance();
 
     Q_INVOKABLE QString getSportsTrackerKey(const int index) const;

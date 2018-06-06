@@ -106,7 +106,6 @@ qreal HistoryModel::rDistance()
 int HistoryModel::iDuration()
 {
     return this->iWorkoutDuration;
-
 }
 
 QString HistoryModel::getSportsTrackerKey(const int index) const{
@@ -114,6 +113,14 @@ QString HistoryModel::getSportsTrackerKey(const int index) const{
         return m_trackList.at(index).stKey;
     }
     return "";
+}
+
+QString HistoryModel::sDuration() const
+{
+    uint hours = iWorkoutDuration / (60*60);
+    uint minutes = (iWorkoutDuration - hours*60*60) / 60;
+    uint seconds = iWorkoutDuration - hours*60*60 - minutes*60;
+    return TimeFormatter::formatHMS(hours, minutes, seconds);
 }
 
 QVariant HistoryModel::data(const QModelIndex &index, int role) const {

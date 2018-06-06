@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>AboutPage</name>
     <message>
@@ -247,7 +247,7 @@
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation type="unfinished"></translation>
+        <translation>--ó --p --mp</translation>
     </message>
 </context>
 <context>
@@ -567,11 +567,11 @@
     <name>QObject</name>
     <message>
         <source>%1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 mp</translation>
     </message>
     <message>
         <source>%1m %2s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 p %2 mp</translation>
     </message>
 </context>
 <context>
