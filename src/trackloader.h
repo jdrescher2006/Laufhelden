@@ -23,6 +23,9 @@
 #include <QGeoCoordinate>
 #include <QXmlStreamReader>
 
+#define HEARTRATE_MIN_INIT 9999999
+#define HEARTRATE_MAX_INIT 0
+
 class TrackLoader : public QObject
 {
     Q_OBJECT
@@ -110,6 +113,10 @@ public:
     Q_INVOKABLE void vReadFile(QString sFilename);
     Q_INVOKABLE void vSetNewProperties(QString sOldName, QString sOldDesc, QString sOldWorkout, QString sName, QString sDesc, QString sWorkout);
     Q_INVOKABLE void vWriteFile(QString sFilename);
+
+    Q_INVOKABLE bool hasHeartRateData() const;
+
+    Q_INVOKABLE QString pauseNumbersString() const;
 
 signals:
     void filenameChanged();

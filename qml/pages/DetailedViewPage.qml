@@ -214,15 +214,7 @@ Page
                         iPausePositionsIndex++;
                 }
             }
-
-            if (trackLoader.pausePositionsCount() === 0)
-                pauseData.text = "-" ;
-            else
-                pauseData.text = trackLoader.pausePositionsCount().toString() + "/" + trackLoader.pauseDurationStr;
-
             console.log("onTrackChanged: " + JSTools.arrayDataPoints.length.toString());
-
-
         }
         onLoadedChanged:
         {
@@ -375,6 +367,7 @@ Page
 
         Column
         {
+            id: details_column
             width: parent.width
             PageHeader
             {
@@ -407,13 +400,15 @@ Page
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Description:")
+                    visible: trackLoader.description !== ""
                 }
                 Label
                 {
                     id: descriptionData
                     width: parent.width - descriptionLabel.width - 2*Theme.paddingLarge
-                    text: trackLoader.description==="" ? "-" : trackLoader.description
+                    text: trackLoader.description
                     wrapMode: Text.WordWrap
+                    visible: trackLoader.description !== ""
                 }
                 Label
                 {
@@ -505,12 +500,14 @@ Page
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Heart rate min/max/⌀:")
+                    visible:  trackLoader.hasHeartRateData()
                 }
                 Label
                 {
                     id: heartRateData
                     width: descriptionData.width
-                    text: (trackLoader.heartRateMin === 9999999 && trackLoader.heartRateMax === 0) ? "-" : trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
+                    text: trackLoader.hasHeartRateData() ? "-" : trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
+                    visible:  trackLoader.hasHeartRateData()
                 }
                 Label
                 {
@@ -522,11 +519,14 @@ Page
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Pause number/duration:")
+                    visible: (trackLoader.pausePositionsCount() > 0)
                 }
                 Label
                 {
                     id: pauseData
                     width: descriptionData.width
+                    text: trackLoader.pauseNumbersString()
+                    visible: (trackLoader.pausePositionsCount() > 0)
                 }
                 Label
                 {
@@ -555,7 +555,7 @@ Page
         id: map
 
         width: parent.width
-        height: bMapMaximized ? detailPage.height : detailPage.height / 3
+        height: bMapMaximized ? detailPage.height : detailPage.height - details_column.height - Theme.paddingMedium
         anchors.bottom: parent.bottom
 
         center: QtPositioning.coordinate(51.9854, 9.2743)

@@ -39,8 +39,8 @@ TrackLoader::TrackLoader(QObject *parent) :
     m_distance = 0;
     m_heartRate = 0;
     m_heartRatePoints = 0;
-    m_heartRateMin = 9999999;
-    m_heartRateMax = 0;
+    m_heartRateMin = HEARTRATE_MIN_INIT;
+    m_heartRateMax = HEARTRATE_MAX_INIT;
     m_sTkey = "";
     m_elevationUp = 0;
     m_elevationDown = 0;
@@ -158,6 +158,18 @@ void TrackLoader::vWriteFile(QString sFilename)
         return;
     }
     fOut.close();
+}
+
+bool TrackLoader::hasHeartRateData() const
+{
+    return !(m_heartRateMin == HEARTRATE_MIN_INIT && m_heartRateMax == HEARTRATE_MAX_INIT);
+}
+
+QString TrackLoader::pauseNumbersString() const
+{
+    if (m_pause_positions.count() == 0)
+        return QStringLiteral("-");
+    return QString("%1/%2").arg(m_pause_positions.count()).arg(m_pause_duration);
 }
 
 void TrackLoader::load()
