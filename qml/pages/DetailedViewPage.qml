@@ -487,7 +487,7 @@ Page
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Pace ⌀:")
-                    visible: false
+                    visible: false // will be shown/hidden depending on workout type at the track loading finish
                 }
                 Label
                 {
