@@ -1054,7 +1054,7 @@ Page
                     bShowMap = !bShowMap;
                     settings.showMapRecordPage = bShowMap;
                 }
-            }            
+            }
         }
         PushUpMenu
         {

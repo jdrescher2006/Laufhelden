@@ -244,6 +244,13 @@
     </message>
 </context>
 <context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
@@ -351,6 +358,10 @@
     <message>
         <source>Send to Sports-Tracker.com</source>
         <translation>Prześlij do Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -554,6 +565,17 @@
     <message>
         <source>Select thresholds profile</source>
         <translation>Wybież profil progów</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1274,13 +1296,6 @@
     </message>
 </context>
 <context>
-    <name>TrackRecorder</name>
-    <message>
-        <source>%1h %2m %3s</source>
-        <translation>%1h %2m %3s</translation>
-    </message>
-</context>
-<context>
     <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
@@ -1427,7 +1442,7 @@
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation">4 powiadomienia:</translation>
+        <translation>4 powiadomienia:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -1500,7 +1515,7 @@
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ogólny</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
@@ -1512,7 +1527,7 @@
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Regularne informowanie o dystansie</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>

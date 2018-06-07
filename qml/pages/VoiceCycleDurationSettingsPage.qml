@@ -211,7 +211,7 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
@@ -260,7 +260,7 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
@@ -309,7 +309,7 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
@@ -358,7 +358,7 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;

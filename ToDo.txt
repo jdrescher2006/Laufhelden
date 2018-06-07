@@ -1,6 +1,15 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
+- solved a bug in polish translation															-> OK
 
+- Bugs in voice output trainer:
+	- on duration settings page there is a error message if multiple empty fields are selected	-> OK
+	- empty fields where not left out. Instead they were played sometimes						-> OK
+
+- Implement shoe management for running
+- STRAVA:
+	- "Meine Strava Aktivitäten" not working, not showing anything on the page
+	- in Strava settings there is nothing shown in username, Email, Country
 
 Do not forget:
 - set changelog and release date to .changes file							

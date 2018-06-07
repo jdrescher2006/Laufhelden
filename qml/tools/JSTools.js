@@ -384,12 +384,16 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance, bPla
     //We have a maximum of 4 voice messages to play
     for (var i = 1; i < 5; i++)
     {
+        //console.log("arrayLookUpArray[" + i.toString() + "].index: " + arrayLookUpArray[i].index.toString());
+        //console.log("arrayLookUpArray[" + i.toString() + "].fieldID_Distance: " + arrayLookUpArray[i].fieldID_Distance.toString());
+        //console.log("arrayLookUpArray[" + i.toString() + "] === undefined: " + (arrayLookUpArray[i] === undefined).toString());
+
         //Check if index exists
         if (arrayLookUpArray[i] === undefined)
             continue;
 
         //Check if ths is an empty entry
-        if (arrayLookUpArray[i].index === 0)
+        if ((bDistance && arrayLookUpArray[i].fieldID_Distance === 0) || (!bDistance && arrayLookUpArray[i].fieldID_Duration === 0))
             continue;
 
         //Get value
