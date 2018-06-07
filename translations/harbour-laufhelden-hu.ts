@@ -92,11 +92,11 @@
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Jelenlegi használt BT eszköz</translation>
+        <translation>Jelenlegi használt Bluetooth eszköz</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Nincs</translation>
+        <translation>Nincs aktív Bluetooth eszköz</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
@@ -309,7 +309,7 @@
     </message>
     <message>
         <source>Workouts: </source>
-        <translation>Edzések: </translation>
+        <translation>Rögzített edzések száma: </translation>
     </message>
     <message>
         <source>of</source>
@@ -388,11 +388,11 @@
     </message>
     <message>
         <source>Center track on map</source>
-        <translation>A megtett út legyen középre igazítva</translation>
+        <translation>Az útvonal legyen középre igazítva</translation>
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation>Térkép módja.</translation>
+        <translation>Válaszd ki a térkép megjelenítési módját</translation>
     </message>
     <message>
         <source>Map</source>
@@ -432,15 +432,15 @@
     </message>
     <message>
         <source>Cache size</source>
-        <translation>Cache méret</translation>
+        <translation>Tile cache mérete</translation>
     </message>
     <message>
         <source>Disable map</source>
-        <translation>Térkép tiltása</translation>
+        <translation>Térkép letiltása</translation>
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>A térkép nem lesz többé megjenítve. Ez hasznos lehet Jolla 1 készülékeknél (amikben gyenge a GPU) mert az app összeomolhat a térkép miatt.</translation>
+        <translation>A térkép nem lesz többé megjenítve. Ez hasznos lehet a Jolla 1 készülékeknél (amikben gyenge a GPU) mert az alkalmazás összeomolhat a térkép megjelenítésétől.</translation>
     </message>
 </context>
 <context>
@@ -799,7 +799,7 @@
     </message>
     <message>
         <source>Voice coach</source>
-        <translation>Edzőhangok</translation>
+        <translation>Hangjelzések</translation>
     </message>
     <message>
         <source>Map</source>
@@ -826,7 +826,7 @@
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>Maradjon álló módban.</translation>
+        <translation>A rögzítés nézet mindig álló módban jelenjen meg</translation>
     </message>
     <message>
         <source>Write log file</source>
@@ -838,7 +838,7 @@
     </message>
     <message>
         <source>Record page portrait mode</source>
-        <translation>Rögzítés lap álló módja</translation>
+        <translation>Álló elrendezés rögzítése</translation>
     </message>
     <message>
         <source>Show grid lines</source>
@@ -854,7 +854,7 @@
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation>Nem szükséges nevet adni az edzésnek a végén.</translation>
+        <translation>Nem lesz szükséges nevet adni az edzésnek a végén.</translation>
     </message>
     <message>
         <source>Automatic night mode</source>
@@ -924,7 +924,7 @@
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Edzés adatainak megosztása</translation>
+        <translation>Edzésadatok megosztása</translation>
     </message>
 </context>
 <context>
@@ -1034,7 +1034,7 @@
     </message>
     <message>
         <source>Test login</source>
-        <translation>Bejelentkezési adatok tesztelése</translation>
+        <translation>Adatok tesztelése</translation>
     </message>
     <message>
         <source>Download workouts</source>
@@ -1347,7 +1347,7 @@
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>Hangutasítás megtett távolságonként</translation>
+        <translation>Hangjelzés távolságonként</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -1375,11 +1375,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>Hangértesítés érték elérése esetén</translation>
+        <translation>Érték típusának bemondása</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>Ha rövidnek ítéled meg a hangértesítés hosszát írhatsz ide egy szöveget amit lejétszik majd az érték előtt.</translation>
+        <translation>Ha rövidnek ítéled meg a hangértesítés hosszát ezt az opciót bekapcsolva a program bemondja majd az értesített érték típusát is.</translation>
     </message>
 </context>
 <context>
@@ -1410,7 +1410,7 @@
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>Hangutasítás adott időközönként</translation>
+        <translation>Hangjelzés adott időközönként</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -1465,18 +1465,18 @@
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation>GPS engedélyezése/tiltása</translation>
+        <translation>GPS jel elvesztése/megtalálása</translation>
     </message>
     <message>
         <source>Voice coach events settings</source>
-        <translation>Hangutasítások beállítása</translation>
+        <translation>Hangjelzés beállítások</translation>
     </message>
 </context>
 <context>
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation>Hang nyelve</translation>
+        <translation>Hangjelzések nyelve</translation>
     </message>
     <message>
         <source>English male</source>
@@ -1492,7 +1492,7 @@
     </message>
     <message>
         <source>Voice coach general settings</source>
-        <translation>Hangutasítások beállítása</translation>
+        <translation>Általános hangjelzés beállítások</translation>
     </message>
     <message>
         <source>Pause/resume music player</source>
@@ -1519,19 +1519,19 @@
     </message>
     <message>
         <source>Event announcements</source>
-        <translation>Események bejelentése</translation>
+        <translation>Hangjelzés eseményekkor</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>Események bejelentése távolság alapján</translation>
+        <translation>Hangjelzés megtett távolság alapján</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>Események bejelentése eltelt idő alapján</translation>
+        <translation>Hangjelzés eltelt idő alapján</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
-        <translation>Hangutasítások beállítása</translation>
+        <translation>Hangjelzés beállítások</translation>
     </message>
 </context>
 </TS>
