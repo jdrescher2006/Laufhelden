@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="hu_HU">
+<TS version="2.1" language="hu_HU">
 <context>
     <name>AboutPage</name>
     <message>
@@ -358,6 +358,10 @@
     <message>
         <source>Send to Sports-Tracker.com</source>
         <translation>Feltöltés a Sports-Tracker.com-ra</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

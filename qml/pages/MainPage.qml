@@ -496,7 +496,7 @@ Page
                 width: parent.width - dateLabel.width - 2*Theme.paddingLarge
                 anchors.top: parent.top
                 truncationMode: TruncationMode.Fade
-                text: name==="" ? "(Unnamed track)" : name
+                text: name==="" ? qsTr("(Unnamed track)") : name
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
             Label

@@ -359,6 +359,10 @@
         <source>Send to Sports-Tracker.com</source>
         <translation>Skicka till Sports-Tracker.com</translation>
     </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
