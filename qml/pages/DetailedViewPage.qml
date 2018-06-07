@@ -214,6 +214,8 @@ Page
                         iPausePositionsIndex++;
                 }
             }
+            paceData.visible = trackLoader.paceRelevantForWorkoutType()
+            paceLabel.visible = trackLoader.paceRelevantForWorkoutType()
             console.log("onTrackChanged: " + JSTools.arrayDataPoints.length.toString());
         }
         onLoadedChanged:
@@ -477,6 +479,7 @@ Page
                 }
                 Label
                 {
+                    id: paceLabel
                     width: hearRateLabel.width
                     height:paceData.height
                     horizontalAlignment: Text.AlignRight
@@ -484,12 +487,14 @@ Page
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Pace ⌀:")
+                    visible: false
                 }
                 Label
                 {
                     id: paceData
                     width: descriptionData.width
                     text: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
+                    visible: false
                 }
                 Label
                 {
