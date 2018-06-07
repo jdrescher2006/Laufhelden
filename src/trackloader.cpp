@@ -174,6 +174,15 @@ QString TrackLoader::pauseNumbersString() const
     return QString("%1/%2").arg(m_pause_positions.count()).arg(m_pause_duration);
 }
 
+/**
+ * @brief TrackLoader::paceRelevantForWorkoutType
+ * @return Returns false if the workout type is biking (pace is not relevant for this sport)
+ */
+bool TrackLoader::paceRelevantForWorkoutType() const
+{
+    return m_workout != "biking" && m_workout != "mountainBiking";
+}
+
 void TrackLoader::load()
 {
     if(m_filename.isEmpty())
