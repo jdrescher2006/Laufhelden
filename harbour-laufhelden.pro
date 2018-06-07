@@ -29,7 +29,8 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/plotwidget.cpp \
     src/light.cpp \
     src/pebblemanagercomm.cpp \
-    src/pebblewatchcomm.cpp
+    src/pebblewatchcomm.cpp \
+    src/timeformatter.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -69,7 +70,8 @@ HEADERS += \
     src/plotwidget.h \
     src/light.h \
     src/pebblemanagercomm.h \
-    src/pebblewatchcomm.h
+    src/pebblewatchcomm.h \
+    src/timeformatter.h
 
 DISTFILES += \
     qml/pages/MainPage.qml \

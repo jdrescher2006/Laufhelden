@@ -244,6 +244,13 @@
     </message>
 </context>
 <context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation>--ó --p --mp</translation>
+    </message>
+</context>
+<context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
@@ -554,6 +561,17 @@
     <message>
         <source>Disable screen blanking when recording.</source>
         <translation>Rögzítés során a képernyő kikapcsolásának megakadályozása.</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation>%1 mp</translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation>%1 p %2 mp</translation>
     </message>
 </context>
 <context>
@@ -1267,13 +1285,6 @@
     <message>
         <source>Thresholds off</source>
         <translation>Riasztások kikapcsolva</translation>
-    </message>
-</context>
-<context>
-    <name>TrackRecorder</name>
-    <message>
-        <source>%1h %2m %3s</source>
-        <translation>%1 ó %2 p %3 mp</translation>
     </message>
 </context>
 <context>

@@ -230,15 +230,7 @@ Page
             console.log("Workout distance: " + id_HistoryModel.rDistance());
             console.log("Workout duration: " + id_HistoryModel.iDuration());            
 
-            var iHours = Math.floor(id_HistoryModel.iDuration() / 3600);
-            console.log("iHours: " + iHours);
-
-            var iMinutes = Math.floor((id_HistoryModel.iDuration() - iHours * 3600) / 60);
-            console.log("iMinutes: " + iMinutes);
-
-            var iSeconds = Math.floor(id_HistoryModel.iDuration() - (iHours * 3600) - (iMinutes * 60));
-
-            sWorkoutDuration = iHours + "h " + iMinutes + "m " + iSeconds + "s";
+            sWorkoutDuration = id_HistoryModel.sDuration();
 
             if (settings.measureSystem === 0)
                 sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
