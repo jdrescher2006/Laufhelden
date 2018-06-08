@@ -782,6 +782,10 @@
         <source>Description</source>
         <translation>Kuvaus</translation>
     </message>
+    <message>
+        <source>Quit without saving</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsMenu</name>

@@ -782,6 +782,10 @@
         <source>Description</source>
         <translation>Beschreibung</translation>
     </message>
+    <message>
+        <source>Quit without saving</source>
+        <translation>Beenden ohne Speichern</translation>
+    </message>
 </context>
 <context>
     <name>SettingsMenu</name>

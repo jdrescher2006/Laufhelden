@@ -3,6 +3,7 @@
 - hide pace in the detailed view if the workout is biking by @martonmiklos
 - hide unnecessary fields in detailed view by @martonmiklos
 - fixed multiple bugs for voice coach
+- third option for save dialog (save, cancel, quit without saving)
 - translation updates
 - other small bugfixes
 
