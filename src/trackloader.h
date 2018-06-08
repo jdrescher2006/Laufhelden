@@ -115,8 +115,8 @@ public:
     Q_INVOKABLE void vWriteFile(QString sFilename);
 
     Q_INVOKABLE bool hasHeartRateData() const;
-
     Q_INVOKABLE QString pauseNumbersString() const;
+    Q_INVOKABLE bool paceRelevantForWorkoutType() const;
 
 signals:
     void filenameChanged();
