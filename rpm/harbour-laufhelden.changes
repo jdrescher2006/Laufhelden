@@ -1,3 +1,11 @@
+* Fri Jun 15 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-2
+- bugfix release
+- hide pace in the detailed view if the workout is biking by @martonmiklos
+- hide unnecessary fields in detailed view by @martonmiklos
+- fixed multiple bugs for voice coach
+- translation updates
+- other small bugfixes
+
 * Fri May 04 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-1
 - many improvements for Strava by @piggz
     - fixed Strava upload and error handling

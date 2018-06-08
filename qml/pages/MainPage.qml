@@ -283,12 +283,7 @@ Page
             {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsMenu.qml"))
-            }
-            MenuItem
-            {
-                text: qsTr("Start new workout")
-                onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
-            }
+            }            
             MenuItem
             {
                 text: qsTr("My Strava Activities")
@@ -306,6 +301,11 @@ Page
                     requestUrl: "https://www.strava.com/oauth/authorize"
                     tokenUrl: "https://www.strava.com/oauth/token"
                 }
+            }
+            MenuItem
+            {
+                text: qsTr("Start new workout")
+                onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
             }
         }
 

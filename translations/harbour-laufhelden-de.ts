@@ -247,7 +247,7 @@
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation type="unfinished"></translation>
+        <translation>--h --m --s</translation>
     </message>
 </context>
 <context>
@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Unbenannter Track)</translation>
     </message>
 </context>
 <context>
@@ -571,11 +571,11 @@
     <name>QObject</name>
     <message>
         <source>%1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1s</translation>
     </message>
     <message>
         <source>%1m %2s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1m %2s</translation>
     </message>
 </context>
 <context>
