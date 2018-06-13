@@ -247,7 +247,7 @@
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation type="unfinished"></translation>
+        <translation>--h --m --s</translation>
     </message>
 </context>
 <context>
@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Trayecto sin nombre)</translation>
     </message>
 </context>
 <context>
@@ -571,11 +571,11 @@
     <name>QObject</name>
     <message>
         <source>%1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1s</translation>
     </message>
     <message>
         <source>%1m %2s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1m %2s</translation>
     </message>
 </context>
 <context>
@@ -690,7 +690,7 @@
     </message>
     <message>
         <source>hold button for: %1 s</source>
-        <translation type="unfinished"></translation>
+        <translation>mantén pulsado: %1 s</translation>
     </message>
 </context>
 <context>
@@ -784,7 +784,7 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Salir sin guardar</translation>
     </message>
 </context>
 <context>
@@ -1383,11 +1383,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>Reproducir valor en anuncio</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Antes de reproducir un valor, se anuncia el tipo de valor, p.e. &quot;Distancia&quot;. Esto hace que el anuncio de voz sea más largo.</translation>
     </message>
 </context>
 <context>
@@ -1454,11 +1454,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>Reproducir valor en anuncio</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Antes de reproducir un valor, se anuncia el tipo de valor, p.e. &quot;Distancia&quot;. Esto hace que el anuncio de voz sea más largo.</translation>
     </message>
 </context>
 <context>
@@ -1504,7 +1504,7 @@
     </message>
     <message>
         <source>Pause/resume music player</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausar/detener reproductor</translation>
     </message>
     <message>
         <source></source>
@@ -1512,7 +1512,7 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si está activado, el reproductor de música se detiene cuando se reproduce un mensaje de voz y luego se reanuda.</translation>
     </message>
 </context>
 <context>
