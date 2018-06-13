@@ -784,7 +784,7 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluta utan att spara</translation>
     </message>
 </context>
 <context>
