@@ -244,6 +244,13 @@
     </message>
 </context>
 <context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation>--h --m --s</translation>
+    </message>
+</context>
+<context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
@@ -351,6 +358,10 @@
     <message>
         <source>Send to Sports-Tracker.com</source>
         <translation>Senden an Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation>(Unbenannter Track)</translation>
     </message>
 </context>
 <context>
@@ -557,6 +568,17 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation>%1s</translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation>%1m %2s</translation>
+    </message>
+</context>
+<context>
     <name>RecordPage</name>
     <message>
         <source>AMOLED mode</source>
@@ -597,10 +619,6 @@
     <message>
         <source>Switch display mode</source>
         <translation>Display-Modus</translation>
-    </message>
-    <message>
-        <source>hold button for: </source>
-        <translation>Button gedrückt halten für: </translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
@@ -669,6 +687,10 @@
     <message>
         <source>Lock screen</source>
         <translation>Sperrbildschirm</translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
+        <translation>Button gedrückt halten für: %1 s</translation>
     </message>
 </context>
 <context>
@@ -759,6 +781,10 @@
     <message>
         <source>Description</source>
         <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Quit without saving</source>
+        <translation>Beenden ohne Speichern</translation>
     </message>
 </context>
 <context>
@@ -1355,6 +1381,14 @@
         <source>This value is already assigned!</source>
         <translation>Dieser Wert ist bereits zugewiesen!</translation>
     </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation>Typ des Wertes Ansagen</translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation>Bevor ein Wert abgespielt wird, wird der Typ des Wertes angesagt z.B. &quot;Distanz:&quot;. Dies führt dazu, dass die Sprachansage länger dauert.</translation>
+    </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
@@ -1418,6 +1452,14 @@
         <source>This value is already assigned!</source>
         <translation>Dieser Wert ist bereits zugewiesen!</translation>
     </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation>Typ des Wertes Ansagen</translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation>Bevor ein Wert abgespielt wird, wird der Typ des Wertes angesagt z.B. &quot;Distanz:&quot;. Dies führt dazu, dass die Sprachansage länger dauert.</translation>
+    </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
@@ -1459,6 +1501,18 @@
     <message>
         <source>Voice coach general settings</source>
         <translation>Sprachtrainer Allgemein</translation>
+    </message>
+    <message>
+        <source>Pause/resume music player</source>
+        <translation>Musikplayer pausieren/fortsetzen</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
+        <translation>Wenn aktiviert, wird der Musikplayer angehalten, wenn eine Sprachnachricht abgespielt wird. Danach wird der Musikplayer wieder fortgesetzt.</translation>
     </message>
 </context>
 <context>

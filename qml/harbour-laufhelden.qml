@@ -514,10 +514,10 @@ ApplicationWindow
                     timerPlaySoundArray.start();
 
                     //console.log("onPlayingChanged, starting timer!");
-				}				
+                }
 			}
         }
-    }    
+    }
 
     function fncPlaySoundArray(arraySoundArray)
     {
@@ -528,7 +528,7 @@ ApplicationWindow
             bPlayingSound = true;
 
 		//detect if SFOS music player is currently playing
-        if (mediaPlayerControl.getPlayerStatus() === "Playing")
+        if (settings.voicePauseMusic && mediaPlayerControl.getPlayerStatus() === "Playing")
         {
             bPlayerWasPlaying = true;
             mediaPlayerControl.pause();
@@ -548,7 +548,7 @@ ApplicationWindow
         id: timerPlaySoundArray
         running: false
         repeat: false
-        interval: 75
+        interval: 25
         onTriggered:
         {
             //console.log("timerPlaySoundArray: " + iPlayLoop.toString());
@@ -571,7 +571,7 @@ ApplicationWindow
         iPlayLoop = 0;
 
         //detect if SFOS music player is currently playing
-        if (mediaPlayerControl.getPlayerStatus() === "Playing")
+        if (settings.voicePauseMusic && mediaPlayerControl.getPlayerStatus() === "Playing")
         {
             bPlayerWasPlaying = true;
             mediaPlayerControl.pause();

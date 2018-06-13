@@ -26,6 +26,25 @@ Page
     property bool bLockOnCompleted : false;
     property bool bLockFirstPageLoad: true
 
+    function fncCheckBoxesOK()
+    {
+        //The comboboxes must be checked, because the values need to be different. Except index 0, this may be same for all boxes.
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex)
+            return false;
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex)
+            return false;
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+        if (id_CMB_ValueField2.currentIndex !== 0 && id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex)
+            return false;
+        if (id_CMB_ValueField2.currentIndex !== 0 && id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+        if (id_CMB_ValueField3.currentIndex !== 0 && id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+
+        return true;
+    }
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -37,6 +56,8 @@ Page
             console.log("First Active VoiceCycleDistanceSettingsPage");
 
             id_TextSwitch_IntervalDistance.checked = settings.voiceCycDistanceEnable;
+
+            id_TextSwitch_PlayHeadlineDistance.checked = settings.voiceCycDistanceHeadlineEnable;
 
             if (settings.voiceCycDistance === 0.5)
                 id_CMB_IntervalDistance.currentIndex = 0;
@@ -152,6 +173,26 @@ Page
                 color: Theme.highlightColor
                 width: parent.width
             }
+            TextSwitch
+            {
+                id: id_TextSwitch_PlayHeadlineDistance
+                visible: id_TextSwitch_IntervalDistance.checked
+                text: qsTr("Play value announcement")
+                description: qsTr("Before a value is played, the type of value is announced e.g \"Distance:\". This makes the voice announcement last longer.")
+                onCheckedChanged:
+                {
+                    if (bLockOnCompleted || bLockFirstPageLoad)
+                        return;
+
+                    settings.voiceCycDistanceHeadlineEnable = checked;
+                }
+            }
+            Separator
+            {
+                visible: id_TextSwitch_IntervalDistance.checked
+                color: Theme.highlightColor
+                width: parent.width
+            }
             ComboBox
             {
                 visible: id_TextSwitch_IntervalDistance.checked
@@ -166,20 +207,21 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDistanceFields.split(",");
-                    if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
+                    if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount voice fields
                     {
                         //Set defaults if save string is damaged or broken
                         arValueTypes[0] = 9;
@@ -214,20 +256,21 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDistanceFields.split(",");
-                    if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
+                    if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount voice fields
                     {
                         //Set defaults if save string is damaged or broken
                         arValueTypes[0] = 9;
@@ -262,20 +305,21 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDistanceFields.split(",");
-                    if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
+                    if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount voice fields
                     {
                         //Set defaults if save string is damaged or broken
                         arValueTypes[0] = 9;
@@ -310,20 +354,21 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDistanceFields.split(",");
-                    if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
+                    if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount voice fields
                     {
                         //Set defaults if save string is damaged or broken
                         arValueTypes[0] = 9;

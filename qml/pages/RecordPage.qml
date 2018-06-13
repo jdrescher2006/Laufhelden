@@ -467,7 +467,7 @@ Page
                     if (iDistance >= iTriggerDistanceVoiceOutput)
                     {
                         //Play voice announcement
-                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true, settings.voiceCycDistanceHeadlineEnable);
 
                         //console.log("arSoundArray.length: " + arSoundArray.length.toString());
                         //for (var i = 0; i < arSoundArray.length; i++)
@@ -489,7 +489,7 @@ Page
                     if (iTimeSeconds >= iTriggerDurationVoiceOutput)
                     {
                         //Play voice announcement
-                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false);
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false, settings.voiceCycDurationHeadlineEnable);
 
                         //console.log("arSoundArray.length: " + arSoundArray.length.toString());
                         //for (var i = 0; i < arSoundArray.length; i++)
@@ -558,15 +558,6 @@ Page
             {
                 iButtonLoop = 3;
 
-                //These operation belong to "end workout" button pressed
-                bRecordDialogRequestHRM = false;
-
-                if (bHRMConnected) {id_BluetoothData.disconnect();}
-
-                sHeartRate: ""
-                sBatteryLevel: ""
-
-                recorder.running = false;
                 if(!recorder.isEmpty)
                 {
                     showSaveDialog();
@@ -653,6 +644,16 @@ Page
         if (settings.enableAutosave)
         {
             console.log("Autosaving workout");
+
+            //stop heart rate device
+            bRecordDialogRequestHRM = false;
+            if (bHRMConnected) {id_BluetoothData.disconnect();}
+            sHeartRate = "";
+            sBatteryLevel = "";
+
+            //stop recording
+            recorder.running = false;
+
             recorder.exportGpx(SharedResources.arrayLookupWorkoutTableByName[settings.workoutType].labeltext + " - " + recorder.startingDateTime + " - " + (recorder.distance/1000).toFixed(1) + "km", "");
             recorder.clearTrack();  // TODO: Make sure save was successful?
 
@@ -668,6 +669,16 @@ Page
             dialog.accepted.connect(function()
             {
                 console.log("Saving workout");
+
+                //stop heart rate device
+                bRecordDialogRequestHRM = false;
+                if (bHRMConnected) {id_BluetoothData.disconnect();}
+                sHeartRate = "";
+                sBatteryLevel = "";
+
+                //stop recording
+                recorder.running = false;
+
                 recorder.exportGpx(dialog.name, dialog.description);
                 recorder.clearTrack();  // TODO: Make sure save was successful?
 
@@ -679,11 +690,29 @@ Page
             })
             dialog.rejected.connect(function()
             {
-                console.log("Cancel workout");
-                recorder.clearTrack();
+                if (dialog.bDropRecordedData === true)
+                {
+                    console.log("Drop recorded data");
 
-                //We must return here to the mainpage.
-                pageStack.pop(vMainPageObject, PageStackAction.Immediate);
+                    //stop heart rate device
+                    bRecordDialogRequestHRM = false;
+                    if (bHRMConnected) {id_BluetoothData.disconnect();}
+                    sHeartRate = "";
+                    sBatteryLevel = "";
+
+                    //stop recording
+                    recorder.running = false;
+
+                    recorder.clearTrack();
+
+                    //We must return here to the mainpage.
+                    pageStack.pop(vMainPageObject, PageStackAction.Immediate);
+                }
+                else
+                {
+                    console.log("Cancel, do nothing just resume workout");
+
+                }
             })
         }
     }   
@@ -1055,38 +1084,6 @@ Page
                     settings.showMapRecordPage = bShowMap;
                 }
             }
-            MenuItem
-            {
-                text: "Test voice output distance"
-                onClicked:
-                {                                                                               
-                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true);
-                    console.log("arSoundArray.length: " + arSoundArray.length.toString());
-
-                    for (var i = 0; i < arSoundArray.length; i++)
-                    {
-                        console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
-                    }
-
-                    fncPlaySoundArray(arSoundArray);
-                }
-            }
-            MenuItem
-            {
-                text: "Test voice output duration"
-                onClicked:
-                {
-                    var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false);
-                    console.log("arSoundArray.length: " + arSoundArray.length.toString());
-
-                    for (var i = 0; i < arSoundArray.length; i++)
-                    {
-                        console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
-                    }
-
-                    fncPlaySoundArray(arSoundArray);
-                }
-            }
         }
         PushUpMenu
         {
@@ -1263,7 +1260,7 @@ Page
             Label
             {
                 color: "white"
-                text: qsTr("hold button for: ") + iButtonLoop.toString() + "s";
+                text: qsTr("hold button for: %1 s").arg(iButtonLoop.toString());
                 font.pixelSize: Theme.fontSizeMedium
                 anchors.centerIn: parent
             }

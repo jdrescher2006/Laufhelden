@@ -18,11 +18,21 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Dialog {
+Dialog
+{
     id: saveDialog
     allowedOrientations: Orientation.Portrait
     property string name
     property string description
+    property bool bDropRecordedData: false
+
+    onStatusChanged:
+    {
+        if (status === PageStatus.Active)
+        {
+            bDropRecordedData = false;
+        }
+    }
 
     onDone: {
         name = nameField.text;
@@ -34,7 +44,7 @@ Dialog {
         DialogHeader {
             title: qsTr("Save track")
             acceptText: qsTr("Save")
-        }
+        }        
         TextField {
             id: nameField
             x: Theme.paddingLarge
@@ -58,6 +68,16 @@ Dialog {
             EnterKey.enabled: true
             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
             EnterKey.onClicked: accept()
+        }
+        Button
+        {
+            width: parent.width
+            text: qsTr("Quit without saving")
+            onClicked:
+            {
+                bDropRecordedData = true;
+                reject();
+            }
         }
     }
 }

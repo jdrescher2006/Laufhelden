@@ -244,6 +244,13 @@
     </message>
 </context>
 <context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
@@ -350,6 +357,10 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -557,6 +568,17 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RecordPage</name>
     <message>
         <source>AMOLED mode</source>
@@ -596,10 +618,6 @@
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hold button for: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -668,6 +686,10 @@
     </message>
     <message>
         <source>Lock screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -758,6 +780,10 @@
     </message>
     <message>
         <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit without saving</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1355,6 +1381,14 @@
         <source>This value is already assigned!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
@@ -1418,6 +1452,14 @@
         <source>This value is already assigned!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
@@ -1458,6 +1500,18 @@
     </message>
     <message>
         <source>Voice coach general settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause/resume music player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

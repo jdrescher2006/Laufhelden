@@ -20,6 +20,7 @@
 #include <QDir>
 #include <QDebug>
 #include "historymodel.h"
+#include "timeformatter.h"
 #include "trackloader.h"
 
 TrackItem loadTrack(TrackItem track)
@@ -58,6 +59,9 @@ TrackItem loadTrack(TrackItem track)
 HistoryModel::HistoryModel(QObject *parent) :
     QAbstractListModel(parent)
 {
+    //Maybe that helps reading filenames with umlauts?
+    //QTextCodec::codecForName("UTF-8");
+
     this->iWorkoutDuration = 0;
     this->rWorkoutDistance = 0.0;
 	this->bGPXFilesChanged = true;
@@ -102,7 +106,6 @@ qreal HistoryModel::rDistance()
 int HistoryModel::iDuration()
 {
     return this->iWorkoutDuration;
-
 }
 
 QString HistoryModel::getSportsTrackerKey(const int index) const{
@@ -110,6 +113,14 @@ QString HistoryModel::getSportsTrackerKey(const int index) const{
         return m_trackList.at(index).stKey;
     }
     return "";
+}
+
+QString HistoryModel::sDuration() const
+{
+    uint hours = iWorkoutDuration / (60*60);
+    uint minutes = (iWorkoutDuration - hours*60*60) / 60;
+    uint seconds = iWorkoutDuration - hours*60*60 - minutes*60;
+    return TimeFormatter::formatHMS(hours, minutes, seconds);
 }
 
 QVariant HistoryModel::data(const QModelIndex &index, int role) const {
@@ -145,23 +156,13 @@ QVariant HistoryModel::data(const QModelIndex &index, int role) const {
     if(role == DurationRole) {
         if(!m_trackList.at(index.row()).ready) {
             // Data not loaded yet
-            return QString("--h --m --s");
+            return tr("--h --m --s");
         }
+
         uint hours = m_trackList.at(index.row()).duration / (60*60);
         uint minutes = (m_trackList.at(index.row()).duration - hours*60*60) / 60;
         uint seconds = m_trackList.at(index.row()).duration - hours*60*60 - minutes*60;
-        if(hours == 0) {
-            if(minutes == 0) {
-                return QString("%3s").arg(seconds);
-            }
-            return QString("%2m %3s")
-                    .arg(minutes)
-                    .arg(seconds, 2, 10, QLatin1Char('0'));
-        }
-        return QString("%1h %2m %3s")
-                .arg(hours)
-                .arg(minutes, 2, 10, QLatin1Char('0'))
-                .arg(seconds, 2, 10, QLatin1Char('0'));
+        return TimeFormatter::formatHMS(hours, minutes, seconds);
     }
     if(role == DistanceRole) {
         if(!m_trackList.at(index.row()).ready) {
@@ -458,6 +459,8 @@ void HistoryModel::loadAllTracks()
 
 void HistoryModel::readDirectory()
 {
+
+
     if(trackLoading.isRunning())
     {
         trackLoading.cancel();
@@ -485,7 +488,8 @@ void HistoryModel::readDirectory()
         //Check if we already have an item with the current filename
         bool bAlreadyHaveItem = false;
 
-        //qDebug()<<"CurrentFilename: "<<entries.at(i);
+        qDebug()<<"CurrentFilename: "<<entries.at(i);
+        qDebug()<<"CurrentFilename(UTF-8): "<<entries.at(i).toUtf8();
 
         for(int j=0;j<m_trackList.length();j++)
         {

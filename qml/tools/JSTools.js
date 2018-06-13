@@ -241,11 +241,11 @@ var arrayVoiceValueTypes =
 [
     { index: 0, fieldID_Duration: 0, fieldID_Distance: 0, value: "", header: qsTr("Empty"), headline: "", unit: "", imperialUnit: "" },
     { index: 1, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate"), headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
-    { index: 2, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", headline: "heartrate", unit: "bpm", imperialUnit: "bpm" },
+    { index: 2, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Heartrate") + "∅", headline: "heartrateavg", unit: "bpm", imperialUnit: "bpm" },
     { index: 3, fieldID_Duration: 4, fieldID_Distance: 3, value: "0", header: qsTr("Pace"), headline: "pace", unit: "minkm", imperialUnit: "minmi" },
-    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", headline: "pace", unit: "minkm", imperialUnit: "minmi" },
+    { index: 4, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Pace") + "∅", headline: "paceavg", unit: "minkm", imperialUnit: "minmi" },
     { index: 5, fieldID_Duration: 3, fieldID_Distance: 4, value: "0", header: qsTr("Speed"), headline: "speed", unit: "kmh", imperialUnit: "mih" },
-    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", headline: "speed", unit: "kmh", imperialUnit: "mih" },
+    { index: 6, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Speed") + "∅", headline: "speedavg", unit: "kmh", imperialUnit: "mih" },
     { index: 7, fieldID_Duration: 0, fieldID_Distance: 0, value: "0", header: qsTr("Altitude"), headline: "altitude", unit: "m", imperialUnit: "ft" },
     { index: 8, fieldID_Duration: 2, fieldID_Distance: 2, value: "0", header: qsTr("Distance"), headline: "distance", unit: "km", imperialUnit: "mi" },
     { index: 9, fieldID_Duration: 1, fieldID_Distance: 1, value: "0", header: qsTr("Duration"), headline: "duration", unit: "duration", imperialUnit: "duration" }
@@ -290,19 +290,19 @@ function fncConvertSaveStringToArrayCyclicVoiceDistance(sSaveString)
     arValueTypes[3] = parseInt(arValueTypes[3]);
 
     //Go through value types
-    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
+    for (var i = 1; i < arrayVoiceValueTypes.length; i++)
     {
         if (i === arValueTypes[0])
-            arrayPebbleValueTypes[i].fieldID_Distance = 1;
+            arrayVoiceValueTypes[i].fieldID_Distance = 1;
         else if (i === arValueTypes[1])
-            arrayPebbleValueTypes[i].fieldID_Distance = 2;
+            arrayVoiceValueTypes[i].fieldID_Distance = 2;
         else if (i === arValueTypes[2])
-            arrayPebbleValueTypes[i].fieldID_Distance = 3;
+            arrayVoiceValueTypes[i].fieldID_Distance = 3;
         else if (i === arValueTypes[3])
-            arrayPebbleValueTypes[i].fieldID_Distance = 4;
+            arrayVoiceValueTypes[i].fieldID_Distance = 4;
         else
-            arrayPebbleValueTypes[i].fieldID_Distance = 0;
-    }
+            arrayVoiceValueTypes[i].fieldID_Distance = 0;
+    }   
 
     fncGenerateHelperArrayFieldIDDistance();
 }
@@ -339,18 +339,18 @@ function fncConvertSaveStringToArrayCyclicVoiceDuration(sSaveString)
     arValueTypes[3] = parseInt(arValueTypes[3]);
 
     //Go through value types
-    for (var i = 0; i < arrayVoiceValueTypes.length; i++)
+    for (var i = 1; i < arrayVoiceValueTypes.length; i++)
     {
         if (i === arValueTypes[0])
-            arrayPebbleValueTypes[i].fieldID_Duration = 1;
+            arrayVoiceValueTypes[i].fieldID_Duration = 1;
         else if (i === arValueTypes[1])
-            arrayPebbleValueTypes[i].fieldID_Duration = 2;
+            arrayVoiceValueTypes[i].fieldID_Duration = 2;
         else if (i === arValueTypes[2])
-            arrayPebbleValueTypes[i].fieldID_Duration = 3;
+            arrayVoiceValueTypes[i].fieldID_Duration = 3;
         else if (i === arValueTypes[3])
-            arrayPebbleValueTypes[i].fieldID_Duration = 4;
+            arrayVoiceValueTypes[i].fieldID_Duration = 4;
         else
-            arrayPebbleValueTypes[i].fieldID_Duration = 0;
+            arrayVoiceValueTypes[i].fieldID_Duration = 0;
     }
 
     fncGenerateHelperArrayFieldIDDistance();
@@ -370,7 +370,7 @@ function fncConvertArrayToSaveStringCyclicVoiceDuration()
     return sSaveString;
 }
 
-function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
+function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance, bPlayHeadline)
 {
     var arraySoundArray = [];
     var arrayTempArray = [];    
@@ -384,12 +384,16 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
     //We have a maximum of 4 voice messages to play
     for (var i = 1; i < 5; i++)
     {
+        //console.log("arrayLookUpArray[" + i.toString() + "].index: " + arrayLookUpArray[i].index.toString());
+        //console.log("arrayLookUpArray[" + i.toString() + "].fieldID_Distance: " + arrayLookUpArray[i].fieldID_Distance.toString());
+        //console.log("arrayLookUpArray[" + i.toString() + "] === undefined: " + (arrayLookUpArray[i] === undefined).toString());
+
         //Check if index exists
         if (arrayLookUpArray[i] === undefined)
             continue;
 
         //Check if ths is an empty entry
-        if (arrayLookUpArray[i].index === 0)
+        if ((bDistance && arrayLookUpArray[i].fieldID_Distance === 0) || (!bDistance && arrayLookUpArray[i].fieldID_Duration === 0))
             continue;
 
         //Get value
@@ -425,7 +429,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
 
             arrayTempArray = [];
             if (bPlayHour)
-                arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, sHeadline, iVoiceLanguage);
+                arrayTempArray = fncGenerateSoundArray(iHour, sUnitHour, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
 
             if (arrayTempArray !== undefined)
             {
@@ -441,7 +445,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 if (bPlayHour)
                     arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, "", iVoiceLanguage);
                 else
-                    arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, sHeadline, iVoiceLanguage);
+                    arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
             }
 
             if (arrayTempArray !== undefined)
@@ -458,7 +462,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                 if (bPlayHour || bPlayMinute)
                     arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, "", iVoiceLanguage);
                 else
-                    arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, sHeadline, iVoiceLanguage);
+                    arrayTempArray = fncGenerateSoundArray(iSecond, sUnitSecond, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
             }
 
             if (arrayTempArray !== undefined)
@@ -490,7 +494,7 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
             var sUnitMinute = (iMinute === 1) ? "minute" : "minutes";
             var sUnitSecond = (iSecond === 1) ? "second" : "seconds";
 
-            arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, sHeadline, iVoiceLanguage);
+            arrayTempArray = fncGenerateSoundArray(iMinute, sUnitMinute, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
             if (arrayTempArray !== undefined)
             {
                 for (j = 0; j < arrayTempArray.length; j++)
@@ -508,11 +512,22 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance)
                     arraySoundArray.push(arrayTempArray[j]);
                 }
             }
+
+            //lastly we need to add the unit
+            arrayTempArray = [];
+            arrayTempArray = fncGenerateSoundArray("", sUnit, "", iVoiceLanguage);
+            if (arrayTempArray !== undefined)
+            {
+                for (var j = 0; j < arrayTempArray.length; j++)
+                {
+                    arraySoundArray.push(arrayTempArray[j]);
+                }
+            }
         }
         else
         {
             //Covert value and unit to audio file array
-            arrayTempArray = fncGenerateSoundArray(iNumber, sUnit, sHeadline, iVoiceLanguage);
+            arrayTempArray = fncGenerateSoundArray(iNumber, sUnit, bPlayHeadline ? sHeadline : "", iVoiceLanguage);
 
             if (arrayTempArray !== undefined)
             {
@@ -545,6 +560,7 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
     var arraySoundArray = [];
     var sNumberToPlay = "";
     var sVoiceLanguage = "_en_male.wav";
+    var bOneIsSingular = false;
 
     //check voice language and generate last part of audio filename
     if (iVoiceLanguage === 0)        //english male
@@ -558,8 +574,16 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
         arraySoundArray.push("headers/" + sHeadline + sVoiceLanguage);
     }
 
-    if (isInteger(number))		//Check if it's an integer
+    if (number === "")  //This is for when number should not be played
     {
+
+    }
+    else if (isInteger(number))		//Check if it's an integer
+    {
+        //Check if we need a singular voice file for the unit. Plural is default.
+        if (number === 1)
+            bOneIsSingular = true;
+
         //console.log("Number is INT");
 
         //Check limits
@@ -593,7 +617,7 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
             sFloatArray = number.toString().split(",");
 
         if (typeof sFloatArray === 'undefined' || sFloatArray.length !== 2)
-            return;
+            return;       
 
         //push first place. First check for size over hundred.
         if (parseInt(sFloatArray[0]) >= 100)
@@ -617,8 +641,11 @@ function fncGenerateSoundArray(number, sUnit, sHeadline, iVoiceLanguage)
 
     //add the unit
     if (sUnit !== "")
-    {
-        arraySoundArray.push("units/" + sUnit + sVoiceLanguage);
+    {    
+        if (bOneIsSingular && (sUnit === "km" || sUnit === "mi") || sUnit === "m")
+            arraySoundArray.push("units/" + sUnit + "_singular" + sVoiceLanguage);    //this is for singular unit e.g. 1 kilometer
+        else
+            arraySoundArray.push("units/" + sUnit + sVoiceLanguage);                 //This is for plural unit e.g. 2 kilometers
     }
 
     return arraySoundArray;

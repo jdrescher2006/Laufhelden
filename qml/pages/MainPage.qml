@@ -230,15 +230,7 @@ Page
             console.log("Workout distance: " + id_HistoryModel.rDistance());
             console.log("Workout duration: " + id_HistoryModel.iDuration());            
 
-            var iHours = Math.floor(id_HistoryModel.iDuration() / 3600);
-            console.log("iHours: " + iHours);
-
-            var iMinutes = Math.floor((id_HistoryModel.iDuration() - iHours * 3600) / 60);
-            console.log("iMinutes: " + iMinutes);
-
-            var iSeconds = Math.floor(id_HistoryModel.iDuration() - (iHours * 3600) - (iMinutes * 60));
-
-            sWorkoutDuration = iHours + "h " + iMinutes + "m " + iSeconds + "s";
+            sWorkoutDuration = id_HistoryModel.sDuration();
 
             if (settings.measureSystem === 0)
                 sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
@@ -291,12 +283,7 @@ Page
             {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsMenu.qml"))
-            }
-            MenuItem
-            {
-                text: qsTr("Start new workout")
-                onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
-            }
+            }            
             MenuItem
             {
                 text: qsTr("My Strava Activities")
@@ -317,24 +304,8 @@ Page
             }
             MenuItem
             {
-                text: "Test audio"
-                onClicked:
-                {
-                    //playSoundEffect2.play();
-
-
-                    var arTemp = [];
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/m_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/minkm_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/bpm_de_male.wav");
-                    arTemp.push("numbers/0_de_male.wav");
-                    arTemp.push("units/km_de_male.wav");
-                    fncPlaySoundArray(arTemp);
-
-                }
+                text: qsTr("Start new workout")
+                onClicked: pageStack.push(Qt.resolvedUrl("PreRecordPage.qml"))
             }
         }
 
@@ -525,7 +496,7 @@ Page
                 width: parent.width - dateLabel.width - 2*Theme.paddingLarge
                 anchors.top: parent.top
                 truncationMode: TruncationMode.Fade
-                text: name==="" ? "(Unnamed track)" : name
+                text: name==="" ? qsTr("(Unnamed track)") : name
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
             Label

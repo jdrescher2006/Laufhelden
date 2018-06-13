@@ -26,6 +26,25 @@ Page
     property bool bLockOnCompleted : false;
     property bool bLockFirstPageLoad: true
 
+    function fncCheckBoxesOK()
+    {
+        //The comboboxes must be checked, because the values need to be different. Except index 0, this may be same for all boxes.
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex)
+            return false;
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex)
+            return false;
+        if (id_CMB_ValueField1.currentIndex !== 0 && id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+        if (id_CMB_ValueField2.currentIndex !== 0 && id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex)
+            return false;
+        if (id_CMB_ValueField2.currentIndex !== 0 && id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+        if (id_CMB_ValueField3.currentIndex !== 0 && id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+            return false;
+
+        return true;
+    }
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -37,6 +56,8 @@ Page
             console.log("First Active VoiceCycleDurationSettingsPage");
 
             id_TextSwitch_IntervalDuration.checked = settings.voiceCycDurationEnable;
+
+            id_TextSwitch_PlayHeadlineDuration.checked = settings.voiceCycDurationHeadlineEnable;
 
             if (settings.voiceCycDuration === 30)
                 id_CMB_IntervalDuration.currentIndex = 0;
@@ -156,6 +177,26 @@ Page
                 color: Theme.highlightColor
                 width: parent.width
             }
+            TextSwitch
+            {
+                id: id_TextSwitch_PlayHeadlineDuration
+                visible: id_TextSwitch_IntervalDuration.checked
+                text: qsTr("Play value announcement")
+                description: qsTr("Before a value is played, the type of value is announced e.g \"Distance:\". This makes the voice announcement last longer.")
+                onCheckedChanged:
+                {
+                    if (bLockOnCompleted || bLockFirstPageLoad)
+                        return;
+
+                    settings.voiceCycDurationHeadlineEnable = checked;
+                }
+            }
+            Separator
+            {
+                visible: id_TextSwitch_IntervalDuration.checked
+                color: Theme.highlightColor
+                width: parent.width
+            }
             ComboBox
             {
                 visible: id_TextSwitch_IntervalDuration.checked
@@ -170,17 +211,18 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDurationFields.split(",");
                     if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
@@ -218,17 +260,18 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField3.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDurationFields.split(",");
                     if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
@@ -266,17 +309,18 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField4.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField4.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField4.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDurationFields.split(",");
                     if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields
@@ -314,17 +358,18 @@ Page
                     console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
 
                     //Check if an other combobox has this value
-                    if (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex)
+                    if (currentIndex !== 0 && (currentIndex === id_CMB_ValueField1.currentIndex || currentIndex === id_CMB_ValueField2.currentIndex || currentIndex === id_CMB_ValueField3.currentIndex))
                     {
                         fncShowMessage(3,qsTr("This value is already assigned!"), 3000);
                         return;
                     }
 
                     //Check if the other comboboxes are OK
-                    if (id_CMB_ValueField1.currentIndex === id_CMB_ValueField2.currentIndex ||
-                            id_CMB_ValueField1.currentIndex === id_CMB_ValueField3.currentIndex ||
-                            id_CMB_ValueField2.currentIndex === id_CMB_ValueField3.currentIndex)
+                    if (fncCheckBoxesOK() === false)
+                    {
+                        console.log("fncCheckBoxesOK: false");
                         return;
+                    }
 
                     var arValueTypes = settings.voiceCycDurationFields.split(",");
                     if (arValueTypes === undefined || arValueTypes === "" || arValueTypes.length !== 4)    //This is the amount pebble fields

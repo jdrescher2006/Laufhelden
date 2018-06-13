@@ -1,106 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es_ES">
+<TS version="2.1" language="nl_BE">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation>Acerca de Laufhelden</translation>
+        <translation>Over Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation>Aplicación de entrenamiento deportivo para Saifish OS</translation>
+        <translation>Sporttrackertoepassing voor Sailfish OS</translation>
     </message>
     <message>
         <source>Copyright</source>
-        <translation>Derechos de autor</translation>
+        <translation>Auteursrecht</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation>Alemania</translation>
+        <translation>Duitsland</translation>
     </message>
     <message>
         <source>Date: </source>
-        <translation>Fecha: </translation>
+        <translation>Datum: </translation>
     </message>
     <message>
         <source>License: GPLv3</source>
-        <translation>Licencia: GPLv3</translation>
+        <translation>Licentie: GPLv3</translation>
     </message>
     <message>
         <source>Source code:</source>
-        <translation>Código fuente:</translation>
+        <translation>Broncode:</translation>
     </message>
     <message>
         <source>Credits for localization:</source>
-        <translation>Créditos de traductores:</translation>
+        <translation>Merci aan de volgende personen voor hun vertalingen:</translation>
     </message>
     <message>
         <source>Spanish</source>
-        <translation>Español</translation>
+        <translation>Spaans</translation>
     </message>
     <message>
         <source>Polish</source>
-        <translation>Polaco</translation>
+        <translation>Pools</translation>
     </message>
     <message>
         <source>Swedish</source>
-        <translation>Sueco</translation>
+        <translation>Zweeds</translation>
     </message>
     <message>
         <source>Feedback, bugs:</source>
-        <translation>Comentarios, errores:</translation>
+        <translation>Suggesties, fouten:</translation>
     </message>
     <message>
         <source>Credits for code contribution:</source>
-        <translation>Créditos de colaboradores:</translation>
+        <translation>Merci aan de volgende personen voor hun codebijdragen:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation>Si te gusta esta aplicación puedes hacer una donación:</translation>
+        <translation>Als ge dezen app kund appreciëren, kunde een donatie doen:</translation>
     </message>
     <message>
         <source>Hungarian</source>
-        <translation>Húngaro</translation>
+        <translation>Hongaars</translation>
     </message>
     <message>
         <source>Finnish</source>
-        <translation>Finés</translation>
+        <translation>Fins</translation>
     </message>
     <message>
         <source>Dutch</source>
-        <translation>Holandés</translation>
+        <translation>Nederlands</translation>
     </message>
     <message>
         <source>Spanish-Spain</source>
-        <translation>Español de España</translation>
+        <translation>Spaans (Spanje)</translation>
     </message>
 </context>
 <context>
     <name>BTConnectPage</name>
     <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Buscar dispositivos Bluetooth</translation>
+        <translation>Scannen naar Bluetooth-apparaten</translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Iniciar escaneo...</translation>
+        <translation>Bezig met scannen…</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Cancelar escaneo</translation>
+        <translation>Scannen annuleren</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Dispositivo BT actual</translation>
+        <translation>Huidig BT-apparaat</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Ninguno</translation>
+        <translation>Geen</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation>Frecuencia cardiaca: </translation>
+        <translation>Hartslag: </translation>
     </message>
     <message>
         <source> bpm</source>
@@ -108,316 +108,327 @@
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation>Nivel de batería: </translation>
+        <translation>Batterijniveau: </translation>
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation>Dispositivos BT encontrados: (presiona para conectar):</translation>
+        <translation>Gevonden BT-apparaten (tikt voor te verbinden):</translation>
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Sensor de frecuencia cardiaca</translation>
+        <translation>Hartslagapparaat</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Conectar</translation>
+        <translation>Verbinden</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Desconectar</translation>
+        <translation>Verbinding verbreken</translation>
     </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>Recording</source>
-        <translation>Grabando</translation>
+        <translation>Opnemen</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Parado</translation>
+        <translation>Gestopt</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>En pausa</translation>
+        <translation>Gepauzeerd</translation>
     </message>
 </context>
 <context>
     <name>CoverSettingsPage</name>
     <message>
         <source>This value is already assigned!</source>
-        <translation>¡Este valor ya está asignado!</translation>
+        <translation>Deze waarde is al toegewezen!</translation>
     </message>
     <message>
         <source>First field:</source>
-        <translation>Primer campo:</translation>
+        <translation>Eerste veld:</translation>
     </message>
     <message>
         <source>Second field:</source>
-        <translation>Segundo campo:</translation>
+        <translation>Tweede veld:</translation>
     </message>
     <message>
         <source>Third field:</source>
-        <translation>Tercer campo:</translation>
+        <translation>Derde veld:</translation>
     </message>
     <message>
         <source>App cover settings</source>
-        <translation>Ajustes de cubierta</translation>
+        <translation>Appomslaginstellingen</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation>Selecciona los valores que se muestran en la cubierta. Estos valores también aparecen en la pantalla de bloqueo de la página de grabación.</translation>
+        <translation>Selecteerd waarden voor op den appomslag weer te geven. De waarden worden ook gebruikt voor het vergrendelscherm op de opnamepagina.</translation>
     </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation>Diagramas</translation>
+        <translation>Diagrammen</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Descripción:</translation>
+        <translation>Beschrijving:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation>Hora de inicio:</translation>
+        <translation>Begintijd:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Duración:</translation>
+        <translation>Duur:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation>Distancia:</translation>
+        <translation>Afstand</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation>Velocidad máx/⌀:</translation>
+        <translation>Snelheid max/⌀:</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation>Ritmo ⌀:</translation>
+        <translation>Tempo ⌀:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation>Frec. card. mín/máx/⌀:</translation>
+        <translation>Hartslag min/max/⌀:</translation>
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation>Nº pausas/duración:</translation>
+        <translation>Pauze nummer/duur:</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Enviar a Sports-Tracker.com</translation>
+        <translation>Sturen naar Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Editar entrenamiento</translation>
+        <translation>Training bewerken</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation>Nombre de entrenamiento</translation>
+        <translation>Naam voor training</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation>Descripción de entrenamiento</translation>
+        <translation>Beschrijving voor training</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Entrenamiento:</translation>
+        <translation>Training:</translation>
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation>Altitud ganada/perdida:</translation>
+        <translation>Hoogte omhoog/omlaag:</translation>
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation>Enviar a Strava</translation>
+        <translation>Sturen naar Strava</translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation>Diagramas</translation>
+        <translation>Diagrammen</translation>
+    </message>
+</context>
+<context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
-        <translation>Vacío</translation>
+        <translation>Leeg</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation>Frecuencia cardiaca</translation>
+        <translation>Hartslag</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation>Ritmo</translation>
+        <translation>Tempo</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation>Velocidad</translation>
+        <translation>Snelheid</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation>Altitud</translation>
+        <translation>Hoogte</translation>
     </message>
     <message>
         <source>Distance</source>
-        <translation>Distancia</translation>
+        <translation>Afstand</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pausa</translation>
+        <translation>Pauzeren</translation>
     </message>
     <message>
         <source>Duration</source>
-        <translation>Duración</translation>
+        <translation>Duur</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation>Over</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Ajustes</translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation>Iniciar nuevo entrenamiento</translation>
+        <translation>Nieuwen training beginnen</translation>
     </message>
     <message>
         <source>Welcome to Laufhelden</source>
-        <translation>Bienvenido a Laufhelden</translation>
+        <translation>Welkom bij Laufhelden</translation>
     </message>
     <message>
         <source>No earlier workouts</source>
-        <translation>No hay entrenamientos</translation>
+        <translation>Geen vroegere trainingen</translation>
     </message>
     <message>
         <source>Workouts: </source>
-        <translation>Entrenamientos: </translation>
+        <translation>Trainingen: </translation>
     </message>
     <message>
         <source>of</source>
-        <translation>de</translation>
+        <translation>van</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation>Cargando archivos GPX...</translation>
+        <translation>GPX-bestanden laden…</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation>Eliminar entrenamiento</translation>
+        <translation>Training verwijderen</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation>Eliminando entrenamiento...</translation>
+        <translation>Training word verwijderd…</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation>¡Entrenamiento incompleto encontrado!</translation>
+        <translation>Onvoltooiden training gevonden!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation>Reanudar</translation>
+        <translation>Hervatten</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Editar entrenamiento</translation>
+        <translation>Training bewerken</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation>Nombre de entrenamiento</translation>
+        <translation>Naam voor training</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation>Descripción de entrenamiento</translation>
+        <translation>Beschrijving voor training</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Entrenamiento:</translation>
+        <translation>Training:</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation>Mis actividades Strava</translation>
+        <translation>Mijn Strava-activiteiten</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Enviar a Sports-Tracker.com</translation>
+        <translation>Sturen naar Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
     <message>
         <source>Map settings</source>
-        <translation>Ajustes del mapa</translation>
+        <translation>Kaartinstellingen</translation>
     </message>
     <message>
         <source>Optimize screen in map mode</source>
-        <translation>Optimizar pantalla en modo mapa</translation>
+        <translation>Scherm optimaliseren in kaartmodus</translation>
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation>Sólo se muestran 4 campos de valores (en lugar de 6) cuando se activa el mapa.</translation>
+        <translation>Toond slechts 4 waardevelden (in plek van 6) wanneer dat de kaart weergegeven word</translation>
     </message>
     <message>
         <source>Map center mode</source>
-        <translation>Modo de centrado del mapa</translation>
+        <translation>Kaartcentrummodus</translation>
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation>Centrar en la posición actual</translation>
+        <translation>Huidige positie centreren op kaart</translation>
     </message>
     <message>
         <source>Center track on map</source>
-        <translation>Centrar en el trayecto</translation>
+        <translation>Route centreren op kaart</translation>
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation>Al limitar el almacenamiento de teselas en la caché te aseguras que los mapas estén actualizados y mantienes el disco bajo control, pero los mapas tardan más en cargarse y se produce un mayor tráfico de datos. Ten en cuenta que el ajuste del tamaño de la caché se aplicará después de reiniciar la aplicación.</translation>
+        <translation>Inperken van tegelcache zorgd dervoor dat uw kaarten up-to-date blijven en houd het geheugengebruik onder controle, maar zorgd der ook voor dat kaarten minder snel laden en verhoogd het gegevensverbruik. Let op: de cachegrootteinstelling word pas toegepast na nen herstart van den app.</translation>
     </message>
     <message>
         <source>Cache size</source>
-        <translation>Tamaño de la caché</translation>
+        <translation>Cachegrootte</translation>
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation>Elige el estilo del mapa.</translation>
+        <translation>Kiesd ne kaartstijl.</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation>Mapa</translation>
+        <translation>Kaart</translation>
     </message>
     <message>
         <source>Streets</source>
-        <translation>Calles</translation>
+        <translation>Straten</translation>
     </message>
     <message>
         <source>Outdoors</source>
-        <translation>Exterior</translation>
+        <translation>Buiten</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation>Claro</translation>
+        <translation>Licht</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation>Oscuro</translation>
+        <translation>Donker</translation>
     </message>
     <message>
         <source>Satellite</source>
-        <translation>Satélite</translation>
+        <translation>Satelliet</translation>
     </message>
     <message>
         <source>Satellite Streets</source>
-        <translation>Calles satélite</translation>
+        <translation>Straten (satelliet)</translation>
     </message>
     <message>
         <source>OSM Scout Server</source>
@@ -425,257 +436,268 @@
     </message>
     <message>
         <source>Disable map</source>
-        <translation>Desactivar mapa</translation>
+        <translation>Kaart uitschakelen</translation>
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>El mapa no se muestra. Es útil en teléfonos Jolla 1 (con poca GPU) porque el mapa podría hacer que la aplicación se cuelgue.</translation>
+        <translation>De kaart zal niet meer weergegeven worden. Dit is handig op Jolla 1-gsm’s, omdat hunne zwakke GPU dertoe kan leiden dat het weergeven van de kaart den app doet crashen.</translation>
     </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation>Mis actividades Strava</translation>
+        <translation>Mijn Strava-activiteiten</translation>
     </message>
 </context>
 <context>
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
-        <translation>Pebble conectado</translation>
+        <translation>Pebble verbonden</translation>
     </message>
     <message>
         <source>Pebble disconnected</source>
-        <translation>Pebble desconectado</translation>
+        <translation>Verbinding met Pebble verbroken</translation>
     </message>
 </context>
 <context>
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation>ajustar unidades métricas</translation>
+        <translation>metrische eenheden instellen</translation>
     </message>
     <message>
         <source>sending data 1</source>
-        <translation>enviando datos 1</translation>
+        <translation>gegevens 1 worden gestuurd</translation>
     </message>
     <message>
         <source>sending data 2</source>
-        <translation>enviando datos 2</translation>
+        <translation>gegevens 2 worden gestuurd</translation>
     </message>
     <message>
         <source>sending data 3</source>
-        <translation>enviando datos 3</translation>
+        <translation>gegevens 3 worden gestuurd</translation>
     </message>
     <message>
         <source>closing sport app</source>
-        <translation>cerrando apl. de deporte</translation>
+        <translation>sportapp sluiten</translation>
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation>Ajustes de Pebble</translation>
+        <translation>Pebble-instellingen</translation>
     </message>
     <message>
         <source>Test Pebble</source>
-        <translation>Probar Pebble</translation>
+        <translation>Pebble testen</translation>
     </message>
     <message>
         <source>starting sport app</source>
-        <translation>iniciando apl. de deporte</translation>
+        <translation>sportapp starten</translation>
     </message>
     <message>
         <source>Connected:</source>
-        <translation>Conectado:</translation>
+        <translation>Verbonden:</translation>
     </message>
     <message>
         <source>Enable Pebble support</source>
-        <translation>Activar soporte Pebble</translation>
+        <translation>Pebble-ondersteuning inschakelen</translation>
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation>1 Campo DURACIÓN:</translation>
+        <translation>1 DUUR-veld:</translation>
     </message>
     <message>
         <source>2 DISTANCE field:</source>
-        <translation>2 Campo DISTANCIA:</translation>
+        <translation>2 AFSTAND-veld:</translation>
     </message>
     <message>
         <source>3 PACE/SPEED field:</source>
-        <translation>3 Campo RITMO/VELOCIDAD:</translation>
+        <translation>3 TEMPO/SNELHEID-veld:</translation>
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation>Ver datos de entrenamiento en reloj Pebble.</translation>
+        <translation>Bekijkt uw trainingsgegevens op uwe Pebble-smartwatch.</translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>No se encontró Pebble.&lt;br&gt;¡Instala Rockpool y&lt;br&gt;conecta el Pebble!</translation>
+        <translation>Gene Pebble gevonden.&lt;br&gt;Installeerd Rockpool en&lt;br&gt;verbind uwe Pebble!</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>¡Este valor ya está asignado!</translation>
+        <translation>Deze waarde is al toegewezen!</translation>
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
-        <translation>¡Elige valores para campos Pebble!</translation>
+        <translation>Kiesd waarden voor Pebble-velden!</translation>
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation>Debe instalarse al menos&lt;br&gt;la versión 1.4-1 de Rockpool.&lt;br&gt;La versión instalada es: </translation>
+        <translation>Geïnstalleerde Rockpool-versie moet&lt;br&gt;minstens versie 1.4-1 zijn.&lt;br&gt;Geïnstalleerde versie is: </translation>
     </message>
 </context>
 <context>
     <name>PreRecordPage</name>
     <message>
         <source>Let&apos;s go!</source>
-        <translation>¡Vamos!</translation>
+        <translation>Tijd voor te vertrekken!</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Entrenamiento:</translation>
+        <translation>Training:</translation>
     </message>
     <message>
         <source>Use HRM device</source>
-        <translation>Usar dispositivo HRM</translation>
+        <translation>Hartslagmonitor gebruiken</translation>
     </message>
     <message>
         <source>Use heart rate monitor in this workout.</source>
-        <translation>Usar monitor cardiaco en este entrenamiento.</translation>
+        <translation>Gebruikt nen hartslagmonitor tijdens deze training.</translation>
     </message>
     <message>
         <source>Disable screen blanking</source>
-        <translation>Desactivar apagado de pantalla</translation>
+        <translation>Automatisch uitschakelen van scherm uitschakelen</translation>
     </message>
     <message>
         <source>Disable screen blanking when recording.</source>
-        <translation>Desactivar que la pantalla se apague durante la grabación.</translation>
+        <translation>Schakeld automatisch uitschakelen van scherm uit tijdens opnames.</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation>Seleccionar perfil de límites</translation>
+        <translation>Selecteerd een drempelwaardeprofiel</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RecordPage</name>
     <message>
         <source>AMOLED mode</source>
-        <translation>Modo AMOLED</translation>
+        <translation>AMOLED-modus</translation>
     </message>
     <message>
         <source>LCD mode</source>
-        <translation>Modo LCD</translation>
+        <translation>LCD-modus</translation>
     </message>
     <message>
         <source>Night mode</source>
-        <translation>Modo noche</translation>
+        <translation>Nachtmodus</translation>
     </message>
     <message>
         <source>Silica mode</source>
-        <translation>Modo Silica</translation>
+        <translation>Silica-modus</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Ajustes</translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <source>Hide Map</source>
-        <translation>Ocultar mapa</translation>
+        <translation>Kaart verbergen</translation>
     </message>
     <message>
         <source>Show Map</source>
-        <translation>Mostrar mapa</translation>
+        <translation>Kaart weergeven</translation>
     </message>
     <message>
         <source>Disconnect HRM</source>
-        <translation>Desconectar HRM</translation>
+        <translation>Verbinding met hartslagmonitor verbreken</translation>
     </message>
     <message>
         <source>Reconnect HRM</source>
-        <translation>Reconectar HRM</translation>
+        <translation>Verbinding met hartslagmonitor herstellen</translation>
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation>Cambiar modo de visualización</translation>
-    </message>
-    <message>
-        <source>hold button for: </source>
-        <translation>mantén pulsado el botón: </translation>
+        <translation>Schermmodus wisselen</translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
-        <translation>Precisión del GPS:</translation>
+        <translation>Nauwkeurigheid van gps:</translation>
     </message>
     <message>
         <source>No position</source>
-        <translation>Sin posición</translation>
+        <translation>Geen positie</translation>
     </message>
     <message>
         <source>too low: </source>
-        <translation>demasiado bajo: </translation>
+        <translation>te laag: </translation>
     </message>
     <message>
         <source>Recording</source>
-        <translation>Grabando</translation>
+        <translation>Opname</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Parado</translation>
+        <translation>Gestopt</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>En pausa</translation>
+        <translation>Pauzeren</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Duración:</translation>
+        <translation>Duur:</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pausa</translation>
+        <translation>Pauzeren</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation>Continuar</translation>
+        <translation>Voortzetten</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Inicio</translation>
+        <translation>Begin</translation>
     </message>
     <message>
         <source>End</source>
-        <translation>Fin</translation>
+        <translation>Einde</translation>
     </message>
     <message>
         <source>keep tapping button: </source>
-        <translation>sigue dando toques al botón: </translation>
+        <translation>blijfd tikken op de knop: </translation>
     </message>
     <message>
         <source>Accept</source>
-        <translation>Aceptar</translation>
+        <translation>Aanvaarden</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>Annuleren</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation>¡Selecciona valor!</translation>
+        <translation>Selecteerd een waarde!</translation>
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation>Reiniciar aplicación Pebble</translation>
+        <translation>Pebble-app herstarten</translation>
     </message>
     <message>
         <source>Lock screen</source>
-        <translation>Bloqueo de pantalla</translation>
+        <translation>Vergrendelscherm</translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
     <message>
         <source>Distance</source>
-        <translation>Distancia</translation>
+        <translation>Afstand</translation>
     </message>
     <message>
         <source>km</source>
@@ -683,7 +705,7 @@
     </message>
     <message>
         <source>Heartrate</source>
-        <translation>Frecuencia cardiaca</translation>
+        <translation>Hartslag</translation>
     </message>
     <message>
         <source>bpm</source>
@@ -691,7 +713,7 @@
     </message>
     <message>
         <source>Pace</source>
-        <translation>Ritmo</translation>
+        <translation>Tempo</translation>
     </message>
     <message>
         <source>min/km</source>
@@ -699,11 +721,11 @@
     </message>
     <message>
         <source>Speed</source>
-        <translation>Velocidad</translation>
+        <translation>Snelheid</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation>km/h</translation>
+        <translation>km/u</translation>
     </message>
     <message>
         <source>m</source>
@@ -711,7 +733,7 @@
     </message>
     <message>
         <source>Altitude</source>
-        <translation>Altitud</translation>
+        <translation>Hoogte</translation>
     </message>
     <message>
         <source>Bat.:</source>
@@ -719,11 +741,11 @@
     </message>
     <message>
         <source>Empty</source>
-        <translation>Vacío</translation>
+        <translation>Leeg</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pausa</translation>
+        <translation>Pauzeren</translation>
     </message>
     <message>
         <source>min/mi</source>
@@ -731,7 +753,7 @@
     </message>
     <message>
         <source>mi/h</source>
-        <translation>mi/h</translation>
+        <translation>mi/u</translation>
     </message>
     <message>
         <source>ft</source>
@@ -746,46 +768,50 @@
     <name>SaveDialog</name>
     <message>
         <source>Save track</source>
-        <translation>Guardar trayecto</translation>
+        <translation>Route opslaan</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Guardar</translation>
+        <translation>Opslaan</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nombre</translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Descripción</translation>
+        <translation>Beschrijving</translation>
+    </message>
+    <message>
+        <source>Quit without saving</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SettingsMenu</name>
     <message>
         <source>Settings</source>
-        <translation>Ajustes</translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Sensor de frecuencia cardiaca</translation>
+        <translation>Hartslagapparaat</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>General</translation>
+        <translation>Algemeen</translation>
     </message>
     <message>
         <source>Voice coach</source>
-        <translation>Entrenador por voz</translation>
+        <translation>Stemcoach</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation>Mapa</translation>
+        <translation>Kaart</translation>
     </message>
     <message>
         <source>App cover</source>
-        <translation>Cubierta de la aplicación</translation>
+        <translation>Appomslag</translation>
     </message>
     <message>
         <source>Pebble</source>
@@ -793,108 +819,108 @@
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Compartir entrenamiento</translation>
+        <translation>Training delen</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
         <source>General settings</source>
-        <translation>Ajustes generales</translation>
+        <translation>Algemene instellingen</translation>
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>La página de grabación se mantiene en modo horizontal.</translation>
+        <translation>Houd de opnamepagina in portretmodus.</translation>
     </message>
     <message>
         <source>Write log file</source>
-        <translation>Escribir archivo de registro</translation>
+        <translation>Logbestand opslaan</translation>
     </message>
     <message>
         <source>File: $HOME/Laufhelden/log.txt</source>
-        <translation>Archivo: $HOME/Laufhelden/log.txt</translation>
+        <translation>Bestand: $HOME/Laufhelden/log.txt</translation>
     </message>
     <message>
         <source>Record page portrait mode</source>
-        <translation>Página de grabación horizontal</translation>
+        <translation>Portretmodus voor opnamepagina</translation>
     </message>
     <message>
         <source>Show grid lines</source>
-        <translation>Mostrar líneas</translation>
+        <translation>Rasterlijnen tonen</translation>
     </message>
     <message>
         <source>Show grid lines on record page.</source>
-        <translation>Se muestran las líneas de rejilla en la página de grabación.</translation>
+        <translation>Toond rasterlijnen op de opnamepagina.</translation>
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation>Habilitar autoguardado</translation>
+        <translation>Automatisch opslaan inschakelen</translation>
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation>No es necesario introducir nombre de entrenamiento al finalizar.</translation>
+        <translation>Hiermee is het niet nodig voor aan het eind van nen training ne naam voor den training in te voeren.</translation>
     </message>
     <message>
         <source>Automatic night mode</source>
-        <translation>Modo noche automático</translation>
+        <translation>Automatische nachtmodus</translation>
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation>Cambia la pantalla al modo noche si la luz ambiental es baja.</translation>
+        <translation>Schakelt scherm op nachtmodus wanneer dat het omgevingslicht te laag is.</translation>
     </message>
     <message>
         <source>Unit of measurement</source>
-        <translation>Unidad de medida</translation>
+        <translation>Meeteenheden</translation>
     </message>
     <message>
         <source>Metric</source>
-        <translation>Métrico</translation>
+        <translation>Metrisch</translation>
     </message>
     <message>
         <source>Imperial</source>
-        <translation>Imperial</translation>
+        <translation>Imperiaal</translation>
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation>Ten en cuenta que el ajuste se aplicará después de reiniciar la aplicación.</translation>
+        <translation>Let op: deze instelling word pas toegepast na nen herstart van den app.</translation>
     </message>
 </context>
 <context>
     <name>SharedResources</name>
     <message>
         <source>Running</source>
-        <translation>Correr</translation>
+        <translation>Lopen</translation>
     </message>
     <message>
         <source>Roadbike</source>
-        <translation>Bicicleta</translation>
+        <translation>Fietsen</translation>
     </message>
     <message>
         <source>Mountainbike</source>
-        <translation>Bicicleta de montaña</translation>
+        <translation>Mountainbiken</translation>
     </message>
     <message>
         <source>Walking</source>
-        <translation>Caminar</translation>
+        <translation>Wandelen</translation>
     </message>
     <message>
         <source>Inline skating</source>
-        <translation>Patinaje</translation>
+        <translation>Inline-skaten</translation>
     </message>
     <message>
         <source>Skiing</source>
-        <translation>Esquí</translation>
+        <translation>Skiën</translation>
     </message>
     <message>
         <source>Hiking</source>
-        <translation>Senderismo</translation>
+        <translation>Bergwandelen</translation>
     </message>
 </context>
 <context>
     <name>SocialMediaMenu</name>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation>Sport-Tracker.com</translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Strava</source>
@@ -902,65 +928,65 @@
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Compartir entrenamiento</translation>
+        <translation>Training delen</translation>
     </message>
 </context>
 <context>
     <name>SportsTracker</name>
     <message>
         <source>Oops, username or password error</source>
-        <translation>Error en nombre de usuario o contraseña</translation>
+        <translation>Oeps, gebruikersnaam- of paswoordfout</translation>
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation>Se ha producido algún tipo de error al importar GPX</translation>
+        <translation>Der is een fout opgetreden bij het importeren van GPX-bestanden</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
-        <translation>¡Entrenamiento actualizado!</translation>
+        <translation>Training geüpload!</translation>
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
-        <translation>Se ha producido algún tipo de error al grabar datos</translation>
+        <translation>Der is een fout opgetreden bij het opslaan van gegevens</translation>
     </message>
     <message>
         <source>Logging in...</source>
-        <translation>Iniciando sesión...</translation>
+        <translation>Bezig met aanmelden…</translation>
     </message>
     <message>
         <source>Uploading...</source>
-        <translation>Subiendo...</translation>
+        <translation>Bezig met uploaden…</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Sports-Tracker.com settings</source>
-        <translation>Ajustes de Sports-Tracker.com</translation>
+        <translation>Sports-Tracker.com-instellingen</translation>
     </message>
     <message>
         <source>Auto upload</source>
-        <translation>Auto-actualizar</translation>
+        <translation>Automatisch uploaden</translation>
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation>Enviar automáticamente el entrenamiento a Sports-tracker.com después de finalizarlo</translation>
+        <translation>Stuurd voltooide trainingen automatisch naar Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation>Introduce nombre de usuario</translation>
+        <translation>Voerd uwe gebruikersnaam in</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nombre de usuario</translation>
+        <translation>Gebruikersnaam</translation>
     </message>
     <message>
         <source>Enter Password</source>
-        <translation>Introduce contraseña</translation>
+        <translation>Voerd uw paswoord in</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Contraseña</translation>
+        <translation>Paswoord</translation>
     </message>
     <message>
         <source></source>
@@ -968,242 +994,242 @@
     </message>
     <message>
         <source>Default Sharing option</source>
-        <translation>Uso compartido</translation>
+        <translation>Standaarddeelinstelling</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation>Privado</translation>
+        <translation>Privé</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation>Seguidores</translation>
+        <translation>Volgers</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation>Público</translation>
+        <translation>Openbaar</translation>
     </message>
     <message>
         <source>Test login...</source>
-        <translation>Probar inicio de sesión...</translation>
+        <translation>Aanmelden testen…</translation>
     </message>
     <message>
         <source>Already authenticated</source>
-        <translation>Ya autenticado</translation>
+        <translation>Ge zijd al aangemeld</translation>
     </message>
     <message>
         <source>Login success!</source>
-        <translation>¡Inicio de sesión con éxito!</translation>
+        <translation>Ge zijd aangemeld!</translation>
     </message>
     <message>
         <source>Login error, Check username or password</source>
-        <translation>Error, comprueba nombre o contraseña</translation>
+        <translation>Fout bij aanmelden, controleerd uw gebruikersnaam en paswoord</translation>
     </message>
     <message>
         <source>Loading workouts...</source>
-        <translation>Cargando entrenamientos...</translation>
+        <translation>Trainingen laden…</translation>
     </message>
     <message>
         <source>of</source>
-        <translation>de</translation>
+        <translation>van</translation>
     </message>
     <message>
         <source> unique workout downloaded!</source>
-        <translation> un único entrenamiento descargado!</translation>
+        <translation> unieken training gedownload!</translation>
     </message>
     <message>
         <source>Test login</source>
-        <translation>Probar inicio</translation>
+        <translation>Aanmelden testen</translation>
     </message>
     <message>
         <source>Download workouts</source>
-        <translation>Descargar entrenam.</translation>
+        <translation>Trainingen downloaden</translation>
     </message>
     <message>
         <source>Maximum number to download</source>
-        <translation>Número máximo al descargar</translation>
+        <translation>Maximaal aantal te downloaden</translation>
     </message>
     <message>
         <source>Downloading GPX files</source>
-        <translation>Descargando archivos GPX</translation>
+        <translation>GPX-bestanden worden gedownload</translation>
     </message>
     <message>
         <source>Track write error</source>
-        <translation>Error al escribir trayecto</translation>
+        <translation>Fout bij opslaan van route</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation>Asigna una descripción al entrenamiento en Sport-Tracker.com</translation>
+        <translation>Voerd een beschrijving voor den training in voor Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Descripción</translation>
+        <translation>Beschrijving</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Compartir entrenamiento</translation>
+        <translation>Training delen</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation>Privado</translation>
+        <translation>Privé</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation>Seguidores</translation>
+        <translation>Volgers</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation>Público</translation>
+        <translation>Openbaar</translation>
     </message>
 </context>
 <context>
     <name>StravaActivityPage</name>
     <message>
         <source>Description:</source>
-        <translation>Descripción:</translation>
+        <translation>Beschrijving:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation>Hora de inicio:</translation>
+        <translation>Begintijd:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Duración:</translation>
+        <translation>Tijd:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation>Distancia:</translation>
+        <translation>Afstand:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation>Velocidad máx/⌀:</translation>
+        <translation>Snelheid max/⌀:</translation>
     </message>
     <message>
         <source>Kudos:</source>
-        <translation>Méritos:</translation>
+        <translation>Kudo’s:</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation>Comentarios:</translation>
+        <translation>Reacties:</translation>
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation>Desnivel:</translation>
+        <translation>Hoogteverschil</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
-        <translation>Logros/PRs:</translation>
+        <translation>Prestaties / persoonlijke records:</translation>
     </message>
 </context>
 <context>
     <name>StravaComments</name>
     <message>
         <source>Comments</source>
-        <translation>Comentarios</translation>
+        <translation>Reacties</translation>
     </message>
 </context>
 <context>
     <name>StravaKudos</name>
     <message>
         <source>Kudos</source>
-        <translation>Méritos</translation>
+        <translation>Kudo’s</translation>
     </message>
 </context>
 <context>
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation>Duración:</translation>
+        <translation>Duur:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation>Distancia:</translation>
+        <translation>Afstand:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation>Dif. altitud:</translation>
+        <translation>Hoogteverschil:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation>Categoría de escalada:</translation>
+        <translation>Klimcategorie:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation>Mejor esfuerzo:</translation>
+        <translation>Beste poging:</translation>
     </message>
 </context>
 <context>
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
-        <translation>Segmentos</translation>
+        <translation>Segmenten</translation>
     </message>
 </context>
 <context>
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
-        <translation>Ajustes de Strava</translation>
+        <translation>Strava-instellingen</translation>
     </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation>Nombre de actividad para Strava</translation>
+        <translation>Activiteitsnaam voor Strava</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Descripción</translation>
+        <translation>Beschrijving</translation>
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation>Descripción de actividad para Strava</translation>
+        <translation>Activiteitsbeschrijving voor Strava</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation>Privado</translation>
+        <translation>Privé</translation>
     </message>
     <message>
         <source>Commute</source>
-        <translation>Desplazamiento</translation>
+        <translation>Pendelen</translation>
     </message>
     <message>
         <source>Uploading data...</source>
-        <translation>Subiendo datos...</translation>
+        <translation>Gegevens uploaden…</translation>
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation>Comprobando subida...</translation>
+        <translation>Upload controleren…</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
-        <translation>Ha ocurrido un error desconocido</translation>
+        <translation>Der is een onbekende fout opgetreden</translation>
     </message>
     <message>
         <source>Activity upload complete</source>
-        <translation>Subida de actividad completada</translation>
+        <translation>Activiteitsupload voltooid</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Tipo</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nombre</translation>
+        <translation>Naam</translation>
     </message>
 </context>
 <context>
     <name>ThresholdSettingsPage</name>
     <message>
         <source>Upper heart rate limit</source>
-        <translation>Límite superior de frecuencia cardiaca</translation>
+        <translation>Bovenlimiet voor hartslag</translation>
     </message>
     <message>
         <source>Alarm if limit is exceeded.</source>
-        <translation>Alerta sonora al exceder límite.</translation>
+        <translation>Doed een alarm afgaan wanneer dat deze limiet overschreven word.</translation>
     </message>
     <message>
         <source>bpm</source>
@@ -1211,11 +1237,11 @@
     </message>
     <message>
         <source>Lower heart rate limit</source>
-        <translation>Límite inferior de frecuencia cardiaca</translation>
+        <translation>Onderlimiet voor hartslag</translation>
     </message>
     <message>
         <source>Upper pace limit</source>
-        <translation>Límite superior del ritmo</translation>
+        <translation>Bovenlimiet voor tempo</translation>
     </message>
     <message>
         <source>min/km</source>
@@ -1223,69 +1249,69 @@
     </message>
     <message>
         <source>Lower pace limit</source>
-        <translation>Límite inferior del ritmo</translation>
+        <translation>Onderlimiet voor tempo</translation>
     </message>
     <message>
         <source>Edit profile name</source>
-        <translation>Editar nombre de perfil</translation>
+        <translation>Profielnaam bewerken</translation>
     </message>
     <message>
         <source>Only text, no special characters!</source>
-        <translation>¡Sólo texto, sin caracteres especiales!</translation>
+        <translation>Enkel tekst, geen speciale tekens!</translation>
     </message>
     <message>
         <source>Threshold profile name</source>
-        <translation>Nombre perfil de límites</translation>
+        <translation>Naam voor drempelwaardeprofiel</translation>
     </message>
     <message>
         <source>Add profile</source>
-        <translation>Añadir perfil</translation>
+        <translation>Profiel toevoegen</translation>
     </message>
     <message>
         <source>Rename profile</source>
-        <translation>Renombrar perfil</translation>
+        <translation>Profiel hernoemen</translation>
     </message>
     <message>
         <source>Remove profile</source>
-        <translation>Eliminar perfil</translation>
+        <translation>Profiel verwijderen</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation>Selecciona perfil de límites</translation>
+        <translation>Selecteerd een drempelwaardeprofiel</translation>
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
-        <translation>Alerta sonora al no superar límite.</translation>
+        <translation>Doed een alarm afgaan wanneer dat deze limiet onderschreden word.</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation>Límites de alerta sonora</translation>
+        <translation>Drempelwaarden voor alarm</translation>
     </message>
     <message>
         <source>min/mi</source>
-        <translation>mín/mi</translation>
+        <translation>min/mi</translation>
     </message>
 </context>
 <context>
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
-        <translation>Límites desactivados</translation>
+        <translation>Drempelwaarden uit</translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation>Cada </translation>
+        <translation>Elke</translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation>500 metros</translation>
+        <translation>500 meter</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation>0.5 mi</translation>
+        <translation>0,5 mijl</translation>
     </message>
     <message>
         <source>1 km</source>
@@ -1293,7 +1319,7 @@
     </message>
     <message>
         <source>1 mi</source>
-        <translation>1 mi</translation>
+        <translation>1 mijl</translation>
     </message>
     <message>
         <source>2 km</source>
@@ -1301,7 +1327,7 @@
     </message>
     <message>
         <source>2 mi</source>
-        <translation>2 mi</translation>
+        <translation>2 mijl</translation>
     </message>
     <message>
         <source>5 km</source>
@@ -1309,7 +1335,7 @@
     </message>
     <message>
         <source>5 mi</source>
-        <translation>5 mi</translation>
+        <translation>5 mijl</translation>
     </message>
     <message>
         <source>10 km</source>
@@ -1317,7 +1343,7 @@
     </message>
     <message>
         <source>10 mi</source>
-        <translation>10 mi</translation>
+        <translation>10 mijl</translation>
     </message>
     <message>
         <source>20 km</source>
@@ -1325,167 +1351,195 @@
     </message>
     <message>
         <source>20 mi</source>
-        <translation>20 mi</translation>
+        <translation>20 mijl</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>Anuncios normales por distancia</translation>
+        <translation>Reguliere aankondiging gebaseerd op afstand</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation>Activado</translation>
+        <translation>Ingeschakeld</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>1 anuncio:</translation>
+        <translation>1 aankondiging</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>2 anuncio:</translation>
+        <translation>2 aankondiging:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>3 anuncio:</translation>
+        <translation>3 aankondiging:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>4 anuncio:</translation>
+        <translation>4 aankondiging:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>¡Este valor ya está asignado!</translation>
+        <translation>Deze waarde is al toegewezen!</translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation>Cada </translation>
+        <translation>Elk(e)</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation>2 minutos</translation>
+        <translation>2 minuten</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation>5 minutos</translation>
+        <translation>5 minuten</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation>10 minutos</translation>
+        <translation>10 minuten</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation>20 minutos</translation>
+        <translation>20 minuten</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation>hora</translation>
+        <translation>uur</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>Anuncios normales por duración</translation>
+        <translation>Reguliere aankondigingen gebaseerd op duur</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation>Activado</translation>
+        <translation>Ingeschakeld</translation>
     </message>
     <message>
         <source>30 seconds</source>
-        <translation>30 segundos</translation>
+        <translation>30 seconden</translation>
     </message>
     <message>
         <source>1 minute</source>
-        <translation>1 minuto</translation>
+        <translation>1 minuut</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>1 anuncio:</translation>
+        <translation>1 aankondiging:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>2 anuncio:</translation>
+        <translation>2 aankondiging:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>3 anuncio:</translation>
+        <translation>3 aankondiging:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>4 anuncio:</translation>
+        <translation>4 aankondiging:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>¡Este valor ya está asignado!</translation>
+        <translation>Deze waarde is al toegewezen!</translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
-        <translation>Inicio/fin entrenamiento</translation>
+        <translation>Training beginnen/beëindigen</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation>Pausar/continuar entrenamiento</translation>
+        <translation>Training pauzeren/voortzetten</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation>Conectar/desconectar GPS</translation>
+        <translation>Verbinden met gps / verbinding verbreken</translation>
     </message>
     <message>
         <source>Voice coach events settings</source>
-        <translation>Ajustes de eventos del entrenador por voz</translation>
+        <translation>Instellingen voor stemcoachgebeurtenissen</translation>
     </message>
 </context>
 <context>
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation>Idioma de la voz</translation>
+        <translation>Taal van stem</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation>Inglés masculino</translation>
+        <translation>Engels, man</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation>Alemán masculino</translation>
+        <translation>Duits, man</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Probar</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Voice coach general settings</source>
-        <translation>Ajustes generales del entrenador por voz</translation>
+        <translation>Algemene instellingen voor stemcoach</translation>
+    </message>
+    <message>
+        <source>Pause/resume music player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation>General</translation>
+        <translation>Algemeen</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation>Límites de alerta sonora</translation>
+        <translation>Drempelwaarden voor alarm</translation>
     </message>
     <message>
         <source>Event announcements</source>
-        <translation>Anuncios de eventos</translation>
+        <translation>Gebeurtenisaankondigingen</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>Anuncios normales por distancia</translation>
+        <translation>Reguliere aankondigingen gebaseerd op afstand</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>Anuncios normales por duración</translation>
+        <translation>Reguliere aankondigingen gebaseerd op duur</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
-        <translation>Ajustes del entrenador por voz</translation>
+        <translation>Stemcoachinstellingen</translation>
     </message>
 </context>
 </TS>

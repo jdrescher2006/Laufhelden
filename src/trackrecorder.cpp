@@ -21,6 +21,8 @@
 #include <QXmlStreamWriter>
 #include <QDebug>
 #include <qmath.h>
+
+#include "timeformatter.h"
 #include "trackrecorder.h"
 
 TrackRecorder::TrackRecorder(QObject *parent) :
@@ -689,18 +691,10 @@ QString TrackRecorder::startingDateTime() const
 
 QString TrackRecorder::pauseTime() const
 {
-    uint hours, minutes, seconds;
-
-    hours = this->m_PauseDuration / (60*60);
-    minutes = (this->m_PauseDuration - hours*60*60) / 60;
-    seconds = this->m_PauseDuration - hours*60*60 - minutes*60;
-
-    QString timeStr = QString("%1h %2m %3s")
-            .arg(hours, 2, 10, QLatin1Char('0'))
-            .arg(minutes, 2, 10, QLatin1Char('0'))
-            .arg(seconds, 2, 10, QLatin1Char('0'));
-
-    return timeStr;
+    uint hours = this->m_PauseDuration / (60*60);
+    uint minutes = (this->m_PauseDuration - hours*60*60) / 60;
+    uint seconds = this->m_PauseDuration - hours*60*60 - minutes*60;
+    return TimeFormatter::formatHMS(hours, minutes, seconds);
 }
 
 QString TrackRecorder::pebblePauseTime() const
@@ -740,13 +734,7 @@ QString TrackRecorder::time() const
         minutes = (difference - hours*60*60) / 60;
         seconds = difference - hours*60*60 - minutes*60;
     }
-
-    QString timeStr = QString("%1h %2m %3s")
-            .arg(hours, 2, 10, QLatin1Char('0'))
-            .arg(minutes, 2, 10, QLatin1Char('0'))
-            .arg(seconds, 2, 10, QLatin1Char('0'));
-
-    return timeStr;
+    return TimeFormatter::formatHMS(hours, minutes, seconds);
 }
 
 qint64 TrackRecorder::timeSeconds() const

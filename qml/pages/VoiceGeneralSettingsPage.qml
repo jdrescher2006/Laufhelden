@@ -37,6 +37,7 @@ Page
             console.log("First Active VoiceGeneralSettingsPage");
 
             id_CMB_VoiceLanguage.currentIndex = settings.voiceLanguage;
+            id_TextSwitch_PauseMusic.checked = settings.voicePauseMusic;
 
             bLockOnCompleted = false;
         }
@@ -62,7 +63,26 @@ Page
             PageHeader
             {
                 title: qsTr("Voice coach general settings")
-            }            
+            } 
+            
+            TextSwitch
+            {
+                id: id_TextSwitch_PauseMusic
+                text: qsTr("Pause/resume music player")
+                description: qsTr("If enabled, the music player is paused when a voice message is played and afterwards resumed.")
+                onCheckedChanged:
+                {
+                    if (bLockOnCompleted || bLockFirstPageLoad)
+                        return;
+
+                    settings.voicePauseMusic = checked;
+                }
+            }
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
             ComboBox
             {
                 id: id_CMB_VoiceLanguage

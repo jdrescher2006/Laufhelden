@@ -73,7 +73,7 @@
     </message>
     <message>
         <source>Spanish-Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Spaans (Spanje)</translation>
     </message>
 </context>
 <context>
@@ -244,6 +244,13 @@
     </message>
 </context>
 <context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
@@ -350,7 +357,11 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Sturen naar Sports-Tracker.com</translation>
+        <translation>Sturen naar Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -557,6 +568,17 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RecordPage</name>
     <message>
         <source>AMOLED mode</source>
@@ -597,10 +619,6 @@
     <message>
         <source>Switch display mode</source>
         <translation>Schermmodus wisselen</translation>
-    </message>
-    <message>
-        <source>hold button for: </source>
-        <translation>hou de knop ingedrukt voor: </translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
@@ -669,6 +687,10 @@
     <message>
         <source>Lock screen</source>
         <translation>Vergrendelscherm</translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -760,6 +782,10 @@
         <source>Description</source>
         <translation>Beschrijving</translation>
     </message>
+    <message>
+        <source>Quit without saving</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsMenu</name>
@@ -773,27 +799,27 @@
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Algemeen</translation>
     </message>
     <message>
         <source>Voice coach</source>
-        <translation type="unfinished"></translation>
+        <translation>Stemcoach</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Kaart</translation>
+        <translation>Kaart</translation>
     </message>
     <message>
         <source>App cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Appomslag</translation>
     </message>
     <message>
         <source>Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished">Training delen</translation>
+        <translation>Training delen</translation>
     </message>
 </context>
 <context>
@@ -894,15 +920,15 @@
     <name>SocialMediaMenu</name>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation type="unfinished">Sports-Tracker.com</translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished">Strava</translation>
+        <translation>Strava</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished">Training delen</translation>
+        <translation>Training delen</translation>
     </message>
 </context>
 <context>
@@ -925,11 +951,11 @@
     </message>
     <message>
         <source>Logging in...</source>
-        <translation type="unfinished">Bezig met aanmelden…</translation>
+        <translation>Bezig met aanmelden…</translation>
     </message>
     <message>
         <source>Uploading...</source>
-        <translation type="unfinished">Bezig met uploaden…</translation>
+        <translation>Bezig met uploaden…</translation>
     </message>
 </context>
 <context>
@@ -1115,23 +1141,23 @@
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Duur:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished"></translation>
+        <translation>Afstand:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoogteverschil:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klimcategorie:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation type="unfinished"></translation>
+        <translation>Beste poging:</translation>
     </message>
 </context>
 <context>
@@ -1192,7 +1218,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Naam</translation>
+        <translation>Naam</translation>
     </message>
 </context>
 <context>
@@ -1277,187 +1303,215 @@
     <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished"></translation>
+        <translation>Elke</translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation type="unfinished"></translation>
+        <translation>500 meter</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>0,5 mijl</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>1 mijl</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation type="unfinished"></translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>2 mijl</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation type="unfinished"></translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>5 mijl</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation type="unfinished"></translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>10 mijl</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation type="unfinished"></translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>20 mijl</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguliere aankondiging gebaseerd op afstand</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingeschakeld</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 aankondiging</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 aankondiging:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 aankondiging:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>4 aankondiging:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished">Deze waarde is al toegewezen!</translation>
+        <translation>Deze waarde is al toegewezen!</translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished"></translation>
+        <translation>Elk(e)</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>2 minuten</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 minuten</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>10 minuten</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>20 minuten</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation type="unfinished"></translation>
+        <translation>uur</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Regulier aankondigingen gebaseerd op duur</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingeschakeld</translation>
     </message>
     <message>
         <source>30 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>30 seconden</translation>
     </message>
     <message>
         <source>1 minute</source>
-        <translation type="unfinished"></translation>
+        <translation>1 minuut</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 aankondiging:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 aankondiging:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 aankondiging:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>4 aankondiging:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished">Deze waarde is al toegewezen!</translation>
+        <translation>Deze waarde is al toegewezen!</translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
-        <translation type="unfinished">Training beginnen/beëindigen</translation>
+        <translation>Training beginnen/beëindigen</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation type="unfinished">Training pauzeren/voortzetten</translation>
+        <translation>Training pauzeren/voortzetten</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation type="unfinished">Verbinden met gps / verbinding verbreken</translation>
+        <translation>Verbinden met gps / verbinding verbreken</translation>
     </message>
     <message>
         <source>Voice coach events settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Instellingen voor stemcoachgebeurtenissen</translation>
     </message>
 </context>
 <context>
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished">Taal van stem</translation>
+        <translation>Taal van stem</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished">Engels, man</translation>
+        <translation>Engels, man</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished">Duits, man</translation>
+        <translation>Duits, man</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished">Test</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Voice coach general settings</source>
+        <translation>Algemene instellingen voor stemcoach</translation>
+    </message>
+    <message>
+        <source>Pause/resume music player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1465,27 +1519,27 @@
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Algemeen</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation type="unfinished">Drempelwaarden voor alarm</translation>
+        <translation>Drempelwaarden voor alarm</translation>
     </message>
     <message>
         <source>Event announcements</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebeurtenisaankondigingen</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguliere aankondigingen gebaseerd op afstand</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguliere aankondigingen gebaseerd op duur</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Stemcoachinstellingen</translation>
     </message>
 </context>
 </TS>

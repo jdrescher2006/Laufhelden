@@ -38,7 +38,7 @@ Page {
             if (o2strava.linked) {
                 var tokens = o2strava.extraTokens;
                 athlete = tokens["athlete"];
-                username = athlete["username"];
+                username = (athlete["username"] !== undefined) ? athlete["username"] : athlete["firstname"] + " " + athlete["lastname"];
                 email = athlete["email"];
                 country = athlete["country"];
             } else {
