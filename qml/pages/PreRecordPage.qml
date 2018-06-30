@@ -167,6 +167,19 @@ Page
                 color: Theme.highlightColor
                 width: parent.width
             }
+
+            TextSwitch
+            {
+                id: txtswUseHRMservice
+                text: qsTr("Use HRM service if available")
+                description: qsTr("Use heart rate monitor from another application")
+                onCheckedChanged:
+                {
+                    if (!bLockOnCompleted)
+                        settings.useHRMservice = checked;
+                }
+            }
+
             TextSwitch
             {
                 id: txtswUseHRMdevice

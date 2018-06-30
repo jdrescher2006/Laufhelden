@@ -566,6 +566,14 @@
         <source>Select thresholds profile</source>
         <translation>Schwellwertprofil auswählen</translation>
     </message>
+    <message>
+        <source>Use HRM service if available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use heart rate monitor from another application</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
