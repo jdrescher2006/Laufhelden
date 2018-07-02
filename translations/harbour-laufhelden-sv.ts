@@ -568,11 +568,11 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd HRM-tjänst om tillgänglig</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd hjärtfrekvensmätare från annat program</translation>
     </message>
 </context>
 <context>
