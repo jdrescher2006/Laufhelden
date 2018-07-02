@@ -29,6 +29,7 @@ class Settings : public QObject
     Q_PROPERTY(bool recordPagePortrait READ recordPagePortrait WRITE setRecordPagePortrait)
     Q_PROPERTY(QString workoutType READ workoutType WRITE setWorkoutType)
     Q_PROPERTY(bool useHRMdevice READ useHRMdevice WRITE setUseHRMdevice)
+    Q_PROPERTY(bool useHRMservice READ useHRMservice WRITE setUseHRMservice)
     Q_PROPERTY(bool disableScreenBlanking READ disableScreenBlanking WRITE setDisableScreenBlanking)
     Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)    
     Q_PROPERTY(QString thresholds READ thresholds WRITE setThresholds)
@@ -90,6 +91,9 @@ public:
 
     bool useHRMdevice() const;
     void setUseHRMdevice(bool useHRMdevice);
+
+    bool useHRMservice() const;
+    void setUseHRMservice(bool useHRMdevice);
 
     bool disableScreenBlanking() const;
     void setDisableScreenBlanking(bool disableScreenBlanking);
