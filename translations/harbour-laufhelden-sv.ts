@@ -571,8 +571,8 @@
         <translation>Använd HRM-tjänst om tillgänglig</translation>
     </message>
     <message>
-        <source>Use heart rate monitor from another application</source>
-        <translation>Använd hjärtfrekvensmätare från annat program</translation>
+        <source>Use heart rate monitor from another application e.g. Amazfish</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

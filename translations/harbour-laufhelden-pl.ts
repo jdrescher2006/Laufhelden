@@ -571,7 +571,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use heart rate monitor from another application</source>
+        <source>Use heart rate monitor from another application e.g. Amazfish</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

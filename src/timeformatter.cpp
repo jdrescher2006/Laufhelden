@@ -15,15 +15,17 @@
  */
 QString TimeFormatter::formatHMS(uint hours, uint minutes, uint seconds)
 {
-    if(hours == 0) {
-        if(minutes == 0) {
+    if(hours == 0)
+    {
+        if(minutes == 0)
+        {
             return QObject::tr("%1s").arg(seconds);
         }
         return QObject::tr("%1m %2s")
                 .arg(minutes)
                 .arg(seconds, 2, 10, QLatin1Char('0'));
     }
-    return QString("%1:%2:%3")
+    return QString("%1h %2m %3s")
             .arg(hours)
             .arg(minutes, 2, 10, QLatin1Char('0'))
             .arg(seconds, 2, 10, QLatin1Char('0'));

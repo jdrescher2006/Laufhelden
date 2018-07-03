@@ -172,7 +172,7 @@ Page
             {
                 id: txtswUseHRMservice
                 text: qsTr("Use HRM service if available")
-                description: qsTr("Use heart rate monitor from another application")
+                description: qsTr("Use heart rate monitor from another application e.g. Amazfish")
                 onCheckedChanged:
                 {
                     if (!bLockOnCompleted)

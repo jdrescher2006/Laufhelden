@@ -201,25 +201,6 @@ Page
             }          
         }
     }
-    BusyIndicator
-    {
-        id: detail_busy
-        visible: false
-        anchors.centerIn: historyList
-        running: true
-        size: BusyIndicatorSize.Large
-    }
-    Label {
-         id:load_text
-         width: parent.width
-         anchors.top: detail_busy.bottom
-         anchors.topMargin: 25;
-         horizontalAlignment: Label.AlignHCenter
-         visible: false
-         text: "loading..."
-         font.pixelSize: Theme.fontSizeMedium
-    }
-
 
     Connections
     {
@@ -264,12 +245,10 @@ Page
         }
     }
 
-    SilicaListView
+    SilicaFlickable
     {
         anchors.fill: parent
-        id: historyList
-        model: id_HistoryModel
-        VerticalScrollDecorator {}
+        contentHeight: clmMainColumn.height
 
         PullDownMenu
         {
@@ -283,7 +262,7 @@ Page
             {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsMenu.qml"))
-            }            
+            }
             MenuItem
             {
                 text: qsTr("My Strava Activities")
@@ -309,234 +288,254 @@ Page
             }
         }
 
-        header: Column
+        Column
         {
-            spacing: Theme.paddingLarge;
-            anchors {
-                left: parent.left;
-                right: parent.right;
-            }
+            id: clmMainColumn
+            width: parent.width
 
-            PageHeader {
+            PageHeader
+            {
+                id: pageHeader
                 title: qsTr("Welcome to Laufhelden")
             }
 
-            Row
+            Item
             {
+                id: itmMainHeaderArea
                 width: parent.width
-                height: parent.height / 4
-                visible: !bLoadingFiles
+                height: (mainPage.height - pageHeader.height) / 4
+                //color: "red"
 
-                Item
+                Row
                 {
-                    width: parent.width / 2
-                    height: parent.height                    
+                    width: parent.width
+                    height: parent.height / 3
+                    visible: !bLoadingFiles
 
-                    Image
+                    Item
                     {
-                        source: "../img/length.png"
+                        width: parent.width / 2
                         height: parent.height
-                        width: parent.height
-                        anchors.leftMargin: Theme.paddingSmall
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                    Label
-                    {
-                        anchors.left: parent.left
-                        anchors.leftMargin: parent.height + Theme.paddingMedium
-                        anchors.verticalCenter: parent.verticalCenter
-                        x: Theme.paddingLarge
-                        truncationMode: TruncationMode.Fade
-                        text: (settings.measureSystem === 0) ? sWorkoutDistance + "km" : sWorkoutDistance + "mi"
-                        color: Theme.highlightColor
-                    }
-                }
-                Item
-                {
-                    width: parent.width / 2
-                    height: parent.height
 
-                    Image
-                    {
-                        id: idIMGTime
-                        source: "../img/time.png"
-                        height: parent.height
-                        width: parent.height
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                    Label
-                    {
-                        anchors.left: parent.left
-                        anchors.leftMargin: parent.height + Theme.paddingMedium
-                        anchors.verticalCenter: parent.verticalCenter
-                        x: Theme.paddingLarge
-                        truncationMode: TruncationMode.Fade
-                        text: sWorkoutDuration
-                        color: Theme.highlightColor
-                    }
-                }
-            }
-            Label
-            {
-                anchors.horizontalCenter: parent.horizontalCenter
-                id: id_LBL_WorkoutCount
-                x: Theme.paddingLarge
-                truncationMode: TruncationMode.Fade
-                text: historyList.count === 0 ? qsTr("No earlier workouts") : qsTr("Workouts: ") + (historyList.count).toString();
-                color: Theme.highlightColor
-                visible: !bLoadingFiles
-            }
-
-
-            ProgressBar
-            {
-                id: progressBarWaitLoadGPX
-                width: parent.width
-                maximumValue: iGPXFiles
-                valueText: value + " " + qsTr("of") + " " + iGPXFiles
-                label: qsTr("Loading GPX files...")
-                value: iLoadFileGPX
-                visible: bLoadingFiles
-            }
-
-            Separator
-            {
-                color: Theme.highlightColor;
-                anchors {
-                    left: parent.left;
-                    right: parent.right;
-                }
-            }
-        }
-
-        delegate: ListItem
-        {
-            id: listItem
-            width: parent.width
-            ListView.onRemove: animateRemoval()
-            menu: ContextMenu
-            {
-                MenuItem
-                {
-                    text: qsTr("Remove workout")
-                    onClicked: remorseAction(qsTr("Removing workout..."), listItem.deleteTrack)
-                }
-                MenuItem
-                {
-                    text: qsTr("Edit workout")
-                    onClicked:
-                    {
-                        console.log("Filename: " + filename);
-                        console.log("name: " + name);
-                        console.log("type: " + workout);
-                        console.log("description: " + description);
-
-                        iCurrentWorkout = SharedResources.fncGetIndexByName(workout);
-
-                        var dialog = pageStack.push(id_Dialog_EditWorkout);
-                        dialog.sName = name;
-                        dialog.sDesc = description;
-                        dialog.iWorkout = SharedResources.fncGetIndexByName(workout);
-
-                        dialog.accepted.connect(function()
+                        Image
                         {
-                            //Edit and save GPX file
-                            trackLoader.vReadFile(filename);
-                            trackLoader.vSetNewProperties(name, description, workout, dialog.sName, dialog.sDesc, dialog.sWorkout)
-                            trackLoader.vWriteFile(filename);
+                            source: "../img/length.png"
+                            height: parent.height
+                            width: parent.height
+                            anchors.leftMargin: Theme.paddingSmall
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                        Label
+                        {
+                            anchors.left: parent.left
+                            anchors.leftMargin: parent.height + Theme.paddingMedium
+                            anchors.verticalCenter: parent.verticalCenter
+                            x: Theme.paddingLarge
+                            truncationMode: TruncationMode.Fade
+                            text: (settings.measureSystem === 0) ? sWorkoutDistance + "km" : sWorkoutDistance + "mi"
+                            color: Theme.highlightColor
+                        }
+                    }
+                    Item
+                    {
+                        width: parent.width / 2
+                        height: parent.height
 
-                            iLoadFileGPX = 0;
-                            bLoadingFiles = true;
-
-                            id_HistoryModel.editTrack(index);
-                            id_HistoryModel.loadAllTracks();
-                        })
+                        Image
+                        {
+                            id: idIMGTime
+                            source: "../img/time.png"
+                            height: parent.height
+                            width: parent.height
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                        Label
+                        {
+                            anchors.left: parent.left
+                            anchors.leftMargin: parent.height + Theme.paddingMedium
+                            anchors.verticalCenter: parent.verticalCenter
+                            x: Theme.paddingLarge
+                            truncationMode: TruncationMode.Fade
+                            text: sWorkoutDuration
+                            color: Theme.highlightColor
+                        }
                     }
                 }
-                MenuItem
+
+                Label
                 {
-                    text: qsTr("Send to Sports-Tracker.com")
-                    visible: settings.stUsername === "" ? false:true
-                    onClicked: {
-                        trackLoader.filename = filename;
-                        var dialog = pageStack.push(Qt.resolvedUrl("SportsTrackerUploadPage.qml"),{ stcomment: description});
-                        dialog.accepted.connect(function() {
-                            detail_busy.running = true;
-                            detail_busy.visible = true;
-                            load_text.visible = true;
-                            historyList.visible = false;
-                            ST.uploadToSportsTracker(dialog.sharing*1, dialog.stcomment, displayNotification);
-                        });
-                     }
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: Theme.paddingSmall
+                    id: id_LBL_WorkoutCount
+                    truncationMode: TruncationMode.Fade
+                    text: historyList.count === 0 ? qsTr("No earlier workouts") : qsTr("Workouts: ") + (historyList.count).toString();
+                    color: Theme.highlightColor
+                    visible: !bLoadingFiles
+                }
+
+                ProgressBar
+                {
+                    id: progressBarWaitLoadGPX
+                    width: parent.width
+                    maximumValue: iGPXFiles
+                    valueText: value + " " + qsTr("of") + " " + iGPXFiles
+                    label: qsTr("Loading GPX files...")
+                    value: iLoadFileGPX
+                    visible: bLoadingFiles
+                }
+
+                Separator
+                {
+                    color: Theme.highlightColor
+                    anchors
+                    {
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
                 }
             }
 
-            function deleteTrack()
+            SilicaListView
             {
-                id_HistoryModel.removeTrack(index);
-            }
+                width: parent.width
+                height: ((mainPage.height - pageHeader.height) / 4) * 3
+                id: historyList
+                model: id_HistoryModel
+
+                delegate: ListItem
+                {
+                    id: listItem
+                    width: parent.width
+                    ListView.onRemove: animateRemoval()
+                    menu: ContextMenu
+                    {
+                        MenuItem
+                        {
+                            text: qsTr("Remove workout")
+                            onClicked: remorseAction(qsTr("Removing workout..."), listItem.deleteTrack)
+                        }
+                        MenuItem
+                        {
+                            text: qsTr("Edit workout")
+                            onClicked:
+                            {
+                                console.log("Filename: " + filename);
+                                console.log("name: " + name);
+                                console.log("type: " + workout);
+                                console.log("description: " + description);
+
+                                iCurrentWorkout = SharedResources.fncGetIndexByName(workout);
+
+                                var dialog = pageStack.push(id_Dialog_EditWorkout);
+                                dialog.sName = name;
+                                dialog.sDesc = description;
+                                dialog.iWorkout = SharedResources.fncGetIndexByName(workout);
+
+                                dialog.accepted.connect(function()
+                                {
+                                    //Edit and save GPX file
+                                    trackLoader.vReadFile(filename);
+                                    trackLoader.vSetNewProperties(name, description, workout, dialog.sName, dialog.sDesc, dialog.sWorkout)
+                                    trackLoader.vWriteFile(filename);
+
+                                    iLoadFileGPX = 0;
+                                    bLoadingFiles = true;
+
+                                    id_HistoryModel.editTrack(index);
+                                    id_HistoryModel.loadAllTracks();
+                                })
+                            }
+                        }
+                        MenuItem
+                        {
+                            text: qsTr("Send to Sports-Tracker.com")
+                            visible: settings.stUsername === "" ? false:true
+                            onClicked: {
+                                trackLoader.filename = filename;
+                                var dialog = pageStack.push(Qt.resolvedUrl("SportsTrackerUploadPage.qml"),{ stcomment: description});
+                                dialog.accepted.connect(function() {
+                                    detail_busy.running = true;
+                                    detail_busy.visible = true;
+                                    load_text.visible = true;
+                                    historyList.visible = false;
+                                    ST.uploadToSportsTracker(dialog.sharing*1, dialog.stcomment, displayNotification);
+                                });
+                             }
+                        }
+                    }
+
+                    function deleteTrack()
+                    {
+                        id_HistoryModel.removeTrack(index);
+                    }
 
 
-            Image
-            {
-                id: workoutImage
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                x: Theme.paddingSmall
-                width: Theme.paddingMedium * 3
-                height: Theme.paddingMedium * 3
-                source: workout==="" ? "" : SharedResources.arrayLookupWorkoutTableByName[workout].icon
+                    Image
+                    {
+                        id: workoutImage
+                        anchors.top: parent.top
+                        anchors.topMargin: Theme.paddingMedium
+                        x: Theme.paddingSmall
+                        width: Theme.paddingMedium * 3
+                        height: Theme.paddingMedium * 3
+                        source: workout==="" ? "" : SharedResources.arrayLookupWorkoutTableByName[workout].icon
+                    }
+                    Label
+                    {
+                        id: nameLabel
+                        x: Theme.paddingLarge * 2
+                        width: parent.width - dateLabel.width - 2*Theme.paddingLarge
+                        anchors.top: parent.top
+                        truncationMode: TruncationMode.Fade
+                        text: name==="" ? qsTr("(Unnamed track)") : name
+                        color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                    }
+                    Label
+                    {
+                        id: dateLabel
+                        anchors.top: parent.top
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.paddingSmall
+                        text: date
+                        color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                    }
+                    Label
+                    {
+                        anchors.top: nameLabel.bottom
+                        x: Theme.paddingLarge * 2
+                        color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                        font.pixelSize: Theme.fontSizeSmall
+                        text: (settings.measureSystem === 0) ? (distance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(distance/1000).toFixed(2) + "mi"
+                    }
+                    Label
+                    {
+                        anchors.top: nameLabel.bottom
+                        x: (parent.width - width) / 2
+                        color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                        font.pixelSize: Theme.fontSizeSmall
+                        text: duration
+                    }
+                    Label
+                    {
+                        anchors.top: nameLabel.bottom
+                        anchors.right: parent.right
+                        anchors.rightMargin: Theme.paddingSmall
+                        color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                        font.pixelSize: Theme.fontSizeSmall
+                        text: (settings.measureSystem === 0) ? speed.toFixed(1) + "km/h" : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + "mi/h"
+                    }
+                    onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
+                                              {filename: filename, name: name, index: index})
+                }
             }
-            Label
-            {
-                id: nameLabel
-                x: Theme.paddingLarge * 2
-                width: parent.width - dateLabel.width - 2*Theme.paddingLarge
-                anchors.top: parent.top
-                truncationMode: TruncationMode.Fade
-                text: name==="" ? qsTr("(Unnamed track)") : name
-                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-            }
-            Label
-            {
-                id: dateLabel
-                anchors.top: parent.top
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.paddingSmall
-                text: date
-                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-            }
-            Label
-            {
-                anchors.top: nameLabel.bottom
-                x: Theme.paddingLarge * 2
-                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                text: (settings.measureSystem === 0) ? (distance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(distance/1000).toFixed(2) + "mi"
-            }
-            Label
-            {
-                anchors.top: nameLabel.bottom
-                x: (parent.width - width) / 2
-                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                text: duration
-            }
-            Label
-            {
-                anchors.top: nameLabel.bottom
-                anchors.right: parent.right
-                anchors.rightMargin: Theme.paddingSmall
-                color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
-                font.pixelSize: Theme.fontSizeSmall
-                text: (settings.measureSystem === 0) ? speed.toFixed(1) + "km/h" : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + "mi/h"
-            }
-            onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
-                                      {filename: filename, name: name, index: index})
         }
     }
+
+
     Component
     {
         id: id_Dialog_Autosave        

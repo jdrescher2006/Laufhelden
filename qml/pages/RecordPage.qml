@@ -677,20 +677,6 @@ Page
         if (settings.enableAutosave)
         {
             console.log("Autosaving workout");
-
-            if (settings.useHRMservice) {
-                dbusHRM.call("stop");
-            }
-
-            //stop heart rate device
-            bRecordDialogRequestHRM = false;
-            if (bHRMConnected) {id_BluetoothData.disconnect();}
-            sHeartRate = "";
-            sBatteryLevel = "";
-
-            //stop recording
-            recorder.running = false;
-
             recorder.exportGpx(SharedResources.arrayLookupWorkoutTableByName[settings.workoutType].labeltext + " - " + recorder.startingDateTime + " - " + (recorder.distance/1000).toFixed(1) + "km", "");
             recorder.clearTrack();  // TODO: Make sure save was successful?
 
@@ -706,16 +692,6 @@ Page
             dialog.accepted.connect(function()
             {
                 console.log("Saving workout");
-
-                //stop heart rate device
-                bRecordDialogRequestHRM = false;
-                if (bHRMConnected) {id_BluetoothData.disconnect();}
-                sHeartRate = "";
-                sBatteryLevel = "";
-
-                //stop recording
-                recorder.running = false;
-
                 recorder.exportGpx(dialog.name, dialog.description);
                 recorder.clearTrack();  // TODO: Make sure save was successful?
 
@@ -727,29 +703,11 @@ Page
             })
             dialog.rejected.connect(function()
             {
-                if (dialog.bDropRecordedData === true)
-                {
-                    console.log("Drop recorded data");
+                console.log("Cancel workout");
+                recorder.clearTrack();
 
-                    //stop heart rate device
-                    bRecordDialogRequestHRM = false;
-                    if (bHRMConnected) {id_BluetoothData.disconnect();}
-                    sHeartRate = "";
-                    sBatteryLevel = "";
-
-                    //stop recording
-                    recorder.running = false;
-
-                    recorder.clearTrack();
-
-                    //We must return here to the mainpage.
-                    pageStack.pop(vMainPageObject, PageStackAction.Immediate);
-                }
-                else
-                {
-                    console.log("Cancel, do nothing just resume workout");
-
-                }
+                //We must return here to the mainpage.
+                pageStack.pop(vMainPageObject, PageStackAction.Immediate);
             })
         }
     }
