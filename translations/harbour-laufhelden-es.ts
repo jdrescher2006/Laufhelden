@@ -568,11 +568,11 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar servicio HRM si está disponible</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar monitor cardiaco desde otra aplicación, p.e. Amazfish</translation>
     </message>
 </context>
 <context>
