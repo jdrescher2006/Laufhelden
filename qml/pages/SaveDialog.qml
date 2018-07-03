@@ -24,15 +24,6 @@ Dialog
     allowedOrientations: Orientation.Portrait
     property string name
     property string description
-    property bool bDropRecordedData: false
-
-    onStatusChanged:
-    {
-        if (status === PageStatus.Active)
-        {
-            bDropRecordedData = false;
-        }
-    }
 
     onDone: {
         name = nameField.text;
@@ -44,6 +35,7 @@ Dialog
         DialogHeader {
             title: qsTr("Save track")
             acceptText: qsTr("Save")
+            cancelText: qsTr("Quit without saving")
         }        
         TextField {
             id: nameField
@@ -55,7 +47,7 @@ Dialog
             text: ""
             EnterKey.enabled: true
             EnterKey.iconSource: "image://theme/icon-m-enter-next"
-            EnterKey.onClicked: descriptionField.focus = true
+            EnterKey.onClicked: descriptionField.focus = true            
         }
         TextArea {
             id: descriptionField
@@ -67,17 +59,7 @@ Dialog
             text: ""
             EnterKey.enabled: true
             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
-            EnterKey.onClicked: accept()
-        }
-        Button
-        {
-            width: parent.width
-            text: qsTr("Quit without saving")
-            onClicked:
-            {
-                bDropRecordedData = true;
-                reject();
-            }
-        }
+            EnterKey.onClicked: accept()            
+        }       
     }
 }

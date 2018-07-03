@@ -566,6 +566,14 @@
         <source>Select thresholds profile</source>
         <translation>Välj tröskelvärdesprofil</translation>
     </message>
+    <message>
+        <source>Use HRM service if available</source>
+        <translation>Använd HRM-tjänst om tillgänglig</translation>
+    </message>
+    <message>
+        <source>Use heart rate monitor from another application e.g. Amazfish</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -784,7 +792,7 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluta utan att spara</translation>
     </message>
 </context>
 <context>

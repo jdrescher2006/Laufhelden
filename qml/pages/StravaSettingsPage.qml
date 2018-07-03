@@ -53,7 +53,7 @@ Page {
         id: o2strava
         clientId: STRAVA_CLIENT_ID
         clientSecret: STRAVA_CLIENT_SECRET
-        scope: "write"
+        scope: "view_private,write"
         requestUrl: "https://www.strava.com/oauth/authorize"
         tokenUrl: "https://www.strava.com/oauth/token"
 
@@ -72,7 +72,7 @@ Page {
             if (linked) {
                 var tokens = o2strava.extraTokens;
                 athlete = tokens["athlete"];
-                page.username = athlete["username"];
+                page.username = (athlete["username"] === undefined) ? athlete["firstname"] + " " +  athlete["lastname"] : athlete["username"];
                 page.email = athlete["email"];
                 page.country = athlete["country"];
             } else {
