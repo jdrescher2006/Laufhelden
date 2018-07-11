@@ -1,11 +1,11 @@
 * Fri Jun 15 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-2
-- bugfix release
+- use heart rate monitor from another application e.g. Amazfish by @piggz
 - hide pace in the detailed view if the workout is biking by @martonmiklos
 - hide unnecessary fields in detailed view by @martonmiklos
 - fixed multiple bugs for voice coach
-- third option for save dialog (save, cancel, quit without saving)
+- layout changes for main page
 - translation updates
-- other small bugfixes
+- other bugfixes
 
 * Fri May 04 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-1
 - many improvements for Strava by @piggz

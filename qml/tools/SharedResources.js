@@ -159,7 +159,7 @@ var arrayWorkoutTypes =
     { name: "running", labeltext: qsTr("Running"), icon: "../workouticons/running.png" },
     { name: "biking", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png" },
     { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png" },
-    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" },    
+    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png" },
     { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png" },
     { name: "skiing", labeltext: qsTr("Skiing"), icon: "../workouticons/skiing.png" },
     { name: "hiking", labeltext: qsTr("Hiking"), icon: "../workouticons/hiking.png" }
@@ -174,6 +174,18 @@ var arrayStravaWorkoutTypes =
     { name: "inlineSkating", stravaType: "InlineSkate" },
     { name: "skiing", stravaType: "AlpineSki" },
     { name: "hiking", stravaType: "hike" }
+]
+
+var arrayWorkoutTypesFilterMainPage =
+[
+    { name: "allworkouts", labeltext: qsTr("All activities"), icon: "../img/trophy.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
+    { name: "running", labeltext: qsTr("Running"), icon: "../workouticons/running.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
+    { name: "biking", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
+    { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
+    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
+    { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
+    { name: "skiing", labeltext: qsTr("Skiing"), icon: "../workouticons/skiing.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
+    { name: "hiking", labeltext: qsTr("Hiking"), icon: "../workouticons/hiking.png", iDistance: 0, iDuration: 0, iWorkouts: 0 }
 ]
 
 function toStravaType(t)
@@ -210,6 +222,13 @@ var arrayLookupWorkoutTableByName = {};
 for (var i = 0; i < arrayWorkoutTypes.length; i++)
 {
     arrayLookupWorkoutTableByName[arrayWorkoutTypes[i].name] = arrayWorkoutTypes[i];
+}
+
+
+var arrayLookupWorkoutFilterMainPageTableByName = {};
+for (var i = 0; i < arrayWorkoutTypesFilterMainPage.length; i++)
+{
+    arrayLookupWorkoutFilterMainPageTableByName[arrayWorkoutTypesFilterMainPage[i].name] = arrayWorkoutTypesFilterMainPage[i];
 }
 
 function fncGetIndexByName(sWorkoutName)

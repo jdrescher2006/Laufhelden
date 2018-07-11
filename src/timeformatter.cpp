@@ -1,5 +1,4 @@
 #include "timeformatter.h"
-
 #include <QObject>
 
 /**

@@ -289,78 +289,78 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>Az alkalmazásról</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Beállítások</translation>
-    </message>
-    <message>
-        <source>Start new workout</source>
-        <translation>Új edzés</translation>
-    </message>
-    <message>
-        <source>Welcome to Laufhelden</source>
-        <translation>Üdvözöl a Laufhelden</translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation>Nincsenek korábbi edzésadatok</translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
-        <translation>Rögzített edzések száma: </translation>
-    </message>
-    <message>
-        <source>of</source>
-        <translation>ennyiből</translation>
-    </message>
-    <message>
-        <source>Loading GPX files...</source>
-        <translation>GPX fájlok betöltése...</translation>
-    </message>
-    <message>
-        <source>Remove workout</source>
-        <translation>Edzés törlése</translation>
-    </message>
-    <message>
-        <source>Removing workout...</source>
-        <translation>Edzés törlése folyamatban...</translation>
-    </message>
-    <message>
-        <source>Uncompleted workout found!</source>
-        <translation>Vannak be nem fejezett edzések!</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation>Folytatás</translation>
-    </message>
-    <message>
-        <source>Edit workout</source>
-        <translation>Edzésadatok szerkesztése</translation>
-    </message>
-    <message>
-        <source>Workout name</source>
-        <translation>Edzés neve</translation>
-    </message>
-    <message>
-        <source>Workout description</source>
-        <translation>Edzés leírása</translation>
-    </message>
-    <message>
-        <source>Workout:</source>
-        <translation>Edzés:</translation>
+        <translation type="unfinished">Beállítások</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation>Strava-ba feltöltött edzéseim</translation>
+        <translation type="unfinished">Strava-ba feltöltött edzéseim</translation>
+    </message>
+    <message>
+        <source>Start new workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished">ennyiből</translation>
+    </message>
+    <message>
+        <source>Loading GPX files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Removing workout...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit workout</source>
+        <translation type="unfinished">Edzésadatok szerkesztése</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Feltöltés a Sports-Tracker.com-ra</translation>
+        <translation type="unfinished">Feltöltés a Sports-Tracker.com-ra</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation type="unfinished">Edzés neve</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation type="unfinished">Edzés leírása</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation type="unfinished">Edzés:</translation>
+    </message>
+    <message>
+        <source>No earlier workouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>workouts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -922,6 +922,10 @@
     <message>
         <source>Hiking</source>
         <translation>Túrázás</translation>
+    </message>
+    <message>
+        <source>All activities</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

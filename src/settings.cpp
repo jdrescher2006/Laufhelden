@@ -229,6 +229,15 @@ void Settings::setMapDisableRecordPage(bool mapDisableRecordPage)
      m_settings->setValue("mapsettings/mapDisableRecordPage", mapDisableRecordPage);
 }
 
+QString Settings::workoutTypeMainPage() const
+{
+    return m_settings->value("generalsettings/workoutTypeMainPage", "allworkouts").toString();
+}
+void Settings::setWorkoutTypeMainPage(QString workoutTypeMainPage)
+{
+    m_settings->setValue("generalsettings/workoutTypeMainPage", workoutTypeMainPage);
+}
+
 //Voice output
 int Settings::voiceLanguage() const
 {

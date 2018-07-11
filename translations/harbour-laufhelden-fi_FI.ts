@@ -289,78 +289,78 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>Tietoja Laufhelden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Asetukset</translation>
-    </message>
-    <message>
-        <source>Start new workout</source>
-        <translation>Aloita harjoitus</translation>
-    </message>
-    <message>
-        <source>Welcome to Laufhelden</source>
-        <translation>Tervetuloa Laufheldeniin</translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation>Ei aiempia harjoituksia</translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
-        <translation>Harjoitukset: </translation>
-    </message>
-    <message>
-        <source>of</source>
-        <translation>of</translation>
-    </message>
-    <message>
-        <source>Loading GPX files...</source>
-        <translation>Ladataan GPX tiedostoja...</translation>
-    </message>
-    <message>
-        <source>Remove workout</source>
-        <translation>Poista harjoitus</translation>
-    </message>
-    <message>
-        <source>Removing workout...</source>
-        <translation>Poistetaan harjoitusta...</translation>
-    </message>
-    <message>
-        <source>Uncompleted workout found!</source>
-        <translation>Keskeneräinen harjoitus löydetty!</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation>Jatka</translation>
-    </message>
-    <message>
-        <source>Edit workout</source>
-        <translation>Muokkaa harjoitusta</translation>
-    </message>
-    <message>
-        <source>Workout name</source>
-        <translation>Harjoituksen nimi</translation>
-    </message>
-    <message>
-        <source>Workout description</source>
-        <translation>Harjoituksen kuvaus</translation>
-    </message>
-    <message>
-        <source>Workout:</source>
-        <translation>Harjoitus:</translation>
+        <translation type="unfinished">Asetukset</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation>Minun Strava Aktiviteetit</translation>
+        <translation type="unfinished">Minun Strava Aktiviteetit</translation>
+    </message>
+    <message>
+        <source>Start new workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished"> / </translation>
+    </message>
+    <message>
+        <source>Loading GPX files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Removing workout...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit workout</source>
+        <translation type="unfinished">Muokkaa harkoitusta</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Lähetä Sports-Tracker.com</translation>
+        <translation type="unfinished">Lähetä Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation type="unfinished">Harjoituksen nimi</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation type="unfinished">Harjoituksen kuvaus</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation type="unfinished">Harjoitus:</translation>
+    </message>
+    <message>
+        <source>No earlier workouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>workouts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -922,6 +922,10 @@
     <message>
         <source>Hiking</source>
         <translation>Vaeltaminen</translation>
+    </message>
+    <message>
+        <source>All activities</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

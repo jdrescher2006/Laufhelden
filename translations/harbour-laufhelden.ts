@@ -296,19 +296,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Start new workout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Welcome to Laufhelden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
+        <source>Filter:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -328,15 +324,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Edit workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Uncompleted workout found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit workout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -352,15 +356,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>My Strava Activities</source>
+        <source>No earlier workouts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>(Unnamed track)</source>
+        <source>workouts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -921,6 +921,10 @@
     </message>
     <message>
         <source>Hiking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All activities</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

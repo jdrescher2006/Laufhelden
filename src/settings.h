@@ -46,6 +46,7 @@ class Settings : public QObject
     Q_PROPERTY(int measureSystem READ measureSystem WRITE setMeasureSystem)
     Q_PROPERTY(QString valueCoverFields READ valueCoverFields WRITE setValueCoverFields)
     Q_PROPERTY(bool mapDisableRecordPage READ mapDisableRecordPage WRITE setMapDisableRecordPage)
+    Q_PROPERTY(QString workoutTypeMainPage READ workoutTypeMainPage WRITE setWorkoutTypeMainPage)
 
     //Voice output
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
@@ -148,6 +149,9 @@ public:
 
     bool mapDisableRecordPage() const;
     void setMapDisableRecordPage(bool mapDisableRecordPage);
+
+    QString workoutTypeMainPage() const;
+    void setWorkoutTypeMainPage(QString workoutTypeMainPage);
 
     //Voice output
     int voiceLanguage() const;
