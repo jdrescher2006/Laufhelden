@@ -1,9 +1,9 @@
-* Fri Jun 15 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-2
+* Thu Jul 12 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-2
+- layout changes for main page, workout list can now be filtered
 - use heart rate monitor from another application e.g. Amazfish by @piggz
 - hide pace in the detailed view if the workout is biking by @martonmiklos
 - hide unnecessary fields in detailed view by @martonmiklos
 - fixed multiple bugs for voice coach
-- layout changes for main page
 - translation updates
 - other bugfixes
 

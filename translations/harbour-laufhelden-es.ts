@@ -356,10 +356,6 @@
         <translation type="unfinished">Entrenamiento:</translation>
     </message>
     <message>
-        <source>No earlier workouts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>workouts</source>
         <translation type="unfinished"></translation>
     </message>

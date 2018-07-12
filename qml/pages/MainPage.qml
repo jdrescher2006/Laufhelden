@@ -23,6 +23,7 @@ import "../tools/Thresholds.js" as Thresholds
 import "../tools/JSTools.js" as JSTools
 import "../tools/SportsTracker.js" as ST
 import com.pipacs.o2 1.0
+import SortFilterProxyModel 0.2
 
 Page
 {
@@ -39,6 +40,7 @@ Page
     property string sWorkoutDuration: ""
     property string sWorkoutDistance: ""
     property string sWorkoutCount: ""
+    property string sWorkoutFilter: ""
 
     property int iCurrentWorkout: 0
 
@@ -63,6 +65,11 @@ Page
         sWorkoutDuration = (JSTools.fncPadZeros(hours, 2)).toString() + "h " + (JSTools.fncPadZeros(minutes, 2)).toString() + "m " + (JSTools.fncPadZeros(seconds, 2)).toString() + "s";
 
         sWorkoutCount = (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iWorkouts).toString();
+
+        if (settings.workoutTypeMainPage === "allworkouts")
+            sWorkoutFilter = "";
+        else
+            sWorkoutFilter = settings.workoutTypeMainPage;
     }
 
     function fncCheckAutosave()
@@ -225,6 +232,22 @@ Page
         }
     }
 
+    SortFilterProxyModel
+    {
+        id: filterProxyModel
+        sourceModel: id_HistoryModel
+        filters: RegExpFilter
+        {
+            roleName: "workout"
+            pattern: sWorkoutFilter
+            caseSensitivity: Qt.CaseInsensitive
+        }
+        sorters:
+        {
+            enabled: false
+        }
+    }
+
     Connections
     {
         target: id_HistoryModel
@@ -233,9 +256,11 @@ Page
             //console.log("Workout rowCount: " + id_HistoryModel.rowCount());
 
             //Reset model for ListView
-            historyList.model = undefined;
+            //historyList.model = undefined;
             //Set new model for ListView from c++
-            historyList.model = id_HistoryModel;
+            //historyList.model = id_HistoryModel;
+
+            filterProxyModel.sourceModel = id_HistoryModel;
 
             var sWorkoutCurrent, fDistanceCurrent, iDurationCurrent
             //Go through all workouts
@@ -288,7 +313,7 @@ Page
     SilicaFlickable
     {
         anchors.fill: parent
-        contentHeight: clmMainColumn.height
+        contentHeight: clmMainColumn.height       
 
         PullDownMenu
         {
@@ -346,7 +371,7 @@ Page
                 height: (mainPage.height - pageHeader.height) / 4
 
                 Item
-                {
+                {                    
                     width: parent.width
                     height: parent.height / 3
                     visible: !bLoadingFiles
@@ -390,8 +415,10 @@ Page
                 }
                 Item
                 {
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.paddingLarge
                     anchors.bottom: parent.bottom
-                    width: parent.width
+                    width: parent.width - Theme.paddingLarge
                     height: (parent.height / 3) *2
                     visible: !bLoadingFiles
 
@@ -405,17 +432,17 @@ Page
                             id: id_LBL_WorkoutCount
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.top: parent.top
-                            anchors.topMargin: 32
-                            text: historyList.count === 0 ? qsTr("No earlier workouts") : sWorkoutCount;
-                            font.pixelSize: 42
+                            anchors.topMargin: parent.height / 4
+                            text: historyList.count === 0 ? "0" : sWorkoutCount;
+                            font.pixelSize: parent.height / 2
                         }
                         Label
                         {
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.bottom: parent.bottom
-                            anchors.bottomMargin: 32
+                            anchors.bottomMargin: parent.height / 5
                             text: qsTr("workouts")
-                            font.pixelSize: 26
+                            font.pixelSize: parent.height / 7
                         }
 
                         Image
@@ -495,12 +522,24 @@ Page
                 }               
             }
 
-            SilicaListView
+            Item
             {
                 width: parent.width
-                height: ((mainPage.height - pageHeader.height) / 4) * 3
+                height: Theme.paddingLarge
+            }
+
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
+            }
+
+            SilicaListView
+            {                
+                width: parent.width
+                height: (((mainPage.height - pageHeader.height) / 4) * 3) - Theme.paddingLarge
                 id: historyList
-                model: id_HistoryModel
+                model: filterProxyModel
                 clip: true
 
                 delegate: ListItem
