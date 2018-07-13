@@ -373,45 +373,48 @@ Page
                 Item
                 {                    
                     width: parent.width
-                    height: parent.height / 3
+                    height: parent.height / 3.2
                     visible: !bLoadingFiles
 
-                    Image
-                    {
-                        id: imgWorkoutImage
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-                        height: parent.width / 14
-                        width: parent.width / 14
-                        fillMode: Image.PreserveAspectFit
-                    }
-                    ComboBox
-                    {
-                        id: cmbWorkoutFilter
-                        //width: (parent.width / 20) * 19
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.verticalCenter: parent.verticalCenter
-                        label: qsTr("Filter:")
-                        menu: ContextMenu
+                    Row
+				    {
+				        width: parent.width
+                        //spacing: Theme.paddingSmall
+
+                        Image
                         {
-                            Repeater
+                            id: imgWorkoutImage
+                            height: parent.width / 14
+                            width: parent.width / 14
+                            anchors.verticalCenter: parent.verticalCenter
+                            fillMode: Image.PreserveAspectFit
+                        }                       
+                        ComboBox
+                        {
+                            id: cmbWorkoutFilter
+                            anchors.verticalCenter: parent.verticalCenter
+                            label: qsTr("Filter:")
+                            menu: ContextMenu
                             {
-                                id: idRepeaterFilterWorkout
-                                model: SharedResources.arrayWorkoutTypesFilterMainPage;
-                                MenuItem { text: modelData.labeltext }
+                                Repeater
+                                {
+                                    id: idRepeaterFilterWorkout
+                                    model: SharedResources.arrayWorkoutTypesFilterMainPage;
+                                    MenuItem { text: modelData.labeltext }
+                                }
+                            }
+                            onCurrentItemChanged:
+                            {
+                                if (bLockOnCompleted)
+                                    return;
+
+                                imgWorkoutImage.source = SharedResources.arrayWorkoutTypesFilterMainPage[currentIndex].icon;
+                                settings.workoutTypeMainPage = SharedResources.arrayWorkoutTypesFilterMainPage[currentIndex].name;
+
+                                fncSetWorkoutFilter();
                             }
                         }
-                        onCurrentItemChanged:
-                        {
-                            if (bLockOnCompleted)
-                                return;
-
-                            imgWorkoutImage.source = SharedResources.arrayWorkoutTypesFilterMainPage[currentIndex].icon;
-                            settings.workoutTypeMainPage = SharedResources.arrayWorkoutTypesFilterMainPage[currentIndex].name;
-
-                            fncSetWorkoutFilter();
-                        }
-                    }                    
+                    }
                 }
                 Item
                 {
@@ -432,9 +435,9 @@ Page
                             id: id_LBL_WorkoutCount
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.top: parent.top
-                            anchors.topMargin: parent.height / 4
+                            anchors.topMargin: parent.height / 7
                             text: historyList.count === 0 ? "0" : sWorkoutCount;
-                            font.pixelSize: parent.height / 2
+                            font.pixelSize: parent.height / 2.3
                         }
                         Label
                         {
@@ -773,10 +776,11 @@ Page
                     Row
                     {
                         spacing: Theme.paddingSmall
-                        width:parent.width;
+                        width:parent.width
+
                         Image
                         {
-                            id: imgWorkoutImage
+                            id: imgDialogWorkoutImage
                             height: parent.width / 8
                             width: parent.width / 8
                             fillMode: Image.PreserveAspectFit
@@ -799,7 +803,7 @@ Page
                             {
                                 console.log("Workout changed!");
 
-                                imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
+                                imgDialogWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
                                 iWorkout = currentIndex;
                                 sWorkout = SharedResources.arrayWorkoutTypes[currentIndex].name;
                             }

@@ -289,75 +289,75 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über Laufhelden</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Meine Strava Aktivitäten</translation>
+        <translation>Meine Strava Aktivitäten</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivität starten</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">von</translation>
+        <translation>von</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lade GPX-Dateien...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivität löschen</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche Aktivität...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Bearbeiten</translation>
+        <translation>Bearbeiten</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Senden an Sports-Tracker.com</translation>
+        <translation>Senden an Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Unbenannte Aktivität)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Abgebrochene Aktivität gefunden!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortsetzen</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Beschreibung</translation>
+        <translation>Beschreibung</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivität:</translation>
     </message>
     <message>
         <source>workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivitäten</translation>
     </message>
 </context>
 <context>
@@ -564,11 +564,11 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>HRM service benutzen</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenzmonitor aus einer anderen Anwendung verwenden, z.B. Amazfish</translation>
     </message>
 </context>
 <context>
@@ -921,7 +921,7 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Aktivitäten</translation>
     </message>
 </context>
 <context>
