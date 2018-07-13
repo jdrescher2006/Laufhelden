@@ -247,7 +247,7 @@
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation type="unfinished"></translation>
+        <translation>--g --m --s</translation>
     </message>
 </context>
 <context>
@@ -289,35 +289,35 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O Laufhelden</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Ustawienia</translation>
+        <translation>Ustawienia</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Moje aktywności Strava</translation>
+        <translation>Moje aktywności Strava</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom nowy trening</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtr:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">z</translation>
+        <translation>z</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ładowanie plików GPX...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń trening</translation>
     </message>
     <message>
         <source>Removing workout...</source>
@@ -564,22 +564,22 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj usługi HRM jeśli dostępna</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj monitora pracy serca z innej aplikacji np. Amazfish </translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>%1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1s</translation>
     </message>
     <message>
         <source>%1m %2s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1m %2s</translation>
     </message>
 </context>
 <context>
@@ -788,7 +788,7 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyjdź bez zapisywania</translation>
     </message>
 </context>
 <context>
@@ -921,7 +921,7 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie aktywności</translation>
     </message>
 </context>
 <context>
@@ -1391,7 +1391,7 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>Odtwórz ogłoszenie o wartości</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
@@ -1527,7 +1527,7 @@
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished">Ogólny</translation>
+        <translation>Ogólny</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
