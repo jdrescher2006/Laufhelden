@@ -321,43 +321,43 @@
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwane treningu...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Edytuj trening</translation>
+        <translation>Edytuj trening</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Prześlij do Sports-Tracker.com</translation>
+        <translation>Prześlij do Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Trasa bez nazwy)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Znaleziono niedokończony trening!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Wznów</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Nazwa treningu</translation>
+        <translation>Nazwa treningu</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Opis treningu</translation>
+        <translation>Opis treningu</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Trening:</translation>
+        <translation>Trening:</translation>
     </message>
     <message>
         <source>workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>treningi</translation>
     </message>
 </context>
 <context>
@@ -803,7 +803,7 @@
     </message>
     <message>
         <source>General</source>
-        <translation>Ogólny</translation>
+        <translation>Ogólne</translation>
     </message>
     <message>
         <source>Voice coach</source>
@@ -1426,7 +1426,7 @@
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Regularne komunikaty o czasie trwania</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -1485,7 +1485,7 @@
     </message>
     <message>
         <source>Voice coach events settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia wydarzeń głosu trenera</translation>
     </message>
 </context>
 <context>
@@ -1508,11 +1508,11 @@
     </message>
     <message>
         <source>Voice coach general settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogólne ustawienia głosu trenera</translation>
     </message>
     <message>
         <source>Pause/resume music player</source>
-        <translation type="unfinished"></translation>
+        <translation>Pauza/Wznów odtwarzacz muzyki</translation>
     </message>
     <message>
         <source></source>
@@ -1520,14 +1520,14 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeśli włączone, odtwarzacz muzyki zostaje wstrzymany, gdy komunikat głosowy jest odtwarzany, a następnie wznowiony</translation>
     </message>
 </context>
 <context>
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation>Ogólny</translation>
+        <translation>Ogólne</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
@@ -1535,19 +1535,19 @@
     </message>
     <message>
         <source>Event announcements</source>
-        <translation type="unfinished"></translation>
+        <translation>Komunikaty wydarzeń</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished">Regularne informowanie o dystansie</translation>
+        <translation>Regularne komunikaty o dystansie</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Regularne komunikaty o czasie trwania</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia głosu trenera</translation>
     </message>
 </context>
 </TS>
