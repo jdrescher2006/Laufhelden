@@ -289,75 +289,75 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Inställningar</translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Mina Strava-aktiviteter</translation>
+        <translation>Mina Strava-aktiviteter</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta nytt träningspass</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">av</translation>
+        <translation>av</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Läser in GPX-filer...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort träningspass</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tar bort träningspass...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Redigera träningspass</translation>
+        <translation>Redigera träningspass</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Skicka till Sports-Tracker.com</translation>
+        <translation>Skicka till Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Namnlöst spår)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oavslutat träningspass hittades!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Återuppta</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Träningspassnamn</translation>
+        <translation>Träningspassnamn</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Träningsbeskrivning</translation>
+        <translation>Träningsbeskrivning</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Träningspass:</translation>
+        <translation>Träningspass:</translation>
     </message>
     <message>
         <source>workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>träningspass</translation>
     </message>
 </context>
 <context>
@@ -568,7 +568,7 @@
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd hjärtfrekvensmätare från annat program, t.ex. Amazfish</translation>
     </message>
 </context>
 <context>
@@ -921,7 +921,7 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla aktiviteter</translation>
     </message>
 </context>
 <context>
@@ -1371,19 +1371,19 @@
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>Meddelande 1</translation>
+        <translation>Meddelande 1:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>Meddelande 2</translation>
+        <translation>Meddelande 2:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>Meddelande 2</translation>
+        <translation>Meddelande 2:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>Meddelande 4</translation>
+        <translation>Meddelande 4:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -1442,19 +1442,19 @@
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>Meddelande 1</translation>
+        <translation>Meddelande 1:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>Meddelande 2</translation>
+        <translation>Meddelande 2:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>Meddelande 3</translation>
+        <translation>Meddelande 3:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>Meddelande 4</translation>
+        <translation>Meddelande 4:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
