@@ -23,6 +23,7 @@ import "../tools/Thresholds.js" as Thresholds
 import "../tools/JSTools.js" as JSTools
 import "../tools/SportsTracker.js" as ST
 import com.pipacs.o2 1.0
+import SortFilterProxyModel 0.2
 
 Page
 {
@@ -31,18 +32,44 @@ Page
     allowedOrientations: settings.recordPagePortrait ? Orientation.Portrait : Orientation.All
 
     property bool bLockFirstPageLoad: true
+    property bool bLockOnCompleted : true;
     property int iLoadFileGPX: 0
     property int iGPXFiles: 100
     property bool bLoadingFiles: false
 
     property string sWorkoutDuration: ""
     property string sWorkoutDistance: ""
+    property string sWorkoutCount: ""
+    property string sWorkoutFilter: ""
 
     property int iCurrentWorkout: 0
 
     TrackLoader
     {
         id: trackLoader
+    }
+
+    function fncSetWorkoutFilter()
+    {
+        sWorkoutDistance = (settings.measureSystem === 0) ? (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(SharedResources.arrayLookupWorkoutTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + "mi";
+
+        var iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDuration;
+        iDuration = Math.floor(iDuration);
+        var hours = iDuration / (60*60);
+        hours = Math.floor(hours);
+        var minutes = (iDuration - hours*60*60) / 60;
+        minutes = Math.floor(minutes);
+        var seconds = iDuration - hours*60*60 - minutes*60;
+        seconds = Math.floor(seconds);
+
+        sWorkoutDuration = (JSTools.fncPadZeros(hours, 2)).toString() + "h " + (JSTools.fncPadZeros(minutes, 2)).toString() + "m " + (JSTools.fncPadZeros(seconds, 2)).toString() + "s";
+
+        sWorkoutCount = (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iWorkouts).toString();
+
+        if (settings.workoutTypeMainPage === "allworkouts")
+            sWorkoutFilter = "";
+        else
+            sWorkoutFilter = settings.workoutTypeMainPage;
     }
 
     function fncCheckAutosave()
@@ -116,6 +143,7 @@ Page
         //This is loaded only the first time the page is displayed
         if (status === PageStatus.Active && bLockFirstPageLoad)
         {
+            bLockOnCompleted = true;
             bLockFirstPageLoad = false;
             console.log("First Active MainPage");
 
@@ -160,12 +188,14 @@ Page
                 bPebbleConnected = id_PebbleWatchComm.isConnected();
             }
 
+            //Set workout filter image and combobox
+            imgWorkoutImage.source = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].icon;
+            cmbWorkoutFilter.currentIndex = SharedResources.arrayWorkoutTypesFilterMainPage.map(function(e) { return e.name; }).indexOf(settings.workoutTypeMainPage);
+
 			//On start of App load acceleration array file
 			id_HistoryModel.loadAccelerationFile();
-			//Check if there are more GPX files and add those files to the m_trackList array
-            //id_HistoryModel.readDirectory();
-			//Go through trackList array and load all GPX files which have ready==false
-            //id_HistoryModel.loadAllTracks();
+
+            bLockOnCompleted = false;
         }
 
         //This is loaded everytime the page is displayed
@@ -202,24 +232,59 @@ Page
         }
     }
 
+    SortFilterProxyModel
+    {
+        id: filterProxyModel
+        sourceModel: id_HistoryModel
+        filters: RegExpFilter
+        {
+            roleName: "workout"
+            pattern: sWorkoutFilter
+            caseSensitivity: Qt.CaseInsensitive
+        }
+        sorters:
+        {
+            enabled: false
+        }
+    }
+
     Connections
     {
         target: id_HistoryModel
         onSigLoadingFinished:     //This is called from C++ if the loading of the GPX files is ready
         {            
-            console.log("Workout rowCount: " + id_HistoryModel.rowCount());
-            console.log("Workout distance: " + id_HistoryModel.rDistance());
-            console.log("Workout duration: " + id_HistoryModel.iDuration());            
+            //console.log("Workout rowCount: " + id_HistoryModel.rowCount());
 
-            sWorkoutDuration = id_HistoryModel.sDuration();
+            //Reset model for ListView
+            //historyList.model = undefined;
+            //Set new model for ListView from c++
+            //historyList.model = id_HistoryModel;
 
-            if (settings.measureSystem === 0)
-                sWorkoutDistance = (id_HistoryModel.rDistance() / 1000).toFixed(1);
-            else
-                sWorkoutDistance = (JSTools.fncConvertDistanceToImperial(id_HistoryModel.rDistance()/1000)).toFixed(1);
+            filterProxyModel.sourceModel = id_HistoryModel;
 
-            historyList.model = undefined;
-            historyList.model = id_HistoryModel;            
+            var sWorkoutCurrent, fDistanceCurrent, iDurationCurrent
+            //Go through all workouts
+            for (var i = 0; i < id_HistoryModel.rowCount(); i++)
+            {                                
+                sWorkoutCurrent =  id_HistoryModel.workouttypeAt(i);
+                iDurationCurrent = id_HistoryModel.durationAt(i);
+                fDistanceCurrent = id_HistoryModel.distanceAt(i);
+
+                //console.log("workout: " + sWorkoutCurrent + ", duration : " + iDurationCurrent + ", distance: " + fDistanceCurrent);
+
+                if (sWorkoutCurrent === "" || iDurationCurrent === 0 || fDistanceCurrent === 0)
+                    continue;
+
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].iDistance + fDistanceCurrent;
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].iDuration + iDurationCurrent;
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].iWorkouts++;
+
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDistance + fDistanceCurrent;
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDuration + iDurationCurrent;
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iWorkouts++;
+            }
+
+            fncSetWorkoutFilter();
 
             bLoadingFiles = false;
 
@@ -227,7 +292,7 @@ Page
         }
         onDataChanged:     //This is called from C++ if the loading of one GPX file is ready
         {
-            console.log("Track loading finished!!!");
+            //console.log("Track loading finished!!!");
             iLoadFileGPX++;
         }
         onSigAmountGPXFiles:
@@ -248,7 +313,7 @@ Page
     SilicaFlickable
     {
         anchors.fill: parent
-        contentHeight: clmMainColumn.height
+        contentHeight: clmMainColumn.height       
 
         PullDownMenu
         {
@@ -296,7 +361,7 @@ Page
             PageHeader
             {
                 id: pageHeader
-                title: qsTr("Welcome to Laufhelden")
+                title: "Laufhelden"
             }
 
             Item
@@ -304,57 +369,141 @@ Page
                 id: itmMainHeaderArea
                 width: parent.width
                 height: (mainPage.height - pageHeader.height) / 4
-                //color: "red"
 
-                Row
-                {
+                Item
+                {                    
                     width: parent.width
-                    height: parent.height / 3
+                    height: parent.height / 3.2
+                    visible: !bLoadingFiles
+
+                    Row
+				    {
+				        width: parent.width
+                        //spacing: Theme.paddingSmall
+
+                        Image
+                        {
+                            id: imgWorkoutImage
+                            height: parent.width / 14
+                            width: parent.width / 14
+                            anchors.verticalCenter: parent.verticalCenter
+                            fillMode: Image.PreserveAspectFit
+                        }                       
+                        ComboBox
+                        {
+                            id: cmbWorkoutFilter
+                            anchors.verticalCenter: parent.verticalCenter
+                            label: qsTr("Filter:")
+                            menu: ContextMenu
+                            {
+                                Repeater
+                                {
+                                    id: idRepeaterFilterWorkout
+                                    model: SharedResources.arrayWorkoutTypesFilterMainPage;
+                                    MenuItem { text: modelData.labeltext }
+                                }
+                            }
+                            onCurrentItemChanged:
+                            {
+                                if (bLockOnCompleted)
+                                    return;
+
+                                imgWorkoutImage.source = SharedResources.arrayWorkoutTypesFilterMainPage[currentIndex].icon;
+                                settings.workoutTypeMainPage = SharedResources.arrayWorkoutTypesFilterMainPage[currentIndex].name;
+
+                                fncSetWorkoutFilter();
+                            }
+                        }
+                    }
+                }
+                Item
+                {
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.paddingLarge
+                    anchors.bottom: parent.bottom
+                    width: parent.width - Theme.paddingLarge
+                    height: (parent.height / 3) *2
                     visible: !bLoadingFiles
 
                     Item
                     {
-                        width: parent.width / 2
+                        width: parent.height
                         height: parent.height
+
+                        Label
+                        {
+                            id: id_LBL_WorkoutCount
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.top: parent.top
+                            anchors.topMargin: parent.height / 7
+                            text: historyList.count === 0 ? "0" : sWorkoutCount;
+                            font.pixelSize: parent.height / 2.3
+                        }
+                        Label
+                        {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: parent.height / 5
+                            text: qsTr("workouts")
+                            font.pixelSize: parent.height / 7
+                        }
+
+                        Image
+                        {
+                            anchors.fill: parent
+                            source: "../img/circle.png"
+                        }
+                    }
+                    Item
+                    {
+                        width: parent.width - parent.height
+                        height: parent.height / 2
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.leftMargin: parent.height
 
                         Image
                         {
                             source: "../img/length.png"
                             height: parent.height
                             width: parent.height
-                            anchors.leftMargin: Theme.paddingSmall
+                            anchors.leftMargin: Theme.paddingLarge
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                         }
                         Label
                         {
                             anchors.left: parent.left
-                            anchors.leftMargin: parent.height + Theme.paddingMedium
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingSmall
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                             truncationMode: TruncationMode.Fade
-                            text: (settings.measureSystem === 0) ? sWorkoutDistance + "km" : sWorkoutDistance + "mi"
+                            text: sWorkoutDistance
                             color: Theme.highlightColor
                         }
                     }
                     Item
                     {
-                        width: parent.width / 2
-                        height: parent.height
+                        width: parent.width - parent.height
+                        height: parent.height / 2
+                        anchors.top: parent.top
+                        anchors.topMargin: parent.height / 2
+                        anchors.left: parent.left
+                        anchors.leftMargin: parent.height
 
                         Image
                         {
-                            id: idIMGTime
                             source: "../img/time.png"
                             height: parent.height
                             width: parent.height
+                            anchors.leftMargin: Theme.paddingLarge
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                         }
                         Label
                         {
                             anchors.left: parent.left
-                            anchors.leftMargin: parent.height + Theme.paddingMedium
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingSmall
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                             truncationMode: TruncationMode.Fade
@@ -362,18 +511,6 @@ Page
                             color: Theme.highlightColor
                         }
                     }
-                }
-
-                Label
-                {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: Theme.paddingSmall
-                    id: id_LBL_WorkoutCount
-                    truncationMode: TruncationMode.Fade
-                    text: historyList.count === 0 ? qsTr("No earlier workouts") : qsTr("Workouts: ") + (historyList.count).toString();
-                    color: Theme.highlightColor
-                    visible: !bLoadingFiles
                 }
 
                 ProgressBar
@@ -385,26 +522,28 @@ Page
                     label: qsTr("Loading GPX files...")
                     value: iLoadFileGPX
                     visible: bLoadingFiles
-                }
+                }               
+            }
 
-                Separator
-                {
-                    color: Theme.highlightColor
-                    anchors
-                    {
-                        left: parent.left
-                        right: parent.right
-                        bottom: parent.bottom
-                    }
-                }
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+
+            Separator
+            {
+                color: Theme.highlightColor
+                width: parent.width
             }
 
             SilicaListView
-            {
+            {                
                 width: parent.width
-                height: ((mainPage.height - pageHeader.height) / 4) * 3
+                height: (((mainPage.height - pageHeader.height) / 4) * 3) - Theme.paddingLarge
                 id: historyList
-                model: id_HistoryModel
+                model: filterProxyModel
+                clip: true
 
                 delegate: ListItem
                 {
@@ -417,6 +556,7 @@ Page
                         {
                             text: qsTr("Remove workout")
                             onClicked: remorseAction(qsTr("Removing workout..."), listItem.deleteTrack)
+
                         }
                         MenuItem
                         {
@@ -473,7 +613,6 @@ Page
                         id_HistoryModel.removeTrack(index);
                     }
 
-
                     Image
                     {
                         id: workoutImage
@@ -492,7 +631,7 @@ Page
                         anchors.top: parent.top
                         truncationMode: TruncationMode.Fade
                         text: name==="" ? qsTr("(Unnamed track)") : name
-                        color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                        color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor                        
                     }
                     Label
                     {
@@ -637,10 +776,11 @@ Page
                     Row
                     {
                         spacing: Theme.paddingSmall
-                        width:parent.width;
+                        width:parent.width
+
                         Image
                         {
-                            id: imgWorkoutImage
+                            id: imgDialogWorkoutImage
                             height: parent.width / 8
                             width: parent.width / 8
                             fillMode: Image.PreserveAspectFit
@@ -663,7 +803,7 @@ Page
                             {
                                 console.log("Workout changed!");
 
-                                imgWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
+                                imgDialogWorkoutImage.source = SharedResources.arrayWorkoutTypes[currentIndex].icon;
                                 iWorkout = currentIndex;
                                 sWorkout = SharedResources.arrayWorkoutTypes[currentIndex].name;
                             }

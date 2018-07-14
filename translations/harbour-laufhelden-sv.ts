@@ -289,79 +289,75 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Inställningar</translation>
-    </message>
-    <message>
-        <source>Start new workout</source>
-        <translation>Starta nytt träningspass</translation>
-    </message>
-    <message>
-        <source>Welcome to Laufhelden</source>
-        <translation>Välkommen till Laufhelden</translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation>Inga tidigare träningspass</translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
-        <translation>Träningspass: </translation>
-    </message>
-    <message>
-        <source>of</source>
-        <translation>av</translation>
-    </message>
-    <message>
-        <source>Loading GPX files...</source>
-        <translation>Läser in GPX-filer...</translation>
-    </message>
-    <message>
-        <source>Remove workout</source>
-        <translation>Ta bort träningspasset</translation>
-    </message>
-    <message>
-        <source>Removing workout...</source>
-        <translation>Tar bort träningspass...</translation>
-    </message>
-    <message>
-        <source>Uncompleted workout found!</source>
-        <translation>Oavslutat träningspass hittat!</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation>Fortsätt</translation>
-    </message>
-    <message>
-        <source>Edit workout</source>
-        <translation>Redigera träningspass</translation>
-    </message>
-    <message>
-        <source>Workout name</source>
-        <translation>Träningspassnamn</translation>
-    </message>
-    <message>
-        <source>Workout description</source>
-        <translation>Träningsbeskrivning</translation>
-    </message>
-    <message>
-        <source>Workout:</source>
-        <translation>Träningspass:</translation>
+        <translation type="unfinished">Inställningar</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation>Mina Strava-aktiviteter</translation>
+        <translation type="unfinished">Mina Strava-aktiviteter</translation>
+    </message>
+    <message>
+        <source>Start new workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished">av</translation>
+    </message>
+    <message>
+        <source>Loading GPX files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Removing workout...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit workout</source>
+        <translation type="unfinished">Redigera träningspass</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Skicka till Sports-Tracker.com</translation>
+        <translation type="unfinished">Skicka till Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation>(namnlöst spår)</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation type="unfinished">Träningspassnamn</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation type="unfinished">Träningsbeskrivning</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation type="unfinished">Träningspass:</translation>
+    </message>
+    <message>
+        <source>workouts</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -922,6 +918,10 @@
     <message>
         <source>Hiking</source>
         <translation>Fotvandring</translation>
+    </message>
+    <message>
+        <source>All activities</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

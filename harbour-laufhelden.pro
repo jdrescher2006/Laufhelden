@@ -433,3 +433,4 @@ DISTFILES += \
     qml/units/second_de_male.wav \
     qml/units/seconds_de_male.wav
 
+include(libs/qmlsortfilterproxymodel/SortFilterProxyModel.pri)

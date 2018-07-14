@@ -296,20 +296,16 @@
         <translation>Einstellungen</translation>
     </message>
     <message>
+        <source>My Strava Activities</source>
+        <translation>Meine Strava Aktivitäten</translation>
+    </message>
+    <message>
         <source>Start new workout</source>
-        <translation>Neues Training starten</translation>
+        <translation>Aktivität starten</translation>
     </message>
     <message>
-        <source>Welcome to Laufhelden</source>
-        <translation>Laufhelden</translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation>Keine Trainings</translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
-        <translation>Trainings: </translation>
+        <source>Filter:</source>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>of</source>
@@ -317,27 +313,35 @@
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation>Lade GPX Dateien...</translation>
+        <translation>Lade GPX-Dateien...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation>Training löschen</translation>
+        <translation>Aktivität löschen</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation>Lösche Training...</translation>
-    </message>
-    <message>
-        <source>Uncompleted workout found!</source>
-        <translation>Abgebrochenes Training gefunden!</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation>Fortsetzen</translation>
+        <translation>Lösche Aktivität...</translation>
     </message>
     <message>
         <source>Edit workout</source>
         <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation>Senden an Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation>(Unbenannte Aktivität)</translation>
+    </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation>Abgebrochene Aktivität gefunden!</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation>Fortsetzen</translation>
     </message>
     <message>
         <source>Workout name</source>
@@ -349,19 +353,11 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Training:</translation>
+        <translation>Aktivität:</translation>
     </message>
     <message>
-        <source>My Strava Activities</source>
-        <translation>Meine Strava Aktivitäten</translation>
-    </message>
-    <message>
-        <source>Send to Sports-Tracker.com</source>
-        <translation>Senden an Sports-Tracker.com</translation>
-    </message>
-    <message>
-        <source>(Unnamed track)</source>
-        <translation>(Unbenannter Track)</translation>
+        <source>workouts</source>
+        <translation>Aktivitäten</translation>
     </message>
 </context>
 <context>
@@ -568,11 +564,11 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>HRM service benutzen</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenzmonitor aus einer anderen Anwendung verwenden, z.B. Amazfish</translation>
     </message>
 </context>
 <context>
@@ -922,6 +918,10 @@
     <message>
         <source>Hiking</source>
         <translation>Wandern</translation>
+    </message>
+    <message>
+        <source>All activities</source>
+        <translation>Alle Aktivitäten</translation>
     </message>
 </context>
 <context>

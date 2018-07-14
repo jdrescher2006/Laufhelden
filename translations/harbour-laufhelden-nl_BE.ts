@@ -289,78 +289,74 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>Over</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Instellingen</translation>
-    </message>
-    <message>
-        <source>Start new workout</source>
-        <translation>Nieuwen training beginnen</translation>
-    </message>
-    <message>
-        <source>Welcome to Laufhelden</source>
-        <translation>Welkom bij Laufhelden</translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation>Geen vroegere trainingen</translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
-        <translation>Trainingen: </translation>
-    </message>
-    <message>
-        <source>of</source>
-        <translation>van</translation>
-    </message>
-    <message>
-        <source>Loading GPX files...</source>
-        <translation>GPX-bestanden laden…</translation>
-    </message>
-    <message>
-        <source>Remove workout</source>
-        <translation>Training verwijderen</translation>
-    </message>
-    <message>
-        <source>Removing workout...</source>
-        <translation>Training word verwijderd…</translation>
-    </message>
-    <message>
-        <source>Uncompleted workout found!</source>
-        <translation>Onvoltooiden training gevonden!</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation>Hervatten</translation>
-    </message>
-    <message>
-        <source>Edit workout</source>
-        <translation>Training bewerken</translation>
-    </message>
-    <message>
-        <source>Workout name</source>
-        <translation>Naam voor training</translation>
-    </message>
-    <message>
-        <source>Workout description</source>
-        <translation>Beschrijving voor training</translation>
-    </message>
-    <message>
-        <source>Workout:</source>
-        <translation>Training:</translation>
+        <translation type="unfinished">Instellingen</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation>Mijn Strava-activiteiten</translation>
+        <translation type="unfinished">Mijn Strava-activiteiten</translation>
+    </message>
+    <message>
+        <source>Start new workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>of</source>
+        <translation type="unfinished">van</translation>
+    </message>
+    <message>
+        <source>Loading GPX files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Removing workout...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit workout</source>
+        <translation type="unfinished">Training bewerken</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Sturen naar Sports-Tracker.com</translation>
+        <translation type="unfinished">Sturen naar Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout name</source>
+        <translation type="unfinished">Naam voor training</translation>
+    </message>
+    <message>
+        <source>Workout description</source>
+        <translation type="unfinished">Beschrijving voor training</translation>
+    </message>
+    <message>
+        <source>Workout:</source>
+        <translation type="unfinished">Training:</translation>
+    </message>
+    <message>
+        <source>workouts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -922,6 +918,10 @@
     <message>
         <source>Hiking</source>
         <translation>Bergwandelen</translation>
+    </message>
+    <message>
+        <source>All activities</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

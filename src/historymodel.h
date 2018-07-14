@@ -73,12 +73,14 @@ public:
 	Q_INVOKABLE void saveAccelerationFile();
 	Q_INVOKABLE void loadAccelerationFile();
 
-    Q_INVOKABLE int iDuration();
     Q_INVOKABLE QString sDuration() const;
-
     Q_INVOKABLE qreal rDistance();
 
     Q_INVOKABLE QString getSportsTrackerKey(const int index) const;
+
+    Q_INVOKABLE QString workouttypeAt(int index);
+    Q_INVOKABLE int durationAt(int index);
+    Q_INVOKABLE qreal distanceAt(int index);
 
 
 signals:
