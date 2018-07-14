@@ -289,75 +289,75 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Ajustes</translation>
+        <translation>Ajustes</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Mis actividades Strava</translation>
+        <translation>Mis actividades Strava</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar nuevo entrenamiento</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">de</translation>
+        <translation>de</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargando archivos GPX...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar entrenamiento</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminando entrenamiento...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Editar entrenamiento</translation>
+        <translation>Editar entrenamiento</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Enviar a Sports-Tracker.com</translation>
+        <translation>Enviar a Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Trayecto sin nombre)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Entrenamiento incompleto encontrado!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Reanudar</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Nombre de entrenamiento</translation>
+        <translation>Nombre de entrenamiento</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Descripción de entrenamiento</translation>
+        <translation>Descripción de entrenamiento</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Entrenamiento:</translation>
+        <translation>Entrenamiento:</translation>
     </message>
     <message>
         <source>workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>entrenam.</translation>
     </message>
 </context>
 <context>
@@ -921,7 +921,7 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Todas las actividades</translation>
     </message>
 </context>
 <context>
