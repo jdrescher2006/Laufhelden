@@ -247,7 +247,7 @@
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation type="unfinished"></translation>
+        <translation>--g --m --s</translation>
     </message>
 </context>
 <context>
@@ -289,75 +289,75 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O Laufhelden</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Ustawienia</translation>
+        <translation>Ustawienia</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Moje aktywności Strava</translation>
+        <translation>Moje aktywności Strava</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom nowy trening</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtr:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">z</translation>
+        <translation>z</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ładowanie plików GPX...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń trening</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwane treningu...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Edytuj trening</translation>
+        <translation>Edytuj trening</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Prześlij do Sports-Tracker.com</translation>
+        <translation>Prześlij do Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Trasa bez nazwy)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Znaleziono niedokończony trening!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Wznów</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Nazwa treningu</translation>
+        <translation>Nazwa treningu</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Opis treningu</translation>
+        <translation>Opis treningu</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Trening:</translation>
+        <translation>Trening:</translation>
     </message>
     <message>
         <source>workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>treningi</translation>
     </message>
 </context>
 <context>
@@ -564,22 +564,22 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj usługi HRM jeśli dostępna</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj monitora pracy serca z innej aplikacji np. Amazfish </translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>%1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1s</translation>
     </message>
     <message>
         <source>%1m %2s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1m %2s</translation>
     </message>
 </context>
 <context>
@@ -788,7 +788,7 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyjdź bez zapisywania</translation>
     </message>
 </context>
 <context>
@@ -803,7 +803,7 @@
     </message>
     <message>
         <source>General</source>
-        <translation>Ogólny</translation>
+        <translation>Ogólne</translation>
     </message>
     <message>
         <source>Voice coach</source>
@@ -921,7 +921,7 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie aktywności</translation>
     </message>
 </context>
 <context>
@@ -1391,7 +1391,7 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>Odtwórz ogłoszenie o wartości</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
@@ -1426,7 +1426,7 @@
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Regularne komunikaty o czasie trwania</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -1485,7 +1485,7 @@
     </message>
     <message>
         <source>Voice coach events settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia wydarzeń głosu trenera</translation>
     </message>
 </context>
 <context>
@@ -1508,11 +1508,11 @@
     </message>
     <message>
         <source>Voice coach general settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogólne ustawienia głosu trenera</translation>
     </message>
     <message>
         <source>Pause/resume music player</source>
-        <translation type="unfinished"></translation>
+        <translation>Pauza/Wznów odtwarzacz muzyki</translation>
     </message>
     <message>
         <source></source>
@@ -1520,14 +1520,14 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeśli włączone, odtwarzacz muzyki zostaje wstrzymany, gdy komunikat głosowy jest odtwarzany, a następnie wznowiony</translation>
     </message>
 </context>
 <context>
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished">Ogólny</translation>
+        <translation>Ogólne</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
@@ -1535,19 +1535,19 @@
     </message>
     <message>
         <source>Event announcements</source>
-        <translation type="unfinished"></translation>
+        <translation>Komunikaty wydarzeń</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished">Regularne informowanie o dystansie</translation>
+        <translation>Regularne komunikaty o dystansie</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Regularne komunikaty o czasie trwania</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia głosu trenera</translation>
     </message>
 </context>
 </TS>
