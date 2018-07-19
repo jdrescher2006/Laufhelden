@@ -65,7 +65,7 @@
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation>Пожертвованиея, если вам понравилась программа:</translation>
+        <translation>Пожертвование, если вам понравилась программа:</translation>
     </message>
     <message>
         <source>Hungarian</source>
