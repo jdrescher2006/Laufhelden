@@ -111,6 +111,17 @@ Page
                             settings.voiceLanguage = 1;
                         }
                     }
+                    MenuItem
+                    {
+                        text: qsTr("Russian male")
+                        onClicked:
+                        {
+                            if (bLockOnCompleted)
+                                return;
+
+                            settings.voiceLanguage = 2;
+                        }
+                    }
                 }
             }
             Button
@@ -126,6 +137,8 @@ Page
                         sVoiceLanguage = "_en_male.wav";
                     else if (settings.voiceLanguage === 1)   //german male
                         sVoiceLanguage = "_de_male.wav";
+                    else if (settings.voiceLanguage === 2)   //russian male
+                        sVoiceLanguage = "_ru_male.wav";
 
                     fncPlaySound("audio/hr_toohigh" + sVoiceLanguage);
 
