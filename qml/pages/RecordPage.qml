@@ -21,6 +21,7 @@ import Sailfish.Silica 1.0
 //import QtLocation 5.0
 import QtPositioning 5.3
 import MapboxMap 1.0
+import Nemo.DBus 2.0
 import "../tools/SharedResources.js" as SharedResources
 import "../tools/Thresholds.js" as Thresholds
 import "../tools/JSTools.js" as JSTools
@@ -88,7 +89,20 @@ Page
 
     //Cyclic voice output
     property double iTriggerDistanceVoiceOutput: -1
+    property double iTriggerDurationVoiceOutput: -1
 
+
+    DBusInterface {
+        id: dbusHRM
+
+        service: "org.sailfishos.heartrate"
+        iface: "org.sailfishos.heartrate"
+        path: "/"
+
+        Component.onCompleted: {
+            console.log("dbus completed");
+        }
+    }
 
     Connections
     {
@@ -113,7 +127,7 @@ Page
         {
             console.log("---RecordPage first active enter---");
 
-            bLockFirstPageLoad = false;                        
+            bLockFirstPageLoad = false;
 
             //This setting determines if the map should be completely disabled.
             bDisableMap = settings.mapDisableRecordPage;
@@ -123,13 +137,17 @@ Page
                 bShowMap = settings.showMapRecordPage;
 
             //start positioning
-            recorder.vStartGPS();            
+            recorder.vStartGPS();
+
+            if (settings.useHRMservice) {
+                dbusHRM.call("start");
+            }
 
             console.log("Is track empty: " + recorder.isEmpty.toString())
 
             //Check if recorder is empty. If this is not the case, there is data from an autoload.
             if (recorder.isEmpty === false)
-            {                
+            {
                 //Now we have to view this data
                 bRestoreWorkout = true;
 
@@ -146,9 +164,10 @@ Page
                 bRestoreWorkout = false;
 
 
-                //We need to set parameters to the dialog/pebble
+                //We need to set parameters to the dialog/pebble/cyclic voice
                 RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
                 JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                JSTools.arrayVoiceValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
             }
 
             console.log("---RecordPage first active leave---");
@@ -157,7 +176,7 @@ Page
         //This is loaded everytime the page is displayed
         if (status === PageStatus.Active)
         {
-            console.log("---RecordPage active enter---");            
+            console.log("---RecordPage active enter---");
 
             //Set map style
             map.styleUrl = settings.mapStyle;
@@ -167,15 +186,17 @@ Page
 
             //Set value types for fields in JS array
             RecordPageDisplay.fncConvertSaveStringToArray(settings.valueFields, SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(settings.workoutType), SharedResources.arrayWorkoutTypes.length);
-
             JSTools.fncConvertSaveStringToArray(settings.valuePebbleFields);
             JSTools.fncConvertSaveStringToArrayCoverPage(settings.valueCoverFields);
+            JSTools.fncConvertSaveStringToArrayCyclicVoiceDistance(settings.voiceCycDistanceFields);
+            JSTools.fncConvertSaveStringToArrayCyclicVoiceDuration(settings.voiceCycDurationFields);
+
 
             //Set header and footer to text fields
             fncSetHeaderFooterTexts();
 
             //Set display mode to dialog
-            fncSetDisplayMode();            
+            fncSetDisplayMode();
 
             //If this page is shown, prevent screen from going blank
             if (settings.disableScreenBlanking)
@@ -195,7 +216,7 @@ Page
                 }
             }
 
-            if (sHRMAddress !== "" && settings.useHRMdevice && bRecordDialogRequestHRM === false)
+            if (sHRMAddress !== "" && settings.useHRMdevice && bRecordDialogRequestHRM === false && !settings.useHRMservice)
             {
                 id_BluetoothData.connect(sHRMAddress, 1);
                 bRecordDialogRequestHRM = true;
@@ -208,19 +229,15 @@ Page
             //Load threshold settings and convert them to JS array
             Thresholds.fncConvertSaveStringToArray(settings.thresholds);
 
-			//Everytime this dialog is entered, set next distance for cyclic voice output
-			if (settings.voiceCycDistance !== 0)
-				iTriggerDistanceVoiceOutput = settings.voiceCycDistance + (recorder.distance/1000).toFixed(1);
-
             console.log("---RecordPage active leave---");
         }
 
         if (status === PageStatus.Inactive)
-        {            
-            console.log("RecordPage inactive");                        
+        {
+            console.log("RecordPage inactive");
 
             if (settings.disableScreenBlanking)
-                fncEnableScreenBlank(false);                    
+                fncEnableScreenBlank(false);
 
             recorder.newTrackPoint.disconnect(newTrackPoint);
             recorder.currentPositionChanged.disconnect(fncCurrentPositionChanged);
@@ -235,7 +252,7 @@ Page
         //console.log("Brightness: " + id_Light.brightness.toString());
 
         iAutoNightModeValue = iAutoNightModeValue + id_Light.brightness;
-    }    
+    }
 
     Timer
     {
@@ -244,7 +261,7 @@ Page
         repeat: true
         running: true
         onTriggered:
-        {            
+        {
             //Really strange thing: this timer is called even when the page is NOT opened!
             //If the prerecord page is open, the timer is called!
             //So we need to find out wether this page is opened anf if not return here.
@@ -339,13 +356,29 @@ Page
             }
 
             //set heartrate to JS array if HR device is used
-            if (sHRMAddress !== "" && settings.useHRMdevice)
+            if (settings.useHRMservice)
+            {
+                dbusHRM.typedCall("heartRate", [], function(result) {
+                    sHeartRate = result;
+                }, function() {//error ocurred
+                    settings.useHRMservice = false;
+                    fncShowMessage(3,"HRM service not found", 5000);
+                });
+                dbusHRM.typedCall("batteryLevel", [], function(result) {
+                    sBatteryLevel = result;
+                });
+
+                recorder.vSetCurrentHeartRate(parseInt(sHeartRate));
+
+            }
+
+            if ((sHRMAddress !== "" && settings.useHRMdevice) || settings.useHRMservice)
             {
                 RecordPageDisplay.arrayValueTypes[1].value = sHeartRate;
                 RecordPageDisplay.arrayValueTypes[1].footnoteValue = sBatteryLevel + "%";
 
                 JSTools.arrayPebbleValueTypes[1].value = sHeartRate;
-                JSTools.arrayVoiceValueTypes[0].value = sHeartRate;
+                JSTools.arrayVoiceValueTypes[1].value = sHeartRate;
             }
             //Set values to JS array if recorder is running
             if (recorder.running && !recorder.pause)
@@ -360,20 +393,20 @@ Page
                 RecordPageDisplay.arrayValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
 
                 JSTools.arrayPebbleValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
-                JSTools.arrayPebbleValueTypes[3].value = recorder.paceStr;
-                JSTools.arrayPebbleValueTypes[4].value = recorder.paceaverageStr;
+                JSTools.arrayPebbleValueTypes[3].value = (settings.measureSystem === 0) ? recorder.paceStr : recorder.paceImperialStr;
+                JSTools.arrayPebbleValueTypes[4].value = (settings.measureSystem === 0) ? recorder.paceaverageStr : recorder.paceaverageImperialStr;
                 JSTools.arrayPebbleValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
                 JSTools.arrayPebbleValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speedaverage).toFixed(1);
                 JSTools.arrayPebbleValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
                 JSTools.arrayPebbleValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
 
-				JSTools.arrayVoiceValueTypes[1].value = recorder.heartrateaverage.toFixed(1);
-				JSTools.arrayVoiceValueTypes[2].value = recorder.paceStr;
-				JSTools.arrayVoiceValueTypes[3].value = recorder.paceaverageStr;
-				JSTools.arrayVoiceValueTypes[4].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
-				JSTools.arrayVoiceValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperia
-				JSTools.arrayVoiceValueTypes[6].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
-				JSTools.arrayVoiceValueTypes[7].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                JSTools.arrayVoiceValueTypes[2].value = recorder.heartrateaverage.toFixed(1);
+                JSTools.arrayVoiceValueTypes[3].value = (settings.measureSystem === 0) ? recorder.paceStr : recorder.paceImperialStr;
+                JSTools.arrayVoiceValueTypes[4].value = (settings.measureSystem === 0) ? recorder.paceaverageStr : recorder.paceaverageImperialStr;
+                JSTools.arrayVoiceValueTypes[5].value = (settings.measureSystem === 0) ? recorder.speed.toFixed(1) : JSTools.fncConvertSpeedToImperial(recorder.speed).toFixed(1);
+                JSTools.arrayVoiceValueTypes[6].value = (settings.measureSystem === 0) ? recorder.speedaverage.toFixed(1) : JSTools.fncConvertSpeedToImperia
+                JSTools.arrayVoiceValueTypes[7].value = (settings.measureSystem === 0) ? recorder.altitude : JSTools.fncConvertelevationToImperial(recorder.altitude).toFixed(1);
+                JSTools.arrayVoiceValueTypes[8].value = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
             }
             if (recorder.running)
             {
@@ -385,7 +418,7 @@ Page
                 //This is the duration
                 JSTools.arrayPebbleValueTypes[10].value = recorder.pebbleTime;
                 JSTools.arrayPebbleValueTypes[10].valueCoverPage = recorder.time;
-				JSTools.arrayVoiceValueTypes[8].value = recorder.time;
+                JSTools.arrayVoiceValueTypes[9].value = recorder.time;
             }
 
             //Set values from JS array to dialog text fields
@@ -443,23 +476,66 @@ Page
                                                                   sValue3 + JSTools.arrayLookupCoverPageValueTypesByFieldID[3].imperialUnit;
 
 
+            //************functions for cyclic voice output**************
+            //Initialize trigger distance
+            if (iTriggerDistanceVoiceOutput === -1)
+                iTriggerDistanceVoiceOutput = settings.voiceCycDistance;
+
+            if (iTriggerDurationVoiceOutput === -1)
+                iTriggerDurationVoiceOutput = settings.voiceCycDuration;
+
+
             //If recorder is running and not paused
             if (recorder.running && !recorder.pause)
-            {                               
+            {
                 //Check if we have to play a cyclic voice announcement
 
-                //First check if distance is active
-                if (settings.voiceCycDistance !== 0)
+                //Check if distance is active
+                if (settings.voiceCycDistanceEnable)
                 {
                     //Get distance from recorder. This is float with 1 decimal place.
-                    var fDistance = (settings.measureSystem === 0) ? (recorder.distance/1000).toFixed(1) : JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1);
+                    var iDistance = (settings.measureSystem === 0) ? parseFloat((recorder.distance/1000).toFixed(1)) : parseFloat(JSTools.fncConvertDistanceToImperial(recorder.distance/1000).toFixed(1));
 
+                    //Check if current distance is same or higher than trigger distance
+                    if (iDistance >= iTriggerDistanceVoiceOutput)
+                    {
+                        //Play voice announcement
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, true, settings.voiceCycDistanceHeadlineEnable);
 
+                        //console.log("arSoundArray.length: " + arSoundArray.length.toString());
+                        //for (var i = 0; i < arSoundArray.length; i++)
+                        //{
+                        //  console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                        //}
+
+                        fncPlaySoundArray(arSoundArray);
+
+                        //Set value for next trigger distance
+                        iTriggerDistanceVoiceOutput = settings.voiceCycDistance + iDistance;
+                    }
                 }
+                //Check if duration is active
+                if (settings.voiceCycDurationEnable)
+                {
+                    var iTimeSeconds = recorder.timeSeconds;
+                    //Check if cuurent duration is same or higher than trigger duration
+                    if (iTimeSeconds >= iTriggerDurationVoiceOutput)
+                    {
+                        //Play voice announcement
+                        var arSoundArray = JSTools.fncPlayCyclicVoiceAnnouncement((settings.measureSystem === 0), settings.voiceLanguage, false, settings.voiceCycDurationHeadlineEnable);
 
+                        //console.log("arSoundArray.length: " + arSoundArray.length.toString());
+                        //for (var i = 0; i < arSoundArray.length; i++)
+                        //{
+                        //console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                        //}
 
+                        fncPlaySoundArray(arSoundArray);
 
-                
+                        //Set value for next trigger distance
+                        iTriggerDurationVoiceOutput = settings.voiceCycDuration + iTimeSeconds;
+                    }
+                }
             }
         }
     }
@@ -504,7 +580,7 @@ Page
         {
             //Cancel end operation
             if (bEndLoop)
-            {                
+            {
                 iButtonLoop = 3;
                 return;
             }
@@ -515,15 +591,6 @@ Page
             {
                 iButtonLoop = 3;
 
-                //These operation belong to "end workout" button pressed
-                bRecordDialogRequestHRM = false;
-
-                if (bHRMConnected) {id_BluetoothData.disconnect();}
-
-                sHeartRate: ""
-                sBatteryLevel: ""
-
-                recorder.running = false;
                 if(!recorder.isEmpty)
                 {
                     showSaveDialog();
@@ -572,7 +639,7 @@ Page
     }
 
     function fncSetHeaderFooterTexts()
-    {                      
+    {
         idTXT_1_Header.text = RecordPageDisplay.fncGetHeaderTextByFieldID(1);
         idTXT_1_Footer.text = RecordPageDisplay.fncGetFooterTextByFieldID(1, settings.measureSystem) + " ";
         idTXT_1_Footnote.visible = RecordPageDisplay.fncGetFootnoteVisibleByFieldID(1);
@@ -643,23 +710,23 @@ Page
                 pageStack.pop(vMainPageObject, PageStackAction.Immediate);
             })
         }
-    }   
+    }
 
     function fncSetMapPoint(coordinate, iPointIndex)
-    {                       
+    {
         var vLineArray = [];
         var vIndexArray =  [];
 
         //Map interaction is only done when map is really shown
         if (bDisableMap || !visible || !bShowMap || !appWindow.applicationActive)
         {
-            console.log("Map invisible. Point: " + iPointIndex.toString());
+            //console.log("Map invisible. Point: " + iPointIndex.toString());
 
             //Now the map is not shown at the moment. Save current coordinate to a temp array. Also save the current index to a temp array.
             if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0)
             {
-               vLineArray = vTempTrackLinePoints;
-               vIndexArray = vTempTrackLinePointsIndex;
+                vLineArray = vTempTrackLinePoints;
+                vIndexArray = vTempTrackLinePointsIndex;
             }
             vLineArray.push(coordinate);
             vIndexArray.push(iPointIndex);
@@ -671,13 +738,13 @@ Page
             return;
         }
 
-        console.log("Map visible. Point: " + iPointIndex.toString());
+        //console.log("Map visible. Point: " + iPointIndex.toString());
 
         //If we are here, the map is shown and we can do things with it.
         //First check if there is something in the temp array
         if (vTempTrackLinePoints !== undefined && vTempTrackLinePoints.length > 0)
         {
-            console.log("vTempTrackLinePoints length: " + vTempTrackLinePoints.length.toString());
+            //console.log("vTempTrackLinePoints length: " + vTempTrackLinePoints.length.toString());
 
             vLineArray = vTempTrackLinePoints;
             vIndexArray = vTempTrackLinePointsIndex;
@@ -693,7 +760,7 @@ Page
 
             bRestoreWorkout = true;
 
-            console.log("Temp points: " + vLineArray.length.toString());
+            //console.log("Temp points: " + vLineArray.length.toString());
 
             //Go through the temp array
             for (var i = 0; i < vLineArray.length; i++)
@@ -718,7 +785,7 @@ Page
     function fncSetMapPointToMap(coordinate, iPointIndex)
     {
         var vLineArray = [];
-        //console.log("Index: " + iPointIndex.toString());               
+        //console.log("Index: " + iPointIndex.toString());
 
         //Recognize the start of a workout
         if (iPointIndex === 0 && recorder.running && !recorder.isEmpty)
@@ -729,7 +796,7 @@ Page
             map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
             map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
             map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
-			map.setLayoutProperty("layerStartLayer", "icon-allow-overlap", true);
+            map.setLayoutProperty("layerStartLayer", "icon-allow-overlap", true);
 
             //Create temp line array
             vLineArray = [];
@@ -746,8 +813,8 @@ Page
             map.setLayoutProperty("layerEndTrack", "line-join", "round");
             map.setLayoutProperty("layerEndTrack", "line-cap", "round");
             map.setPaintProperty("layerEndTrack", "line-color", "red");
-            map.setPaintProperty("layerEndTrack", "line-width", 2.0);            
-        }        
+            map.setPaintProperty("layerEndTrack", "line-width", 2.0);
+        }
 
         //Recognize the start of a pause
         if (recorder.running && !recorder.isEmpty && iPointIndex > 0 && recorder.pausePointAt(iPointIndex - 1) === false && recorder.pausePointAt(iPointIndex) === true)
@@ -758,7 +825,7 @@ Page
             map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
             map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
             map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-			map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);        
+            map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);
 
             //set indexer to next pause position.
             iPausePositionsIndex++;
@@ -774,7 +841,7 @@ Page
             map.addLayer("layerPauseEndLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseEndImage" + iPausePositionsIndex.toString()});
             map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseEndImage" + iPausePositionsIndex.toString());
             map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-size", 1.0 / map.pixelRatio);
-			map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true); 
+            map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);
 
             //Doing the update here is OK because there should not be too many pauses.
             map.updateSourceLine(sTrackLine, vTrackLinePoints);
@@ -820,7 +887,7 @@ Page
 
     function fncCurrentPositionChanged(coordinate)
     {
-        console.log("CurrentPositionChanged");
+        //console.log("CurrentPositionChanged");
 
         //console.log("Record page 2: " + pageStack.currentPage.toString());
 
@@ -868,7 +935,7 @@ Page
     function newTrackPoint(coordinate, iPointIndex)
     {
         //console.log("Position: " + recorder.currentPosition);
-        console.log("newTrackPoint");                       
+        //console.log("newTrackPoint");
 
         fncSetMapPoint(coordinate, iPointIndex);
 
@@ -887,7 +954,7 @@ Page
 
 
         if (iThresholdTriggered === 1)   //normal
-        {            
+        {
             fncPlaySound("audio/hr_normal" + sVoiceLanguage);
         }
         else if (iThresholdTriggered === 2)   //low
@@ -1188,7 +1255,7 @@ Page
             Label
             {
                 color: "white"
-                text: qsTr("hold button for: ") + iButtonLoop.toString() + "s";
+                text: qsTr("hold button for: %1 s").arg(iButtonLoop.toString());
                 font.pixelSize: Theme.fontSizeMedium
                 anchors.centerIn: parent
             }
@@ -1201,7 +1268,7 @@ Page
             anchors.top: parent.top
             anchors.left: parent.left
             width: parent.width / 2
-            height: parent.height / iHeaderLineWidthFactor                        
+            height: parent.height / iHeaderLineWidthFactor
 
             Rectangle
             {
@@ -1434,7 +1501,7 @@ Page
                     if (iValueFieldPressed !== 2)
                     {
                         iValueFieldPressed = 2;
-                        iKeepPressingButton = 3;                                       
+                        iKeepPressingButton = 3;
                     }
                     else
                         iKeepPressingButton--;
@@ -1952,7 +2019,7 @@ Page
             anchors.top: (settings.mapShowOnly4Fields && bShowMap) ? idItemSecondLine.bottom : idItemThirdLine.bottom
             anchors.left: parent.left
             width: parent.width
-            height: parent.height / iMiddleLineWidthFactor           
+            height: parent.height / iMiddleLineWidthFactor
 
             Rectangle
             {
@@ -2271,7 +2338,7 @@ Page
             height: parent.height
             canAccept: true
             acceptDestination: page
-            acceptDestinationAction: PageStackAction.Pop            
+            acceptDestinationAction: PageStackAction.Pop
 
             DialogHeader
             {

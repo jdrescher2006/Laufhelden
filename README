@@ -14,11 +14,13 @@ This application orginates from a fork of Rena by Simoma: https://github.com/Sim
 
 Credits go to:
 - Messagebox: Kimmo Lindholm, https://github.com/kimmoli/paint/blob/master/qml/components/Messagebox.qml
-- Localization: Caballlero, atlochowski, eson57, niemisenjussi
+- Filtered ListView: https://github.com/oKcerG/SortFilterProxyModel
+- Localization: Caballlero, atlochowski, eson57, niemisenjussi, martonmiklos, d9h20f, carmenfdezb
 - Sports-Tracker support: niemisenjussi
 - Strava support: piggz
 
 Workout icons are from here: https://de.icons8.com/ They are under this license: https://creativecommons.org/licenses/by-nd/3.0/
+Filtered ListView is named "SortFilterProxyModel" and is under MIT license: https://github.com/oKcerG/SortFilterProxyModel/blob/master/LICENSE
 
 License: GNU General Public License (GNU GPLv3)
 

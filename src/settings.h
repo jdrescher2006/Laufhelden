@@ -29,6 +29,7 @@ class Settings : public QObject
     Q_PROPERTY(bool recordPagePortrait READ recordPagePortrait WRITE setRecordPagePortrait)
     Q_PROPERTY(QString workoutType READ workoutType WRITE setWorkoutType)
     Q_PROPERTY(bool useHRMdevice READ useHRMdevice WRITE setUseHRMdevice)
+    Q_PROPERTY(bool useHRMservice READ useHRMservice WRITE setUseHRMservice)
     Q_PROPERTY(bool disableScreenBlanking READ disableScreenBlanking WRITE setDisableScreenBlanking)
     Q_PROPERTY(bool showMapRecordPage READ showMapRecordPage WRITE setShowMapRecordPage)    
     Q_PROPERTY(QString thresholds READ thresholds WRITE setThresholds)
@@ -45,16 +46,24 @@ class Settings : public QObject
     Q_PROPERTY(int measureSystem READ measureSystem WRITE setMeasureSystem)
     Q_PROPERTY(QString valueCoverFields READ valueCoverFields WRITE setValueCoverFields)
     Q_PROPERTY(bool mapDisableRecordPage READ mapDisableRecordPage WRITE setMapDisableRecordPage)
+    Q_PROPERTY(QString workoutTypeMainPage READ workoutTypeMainPage WRITE setWorkoutTypeMainPage)
 
     //Voice output
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
+    Q_PROPERTY(bool voicePauseMusic READ voicePauseMusic WRITE setVoicePauseMusic)
     Q_PROPERTY(bool voiceStartEndWorkout READ voiceStartEndWorkout WRITE setVoiceStartEndWorkout)
     Q_PROPERTY(bool voicePauseContinueWorkout READ voicePauseContinueWorkout WRITE setVoicePauseContinueWorkout)
-    Q_PROPERTY(bool voiceGPSConnectLost READ voiceGPSConnectLost WRITE setVoiceGPSConnectLost)
+    Q_PROPERTY(bool voiceGPSConnectLost READ voiceGPSConnectLost WRITE setVoiceGPSConnectLost)    
 
     //Cyclic voice output
-    Q_PROPERTY(int voiceCycDistance READ voiceCycDistance WRITE setVoiceCycDistance)
+    Q_PROPERTY(bool voiceCycDistanceEnable READ voiceCycDistanceEnable WRITE setVoiceCycDistanceEnable)
+    Q_PROPERTY(double voiceCycDistance READ voiceCycDistance WRITE setVoiceCycDistance)
+    Q_PROPERTY(QString voiceCycDistanceFields READ voiceCycDistanceFields WRITE setVoiceCycDistanceFields)
+    Q_PROPERTY(bool voiceCycDurationEnable READ voiceCycDurationEnable WRITE setVoiceCycDurationEnable)
     Q_PROPERTY(int voiceCycDuration READ voiceCycDuration WRITE setVoiceCycDuration)
+    Q_PROPERTY(QString voiceCycDurationFields READ voiceCycDurationFields WRITE setVoiceCycDurationFields)
+    Q_PROPERTY(bool voiceCycDistanceHeadlineEnable READ voiceCycDistanceHeadlineEnable WRITE setVoiceCycDistanceHeadlineEnable)
+    Q_PROPERTY(bool voiceCycDurationHeadlineEnable READ voiceCycDurationHeadlineEnable WRITE setVoiceCycDurationHeadlineEnable)
 
     //Pebble specific setings
     Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
@@ -83,6 +92,9 @@ public:
 
     bool useHRMdevice() const;
     void setUseHRMdevice(bool useHRMdevice);
+
+    bool useHRMservice() const;
+    void setUseHRMservice(bool useHRMdevice);
 
     bool disableScreenBlanking() const;
     void setDisableScreenBlanking(bool disableScreenBlanking);
@@ -138,9 +150,15 @@ public:
     bool mapDisableRecordPage() const;
     void setMapDisableRecordPage(bool mapDisableRecordPage);
 
+    QString workoutTypeMainPage() const;
+    void setWorkoutTypeMainPage(QString workoutTypeMainPage);
+
     //Voice output
     int voiceLanguage() const;
     void setVoiceLanguage(int voiceLanguage);
+
+    bool voicePauseMusic() const;
+    void setVoicePauseMusic(bool voicePauseMusic);
 
     bool voiceStartEndWorkout() const;
     void setVoiceStartEndWorkout(bool voiceStartEndWorkout);
@@ -152,11 +170,29 @@ public:
     void setVoiceGPSConnectLost(bool voiceGPSConnectLost);
 
     //Cyclic voice output
-    int voiceCycDistance() const;
-    void setVoiceCycDistance(int voiceCycDistance);
+    bool voiceCycDistanceEnable() const;
+    void setVoiceCycDistanceEnable(bool voiceCycDistanceEnable);
+
+    double voiceCycDistance() const;
+    void setVoiceCycDistance(double voiceCycDistance);
+
+    QString voiceCycDistanceFields() const;
+    void setVoiceCycDistanceFields(QString voiceCycDistanceFields);
+
+    bool voiceCycDurationEnable() const;
+    void setVoiceCycDurationEnable(bool voiceCycDurationEnable);
 
     int voiceCycDuration() const;
     void setVoiceCycDuration(int voiceCycDuration);
+
+    QString voiceCycDurationFields() const;
+    void setVoiceCycDurationFields(QString voiceCycDurationFields);    
+
+    bool voiceCycDistanceHeadlineEnable() const;
+    void setVoiceCycDistanceHeadlineEnable(bool voiceCycDistanceHeadlineEnable);
+
+    bool voiceCycDurationHeadlineEnable() const;
+    void setVoiceCycDurationHeadlineEnable(bool voiceCycDurationHeadlineEnable);
 
     //Sporst-Tracker.com functions
     QString stUsername() const;

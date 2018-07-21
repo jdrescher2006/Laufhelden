@@ -71,6 +71,10 @@
         <source>Dutch</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Spanish-Spain</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -208,14 +212,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logging in...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uploading...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Edit workout</source>
         <translation type="unfinished"></translation>
     </message>
@@ -244,6 +240,13 @@
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -293,19 +296,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Start new workout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Welcome to Laufhelden</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
+        <source>Filter:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -325,15 +324,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Edit workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Uncompleted workout found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit workout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -349,7 +356,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>My Strava Activities</source>
+        <source>workouts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -555,6 +562,25 @@
         <source>Select thresholds profile</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use HRM service if available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use heart rate monitor from another application e.g. Amazfish</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>
@@ -596,10 +622,6 @@
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hold button for: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -668,6 +690,10 @@
     </message>
     <message>
         <source>Lock screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -760,17 +786,13 @@
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Quit without saving</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsMenu</name>
-    <message>
-        <source>General settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alarm thresholds</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Settings</source>
         <translation type="unfinished"></translation>
@@ -780,27 +802,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Map settings</source>
+        <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sports-Tracker.com</source>
+        <source>Voice coach</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pebble settings</source>
+        <source>Map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Voice output settings</source>
+        <source>App cover</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Strava</source>
+        <source>Pebble</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>App cover settings</source>
+        <source>Share workout</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -897,6 +919,25 @@
         <source>Hiking</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>All activities</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SocialMediaMenu</name>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SportsTracker</name>
@@ -914,6 +955,14 @@
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logging in...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1259,51 +1308,7 @@
     </message>
 </context>
 <context>
-    <name>VoiceSettingsPage</name>
-    <message>
-        <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start/end workout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pause/continue workout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect/disconnect GPS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Voice language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Voice outputs on events</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cyclic voice outputs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interval duration</source>
-        <translation type="unfinished"></translation>
-    </message>
+    <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
         <translation type="unfinished"></translation>
@@ -1357,15 +1362,46 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Every %1 km</source>
+        <source>Regular announcements by distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interval distance</source>
+        <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>minute</source>
+        <source>1 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceCycleDurationSettingsPage</name>
+    <message>
+        <source>Every </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1389,7 +1425,128 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Every %1 minute</source>
+        <source>Regular announcements by duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>30 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceEventsSettingsPage</name>
+    <message>
+        <source>Start/end workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice coach events settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceGeneralSettingsPage</name>
+    <message>
+        <source>Voice language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice coach general settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause/resume music player</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Event announcements</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular announcements by distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular announcements by duration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice Coach Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

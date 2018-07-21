@@ -1,28 +1,15 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
-- cyclic voice announcements	
-	- every 0,5-10 km
-	- maximum three parameters
-	- distance, speed, pace, HR
+- solved a bug in polish translation															-> OK
 
+- Bugs in voice output trainer:
+	- on duration settings page there is a error message if multiple empty fields are selected	-> OK
+	- empty fields where not left out. Instead they were played sometimes						-> OK
 
- ComboBox
-            {
-                visible: id_Slider_CyclicVoiceOutputsAmount.value.toFixed(0) > 0
-                id: id_CMB_ValueField1
-                label: qsTr("1 parameter:")
-                menu: ContextMenu { Repeater { model: JSTools.arrayVoiceValueTypes; MenuItem { text: modelData.header } }}
-                onCurrentItemChanged:
-                {
-                    if (!bLockOnCompleted && !bLockFirstPageLoad)
-                    {
-                        console.log("Combo changed: " + JSTools.arrayVoiceValueTypes[currentIndex].header);
-
-
-                    }
-                }
-            }
-
+- Implement shoe management for running
+- STRAVA:
+	- "Meine Strava Aktivitäten" not working, not showing anything on the page
+	- in Strava settings there is nothing shown in username, Email, Country
 
 Do not forget:
 - set changelog and release date to .changes file							
@@ -35,6 +22,8 @@ Do not forget:
 
 
 ----- ToDo for second next release to openrepos: 1.0.2 -----
+- when loading autosave and while not resuming workout in recordpage, the duration gets smaller
+- show battery state of phone with charging icon on record page
 - sometimes the mediaplayer would not set playing to false. Need a watchdog for that.
 - add max pace to detailspage/trackloader
 - meerun imports have no max. speed
@@ -83,7 +72,7 @@ Do not forget:
 - save pause time to gpx file. Look in Meerun gpx file where to save pause data.
 - Style first page list view like in meerun (upper part of page should not scroll)
 - enable night mode automatically. 
-- view diagrams on the statistics page. See app "Rush Hour" which is on openrepos.
+- view diagrams on the statistics page. See app "Rush Hour" and "SystemDataScope" which are on openrepos.
 - make volume of audio messages adjustable
 - Messagebox needs to be extended. If a page is locked to portrait mode, messagebox needs also be locked to this mode.
 - check if bluetooth is active. If not, switch it on. (see file ActionDisableBluetooth.qml in app slumber-master, or rockpool.qml)
@@ -109,6 +98,26 @@ Bugs:
 
 
 Completed:
+- solve commit conflict with spanish language										-> OK
+- ToDo for regular voice announcements:
+	- record english voice files													-> OK
+	- for english language there are differences in the unit:						-> OK
+		- mile/miles
+		- kilometer/kilometers
+		- meter/meters	
+	- in general options for voice coach, make music player pausing enable/disable	-> OK
+	- make output of headline for cyclic voice announcements choosable				-> OK
+	- sound files needed for average headers										-> OK
+	- it should be possible to have multiple empty parameter fields					-> OK
+	- changes of parameters are not used											-> OK
+	- 0_de_male.wav is not correct													-> OK
+	- for pace we only need "pro Kilometer" voice file								-> OK
+	- improvement: "Kilometer pro Stunde" to "kmh"									-> OK
+	- improvement: make numbers go faster: "0"										-> OK
+	- improvement: make units and headlines go faster								-> OK
+- there is a problem with umlauts in the filenames while loading GPX files.
+	- HistoryModel::loadAccelerationFile:402 - File not existant:  "running-Fr. M?rz 16 19:38:57 2018-11.7km.gpx"
+	- seems to only occure when app is started directly by Sailfish OS IDE. If app is started from desktop launcher all is OK.
 - add workout icon on details page							-> OK
 - make the app start faster by scanning the GPX files directory and comparing that to a database		-> OK
 	- App start:

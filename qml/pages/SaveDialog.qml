@@ -18,7 +18,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Dialog {
+Dialog
+{
     id: saveDialog
     allowedOrientations: Orientation.Portrait
     property string name
@@ -34,7 +35,8 @@ Dialog {
         DialogHeader {
             title: qsTr("Save track")
             acceptText: qsTr("Save")
-        }
+            cancelText: qsTr("Quit without saving")
+        }        
         TextField {
             id: nameField
             x: Theme.paddingLarge
@@ -45,7 +47,7 @@ Dialog {
             text: ""
             EnterKey.enabled: true
             EnterKey.iconSource: "image://theme/icon-m-enter-next"
-            EnterKey.onClicked: descriptionField.focus = true
+            EnterKey.onClicked: descriptionField.focus = true            
         }
         TextArea {
             id: descriptionField
@@ -57,7 +59,7 @@ Dialog {
             text: ""
             EnterKey.enabled: true
             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
-            EnterKey.onClicked: accept()
-        }
+            EnterKey.onClicked: accept()            
+        }       
     }
 }

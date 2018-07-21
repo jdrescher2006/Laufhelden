@@ -1,3 +1,30 @@
+* Fri Jul 13 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.1-1
+- layout changes for main page, workout list can now be filtered
+- use heart rate monitor from another application e.g. Amazfish by @piggz
+- hide pace in the detailed view if the workout is biking by @martonmiklos
+- hide unnecessary fields in detailed view by @martonmiklos
+- fixed multiple bugs for voice coach
+- translation updates
+- other bugfixes
+
+* Fri May 04 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.0-1
+- many improvements for Strava by @piggz
+    - fixed Strava upload and error handling
+    - added a 'Segment' view, showing just the segment, and current/best times
+    - fixed the upload description
+    - made the display of times better/consistent
+- many improvements for Sports Tracker by @niemisenjussi
+    - added upload option to workout list on main page
+    - workout name is used for Sport Tracker upload
+    - file format improvements / other improvements
+- added regular announcements for voice coach
+- added more settings options for voice coach
+- restructuring of settings menu
+- updated translations
+- added Spanish(Spain) language by @carmenfdezb
+- added Belgian language by @d9h20f
+- alarm thresholds are triggered less nervously
+
 * Tue Feb 06 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.0.0-1
 - many improvements for strava by @piggz
     - browser for activities with map view

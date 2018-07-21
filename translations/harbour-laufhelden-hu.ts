@@ -45,31 +45,35 @@
     </message>
     <message>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerzői jogok</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Németország</translation>
     </message>
     <message>
         <source>Credits for code contribution:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forráskódhoz hozzájárultak:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha kedveled az alkalmazást itt támogathatod a fejlsztőt:</translation>
     </message>
     <message>
         <source>Hungarian</source>
-        <translation type="unfinished"></translation>
+        <translation>Magyar</translation>
     </message>
     <message>
         <source>Finnish</source>
-        <translation type="unfinished"></translation>
+        <translation>Finn</translation>
     </message>
     <message>
         <source>Dutch</source>
-        <translation type="unfinished"></translation>
+        <translation>Holland</translation>
+    </message>
+    <message>
+        <source>Spanish-Spain</source>
+        <translation>Spanyol</translation>
     </message>
 </context>
 <context>
@@ -88,11 +92,11 @@
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Jelenlegi használt BT eszköz</translation>
+        <translation>Jelenlegi használt Bluetooth eszköz</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Nincs</translation>
+        <translation>Nincs aktív Bluetooth eszköz</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
@@ -135,34 +139,34 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished">Szüneteltetve</translation>
+        <translation>Szüneteltetve</translation>
     </message>
 </context>
 <context>
     <name>CoverSettingsPage</name>
     <message>
         <source>App cover settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Alkalmazás miniatűr nézete</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Válaszd ki azokat az adatokat amiket meg szeretnél jeleníteni az alkalmazások között váltó nézetben. Ezek az adatok fognak megjelenni a lezárt felvételi nézetben is. </translation>
     </message>
     <message>
         <source>First field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Első mező:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez az érték már használatban van!</translation>
     </message>
     <message>
         <source>Second field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Második mező:</translation>
     </message>
     <message>
         <source>Third field:</source>
-        <translation type="unfinished"></translation>
+        <translation>Harmadik mező:</translation>
     </message>
 </context>
 <context>
@@ -185,59 +189,51 @@
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation>Max. sebesség/⌀:</translation>
+        <translation>Max/átlag sebesség:</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation>Lépés ⌀:</translation>
+        <translation>Lépés átlag:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation>Pulzus min/max/⌀:</translation>
+        <translation>Pulzus min/max/átl.:</translation>
     </message>
     <message>
         <source>Diagrams</source>
         <translation>Grafikonok</translation>
     </message>
     <message>
-        <source>Logging in...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uploading...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Edit workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok szerkesztése</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltés a Sports-Tracker.com-ra</translation>
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltés a Strava-ra</translation>
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szünetek száma:</translation>
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szintkülönbség:</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzés neve</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzés leírása</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Edzés:</translation>
+        <translation>Edzés:</translation>
     </message>
 </context>
 <context>
@@ -248,108 +244,119 @@
     </message>
 </context>
 <context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation>--ó --p --mp</translation>
+    </message>
+</context>
+<context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
-        <translation type="unfinished">Üres</translation>
+        <translation>Üres</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished">Pulzus</translation>
+        <translation>Pulzus</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished">Lépés</translation>
+        <translation>Lépés</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Sebesség</translation>
+        <translation>Sebesség</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation type="unfinished">Magasság</translation>
+        <translation>Magasság</translation>
     </message>
     <message>
         <source>Distance</source>
-        <translation type="unfinished">Távolság</translation>
+        <translation>Távolság</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Szünet</translation>
+        <translation>Szünet</translation>
     </message>
     <message>
         <source>Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Időtartam</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>Az alkalmazásról</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Beállítások</translation>
+        <translation type="unfinished">Beállítások</translation>
+    </message>
+    <message>
+        <source>My Strava Activities</source>
+        <translation type="unfinished">Strava-ba feltöltött edzéseim</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation>Új edzés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Welcome to Laufhelden</source>
-        <translation>Üdvözöl a Laufhelden</translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation>Nincsenek korábbi edzésadatok</translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
-        <translation>Edzések: </translation>
+        <source>Filter:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>of</source>
-        <translation>ennyiből</translation>
+        <translation type="unfinished">ennyiből</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation>GPX fájlok betöltése...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation>Edzés törlése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation>Edzés törlése folyamatban...</translation>
-    </message>
-    <message>
-        <source>Uncompleted workout found!</source>
-        <translation>Vannak be nem fejezett edzések!</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation>Folytatás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Edit workout</source>
+        <translation type="unfinished">Edzésadatok szerkesztése</translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation type="unfinished">Feltöltés a Sports-Tracker.com-ra</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Edzés neve</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Edzés leírása</translation>
     </message>
     <message>
         <source>Workout:</source>
         <translation type="unfinished">Edzés:</translation>
     </message>
     <message>
-        <source>My Strava Activities</source>
+        <source>workouts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -377,152 +384,152 @@
     </message>
     <message>
         <source>Center track on map</source>
-        <translation>A megtett táv legyen középre igazítva</translation>
+        <translation>Az útvonal legyen középre igazítva</translation>
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation type="unfinished"></translation>
+        <translation>Válaszd ki a térkép megjelenítési módját</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Térkép</translation>
     </message>
     <message>
         <source>Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Utcák</translation>
     </message>
     <message>
         <source>Outdoors</source>
-        <translation type="unfinished"></translation>
+        <translation>Kültér</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Világos</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Sötét</translation>
     </message>
     <message>
         <source>Satellite</source>
-        <translation type="unfinished"></translation>
+        <translation>Műhold</translation>
     </message>
     <message>
         <source>Satellite Streets</source>
-        <translation type="unfinished"></translation>
+        <translation>Műhold + utcák</translation>
     </message>
     <message>
         <source>OSM Scout Server</source>
-        <translation type="unfinished"></translation>
+        <translation>OSM Scout Server</translation>
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>A tile cache segít abban, hogy a környező térképadatok mindig frissek legyenek, a lemezhasználat kordában tartásam mellett,azonban így a térképek lassabban töltenek be és nagyobb adatforgalmat igényel a művelet. A cache méret beállítás módosítása csak az alkalmazás újraindítása után lép életbe.</translation>
     </message>
     <message>
         <source>Cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tile cache mérete</translation>
     </message>
     <message>
         <source>Disable map</source>
-        <translation type="unfinished"></translation>
+        <translation>Térkép letiltása</translation>
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation type="unfinished"></translation>
+        <translation>A térkép nem lesz többé megjenítve. Ez hasznos lehet a Jolla 1 készülékeknél (amikben gyenge a GPU) mert az alkalmazás összeomolhat a térkép megjelenítésétől.</translation>
     </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava-ba feltöltött edzéseim</translation>
     </message>
 </context>
 <context>
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble csatlakoztatva</translation>
     </message>
     <message>
         <source>Pebble disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble kapcsolat megszakadt</translation>
     </message>
 </context>
 <context>
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation type="unfinished"></translation>
+        <translation>metrikus mértékegységek használata</translation>
     </message>
     <message>
         <source>sending data 1</source>
-        <translation type="unfinished"></translation>
+        <translation>adat küldése 1</translation>
     </message>
     <message>
         <source>sending data 2</source>
-        <translation type="unfinished"></translation>
+        <translation>adat küldése 2</translation>
     </message>
     <message>
         <source>sending data 3</source>
-        <translation type="unfinished"></translation>
+        <translation>adat küldése 3</translation>
     </message>
     <message>
         <source>closing sport app</source>
-        <translation type="unfinished"></translation>
+        <translation>sport alkalmazás bezárása</translation>
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation type="unfinished"></translation>
+        <translation>Rockpool 1.4-1 vagy újabb verziónak&lt;br&gt;telepítve kell lennie.&lt;br&gt;Jelenlegi Rockpool verzió: </translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble nem található.&lt;br&gt;Telepítsd a Rockpool alkalmazást majd&lt;br&gt;csatlakoztasd a Pebble-t!</translation>
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble beállítások</translation>
     </message>
     <message>
         <source>Enable Pebble support</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble támogatás engedélyezése</translation>
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok megjelenítése a Pebble-n.</translation>
     </message>
     <message>
         <source>Connected:</source>
-        <translation type="unfinished"></translation>
+        <translation>Csatlakoztatva:</translation>
     </message>
     <message>
         <source>Test Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble kapcsolat tesztelése</translation>
     </message>
     <message>
         <source>starting sport app</source>
-        <translation type="unfinished"></translation>
+        <translation>sport alkalmazás indítása</translation>
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
-        <translation type="unfinished"></translation>
+        <translation>Válaszd ki milyen adatokat kívánsz a Pebble-n megjeleníteni!</translation>
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation type="unfinished"></translation>
+        <translation>1 időtartam mező:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez az érték már használatban van!</translation>
     </message>
     <message>
         <source>2 DISTANCE field:</source>
-        <translation type="unfinished"></translation>
+        <translation>2 megtett táv:</translation>
     </message>
     <message>
         <source>3 PACE/SPEED field:</source>
-        <translation type="unfinished"></translation>
+        <translation>3 lépés/sebesség:</translation>
     </message>
 </context>
 <context>
@@ -553,7 +560,26 @@
     </message>
     <message>
         <source>Disable screen blanking when recording.</source>
+        <translation>Rögzítés során a képernyő kikapcsolásának megakadályozása.</translation>
+    </message>
+    <message>
+        <source>Use HRM service if available</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use heart rate monitor from another application e.g. Amazfish</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation>%1 mp</translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation>%1 p %2 mp</translation>
     </message>
 </context>
 <context>
@@ -599,10 +625,6 @@
         <translation>Kijelzés mód megváltoztatása</translation>
     </message>
     <message>
-        <source>hold button for: </source>
-        <translation>tartsd a gombot, hogy </translation>
-    </message>
-    <message>
         <source>GPS accuracy:</source>
         <translation>GPS pontosság:</translation>
     </message>
@@ -640,11 +662,11 @@
     </message>
     <message>
         <source>Start</source>
-        <translation>Kezdete</translation>
+        <translation>Indítás</translation>
     </message>
     <message>
         <source>End</source>
-        <translation>Vége</translation>
+        <translation>Befejezés</translation>
     </message>
     <message>
         <source>Accept</source>
@@ -664,11 +686,15 @@
     </message>
     <message>
         <source>Lock screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Képernyőzár</translation>
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble app újraindítása</translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
+        <translation>tartsd lenyomva még %1 másodpercig</translation>
     </message>
 </context>
 <context>
@@ -695,7 +721,7 @@
     </message>
     <message>
         <source>min/km</source>
-        <translation>min6km</translation>
+        <translation>min/km</translation>
     </message>
     <message>
         <source>Speed</source>
@@ -723,23 +749,23 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished"></translation>
+        <translation>min/mi</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished"></translation>
+        <translation>mérföld/ó</translation>
     </message>
     <message>
         <source>ft</source>
-        <translation type="unfinished"></translation>
+        <translation>láb</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation>mérföld</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished">Szünet</translation>
+        <translation>Szünet</translation>
     </message>
 </context>
 <context>
@@ -760,17 +786,13 @@
         <source>Description</source>
         <translation>Leírás</translation>
     </message>
+    <message>
+        <source>Quit without saving</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsMenu</name>
-    <message>
-        <source>General settings</source>
-        <translation>Általános beállítások</translation>
-    </message>
-    <message>
-        <source>Alarm thresholds</source>
-        <translation>Riasztási küszöbszintek</translation>
-    </message>
     <message>
         <source>Settings</source>
         <translation>Beállítások</translation>
@@ -780,28 +802,28 @@
         <translation>Pulzusmérő</translation>
     </message>
     <message>
-        <source>Map settings</source>
-        <translation>Térkép beállítások</translation>
+        <source>General</source>
+        <translation>Általános</translation>
     </message>
     <message>
-        <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
+        <source>Voice coach</source>
+        <translation>Hangjelzések</translation>
     </message>
     <message>
-        <source>App cover settings</source>
-        <translation type="unfinished"></translation>
+        <source>Map</source>
+        <translation>Térkép</translation>
     </message>
     <message>
-        <source>Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <source>App cover</source>
+        <translation>Alkalmazás miniatűr nézete</translation>
     </message>
     <message>
-        <source>Strava</source>
-        <translation type="unfinished"></translation>
+        <source>Pebble</source>
+        <translation>Pebble</translation>
     </message>
     <message>
-        <source>Pebble settings</source>
-        <translation type="unfinished"></translation>
+        <source>Share workout</source>
+        <translation>Edzésadatok megosztása</translation>
     </message>
 </context>
 <context>
@@ -812,7 +834,7 @@
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>Maradjon álló módban.</translation>
+        <translation>A rögzítés nézet mindig álló módban jelenjen meg</translation>
     </message>
     <message>
         <source>Write log file</source>
@@ -824,7 +846,7 @@
     </message>
     <message>
         <source>Record page portrait mode</source>
-        <translation>Rögzítés lap álló módja</translation>
+        <translation>Álló elrendezés rögzítése</translation>
     </message>
     <message>
         <source>Show grid lines</source>
@@ -840,7 +862,7 @@
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation>Nem szükséges nevet adni az edzésnek a végén.</translation>
+        <translation>Nem lesz szükséges nevet adni az edzésnek a végén.</translation>
     </message>
     <message>
         <source>Automatic night mode</source>
@@ -852,19 +874,19 @@
     </message>
     <message>
         <source>Unit of measurement</source>
-        <translation type="unfinished"></translation>
+        <translation>Mértékegység</translation>
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>A beállítások az alkalmazás újraindítása után lépnek érvénybe.</translation>
     </message>
     <message>
         <source>Metric</source>
-        <translation type="unfinished"></translation>
+        <translation>Metrikus</translation>
     </message>
     <message>
         <source>Imperial</source>
-        <translation type="unfinished"></translation>
+        <translation>Angolszász</translation>
     </message>
 </context>
 <context>
@@ -891,289 +913,316 @@
     </message>
     <message>
         <source>Skiing</source>
-        <translation type="unfinished"></translation>
+        <translation>Síelés</translation>
     </message>
     <message>
         <source>Hiking</source>
+        <translation>Túrázás</translation>
+    </message>
+    <message>
+        <source>All activities</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SocialMediaMenu</name>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation>Strava</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Edzésadatok megosztása</translation>
     </message>
 </context>
 <context>
     <name>SportsTracker</name>
     <message>
         <source>Oops, username or password error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoppá, hibás felhasználónév vagy jelszó</translation>
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a GPX importálása során</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok sikeresen feltöltve!</translation>
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt az adatok mentése során</translation>
+    </message>
+    <message>
+        <source>Logging in...</source>
+        <translation>Bejelentkezés...</translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
+        <translation>Feltöltés...</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Test login...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejelentkezési adatok tesztelése...</translation>
     </message>
     <message>
         <source>Already authenticated</source>
-        <translation type="unfinished"></translation>
+        <translation>Már azonosítva van</translation>
     </message>
     <message>
         <source>Login success!</source>
-        <translation type="unfinished"></translation>
+        <translation>Sikeres bejelentkezés!</translation>
     </message>
     <message>
         <source>Login error, Check username or password</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejelentkezési hiba, ellenőrízd a felhasználónevet és a jelszavad</translation>
     </message>
     <message>
         <source>Loading workouts...</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok betöltése...</translation>
     </message>
     <message>
         <source>Track write error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba a GPX fájl kiírása során</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">ennyiből</translation>
+        <translation>ennyiből</translation>
     </message>
     <message>
         <source> unique workout downloaded!</source>
-        <translation type="unfinished"></translation>
+        <translation> edzés letöltve!</translation>
     </message>
     <message>
         <source>Sports-Tracker.com settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Sports-Tracker.com beállítások</translation>
     </message>
     <message>
         <source>Auto upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Automata feltöltés</translation>
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok automatikus feltöltése a Sports-Tracker.com-ra</translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználónév</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználónév</translation>
     </message>
     <message>
         <source>Enter Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelszó</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelszó</translation>
     </message>
     <message>
         <source>Default Sharing option</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett megosztási beállítások</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privát</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>Követők</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Publikus</translation>
     </message>
     <message>
         <source>Test login</source>
-        <translation type="unfinished"></translation>
+        <translation>Adatok tesztelése</translation>
     </message>
     <message>
         <source>Download workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok letöltése</translation>
     </message>
     <message>
         <source>Maximum number to download</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltendő edszések maximális száma</translation>
     </message>
     <message>
         <source>Downloading GPX files</source>
-        <translation type="unfinished"></translation>
+        <translation>GPX fájlok letöltése</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation type="unfinished"></translation>
+        <translation>Add meg az edzés Sports-Tracker.com-on megjelenő leírását</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Leírás</translation>
+        <translation>Leírás</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok megosztása</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privát</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation type="unfinished"></translation>
+        <translation>Követők</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation type="unfinished"></translation>
+        <translation>Publikus</translation>
     </message>
 </context>
 <context>
     <name>StravaActivityPage</name>
     <message>
         <source>Description:</source>
-        <translation type="unfinished">Leírás:</translation>
+        <translation>Leírás:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation type="unfinished">Kezdés:</translation>
+        <translation>Kezdés:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Időtartam:</translation>
+        <translation>Időtartam:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Távolság:</translation>
+        <translation>Távolság:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished">Max. sebesség/⌀:</translation>
+        <translation>Max/átlag sebesség:</translation>
     </message>
     <message>
         <source>Kudos:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kedvelések:</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hozzászólások:</translation>
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation type="unfinished"></translation>
+        <translation>Emelkedő szorzója:</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Eredmények/PR-ok:</translation>
     </message>
 </context>
 <context>
     <name>StravaComments</name>
     <message>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Hozzászólások</translation>
     </message>
 </context>
 <context>
     <name>StravaKudos</name>
     <message>
         <source>Kudos</source>
-        <translation type="unfinished"></translation>
+        <translation>Kedvelések</translation>
     </message>
 </context>
 <context>
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Időtartam:</translation>
+        <translation>Időtartam:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Távolság:</translation>
+        <translation>Távolság:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szintkülönbség:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mászási kategória:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation type="unfinished"></translation>
+        <translation>Legjobb eredmény:</translation>
     </message>
 </context>
 <context>
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
-        <translation type="unfinished"></translation>
+        <translation>Szegmensek</translation>
     </message>
 </context>
 <context>
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava beállításai</translation>
     </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava-ban megjelenített edzésnév</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Leírás</translation>
+        <translation>Leírás</translation>
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava-ban megjelenített edzés leírás</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished"></translation>
+        <translation>Privát</translation>
     </message>
     <message>
         <source>Commute</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingázás</translation>
     </message>
     <message>
         <source>Uploading data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzésadatok feltöltése...</translation>
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltés ellenőrzése...</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Ismeretlen hiba történt</translation>
     </message>
     <message>
         <source>Activity upload complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Sikeres feltöltés</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Típus</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Megnevezés</translation>
+        <translation>NévMegnevezés</translation>
     </message>
 </context>
 <context>
@@ -1244,7 +1293,7 @@
     </message>
     <message>
         <source>min/mi</source>
-        <translation type="unfinished"></translation>
+        <translation>perc/mérföld</translation>
     </message>
 </context>
 <context>
@@ -1255,138 +1304,246 @@
     </message>
 </context>
 <context>
-    <name>VoiceSettingsPage</name>
-    <message>
-        <source>Voice output settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Voice outputs on events</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start/end workout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pause/continue workout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connect/disconnect GPS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Voice language</source>
-        <translation type="unfinished">Hang nyelve</translation>
-    </message>
-    <message>
-        <source>English male</source>
-        <translation type="unfinished">Angol férfi</translation>
-    </message>
-    <message>
-        <source>German male</source>
-        <translation type="unfinished">Német nő</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation type="unfinished">Teszt</translation>
-    </message>
-    <message>
-        <source>Cyclic voice outputs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interval duration</source>
-        <translation type="unfinished"></translation>
-    </message>
+    <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig</translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation type="unfinished"></translation>
+        <translation>500 méterenként</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5 mérföldenként</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation type="unfinished"></translation>
+        <translation>Kilóméterenként</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>Mérföldenként</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation type="unfinished"></translation>
+        <translation>2 kilóméterenként</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>2 mérföldenként</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation type="unfinished"></translation>
+        <translation>5 kilóméterenként</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>5 mérföldenként</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation type="unfinished"></translation>
+        <translation>10 kilóméterenként</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>10 mérföldenként</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation type="unfinished"></translation>
+        <translation>20 kilóméterenként</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>20 mérföldenként</translation>
     </message>
     <message>
-        <source>Every %1 km</source>
-        <translation type="unfinished"></translation>
+        <source>Regular announcements by distance</source>
+        <translation>Hangjelzés távolságonként</translation>
     </message>
     <message>
-        <source>Interval distance</source>
-        <translation type="unfinished"></translation>
+        <source>Enabled</source>
+        <translation>Engedélyezve</translation>
     </message>
     <message>
-        <source>minute</source>
-        <translation type="unfinished"></translation>
+        <source>1 announcement:</source>
+        <translation>1 bejelentés:</translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation>2 bejelentés:</translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation>3 bejelentés:</translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation>4 bejelentés:</translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation>Ez az érték már használatban van!</translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation>Érték típusának bemondása</translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation>Ha rövidnek ítéled meg a hangértesítés hosszát ezt az opciót bekapcsolva a program bemondja majd az értesített érték típusát is.</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceCycleDurationSettingsPage</name>
+    <message>
+        <source>Every </source>
+        <translation>Mindig</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>2 percenként</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>5 percenként</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>10 percenként</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>20 percenként</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation type="unfinished"></translation>
+        <translation>óránként</translation>
     </message>
     <message>
-        <source>Every %1 minute</source>
-        <translation type="unfinished"></translation>
+        <source>Regular announcements by duration</source>
+        <translation>Hangjelzés adott időközönként</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Engedélyezve</translation>
+    </message>
+    <message>
+        <source>30 seconds</source>
+        <translation>félpercenként</translation>
+    </message>
+    <message>
+        <source>1 minute</source>
+        <translation>percenként</translation>
+    </message>
+    <message>
+        <source>1 announcement:</source>
+        <translation>1 bejelentés:</translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation>2 bejelentés:</translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation>3 bejelentés:</translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation>4 bejelentés:</translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation>Ez az érték már használatban van!</translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation>Hangértesítés érték elérése esetén</translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation>Ha rövidnek ítéled meg a hangértesítés hosszát írhatsz ide egy szöveget amit lejétszik majd az érték előtt.</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceEventsSettingsPage</name>
+    <message>
+        <source>Start/end workout</source>
+        <translation>Edzés megkezdése/befejezése</translation>
+    </message>
+    <message>
+        <source>Pause/continue workout</source>
+        <translation>Edzés szüneteltetése/folytatása</translation>
+    </message>
+    <message>
+        <source>Connect/disconnect GPS</source>
+        <translation>GPS jel elvesztése/megtalálása</translation>
+    </message>
+    <message>
+        <source>Voice coach events settings</source>
+        <translation>Hangjelzés beállítások</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceGeneralSettingsPage</name>
+    <message>
+        <source>Voice language</source>
+        <translation>Hangjelzések nyelve</translation>
+    </message>
+    <message>
+        <source>English male</source>
+        <translation>Angol férfi</translation>
+    </message>
+    <message>
+        <source>German male</source>
+        <translation>Német férfi</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Teszt</translation>
+    </message>
+    <message>
+        <source>Voice coach general settings</source>
+        <translation>Általános hangjelzés beállítások</translation>
+    </message>
+    <message>
+        <source>Pause/resume music player</source>
+        <translation>Zenelejátszás szüneteltetése/folytatása</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
+        <translation>Ha engedélyezed ezt akkor a zenelejátszás szüneteltetve lesz az értesítések előtt majd folytatva lesz utána.</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>General</source>
+        <translation>Általános</translation>
+    </message>
+    <message>
+        <source>Alarm thresholds</source>
+        <translation>Riasztási szintek</translation>
+    </message>
+    <message>
+        <source>Event announcements</source>
+        <translation>Hangjelzés eseményekkor</translation>
+    </message>
+    <message>
+        <source>Regular announcements by distance</source>
+        <translation>Hangjelzés megtett távolság alapján</translation>
+    </message>
+    <message>
+        <source>Regular announcements by duration</source>
+        <translation>Hangjelzés eltelt idő alapján</translation>
+    </message>
+    <message>
+        <source>Voice Coach Settings</source>
+        <translation>Hangjelzés beállítások</translation>
     </message>
 </context>
 </TS>

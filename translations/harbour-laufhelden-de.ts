@@ -71,6 +71,10 @@
         <source>Dutch</source>
         <translation>Niederländisch</translation>
     </message>
+    <message>
+        <source>Spanish-Spain</source>
+        <translation>Spanisch-Spanien</translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
@@ -208,14 +212,6 @@
         <translation>Senden an Sports-Tracker.com</translation>
     </message>
     <message>
-        <source>Logging in...</source>
-        <translation>Einloggen...</translation>
-    </message>
-    <message>
-        <source>Uploading...</source>
-        <translation>Hochladen...</translation>
-    </message>
-    <message>
         <source>Edit workout</source>
         <translation>Bearbeiten</translation>
     </message>
@@ -245,6 +241,13 @@
     <message>
         <source>Diagrams</source>
         <translation>Diagramme</translation>
+    </message>
+</context>
+<context>
+    <name>HistoryModel</name>
+    <message>
+        <source>--h --m --s</source>
+        <translation>--h --m --s</translation>
     </message>
 </context>
 <context>
@@ -293,20 +296,16 @@
         <translation>Einstellungen</translation>
     </message>
     <message>
+        <source>My Strava Activities</source>
+        <translation>Meine Strava Aktivitäten</translation>
+    </message>
+    <message>
         <source>Start new workout</source>
-        <translation>Neues Training starten</translation>
+        <translation>Aktivität starten</translation>
     </message>
     <message>
-        <source>Welcome to Laufhelden</source>
-        <translation>Laufhelden</translation>
-    </message>
-    <message>
-        <source>No earlier workouts</source>
-        <translation>Keine Trainings</translation>
-    </message>
-    <message>
-        <source>Workouts: </source>
-        <translation>Trainings: </translation>
+        <source>Filter:</source>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>of</source>
@@ -314,27 +313,35 @@
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation>Lade GPX Dateien...</translation>
+        <translation>Lade GPX-Dateien...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation>Training löschen</translation>
+        <translation>Aktivität löschen</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation>Lösche Training...</translation>
-    </message>
-    <message>
-        <source>Uncompleted workout found!</source>
-        <translation>Abgebrochenes Training gefunden!</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation>Fortsetzen</translation>
+        <translation>Lösche Aktivität...</translation>
     </message>
     <message>
         <source>Edit workout</source>
         <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <source>Send to Sports-Tracker.com</source>
+        <translation>Senden an Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation>(Unbenannte Aktivität)</translation>
+    </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation>Abgebrochene Aktivität gefunden!</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation>Fortsetzen</translation>
     </message>
     <message>
         <source>Workout name</source>
@@ -346,11 +353,11 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Training:</translation>
+        <translation>Aktivität:</translation>
     </message>
     <message>
-        <source>My Strava Activities</source>
-        <translation>Meine Strava Aktivitäten</translation>
+        <source>workouts</source>
+        <translation>Aktivitäten</translation>
     </message>
 </context>
 <context>
@@ -555,6 +562,25 @@
         <source>Select thresholds profile</source>
         <translation>Schwellwertprofil auswählen</translation>
     </message>
+    <message>
+        <source>Use HRM service if available</source>
+        <translation>HRM service benutzen</translation>
+    </message>
+    <message>
+        <source>Use heart rate monitor from another application e.g. Amazfish</source>
+        <translation>Herzfrequenzmonitor aus einer anderen Anwendung verwenden, z.B. Amazfish</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>%1s</source>
+        <translation>%1s</translation>
+    </message>
+    <message>
+        <source>%1m %2s</source>
+        <translation>%1m %2s</translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>
@@ -597,10 +623,6 @@
     <message>
         <source>Switch display mode</source>
         <translation>Display-Modus</translation>
-    </message>
-    <message>
-        <source>hold button for: </source>
-        <translation>Button gedrückt halten für: </translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
@@ -669,6 +691,10 @@
     <message>
         <source>Lock screen</source>
         <translation>Sperrbildschirm</translation>
+    </message>
+    <message>
+        <source>hold button for: %1 s</source>
+        <translation>Button gedrückt halten für: %1 s</translation>
     </message>
 </context>
 <context>
@@ -760,17 +786,13 @@
         <source>Description</source>
         <translation>Beschreibung</translation>
     </message>
+    <message>
+        <source>Quit without saving</source>
+        <translation>Beenden ohne Speichern</translation>
+    </message>
 </context>
 <context>
     <name>SettingsMenu</name>
-    <message>
-        <source>General settings</source>
-        <translation>Allgemeine Einstellungen</translation>
-    </message>
-    <message>
-        <source>Alarm thresholds</source>
-        <translation>Alarm Schwellen</translation>
-    </message>
     <message>
         <source>Settings</source>
         <translation>Einstellungen</translation>
@@ -780,28 +802,28 @@
         <translation>Herzfrequenzmesser</translation>
     </message>
     <message>
-        <source>Map settings</source>
-        <translation>Karten Einstellungen</translation>
+        <source>General</source>
+        <translation>Allgemein</translation>
     </message>
     <message>
-        <source>Sports-Tracker.com</source>
-        <translation>Sports-Tracker.com</translation>
+        <source>Voice coach</source>
+        <translation>Sprachtrainer</translation>
     </message>
     <message>
-        <source>Pebble settings</source>
-        <translation>Pebble Einstellungen</translation>
+        <source>Map</source>
+        <translation>Karte</translation>
     </message>
     <message>
-        <source>Voice output settings</source>
-        <translation>Sprachausgabe Einstellungen</translation>
+        <source>App cover</source>
+        <translation>App-Cover</translation>
     </message>
     <message>
-        <source>Strava</source>
-        <translation>Strava</translation>
+        <source>Pebble</source>
+        <translation>Pebble</translation>
     </message>
     <message>
-        <source>App cover settings</source>
-        <translation>App-Cover Einstellungen</translation>
+        <source>Share workout</source>
+        <translation>Training mit anderen teilen</translation>
     </message>
 </context>
 <context>
@@ -897,6 +919,25 @@
         <source>Hiking</source>
         <translation>Wandern</translation>
     </message>
+    <message>
+        <source>All activities</source>
+        <translation>Alle Aktivitäten</translation>
+    </message>
+</context>
+<context>
+    <name>SocialMediaMenu</name>
+    <message>
+        <source>Sports-Tracker.com</source>
+        <translation>Sports-Tracker.com</translation>
+    </message>
+    <message>
+        <source>Strava</source>
+        <translation>Strava</translation>
+    </message>
+    <message>
+        <source>Share workout</source>
+        <translation>Training mit anderen teilen</translation>
+    </message>
 </context>
 <context>
     <name>SportsTracker</name>
@@ -915,6 +956,14 @@
     <message>
         <source>Some kind of error happened on Saving data</source>
         <translation>Beim Speichern ist ein Fehler aufgetreten</translation>
+    </message>
+    <message>
+        <source>Logging in...</source>
+        <translation>Einloggen...</translation>
+    </message>
+    <message>
+        <source>Uploading...</source>
+        <translation>Hochladen...</translation>
     </message>
 </context>
 <context>
@@ -1100,23 +1149,23 @@
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished">Dauer:</translation>
+        <translation>Dauer:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation type="unfinished">Distanz:</translation>
+        <translation>Distanz:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation type="unfinished"></translation>
+        <translation>Höhenunterschied:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kletterkategorie:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bester Aufwand:</translation>
     </message>
 </context>
 <context>
@@ -1177,7 +1226,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
 </context>
 <context>
@@ -1259,11 +1308,169 @@
     </message>
 </context>
 <context>
-    <name>VoiceSettingsPage</name>
+    <name>VoiceCycleDistanceSettingsPage</name>
     <message>
-        <source>Voice output settings</source>
-        <translation>Sprachausgabe Einstellungen</translation>
+        <source>Every </source>
+        <translation>Alle </translation>
     </message>
+    <message>
+        <source>500 meters</source>
+        <translation>500 Meter</translation>
+    </message>
+    <message>
+        <source>0.5 mi</source>
+        <translation>0.5 Mi</translation>
+    </message>
+    <message>
+        <source>1 km</source>
+        <translation>1 Km</translation>
+    </message>
+    <message>
+        <source>1 mi</source>
+        <translation>1 Mi</translation>
+    </message>
+    <message>
+        <source>2 km</source>
+        <translation>2 Km</translation>
+    </message>
+    <message>
+        <source>2 mi</source>
+        <translation>2 Mi</translation>
+    </message>
+    <message>
+        <source>5 km</source>
+        <translation>5 Km</translation>
+    </message>
+    <message>
+        <source>5 mi</source>
+        <translation>5 Mi</translation>
+    </message>
+    <message>
+        <source>10 km</source>
+        <translation>10 Km</translation>
+    </message>
+    <message>
+        <source>10 mi</source>
+        <translation>10 Mi</translation>
+    </message>
+    <message>
+        <source>20 km</source>
+        <translation>20 Km</translation>
+    </message>
+    <message>
+        <source>20 mi</source>
+        <translation>20 Mi</translation>
+    </message>
+    <message>
+        <source>Regular announcements by distance</source>
+        <translation>Regelmäßige Ansage nach Distanz</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Aktiviert</translation>
+    </message>
+    <message>
+        <source>1 announcement:</source>
+        <translation>1 Ansage:</translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation>2 Ansage:</translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation>3 Ansage:</translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation>4 Ansage:</translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation>Dieser Wert ist bereits zugewiesen!</translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation>Typ des Wertes Ansagen</translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation>Bevor ein Wert abgespielt wird, wird der Typ des Wertes angesagt z.B. &quot;Distanz:&quot;. Dies führt dazu, dass die Sprachansage länger dauert.</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceCycleDurationSettingsPage</name>
+    <message>
+        <source>Every </source>
+        <translation>Alle </translation>
+    </message>
+    <message>
+        <source>2 minutes</source>
+        <translation>2 Minuten</translation>
+    </message>
+    <message>
+        <source>5 minutes</source>
+        <translation>5 Minuten</translation>
+    </message>
+    <message>
+        <source>10 minutes</source>
+        <translation>10 Minuten</translation>
+    </message>
+    <message>
+        <source>20 minutes</source>
+        <translation>20 Minuten</translation>
+    </message>
+    <message>
+        <source>hour</source>
+        <translation>Stunde</translation>
+    </message>
+    <message>
+        <source>Regular announcements by duration</source>
+        <translation>Regelmäßige Ansagen nach Dauer</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Aktiviert</translation>
+    </message>
+    <message>
+        <source>30 seconds</source>
+        <translation>30 Sekunden</translation>
+    </message>
+    <message>
+        <source>1 minute</source>
+        <translation>1 Minute</translation>
+    </message>
+    <message>
+        <source>1 announcement:</source>
+        <translation>1 Ansage:</translation>
+    </message>
+    <message>
+        <source>2 announcement:</source>
+        <translation>2 Ansage:</translation>
+    </message>
+    <message>
+        <source>3 announcement:</source>
+        <translation>3 Ansage:</translation>
+    </message>
+    <message>
+        <source>4 announcement:</source>
+        <translation>3 Ansage:</translation>
+    </message>
+    <message>
+        <source>This value is already assigned!</source>
+        <translation>Dieser Wert ist bereits zugewiesen!</translation>
+    </message>
+    <message>
+        <source>Play value announcement</source>
+        <translation>Typ des Wertes Ansagen</translation>
+    </message>
+    <message>
+        <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
+        <translation>Bevor ein Wert abgespielt wird, wird der Typ des Wertes angesagt z.B. &quot;Distanz:&quot;. Dies führt dazu, dass die Sprachansage länger dauert.</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
         <translation>Training Start/Ende</translation>
@@ -1276,6 +1483,13 @@
         <source>Connect/disconnect GPS</source>
         <translation>GPS Verbunden/Getrennt</translation>
     </message>
+    <message>
+        <source>Voice coach events settings</source>
+        <translation>Sprachtrainer Ereignisse</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
         <translation>Sprache der Stimme</translation>
@@ -1293,104 +1507,47 @@
         <translation>Test</translation>
     </message>
     <message>
-        <source>Voice outputs on events</source>
-        <translation>Sprachausgaben für Ereignisse</translation>
+        <source>Voice coach general settings</source>
+        <translation>Sprachtrainer Allgemein</translation>
     </message>
     <message>
-        <source>Cyclic voice outputs</source>
-        <translation type="unfinished"></translation>
+        <source>Pause/resume music player</source>
+        <translation>Musikplayer pausieren/fortsetzen</translation>
     </message>
     <message>
-        <source>Interval duration</source>
-        <translation type="unfinished"></translation>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
-        <source>Every </source>
-        <translation type="unfinished"></translation>
+        <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
+        <translation>Wenn aktiviert, wird der Musikplayer angehalten, wenn eine Sprachnachricht abgespielt wird. Danach wird der Musikplayer wieder fortgesetzt.</translation>
+    </message>
+</context>
+<context>
+    <name>VoiceSettingsPage</name>
+    <message>
+        <source>General</source>
+        <translation>Allgemein</translation>
     </message>
     <message>
-        <source>500 meters</source>
-        <translation type="unfinished"></translation>
+        <source>Alarm thresholds</source>
+        <translation>Alarm Schwellen</translation>
     </message>
     <message>
-        <source>0.5 mi</source>
-        <translation type="unfinished"></translation>
+        <source>Event announcements</source>
+        <translation>Ereignis Ansagen</translation>
     </message>
     <message>
-        <source>1 km</source>
-        <translation type="unfinished"></translation>
+        <source>Regular announcements by distance</source>
+        <translation>Regelmäßige Ansagen nach Distanz</translation>
     </message>
     <message>
-        <source>1 mi</source>
-        <translation type="unfinished"></translation>
+        <source>Regular announcements by duration</source>
+        <translation>Regelmäßige Ansagen nach Dauer</translation>
     </message>
     <message>
-        <source>2 km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>2 mi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>5 km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>5 mi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>10 km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>10 mi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>20 km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>20 mi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Every %1 km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Interval distance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>minute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>2 minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>5 minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>10 minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>20 minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>hour</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Every %1 minute</source>
-        <translation type="unfinished"></translation>
+        <source>Voice Coach Settings</source>
+        <translation>Sprachtrainer Einstellungen</translation>
     </message>
 </context>
 </TS>

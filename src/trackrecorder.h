@@ -49,6 +49,7 @@ class TrackRecorder : public QObject
     Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
     Q_PROPERTY(QString pauseTime READ pauseTime NOTIFY pauseTimeChanged)
     Q_PROPERTY(QString pebblePauseTime READ pebblePauseTime NOTIFY pauseTimeChanged)
+    Q_PROPERTY(qint64 timeSeconds READ timeSeconds NOTIFY timeChanged)
 
 public:
     explicit TrackRecorder(QObject *parent = 0);
@@ -88,6 +89,7 @@ public:
     bool running() const;
     void setPause(bool pause);
     void setRunning(bool running);
+    qint64 timeSeconds() const;
 
     Q_INVOKABLE QGeoCoordinate trackPointAt(int index);
     Q_INVOKABLE bool pausePointAt(int index);

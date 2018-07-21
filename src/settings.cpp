@@ -69,6 +69,15 @@ void Settings::setUseHRMdevice(bool useHRMdevice)
      m_settings->setValue("recordsettings/useHRMdevice", useHRMdevice);
 }
 
+bool Settings::useHRMservice() const
+{
+    return m_settings->value("recordsettings/useHRMservice", false).toBool();
+}
+void Settings::setUseHRMservice(bool useHRMservice)
+{
+     m_settings->setValue("recordsettings/useHRMservice", useHRMservice);
+}
+
 bool Settings::disableScreenBlanking() const
 {
     return m_settings->value("recordsettings/disableScreenBlanking", false).toBool();
@@ -220,6 +229,15 @@ void Settings::setMapDisableRecordPage(bool mapDisableRecordPage)
      m_settings->setValue("mapsettings/mapDisableRecordPage", mapDisableRecordPage);
 }
 
+QString Settings::workoutTypeMainPage() const
+{
+    return m_settings->value("generalsettings/workoutTypeMainPage", "allworkouts").toString();
+}
+void Settings::setWorkoutTypeMainPage(QString workoutTypeMainPage)
+{
+    m_settings->setValue("generalsettings/workoutTypeMainPage", workoutTypeMainPage);
+}
+
 //Voice output
 int Settings::voiceLanguage() const
 {
@@ -228,6 +246,14 @@ int Settings::voiceLanguage() const
 void Settings::setVoiceLanguage(int voiceLanguage)
 {
     m_settings->setValue("generalsettings/voiceLanguage", voiceLanguage);
+}
+bool Settings::voicePauseMusic() const
+{
+    return m_settings->value("generalsettings/voicePauseMusic", true).toBool();
+}
+void Settings::setVoicePauseMusic(bool voicePauseMusic)
+{
+     m_settings->setValue("generalsettings/voicePauseMusic", voicePauseMusic);
 }
 bool Settings::voiceStartEndWorkout() const
 {
@@ -255,23 +281,70 @@ void Settings::setVoiceGPSConnectLost(bool voiceGPSConnectLost)
 }
 
 //Cyclic voice output
-int Settings::voiceCycDistance() const
+bool Settings::voiceCycDistanceEnable() const
 {
-    return m_settings->value("generalsettings/voiceCycDistance", 0).toInt();
+    return m_settings->value("voicecyclesettings/voiceCycDistanceEnable", false).toBool();
 }
-void Settings::setVoiceCycDistance(int voiceCycDistance)
+void Settings::setVoiceCycDistanceEnable(bool voiceCycDistanceEnable)
 {
-    m_settings->setValue("generalsettings/voiceCycDistance", voiceCycDistance);
+     m_settings->setValue("voicecyclesettings/voiceCycDistanceEnable", voiceCycDistanceEnable);
+}
+double Settings::voiceCycDistance() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDistance", 1.0).toDouble();
+}
+void Settings::setVoiceCycDistance(double voiceCycDistance)
+{
+    m_settings->setValue("voicecyclesettings/voiceCycDistance", voiceCycDistance);
+}
+QString Settings::voiceCycDistanceFields() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDistanceFields", "9,8,3,5").toString();
+}
+void Settings::setVoiceCycDistanceFields(QString voiceCycDistanceFields)
+{
+    m_settings->setValue("voicecyclesettings/voiceCycDistanceFields", voiceCycDistanceFields);
+}
+bool Settings::voiceCycDurationEnable() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDurationEnable", false).toBool();
+}
+void Settings::setVoiceCycDurationEnable(bool voiceCycDurationEnable)
+{
+     m_settings->setValue("voicecyclesettings/voiceCycDurationEnable", voiceCycDurationEnable);
 }
 int Settings::voiceCycDuration() const
 {
-    return m_settings->value("generalsettings/voiceCycDuration", 0).toInt();
+    return m_settings->value("voicecyclesettings/voiceCycDuration", 60).toInt();
 }
 void Settings::setVoiceCycDuration(int voiceCycDuration)
 {
-    m_settings->setValue("generalsettings/voiceCycDuration", voiceCycDuration);
+    m_settings->setValue("voicecyclesettings/voiceCycDuration", voiceCycDuration);
 }
-
+QString Settings::voiceCycDurationFields() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDurationFields", "9,8,5,3").toString();
+}
+void Settings::setVoiceCycDurationFields(QString voiceCycDurationFields)
+{
+    m_settings->setValue("voicecyclesettings/voiceCycDurationFields", voiceCycDurationFields);
+}
+bool Settings::voiceCycDistanceHeadlineEnable() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDistanceHeadlineEnable", true).toBool();
+}
+void Settings::setVoiceCycDistanceHeadlineEnable(bool voiceCycDistanceHeadlineEnable)
+{
+     m_settings->setValue("voicecyclesettings/voiceCycDistanceHeadlineEnable", voiceCycDistanceHeadlineEnable);
+}
+bool Settings::voiceCycDurationHeadlineEnable() const
+{
+    return m_settings->value("voicecyclesettings/voiceCycDurationHeadlineEnable", true).toBool();
+}
+void Settings::setVoiceCycDurationHeadlineEnable(bool voiceCycDurationHeadlineEnable)
+{
+     m_settings->setValue("voicecyclesettings/voiceCycDurationHeadlineEnable", voiceCycDurationHeadlineEnable);
+}
 
 //Sports-Tracker.com Sharing functions
 void Settings::setStUsername(QString username)

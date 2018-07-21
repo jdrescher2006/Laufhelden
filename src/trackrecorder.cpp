@@ -21,6 +21,8 @@
 #include <QXmlStreamWriter>
 #include <QDebug>
 #include <qmath.h>
+
+#include "timeformatter.h"
 #include "trackrecorder.h"
 
 TrackRecorder::TrackRecorder(QObject *parent) :
@@ -184,7 +186,7 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 
             //Calculate distance in meter [m]
             qreal rCurrentDistance = m_points.at(m_points.size()-2).coordinate().distanceTo(m_points.at(m_points.size()-1).coordinate());
-            qDebug()<<"Distance :"<<rCurrentDistance;
+            //qDebug()<<"Distance :"<<rCurrentDistance;
             m_distance += rCurrentDistance;
             emit distanceChanged();
 
@@ -199,18 +201,18 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
             {
                 rCurrentDistance += m_distancearray[i];
             }
-            qDebug()<<"Added distance: "<<rCurrentDistance;
-            qDebug()<<"Update interval:"<<updateInterval();
+            //qDebug()<<"Added distance: "<<rCurrentDistance;
+            //qDebug()<<"Update interval:"<<updateInterval();
 
             //Calculate speed in [km/h]
             m_speed = (rCurrentDistance / 1000.0) / (((updateInterval() * m_distancearray.length()) / 1000) / 3600.0);
-            qDebug()<<"Speed:"<<m_speed;
+            //qDebug()<<"Speed:"<<m_speed;
             emit speedChanged();
 
             //Calculate pace in [min/km]
             m_pace = (((updateInterval() * m_distancearray.length()) / 1000.0) / 60.0) / (rCurrentDistance / 1000.0);
 
-            qDebug()<<"Pace:"<<m_pace;
+            //qDebug()<<"Pace:"<<m_pace;
             emit paceChanged();
 
             //Calculate workout time
@@ -220,12 +222,12 @@ void TrackRecorder::positionUpdated(const QGeoPositionInfo &newPos)
 
             //Calculate average speed
             m_speedaverage = (m_distance / 1000.0) / (iWorkoutTimeSec / 3600.0);
-            qDebug()<<"AVG speed:"<<m_speedaverage;
+            //qDebug()<<"AVG speed:"<<m_speedaverage;
             emit speedaverageChanged();
 
             //Calculate average pace
             m_paceaverage = (iWorkoutTimeSec / 60.0) / (m_distance / 1000.0);
-            qDebug()<<"AVG pace:"<<m_paceaverage;
+            //qDebug()<<"AVG pace:"<<m_paceaverage;
             emit paceaverageChanged();
 
             //Get altitude
@@ -689,18 +691,10 @@ QString TrackRecorder::startingDateTime() const
 
 QString TrackRecorder::pauseTime() const
 {
-    uint hours, minutes, seconds;
-
-    hours = this->m_PauseDuration / (60*60);
-    minutes = (this->m_PauseDuration - hours*60*60) / 60;
-    seconds = this->m_PauseDuration - hours*60*60 - minutes*60;
-
-    QString timeStr = QString("%1h %2m %3s")
-            .arg(hours, 2, 10, QLatin1Char('0'))
-            .arg(minutes, 2, 10, QLatin1Char('0'))
-            .arg(seconds, 2, 10, QLatin1Char('0'));
-
-    return timeStr;
+    uint hours = this->m_PauseDuration / (60*60);
+    uint minutes = (this->m_PauseDuration - hours*60*60) / 60;
+    uint seconds = this->m_PauseDuration - hours*60*60 - minutes*60;
+    return TimeFormatter::formatHMS(hours, minutes, seconds);
 }
 
 QString TrackRecorder::pebblePauseTime() const
@@ -740,13 +734,28 @@ QString TrackRecorder::time() const
         minutes = (difference - hours*60*60) / 60;
         seconds = difference - hours*60*60 - minutes*60;
     }
+    return TimeFormatter::formatHMS(hours, minutes, seconds);
+}
 
-    QString timeStr = QString("%1h %2m %3s")
-            .arg(hours, 2, 10, QLatin1Char('0'))
-            .arg(minutes, 2, 10, QLatin1Char('0'))
-            .arg(seconds, 2, 10, QLatin1Char('0'));
+qint64 TrackRecorder::timeSeconds() const
+{
+    qint64 difference = 0;
 
-    return timeStr;
+    if(m_points.size() < 2)
+    {
+        difference = 0;
+    }
+    else
+    {
+        QDateTime first = m_points.at(0).timestamp();
+        QDateTime last = m_points.at(m_points.size()-1).timestamp();
+        difference = first.secsTo(last);
+
+        //Substract the pause time from the overall time
+        difference = difference - this->m_PauseDuration;
+    }
+
+    return difference;
 }
 
 QString TrackRecorder::pebbleTime() const
