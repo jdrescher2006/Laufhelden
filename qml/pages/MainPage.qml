@@ -131,7 +131,7 @@ Page
         repeat: false;
         onTriggered: {
             detail_busy.running = false;
-            historyList.visible = true;
+            main_flickable.visible = true;
             load_text.visible = false;
             ntimer.restart();
             ntimer.start();
@@ -232,6 +232,25 @@ Page
         }
     }
 
+    BusyIndicator
+    {
+        id: detail_busy
+        visible: false
+        anchors.centerIn: main_flickable
+        running: true
+        size: BusyIndicatorSize.Large
+    }
+    Label {
+         id:load_text
+         width: parent.width
+         anchors.top: detail_busy.bottom
+         anchors.topMargin: 25;
+         horizontalAlignment: Label.AlignHCenter
+         visible: false
+         text: "loading..."
+         font.pixelSize: Theme.fontSizeMedium
+    }
+
     SortFilterProxyModel
     {
         id: filterProxyModel
@@ -314,6 +333,7 @@ Page
     {
         anchors.fill: parent
         contentHeight: clmMainColumn.height       
+        id: main_flickable
 
         PullDownMenu
         {
@@ -601,7 +621,7 @@ Page
                                     detail_busy.running = true;
                                     detail_busy.visible = true;
                                     load_text.visible = true;
-                                    historyList.visible = false;
+                                    main_flickable.visible = false;
                                     ST.uploadToSportsTracker(dialog.sharing*1, dialog.stcomment, displayNotification);
                                 });
                              }
