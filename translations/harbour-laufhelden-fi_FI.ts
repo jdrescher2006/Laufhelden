@@ -73,7 +73,7 @@
     </message>
     <message>
         <source>Spanish-Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>Espanja</translation>
     </message>
 </context>
 <context>
@@ -213,7 +213,7 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Muokkaa harkoitusta</translation>
+        <translation>Muokkaa harjoitusta</translation>
     </message>
     <message>
         <source>Workout name</source>
@@ -247,7 +247,7 @@
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation type="unfinished"></translation>
+        <translation>--h --m --s</translation>
     </message>
 </context>
 <context>
@@ -289,31 +289,31 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietoja</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Asetukset</translation>
+        <translation>Asetukset</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Minun Strava Aktiviteetit</translation>
+        <translation>Minun Strava Aktiviteetit</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Aloita uusi harjoitus</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Suodata:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"> / </translation>
+        <translation> / </translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladataan GPX tiedostoja...</translation>
     </message>
     <message>
         <source>Remove workout</source>
@@ -321,43 +321,43 @@
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan harjoitusta...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Muokkaa harkoitusta</translation>
+        <translation>Muokkaa harjoitusta</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Lähetä Sports-Tracker.com</translation>
+        <translation>Lähetä Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Nimetön reitti)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Keskeneräinen harjoitus löydetty!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Jatka</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Harjoituksen nimi</translation>
+        <translation>Harjoituksen nimi</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Harjoituksen kuvaus</translation>
+        <translation>Harjoituksen kuvaus</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Harjoitus:</translation>
+        <translation>Harjoitus:</translation>
     </message>
     <message>
         <source>workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>harjoitukset</translation>
     </message>
 </context>
 <context>
@@ -564,11 +564,11 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä HRM palvelua jos käytettävissä</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytä sykkeen seurantaa toisesta sovelluksesta. esim. Amazfish</translation>
     </message>
 </context>
 <context>
@@ -694,7 +694,7 @@
     </message>
     <message>
         <source>hold button for: %1 s</source>
-        <translation type="unfinished"></translation>
+        <translation>paina nappia: %1 s</translation>
     </message>
 </context>
 <context>
@@ -788,7 +788,7 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulje tallentamatta</translation>
     </message>
 </context>
 <context>
@@ -803,27 +803,27 @@
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleiset</translation>
     </message>
     <message>
         <source>Voice coach</source>
-        <translation type="unfinished"></translation>
+        <translation>Ääni avustus</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Kartta</translation>
+        <translation>Kartta</translation>
     </message>
     <message>
         <source>App cover</source>
-        <translation type="unfinished"></translation>
+        <translation>Sovelluksen kansi</translation>
     </message>
     <message>
         <source>Pebble</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished">Jaa harjoitus</translation>
+        <translation>Jaa harjoitus</translation>
     </message>
 </context>
 <context>
@@ -921,22 +921,22 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki harjoitukset</translation>
     </message>
 </context>
 <context>
     <name>SocialMediaMenu</name>
     <message>
         <source>Sports-Tracker.com</source>
-        <translation type="unfinished">Sports-Tracker.com</translation>
+        <translation>Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Strava</source>
-        <translation type="unfinished">Strava</translation>
+        <translation>Strava</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation type="unfinished">Jaa harjoitus</translation>
+        <translation>Jaa harjoitus</translation>
     </message>
 </context>
 <context>
@@ -1198,7 +1198,7 @@
     </message>
     <message>
         <source>Private</source>
-        <translation>Privaatti</translation>
+        <translation>Yksityinen</translation>
     </message>
     <message>
         <source>Commute</source>
@@ -1311,208 +1311,208 @@
     <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished">Joka</translation>
+        <translation>Joka</translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation type="unfinished">500 metri</translation>
+        <translation>500 metri</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>0.5 mi</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation type="unfinished">1 km</translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>1 mi</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation type="unfinished">2 km</translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>2 mi</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation type="unfinished">5 km</translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>5 mi</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation type="unfinished">10 km</translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>10 mi</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation type="unfinished">20 km</translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation type="unfinished"></translation>
+        <translation>20 mi</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmoitukset matkan mukaan</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytössä</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>1. ilmoitus:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>2. ilmoitus:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>3. ilmoitus:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>4. ilmoitus:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished"></translation>
+        <translation>Arvo on jo käytössä!</translation>
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>Toista arvo ilmoituksessa</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ennen arvon toistoa, ilmoitetaan arvon tyyppi. Esim. Matka. Tämä lisää ilmoitusten kestoa.</translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation type="unfinished">Joka</translation>
+        <translation>Joka</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation type="unfinished">2 minuuttia</translation>
+        <translation>2 minuuttia</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation type="unfinished">5 minuuttia</translation>
+        <translation>5 minuuttia</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation type="unfinished">10 minuuttia</translation>
+        <translation>10 minuuttia</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation type="unfinished">20 minuuttia</translation>
+        <translation>20 minuuttia</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation type="unfinished">tunti</translation>
+        <translation>tunti</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmoitukset keston mukaan</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Käytössä</translation>
     </message>
     <message>
         <source>30 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>30 sekuntia</translation>
     </message>
     <message>
         <source>1 minute</source>
-        <translation type="unfinished"></translation>
+        <translation>1 minuutti</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>1. ilmoitus:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>2. ilmoitus:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>3. ilmoitus:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation type="unfinished"></translation>
+        <translation>4. ilmoitus:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation type="unfinished"></translation>
+        <translation>Arvo on jo käytössä!</translation>
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>Toista arvo ilmoituksessa</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ennen arvon toistoa, ilmoitetaan arvon tyyppi. Esim. Matka. Tämä lisää ilmoitusten kestoa.</translation>
     </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
-        <translation type="unfinished">Aloita/lopeta harjoitus</translation>
+        <translation>Aloita/lopeta harjoitus</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation type="unfinished">Pysäytä/jatka harjoitusta</translation>
+        <translation>Pysäytä/jatka harjoitusta</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation type="unfinished">Yhdistä/Katkaise GPS</translation>
+        <translation>Yhdistä/Katkaise GPS</translation>
     </message>
     <message>
         <source>Voice coach events settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Äänivalmentajan asetukset</translation>
     </message>
 </context>
 <context>
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation type="unfinished">Ääni-ilmoitusten kieli</translation>
+        <translation>Ääni-ilmoitusten kieli</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation type="unfinished">Englanti mies</translation>
+        <translation>Englanti mies</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation type="unfinished">Saksa mies</translation>
+        <translation>Saksa mies</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="unfinished">Testaa ääniä</translation>
+        <translation>Testaa ääniä</translation>
     </message>
     <message>
         <source>Voice coach general settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Äänivalmentajan yleiset asetukset</translation>
     </message>
     <message>
         <source>Pause/resume music player</source>
-        <translation type="unfinished"></translation>
+        <translation>Pysäytä/jatka musiikki</translation>
     </message>
     <message>
         <source></source>
@@ -1520,34 +1520,34 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jos käytössä, musiikki pysäytetään ilmoitusten ajaksi.</translation>
     </message>
 </context>
 <context>
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Yleiset</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation type="unfinished">Hälytysrajat</translation>
+        <translation>Hälytysrajat</translation>
     </message>
     <message>
         <source>Event announcements</source>
-        <translation type="unfinished"></translation>
+        <translation>Tapahtuma ilmoitukset</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmoitukset matkan mukaan</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Ilmoitukset keston mukaan</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Äänivalmentajan asetukset</translation>
     </message>
 </context>
 </TS>
