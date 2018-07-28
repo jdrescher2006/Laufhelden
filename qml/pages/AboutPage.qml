@@ -141,7 +141,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Spanish") + " - Caballlero<br>" + qsTr("Polish") + " - atlochowski<br>"
+                text: qsTr("Polish") + " - atlochowski<br>"
                       + qsTr("Swedish") + " - eson57<br>" + qsTr("Finnish") + " - niemisenjussi<br>"
                       + qsTr("Hungarian") + " - martonmiklos<br>" + qsTr("Dutch") + " - d9h20f<br>"
                       + qsTr("Spanish-Spain") + " - carmenfdezb"
