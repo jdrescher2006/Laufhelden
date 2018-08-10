@@ -178,14 +178,14 @@ var arrayStravaWorkoutTypes =
 
 var arrayWorkoutTypesFilterMainPage =
 [
-    { name: "allworkouts", labeltext: qsTr("All activities"), icon: "../img/trophy.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
-    { name: "running", labeltext: qsTr("Running"), icon: "../workouticons/running.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
-    { name: "biking", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
-    { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
-    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
-    { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
-    { name: "skiing", labeltext: qsTr("Skiing"), icon: "../workouticons/skiing.png", iDistance: 0, iDuration: 0, iWorkouts: 0 },
-    { name: "hiking", labeltext: qsTr("Hiking"), icon: "../workouticons/hiking.png", iDistance: 0, iDuration: 0, iWorkouts: 0 }
+    { name: "allworkouts", labeltext: qsTr("All activities"), icon: "../img/trophy.png", iDistance: 0, iDuration: 0, iWorkouts: 0, weeklyData: [{}] },
+    { name: "running", labeltext: qsTr("Running"), icon: "../workouticons/running.png", iDistance: 0, iDuration: 0, iWorkouts: 0, weeklyData: [{}] },
+    { name: "biking", labeltext: qsTr("Roadbike"), icon: "../workouticons/biking.png", iDistance: 0, iDuration: 0, iWorkouts: 0, weeklyData: [{}] },
+    { name: "mountainBiking", labeltext: qsTr("Mountainbike"), icon: "../workouticons/mountainBiking.png", iDistance: 0, iDuration: 0, iWorkouts: 0, weeklyData: [{}] },
+    { name: "walking", labeltext: qsTr("Walking"), icon: "../workouticons/walking.png", iDistance: 0, iDuration: 0, iWorkouts: 0, weeklyData: [{}] },
+    { name: "inlineSkating", labeltext: qsTr("Inline skating"), icon: "../workouticons/rollerSkating.png", iDistance: 0, iDuration: 0, iWorkouts: 0, weeklyData: [{}] },
+    { name: "skiing", labeltext: qsTr("Skiing"), icon: "../workouticons/skiing.png", iDistance: 0, iDuration: 0, iWorkouts: 0, weeklyData: [{}] },
+    { name: "hiking", labeltext: qsTr("Hiking"), icon: "../workouticons/hiking.png", iDistance: 0, iDuration: 0, iWorkouts: 0, weeklyData: [{}] }
 ]
 
 function toStravaType(t)
@@ -243,6 +243,15 @@ function fncGetIndexByName(sWorkoutName)
 
     return 0;
 }
+
+function fncGetWeek(inputDate)
+{
+    var d = new Date(inputDate);
+    d.setHours(0,0,0);
+    d.setDate(d.getDate()+4-(d.getDay()||7));
+    return Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
+}
+
 
 /*--------------END workout table --------------*/
 

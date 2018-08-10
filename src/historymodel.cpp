@@ -130,6 +130,11 @@ qreal HistoryModel::distanceAt(int index)
 {
     return m_trackList.at(index).distance;
 }
+QDateTime HistoryModel::dateAt(int index)
+{
+    return m_trackList.at(index).time;
+}
+
 
 QVariant HistoryModel::data(const QModelIndex &index, int role) const {
     if(!index.isValid()) {

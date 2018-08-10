@@ -36,10 +36,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Spanish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Polish</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1520,6 +1516,10 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Russian male</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -32,10 +32,6 @@
         <translation>Fordítások:</translation>
     </message>
     <message>
-        <source>Spanish</source>
-        <translation>Spanyol</translation>
-    </message>
-    <message>
         <source>Polish</source>
         <translation>Lengyel</translation>
     </message>
@@ -1517,6 +1513,10 @@
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
         <translation>Ha engedélyezed ezt akkor a zenelejátszás szüneteltetve lesz az értesítések előtt majd folytatva lesz utána.</translation>
+    </message>
+    <message>
+        <source>Russian male</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

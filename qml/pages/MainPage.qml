@@ -138,6 +138,7 @@ Page
         }
     }
 
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -301,6 +302,40 @@ Page
                 SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDistance + fDistanceCurrent;
                 SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDuration + iDurationCurrent;
                 SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iWorkouts++;
+
+                //Get year and week
+                var sCurrentDate = new Date(id_HistoryModel.dateAt(i));
+                console.log("Jahr: " + sCurrentDate.getFullYear() + ", Woche: " + SharedResources.fncGetWeek(sCurrentDate));
+
+                var sWeekYear = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
+
+                //Check if entry for this week/year already exists
+                //This thing is one ugly beast, find it in jsfiddle: https://jsfiddle.net/9h7zkx2u/48/
+                var iFoundIndex = -1;
+                var bFoundValue = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData.some(function(sInputWeekYear, index){iFoundIndex = index; return sInputWeekYear.weekYear === this.toString();}, sWeekYear);
+
+                if (bFoundValue)
+                {
+                    var sNewEntry = new Object();
+                    sNewEntry["weekyear"] = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
+                    sNewEntry["year"] = sCurrentDate.getFullYear();
+                    sNewEntry["week"] = SharedResources.fncGetWeek(sCurrentDate);
+                    sNewEntry["iDistance"] = fDistanceCurrent;
+                    sNewEntry["iDuration"] = iDurationCurrent;
+                    sNewEntry["iWorkouts"] = 1;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData.push(sNewEntry);
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData.push(sNewEntry);
+                }
+                else
+                {
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iDistance + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iDuration + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iWorkouts = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iWorkouts + 1;
+
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iDistance + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iDuration + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iWorkouts = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iWorkouts + 1;
+                }
             }
 
             fncSetWorkoutFilter();
@@ -548,7 +583,7 @@ Page
             Item
             {
                 width: parent.width
-                height: Theme.paddingLarge
+                height: Theme.paddingLarge + Theme.paddingLarge
             }
 
             Separator
@@ -560,7 +595,7 @@ Page
             SilicaListView
             {                
                 width: parent.width
-                height: (((mainPage.height - pageHeader.height) / 4) * 3) - Theme.paddingLarge
+                height: (((mainPage.height - pageHeader.height) / 4) * 3) - Theme.paddingLarge - Theme.paddingLarge
                 id: historyList
                 model: filterProxyModel
                 clip: true

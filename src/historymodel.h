@@ -81,6 +81,7 @@ public:
     Q_INVOKABLE QString workouttypeAt(int index);
     Q_INVOKABLE int durationAt(int index);
     Q_INVOKABLE qreal distanceAt(int index);
+    Q_INVOKABLE QDateTime dateAt(int index);
 
 
 signals:

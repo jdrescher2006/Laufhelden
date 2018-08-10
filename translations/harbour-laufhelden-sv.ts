@@ -36,10 +36,6 @@
         <translation>Tack för översättning:</translation>
     </message>
     <message>
-        <source>Spanish</source>
-        <translation>Spanska</translation>
-    </message>
-    <message>
         <source>Polish</source>
         <translation>Polska</translation>
     </message>
@@ -1521,6 +1517,10 @@
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
         <translation>Vid aktivering kommer musikspelaren att pausas när ett röstmeddelande spelas upp, och återupptas efteråt.</translation>
+    </message>
+    <message>
+        <source>Russian male</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
