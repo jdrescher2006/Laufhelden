@@ -70,6 +70,28 @@ Page
             sWorkoutFilter = "";
         else
             sWorkoutFilter = settings.workoutTypeMainPage;
+
+        //Find current year and week
+        var sCurrentDate = new Date(Date.now());
+        //console.log("Jahr: " + sCurrentDate.getFullYear() + ", Woche: " + SharedResources.fncGetWeek(sCurrentDate));
+
+        //TODO/DEBUG: remove -3 here!!!
+        var sWeekYear = ((SharedResources.fncGetWeek(sCurrentDate)) - 3).toString() + "." + (sCurrentDate.getFullYear()).toString();
+
+        var iFoundIndex = -1;
+        var bFoundValue = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData.some(function(sInputWeekYear, index){iFoundIndex = index; return sInputWeekYear.weekyear === this.toString();}, sWeekYear);
+
+
+        console.log("sCurrentDate: " + sCurrentDate.toString() + ", sWeekYear: " + sWeekYear);
+
+        if (bFoundValue)
+        {
+            id_TXT_WeeklyWorkoutDistance.text = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData[iFoundIndex].iWorkouts.toString() + " " + qsTr("workouts") + ", " + ((SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData[iFoundIndex].iDistance)/1000).toFixed(2) + "km";
+        }
+        else
+        {
+            id_TXT_WeeklyWorkoutDistance.text = "-";
+        }
     }
 
     function fncCheckAutosave()
@@ -305,16 +327,38 @@ Page
 
                 //Get year and week
                 var sCurrentDate = new Date(id_HistoryModel.dateAt(i));
-                console.log("Jahr: " + sCurrentDate.getFullYear() + ", Woche: " + SharedResources.fncGetWeek(sCurrentDate));
+                //console.log("Jahr: " + sCurrentDate.getFullYear() + ", Woche: " + SharedResources.fncGetWeek(sCurrentDate));
 
                 var sWeekYear = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
 
                 //Check if entry for this week/year already exists
-                //This thing is one ugly beast, find it in jsfiddle: https://jsfiddle.net/9h7zkx2u/48/
-                var iFoundIndex = -1;
-                var bFoundValue = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData.some(function(sInputWeekYear, index){iFoundIndex = index; return sInputWeekYear.weekYear === this.toString();}, sWeekYear);
+                //This thing is one ugly beast, find it in jsfiddle: https://jsfiddle.net/9h7zkx2u/66/
+                var iFoundIndexAll = -1;
+                var bFoundValueAll = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData.some(function(sInputWeekYear, index){iFoundIndexAll = index; return sInputWeekYear.weekyear === this.toString();}, sWeekYear);
 
-                if (bFoundValue)
+                var iFoundIndexCurrent = -1;
+                var bFoundValueCurrent = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData.some(function(sInputWeekYear, index){iFoundIndexCurrent = index; return sInputWeekYear.weekyear === this.toString();}, sWeekYear);
+
+                if (!bFoundValueAll)
+                {
+                    var sNewEntry = new Object();
+                    sNewEntry["weekyear"] = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
+                    sNewEntry["year"] = sCurrentDate.getFullYear();
+                    sNewEntry["week"] = SharedResources.fncGetWeek(sCurrentDate);
+                    sNewEntry["iDistance"] = fDistanceCurrent;
+                    sNewEntry["iDuration"] = iDurationCurrent;
+                    sNewEntry["iWorkouts"] = 1;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData.push(sNewEntry);
+                }
+                else
+                {
+                    //console.log("Found all!! " + iFoundIndexAll.toString());
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iDistance + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iDuration + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iWorkouts = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iWorkouts + 1;
+                }
+
+                if (!bFoundValueCurrent)
                 {
                     var sNewEntry = new Object();
                     sNewEntry["weekyear"] = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
@@ -324,19 +368,19 @@ Page
                     sNewEntry["iDuration"] = iDurationCurrent;
                     sNewEntry["iWorkouts"] = 1;
                     SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData.push(sNewEntry);
-                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData.push(sNewEntry);
                 }
                 else
                 {
-                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iDistance + fDistanceCurrent;
-                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iDuration + fDistanceCurrent;
-                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iWorkouts = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndex].iWorkouts + 1;
-
-                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iDistance + fDistanceCurrent;
-                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iDuration + fDistanceCurrent;
-                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iWorkouts = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndex].iWorkouts + 1;
+                    //console.log("Found current!! " + iFoundIndexCurrent.toString());
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iDistance + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iDuration + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iWorkouts = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iWorkouts + 1;
                 }
             }
+
+            //console.log("weeklyData: " + SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData.length.toString());
+            //console.log("Stringify: " + JSON.stringify(SharedResources.arrayWorkoutTypesFilterMainPage));
+
 
             fncSetWorkoutFilter();
 
@@ -419,17 +463,19 @@ Page
                 title: "Laufhelden"
             }
 
-            Item
+            Rectangle
             {
                 id: itmMainHeaderArea
                 width: parent.width
-                height: (mainPage.height - pageHeader.height) / 4
+                height: (mainPage.height - pageHeader.height) / 3.9
+                color: "red"
 
-                Item
+                Rectangle
                 {                    
                     width: parent.width
                     height: parent.height / 3.2
                     visible: !bLoadingFiles
+                    color: "green"
 
                     Row
 				    {
@@ -471,14 +517,15 @@ Page
                         }
                     }
                 }
-                Item
+                Rectangle
                 {
                     anchors.left: parent.left
                     anchors.leftMargin: Theme.paddingLarge
                     anchors.bottom: parent.bottom
                     width: parent.width - Theme.paddingLarge
-                    height: (parent.height / 3) *2
+                    height: (parent.height / 3) * 1.5
                     visible: !bLoadingFiles
+                    color: "blue"
 
                     Item
                     {
@@ -512,7 +559,7 @@ Page
                     Item
                     {
                         width: parent.width - parent.height
-                        height: parent.height / 2
+                        height: parent.height / 3
                         anchors.top: parent.top
                         anchors.left: parent.left
                         anchors.leftMargin: parent.height
@@ -540,9 +587,9 @@ Page
                     Item
                     {
                         width: parent.width - parent.height
-                        height: parent.height / 2
+                        height: parent.height / 3
                         anchors.top: parent.top
-                        anchors.topMargin: parent.height / 2
+                        anchors.topMargin: parent.height / 3
                         anchors.left: parent.left
                         anchors.leftMargin: parent.height
 
@@ -566,7 +613,37 @@ Page
                             color: Theme.highlightColor
                         }
                     }
-                }
+                    Item
+                    {
+                        width: parent.width - parent.height
+                        height: parent.height / 3
+                        anchors.top: parent.top
+                        anchors.topMargin: (parent.height / 3) * 2
+                        anchors.left: parent.left
+                        anchors.leftMargin: parent.height
+
+                        Image
+                        {
+                            source: "../img/calendar.png"
+                            height: parent.height
+                            width: parent.height
+                            anchors.leftMargin: Theme.paddingLarge
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                        Label
+                        {
+                            id: id_TXT_WeeklyWorkoutDistance
+                            anchors.left: parent.left
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingSmall
+                            anchors.verticalCenter: parent.verticalCenter
+                            x: Theme.paddingLarge
+                            truncationMode: TruncationMode.Fade
+                            text: ""
+                            color: Theme.highlightColor
+                        }
+                    }
+                }                
 
                 ProgressBar
                 {
