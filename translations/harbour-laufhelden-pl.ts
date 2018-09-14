@@ -32,44 +32,20 @@
         <translation>Kod źródłowy:</translation>
     </message>
     <message>
-        <source>Credits for localization:</source>
-        <translation>Podziękowania za tłumaczenie:</translation>
-    </message>
-    <message>
-        <source>Polish</source>
-        <translation>polski</translation>
-    </message>
-    <message>
-        <source>Swedish</source>
-        <translation>szwedzki</translation>
-    </message>
-    <message>
         <source>Feedback, bugs:</source>
         <translation>Informacje zwrotne, błędy:</translation>
-    </message>
-    <message>
-        <source>Credits for code contribution:</source>
-        <translation>Podzękowania za kontrybucję:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
         <translation>Jeśli lubisz tą aplikację, możesz wspomóc twórcę:</translation>
     </message>
     <message>
-        <source>Hungarian</source>
-        <translation>węgierski</translation>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation>fiński</translation>
-    </message>
-    <message>
-        <source>Dutch</source>
-        <translation>holenderski</translation>
-    </message>
-    <message>
-        <source>Spanish-Spain</source>
-        <translation>hiszpański - Hiszpania</translation>
+        <source>Contributors:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -354,6 +330,26 @@
     <message>
         <source>workouts</source>
         <translation>treningi</translation>
+    </message>
+    <message>
+        <source>no workout this week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation type="unfinished">mi/h</translation>
     </message>
 </context>
 <context>
@@ -1176,6 +1172,26 @@
     <message>
         <source>Strava settings</source>
         <translation>Ustawienia Stravy</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

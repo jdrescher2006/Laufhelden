@@ -51,7 +51,7 @@ Page
 
     function fncSetWorkoutFilter()
     {
-        sWorkoutDistance = (settings.measureSystem === 0) ? (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(SharedResources.arrayLookupWorkoutTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + "mi";
+        sWorkoutDistance = (settings.measureSystem === 0) ? (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(SharedResources.arrayLookupWorkoutTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + qsTr("mi");
 
         var iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDuration;
         iDuration = Math.floor(iDuration);
@@ -75,8 +75,7 @@ Page
         var sCurrentDate = new Date(Date.now());
         //console.log("Jahr: " + sCurrentDate.getFullYear() + ", Woche: " + SharedResources.fncGetWeek(sCurrentDate));
 
-        //TODO/DEBUG: remove -3 here!!!
-        var sWeekYear = ((SharedResources.fncGetWeek(sCurrentDate)) - 3).toString() + "." + (sCurrentDate.getFullYear()).toString();
+        var sWeekYear = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
 
         var iFoundIndex = -1;
         var bFoundValue = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData.some(function(sInputWeekYear, index){iFoundIndex = index; return sInputWeekYear.weekyear === this.toString();}, sWeekYear);
@@ -86,11 +85,13 @@ Page
 
         if (bFoundValue)
         {
-            id_TXT_WeeklyWorkoutDistance.text = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData[iFoundIndex].iWorkouts.toString() + " " + qsTr("workouts") + ", " + ((SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData[iFoundIndex].iDistance)/1000).toFixed(2) + "km";
+            var iWeeklyDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData[iFoundIndex].iDistance;
+
+            id_TXT_WeeklyWorkoutDistance.text = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData[iFoundIndex].iWorkouts.toString() + " " + qsTr("workouts") + ", " + (settings.measureSystem === 0) ? (iWeeklyDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iWeeklyDistance/1000).toFixed(2) + qsTr("mi");
         }
         else
         {
-            id_TXT_WeeklyWorkoutDistance.text = "-";
+            id_TXT_WeeklyWorkoutDistance.text = qsTr("no workout this week");
         }
     }
 
@@ -463,19 +464,17 @@ Page
                 title: "Laufhelden"
             }
 
-            Rectangle
+            Item
             {
                 id: itmMainHeaderArea
                 width: parent.width
                 height: (mainPage.height - pageHeader.height) / 3.9
-                color: "red"
 
-                Rectangle
+                Item
                 {                    
                     width: parent.width
                     height: parent.height / 3.2
                     visible: !bLoadingFiles
-                    color: "green"
 
                     Row
 				    {
@@ -517,15 +516,14 @@ Page
                         }
                     }
                 }
-                Rectangle
+                Item
                 {
                     anchors.left: parent.left
                     anchors.leftMargin: Theme.paddingLarge
                     anchors.bottom: parent.bottom
                     width: parent.width - Theme.paddingLarge
-                    height: (parent.height / 3) * 1.5
-                    visible: !bLoadingFiles
-                    color: "blue"
+                    height: (parent.height / 3) * 2
+                    visible: !bLoadingFiles                    
 
                     Item
                     {
@@ -569,14 +567,14 @@ Page
                             source: "../img/length.png"
                             height: parent.height
                             width: parent.height
-                            anchors.leftMargin: Theme.paddingLarge
+                            anchors.leftMargin: Theme.paddingLarge + Theme.paddingLarge
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                         }
                         Label
                         {
                             anchors.left: parent.left
-                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingSmall
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingLarge + Theme.paddingSmall
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                             truncationMode: TruncationMode.Fade
@@ -598,14 +596,14 @@ Page
                             source: "../img/time.png"
                             height: parent.height
                             width: parent.height
-                            anchors.leftMargin: Theme.paddingLarge
+                            anchors.leftMargin: Theme.paddingLarge + Theme.paddingLarge
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                         }
                         Label
                         {
                             anchors.left: parent.left
-                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingSmall
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingLarge + Theme.paddingSmall
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                             truncationMode: TruncationMode.Fade
@@ -627,7 +625,7 @@ Page
                             source: "../img/calendar.png"
                             height: parent.height
                             width: parent.height
-                            anchors.leftMargin: Theme.paddingLarge
+                            anchors.leftMargin: Theme.paddingLarge + Theme.paddingLarge
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                         }
@@ -635,7 +633,7 @@ Page
                         {
                             id: id_TXT_WeeklyWorkoutDistance
                             anchors.left: parent.left
-                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingSmall
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingLarge + Theme.paddingSmall
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                             truncationMode: TruncationMode.Fade
@@ -660,7 +658,7 @@ Page
             Item
             {
                 width: parent.width
-                height: Theme.paddingLarge + Theme.paddingLarge
+                height: Theme.paddingLarge
             }
 
             Separator
@@ -672,7 +670,7 @@ Page
             SilicaListView
             {                
                 width: parent.width
-                height: (((mainPage.height - pageHeader.height) / 4) * 3) - Theme.paddingLarge - Theme.paddingLarge
+                height: (((mainPage.height - pageHeader.height) / 4) * 3) - Theme.paddingLarge
                 id: historyList
                 model: filterProxyModel
                 clip: true
@@ -780,7 +778,7 @@ Page
                         x: Theme.paddingLarge * 2
                         color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeSmall
-                        text: (settings.measureSystem === 0) ? (distance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(distance/1000).toFixed(2) + "mi"
+                        text: (settings.measureSystem === 0) ? (distance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(distance/1000).toFixed(2) + qsTr("mi")
                     }
                     Label
                     {
@@ -797,7 +795,7 @@ Page
                         anchors.rightMargin: Theme.paddingSmall
                         color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeSmall
-                        text: (settings.measureSystem === 0) ? speed.toFixed(1) + "km/h" : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + "mi/h"
+                        text: (settings.measureSystem === 0) ? speed.toFixed(1) + qsTr("km/h") : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + qsTr("mi/h")
                     }
                     onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
                                               {filename: filename, name: name, index: index})

@@ -109,7 +109,7 @@ Page {
                     id: btnAuth
                     width: parent.width/2
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: o2strava.linked? "Logout": "Login"
+                    text: o2strava.linked? qsTr("Logout"): qsTr("Login")
                     onClicked: {
                         enabled = false
                         if (o2strava.linked) {
@@ -129,19 +129,19 @@ Page {
                     id: lblUser
                     horizontalAlignment: Text.AlignHCenter
                     width: parent.width
-                    text: "User Name: " + username
+                    text: qsTr("User Name: ") + username
                 }
                 Label{
                     id: lblEmail
                     horizontalAlignment: Text.AlignHCenter
                     width: parent.width
-                    text: "Email: " + email
+                    text: qsTr("Email: ") + email
                 }
                 Label{
                     id: lblCountry
                     horizontalAlignment: Text.AlignHCenter
                     width: parent.width
-                    text: "Country: " + country
+                    text: qsTr("Country: ") + country
                 }
             }
         }

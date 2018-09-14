@@ -32,23 +32,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Credits for localization:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Polish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Swedish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Feedback, bugs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Credits for code contribution:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -56,19 +40,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Hungarian</source>
+        <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dutch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Spanish-Spain</source>
+        <source>Contributors:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -353,6 +329,26 @@
     </message>
     <message>
         <source>workouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no workout this week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi/h</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1175,6 +1171,26 @@
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

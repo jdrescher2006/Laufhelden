@@ -28,18 +28,6 @@
         <translation>Sporttevékenység naplózó alkalmazás Sailfish OS-re</translation>
     </message>
     <message>
-        <source>Credits for localization:</source>
-        <translation>Fordítások:</translation>
-    </message>
-    <message>
-        <source>Polish</source>
-        <translation>Lengyel</translation>
-    </message>
-    <message>
-        <source>Swedish</source>
-        <translation>Svéd</translation>
-    </message>
-    <message>
         <source>Copyright</source>
         <translation>Szerzői jogok</translation>
     </message>
@@ -48,28 +36,16 @@
         <translation>Németország</translation>
     </message>
     <message>
-        <source>Credits for code contribution:</source>
-        <translation>Forráskódhoz hozzájárultak:</translation>
-    </message>
-    <message>
         <source>If you like this app you can donate for it:</source>
         <translation>Ha kedveled az alkalmazást itt támogathatod a fejlsztőt:</translation>
     </message>
     <message>
-        <source>Hungarian</source>
-        <translation>Magyar</translation>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation>Finn</translation>
-    </message>
-    <message>
-        <source>Dutch</source>
-        <translation>Holland</translation>
-    </message>
-    <message>
-        <source>Spanish-Spain</source>
-        <translation>Spanyol</translation>
+        <source>Contributors:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -354,6 +330,26 @@
     <message>
         <source>workouts</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no workout this week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mérföld</translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation type="unfinished">mérföld/ó</translation>
     </message>
 </context>
 <context>
@@ -1172,6 +1168,26 @@
     <message>
         <source>Strava settings</source>
         <translation>Strava beállításai</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

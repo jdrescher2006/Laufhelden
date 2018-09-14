@@ -1,3 +1,9 @@
+* Fri Sep 14 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.2-1
+- view current week workouts and distance on main page
+- fixed a bug when uploading workouts to sports tracker by @niemisenjussi
+- added russian translation and also voice coach files by @dikonov
+- translation updates
+
 * Fri Jul 13 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.1-1
 - layout changes for main page, workout list can now be filtered
 - use heart rate monitor from another application e.g. Amazfish by @piggz
