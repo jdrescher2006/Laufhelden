@@ -41,11 +41,11 @@
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión</translation>
     </message>
     <message>
         <source>Contributors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Colaboradores:</translation>
     </message>
 </context>
 <context>
@@ -333,23 +333,23 @@
     </message>
     <message>
         <source>no workout this week</source>
-        <translation type="unfinished"></translation>
+        <translation>0 entrenam. esta sem.</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished">mi/h</translation>
+        <translation>mi/h</translation>
     </message>
 </context>
 <context>
@@ -1175,23 +1175,23 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Cerrar sesión</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar sesión</translation>
     </message>
     <message>
         <source>User Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de usuario: </translation>
     </message>
     <message>
         <source>Email: </source>
-        <translation type="unfinished"></translation>
+        <translation>Correo electrónico: </translation>
     </message>
     <message>
         <source>Country: </source>
-        <translation type="unfinished"></translation>
+        <translation>País: </translation>
     </message>
 </context>
 <context>
@@ -1536,7 +1536,7 @@
     </message>
     <message>
         <source>Russian male</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruso masculino</translation>
     </message>
 </context>
 <context>
