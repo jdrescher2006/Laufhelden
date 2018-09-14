@@ -51,7 +51,7 @@ Page
 
     function fncSetWorkoutFilter()
     {
-        sWorkoutDistance = (settings.measureSystem === 0) ? (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(SharedResources.arrayLookupWorkoutTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + "mi";
+        sWorkoutDistance = (settings.measureSystem === 0) ? (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(SharedResources.arrayLookupWorkoutTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + qsTr("mi");
 
         var iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDuration;
         iDuration = Math.floor(iDuration);
@@ -70,6 +70,29 @@ Page
             sWorkoutFilter = "";
         else
             sWorkoutFilter = settings.workoutTypeMainPage;
+
+        //Find current year and week
+        var sCurrentDate = new Date(Date.now());
+        //console.log("Jahr: " + sCurrentDate.getFullYear() + ", Woche: " + SharedResources.fncGetWeek(sCurrentDate));
+
+        var sWeekYear = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
+
+        var iFoundIndex = -1;
+        var bFoundValue = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData.some(function(sInputWeekYear, index){iFoundIndex = index; return sInputWeekYear.weekyear === this.toString();}, sWeekYear);
+
+
+        console.log("sCurrentDate: " + sCurrentDate.toString() + ", sWeekYear: " + sWeekYear);
+
+        if (bFoundValue)
+        {
+            var iWeeklyDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData[iFoundIndex].iDistance;
+
+            id_TXT_WeeklyWorkoutDistance.text = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].weeklyData[iFoundIndex].iWorkouts.toString() + " " + qsTr("workouts") + ", " + (settings.measureSystem === 0) ? (iWeeklyDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iWeeklyDistance/1000).toFixed(2) + qsTr("mi");
+        }
+        else
+        {
+            id_TXT_WeeklyWorkoutDistance.text = qsTr("no workout this week");
+        }
     }
 
     function fncCheckAutosave()
@@ -131,12 +154,13 @@ Page
         repeat: false;
         onTriggered: {
             detail_busy.running = false;
-            historyList.visible = true;
+            main_flickable.visible = true;
             load_text.visible = false;
             ntimer.restart();
             ntimer.start();
         }
     }
+
 
     onStatusChanged:
     {
@@ -232,6 +256,25 @@ Page
         }
     }
 
+    BusyIndicator
+    {
+        id: detail_busy
+        visible: false
+        anchors.centerIn: main_flickable
+        running: true
+        size: BusyIndicatorSize.Large
+    }
+    Label {
+         id:load_text
+         width: parent.width
+         anchors.top: detail_busy.bottom
+         anchors.topMargin: 25;
+         horizontalAlignment: Label.AlignHCenter
+         visible: false
+         text: "loading..."
+         font.pixelSize: Theme.fontSizeMedium
+    }
+
     SortFilterProxyModel
     {
         id: filterProxyModel
@@ -282,7 +325,63 @@ Page
                 SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDistance + fDistanceCurrent;
                 SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iDuration + iDurationCurrent;
                 SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].iWorkouts++;
+
+                //Get year and week
+                var sCurrentDate = new Date(id_HistoryModel.dateAt(i));
+                //console.log("Jahr: " + sCurrentDate.getFullYear() + ", Woche: " + SharedResources.fncGetWeek(sCurrentDate));
+
+                var sWeekYear = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
+
+                //Check if entry for this week/year already exists
+                //This thing is one ugly beast, find it in jsfiddle: https://jsfiddle.net/9h7zkx2u/66/
+                var iFoundIndexAll = -1;
+                var bFoundValueAll = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData.some(function(sInputWeekYear, index){iFoundIndexAll = index; return sInputWeekYear.weekyear === this.toString();}, sWeekYear);
+
+                var iFoundIndexCurrent = -1;
+                var bFoundValueCurrent = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData.some(function(sInputWeekYear, index){iFoundIndexCurrent = index; return sInputWeekYear.weekyear === this.toString();}, sWeekYear);
+
+                if (!bFoundValueAll)
+                {
+                    var sNewEntry = new Object();
+                    sNewEntry["weekyear"] = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
+                    sNewEntry["year"] = sCurrentDate.getFullYear();
+                    sNewEntry["week"] = SharedResources.fncGetWeek(sCurrentDate);
+                    sNewEntry["iDistance"] = fDistanceCurrent;
+                    sNewEntry["iDuration"] = iDurationCurrent;
+                    sNewEntry["iWorkouts"] = 1;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData.push(sNewEntry);
+                }
+                else
+                {
+                    //console.log("Found all!! " + iFoundIndexAll.toString());
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iDistance + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iDuration + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iWorkouts = SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData[iFoundIndexAll].iWorkouts + 1;
+                }
+
+                if (!bFoundValueCurrent)
+                {
+                    var sNewEntry = new Object();
+                    sNewEntry["weekyear"] = (SharedResources.fncGetWeek(sCurrentDate)).toString() + "." + (sCurrentDate.getFullYear()).toString();
+                    sNewEntry["year"] = sCurrentDate.getFullYear();
+                    sNewEntry["week"] = SharedResources.fncGetWeek(sCurrentDate);
+                    sNewEntry["iDistance"] = fDistanceCurrent;
+                    sNewEntry["iDuration"] = iDurationCurrent;
+                    sNewEntry["iWorkouts"] = 1;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData.push(sNewEntry);
+                }
+                else
+                {
+                    //console.log("Found current!! " + iFoundIndexCurrent.toString());
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iDistance = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iDistance + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iDuration + fDistanceCurrent;
+                    SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iWorkouts = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[sWorkoutCurrent].weeklyData[iFoundIndexCurrent].iWorkouts + 1;
+                }
             }
+
+            //console.log("weeklyData: " + SharedResources.arrayLookupWorkoutFilterMainPageTableByName["allworkouts"].weeklyData.length.toString());
+            //console.log("Stringify: " + JSON.stringify(SharedResources.arrayWorkoutTypesFilterMainPage));
+
 
             fncSetWorkoutFilter();
 
@@ -314,6 +413,7 @@ Page
     {
         anchors.fill: parent
         contentHeight: clmMainColumn.height       
+        id: main_flickable
 
         PullDownMenu
         {
@@ -368,7 +468,7 @@ Page
             {
                 id: itmMainHeaderArea
                 width: parent.width
-                height: (mainPage.height - pageHeader.height) / 4
+                height: (mainPage.height - pageHeader.height) / 3.9
 
                 Item
                 {                    
@@ -422,8 +522,8 @@ Page
                     anchors.leftMargin: Theme.paddingLarge
                     anchors.bottom: parent.bottom
                     width: parent.width - Theme.paddingLarge
-                    height: (parent.height / 3) *2
-                    visible: !bLoadingFiles
+                    height: (parent.height / 3) * 2
+                    visible: !bLoadingFiles                    
 
                     Item
                     {
@@ -457,7 +557,7 @@ Page
                     Item
                     {
                         width: parent.width - parent.height
-                        height: parent.height / 2
+                        height: parent.height / 3
                         anchors.top: parent.top
                         anchors.left: parent.left
                         anchors.leftMargin: parent.height
@@ -467,14 +567,14 @@ Page
                             source: "../img/length.png"
                             height: parent.height
                             width: parent.height
-                            anchors.leftMargin: Theme.paddingLarge
+                            anchors.leftMargin: Theme.paddingLarge + Theme.paddingLarge
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                         }
                         Label
                         {
                             anchors.left: parent.left
-                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingSmall
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingLarge + Theme.paddingSmall
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                             truncationMode: TruncationMode.Fade
@@ -485,9 +585,9 @@ Page
                     Item
                     {
                         width: parent.width - parent.height
-                        height: parent.height / 2
+                        height: parent.height / 3
                         anchors.top: parent.top
-                        anchors.topMargin: parent.height / 2
+                        anchors.topMargin: parent.height / 3
                         anchors.left: parent.left
                         anchors.leftMargin: parent.height
 
@@ -496,14 +596,14 @@ Page
                             source: "../img/time.png"
                             height: parent.height
                             width: parent.height
-                            anchors.leftMargin: Theme.paddingLarge
+                            anchors.leftMargin: Theme.paddingLarge + Theme.paddingLarge
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
                         }
                         Label
                         {
                             anchors.left: parent.left
-                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingSmall
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingLarge + Theme.paddingSmall
                             anchors.verticalCenter: parent.verticalCenter
                             x: Theme.paddingLarge
                             truncationMode: TruncationMode.Fade
@@ -511,7 +611,37 @@ Page
                             color: Theme.highlightColor
                         }
                     }
-                }
+                    Item
+                    {
+                        width: parent.width - parent.height
+                        height: parent.height / 3
+                        anchors.top: parent.top
+                        anchors.topMargin: (parent.height / 3) * 2
+                        anchors.left: parent.left
+                        anchors.leftMargin: parent.height
+
+                        Image
+                        {
+                            source: "../img/calendar.png"
+                            height: parent.height
+                            width: parent.height
+                            anchors.leftMargin: Theme.paddingLarge + Theme.paddingLarge
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                        Label
+                        {
+                            id: id_TXT_WeeklyWorkoutDistance
+                            anchors.left: parent.left
+                            anchors.leftMargin: parent.height + Theme.paddingLarge + Theme.paddingLarge + Theme.paddingSmall
+                            anchors.verticalCenter: parent.verticalCenter
+                            x: Theme.paddingLarge
+                            truncationMode: TruncationMode.Fade
+                            text: ""
+                            color: Theme.highlightColor
+                        }
+                    }
+                }                
 
                 ProgressBar
                 {
@@ -601,7 +731,7 @@ Page
                                     detail_busy.running = true;
                                     detail_busy.visible = true;
                                     load_text.visible = true;
-                                    historyList.visible = false;
+                                    main_flickable.visible = false;
                                     ST.uploadToSportsTracker(dialog.sharing*1, dialog.stcomment, displayNotification);
                                 });
                              }
@@ -648,7 +778,7 @@ Page
                         x: Theme.paddingLarge * 2
                         color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeSmall
-                        text: (settings.measureSystem === 0) ? (distance/1000).toFixed(2) + "km" : JSTools.fncConvertDistanceToImperial(distance/1000).toFixed(2) + "mi"
+                        text: (settings.measureSystem === 0) ? (distance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(distance/1000).toFixed(2) + qsTr("mi")
                     }
                     Label
                     {
@@ -665,7 +795,7 @@ Page
                         anchors.rightMargin: Theme.paddingSmall
                         color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeSmall
-                        text: (settings.measureSystem === 0) ? speed.toFixed(1) + "km/h" : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + "mi/h"
+                        text: (settings.measureSystem === 0) ? speed.toFixed(1) + qsTr("km/h") : JSTools.fncConvertSpeedToImperial(speed).toFixed(1) + qsTr("mi/h")
                     }
                     onClicked: pageStack.push(Qt.resolvedUrl("DetailedViewPage.qml"),
                                               {filename: filename, name: name, index: index})

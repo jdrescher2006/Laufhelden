@@ -32,48 +32,20 @@
         <translation>Källkod:</translation>
     </message>
     <message>
-        <source>Credits for localization:</source>
-        <translation>Tack för översättning:</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <translation>Spanska</translation>
-    </message>
-    <message>
-        <source>Polish</source>
-        <translation>Polska</translation>
-    </message>
-    <message>
-        <source>Swedish</source>
-        <translation>Svenska</translation>
-    </message>
-    <message>
         <source>Feedback, bugs:</source>
         <translation>Återkoppling och fel:</translation>
-    </message>
-    <message>
-        <source>Credits for code contribution:</source>
-        <translation>Tack för kodbidrag:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
         <translation>Om du gillar den här appen kan du donera för vidare utveckling:</translation>
     </message>
     <message>
-        <source>Hungarian</source>
-        <translation>Ungerska</translation>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation>Finska</translation>
-    </message>
-    <message>
-        <source>Dutch</source>
-        <translation>Nederländska</translation>
-    </message>
-    <message>
-        <source>Spanish-Spain</source>
-        <translation>Spanska</translation>
+        <source>Contributors:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -289,75 +261,95 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Inställningar</translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Mina Strava-aktiviteter</translation>
+        <translation>Mina Strava-aktiviteter</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta nytt träningspass</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">av</translation>
+        <translation>av</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Läser in GPX-filer...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort träningspass</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tar bort träningspass...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Redigera träningspass</translation>
+        <translation>Redigera träningspass</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Skicka till Sports-Tracker.com</translation>
+        <translation>Skicka till Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Namnlöst spår)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oavslutat träningspass hittades!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Återuppta</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Träningspassnamn</translation>
+        <translation>Träningspassnamn</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Träningsbeskrivning</translation>
+        <translation>Träningsbeskrivning</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Träningspass:</translation>
+        <translation>Träningspass:</translation>
     </message>
     <message>
         <source>workouts</source>
+        <translation>träningspass</translation>
+    </message>
+    <message>
+        <source>no workout this week</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/t</translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation type="unfinished">mi/t</translation>
     </message>
 </context>
 <context>
@@ -568,7 +560,7 @@
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd hjärtfrekvensmätare från annat program, t.ex. Amazfish</translation>
     </message>
 </context>
 <context>
@@ -921,7 +913,7 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla aktiviteter</translation>
     </message>
 </context>
 <context>
@@ -1181,6 +1173,26 @@
         <source>Strava settings</source>
         <translation>Strava Inställningar</translation>
     </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
@@ -1371,19 +1383,19 @@
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>Meddelande 1</translation>
+        <translation>Meddelande 1:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>Meddelande 2</translation>
+        <translation>Meddelande 2:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>Meddelande 2</translation>
+        <translation>Meddelande 2:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>Meddelande 4</translation>
+        <translation>Meddelande 4:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -1442,19 +1454,19 @@
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>Meddelande 1</translation>
+        <translation>Meddelande 1:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>Meddelande 2</translation>
+        <translation>Meddelande 2:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>Meddelande 3</translation>
+        <translation>Meddelande 3:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>Meddelande 4</translation>
+        <translation>Meddelande 4:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -1521,6 +1533,10 @@
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
         <translation>Vid aktivering kommer musikspelaren att pausas när ett röstmeddelande spelas upp, och återupptas efteråt.</translation>
+    </message>
+    <message>
+        <source>Russian male</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -32,48 +32,20 @@
         <translation>Broncode:</translation>
     </message>
     <message>
-        <source>Credits for localization:</source>
-        <translation>Met dank aan volgende personen voor hun vertalingen:</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <translation>Spaans</translation>
-    </message>
-    <message>
-        <source>Polish</source>
-        <translation>Pools</translation>
-    </message>
-    <message>
-        <source>Swedish</source>
-        <translation>Zweeds</translation>
-    </message>
-    <message>
         <source>Feedback, bugs:</source>
         <translation>Suggesties, fouten:</translation>
-    </message>
-    <message>
-        <source>Credits for code contribution:</source>
-        <translation>Met dank aan volgende personen voor hun codebijdragen:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
         <translation>Als je deze app leuk vindt, kan je een donatie geven:</translation>
     </message>
     <message>
-        <source>Hungarian</source>
-        <translation>Hongaars</translation>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation>Fins</translation>
-    </message>
-    <message>
-        <source>Dutch</source>
-        <translation>Nederlands</translation>
-    </message>
-    <message>
-        <source>Spanish-Spain</source>
-        <translation>Spaans (Spanje)</translation>
+        <source>Contributors:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -358,6 +330,26 @@
     <message>
         <source>workouts</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no workout this week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/u</translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation type="unfinished">mi/u</translation>
     </message>
 </context>
 <context>
@@ -1181,6 +1173,26 @@
         <source>Strava settings</source>
         <translation>Strava-instellingen</translation>
     </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
@@ -1520,6 +1532,10 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Russian male</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

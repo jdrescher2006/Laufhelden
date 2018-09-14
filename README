@@ -15,7 +15,7 @@ This application orginates from a fork of Rena by Simoma: https://github.com/Sim
 Credits go to:
 - Messagebox: Kimmo Lindholm, https://github.com/kimmoli/paint/blob/master/qml/components/Messagebox.qml
 - Filtered ListView: https://github.com/oKcerG/SortFilterProxyModel
-- Localization: Caballlero, atlochowski, eson57, niemisenjussi, martonmiklos, d9h20f, carmenfdezb
+- Localization: atlochowski, eson57, niemisenjussi, martonmiklos, d9h20f, carmenfdezb
 - Sports-Tracker support: niemisenjussi
 - Strava support: piggz
 

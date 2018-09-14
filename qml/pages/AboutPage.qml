@@ -106,14 +106,14 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: "Version: " + Qt.application.version
+                text: qsTr("Version") + ": " + Qt.application.version
             }
             Label
             {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Date: ") + "13.07.2018";
+                text: qsTr("Date: ") + "14.09.2018";
             }
             Label
             {
@@ -126,25 +126,22 @@ Page
             {
                 width: parent.width
                 height: Theme.paddingLarge
-            }
+            }            
             Label
             {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
-                text: qsTr("Credits for localization:")
+                color: Theme.primaryColor
+                text: qsTr("Contributors:")
             }
             Label
             {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeExtraSmall
+                font.pixelSize: Theme.fontSizeSmall
                 color: Theme.secondaryColor
-                text: qsTr("Spanish") + " - Caballlero<br>" + qsTr("Polish") + " - atlochowski<br>"
-                      + qsTr("Swedish") + " - eson57<br>" + qsTr("Finnish") + " - niemisenjussi<br>"
-                      + qsTr("Hungarian") + " - martonmiklos<br>" + qsTr("Dutch") + " - d9h20f<br>"
-                      + qsTr("Spanish-Spain") + " - carmenfdezb"
+                text: "niemisenjussi, piggz, atlochowski, eson57, martonmiklos, d9h20f, carmenfdezb, dikonov"
             }            
             Item
             {
@@ -155,28 +152,7 @@ Page
             {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
-                text: qsTr("Credits for code contribution:")
-            }
-            Label
-            {
-                width: parent.width
-                wrapMode: Text.WordWrap
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
-                text: "niemisenjussi<br>piggz"
-            }            
-            Item
-            {
-                width: parent.width
-                height: Theme.paddingLarge
-            }
-            Label
-            {
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
+                color: Theme.primaryColor
                 text: qsTr("If you like this app you can donate for it:")
             }
             Label
@@ -190,13 +166,13 @@ Page
             Item
             {
                 width: parent.width
-                height: Theme.paddingLarge
+                height: Theme.paddingMedium
             }
             Label
             {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
+                color: Theme.primaryColor
                 text: qsTr("Source code:")
             }
             Label
@@ -210,13 +186,13 @@ Page
             Item
             {
                 width: parent.width
-                height: Theme.paddingLarge
+                height: Theme.paddingMedium
             }
             Label
             {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
-                color: Theme.secondaryColor
+                color: Theme.primaryColor
                 text: qsTr("Feedback, bugs:")
             }
             Label
