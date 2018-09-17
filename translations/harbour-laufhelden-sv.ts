@@ -41,11 +41,11 @@
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <source>Contributors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Medhjälpare:</translation>
     </message>
 </context>
 <context>
@@ -333,23 +333,23 @@
     </message>
     <message>
         <source>no workout this week</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen träning denna veckan</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/t</translation>
+        <translation>km/t</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished">mi/t</translation>
+        <translation>mi/t</translation>
     </message>
 </context>
 <context>
@@ -1175,23 +1175,23 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Logga ut</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Logga in</translation>
     </message>
     <message>
         <source>User Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Användarnamn: </translation>
     </message>
     <message>
         <source>Email: </source>
-        <translation type="unfinished"></translation>
+        <translation>E-post: </translation>
     </message>
     <message>
         <source>Country: </source>
-        <translation type="unfinished"></translation>
+        <translation>Land: </translation>
     </message>
 </context>
 <context>
@@ -1536,7 +1536,7 @@
     </message>
     <message>
         <source>Russian male</source>
-        <translation type="unfinished"></translation>
+        <translation>Ryska manlig</translation>
     </message>
 </context>
 <context>
