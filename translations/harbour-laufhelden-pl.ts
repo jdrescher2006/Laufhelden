@@ -41,11 +41,11 @@
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja</translation>
     </message>
     <message>
         <source>Contributors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Współtwórcy</translation>
     </message>
 </context>
 <context>
@@ -333,23 +333,23 @@
     </message>
     <message>
         <source>no workout this week</source>
-        <translation type="unfinished"></translation>
+        <translation>brak treningów w tym tygodniu</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished">mi/h</translation>
+        <translation>mi/h</translation>
     </message>
 </context>
 <context>
@@ -1175,23 +1175,23 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyloguj</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaloguj</translation>
     </message>
     <message>
         <source>User Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa użytkownika: </translation>
     </message>
     <message>
         <source>Email: </source>
-        <translation type="unfinished"></translation>
+        <translation>Email: </translation>
     </message>
     <message>
         <source>Country: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kraj: </translation>
     </message>
 </context>
 <context>
@@ -1474,7 +1474,7 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished">Odtwórz ogłoszenie o wartości</translation>
+        <translation>Odtwórz ogłoszenie o wartości</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
@@ -1536,7 +1536,7 @@
     </message>
     <message>
         <source>Russian male</source>
-        <translation type="unfinished"></translation>
+        <translation>Rosyjski, mężczyzna</translation>
     </message>
 </context>
 <context>
