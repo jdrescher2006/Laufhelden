@@ -39,7 +39,6 @@ Page
 
     property string sWorkoutDuration: ""
     property string sWorkoutDistance: ""
-    property string sWorkoutCount: ""
     property string sWorkoutFilter: ""
 
     property int iCurrentWorkout: 0
@@ -63,8 +62,6 @@ Page
         seconds = Math.floor(seconds);
 
         sWorkoutDuration = (JSTools.fncPadZeros(hours, 2)).toString() + "h " + (JSTools.fncPadZeros(minutes, 2)).toString() + "m " + (JSTools.fncPadZeros(seconds, 2)).toString() + "s";
-
-        sWorkoutCount = (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iWorkouts).toString();
 
         if (settings.workoutTypeMainPage === "allworkouts")
             sWorkoutFilter = "";
@@ -536,7 +533,7 @@ Page
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.top: parent.top
                             anchors.topMargin: parent.height / 7
-                            text: historyList.count === 0 ? "0" : sWorkoutCount;
+                            text: historyList.count.toString()
                             font.pixelSize: parent.height / 2.3
                         }
                         Label
