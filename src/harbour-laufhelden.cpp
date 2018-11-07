@@ -34,6 +34,7 @@
 #include "light.h"
 #include "pebblemanagercomm.h"
 #include "pebblewatchcomm.h"
+#include "timeformatter.h"
 #include "o2/src/o2.h"
 
 QByteArray encryptDecrypt(QByteArray toEncrypt) {
@@ -63,6 +64,7 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<LogWriter,1>("harbour.laufhelden", 1, 0, "LogWriter");
     qmlRegisterType<PlotWidget,1>("harbour.laufhelden", 1, 0, "PlotWidget");
     qmlRegisterType<Light,1>("harbour.laufhelden", 1, 0, "Light");
+    qmlRegisterType<TimeFormatter,1>("harbour.laufhelden", 1, 0, "TimeFormatter");
     qmlRegisterType<PebbleManagerComm,1>("harbour.laufhelden", 1, 0, "PebbleManagerComm");
     qmlRegisterType<PebbleWatchComm,1>("harbour.laufhelden", 1, 0, "PebbleWatchComm");
     qmlRegisterType<O2>("com.pipacs.o2", 1, 0, "O2");

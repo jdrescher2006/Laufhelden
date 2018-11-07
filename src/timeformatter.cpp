@@ -1,5 +1,6 @@
 #include "timeformatter.h"
 #include <QObject>
+#include <qmath.h>
 
 /**
  * @brief TimeFormatter::formatHMS
@@ -12,7 +13,18 @@
  * @param seconds
  * @return
  */
-QString TimeFormatter::formatHMS(uint hours, uint minutes, uint seconds)
+QString TimeFormatter::formatHMS_fromSeconds(const uint durationInSec)
+{
+    uint hours = durationInSec / (60*60);
+    hours = qFloor(hours);
+    uint minutes = (durationInSec - hours*60*60) / 60;
+    minutes = qFloor(minutes);
+    uint seconds = durationInSec - hours*60*60 - minutes*60;
+    seconds = qFloor(seconds);
+    return formatHMS(hours, minutes, seconds);
+}
+
+QString TimeFormatter::formatHMS(const uint hours, const uint minutes, const uint seconds)
 {
     if(hours == 0)
     {

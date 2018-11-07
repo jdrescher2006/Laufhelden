@@ -49,20 +49,16 @@ Page
         id: trackLoader
     }
 
+    TimeFormatter
+    {
+        id: timeFormatter
+    }
+
     function fncSetWorkoutFilter()
     {
         sWorkoutDistance = (settings.measureSystem === 0) ? (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(SharedResources.arrayLookupWorkoutTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + qsTr("mi");
 
-        var iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDuration;
-        iDuration = Math.floor(iDuration);
-        var hours = iDuration / (60*60);
-        hours = Math.floor(hours);
-        var minutes = (iDuration - hours*60*60) / 60;
-        minutes = Math.floor(minutes);
-        var seconds = iDuration - hours*60*60 - minutes*60;
-        seconds = Math.floor(seconds);
-
-        sWorkoutDuration = (JSTools.fncPadZeros(hours, 2)).toString() + "h " + (JSTools.fncPadZeros(minutes, 2)).toString() + "m " + (JSTools.fncPadZeros(seconds, 2)).toString() + "s";
+        sWorkoutDuration = timeFormatter.formatHMS_fromSeconds(SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDuration);
 
         sWorkoutCount = (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iWorkouts).toString();
 
