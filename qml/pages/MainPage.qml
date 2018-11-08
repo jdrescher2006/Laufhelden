@@ -468,14 +468,13 @@ Page
             {
                 id: itmMainHeaderArea
                 width: parent.width
-                height: (mainPage.height - pageHeader.height) / 3.9
-
+                height: ((mainPage.height - pageHeader.height) / (filterItem.visible ? 3.9 : 5.85))
                 Item
                 {                    
+                    id: filterItem
                     width: parent.width
-                    height: parent.height / 3.2
-                    visible: !bLoadingFiles
-
+                    height: visible ? parent.height / 3.2 : 0
+                    visible: !bLoadingFiles && !id_HistoryModel.allWorkoutTypeIdentical
                     Row
 				    {
 				        width: parent.width
@@ -522,7 +521,7 @@ Page
                     anchors.leftMargin: Theme.paddingLarge
                     anchors.bottom: parent.bottom
                     width: parent.width - Theme.paddingLarge
-                    height: (parent.height / 3) * 2
+                    height: filterItem.visible ? (parent.height / 3) * 2 : parent.height
                     visible: !bLoadingFiles                    
 
                     Item

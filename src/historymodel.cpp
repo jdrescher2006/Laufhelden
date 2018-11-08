@@ -135,6 +135,11 @@ QDateTime HistoryModel::dateAt(int index)
     return m_trackList.at(index).time;
 }
 
+bool HistoryModel::allWorkoutTypeIdentical() const
+{
+    return bAllWorkoutSameType;
+}
+
 
 QVariant HistoryModel::data(const QModelIndex &index, int role) const {
     if(!index.isValid()) {
@@ -227,6 +232,28 @@ void HistoryModel::editTrack(int index)
     this->bGPXFilesChanged = true;
 }
 
+void HistoryModel::updateAllWorkoutTypeIdentical()
+{
+    bool first = true;
+    QString firstItemType;
+    for (TrackItem item : m_trackList) {
+        if (first) {
+            first = false;
+            firstItemType = item.workout;
+        } else {
+            if (item.workout != firstItemType) {
+                if (bAllWorkoutSameType)
+                    emit sigAllWorkoutTypeIdenticalChanged();
+                bAllWorkoutSameType = false;
+                return;
+            }
+        }
+    }
+    if (!bAllWorkoutSameType)
+        emit sigAllWorkoutTypeIdenticalChanged();
+    bAllWorkoutSameType = true;
+}
+
 bool HistoryModel::removeTrack(int index)
 {
     QString dirName = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/Laufhelden";
@@ -247,6 +274,8 @@ bool HistoryModel::removeTrack(int index)
 
         this->bGPXFilesChanged = true;
         this->saveAccelerationFile();
+
+        updateAllWorkoutTypeIdentical();
 
         return true;
     } else
@@ -270,6 +299,7 @@ void HistoryModel::newTrackData(int num)
     TrackItem data = trackLoading.resultAt(num);
     qDebug()<<"Finished loading"<<data.filename;
     m_trackList[data.id] = data;
+    updateAllWorkoutTypeIdentical();
     QModelIndex index = QAbstractItemModel::createIndex(data.id, 0);
     emit dataChanged(index, index);
 }
@@ -416,7 +446,8 @@ void HistoryModel::loadAccelerationFile()
                 qDebug()<<"File not existant: "<<item.filename;
             }
 		}
-	}	
+    }
+    updateAllWorkoutTypeIdentical();
 }
 
 void HistoryModel::saveAccelerationFile()
@@ -538,4 +569,5 @@ void HistoryModel::readDirectory()
 
         m_trackList.append(item);
     }
+    updateAllWorkoutTypeIdentical();
 }
