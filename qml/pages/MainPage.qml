@@ -39,7 +39,6 @@ Page
 
     property string sWorkoutDuration: ""
     property string sWorkoutDistance: ""
-    property string sWorkoutCount: ""
     property string sWorkoutFilter: ""
 
     property int iCurrentWorkout: 0
@@ -49,22 +48,16 @@ Page
         id: trackLoader
     }
 
+    TimeFormatter
+    {
+        id: timeFormatter
+    }
+
     function fncSetWorkoutFilter()
     {
         sWorkoutDistance = (settings.measureSystem === 0) ? (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(SharedResources.arrayLookupWorkoutTableByName[settings.workoutTypeMainPage].iDistance/1000).toFixed(2) + qsTr("mi");
 
-        var iDuration = SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDuration;
-        iDuration = Math.floor(iDuration);
-        var hours = iDuration / (60*60);
-        hours = Math.floor(hours);
-        var minutes = (iDuration - hours*60*60) / 60;
-        minutes = Math.floor(minutes);
-        var seconds = iDuration - hours*60*60 - minutes*60;
-        seconds = Math.floor(seconds);
-
-        sWorkoutDuration = (JSTools.fncPadZeros(hours, 2)).toString() + "h " + (JSTools.fncPadZeros(minutes, 2)).toString() + "m " + (JSTools.fncPadZeros(seconds, 2)).toString() + "s";
-
-        sWorkoutCount = (SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iWorkouts).toString();
+        sWorkoutDuration = timeFormatter.formatHMS_fromSeconds(SharedResources.arrayLookupWorkoutFilterMainPageTableByName[settings.workoutTypeMainPage].iDuration);
 
         if (settings.workoutTypeMainPage === "allworkouts")
             sWorkoutFilter = "";
@@ -468,14 +461,13 @@ Page
             {
                 id: itmMainHeaderArea
                 width: parent.width
-                height: (mainPage.height - pageHeader.height) / 3.9
-
+                height: ((mainPage.height - pageHeader.height) / (filterItem.visible ? 3.9 : 5.85))
                 Item
                 {                    
+                    id: filterItem
                     width: parent.width
-                    height: parent.height / 3.2
-                    visible: !bLoadingFiles
-
+                    height: visible ? parent.height / 3.2 : 0
+                    visible: !bLoadingFiles && !id_HistoryModel.allWorkoutTypeIdentical
                     Row
 				    {
 				        width: parent.width
@@ -522,7 +514,7 @@ Page
                     anchors.leftMargin: Theme.paddingLarge
                     anchors.bottom: parent.bottom
                     width: parent.width - Theme.paddingLarge
-                    height: (parent.height / 3) * 2
+                    height: filterItem.visible ? (parent.height / 3) * 2 : parent.height
                     visible: !bLoadingFiles                    
 
                     Item
@@ -536,7 +528,7 @@ Page
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.top: parent.top
                             anchors.topMargin: parent.height / 7
-                            text: historyList.count === 0 ? "0" : sWorkoutCount;
+                            text: historyList.count.toString()
                             font.pixelSize: parent.height / 2.3
                         }
                         Label

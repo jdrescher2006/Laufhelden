@@ -60,6 +60,7 @@ public:
     ~HistoryModel();
 
 	Q_PROPERTY(bool gpxFilesChanged READ gpxFilesChanged WRITE setGpxFilesChanged)
+    Q_PROPERTY(bool allWorkoutTypeIdentical READ allWorkoutTypeIdentical NOTIFY sigAllWorkoutTypeIdenticalChanged)
 
     QHash<int, QByteArray> roleNames() const;
     int rowCount(const QModelIndex&) const;
@@ -83,11 +84,14 @@ public:
     Q_INVOKABLE qreal distanceAt(int index);
     Q_INVOKABLE QDateTime dateAt(int index);
 
+    Q_INVOKABLE bool allWorkoutTypeIdentical() const;
+
 
 signals:
     void sigLoadingFinished();
     void sigLoadingError();
     void sigAmountGPXFiles(int iAmountGPXFiles);
+    void sigAllWorkoutTypeIdenticalChanged();
 
 public slots:
     void newTrackData(int num);
@@ -103,7 +107,9 @@ private:
     int iWorkoutDuration;	
     qreal rWorkoutDistance;
 	bool bGPXFilesChanged;
+    bool bAllWorkoutSameType = true;
     static bool bCompareDates(const TrackItem &ti1, const TrackItem &ti2);    
+    void updateAllWorkoutTypeIdentical();
 };
 
 #endif // HISTORYMODEL_H
