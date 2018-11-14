@@ -26,7 +26,10 @@ Page
     property bool bLockOnCompleted : false
     property bool bLockFirstPageLoad: true
     property int iCheckPebbleStep: 0
+    property var sPebbleListArray
+    property variant arComboboxStringArray : []
 
+    
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
@@ -39,13 +42,22 @@ Page
 
             //Check if a Pebble watch was found in Rockpool manager
             var sPebbleList = id_PebbleManagerComm.getListWatches();
+            var arComboarray = [qsTr("Empty")];
+
+            for (var i = 0; i < sPebbleList.count; i++)
+            {
+                arComboarray.push(sPebbleList[i]);
+            }
+            arComboboxStringArray = arComboarray;
+
+
             console.log("sPebbleList: " + sPebbleList);
 
             if (sPebbleList !== undefined && sPebbleList.length > 0)
             {
                 //A pebble was found, we have now a DBus path to it.
                 //If there are more than one pebble, use the first one.
-                sPebblePath = sPebbleList[0];
+                sPebblePath = sPebbleList[1];
 
                 //Read version of Rockpool and check if it is sufficient
                 fncCheckVersion(id_PebbleManagerComm.getRockpoolVersion());
@@ -315,7 +327,7 @@ Page
             PageHeader
             {
                 title: bPebbleConnected ? sPebbleNameAddress : qsTr("Pebble settings")
-            }
+            }                                   
             TextSwitch
             {
                 id: id_TextSwitch_enablePebble
@@ -327,6 +339,12 @@ Page
                     if (!bLockOnCompleted && !bLockFirstPageLoad)
                         settings.enablePebble = checked;
                 }                
+            }
+
+            ComboBox
+            {
+                width: parent.width
+                menu: ContextMenu { Repeater { model: arComboboxStringArray; MenuItem { text: modelData }}}
             }
 
             Separator

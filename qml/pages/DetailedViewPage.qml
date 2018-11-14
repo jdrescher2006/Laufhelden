@@ -174,9 +174,9 @@ Page
 
     Image
     {
-        anchors.top: parent.top
-        anchors.topMargin: Theme.paddingLarge
+        anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottomMargin: Theme.paddingSmall
         z: 2
         source:"../img/pagelocator_1_3.png"
     }

@@ -24,7 +24,7 @@ Page
 {
     id: page
 
-    allowedOrientations: Orientation.Landscape
+    allowedOrientations: Orientation.All
 
     property bool bLockFirstPageLoad: true
 

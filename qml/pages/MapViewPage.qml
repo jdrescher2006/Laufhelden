@@ -32,6 +32,7 @@ Page
     allowedOrientations: Orientation.All
     //No back navigation if the map is big
     backNavigation: !bMapMaximized    
+    forwardNavigation: !bMapMaximized
 
     property var vTrackLinePoints
 
@@ -39,6 +40,12 @@ Page
     property bool showSettingsButton: true
     property bool showMinMaxButton: true
     property bool showCenterButton: true
+    property bool bLockOnCompleted : false
+
+    property string sCurrentPosition: ""
+    property string sCurrentDistance: "0"
+    property string sCurrentHeartrate: "-"
+    property string sCurrentElevation: "-"
 
     property bool bMapMaximized: false
 
@@ -47,8 +54,10 @@ Page
     onStatusChanged:
     {
         if (status === PageStatus.Active)
-        {          
-             var iPausePositionsIndex = 0;
+        {
+            bLockOnCompleted = true;
+
+            var iPausePositionsIndex = 0;
 
             console.log("settings.mapStyle: " + settings.mapStyle);
             map.styleUrl = settings.mapStyle;
@@ -59,12 +68,21 @@ Page
             {
                 //Check if we have the first data point.
                 if (i===0)
-                {
+                {                                       
                     //This is the first data point, draw the start icon
                     map.addSourcePoint("pointStartImage",  JSTools.trackPointsTemporary[i]);
                     map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
                     map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
                     map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
+                    map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
+                    map.setLayoutProperty("layerStartLayer", "icon-allow-overlap", true);
+
+                    //Draw the current position icon to the first position
+                    sCurrentPosition = "currentPosition";
+                    map.addSourcePoint(sCurrentPosition,  JSTools.trackPointsTemporary[i]);
+                    map.addImagePath("imageCurrentImage", Qt.resolvedUrl("../img/position-circle-blue.png"));
+                    map.addLayer("layerStartLayer", {"type": "symbol", "source": sCurrentPosition});
+                    map.setLayoutProperty("layerStartLayer", "icon-image", "imageCurrentImage");
                     map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
                     map.setLayoutProperty("layerStartLayer", "icon-allow-overlap", true);
                 }
@@ -125,7 +143,9 @@ Page
                         iPausePositionsIndex++;
                 }
             }
+            bLockOnCompleted = false;
 
+            pageStack.pushAttached(Qt.resolvedUrl("DiagramViewPage.qml"));
         }
     } 
 
@@ -135,24 +155,31 @@ Page
         anchors.centerIn: detailMapPage
         running: false
         size: BusyIndicatorSize.Large
-
     }
 
     Image
     {
-        anchors.top: parent.top
+        id: id_IMG_PageLocator
+        anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: Theme.paddingLarge
-        z: 2
+        anchors.bottomMargin: Theme.paddingSmall
+        visible: !bMapMaximized
         source:"../img/pagelocator_2_3.png"
+    }
+
+    PageHeader
+    {
+        id: idHeader
+        title: "Map"
+        visible: !bMapMaximized
     }
 
     MapboxMap
     {
-        id: map
-        anchors.bottom: parent.bottom
+        id: map        
+        anchors.top: bMapMaximized ? parent.top : idHeader.bottom
         width: parent.width
-        height: (parent.height / 10) * 9
+        height: bMapMaximized ? parent.height : (parent.height / 2)
         center: QtPositioning.coordinate(51.9854, 9.2743)
         zoomLevel: 8.0
         minimumZoomLevel: 0
@@ -269,130 +296,167 @@ Page
                 map.center = geocoordinate;
             }
         }
+
+        Item
+        {
+            id: scaleBar
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Theme.paddingLarge
+            anchors.left: parent.left
+            anchors.leftMargin: Theme.paddingLarge
+            height: base.height + text.height + text.anchors.bottomMargin
+            opacity: 0.9
+            visible: scaleWidth > 0
+            z: 100
+
+            property real   scaleWidth: 0
+            property string text: ""
+
+            Rectangle {
+                id: base
+                anchors.bottom: scaleBar.bottom
+                color: "#98CCFD"
+                height: Math.floor(Theme.pixelRatio * 3)
+                width: scaleBar.scaleWidth
+            }
+
+            Rectangle {
+                anchors.bottom: base.top
+                anchors.left: base.left
+                color: "#98CCFD"
+                height: Math.floor(Theme.pixelRatio * 10)
+                width: Math.floor(Theme.pixelRatio * 3)
+            }
+
+            Rectangle {
+                anchors.bottom: base.top
+                anchors.right: base.right
+                color: "#98CCFD"
+                height: Math.floor(Theme.pixelRatio * 10)
+                width: Math.floor(Theme.pixelRatio * 3)
+            }
+
+            Text {
+                id: text
+                anchors.bottom: base.top
+                anchors.bottomMargin: Math.floor(Theme.pixelRatio * 4)
+                anchors.horizontalCenter: base.horizontalCenter
+                color: "black"
+                font.bold: true
+                font.family: "sans-serif"
+                font.pixelSize: Math.round(Theme.pixelRatio * 18)
+                horizontalAlignment: Text.AlignHCenter
+                text: scaleBar.text
+            }
+
+            function siground(x, n) {
+                // Round x to n significant digits.
+                var mult = Math.pow(10, n - Math.floor(Math.log(x) / Math.LN10) - 1);
+                return Math.round(x * mult) / mult;
+            }
+
+            function roundedDistace(dist)
+            {
+                // Return dist rounded to an even amount of user-visible units,
+                // but keeping the value as meters.
+
+                if (settings.measureSystem === 0)
+                {
+                    return siground(dist, 1);
+                }
+                else
+                {
+                    return dist >= 1609.34 ?
+                        siground(dist / 1609.34, 1) * 1609.34 :
+                        siground(dist * 3.28084, 1) / 3.28084;
+                }
+            }
+
+            function update()
+            {
+                // Update scalebar for current zoom level and latitude.
+
+                var meters = map.metersPerPixel * map.width / 4;
+                var dist = scaleBar.roundedDistace(meters);
+
+                scaleBar.scaleWidth = dist / map.metersPerPixel
+
+                console.log("dist: " + dist);
+
+                var sUnit = "";
+                var iDistance = 0;
+
+                if (settings.measureSystem === 0)
+                {
+                    sUnit = "m";
+                    iDistance = Math.ceil(dist);
+                    if (dist >= 1000)
+                    {
+                        sUnit = "km";
+                        iDistance = dist / 1000.0;
+                        iDistance = Math.ceil(iDistance);
+                    }
+                }
+                else
+                {
+                    dist = dist * 3.28084;  //convert to feet
+
+                    sUnit = "ft";
+                    iDistance = Math.ceil(dist);
+                    if (dist >= 5280)
+                    {
+                        sUnit = "mi";
+                        iDistance = dist / 5280.0;
+                        iDistance = Math.ceil(iDistance);
+                    }
+                }
+
+                scaleBar.text = iDistance.toString() + " " + sUnit
+            }
+
+            Connections
+            {
+                target: map
+                onMetersPerPixelChanged: scaleBar.update()
+                onWidthChanged: scaleBar.update()
+            }
+        }
     }
 
-    Item
+    Label
     {
-        id: scaleBar
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: Theme.paddingLarge
-        anchors.left: parent.left
-        anchors.leftMargin: Theme.paddingLarge
-        height: base.height + text.height + text.anchors.bottomMargin
-        opacity: 0.9
-        visible: scaleWidth > 0
-        z: 100
+        width: parent.width
+        visible: !bMapMaximized
+        anchors.bottom: id_SliderMain.top
+        anchors.bottomMargin: Theme.paddingMedium
+        text: "Heartrate: " + sCurrentHeartrate + " bmp"
+    }
 
-        property real   scaleWidth: 0
-        property string text: ""
-
-        Rectangle {
-            id: base
-            anchors.bottom: scaleBar.bottom
-            color: "#98CCFD"
-            height: Math.floor(Theme.pixelRatio * 3)
-            width: scaleBar.scaleWidth
-        }
-
-        Rectangle {
-            anchors.bottom: base.top
-            anchors.left: base.left
-            color: "#98CCFD"
-            height: Math.floor(Theme.pixelRatio * 10)
-            width: Math.floor(Theme.pixelRatio * 3)
-        }
-
-        Rectangle {
-            anchors.bottom: base.top
-            anchors.right: base.right
-            color: "#98CCFD"
-            height: Math.floor(Theme.pixelRatio * 10)
-            width: Math.floor(Theme.pixelRatio * 3)
-        }
-
-        Text {
-            id: text
-            anchors.bottom: base.top
-            anchors.bottomMargin: Math.floor(Theme.pixelRatio * 4)
-            anchors.horizontalCenter: base.horizontalCenter
-            color: "black"
-            font.bold: true
-            font.family: "sans-serif"
-            font.pixelSize: Math.round(Theme.pixelRatio * 18)
-            horizontalAlignment: Text.AlignHCenter
-            text: scaleBar.text
-        }
-
-        function siground(x, n) {
-            // Round x to n significant digits.
-            var mult = Math.pow(10, n - Math.floor(Math.log(x) / Math.LN10) - 1);
-            return Math.round(x * mult) / mult;
-        }
-
-        function roundedDistace(dist)
+    Slider
+    {
+        id: id_SliderMain
+        width: parent.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        visible: !bMapMaximized
+        anchors.bottom: id_IMG_PageLocator.top
+        valueText: sCurrentDistance + "km"
+        label: "Label"
+        minimumValue: 0
+        maximumValue: JSTools.trackPointsTemporary.length
+        onValueChanged:
         {
-            // Return dist rounded to an even amount of user-visible units,
-            // but keeping the value as meters.
+            if (bLockOnCompleted)
+                return;
 
-            if (settings.measureSystem === 0)
-            {
-                return siground(dist, 1);
-            }
-            else
-            {
-                return dist >= 1609.34 ?
-                    siground(dist / 1609.34, 1) * 1609.34 :
-                    siground(dist * 3.28084, 1) / 3.28084;
-            }          
+            map.updateSourcePoint(sCurrentPosition, JSTools.trackPointsTemporary[value.toFixed(0)]);
+
+            sCurrentDistance= JSTools.arrayDataPoints[value.toFixed(0)].distance.toString();
+            sCurrentHeartrate= JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString();
+            sCurrentElevation= JSTools.arrayDataPoints[value.toFixed(0)].elevation.toString();
+
+            console.log("sCurrentDistance: " + sCurrentDistance);
+            console.log("sCurrentHeartrate: " + sCurrentHeartrate);
+            console.log("sCurrentElevation: " + sCurrentElevation);
         }
-
-        function update()
-        {
-            // Update scalebar for current zoom level and latitude.
-
-            var meters = map.metersPerPixel * map.width / 4;
-            var dist = scaleBar.roundedDistace(meters);
-
-            scaleBar.scaleWidth = dist / map.metersPerPixel
-
-            console.log("dist: " + dist);
-
-            var sUnit = "";
-            var iDistance = 0;
-
-            if (settings.measureSystem === 0)
-            {
-                sUnit = "m";
-                iDistance = Math.ceil(dist);
-                if (dist >= 1000)
-                {
-                    sUnit = "km";
-                    iDistance = dist / 1000.0;
-                    iDistance = Math.ceil(iDistance);
-                }
-            }
-            else
-            {
-                dist = dist * 3.28084;  //convert to feet
-
-                sUnit = "ft";
-                iDistance = Math.ceil(dist);
-                if (dist >= 5280)
-                {
-                    sUnit = "mi";
-                    iDistance = dist / 5280.0;
-                    iDistance = Math.ceil(iDistance);
-                }
-            }
-
-            scaleBar.text = iDistance.toString() + " " + sUnit
-        }
-
-        Connections
-        {
-            target: map
-            onMetersPerPixelChanged: scaleBar.update()
-            onWidthChanged: scaleBar.update()
-        }
-    }   
+    }
 }

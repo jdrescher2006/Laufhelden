@@ -523,6 +523,10 @@
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
         <translation>Rockpool måste vara installerat&lt;br&gt;lägst version 1.4-4&lt;br&gt;Installerad version är: </translation>
     </message>
+    <message>
+        <source>Empty</source>
+        <translation type="unfinished">Tomt</translation>
+    </message>
 </context>
 <context>
     <name>PreRecordPage</name>

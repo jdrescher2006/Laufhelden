@@ -523,6 +523,10 @@
         <source>3 PACE/SPEED field:</source>
         <translation>3 lépés/sebesség:</translation>
     </message>
+    <message>
+        <source>Empty</source>
+        <translation type="unfinished">Üres</translation>
+    </message>
 </context>
 <context>
     <name>PreRecordPage</name>

@@ -1,3 +1,11 @@
+* Sun Nov 11 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.3-1
+- 4 pull requests by martonmiklos
+- TODO:
+    - choose pebble if there are multiple ones
+    - solve bug: heartrate is not played in cycle audiotrainer
+    - split view page to multiple pages
+    - heartrate and pauses are not shown on detailedviewpage
+
 * Fri Sep 14 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.2-1
 - view current week workouts and distance on main page
 - fixed a bug when uploading workouts to sports tracker by @niemisenjussi

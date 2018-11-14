@@ -523,6 +523,10 @@
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
         <translation>Debe instalarse al menos&lt;br&gt;la versión 1.4-1 de Rockpool.&lt;br&gt;La versión instalada es: </translation>
     </message>
+    <message>
+        <source>Empty</source>
+        <translation type="unfinished">Vacío</translation>
+    </message>
 </context>
 <context>
     <name>PreRecordPage</name>
