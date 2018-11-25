@@ -155,9 +155,13 @@ ApplicationWindow
         {
             fncCheckHeartrate(sData);
         }
-        onSigBTLEDataReady:   // This gets data from BTLE devices
+        onSigHRMDataReady:   // This gets HRM data from BTLE devices
         {
             fncCheckHeartrateBTLE(sData)
+        }
+        onSigBATDataReady:   // This gets battery data from BTLE devices
+        {
+            fncCheckBatteryLevelBTLE(sData)
         }
 
         onSigConnected:
@@ -323,13 +327,14 @@ ApplicationWindow
 
     function fncCheckHeartrateBTLE(sData)
     {
-        var sHeartRateTemp = 0;
-        var sBatteryLevelTemp = 0;
         //Send heart rate to trackrecorderiHeartRate so that it can be included into the gpx file.
         recorder.vSetCurrentHeartRate(parseInt(sData));
-
         sHeartRate = sData;
-        sBatteryLevel = sBatteryLevelTemp;
+   }
+
+    function fncCheckBatteryLevelBTLE(sData)
+    {
+        sBatteryLevel = sData;
     }
 
     function fncShowMessage(iType ,sMessage, iTime)

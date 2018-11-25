@@ -77,7 +77,6 @@ public:
     Device();
     ~Device();
     QVariant getDevices();
-    QVariant getServices();
     QString getUpdate();
     bool state();
     bool hasControllerError() const;
@@ -87,8 +86,8 @@ public:
 
 public slots:
     void startDeviceDiscovery();
+    void stopDeviceDiscovery();
     void scanServices(const QString &address);
-
     void disconnectFromDevice();
 
 private slots:
@@ -107,12 +106,9 @@ private slots:
     // QLowEnergyService related
     void hrmServiceStateChanged(QLowEnergyService::ServiceState s);
     void batServiceStateChanged(QLowEnergyService::ServiceState s);
-    void updateHeartRateValue(const QLowEnergyCharacteristic &c, const QByteArray &value);
-    void updateBatteryLevelValue(const QLowEnergyCharacteristic &c, const QByteArray &value);
-    void hrmConfirmedDescriptorWrite(const QLowEnergyDescriptor &d, const QByteArray &value);
+    void updateValues(const QLowEnergyCharacteristic &c, const QByteArray &value);
 
-
-Q_SIGNALS:
+signals:
     void devicesUpdated();
     void servicesUpdated();
     void characteristicsUpdated();
@@ -121,8 +117,11 @@ Q_SIGNALS:
     void stateChanged();
     void sigBTLEDataReady(int sData);
     void sigBTLEBatteryLevelReady(int sData);
+    void sigBATDataReady(int sData);
+    void sigHRMDataReady(int sData);
     void sigConnected();
     void sigDisconnected();
+    void sigError(QString sError);
     void randomAddressChanged();
     void deviceFound(QString sName, QString sAddress);
 
@@ -132,7 +131,6 @@ private:
     QBluetoothDeviceDiscoveryAgent *discoveryAgent;
     DeviceInfo currentDevice;
     QList<QObject*> devices;
-    QList<QObject*> m_services;
     QString m_previousAddress;
     QString m_message;
     bool connected;

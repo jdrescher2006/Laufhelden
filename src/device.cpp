@@ -49,6 +49,15 @@
 **
 ****************************************************************************/
 
+/***************************************************************************
+ * This file contains bluetooth functions for Laufhelden, based on the QT
+ * example files.
+ * Some parts are also taken from the original Laufhelden bluetooth.cpp
+ * by Jens Drescher
+ * (c) 2018 Thomas Michel <tom@michel.ruhr>
+ * *************************************************************************/
+
+
 #include "device.h"
 
 #include <qbluetoothaddress.h>
@@ -68,11 +77,12 @@ Device::Device():
     discoveryAgent = new QBluetoothDeviceDiscoveryAgent();
     connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::deviceDiscovered,
             this, &Device::addDevice);
+    //TODO: Error handling
     //connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::error,
     //        this, &Device::deviceScanError);
     connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::finished, this, &Device::deviceScanFinished);
 
-    //startDeviceDiscovery();
+    startDeviceDiscovery();
 }
 
 Device::~Device()
@@ -80,12 +90,15 @@ Device::~Device()
     delete discoveryAgent;
     delete controller;
     qDeleteAll(devices);
-    qDeleteAll(m_services);
     devices.clear();
 }
 
 void Device::startDeviceDiscovery()
 {
+    if (m_deviceScanState) {
+        m_deviceScanState = false;
+        discoveryAgent->stop();
+    }
     qDeleteAll(devices);
     devices.clear();
     emit devicesUpdated();
@@ -95,8 +108,18 @@ void Device::startDeviceDiscovery()
 
     if (discoveryAgent->isActive()) {
         m_deviceScanState = true;
-        Q_EMIT stateChanged();
+        emit stateChanged();
     }
+}
+
+void Device::stopDeviceDiscovery()
+{
+    qDebug() << "Scanning for devices stopped...";
+    discoveryAgent->stop();
+
+    m_deviceScanState = false;
+    emit scanFinished();
+    emit stateChanged();
 }
 
 void Device::addDevice(const QBluetoothDeviceInfo &info)
@@ -124,10 +147,6 @@ QVariant Device::getDevices()
     return QVariant::fromValue(devices);
 }
 
-QVariant Device::getServices()
-{
-    return QVariant::fromValue(m_services);
-}
 
 QString Device::getUpdate()
 {
@@ -162,10 +181,6 @@ void Device::scanServices(const QString &address)
         qWarning() << "Not a valid device";
         return;
     }
-
-    qDeleteAll(m_services);
-    m_services.clear();
-    emit servicesUpdated();
 
     if (controller && m_previousAddress != currentDevice.getAddress()) {
         qDebug() << "Disconnecting from previous device...";
@@ -229,15 +244,10 @@ void Device::serviceScanDone()
              qWarning() << "Cannot create service for HRM";
              return;
          }
-         if (m_HRMservice) {
-             connect(m_HRMservice, &QLowEnergyService::stateChanged,
-                     this, &Device::hrmServiceStateChanged);
+         connect(m_HRMservice, &QLowEnergyService::stateChanged,
+                 this, &Device::hrmServiceStateChanged);
 
-             //connect(m_HRMservice, &QLowEnergyService::descriptorWritten,
-             //        this, &Device::hrmConfirmedDescriptorWrite);
-
-             m_HRMservice->discoverDetails();
-         }
+         m_HRMservice->discoverDetails();
      }
     if (m_batteryStateFound)
     {
@@ -246,16 +256,11 @@ void Device::serviceScanDone()
              qWarning() << "Cannot create service for Battery Level";
              return;
          }
-         if (m_BATservice) {
-             connect(m_BATservice, &QLowEnergyService::stateChanged,
-                     this, &Device::batServiceStateChanged);
-
-             //connect(m_HRMservice, &QLowEnergyService::descriptorWritten,
-             //        this, &Device::hrmConfirmedDescriptorWrite);
-
-             m_BATservice->discoverDetails();
-         }
-     }}
+         connect(m_BATservice, &QLowEnergyService::stateChanged,
+                 this, &Device::batServiceStateChanged);
+         m_BATservice->discoverDetails();
+     }
+}
 
 void Device::deviceConnected()
 {
@@ -270,7 +275,7 @@ void Device::deviceConnected()
 void Device::errorReceived(QLowEnergyController::Error /*error*/)
 {
     qWarning() << "Error: " << controller->errorString();
-    setUpdate(QString("Back\n(%1)").arg(controller->errorString()));
+    emit sigError(QString("(%1)").arg(controller->errorString()));
 }
 
 void Device::setUpdate(QString message)
@@ -320,7 +325,7 @@ void Device::hrmServiceStateChanged(QLowEnergyService::ServiceState s)
         {
             // subscribe to Heart Rate service
             connect(m_HRMservice, &QLowEnergyService::characteristicChanged,
-                    this, &Device::updateHeartRateValue);
+                    this, &Device::updateValues);
             m_HRMservice->writeDescriptor(m_notificationDesc, QByteArray::fromHex("0100"));
         }
 
@@ -353,9 +358,13 @@ void Device::batServiceStateChanged(QLowEnergyService::ServiceState s)
         QLowEnergyDescriptor notificationDesc = hrChar.descriptor(QBluetoothUuid::ClientCharacteristicConfiguration);
         if (notificationDesc.isValid())
         {
+            qDebug() << "Subscribing to Battery Service";
             // subscribe to Battery level service
             connect(m_BATservice, &QLowEnergyService::characteristicChanged,
-                    this, &Device::updateBatteryLevelValue);
+                    this, &Device::updateValues);
+            //TEmporary for testing:
+            connect(m_BATservice, &QLowEnergyService::characteristicRead,
+                    this, &Device::updateValues);
             m_BATservice->writeDescriptor(notificationDesc, QByteArray::fromHex("0100"));
         }
 
@@ -369,56 +378,38 @@ void Device::batServiceStateChanged(QLowEnergyService::ServiceState s)
     //emit aliveChanged();
 }
 
-void Device::updateHeartRateValue(const QLowEnergyCharacteristic &c, const QByteArray &value)
+void Device::updateValues(const QLowEnergyCharacteristic &c, const QByteArray &value)
 {
-    // ignore any other characteristic change -> shouldn't really happen though
-    if (c.uuid() != QBluetoothUuid(QBluetoothUuid::HeartRateMeasurement))
-        return;
-
     const quint8 *data = reinterpret_cast<const quint8 *>(value.constData());
-    quint8 flags = data[0];
 
-    //Heart Rate
-    int hrvalue = 0;
-    if (flags & 0x1) // HR 16 bit? otherwise 8 bit
-        hrvalue = (int)qFromLittleEndian<quint16>(data[1]);
-    else
-        hrvalue = (int)data[1];
+    // Heart Rate Update
+    if (c.uuid() == QBluetoothUuid(QBluetoothUuid::HeartRateMeasurement))
+    {
+        const quint8 *data = reinterpret_cast<const quint8 *>(value.constData());
+        quint8 flags = data[0];
 
-    qDebug() << "Current Heart Rate " << hrvalue;
+        //Heart Rate
+        int hrvalue = 0;
+        if (flags & 0x1) // HR 16 bit? otherwise 8 bit
+            hrvalue = (int)qFromLittleEndian<quint16>(data[1]);
+        else
+            hrvalue = (int)data[1];
 
-    emit this->sigBTLEDataReady(hrvalue);
-}
-
-void Device::updateBatteryLevelValue(const QLowEnergyCharacteristic &c, const QByteArray &value)
-{
-    // ignore any other characteristic change -> shouldn't really happen though
-    if (c.uuid() != QBluetoothUuid(QBluetoothUuid::BatteryService))
-        return;
-
-    const quint8 *data = reinterpret_cast<const quint8 *>(value.constData());
-    quint8 flags = data[0];
-
-    //Battery Level
-    int batvalue = 0;
-    if (flags & 0x1) //  16 bit? otherwise 8 bit
-        batvalue = (int)qFromLittleEndian<quint16>(data[1]);
-    else
-        batvalue = (int)data[1];
-
-    qDebug() << "Current battery Level " << batvalue;
-
-    emit this->sigBTLEBatteryLevelReady(batvalue);
-}
-void Device::hrmConfirmedDescriptorWrite(const QLowEnergyDescriptor &d, const QByteArray &value)
-{
-    if (d.isValid() && d == m_notificationDesc && value == QByteArray::fromHex("0000")) {
-        //disabled notifications -> assume disconnect intent
-        controller->disconnectFromDevice();
-        delete m_HRMservice;
-        m_HRMservice = 0;
+        qDebug() << "Current Heart Rate " << hrvalue;
+        emit this->sigHRMDataReady(hrvalue);
     }
+
+    // Battery Level Update
+    if (c.uuid() == QBluetoothUuid(QBluetoothUuid::BatteryLevel))
+    {
+        quint8 batvalue = data[0];
+        qDebug() << "Current battery Level " << (int)batvalue;
+        emit this->sigBATDataReady(batvalue);
+    }
+
+
 }
+
 void Device::deviceScanError(QBluetoothDeviceDiscoveryAgent::Error error)
 {
     if (error == QBluetoothDeviceDiscoveryAgent::PoweredOffError)
