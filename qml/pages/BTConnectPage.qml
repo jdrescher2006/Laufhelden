@@ -26,7 +26,7 @@ Page {
         }
         if (status === PageStatus.Inactive)
         {
-            if (bHRMConnected) {id_BluetoothData.disconnect();}
+            if (bHRMConnected) {id_Device.disconnect();}
 
             sHeartRate: ""
             sBatteryLevel: ""
@@ -36,7 +36,7 @@ Page {
 
     Connections
     {
-        target: id_BluetoothConnection
+        target: id_Device
         onDeviceFound:
         {
             //Add device to data array
@@ -87,7 +87,7 @@ Page {
                     bBluetoothScanning = true;
                     SharedResources.fncDeleteDevices();
                     id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
-                    id_BluetoothConnection.vStartDeviceDiscovery();
+                    id_Device.startDeviceDiscovery();
                 }
                 Image
                 {
@@ -102,7 +102,7 @@ Page {
                 visible: bBluetoothScanning
                 onClicked:
                 {
-                    id_BluetoothConnection.vStopDeviceDiscovery();
+                    id_Device.stopDeviceDiscovery();
                 }
                 Image
                 {
@@ -153,7 +153,7 @@ Page {
                 visible: !bHRMConnected && !bHRMConnecting && sHRMAddress !== ""
                 onClicked:
                 {
-                    id_BluetoothData.connect(sHRMAddress, 1);
+                    id_Device.scanServices(sHRMAddress);
                 }
             }
             Button
@@ -163,7 +163,7 @@ Page {
                 visible: bHRMConnected && !bHRMConnecting && sHRMAddress !== ""
                 onClicked:
                 {
-                    id_BluetoothData.disconnect();                    
+                    id_Device.disconnectFromDevice();
                 }
             }
 
