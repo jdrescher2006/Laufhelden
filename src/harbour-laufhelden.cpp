@@ -29,6 +29,7 @@
 #include "settings.h"
 #include "bluetoothconnection.h"
 #include "bluetoothdata.h"
+#include "device.h"
 #include "logwriter.h"
 #include "plotwidget.h"
 #include "light.h"
@@ -60,7 +61,8 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<TrackLoader>("harbour.laufhelden", 1, 0, "TrackLoader");
     qmlRegisterType<Settings>("harbour.laufhelden", 1, 0, "Settings");
     qmlRegisterType<BluetoothConnection,1>("harbour.laufhelden", 1, 0, "BluetoothConnection");
-    qmlRegisterType<BluetoothData,1>("harbour.laufhelden", 1, 0, "BluetoothData");
+    //qmlRegisterType<BluetoothData,1>("harbour.laufhelden", 1, 0, "BluetoothData");
+    qmlRegisterType<Device,1>("harbour.laufhelden",1,0,"Device");
     qmlRegisterType<LogWriter,1>("harbour.laufhelden", 1, 0, "LogWriter");
     qmlRegisterType<PlotWidget,1>("harbour.laufhelden", 1, 0, "PlotWidget");
     qmlRegisterType<Light,1>("harbour.laufhelden", 1, 0, "Light");

@@ -71,9 +71,8 @@
 #include <QtEndian>
 
 Device::Device():
-    connected(false), controller(0), m_deviceScanState(false), randomAddress(false)
+    connected(false), controller(0), m_deviceScanState(false), randomAddress(true), m_hrmTimer(0)
 {
-    //! [les-devicediscovery-1]
     discoveryAgent = new QBluetoothDeviceDiscoveryAgent();
     connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::deviceDiscovered,
             this, &Device::addDevice);
@@ -182,12 +181,16 @@ void Device::scanServices(const QString &address)
         return;
     }
 
-    if (controller && m_previousAddress != currentDevice.getAddress()) {
+    if (controller)  {
         qDebug() << "Disconnecting from previous device...";
         controller->disconnectFromDevice();
-        delete controller;
+        controller->deleteLater();
         controller = 0;
     }
+
+    //If new device, set RandomAddress back to default
+    if (m_previousAddress != currentDevice.getAddress())
+        randomAddress = true;
 
     if (!controller) {
         qDebug() << "Trying to connect to " << currentDevice.getName();
@@ -202,11 +205,8 @@ void Device::scanServices(const QString &address)
         connect(controller, &QLowEnergyController::discoveryFinished,
                 this, &Device::serviceScanDone);
         connect(controller, static_cast<void (QLowEnergyController::*)(QLowEnergyController::Error)>(&QLowEnergyController::error),
-                this, [this](QLowEnergyController::Error error) {
-            Q_UNUSED(error);
-            qDebug()<< "Cannot connect to remote device. " << error;
-            // This would probably the moment to try to connect via non BTLE  Bluetooth
-        });
+                //this, [this](QLowEnergyController::Error error)
+                this, &Device::errorReceived);
 
     }
 
@@ -219,16 +219,26 @@ void Device::scanServices(const QString &address)
     m_previousAddress = currentDevice.getAddress();
 }
 
+
 void Device::lowEnergyServiceDiscovered(const QBluetoothUuid &serviceUuid)
 {
 
     if (serviceUuid == QBluetoothUuid(QBluetoothUuid::HeartRate)) {
         qDebug() << "Heart Rate Monitor Found";
         m_heartRateFound = true;
+        return;
     }
     if (serviceUuid == QBluetoothUuid(QBluetoothUuid::BatteryService)) {
         qDebug() << "Battery Level Found";
         m_batteryStateFound = true;
+        return;
+    }
+    // This is for debug purposes only:
+    QLowEnergyService *tmpService = controller->createServiceObject((serviceUuid));
+    if (tmpService)
+    {
+        qDebug() << "Service found: " << tmpService->serviceName();
+        delete tmpService;
     }
 
 }
@@ -239,26 +249,26 @@ void Device::serviceScanDone()
     // Now we connect to the HRM and Battery Status
     if (m_heartRateFound)
     {
-         m_HRMservice = controller->createServiceObject(QBluetoothUuid(QBluetoothUuid::HeartRate),this);
-         if (!m_HRMservice) {
+         m_hrmService = controller->createServiceObject(QBluetoothUuid(QBluetoothUuid::HeartRate),this);
+         if (!m_hrmService) {
              qWarning() << "Cannot create service for HRM";
              return;
          }
-         connect(m_HRMservice, &QLowEnergyService::stateChanged,
+         connect(m_hrmService, &QLowEnergyService::stateChanged,
                  this, &Device::hrmServiceStateChanged);
 
-         m_HRMservice->discoverDetails();
+         m_hrmService->discoverDetails();
      }
     if (m_batteryStateFound)
     {
-         m_BATservice = controller->createServiceObject(QBluetoothUuid(QBluetoothUuid::BatteryService),this);
-         if (!m_BATservice) {
+         m_batService = controller->createServiceObject(QBluetoothUuid(QBluetoothUuid::BatteryService),this);
+         if (!m_batService) {
              qWarning() << "Cannot create service for Battery Level";
              return;
          }
-         connect(m_BATservice, &QLowEnergyService::stateChanged,
+         connect(m_batService, &QLowEnergyService::stateChanged,
                  this, &Device::batServiceStateChanged);
-         m_BATservice->discoverDetails();
+         m_batService->discoverDetails();
      }
 }
 
@@ -274,8 +284,22 @@ void Device::deviceConnected()
 
 void Device::errorReceived(QLowEnergyController::Error /*error*/)
 {
-    qWarning() << "Error: " << controller->errorString();
+    qWarning() << "Error connecting to device: " << controller->errorString();
     emit sigError(QString("(%1)").arg(controller->errorString()));
+    if (isRandomAddress())
+    {
+        emit sigError("Cannot connect: "+ controller->errorString());
+
+        //try to connect using public address now
+        qDebug() << "Trying public address now";
+        randomAddress = false;
+        scanServices(currentDevice.getAddress());
+    } else {
+        //neither public nor random address works, so let's try to use classic connect
+        // first set random access back to default to avoid failures next time
+        randomAddress = true;
+        // TODO: classic connect
+    }
 }
 
 void Device::setUpdate(QString message)
@@ -291,6 +315,8 @@ void Device::disconnectFromDevice()
     // and thus allowing UI to keep track of controller progress in addition to
     // device scan progress
 
+    if (!controller)
+        return;
     if (controller->state() != QLowEnergyController::UnconnectedState)
         controller->disconnectFromDevice();
     else
@@ -300,6 +326,14 @@ void Device::disconnectFromDevice()
 void Device::deviceDisconnected()
 {
     qWarning() << "Disconnect from device";
+    /*
+    if (m_hrmTimer)
+    {
+        m_hrmTimer->stop();
+        delete m_hrmTimer;
+        m_hrmTimer=0;
+    }
+    */
     emit sigDisconnected();
 }
 
@@ -312,23 +346,12 @@ void Device::hrmServiceStateChanged(QLowEnergyService::ServiceState s)
         break;
     case QLowEnergyService::ServiceDiscovered:
     {
-        qDebug() << "Service discovered.";
-        // check for Heart Rate charactereistic available
-        const QLowEnergyCharacteristic hrChar = m_HRMservice->characteristic(QBluetoothUuid(QBluetoothUuid::HeartRateMeasurement));
-        if (!hrChar.isValid()) {
-            qDebug() << "HR Data not found.";
-            break;
-        }
-        // check for Heart Rate descriptor availabily
-        m_notificationDesc = hrChar.descriptor(QBluetoothUuid::ClientCharacteristicConfiguration);
-        if (m_notificationDesc.isValid())
-        {
-            // subscribe to Heart Rate service
-            connect(m_HRMservice, &QLowEnergyService::characteristicChanged,
-                    this, &Device::updateValues);
-            m_HRMservice->writeDescriptor(m_notificationDesc, QByteArray::fromHex("0100"));
-        }
-
+        // call subscribe to HRM periodically as it sometimes stops sending updates
+        // this is not ideal but have found no better way yet to get a stable heart rate input
+        //m_hrmTimer = new QTimer(this);
+        //connect  (m_hrmTimer,&QTimer::timeout, this, &Device::subscribeToHRM);
+        subscribeToHRM();
+        //m_hrmTimer->start(10000);
         break;
     }
     default:
@@ -337,6 +360,29 @@ void Device::hrmServiceStateChanged(QLowEnergyService::ServiceState s)
     }
 
     //emit aliveChanged();
+}
+
+void Device::subscribeToHRM()
+{
+    if (!m_hrmService) {
+        return;
+    }
+    // check for Heart Rate charactereistic available
+    const QLowEnergyCharacteristic hrChar = m_hrmService->characteristic(QBluetoothUuid(QBluetoothUuid::HeartRateMeasurement));
+    if (!hrChar.isValid()) {
+        qDebug() << "HR Data not found.";
+    }
+    // check for Heart Rate descriptor availabily
+    m_notificationDesc = hrChar.descriptor(QBluetoothUuid::ClientCharacteristicConfiguration);
+    if (m_notificationDesc.isValid())
+    {
+        // subscribe to Heart Rate service
+        qDebug() << "Subscribing to HRM Service";
+        connect(m_hrmService, &QLowEnergyService::characteristicChanged,
+                this, &Device::updateValues);
+        m_hrmService->writeDescriptor(m_notificationDesc, QByteArray::fromHex("0100"));
+    }
+
 }
 
 void Device::batServiceStateChanged(QLowEnergyService::ServiceState s)
@@ -349,7 +395,7 @@ void Device::batServiceStateChanged(QLowEnergyService::ServiceState s)
     {
         qDebug() << "Service discovered.";
         // check for Battery charactereistic available
-        const QLowEnergyCharacteristic hrChar = m_BATservice->characteristic(QBluetoothUuid(QBluetoothUuid::BatteryLevel));
+        const QLowEnergyCharacteristic hrChar = m_batService->characteristic(QBluetoothUuid(QBluetoothUuid::BatteryLevel));
         if (!hrChar.isValid()) {
             qDebug() << "Battery Data not found.";
             break;
@@ -360,12 +406,12 @@ void Device::batServiceStateChanged(QLowEnergyService::ServiceState s)
         {
             qDebug() << "Subscribing to Battery Service";
             // subscribe to Battery level service
-            connect(m_BATservice, &QLowEnergyService::characteristicChanged,
+            connect(m_batService, &QLowEnergyService::characteristicChanged,
                     this, &Device::updateValues);
             //TEmporary for testing:
-            connect(m_BATservice, &QLowEnergyService::characteristicRead,
-                    this, &Device::updateValues);
-            m_BATservice->writeDescriptor(notificationDesc, QByteArray::fromHex("0100"));
+            //connect(m_batService, &QLowEnergyService::characteristicRead,
+            //        this, &Device::updateValues);
+            m_batService->writeDescriptor(notificationDesc, QByteArray::fromHex("0100"));
         }
 
         break;

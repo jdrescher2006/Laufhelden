@@ -59,6 +59,7 @@
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QLowEnergyController>
 #include <QBluetoothServiceInfo>
+#include <QTimer>
 #include "deviceinfo.h"
 #include "serviceinfo.h"
 
@@ -106,6 +107,7 @@ private slots:
     // QLowEnergyService related
     void hrmServiceStateChanged(QLowEnergyService::ServiceState s);
     void batServiceStateChanged(QLowEnergyService::ServiceState s);
+    void subscribeToHRM();
     void updateValues(const QLowEnergyCharacteristic &c, const QByteArray &value);
 
 signals:
@@ -135,13 +137,14 @@ private:
     QString m_message;
     bool connected;
     QLowEnergyController *controller;
-    QLowEnergyService *m_HRMservice;
-    QLowEnergyService *m_BATservice;
+    QLowEnergyService *m_hrmService;
+    QLowEnergyService *m_batService;
     QLowEnergyDescriptor m_notificationDesc;
     bool m_deviceScanState;
     bool randomAddress;
     bool m_heartRateFound;
     bool m_batteryStateFound;
+    QTimer *m_hrmTimer;
 };
 
 #endif // DEVICE_H

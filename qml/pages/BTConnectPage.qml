@@ -9,6 +9,12 @@ Page {
     property bool bLockFirstPageLoad: true
     property bool bBluetoothScanning: false
     property int iScannedDevicesCount: 0
+    Component.onCompleted:                 {
+        bBluetoothScanning = true;
+        SharedResources.fncDeleteDevices();
+        id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
+        id_Device.startDeviceDiscovery();
+    }
 
     onStatusChanged:
     {       
