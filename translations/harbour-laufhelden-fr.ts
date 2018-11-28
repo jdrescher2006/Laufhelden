@@ -5,7 +5,7 @@
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation>A propos de Laufhelden</translation>
+        <translation>À propos de Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
@@ -60,11 +60,11 @@
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Annuler la recherchen</translation>
+        <translation>Annuler la recherche</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Equipement BT actuel</translation>
+        <translation>Équipement BT actuel</translation>
     </message>
     <message>
         <source>None</source>
@@ -84,11 +84,11 @@
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation>Equipements BT trouvés (appuyer pour se connecter):</translation>
+        <translation>Équipements BT trouvés (appuyer pour se connecter):</translation>
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Equipement de fréquence cardiaque</translation>
+        <translation>Équipement de fréquence cardiaque</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -185,7 +185,7 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Editer l'activité</translation>
+        <translation>Éditer l'activité</translation>
     </message>
     <message>
         <source>Workout name</source>
@@ -201,7 +201,7 @@
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation>Elevation +/-:</translation>
+        <translation>Élevation +/-:</translation>
     </message>
     <message>
         <source>Send to Strava</source>
@@ -261,7 +261,7 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>A propos</translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -297,7 +297,7 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Editer l'activité</translation>
+        <translation>Éditer l'activité</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
@@ -337,7 +337,7 @@
     </message>
     <message>
         <source>km</source>
-        <translation>Km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
@@ -345,7 +345,7 @@
     </message>
     <message>
         <source>km/h</source>
-        <translation>Km/h</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>mi/h</source>
@@ -404,7 +404,7 @@
     </message>
     <message>
         <source>Light</source>
-        <translation>Lumière</translation>
+        <translation>Clair</translation>
     </message>
     <message>
         <source>Dark</source>
@@ -453,7 +453,7 @@
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation>Utiliser le système métriquen</translation>
+        <translation>Utiliser le système métrique</translation>
     </message>
     <message>
         <source>sending data 1</source>
@@ -509,7 +509,7 @@
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>Aucune Pebble trouvée.&lt;br&gt;Installez Rockpool &lt;br&gt;puis connectez la Pebble!</translation>
+        <translation>Aucune Pebble trouvée.&lt;br&gt;Installez Rockpool&lt;br&gt;puis connectez la Pebble !</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -521,8 +521,7 @@
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation>Rockpool doit être installé&lt;br&gt;version minimale:
-1.4-1.&lt;br&gt;La version installée est: </translation>
+        <translation>Rockpool doit être installé&lt;br&gt;version minimale: 1.4-1.&lt;br&gt;La version installée est: </translation>
     </message>
     <message>
         <source>Empty</source>
@@ -702,7 +701,7 @@
     </message>
     <message>
         <source>km</source>
-        <translation>Km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>Heartrate</source>
@@ -796,7 +795,7 @@
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Equipement de fréquence cardiaque</translation>
+        <translation>Équipement de fréquence cardiaque</translation>
     </message>
     <message>
         <source>General</source>
@@ -812,7 +811,7 @@
     </message>
     <message>
         <source>App cover</source>
-        <translation>App-Cover</translation>
+        <translation>App cover</translation>
     </message>
     <message>
         <source>Pebble</source>
@@ -831,7 +830,7 @@
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>Garger la page d'enregistrement en mode portrait.</translation>
+        <translation>Garder la page d'enregistrement en mode portrait.</translation>
     </message>
     <message>
         <source>Write log file</source>
@@ -879,7 +878,7 @@
     </message>
     <message>
         <source>Imperial</source>
-        <translation>Imperial</translation>
+        <translation>Impérial</translation>
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
@@ -992,10 +991,6 @@
     <message>
         <source>Password</source>
         <translation>Mot de passe</translation>
-    </message>
-    <message>
-        <source></source>
-        <translation></translation>
     </message>
     <message>
         <source>Default Sharing option</source>
@@ -1154,7 +1149,7 @@
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation>Différentiel d'élévation::</translation>
+        <translation>Différentiel d'élévation:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
@@ -1298,7 +1293,7 @@
     </message>
     <message>
         <source>Remove profile</source>
-        <translation>Renommer le profil</translation>
+        <translation>Supprimer le profil</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
@@ -1336,47 +1331,47 @@
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation>0.5 Mi</translation>
+        <translation>0.5 mi</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation>1 Km</translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation>1 Mi</translation>
+        <translation>1 mi</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation>2 Kms</translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation>2 Mi</translation>
+        <translation>2 mi</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation>5 Kms</translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation>5 Mi</translation>
+        <translation>5 mi</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation>10 Kms</translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation>10 Mi</translation>
+        <translation>10 mi</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation>20 Kms</translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation>20 Mi</translation>
+        <translation>20 mi</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
@@ -1509,7 +1504,7 @@
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation>Language</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>English male</source>
