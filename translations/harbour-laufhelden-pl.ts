@@ -525,7 +525,7 @@
     </message>
     <message>
         <source>Empty</source>
-        <translation type="unfinished">Pusty</translation>
+        <translation>Pusty</translation>
     </message>
 </context>
 <context>
@@ -1411,7 +1411,7 @@
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zanim wartość zostanie odtworzona, zostanie ogłoszony typ wartości np. &quot;Dystans:&quot. Czyni to informacje głosową dłuższą.</translation>
     </message>
 </context>
 <context>
