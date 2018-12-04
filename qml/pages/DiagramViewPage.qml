@@ -82,7 +82,7 @@ Page
 
             PageHeader
             {
-                title: qsTr("Diagrams")
+                title: ""
             }
 
             PlotWidget

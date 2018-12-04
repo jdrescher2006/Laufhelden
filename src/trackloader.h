@@ -70,6 +70,10 @@ public:
         qreal horizontalAccuracy;
         qreal verticalAccuracy;
         uint heartrate;
+        qreal distance;
+        qreal speed;
+        qreal pace;
+        qreal duration;
     };
 
     explicit TrackLoader(QObject *parent = 0);
@@ -105,6 +109,12 @@ public:
     Q_INVOKABLE int pausePositionAt(int index);
     Q_INVOKABLE uint heartRateAt(int index);
     Q_INVOKABLE qreal elevationAt(int index);
+    Q_INVOKABLE QDateTime timeAt(int index);
+    Q_INVOKABLE qreal durationAt(int index);
+    Q_INVOKABLE qreal distanceAt(int index);
+    Q_INVOKABLE qreal speedAt(int index);
+    Q_INVOKABLE QString paceStrAt(int index);
+    Q_INVOKABLE QString paceImperialStrAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);

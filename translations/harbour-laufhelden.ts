@@ -209,13 +209,6 @@
     </message>
 </context>
 <context>
-    <name>DiagramViewPage</name>
-    <message>
-        <source>Diagrams</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
@@ -428,6 +421,17 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MapViewPage</name>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

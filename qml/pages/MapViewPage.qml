@@ -44,8 +44,12 @@ Page
 
     property string sCurrentPosition: ""
     property string sCurrentDistance: "0"
+    property string sCurrentTime: ""
+    property string sCurrentDuration: "0"
     property string sCurrentHeartrate: "-"
     property string sCurrentElevation: "-"
+    property string sCurrentSpeed: "0"
+    property string sCurrentPace: "0"
 
     property bool bMapMaximized: false
 
@@ -149,6 +153,11 @@ Page
         }
     } 
 
+    TimeFormatter
+    {
+        id: timeFormatter
+    }
+
     BusyIndicator
     {
         visible: true
@@ -170,7 +179,7 @@ Page
     PageHeader
     {
         id: idHeader
-        title: "Map"
+        title: ""
         visible: !bMapMaximized
     }
 
@@ -284,6 +293,23 @@ Page
             activeClickedGeo: true
             activeDoubleClickedGeo: true
             activePressAndHoldGeo: false
+
+            /*
+            onReleased:
+            {
+                console.log("onReleased: " + mouse);
+            }
+
+            onPressAndHold:
+            {
+                console.log("onPressAndHold: " + mouse);
+            }
+
+            onPressAndHoldGeo:
+            {
+                console.log("onPressAndHoldGeo: " + mouse);
+            }
+            */
 
             onDoubleClicked:
             {
@@ -425,6 +451,43 @@ Page
 
     Label
     {
+        id: id_LBL_Time
+        width: parent.width
+        visible: !bMapMaximized
+        anchors.bottom: id_LBL_Elevation.top
+        anchors.bottomMargin: Theme.paddingMedium
+        text: "Time: " + sCurrentTime
+    }
+    Label
+    {
+        id: id_LBL_Elevation
+        width: parent.width
+        visible: !bMapMaximized
+        anchors.bottom: id_LBL_Duration.top
+        anchors.bottomMargin: Theme.paddingMedium
+        text: "Elevation: " + sCurrentElevation
+    }
+    Label
+    {
+        id: id_LBL_Duration
+        width: parent.width
+        visible: !bMapMaximized
+        anchors.bottom: id_LBL_SpeedPace.top
+        anchors.bottomMargin: Theme.paddingMedium
+        text: "Duration: " + sCurrentDuration
+    }
+    Label
+    {
+        id: id_LBL_SpeedPace
+        width: parent.width
+        visible: !bMapMaximized
+        anchors.bottom: id_LBL_HR.top
+        anchors.bottomMargin: Theme.paddingMedium
+        text: "Speed / Pace: " + sCurrentSpeed + " / " + sCurrentPace
+    }
+    Label
+    {
+        id: id_LBL_HR
         width: parent.width
         visible: !bMapMaximized
         anchors.bottom: id_SliderMain.top
@@ -439,8 +502,8 @@ Page
         anchors.horizontalCenter: parent.horizontalCenter
         visible: !bMapMaximized
         anchors.bottom: id_IMG_PageLocator.top
-        valueText: sCurrentDistance + "km"
-        label: "Label"
+        valueText: sCurrentDistance
+        label: ""
         minimumValue: 0
         maximumValue: JSTools.trackPointsTemporary.length
         onValueChanged:
@@ -448,15 +511,28 @@ Page
             if (bLockOnCompleted)
                 return;
 
-            map.updateSourcePoint(sCurrentPosition, JSTools.trackPointsTemporary[value.toFixed(0)]);
+            map.updateSourcePoint(sCurrentPosition, JSTools.trackPointsTemporary[value.toFixed(0)]);            
 
-            sCurrentDistance= JSTools.arrayDataPoints[value.toFixed(0)].distance.toString();
-            sCurrentHeartrate= JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString();
-            sCurrentElevation= JSTools.arrayDataPoints[value.toFixed(0)].elevation.toString();
+            var dDate = new Date(JSTools.arrayDataPoints[value.toFixed(0)].time);
+            var sDate = dDate.getHours() + ":" + dDate.getMinutes() + ":" + dDate.getSeconds();
+            var iDistance = JSTools.arrayDataPoints[value.toFixed(0)].distance;
+            var iSpeed = JSTools.arrayDataPoints[value.toFixed(0)].speed;
+            var sPace = JSTools.arrayDataPoints[value.toFixed(0)].pace;
+            var sPaceImp = JSTools.arrayDataPoints[value.toFixed(0)].paceimp;
 
-            console.log("sCurrentDistance: " + sCurrentDistance);
-            console.log("sCurrentHeartrate: " + sCurrentHeartrate);
-            console.log("sCurrentElevation: " + sCurrentElevation);
+
+            sCurrentTime = sDate;
+            sCurrentDistance= (settings.measureSystem === 0) ? (iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iDistance/1000).toFixed(2) + qsTr("mi");
+            sCurrentDuration = timeFormatter.formatHMS_fromSeconds(JSTools.arrayDataPoints[value.toFixed(0)].duration);
+            sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString();
+            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toString();
+            sCurrentSpeed = (settings.measureSystem === 0) ? (iSpeed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed*3.6)).toFixed(1) + " mi/h";
+            sCurrentPace = (settings.measureSystem === 0) ? sPace + " min/km" : sPaceImp + " min/mi";
+
+
+            //console.log("sCurrentDistance: " + sCurrentDidistancestance);sPace
+            //console.log("sCurrentHeartrate: " + sCurrentHeartrate);
+            //console.log("sCurrentElevation: " + sCurrentElevation);
         }
     }
 }

@@ -299,6 +299,10 @@ void TrackLoader::load()
                                 point.heartrate = 0;
                                 point.latitude = xml.attributes().value("lat").toDouble();
                                 point.longitude = xml.attributes().value("lon").toDouble();
+                                point.distance = 0;
+                                point.speed = 0;
+                                point.pace = 0;
+                                point.duration = 0;
 
                                 //if a pause is right before this track point, we have to save the index of this track point
                                 if (bPauseFound)
@@ -359,6 +363,21 @@ void TrackLoader::load()
                                         }
                                     }
                                 }
+                                //Before the point is appended we need to calculate a few more things.
+                                //We need at least 2 points for that.
+                                if(m_points.size() > 1)
+                                {
+                                    QDateTime firstTime(m_points.at(0).time);
+                                    QDateTime secondTime(point.time);
+                                    point.duration = firstTime.secsTo(secondTime);
+                                    QGeoCoordinate first(m_points.at(m_points.size() - 1).latitude,m_points.at(m_points.size() - 1).longitude);
+                                    QGeoCoordinate second(point.latitude,point.longitude);
+                                    m_distance = m_distance + first.distanceTo(second);
+                                    point.distance = m_distance;
+                                    point.speed = m_distance / point.duration;
+                                    point.pace = point.duration / m_distance * 1000 / 60;
+                                }
+
                                 m_points.append(point);
                             }
                         }
@@ -377,6 +396,10 @@ void TrackLoader::load()
                         point.heartrate = 0;
                         point.latitude = xml.attributes().value("lat").toDouble();
                         point.longitude = xml.attributes().value("lon").toDouble();
+                        point.distance = 0;
+                        point.speed = 0;
+                        point.pace = 0;
+                        point.duration = 0;
 
                         //if a pause is right before this track point, we have to save the index of this track point
                         if (bPauseFound)
@@ -437,6 +460,22 @@ void TrackLoader::load()
                                 }
                             }
                         }
+
+                        //Before the point is appended we need to calculate a few more things.
+                        //We need at least 2 points for that.
+                        if(m_points.size() > 1)
+                        {
+                            QDateTime firstTime(m_points.at(0).time);
+                            QDateTime secondTime(point.time);
+                            point.duration = firstTime.secsTo(secondTime);                                                        
+                            QGeoCoordinate first(m_points.at(m_points.size() - 1).latitude,m_points.at(m_points.size() - 1).longitude);
+                            QGeoCoordinate second(point.latitude,point.longitude);                                                        
+                            m_distance = m_distance + first.distanceTo(second);
+                            point.distance = m_distance;
+                            point.speed = m_distance / point.duration;
+                            point.pace = point.duration / m_distance * 1000 / 60;
+                        }
+
                         m_points.append(point);
                     }
                 }
@@ -458,8 +497,12 @@ void TrackLoader::load()
 
         m_time = firstTime.toLocalTime();
 
+        qDebug()<<"m_distance first calculated: "<<QString::number(m_distance);
+
         m_distance = 0;
 
+        //TODO DEBUG!!!
+        //Das ist doch ein Fehler, diese Variable wird nirgends beschrieben!!!
         int iPausePositionsIndex = 0;
 
         qreal rElevationLastValue = 0;
@@ -469,6 +512,8 @@ void TrackLoader::load()
             //We need to find out if this point is the end of a pause
             if (this->pausePositionsCount() > 0 && i==(this->pausePositionAt(iPausePositionsIndex) + 1))
             {
+                qDebug()<<"Pause point: "<<QString::number(i);
+
                 //Here we are at a point where a pause ends. We can calculate the pause duration here
                 QDateTime firstTime(m_points.at(i-1).time);
                 QDateTime secondTime(m_points.at(i).time);
@@ -519,6 +564,8 @@ void TrackLoader::load()
         m_pace = m_duration / m_distance * 1000 / 60;
         m_heartRate = m_heartRate / m_heartRatePoints;
 
+        qDebug()<<"m_distance second calculated: "<<QString::number(m_distance);
+
         emit paceChanged();
         emit heartRateChanged();
         emit speedChanged();
@@ -543,11 +590,6 @@ void TrackLoader::load()
     emit trackChanged();
 }
 
-QString TrackLoader::filename() const
-{
-    return m_filename;
-}
-
 void TrackLoader::setFilename(QString filename) {
     if((m_filename == filename)) {
         qDebug()<<"No change in filename";
@@ -560,6 +602,11 @@ void TrackLoader::setFilename(QString filename) {
     m_loaded = false;
     m_error = false;
     load();
+}
+
+QString TrackLoader::filename() const
+{
+    return m_filename;
 }
 
 QString TrackLoader::name() {
@@ -871,10 +918,50 @@ uint TrackLoader::heartRateAt(int index)
     return m_points.at(index).heartrate;
 }
 
-
 qreal TrackLoader::elevationAt(int index)
 {
     return m_points.at(index).elevation;
+}
+
+QDateTime TrackLoader::timeAt(int index)
+{
+    return m_points.at(index).time;
+}
+qreal TrackLoader::durationAt(int index)
+{
+    return m_points.at(index).duration;
+}
+qreal TrackLoader::distanceAt(int index)
+{
+    return m_points.at(index).distance;
+}
+qreal TrackLoader::speedAt(int index)
+{
+    return m_points.at(index).speed;
+}
+QString TrackLoader::paceStrAt(int index)
+{
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_points.at(index).pace);
+    qreal rSeconds = qCeil((m_points.at(index).pace * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+QString TrackLoader::paceImperialStrAt(int index)
+{
+    qreal m_pace_imperial = m_points.at(index).pace * 1.609344;
+
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
 }
 
 int TrackLoader::fitZoomLevel(int width, int height) {
