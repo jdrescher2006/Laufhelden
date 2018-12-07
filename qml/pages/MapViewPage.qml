@@ -29,12 +29,15 @@ import com.pipacs.o2 1.0
 Page
 {
     id: detailMapPage
-    allowedOrientations: Orientation.All
+    allowedOrientations: bMapMaximized ? Orientation.All : Orientation.Portrait
     //No back navigation if the map is big
     backNavigation: !bMapMaximized    
     forwardNavigation: !bMapMaximized
 
     property var vTrackLinePoints
+
+    property bool bHeartrateSupported: false
+    property bool bPaceRelevantForWorkoutType: true
 
     //Map buttons
     property bool showSettingsButton: true
@@ -62,19 +65,23 @@ Page
             bLockOnCompleted = true;
 
             var iPausePositionsIndex = 0;
+            var trackPointsTemporary = [];
 
             console.log("settings.mapStyle: " + settings.mapStyle);
             map.styleUrl = settings.mapStyle;
 
 
             //Go through array with track data points
-            for (var i=0; i<JSTools.trackPointsTemporary.length; i++)
+            for (var i=0; i<JSTools.trackPointsAt.length; i++)
             {
+                //add this track point to temporary array. This will be used for drawing the track line
+                trackPointsTemporary.push(JSTools.trackPointsAt[i]);
+
                 //Check if we have the first data point.
                 if (i===0)
                 {                                       
                     //This is the first data point, draw the start icon
-                    map.addSourcePoint("pointStartImage",  JSTools.trackPointsTemporary[i]);
+                    map.addSourcePoint("pointStartImage",  JSTools.trackPointsAt[i]);
                     map.addImagePath("imageStartImage", Qt.resolvedUrl("../img/map_play.png"));
                     map.addLayer("layerStartLayer", {"type": "symbol", "source": "pointStartImage"});
                     map.setLayoutProperty("layerStartLayer", "icon-image", "imageStartImage");
@@ -83,18 +90,18 @@ Page
 
                     //Draw the current position icon to the first position
                     sCurrentPosition = "currentPosition";
-                    map.addSourcePoint(sCurrentPosition,  JSTools.trackPointsTemporary[i]);
+                    map.addSourcePoint(sCurrentPosition,  JSTools.trackPointsAt[i]);
                     map.addImagePath("imageCurrentImage", Qt.resolvedUrl("../img/position-circle-blue.png"));
-                    map.addLayer("layerStartLayer", {"type": "symbol", "source": sCurrentPosition});
-                    map.setLayoutProperty("layerStartLayer", "icon-image", "imageCurrentImage");
-                    map.setLayoutProperty("layerStartLayer", "icon-size", 1.0 / map.pixelRatio);
-                    map.setLayoutProperty("layerStartLayer", "icon-allow-overlap", true);
+                    map.addLayer("layerCurrentLayer", {"type": "symbol", "source": sCurrentPosition});
+                    map.setLayoutProperty("layerCurrentLayer", "icon-image", "imageCurrentImage");
+                    map.setLayoutProperty("layerCurrentLayer", "icon-size", 1.0 / map.pixelRatio);
+                    map.setLayoutProperty("layerCurrentLayer", "icon-allow-overlap", true);
                 }
 
                 //Check if we have the last data point, draw the stop icon
-                if (i===(JSTools.trackPointsTemporary.length - 1))
+                if (i===(JSTools.trackPointsAt.length - 1))
                 {
-                    map.addSourcePoint("pointEndImage",  JSTools.trackPointsTemporary[i]);
+                    map.addSourcePoint("pointEndImage",  JSTools.trackPointsAt[i]);
                     map.addImagePath("imageEndImage", Qt.resolvedUrl("../img/map_stop.png"));
                     map.addLayer("layerEndLayer", {"type": "symbol", "source": "pointEndImage"});
                     map.setLayoutProperty("layerEndLayer", "icon-image", "imageEndImage");
@@ -102,15 +109,15 @@ Page
                     map.setLayoutProperty("layerEndLayer", "icon-allow-overlap", true);
 
                     //We have to create a track line here.
-                    map.addSourceLine("lineEndTrack", JSTools.trackPointsTemporary)
+                    map.addSourceLine("lineEndTrack", trackPointsTemporary)
                     map.addLayer("layerEndTrack", { "type": "line", "source": "lineEndTrack" })
                     map.setLayoutProperty("layerEndTrack", "line-join", "round");
                     map.setLayoutProperty("layerEndTrack", "line-cap", "round");
                     map.setPaintProperty("layerEndTrack", "line-color", "red");
                     map.setPaintProperty("layerEndTrack", "line-width", 2.0);
 
-                    vTrackLinePoints = JSTools.trackPointsTemporary;
-                    map.fitView(JSTools.trackPointsTemporary);
+                    vTrackLinePoints = trackPointsTemporary;
+                    map.fitView(trackPointsTemporary);
                 }
 
                 //now check if we have a point where a pause starts
@@ -118,7 +125,7 @@ Page
                 {
                     //So this is a track point where a pause starts. The next one is the pause end!
                     //Draw the pause start icon
-                    map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(),  JSTools.trackPointsTemporary[i]);
+                    map.addSourcePoint("pointPauseStartImage" + iPausePositionsIndex.toString(),  JSTools.trackPointsAt[i]);
                     map.addImagePath("imagePauseStartImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_pause.png"));
                     map.addLayer("layerPauseStartLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseStartImage" + iPausePositionsIndex.toString()});
                     map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseStartImage" + iPausePositionsIndex.toString());
@@ -126,7 +133,7 @@ Page
                     map.setLayoutProperty("layerPauseStartLayer" + iPausePositionsIndex.toString(), "icon-allow-overlap", true);
 
                     //Draw the pause end icon
-                    map.addSourcePoint("pointPauseEndImage" + iPausePositionsIndex.toString(),  JSTools.trackPointsTemporary[i+1]);
+                    map.addSourcePoint("pointPauseEndImage" + iPausePositionsIndex.toString(),  JSTools.trackPointsAt[i+1]);
                     map.addImagePath("imagePauseEndImage" + iPausePositionsIndex.toString(), Qt.resolvedUrl("../img/map_resume.png"));
                     map.addLayer("layerPauseEndLayer" + iPausePositionsIndex.toString(), {"type": "symbol", "source": "pointPauseEndImage" + iPausePositionsIndex.toString()});
                     map.setLayoutProperty("layerPauseEndLayer" + iPausePositionsIndex.toString(), "icon-image", "imagePauseEndImage" + iPausePositionsIndex.toString());
@@ -135,12 +142,14 @@ Page
 
 
                     //We can now create the track from start or end of last pause to start of this pause
-                    map.addSourceLine("lineTrack" + iPausePositionsIndex.toString(), JSTools.trackPointsTemporary)
+                    map.addSourceLine("lineTrack" + iPausePositionsIndex.toString(), trackPointsTemporary)
                     map.addLayer("layerTrack" + iPausePositionsIndex.toString(), { "type": "line", "source": "lineTrack" + iPausePositionsIndex.toString() })
                     map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-join", "round");
                     map.setLayoutProperty("layerTrack" + iPausePositionsIndex.toString(), "line-cap", "round");
                     map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-color", "red");
                     map.setPaintProperty("layerTrack" + iPausePositionsIndex.toString(), "line-width", 2.0);
+
+                    trackPointsTemporary = [];
 
                     //set indexer to next pause position. But only if there is a further pause.
                     if ((iPausePositionsIndex + 1) < JSTools.trackPausePointsTemporary.length)
@@ -171,6 +180,8 @@ Page
         id: id_IMG_PageLocator
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
+        height: parent.width / 14
+        width: (parent.width / 14) * 3
         anchors.bottomMargin: Theme.paddingSmall
         visible: !bMapMaximized
         source:"../img/pagelocator_2_3.png"
@@ -188,7 +199,7 @@ Page
         id: map        
         anchors.top: bMapMaximized ? parent.top : idHeader.bottom
         width: parent.width
-        height: bMapMaximized ? parent.height : (parent.height / 2)
+        height: bMapMaximized ? parent.height : (parent.height / 1.7)
         center: QtPositioning.coordinate(51.9854, 9.2743)
         zoomLevel: 8.0
         minimumZoomLevel: 0
@@ -449,69 +460,93 @@ Page
         }
     }
 
-    Label
+    Item
     {
-        id: id_LBL_Time
-        width: parent.width
         visible: !bMapMaximized
-        anchors.bottom: id_LBL_Elevation.top
-        anchors.bottomMargin: Theme.paddingMedium
-        text: "Time: " + sCurrentTime
-    }
-    Label
-    {
-        id: id_LBL_Elevation
-        width: parent.width
-        visible: !bMapMaximized
-        anchors.bottom: id_LBL_Duration.top
-        anchors.bottomMargin: Theme.paddingMedium
-        text: "Elevation: " + sCurrentElevation
-    }
-    Label
-    {
-        id: id_LBL_Duration
-        width: parent.width
-        visible: !bMapMaximized
-        anchors.bottom: id_LBL_SpeedPace.top
-        anchors.bottomMargin: Theme.paddingMedium
-        text: "Duration: " + sCurrentDuration
-    }
-    Label
-    {
-        id: id_LBL_SpeedPace
-        width: parent.width
-        visible: !bMapMaximized
-        anchors.bottom: id_LBL_HR.top
-        anchors.bottomMargin: Theme.paddingMedium
-        text: "Speed / Pace: " + sCurrentSpeed + " / " + sCurrentPace
-    }
-    Label
-    {
-        id: id_LBL_HR
-        width: parent.width
-        visible: !bMapMaximized
+        anchors.top: map.bottom
         anchors.bottom: id_SliderMain.top
-        anchors.bottomMargin: Theme.paddingMedium
-        text: "Heartrate: " + sCurrentHeartrate + " bmp"
-    }
+        width: parent.width
 
+        Item
+        {
+            width: parent.width / 2
+            height: parent.height
+            anchors.left: parent.left
+            anchors.top: parent.top
+
+            Column
+            {
+                anchors.top: parent.top
+                anchors.topMargin: Theme.paddingMedium
+                width: parent.width
+
+                Label
+                {
+                    width: parent.width
+                    text: qsTr("Time: ") + sCurrentTime
+                    anchors.leftMargin: Theme.paddingSmall
+                }
+                Label
+                {
+                    width: parent.width
+                    text: qsTr("Duration: ") + sCurrentDuration
+                    anchors.leftMargin: Theme.paddingSmall
+                }
+                Label
+                {
+                    width: parent.width
+                    text: qsTr("Elevation: ") + sCurrentElevation
+                    anchors.leftMargin: Theme.paddingSmall
+                }
+            }
+        }
+        Item
+        {
+            width: parent.width / 2
+            height: parent.height
+            anchors.right: parent.right
+            anchors.top: parent.top
+
+            Column
+            {
+                anchors.top: parent.top
+                anchors.topMargin: Theme.paddingMedium
+                width: parent.width
+
+                Label
+                {
+                    width: parent.width
+                    text: qsTr("Pace: ") + sCurrentPace
+                }
+                Label
+                {
+                    width: parent.width
+                    text: qsTr("Speed: ") + sCurrentSpeed
+                }
+                Label
+                {
+                    width: parent.width
+                    text: qsTr("Heartrate: ") + sCurrentHeartrate + " bmp"
+                }
+            }
+        }
+    }
     Slider
     {
         id: id_SliderMain
+        visible: !bMapMaximized
         width: parent.width
         anchors.horizontalCenter: parent.horizontalCenter
-        visible: !bMapMaximized
         anchors.bottom: id_IMG_PageLocator.top
         valueText: sCurrentDistance
-        label: ""
         minimumValue: 0
-        maximumValue: JSTools.trackPointsTemporary.length
+        maximumValue: JSTools.trackPointsAt.length
         onValueChanged:
         {
             if (bLockOnCompleted)
                 return;
 
-            map.updateSourcePoint(sCurrentPosition, JSTools.trackPointsTemporary[value.toFixed(0)]);            
+            map.updateSourcePoint(sCurrentPosition, JSTools.trackPointsAt[value.toFixed(0)]);
 
             var dDate = new Date(JSTools.arrayDataPoints[value.toFixed(0)].time);
             var sDate = dDate.getHours() + ":" + dDate.getMinutes() + ":" + dDate.getSeconds();
@@ -525,7 +560,7 @@ Page
             sCurrentDistance= (settings.measureSystem === 0) ? (iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iDistance/1000).toFixed(2) + qsTr("mi");
             sCurrentDuration = timeFormatter.formatHMS_fromSeconds(JSTools.arrayDataPoints[value.toFixed(0)].duration);
             sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString();
-            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toString();
+            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0);
             sCurrentSpeed = (settings.measureSystem === 0) ? (iSpeed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed*3.6)).toFixed(1) + " mi/h";
             sCurrentPace = (settings.measureSystem === 0) ? sPace + " min/km" : sPaceImp + " min/mi";
 

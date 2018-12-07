@@ -54,8 +54,6 @@ class TrackLoader : public QObject
     Q_PROPERTY(qreal elevationUp READ elevationUp NOTIFY elevationChanged)
     Q_PROPERTY(qreal elevationDown READ elevationDown NOTIFY elevationChanged)
 
-
-
 public:
     struct TrackPoint
     {
@@ -125,7 +123,6 @@ public:
     Q_INVOKABLE void vWriteFile(QString sFilename);
 
     Q_INVOKABLE bool hasHeartRateData() const;
-    Q_INVOKABLE QString pauseNumbersString() const;
     Q_INVOKABLE bool paceRelevantForWorkoutType() const;
 
 signals:
@@ -175,6 +172,7 @@ private:
     QGeoCoordinate m_center;
     qreal m_elevationUp;
     qreal m_elevationDown;
+    QList<qreal> m_distancearray;
 };
 
 #endif // TRACKLOADER_H

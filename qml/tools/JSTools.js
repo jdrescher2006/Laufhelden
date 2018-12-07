@@ -38,7 +38,7 @@ var arrayDataPoints =
     //{ heartrate: 140, elevation: 354.34, distance: 232 }
 ]
 
-var trackPointsTemporary = [];
+var trackPointsAt = [];
 var trackPausePointsTemporary = [];
 
 
