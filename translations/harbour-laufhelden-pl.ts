@@ -51,52 +51,72 @@
 <context>
     <name>BTConnectPage</name>
     <message>
+        <source>Heart rate device</source>
+        <translation type="unfinished">Urządzenie do pomiaru tętna</translation>
+    </message>
+    <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Szukaj urządzeń Bluetooth</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Rozpocznij wyszukiwanie...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Przerwij wyszukiwanie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Aktualne urządzenie BT</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Nie ma żadnych urządzeń</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation>Tętno:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation> bpm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation>Poziom baterii:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Found BT devices (press to connect):</source>
-        <translation>Znaleziono urządzenia BT (dotknij aby połaczyć):</translation>
+        <source>Connection Type</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate device</source>
-        <translation>Urządzenie do pomiaru tętna</translation>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Połacz</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Rozłącz</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

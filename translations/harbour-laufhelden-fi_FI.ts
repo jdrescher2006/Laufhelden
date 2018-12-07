@@ -51,52 +51,72 @@
 <context>
     <name>BTConnectPage</name>
     <message>
+        <source>Heart rate device</source>
+        <translation type="unfinished">Sykemittari</translation>
+    </message>
+    <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Etsi Bluetooth laitteita</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Aloita skannaus...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Peruuta skannaus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Nykyiset BT laitteet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Ei yhtään</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation>Syke: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation> bpm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation>Akun varaus: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Found BT devices (press to connect):</source>
-        <translation>Löytyi BT laitteita (paina yhdistä):</translation>
+        <source>Connection Type</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate device</source>
-        <translation>Sykemittari</translation>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Yhdistä</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Katkaise</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

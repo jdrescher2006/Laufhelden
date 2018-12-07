@@ -23,8 +23,6 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/historymodel.cpp \
     src/trackloader.cpp \
     src/settings.cpp \
-    src/bluetoothconnection.cpp \
-    src/bluetoothdata.cpp \
     src/logwriter.cpp \
     src/plotwidget.cpp \
     src/light.cpp \
@@ -67,8 +65,6 @@ HEADERS += \
     src/historymodel.h \
     src/trackloader.h \
     src/settings.h \
-    src/bluetoothconnection.h \
-    src/bluetoothdata.h \
     src/logwriter.h \
     src/plotwidget.h \
     src/light.h \

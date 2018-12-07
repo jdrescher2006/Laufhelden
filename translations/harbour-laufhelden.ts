@@ -51,6 +51,10 @@
 <context>
     <name>BTConnectPage</name>
     <message>
+        <source>Heart rate device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Scan for Bluetooth devices</source>
         <translation type="unfinished"></translation>
     </message>
@@ -83,11 +87,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Found BT devices (press to connect):</source>
+        <source>Connection Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate device</source>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -96,6 +108,14 @@
     </message>
     <message>
         <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

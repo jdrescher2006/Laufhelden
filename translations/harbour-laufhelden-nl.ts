@@ -51,52 +51,72 @@
 <context>
     <name>BTConnectPage</name>
     <message>
+        <source>Heart rate device</source>
+        <translation type="unfinished">Hartslagapparaat</translation>
+    </message>
+    <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Scannen naar Bluetooth-apparaten</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Bezig met scannen…</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Scannen annuleren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Huidig BT-apparaat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Geen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation>Hartslag: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation> bpm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation>Batterijniveau: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Found BT devices (press to connect):</source>
-        <translation>Gevonden BT-apparaten (tik om te verbinden):</translation>
+        <source>Connection Type</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate device</source>
-        <translation>Hartslagapparaat</translation>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Verbinden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Verbinding verbreken</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

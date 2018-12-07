@@ -51,52 +51,72 @@
 <context>
     <name>BTConnectPage</name>
     <message>
+        <source>Heart rate device</source>
+        <translation type="unfinished">Pulzusmérő</translation>
+    </message>
+    <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Bluetooth eszközök keresése</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Keresés...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Keresés megszakítása</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Jelenlegi használt Bluetooth eszköz</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Nincs aktív Bluetooth eszköz</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation>Pulzus:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation>bpm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation>Akkuállapot:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Found BT devices (press to connect):</source>
-        <translation>Bluetooth eszköz észlelve:</translation>
+        <source>Connection Type</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate device</source>
-        <translation>Pulzusmérő</translation>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Csatlakozás</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Lekapcsolódás</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

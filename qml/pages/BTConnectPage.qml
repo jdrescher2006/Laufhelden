@@ -9,6 +9,8 @@ Page {
     property bool bLockFirstPageLoad: true
     property bool bBluetoothScanning: false
     property int iScannedDevicesCount: 0
+    property int iBluetoothType: 0
+
     Component.onCompleted:                 {
         bBluetoothScanning = true;
         SharedResources.fncDeleteDevices();
@@ -37,6 +39,7 @@ Page {
             sHeartRate: ""
             sBatteryLevel: ""
         }
+        id_CMB_BluetoothType.currentIndex = settings.bluetoothType;
     }
 
 
@@ -55,6 +58,10 @@ Page {
         {
             //Scan is finished now
             bBluetoothScanning = false;
+        }
+        onConnecting:
+        {
+            btnConnect.enabled = false;
         }
     }  
 
@@ -81,13 +88,14 @@ Page {
             SectionHeader
             {
                 text: qsTr("Scan for Bluetooth devices")
-                visible: !bBluetoothScanning && !bHRMConnecting && !bHRMConnected
+                visible: !bHRMConnected
             }
             Button
             {
                 width: parent.width
                 text: qsTr("Start scanning...")
-                visible: !bBluetoothScanning && !bHRMConnecting && !bHRMConnected
+                visible: !bBluetoothScanning &&!bHRMConnected
+                enabled:  !bHRMConnecting
                 onClicked:
                 {
                     bBluetoothScanning = true;
@@ -126,7 +134,12 @@ Page {
                 }
             }
 
-            Separator { color: Theme.highlightColor; width: parent.width; }
+            Separator {
+                color: Theme.highlightColor
+                width: parent.width
+                visible:    !bHRMConnected
+
+            }
 
             SectionHeader
             {
@@ -151,15 +164,76 @@ Page {
                 id: id_LBL_Battery;
                 text: qsTr("Battery Level: ") + sBatteryLevel + " %";
             }
+            ComboBox
+            {
+                id: id_CMB_BluetoothType
+                label: qsTr("Connection Type")
+                menu: ContextMenu
+                {
+                    MenuItem
+                    {
+                        text: qsTr("BLE Public Address")
+                        onClicked:
+                        {
+                            settings.bluetoothType = 0;//id_Device.BLEPUBLIC;
+                            id_Device.setBluetoothType(0);//id_Device.BLEPUBLIC);
+                        }
+                    }
+                    MenuItem
+                    {
+                        text: qsTr("BLE Random Address")
+                        onClicked:
+                        {
+                           settings.bluetoothType = 1;// id_Device.BLERANDOM;
+                           id_Device.setBluetoothType(1);//id_Device.BLERANDOM);
+                        }
+                    }
+                    MenuItem
+                    {
+                        text: qsTr("Classic Bluetooth")
+                        onClicked:
+                        {
+                            settings.bluetoothType = 2; //id_Device.CLASSICBLUETOOTH;
+                            id_Device.setBluetoothType(2); //id_Device.CLASSICBLUETOOTH);
+                        }
+                    }
+                }
+            }
 
             Button
             {
+                id: btnConnect
                 text: qsTr("Connect")
                 width: parent.width
-                visible: !bHRMConnected && !bHRMConnecting && sHRMAddress !== ""
+                visible: !bHRMConnected && sHRMAddress !== ""  && !bHRMConnecting
                 onClicked:
                 {
                     id_Device.scanServices(sHRMAddress);
+                }
+            }
+            Button
+            {
+                width: parent.width
+                text: qsTr("Cancel Connect")
+                visible: bHRMConnecting
+                onClicked:
+                {
+                    // We could stop the connection attempt herer
+                    id_Device.disconnectFromDevice();
+                }
+                Image
+                {
+                    source: "image://theme/icon-m-sync"
+                    anchors.verticalCenter: parent.verticalCenter
+                    smooth: true
+                    NumberAnimation on rotation
+                    {
+                      running: bHRMConnecting
+                      from: 0
+                      to: 360
+                      loops: Animation.Infinite
+                      duration: 2000
+                    }
                 }
             }
             Button
@@ -178,7 +252,7 @@ Page {
             SectionHeader
             {
                 text: qsTr("Found BT devices (press to connect):")
-                visible: (iScannedDevicesCount > 0 &&  !bHRMConnected && !bHRMConnecting)
+                visible: (iScannedDevicesCount > 0 &&  !bHRMConnected )//&& !bHRMConnecting)
             }
             SilicaListView
             {
@@ -187,7 +261,7 @@ Page {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: parent.height / 3
-                visible: (iScannedDevicesCount > 0 &&  !bHRMConnected && !bHRMConnecting)
+                visible: (iScannedDevicesCount > 0 &&  !bHRMConnected )//&& !bHRMConnecting)
 
                 delegate: BackgroundItem
                 {

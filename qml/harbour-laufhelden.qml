@@ -70,8 +70,6 @@ ApplicationWindow
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }
-    BluetoothConnection{ id: id_BluetoothConnection }
-    //BluetoothData{ id: id_BluetoothData }
     Device{ id: id_Device }
     LogWriter{ id: id_LogWriter }
     Settings{ id: settings }
@@ -168,6 +166,7 @@ ApplicationWindow
         {
             fncShowMessage(2,"HRM Connected", 4000);
             bHRMConnected = true;
+            bHRMConnecting = false;
         }
         onSigDisconnected:
         {
@@ -175,16 +174,25 @@ ApplicationWindow
             sHeartRate = "";
             sBatteryLevel = "";
             bHRMConnected    = false;
+            bHRMConnecting = false;
             recorder.vSetCurrentHeartRate(-1);
-
             //if record dialog is opened, try to reconnect to HRM device
             if (bRecordDialogRequestHRM)
                 bReconnectHRMDevice = true;
 
         }
+        onSigConnecting:
+        {
+            fncShowMessage(2,"Connecting",2000);
+            bHRMConnecting = true;
+            bHRMConnected = false;
+        }
+
         onSigError:
         {
-            fncShowMessage(3,"HRM Error: " + sError, 10000);
+            fncShowMessage(3,sError, 5000);
+            bHRMConnected = false;
+            bHRMConnecting = false;
         }
     }
 

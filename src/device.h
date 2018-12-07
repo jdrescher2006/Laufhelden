@@ -59,12 +59,15 @@
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QLowEnergyController>
 #include <QBluetoothServiceInfo>
+#include <QBluetoothSocket>
 #include <QTimer>
 #include "deviceinfo.h"
 #include "serviceinfo.h"
 
 QT_FORWARD_DECLARE_CLASS (QBluetoothDeviceInfo)
 QT_FORWARD_DECLARE_CLASS (QBluetoothServiceInfo)
+
+
 
 class Device: public QObject
 {
@@ -74,6 +77,10 @@ class Device: public QObject
     Q_PROPERTY(bool useRandomAddress READ isRandomAddress WRITE setRandomAddress NOTIFY randomAddressChanged)
     Q_PROPERTY(bool state READ state NOTIFY stateChanged)
     Q_PROPERTY(bool controllerError READ hasControllerError)
+    Q_PROPERTY(int bluetoothType READ bluetoothType WRITE setBluetoothType NOTIFY bluetoothTypeChanged)
+
+
+
 public:
     Device();
     ~Device();
@@ -84,12 +91,24 @@ public:
 
     bool isRandomAddress() const;
     void setRandomAddress(bool newValue);
+    int bluetoothType();
+    enum bluetoothTypes {
+        BLEPUBLIC = 0,
+        BLERANDOM = 1,
+        CLASSICBLUETOOTH = 2
+    };
+    Q_ENUM(bluetoothTypes)
+    Q_INVOKABLE void sendHex(QString sString);
+
 
 public slots:
     void startDeviceDiscovery();
     void stopDeviceDiscovery();
     void scanServices(const QString &address);
+    void connectClassic(QString address,int port);
     void disconnectFromDevice();
+    void setBluetoothType(int type);
+
 
 private slots:
     // QBluetoothDeviceDiscoveryAgent related
@@ -101,14 +120,21 @@ private slots:
     void lowEnergyServiceDiscovered(const QBluetoothUuid &uuid);
     void deviceConnected();
     void errorReceived(QLowEnergyController::Error);
+    void error(QBluetoothSocket::SocketError errorCode);
+
     void serviceScanDone();
     void deviceDisconnected();
+
+
 
     // QLowEnergyService related
     void hrmServiceStateChanged(QLowEnergyService::ServiceState s);
     void batServiceStateChanged(QLowEnergyService::ServiceState s);
     void subscribeToHRM();
     void updateValues(const QLowEnergyCharacteristic &c, const QByteArray &value);
+
+    //Classic Bluetooth
+    void readData();
 
 signals:
     void devicesUpdated();
@@ -122,11 +148,13 @@ signals:
     void sigBATDataReady(int sData);
     void sigHRMDataReady(int sData);
     void sigConnected();
+    void sigConnecting();
     void sigDisconnected();
     void sigError(QString sError);
     void randomAddressChanged();
     void deviceFound(QString sName, QString sAddress);
-
+    void bluetoothTypeChanged(int bluetoothType);
+    void sigReadDataReady(QString sData);
 
 private:
     void setUpdate(QString message);
@@ -136,7 +164,7 @@ private:
     QString m_previousAddress;
     QString m_message;
     bool connected;
-    QLowEnergyController *controller;
+    QLowEnergyController *m_controller;
     QLowEnergyService *m_hrmService;
     QLowEnergyService *m_batService;
     QLowEnergyDescriptor m_notificationDesc;
@@ -145,6 +173,11 @@ private:
     bool m_heartRateFound;
     bool m_batteryStateFound;
     QTimer *m_hrmTimer;
+    int m_bluetoothType;
+    // This is for classic Bluetooth
+    QBluetoothSocket *m_socket;
+    int m_port;
+    qint64 write(QByteArray data);
 };
 
 #endif // DEVICE_H

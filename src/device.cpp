@@ -52,7 +52,7 @@
 /***************************************************************************
  * This file contains bluetooth functions for Laufhelden, based on the QT
  * example files.
- * Some parts are also taken from the original Laufhelden bluetooth.cpp
+ * Some parts are also taken from the original Laufhelden bluetoothdata.cpp
  * by Jens Drescher
  * (c) 2018 Thomas Michel <tom@michel.ruhr>
  * *************************************************************************/
@@ -71,8 +71,9 @@
 #include <QtEndian>
 
 Device::Device():
-    connected(false), controller(0), m_deviceScanState(false), randomAddress(true), m_hrmTimer(0)
+    connected(false), m_controller(0), m_deviceScanState(false),m_socket(0)
 {
+    m_bluetoothType = Device::BLEPUBLIC;
     discoveryAgent = new QBluetoothDeviceDiscoveryAgent();
     connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::deviceDiscovered,
             this, &Device::addDevice);
@@ -81,13 +82,12 @@ Device::Device():
     //        this, &Device::deviceScanError);
     connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::finished, this, &Device::deviceScanFinished);
 
-    startDeviceDiscovery();
 }
 
 Device::~Device()
 {
     delete discoveryAgent;
-    delete controller;
+    m_controller->deleteLater();
     qDeleteAll(devices);
     devices.clear();
 }
@@ -173,7 +173,7 @@ void Device::scanServices(const QString &address)
 
     if (!deviceFound)   {
         qDebug() << "Device to connect not found!";
-        exit;
+        return;
     }
 
     if (!currentDevice.getDevice().isValid()) {
@@ -181,45 +181,61 @@ void Device::scanServices(const QString &address)
         return;
     }
 
-    if (controller)  {
-        qDebug() << "Disconnecting from previous device...";
-        controller->disconnectFromDevice();
-        controller->deleteLater();
-        controller = 0;
+    if (m_controller)  {
+        qDebug() << "Disconnecting from previous random address device...";
+        m_controller->disconnectFromDevice();
+        m_controller->deleteLater();
+        m_controller = 0;
     }
 
-    //If new device, set RandomAddress back to default
-    if (m_previousAddress != currentDevice.getAddress())
-        randomAddress = true;
 
-    if (!controller) {
-        qDebug() << "Trying to connect to " << currentDevice.getName();
+    if (!m_controller && ((m_bluetoothType==Device::BLEPUBLIC)||(m_bluetoothType==Device::BLERANDOM))) {
+        qDebug() << "Trying to connect to address " << currentDevice.getName();
         // Connecting signals and slots for connecting to LE services.
-        controller = new QLowEnergyController(currentDevice.getDevice());
-        connect(controller, &QLowEnergyController::connected,
+        m_controller = new QLowEnergyController(currentDevice.getDevice());
+        connect(m_controller, &QLowEnergyController::connected,
                 this, &Device::deviceConnected);
-        connect(controller, &QLowEnergyController::disconnected,
+        connect(m_controller, &QLowEnergyController::disconnected,
                 this, &Device::deviceDisconnected);
-        connect(controller, &QLowEnergyController::serviceDiscovered,
+        connect(m_controller, &QLowEnergyController::serviceDiscovered,
                 this, &Device::lowEnergyServiceDiscovered);
-        connect(controller, &QLowEnergyController::discoveryFinished,
+        connect(m_controller, &QLowEnergyController::discoveryFinished,
                 this, &Device::serviceScanDone);
-        connect(controller, static_cast<void (QLowEnergyController::*)(QLowEnergyController::Error)>(&QLowEnergyController::error),
-                //this, [this](QLowEnergyController::Error error)
+        connect(m_controller, static_cast<void (QLowEnergyController::*)(QLowEnergyController::Error)>(&QLowEnergyController::error),
                 this, &Device::errorReceived);
+        if (m_bluetoothType==Device::BLEPUBLIC)
+            m_controller->setRemoteAddressType(QLowEnergyController::PublicAddress);
+        else
+            m_controller->setRemoteAddressType(QLowEnergyController::RandomAddress);
+        m_controller->connectToDevice();
+        emit this->sigConnecting();
 
     }
-
-    if (isRandomAddress())
-        controller->setRemoteAddressType(QLowEnergyController::RandomAddress);
-    else
-        controller->setRemoteAddressType(QLowEnergyController::PublicAddress);
-    controller->connectToDevice();
-
+    else {
+        // Connect to classic device
+        connectClassic(address,0);
+    }
     m_previousAddress = currentDevice.getAddress();
 }
 
+void Device ::connectClassic(QString address, int port)
+{
+    this->m_port = port;
+    qDebug("Trying to connect to: %s_%d", address.toUtf8().constData(), m_port);
 
+    if(this->m_socket)
+        delete this->m_socket;
+
+    this->m_socket = new QBluetoothSocket(QBluetoothServiceInfo::RfcommProtocol);
+
+    QObject::connect(this->m_socket, SIGNAL(connected()), this, SLOT(deviceConnected()));
+    QObject::connect(this->m_socket, SIGNAL(disconnected()), this, SLOT(deviceDisconnected()));
+    QObject::connect(this->m_socket, SIGNAL(error(QBluetoothSocket::SocketError)), this, SLOT(error(QBluetoothSocket::SocketError)));
+    QObject::connect(this->m_socket, SIGNAL(readyRead()), this, SLOT(readData()));
+
+    qDebug("Connecting...");
+    this->m_socket->connectToService(QBluetoothAddress(address), this->m_port);
+}
 void Device::lowEnergyServiceDiscovered(const QBluetoothUuid &serviceUuid)
 {
 
@@ -233,13 +249,15 @@ void Device::lowEnergyServiceDiscovered(const QBluetoothUuid &serviceUuid)
         m_batteryStateFound = true;
         return;
     }
-    // This is for debug purposes only:
+    // This is for debug purposes only:#
+    /*
     QLowEnergyService *tmpService = controller->createServiceObject((serviceUuid));
     if (tmpService)
     {
         qDebug() << "Service found: " << tmpService->serviceName();
         delete tmpService;
     }
+    */
 
 }
 void Device::serviceScanDone()
@@ -249,7 +267,7 @@ void Device::serviceScanDone()
     // Now we connect to the HRM and Battery Status
     if (m_heartRateFound)
     {
-         m_hrmService = controller->createServiceObject(QBluetoothUuid(QBluetoothUuid::HeartRate),this);
+         m_hrmService = m_controller->createServiceObject(QBluetoothUuid(QBluetoothUuid::HeartRate),this);
          if (!m_hrmService) {
              qWarning() << "Cannot create service for HRM";
              return;
@@ -261,7 +279,7 @@ void Device::serviceScanDone()
      }
     if (m_batteryStateFound)
     {
-         m_batService = controller->createServiceObject(QBluetoothUuid(QBluetoothUuid::BatteryService),this);
+         m_batService = m_controller->createServiceObject(QBluetoothUuid(QBluetoothUuid::BatteryService),this);
          if (!m_batService) {
              qWarning() << "Cannot create service for Battery Level";
              return;
@@ -274,33 +292,33 @@ void Device::serviceScanDone()
 
 void Device::deviceConnected()
 {
-    qDebug() << "Device connected - Discovering services...)";
+    qDebug() << "BLE Device connected - Discovering services...)";
     connected = true;
     //! [les-service-2]
-    controller->discoverServices();
+    if (m_bluetoothType!=Device::CLASSICBLUETOOTH)
+    {
+       m_controller->discoverServices();
+    }
+
     emit this->sigConnected();
-    //! [les-service-2]
 }
 
 void Device::errorReceived(QLowEnergyController::Error /*error*/)
 {
-    qWarning() << "Error connecting to device: " << controller->errorString();
-    emit sigError(QString("(%1)").arg(controller->errorString()));
-    if (isRandomAddress())
-    {
-        emit sigError("Cannot connect: "+ controller->errorString());
-
-        //try to connect using public address now
-        qDebug() << "Trying public address now";
-        randomAddress = false;
-        scanServices(currentDevice.getAddress());
-    } else {
-        //neither public nor random address works, so let's try to use classic connect
-        // first set random access back to default to avoid failures next time
-        randomAddress = true;
-        // TODO: classic connect
-    }
+    //qWarning() << "Error connecting to BLE device: " << m_controller->errorString();
+    //emit sigError(QString("(%1)").arg(m_controller->errorString()));
+    emit this->sigError(QString("Could not connect to device. Ensure it is switched on or try different connection method."));
 }
+
+void Device::error(QBluetoothSocket::SocketError errorCode)
+{
+    qDebug() << "Error: " << this->m_socket->errorString();
+    qDebug() << "Errorcode: " << errorCode;
+
+    emit this->sigError(this->m_socket->errorString());
+}
+
+
 
 void Device::setUpdate(QString message)
 {
@@ -315,10 +333,10 @@ void Device::disconnectFromDevice()
     // and thus allowing UI to keep track of controller progress in addition to
     // device scan progress
 
-    if (!controller)
+    if (!m_controller)
         return;
-    if (controller->state() != QLowEnergyController::UnconnectedState)
-        controller->disconnectFromDevice();
+    if (m_controller->state() != QLowEnergyController::UnconnectedState)
+        m_controller->disconnectFromDevice();
     else
         deviceDisconnected();
 }
@@ -326,15 +344,8 @@ void Device::disconnectFromDevice()
 void Device::deviceDisconnected()
 {
     qWarning() << "Disconnect from device";
-    /*
-    if (m_hrmTimer)
-    {
-        m_hrmTimer->stop();
-        delete m_hrmTimer;
-        m_hrmTimer=0;
-    }
-    */
-    emit sigDisconnected();
+    if (m_controller->errorString()=="") //otherwise an error has been emitted
+        emit sigDisconnected();
 }
 
 
@@ -477,7 +488,7 @@ bool Device::state()
 
 bool Device::hasControllerError() const
 {
-    if (controller && controller->error() != QLowEnergyController::NoError)
+    if (m_controller && m_controller->error() != QLowEnergyController::NoError)
         return true;
     return false;
 }
@@ -491,4 +502,74 @@ void Device::setRandomAddress(bool newValue)
 {
     randomAddress = newValue;
     emit randomAddressChanged();
+}
+
+int Device::bluetoothType()
+{
+    return m_bluetoothType;
+}
+void Device::setBluetoothType(int type)
+{
+    m_bluetoothType = type;
+    qDebug() << "Set Bluetooth type to " << type;
+    emit bluetoothTypeChanged(m_bluetoothType);
+}
+
+
+
+void Device::readData()
+{
+    //reads data from a classic Bluetooth Device
+    qDebug("Entering readData...");
+
+    QByteArray data = m_socket->readAll();
+
+    QString s_data = data.trimmed();
+
+    //s_data = s_data.replace("\r", " ");
+    //s_data = s_data.replace("\n", " ");
+
+    //qDebug() << "Data size:" << data.size();
+    //qDebug() << "Data Hex[" + QString::number(_port) + "]:" << data.toHex();
+    //qDebug() << "Data[" + QString::number(_port) + "]:" << data;
+
+    //qDebug() << "Text: " << s_data;
+
+    emit this->sigReadDataReady(data.toHex());
+}
+
+void Device::sendHex(QString sString)
+{
+    //This is for classic bluetooth devices
+    //qDebug() << "sString: " << sString;
+
+    QByteArray data = sString.toUtf8();
+
+    //qDebug() << "data1: " << data.toHex();
+
+    data.append("\r");
+
+    //qDebug() << "data2: " << data.toHex();
+
+    this->write(data);
+}
+
+qint64 Device::write(QByteArray data)
+{
+    // This is for classic bluettoth devices
+    qDebug() << "Writing:" << data.toHex();
+
+
+    qint64 ret = this->m_socket->write(data);
+
+
+    //qint64 ret = this->_socket->write("ATZ\r");
+    //ret = this->_socket->write("AT RV\r");
+    //qint64 ret = this->_socket->write("AT L0\r");
+
+    qDebug() << "Write returned:" << ret;
+
+
+
+    return ret;
 }
