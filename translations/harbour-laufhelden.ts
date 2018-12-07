@@ -207,11 +207,8 @@
         <source>Send to Strava</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>DiagramViewPage</name>
     <message>
-        <source>Diagrams</source>
+        <source>loading...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -428,6 +425,41 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MapViewPage</name>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

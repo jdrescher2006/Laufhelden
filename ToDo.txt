@@ -1,5 +1,9 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
+- add a combobox for multiple pebbles
+- 
+
+
 - solved a bug in polish translation															-> OK
 
 - Bugs in voice output trainer:

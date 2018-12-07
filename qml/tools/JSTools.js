@@ -38,11 +38,11 @@ var arrayDataPoints =
     //{ heartrate: 140, elevation: 354.34, distance: 232 }
 ]
 
-var trackPointsTemporary = [];
+var trackPointsAt = [];
 var trackPausePointsTemporary = [];
 
 
-function fncAddDataPoint(heartrate,elevation,distance)
+function fncAddDataPoint(heartrate,elevation,distance,time,speed,pace,paceimp,duration)
 {
     var iPosition = arrayDataPoints.length;
 
@@ -50,6 +50,11 @@ function fncAddDataPoint(heartrate,elevation,distance)
     arrayDataPoints[iPosition]["heartrate"] = heartrate;
     arrayDataPoints[iPosition]["elevation"] = elevation;
     arrayDataPoints[iPosition]["distance"] = distance;
+    arrayDataPoints[iPosition]["time"] = time;
+    arrayDataPoints[iPosition]["speed"] = speed;
+    arrayDataPoints[iPosition]["pace"] = pace;
+    arrayDataPoints[iPosition]["paceimp"] = paceimp;
+    arrayDataPoints[iPosition]["duration"] = duration;
 }
 
 function fncConvertDistanceToImperial(iKilometers)
