@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation>Fréquence cardiaque min/max/⌀:</translation>
+        <translation>Fréq. cardiaque min/max/⌀:</translation>
     </message>
     <message>
         <source>Pause number/duration:</source>
