@@ -227,12 +227,9 @@
         <source>Send to Strava</source>
         <translation>Lähetä Stravaan</translation>
     </message>
-</context>
-<context>
-    <name>DiagramViewPage</name>
     <message>
-        <source>Diagrams</source>
-        <translation>Kuvaajat</translation>
+        <source>loading...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -449,6 +446,41 @@
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
         <translation>Karttaa ei enää näytetä. Tämä on hyödyllinen Jolla 1 puhelimelle, koska kartta voi kaataa sovelluksen.</translation>
+    </message>
+</context>
+<context>
+    <name>MapViewPage</name>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">Km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
     </message>
 </context>
 <context>

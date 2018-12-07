@@ -40,14 +40,16 @@ Page
 
     property int iCurrentWorkout: 0
 
+    property bool bHeartrateSupported: false
+    property bool bPaceRelevantForWorkoutType: true
+    property int iPausePositionsCount: 0
+
 
     onStatusChanged:
     {
         if (status === PageStatus.Active)
         {            
             trackLoader.filename = filename;          
-
-            pageStack.pushAttached(Qt.resolvedUrl("MapViewPage.qml"));
         }
     }
 
@@ -103,13 +105,14 @@ Page
             var pauseLength = trackLoader.pausePositionsCount();
 
             JSTools.arrayDataPoints = [];
-            JSTools.trackPointsTemporary = [];
+            JSTools.trackPointsAt = [];
             JSTools.trackPausePointsTemporary = [];
 
             for(var i=0; i<trackLength; i++)
             {
-                JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), 0);
-                JSTools.trackPointsTemporary.push(trackLoader.trackPointAt(i));
+                //heartrate,elevation,distance,time,speed,pace,paceimp,duration
+                JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), trackLoader.distanceAt(i), trackLoader.timeAt(i), trackLoader.speedAt(i), trackLoader.paceStrAt(i), trackLoader.paceImperialStrAt(i), trackLoader.durationAt(i));
+                JSTools.trackPointsAt.push(trackLoader.trackPointAt(i));
             }                    
 
             //Go through array with pause data points
@@ -119,12 +122,13 @@ Page
                 JSTools.trackPausePointsTemporary.push(trackLoader.pausePositionAt(i));
             }
 
-            paceData.visible = trackLoader.paceRelevantForWorkoutType()
-            paceLabel.visible = trackLoader.paceRelevantForWorkoutType()
-            console.log("JSTools.arrayDataPoints.length: " + JSTools.arrayDataPoints.length.toString());
+            //console.log("JSTools.arrayDataPoints.length: " + JSTools.arrayDataPoints.length.toString());
 
-            console.log("hasHeartRateData: " + trackLoader.hasHeartRateData());
-            console.log("pausePositionsCount: " + trackLoader.pausePositionsCount());
+            bHeartrateSupported = trackLoader.hasHeartRateData();
+            bPaceRelevantForWorkoutType = trackLoader.paceRelevantForWorkoutType();
+            iPausePositionsCount = trackLoader.pausePositionsCount();
+
+            pageStack.pushAttached(Qt.resolvedUrl("MapViewPage.qml"),{ bHeartrateSupported: bHeartrateSupported, bPaceRelevantForWorkoutType: bPaceRelevantForWorkoutType});
         }
         onLoadedChanged:
         {
@@ -147,7 +151,7 @@ Page
          anchors.topMargin: 25;
          horizontalAlignment: Label.AlignHCenter
          visible: false
-         text: "loading..."
+         text: qsTr("loading...")
          font.pixelSize: Theme.fontSizeMedium
     }
 
@@ -162,18 +166,32 @@ Page
 
     Image
     {
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.topMargin: Theme.paddingSmall
-        anchors.leftMargin: Theme.paddingSmall
+        id: id_IMG_WorkoutIcon
+        anchors.bottom: id_IMG_PageLocator.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottomMargin: Theme.paddingLarge
         width: parent.width / 4
         height: parent.width / 4
         z: 2
-        source: SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(trackLoader.workout)].icon;
+        opacity: 0.2
+        source: SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(trackLoader.workout)].icon
     }
-
+    Label
+    {
+        anchors.horizontalCenter: id_IMG_WorkoutIcon.horizontalCenter
+        anchors.verticalCenter: id_IMG_WorkoutIcon.verticalCenter
+        horizontalAlignment: Label.AlignHCenter
+        color: Theme.primaryColor
+        font.pixelSize: Theme.fontSizeHuge
+        width: parent.width
+        z: 3
+        text: SharedResources.arrayWorkoutTypes[SharedResources.arrayWorkoutTypes.map(function(e) { return e.name; }).indexOf(trackLoader.workout)].labeltext
+    }
     Image
     {
+        id: id_IMG_PageLocator
+        height: parent.width / 14
+        width: (parent.width / 14) * 3
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: Theme.paddingSmall
@@ -289,10 +307,24 @@ Page
             PageHeader
             {
                 id: header
-                title: trackLoader.name === "" ? "-" : trackLoader.name
-                Behavior on opacity {
-                    FadeAnimation {}
-                }
+                title: ""
+                //title: trackLoader.name === "" ? "-" : trackLoader.name
+            }
+
+            Label
+            {
+                color: Theme.primaryColor
+                font.pixelSize: Theme.fontSizeLarge
+                width: parent.width
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: trackLoader.name
+            }
+            Item
+            {
+                width: parent.width
+                height: Theme.paddingLarge
             }
 
             Grid
@@ -403,14 +435,14 @@ Page
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Pace ⌀:")
-                    visible: false // will be shown/hidden depending on workout type at the track loading finish
+                    visible: bPaceRelevantForWorkoutType
                 }
                 Label
                 {
                     id: paceData
                     width: descriptionData.width
                     text: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
-                    visible: false
+                    visible: bPaceRelevantForWorkoutType
                 }
                 Label
                 {
@@ -421,16 +453,14 @@ Page
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Heart rate min/max/⌀:")
-                    //visible: trackLoader.hasHeartRateData()
-                    visible: true
+                    visible: bHeartrateSupported
                 }
                 Label
                 {
                     id: heartRateData
                     width: descriptionData.width
-                    text: trackLoader.hasHeartRateData() ? "-" : trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
-                    //visible: trackLoader.hasHeartRateData()
-                    visible: true
+                    text: trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
+                    visible: bHeartrateSupported
                 }
                 Label
                 {
@@ -442,16 +472,14 @@ Page
                     color: Theme.secondaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Pause number/duration:")
-                    //visible: (trackLoader.pausePositionsCount() > 0)
-                    visible: true
+                    visible: (iPausePositionsCount > 0)
                 }
                 Label
                 {
                     id: pauseData
                     width: descriptionData.width
-                    text: trackLoader.pauseNumbersString()
-                    //visible: (trackLoader.pausePositionsCount() > 0)
-                    visible: true
+                    text: trackLoader.pauseDurationStr
+                    visible: (iPausePositionsCount > 0)
                 }
                 Label
                 {

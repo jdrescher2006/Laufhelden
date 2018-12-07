@@ -54,8 +54,6 @@ class TrackLoader : public QObject
     Q_PROPERTY(qreal elevationUp READ elevationUp NOTIFY elevationChanged)
     Q_PROPERTY(qreal elevationDown READ elevationDown NOTIFY elevationChanged)
 
-
-
 public:
     struct TrackPoint
     {
@@ -70,6 +68,10 @@ public:
         qreal horizontalAccuracy;
         qreal verticalAccuracy;
         uint heartrate;
+        qreal distance;
+        qreal speed;
+        qreal pace;
+        qreal duration;
     };
 
     explicit TrackLoader(QObject *parent = 0);
@@ -105,6 +107,12 @@ public:
     Q_INVOKABLE int pausePositionAt(int index);
     Q_INVOKABLE uint heartRateAt(int index);
     Q_INVOKABLE qreal elevationAt(int index);
+    Q_INVOKABLE QDateTime timeAt(int index);
+    Q_INVOKABLE qreal durationAt(int index);
+    Q_INVOKABLE qreal distanceAt(int index);
+    Q_INVOKABLE qreal speedAt(int index);
+    Q_INVOKABLE QString paceStrAt(int index);
+    Q_INVOKABLE QString paceImperialStrAt(int index);
 
     // Temporary "hacks" to get around misbehaving Map.fitViewportToMapItems()
     Q_INVOKABLE int fitZoomLevel(int width, int height);
@@ -115,7 +123,6 @@ public:
     Q_INVOKABLE void vWriteFile(QString sFilename);
 
     Q_INVOKABLE bool hasHeartRateData() const;
-    Q_INVOKABLE QString pauseNumbersString() const;
     Q_INVOKABLE bool paceRelevantForWorkoutType() const;
 
 signals:
@@ -165,6 +172,7 @@ private:
     QGeoCoordinate m_center;
     qreal m_elevationUp;
     qreal m_elevationDown;
+    QList<qreal> m_distancearray;
 };
 
 #endif // TRACKLOADER_H

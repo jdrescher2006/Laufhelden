@@ -5,7 +5,7 @@
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation>A propos de Laufhelden</translation>
+        <translation>À propos de Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
@@ -14,10 +14,6 @@
     <message>
         <source>Copyright</source>
         <translation>Copyright</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation>France</translation>
     </message>
     <message>
         <source>Date: </source>
@@ -47,12 +43,16 @@
         <source>Contributors:</source>
         <translation>Contributeurs:</translation>
     </message>
+    <message>
+        <source>Germany</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BTConnectPage</name>
     <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Recherche d'équipements Bluetooth</translation>
+        <translation>Recherche d&apos;équipements Bluetooth</translation>
     </message>
     <message>
         <source>Start scanning...</source>
@@ -60,11 +60,11 @@
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Annuler la recherchen</translation>
+        <translation>Annuler la recherche</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Equipement BT actuel</translation>
+        <translation>Équipement BT actuel</translation>
     </message>
     <message>
         <source>None</source>
@@ -84,11 +84,11 @@
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation>Equipements BT trouvés (appuyer pour se connecter):</translation>
+        <translation>Équipements BT trouvés (appuyer pour se connecter):</translation>
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Equipement de fréquence cardiaque</translation>
+        <translation>Équipement de fréquence cardiaque</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -134,11 +134,11 @@
     </message>
     <message>
         <source>App cover settings</source>
-        <translation>Paramètre "App cover"</translation>
+        <translation>Paramètre &quot;App cover&quot;</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation>Sélectionnez les valeurs à afficher sur l'App Cover. Les valeurs sont aussi utilisées pour l'écran de verrouillage sur la page d'enregistrement.</translation>
+        <translation>Sélectionnez les valeurs à afficher sur l&apos;App Cover. Les valeurs sont aussi utilisées pour l&apos;écran de verrouillage sur la page d&apos;enregistrement.</translation>
     </message>
 </context>
 <context>
@@ -185,15 +185,15 @@
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Editer l'activité</translation>
+        <translation>Éditer l&apos;activité</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation>Nom de l'activité</translation>
+        <translation>Nom de l&apos;activité</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation>Description de l'activité</translation>
+        <translation>Description de l&apos;activité</translation>
     </message>
     <message>
         <source>Workout:</source>
@@ -201,18 +201,15 @@
     </message>
     <message>
         <source>Elevation up/down:</source>
-        <translation>Elevation +/-:</translation>
+        <translation>Élevation +/-:</translation>
     </message>
     <message>
         <source>Send to Strava</source>
         <translation>Envoyer vers Strava</translation>
     </message>
-</context>
-<context>
-    <name>DiagramViewPage</name>
     <message>
-        <source>Diagrams</source>
-        <translation>Diagrammes</translation>
+        <source>loading...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -261,7 +258,7 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>A propos</translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -289,15 +286,15 @@
     </message>
     <message>
         <source>Remove workout</source>
-        <translation>Supprimer l'activité</translation>
+        <translation>Supprimer l&apos;activité</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation>Suppression de l'activité...</translation>
+        <translation>Suppression de l&apos;activité...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Editer l'activité</translation>
+        <translation>Éditer l&apos;activité</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
@@ -317,11 +314,11 @@
     </message>
     <message>
         <source>Workout name</source>
-        <translation>Nom de l'activité</translation>
+        <translation>Nom de l&apos;activité</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation>Description de l'activité</translation>
+        <translation>Description de l&apos;activité</translation>
     </message>
     <message>
         <source>Workout:</source>
@@ -337,7 +334,7 @@
     </message>
     <message>
         <source>km</source>
-        <translation>Km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
@@ -345,7 +342,7 @@
     </message>
     <message>
         <source>km/h</source>
-        <translation>Km/h</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>mi/h</source>
@@ -360,7 +357,7 @@
     </message>
     <message>
         <source>Optimize screen in map mode</source>
-        <translation>Optimiser l'écran en mode carte</translation>
+        <translation>Optimiser l&apos;écran en mode carte</translation>
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
@@ -380,7 +377,7 @@
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation>Limiter la mise en cache permet d'avoir des cartes à jour et de controler l'utilisation de l'espace disque, mais ralentit le chargement des cartes et consomme davantage de donnés. Il est nécessaire de redémarrer l'application pour appliquer les paramètres.</translation>
+        <translation>Limiter la mise en cache permet d&apos;avoir des cartes à jour et de controler l&apos;utilisation de l&apos;espace disque, mais ralentit le chargement des cartes et consomme davantage de donnés. Il est nécessaire de redémarrer l&apos;application pour appliquer les paramètres.</translation>
     </message>
     <message>
         <source>Cache size</source>
@@ -404,7 +401,7 @@
     </message>
     <message>
         <source>Light</source>
-        <translation>Lumière</translation>
+        <translation>Clair</translation>
     </message>
     <message>
         <source>Dark</source>
@@ -428,7 +425,42 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>La carte ne sera plus affichée. Ceci est utile sur les téléphones Jolla 1 (qui ont un GPU faible) car la carte peut planter l'application</translation>
+        <translation>La carte ne sera plus affichée. Ceci est utile sur les téléphones Jolla 1 (qui ont un GPU faible) car la carte peut planter l&apos;application</translation>
+    </message>
+</context>
+<context>
+    <name>MapViewPage</name>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
     </message>
 </context>
 <context>
@@ -453,7 +485,7 @@
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation>Utiliser le système métriquen</translation>
+        <translation>Utiliser le système métrique</translation>
     </message>
     <message>
         <source>sending data 1</source>
@@ -469,7 +501,7 @@
     </message>
     <message>
         <source>closing sport app</source>
-        <translation>Fermeture de l'application</translation>
+        <translation>Fermeture de l&apos;application</translation>
     </message>
     <message>
         <source>Pebble settings</source>
@@ -481,7 +513,7 @@
     </message>
     <message>
         <source>starting sport app</source>
-        <translation>Démarrage de l'application</translation>
+        <translation>Démarrage de l&apos;application</translation>
     </message>
     <message>
         <source>Connected:</source>
@@ -505,11 +537,11 @@
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation>Voir les données d'activité sur la Smartwatch Pebble.</translation>
+        <translation>Voir les données d&apos;activité sur la Smartwatch Pebble.</translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>Aucune Pebble trouvée.&lt;br&gt;Installez Rockpool &lt;br&gt;puis connectez la Pebble!</translation>
+        <translation>Aucune Pebble trouvée.&lt;br&gt;Installez Rockpool&lt;br&gt;puis connectez la Pebble !</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -521,8 +553,7 @@
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation>Rockpool doit être installé&lt;br&gt;version minimale:
-1.4-1.&lt;br&gt;La version installée est: </translation>
+        <translation>Rockpool doit être installé&lt;br&gt;version minimale: 1.4-1.&lt;br&gt;La version installée est: </translation>
     </message>
     <message>
         <source>Empty</source>
@@ -549,11 +580,11 @@
     </message>
     <message>
         <source>Disable screen blanking</source>
-        <translation>Désactiver l'extinction de l'écran</translation>
+        <translation>Désactiver l&apos;extinction de l&apos;écran</translation>
     </message>
     <message>
         <source>Disable screen blanking when recording.</source>
-        <translation>Désactiver l'extinction de l'écran pendant l'enregistrement.</translation>
+        <translation>Désactiver l&apos;extinction de l&apos;écran pendant l&apos;enregistrement.</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
@@ -565,7 +596,7 @@
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation>Utiliser le capteur cardiaque d'une autre application, par ex. Amazfish</translation>
+        <translation>Utiliser le capteur cardiaque d&apos;une autre application, par ex. Amazfish</translation>
     </message>
 </context>
 <context>
@@ -619,7 +650,7 @@
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation>Basculer le mode d'affichage</translation>
+        <translation>Basculer le mode d&apos;affichage</translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
@@ -683,11 +714,11 @@
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation>Redémarrer l'App Pebble</translation>
+        <translation>Redémarrer l&apos;App Pebble</translation>
     </message>
     <message>
         <source>Lock screen</source>
-        <translation>Verrouiller l'écran</translation>
+        <translation>Verrouiller l&apos;écran</translation>
     </message>
     <message>
         <source>hold button for: %1 s</source>
@@ -702,7 +733,7 @@
     </message>
     <message>
         <source>km</source>
-        <translation>Km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>Heartrate</source>
@@ -769,7 +800,7 @@
     <name>SaveDialog</name>
     <message>
         <source>Save track</source>
-        <translation>Enregistrer l'activité</translation>
+        <translation>Enregistrer l&apos;activité</translation>
     </message>
     <message>
         <source>Save</source>
@@ -796,7 +827,7 @@
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Equipement de fréquence cardiaque</translation>
+        <translation>Équipement de fréquence cardiaque</translation>
     </message>
     <message>
         <source>General</source>
@@ -812,7 +843,7 @@
     </message>
     <message>
         <source>App cover</source>
-        <translation>App-Cover</translation>
+        <translation>App cover</translation>
     </message>
     <message>
         <source>Pebble</source>
@@ -820,7 +851,7 @@
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Partager l'activité</translation>
+        <translation>Partager l&apos;activité</translation>
     </message>
 </context>
 <context>
@@ -831,7 +862,7 @@
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>Garger la page d'enregistrement en mode portrait.</translation>
+        <translation>Garder la page d&apos;enregistrement en mode portrait.</translation>
     </message>
     <message>
         <source>Write log file</source>
@@ -851,15 +882,15 @@
     </message>
     <message>
         <source>Show grid lines on record page.</source>
-        <translation>Montrer les lignes de la grille sur la page d'enregistrement.</translation>
+        <translation>Montrer les lignes de la grille sur la page d&apos;enregistrement.</translation>
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation>Activer l'enregistrement automatique</translation>
+        <translation>Activer l&apos;enregistrement automatique</translation>
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation>Pas besoin d'entrer un nom à la fin de l'activité.</translation>
+        <translation>Pas besoin d&apos;entrer un nom à la fin de l&apos;activité.</translation>
     </message>
     <message>
         <source>Automatic night mode</source>
@@ -879,11 +910,11 @@
     </message>
     <message>
         <source>Imperial</source>
-        <translation>Imperial</translation>
+        <translation>Impérial</translation>
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation>Ce paramètre sera appliqué au redémarrage de l'application.</translation>
+        <translation>Ce paramètre sera appliqué au redémarrage de l&apos;application.</translation>
     </message>
 </context>
 <context>
@@ -933,18 +964,18 @@
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Partager l'activité</translation>
+        <translation>Partager l&apos;activité</translation>
     </message>
 </context>
 <context>
     <name>SportsTracker</name>
     <message>
         <source>Oops, username or password error</source>
-        <translation>Oups, erreur de nom d'utilisateur ou de mot de passe</translation>
+        <translation>Oups, erreur de nom d&apos;utilisateur ou de mot de passe</translation>
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation>Erreur lors de l'import du fichier GPX</translation>
+        <translation>Erreur lors de l&apos;import du fichier GPX</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
@@ -952,7 +983,7 @@
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
-        <translation>Erreur lors de l'enregistrement des données</translation>
+        <translation>Erreur lors de l&apos;enregistrement des données</translation>
     </message>
     <message>
         <source>Logging in...</source>
@@ -975,15 +1006,15 @@
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation>Envoyer automatiquement l'activité sur Sports-Tracker.com après l'exercice</translation>
+        <translation>Envoyer automatiquement l&apos;activité sur Sports-Tracker.com après l&apos;exercice</translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation>Entrer le nom d'utilisateur</translation>
+        <translation>Entrer le nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nom d'utilisateur</translation>
+        <translation>Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Enter Password</source>
@@ -992,10 +1023,6 @@
     <message>
         <source>Password</source>
         <translation>Mot de passe</translation>
-    </message>
-    <message>
-        <source></source>
-        <translation></translation>
     </message>
     <message>
         <source>Default Sharing option</source>
@@ -1023,11 +1050,11 @@
     </message>
     <message>
         <source>Login success!</source>
-        <translation>Succès de l'authentification !</translation>
+        <translation>Succès de l&apos;authentification !</translation>
     </message>
     <message>
         <source>Login error, Check username or password</source>
-        <translation>Erreur d'authentificaiton, vérifiez le nom d'utilisateur ou le mot de passe</translation>
+        <translation>Erreur d&apos;authentificaiton, vérifiez le nom d&apos;utilisateur ou le mot de passe</translation>
     </message>
     <message>
         <source>Loading workouts...</source>
@@ -1043,7 +1070,7 @@
     </message>
     <message>
         <source>Test login</source>
-        <translation>Tester l'authentification</translation>
+        <translation>Tester l&apos;authentification</translation>
     </message>
     <message>
         <source>Download workouts</source>
@@ -1059,14 +1086,14 @@
     </message>
     <message>
         <source>Track write error</source>
-        <translation>Erreur lors de l'écriture</translation>
+        <translation>Erreur lors de l&apos;écriture</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation>Donner une description de l'activité à Sports-Tracker.com</translation>
+        <translation>Donner une description de l&apos;activité à Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1074,7 +1101,7 @@
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Partager l'activité</translation>
+        <translation>Partager l&apos;activité</translation>
     </message>
     <message>
         <source>Private</source>
@@ -1154,11 +1181,11 @@
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation>Différentiel d'élévation::</translation>
+        <translation>Différentiel d&apos;élévation:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation>Catégorie d'escalade:</translation>
+        <translation>Catégorie d&apos;escalade:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
@@ -1188,7 +1215,7 @@
     </message>
     <message>
         <source>User Name: </source>
-        <translation>Nom d'utilisateur: </translation>
+        <translation>Nom d&apos;utilisateur: </translation>
     </message>
     <message>
         <source>Email: </source>
@@ -1203,7 +1230,7 @@
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation>Nom de l'activité pour Strava</translation>
+        <translation>Nom de l&apos;activité pour Strava</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1211,7 +1238,7 @@
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation>Description de l'activité pour Strava</translation>
+        <translation>Description de l&apos;activité pour Strava</translation>
     </message>
     <message>
         <source>Private</source>
@@ -1227,7 +1254,7 @@
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation>Vérification de l'envoi...</translation>
+        <translation>Vérification de l&apos;envoi...</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
@@ -1235,7 +1262,7 @@
     </message>
     <message>
         <source>Activity upload complete</source>
-        <translation>Envoi de l'activité achevé</translation>
+        <translation>Envoi de l&apos;activité achevé</translation>
     </message>
     <message>
         <source>Type</source>
@@ -1298,7 +1325,7 @@
     </message>
     <message>
         <source>Remove profile</source>
-        <translation>Renommer le profil</translation>
+        <translation>Supprimer le profil</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
@@ -1310,7 +1337,7 @@
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation>Seuils d'alarme</translation>
+        <translation>Seuils d&apos;alarme</translation>
     </message>
     <message>
         <source>min/mi</source>
@@ -1336,47 +1363,47 @@
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation>0.5 Mi</translation>
+        <translation>0.5 mi</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation>1 Km</translation>
+        <translation>1 km</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation>1 Mi</translation>
+        <translation>1 mi</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation>2 Kms</translation>
+        <translation>2 km</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation>2 Mi</translation>
+        <translation>2 mi</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation>5 Kms</translation>
+        <translation>5 km</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation>5 Mi</translation>
+        <translation>5 mi</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation>10 Kms</translation>
+        <translation>10 km</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation>10 Mi</translation>
+        <translation>10 mi</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation>20 Kms</translation>
+        <translation>20 km</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation>20 Mi</translation>
+        <translation>20 mi</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
@@ -1408,11 +1435,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>Jouer l'annonce</translation>
+        <translation>Jouer l&apos;annonce</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>Avant qu'une valeur ne soit jouée, le type de valeur est annoncé, p. ex. &quot;Distance:&quot;. Cela rallonge la durée de l'annonce.</translation>
+        <translation>Avant qu&apos;une valeur ne soit jouée, le type de valeur est annoncé, p. ex. &quot;Distance:&quot;. Cela rallonge la durée de l&apos;annonce.</translation>
     </message>
 </context>
 <context>
@@ -1479,22 +1506,22 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>Jouer la valeur de l'annonce</translation>
+        <translation>Jouer la valeur de l&apos;annonce</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>Avant qu'une valeur ne soit jouée, le type de valeur est annoncé, p. ex. &quot;Distance:&quot;. Cela rallonge la durée de l'annonce.</translation>
+        <translation>Avant qu&apos;une valeur ne soit jouée, le type de valeur est annoncé, p. ex. &quot;Distance:&quot;. Cela rallonge la durée de l&apos;annonce.</translation>
     </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
-        <translation>Démarrer/arrêter l'activité</translation>
+        <translation>Démarrer/arrêter l&apos;activité</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation>Mettre en pause/continuer l'activité</translation>
+        <translation>Mettre en pause/continuer l&apos;activité</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
@@ -1509,7 +1536,7 @@
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation>Language</translation>
+        <translation>Langue</translation>
     </message>
     <message>
         <source>English male</source>
@@ -1537,7 +1564,7 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
-        <translation>Si activé, le lecteur de musique est mis en pause pendant la lecture d'un message vocal, et reprend après.</translation>
+        <translation>Si activé, le lecteur de musique est mis en pause pendant la lecture d&apos;un message vocal, et reprend après.</translation>
     </message>
     <message>
         <source>Russian male</source>
@@ -1552,11 +1579,11 @@
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation>Seuils d'alarme</translation>
+        <translation>Seuils d&apos;alarme</translation>
     </message>
     <message>
         <source>Event announcements</source>
-        <translation>Annonces d'événement</translation>
+        <translation>Annonces d&apos;événement</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
