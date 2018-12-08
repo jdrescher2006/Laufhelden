@@ -98,6 +98,26 @@
         <source>Disconnect</source>
         <translation>Déconnexion</translation>
     </message>
+    <message>
+        <source>Connection Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>

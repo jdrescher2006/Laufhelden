@@ -213,7 +213,7 @@ void Device::scanServices(const QString &address)
     }
     else {
         // Connect to classic device
-        connectClassic(address,0);
+        connectClassic(address,1);
     }
     m_previousAddress = currentDevice.getAddress();
 }
@@ -344,8 +344,15 @@ void Device::disconnectFromDevice()
 void Device::deviceDisconnected()
 {
     qWarning() << "Disconnect from device";
-    if (m_controller->errorString()=="") //otherwise an error has been emitted
-        emit sigDisconnected();
+    if ((m_bluetoothType!=Device::CLASSICBLUETOOTH) && m_controller)  {
+        if (m_controller->errorString()=="")
+            //otherwise an error has been emitted and we would overwrite the message
+            emit sigDisconnected();
+    } else if (m_socket) {
+        if (m_socket->errorString()=="")
+            //otherwise an error has been emitted and we would overwrite the message
+            emit sigDisconnected();
+    }
 }
 
 
@@ -357,12 +364,8 @@ void Device::hrmServiceStateChanged(QLowEnergyService::ServiceState s)
         break;
     case QLowEnergyService::ServiceDiscovered:
     {
-        // call subscribe to HRM periodically as it sometimes stops sending updates
-        // this is not ideal but have found no better way yet to get a stable heart rate input
-        //m_hrmTimer = new QTimer(this);
-        //connect  (m_hrmTimer,&QTimer::timeout, this, &Device::subscribeToHRM);
+
         subscribeToHRM();
-        //m_hrmTimer->start(10000);
         break;
     }
     default:
@@ -419,9 +422,7 @@ void Device::batServiceStateChanged(QLowEnergyService::ServiceState s)
             // subscribe to Battery level service
             connect(m_batService, &QLowEnergyService::characteristicChanged,
                     this, &Device::updateValues);
-            //TEmporary for testing:
-            //connect(m_batService, &QLowEnergyService::characteristicRead,
-            //        this, &Device::updateValues);
+
             m_batService->writeDescriptor(notificationDesc, QByteArray::fromHex("0100"));
         }
 
@@ -452,7 +453,7 @@ void Device::updateValues(const QLowEnergyCharacteristic &c, const QByteArray &v
         else
             hrvalue = (int)data[1];
 
-        qDebug() << "Current Heart Rate " << hrvalue;
+        //qDebug() << "Current Heart Rate " << hrvalue;
         emit this->sigHRMDataReady(hrvalue);
     }
 

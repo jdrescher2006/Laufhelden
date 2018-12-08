@@ -59,10 +59,6 @@ Page {
             //Scan is finished now
             bBluetoothScanning = false;
         }
-        onConnecting:
-        {
-            btnConnect.enabled = false;
-        }
     }  
 
 
@@ -70,7 +66,6 @@ Page {
     SilicaFlickable
     {
         anchors.fill: parent
-
 
         contentHeight: column.height
 
@@ -284,7 +279,7 @@ Page {
                         //Save the new device to settings
                         settings.hrmdevice = sHRMAddress + "," + sHRMDeviceName;
 
-                        id_BluetoothData.connect(SharedResources.fncGetDeviceBTAddress(index), 1);                        
+                        id_Device.scanServices(SharedResources.fncGetDeviceBTAddress(index));
                     }
                 }
                 VerticalScrollDecorator {}
