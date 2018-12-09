@@ -467,66 +467,106 @@ Page
         anchors.bottom: id_SliderMain.top
         width: parent.width
 
-        Item
+        Column
         {
             width: parent.width / 2
             height: parent.height
             anchors.left: parent.left
             anchors.top: parent.top
 
-            Column
-            {
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                width: parent.width
+            anchors.topMargin: Theme.paddingMedium
 
+            anchors.leftMargin: Theme.paddingSmall
+            Row
+            {
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Time: ") + sCurrentTime
-                    anchors.leftMargin: Theme.paddingSmall
+                    text: qsTr("Time: ")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Duration: ") + sCurrentDuration
-                    anchors.leftMargin: Theme.paddingSmall
+                    text: sCurrentTime
+                    color: Theme.primaryColor
+                }
+            }
+
+
+
+            Row
+            {
+                Label
+                {
+                    text: qsTr("Duration: ")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Elevation: ") + sCurrentElevation
-                    anchors.leftMargin: Theme.paddingSmall
+                    text: sCurrentDuration
+                    color: Theme.primaryColor
+
+                }
+            }
+            Row
+            {
+                Label
+                {
+                    text: qsTr("Elevation: ")
+                    color: Theme.secondaryColor
+                }
+                Label
+                {
+                    text: sCurrentElevation
+                    color: Theme.primaryColor
                 }
             }
         }
-        Item
+
+        Column
         {
             width: parent.width / 2
             height: parent.height
             anchors.right: parent.right
             anchors.top: parent.top
-
-            Column
+            anchors.topMargin: Theme.paddingMedium
+            Row
             {
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                width: parent.width
-
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Pace: ") + sCurrentPace
+                    text: qsTr("Pace: ")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Speed: ") + sCurrentSpeed
+                    text: sCurrentPace
+                    color: Theme.primaryColor
+                }
+            }
+            Row
+            {
+                Label
+                {
+                    text: qsTr("Speed: ")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Heartrate: ") + sCurrentHeartrate + " bmp"
+                    text: sCurrentSpeed
+                    color: Theme.primaryColor
+                }
+            }
+            Row
+            {
+                visible: bHeartrateSupported
+                Label
+                {
+                    text: qsTr("Heartrate: ")
+                    color: Theme.secondaryColor
+                }
+                Label
+                {
+                    text: sCurrentHeartrate + " bmp"
+                    color: Theme.primaryColor
                 }
             }
         }
