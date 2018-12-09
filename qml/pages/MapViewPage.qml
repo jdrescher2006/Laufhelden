@@ -565,7 +565,7 @@ Page
                 }
                 Label
                 {
-                    text: sCurrentHeartrate + " bmp"
+                    text: sCurrentHeartrate
                     color: Theme.primaryColor
                 }
             }
@@ -599,8 +599,8 @@ Page
             sCurrentTime = sDate;
             sCurrentDistance= (settings.measureSystem === 0) ? (iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iDistance/1000).toFixed(2) + qsTr("mi");
             sCurrentDuration = timeFormatter.formatHMS_fromSeconds(JSTools.arrayDataPoints[value.toFixed(0)].duration);
-            sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString();
-            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0);
+            sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString() + " bpm";
+            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0) +" m";
             sCurrentSpeed = (settings.measureSystem === 0) ? (iSpeed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed*3.6)).toFixed(1) + " mi/h";
             sCurrentPace = (settings.measureSystem === 0) ? sPace + " min/km" : sPaceImp + " min/mi";
 
