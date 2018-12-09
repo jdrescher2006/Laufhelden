@@ -467,66 +467,106 @@ Page
         anchors.bottom: id_SliderMain.top
         width: parent.width
 
-        Item
+        Column
         {
             width: parent.width / 2
             height: parent.height
             anchors.left: parent.left
             anchors.top: parent.top
 
-            Column
-            {
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                width: parent.width
+            anchors.topMargin: Theme.paddingMedium
 
+            anchors.leftMargin: Theme.paddingSmall
+            Row
+            {
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Time: ") + sCurrentTime
-                    anchors.leftMargin: Theme.paddingSmall
+                    text: qsTr("Time: ")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Duration: ") + sCurrentDuration
-                    anchors.leftMargin: Theme.paddingSmall
+                    text: sCurrentTime
+                    color: Theme.primaryColor
+                }
+            }
+
+
+
+            Row
+            {
+                Label
+                {
+                    text: qsTr("Duration: ")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Elevation: ") + sCurrentElevation
-                    anchors.leftMargin: Theme.paddingSmall
+                    text: sCurrentDuration
+                    color: Theme.primaryColor
+
+                }
+            }
+            Row
+            {
+                Label
+                {
+                    text: qsTr("Elevation: ")
+                    color: Theme.secondaryColor
+                }
+                Label
+                {
+                    text: sCurrentElevation
+                    color: Theme.primaryColor
                 }
             }
         }
-        Item
+
+        Column
         {
             width: parent.width / 2
             height: parent.height
             anchors.right: parent.right
             anchors.top: parent.top
-
-            Column
+            anchors.topMargin: Theme.paddingMedium
+            Row
             {
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                width: parent.width
-
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Pace: ") + sCurrentPace
+                    text: qsTr("Pace: ")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Speed: ") + sCurrentSpeed
+                    text: sCurrentPace
+                    color: Theme.primaryColor
+                }
+            }
+            Row
+            {
+                Label
+                {
+                    text: qsTr("Speed: ")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    width: parent.width
-                    text: qsTr("Heartrate: ") + sCurrentHeartrate + " bmp"
+                    text: sCurrentSpeed
+                    color: Theme.primaryColor
+                }
+            }
+            Row
+            {
+                visible: bHeartrateSupported
+                Label
+                {
+                    text: qsTr("Heartrate: ")
+                    color: Theme.secondaryColor
+                }
+                Label
+                {
+                    text: sCurrentHeartrate
+                    color: Theme.primaryColor
                 }
             }
         }
@@ -559,8 +599,8 @@ Page
             sCurrentTime = sDate;
             sCurrentDistance= (settings.measureSystem === 0) ? (iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iDistance/1000).toFixed(2) + qsTr("mi");
             sCurrentDuration = timeFormatter.formatHMS_fromSeconds(JSTools.arrayDataPoints[value.toFixed(0)].duration);
-            sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString();
-            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0);
+            sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString() + " bpm";
+            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0) +" m";
             sCurrentSpeed = (settings.measureSystem === 0) ? (iSpeed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed*3.6)).toFixed(1) + " mi/h";
             sCurrentPace = (settings.measureSystem === 0) ? sPace + " min/km" : sPaceImp + " min/mi";
 
