@@ -181,18 +181,25 @@ void Device::scanServices(const QString &address)
         return;
     }
 
+
     if (m_controller)  {
-        qDebug() << "Disconnecting from previous random address device...";
-        m_controller->disconnectFromDevice();
-        m_controller->deleteLater();
-        m_controller = 0;
+        qDebug() << "Trying Disconnect now";
+        if (m_controller->state() == QLowEnergyController::ConnectedState)
+        {
+            qDebug() << "Disconnecting from previous BLE device...";
+            m_controller->disconnectFromDevice();
+            m_controller->deleteLater();
+            m_controller = 0;
+        }
+
     }
 
 
-    if (!m_controller && ((m_bluetoothType==Device::BLEPUBLIC)||(m_bluetoothType==Device::BLERANDOM))) {
-        qDebug() << "Trying to connect to address " << currentDevice.getName();
+    if (m_bluetoothType==Device::BLEPUBLIC||m_bluetoothType==Device::BLERANDOM) {
+        qDebug() << "Trying to connect to BLE address " << currentDevice.getName();
         // Connecting signals and slots for connecting to LE services.
-        m_controller = new QLowEnergyController(currentDevice.getDevice());
+        if (!m_controller)
+            m_controller = new QLowEnergyController(currentDevice.getDevice());
         connect(m_controller, &QLowEnergyController::connected,
                 this, &Device::deviceConnected);
         connect(m_controller, &QLowEnergyController::disconnected,
@@ -213,7 +220,7 @@ void Device::scanServices(const QString &address)
     }
     else {
         // Connect to classic device
-        connectClassic(address,1);
+        connectClassic(currentDevice.getAddress(),1);
     }
     m_previousAddress = currentDevice.getAddress();
 }
@@ -221,6 +228,7 @@ void Device::scanServices(const QString &address)
 void Device ::connectClassic(QString address, int port)
 {
     this->m_port = port;
+    qDebug() << "Trying to connect to " << address;
     qDebug("Trying to connect to: %s_%d", address.toUtf8().constData(), m_port);
 
     if(this->m_socket)

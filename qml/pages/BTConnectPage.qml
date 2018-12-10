@@ -9,12 +9,13 @@ Page {
     property bool bLockFirstPageLoad: true
     property bool bBluetoothScanning: false
     property int iScannedDevicesCount: 0
-    property int iBluetoothType: 0
+    property int iBluetoothType: settings.bluetoothType;
 
     Component.onCompleted:                 {
         bBluetoothScanning = true;
         SharedResources.fncDeleteDevices();
         id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
+        id_Device.setBluetoothType(settings.bluetoothType);
         id_Device.startDeviceDiscovery();
     }
 
@@ -30,7 +31,7 @@ Page {
             //SharedResources.fncAddDevice("Polar iWL", "00:22:D0:02:2F:54");
             //DEBUG ENDE
 
-            id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();            
+            id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
         }
         if (status === PageStatus.Inactive)
         {
@@ -40,6 +41,8 @@ Page {
             sBatteryLevel: ""
         }
         id_CMB_BluetoothType.currentIndex = settings.bluetoothType;
+        id_Device.setBluetoothType(settings.bluetoothType);
+
     }
 
 
