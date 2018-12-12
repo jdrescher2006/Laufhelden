@@ -88,7 +88,7 @@
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Équipement de fréquence cardiaque</translation>
+        <translation>Cardiofréquencemètre</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -827,7 +827,7 @@
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Équipement de fréquence cardiaque</translation>
+        <translation>Cardiofréquencemètre</translation>
     </message>
     <message>
         <source>General</source>
