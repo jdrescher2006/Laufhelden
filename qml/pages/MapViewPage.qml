@@ -158,7 +158,7 @@ Page
             }
             bLockOnCompleted = false;
 
-            pageStack.pushAttached(Qt.resolvedUrl("DiagramViewPage.qml"));
+            pageStack.pushAttached(Qt.resolvedUrl("DiagramViewPage.qml"),{ bHeartrateSupported: bHeartrateSupported, bPaceRelevantForWorkoutType: bPaceRelevantForWorkoutType});
         }
     } 
 
@@ -190,7 +190,7 @@ Page
     PageHeader
     {
         id: idHeader
-        title: ""
+        title: qsTr("Map")
         visible: !bMapMaximized
     }
 
@@ -595,13 +595,12 @@ Page
             var sPace = JSTools.arrayDataPoints[value.toFixed(0)].pace;
             var sPaceImp = JSTools.arrayDataPoints[value.toFixed(0)].paceimp;
 
-
             sCurrentTime = sDate;
             sCurrentDistance= (settings.measureSystem === 0) ? (iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iDistance/1000).toFixed(2) + qsTr("mi");
             sCurrentDuration = timeFormatter.formatHMS_fromSeconds(JSTools.arrayDataPoints[value.toFixed(0)].duration);
             sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString() + " bpm";
-            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0) +" m";
-            sCurrentSpeed = (settings.measureSystem === 0) ? (iSpeed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed*3.6)).toFixed(1) + " mi/h";
+            sCurrentElevation = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0) + " m" : JSTools.fncConvertelevationToImperial(JSTools.arrayDataPoints[value.toFixed(0)].elevation).toFixed(0) + "ft";
+            sCurrentSpeed = (settings.measureSystem === 0) ? iSpeed.toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed)).toFixed(1) + " mi/h";
             sCurrentPace = (settings.measureSystem === 0) ? sPace + " min/km" : sPaceImp + " min/mi";
 
 

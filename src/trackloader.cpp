@@ -360,15 +360,47 @@ void TrackLoader::load()
                                     {
                                         point.speed = 0;
                                         point.pace = 99;
+                                        m_distancearray.clear();
+                                        m_durationarray.clear();
                                     }
                                     else
                                     {
+                                        //Fill distance array. Save the last few values to have a better speed/pace calculation.
+
+                                        //Calculate distance in meter [m] between last and this point
                                         QGeoCoordinate first(m_points.at(m_points.size() - 1).latitude,m_points.at(m_points.size() - 1).longitude);
                                         QGeoCoordinate second(point.latitude,point.longitude);
-                                        m_distance = m_distance + first.distanceTo(second);
+                                        qreal rCurrentDistance = first.distanceTo(second);
+                                        m_distance += rCurrentDistance;
 
-                                        point.speed = m_distance / point.duration;
-                                        point.pace = point.duration / m_distance * 1000 / 60;
+                                        //Calculate time in seconds [s] between last and this point
+                                        qreal rCurrentDuration = 0;
+                                        QDateTime lastTime(m_points.at(m_points.size() - 1).time);
+                                        rCurrentDuration = lastTime.secsTo(secondTime);
+
+                                        //Fill distance array. Save the last few values to have a better speed/pace calculation.
+                                        if (m_distancearray.length() == 10)
+                                        {
+                                            m_distancearray.removeFirst();
+                                            m_durationarray.removeFirst();
+                                        }
+                                        m_distancearray.append(rCurrentDistance);
+                                        m_durationarray.append(rCurrentDuration);
+
+                                        rCurrentDistance = 0.0;
+                                        rCurrentDuration = 0;
+                                        //Calculate distance over the last few gps points
+                                        for(int i=0 ; i < m_distancearray.length(); i++)
+                                        {
+                                            rCurrentDistance += m_distancearray[i];
+                                            rCurrentDuration += m_durationarray[i];
+                                        }
+
+                                        //Calculate speed in [km/h]
+                                        point.speed = (rCurrentDistance / 1000.0) / (rCurrentDuration / 3600.0);
+
+                                        //Calculate pace in [min/km]
+                                        point.pace = (rCurrentDuration / 60.0) / (rCurrentDistance / 1000.0);
                                     }
                                     point.distance = m_distance;
                                 }
@@ -469,30 +501,47 @@ void TrackLoader::load()
                             {
                                 point.speed = 0;
                                 point.pace = 99;
+                                m_distancearray.clear();
+                                m_durationarray.clear();
                             }
                             else
                             {
                                 //Fill distance array. Save the last few values to have a better speed/pace calculation.
-                                /*
+
+                                //Calculate distance in meter [m] between last and this point
+                                QGeoCoordinate first(m_points.at(m_points.size() - 1).latitude,m_points.at(m_points.size() - 1).longitude);
+                                QGeoCoordinate second(point.latitude,point.longitude);
+                                qreal rCurrentDistance = first.distanceTo(second);
+                                m_distance += rCurrentDistance;
+
+                                //Calculate time in seconds [s] between last and this point
+                                qreal rCurrentDuration = 0;
+                                QDateTime lastTime(m_points.at(m_points.size() - 1).time);
+                                rCurrentDuration = lastTime.secsTo(secondTime);
+
+                                //Fill distance array. Save the last few values to have a better speed/pace calculation.
                                 if (m_distancearray.length() == 10)
+                                {
                                     m_distancearray.removeFirst();
+                                    m_durationarray.removeFirst();
+                                }
                                 m_distancearray.append(rCurrentDistance);
+                                m_durationarray.append(rCurrentDuration);
 
                                 rCurrentDistance = 0.0;
+                                rCurrentDuration = 0;
                                 //Calculate distance over the last few gps points
                                 for(int i=0 ; i < m_distancearray.length(); i++)
                                 {
                                     rCurrentDistance += m_distancearray[i];
+                                    rCurrentDuration += m_durationarray[i];
                                 }
-                                */
 
+                                //Calculate speed in [km/h]
+                                point.speed = (rCurrentDistance / 1000.0) / (rCurrentDuration / 3600.0);
 
-                                QGeoCoordinate first(m_points.at(m_points.size() - 1).latitude,m_points.at(m_points.size() - 1).longitude);
-                                QGeoCoordinate second(point.latitude,point.longitude);
-                                m_distance = m_distance + first.distanceTo(second);
-
-                                point.speed = m_distance / point.duration;
-                                point.pace = point.duration / m_distance * 1000 / 60;
+                                //Calculate pace in [min/km]
+                                point.pace = (rCurrentDuration / 60.0) / (rCurrentDistance / 1000.0);
                             }
                             point.distance = m_distance;
                         }
@@ -960,6 +1009,10 @@ qreal TrackLoader::elevationAt(int index)
 QDateTime TrackLoader::timeAt(int index)
 {
     return m_points.at(index).time;
+}
+qint64 TrackLoader::unixTimeAt(int index)
+{
+    return m_points.at(index).time.toMSecsSinceEpoch() / 1000;
 }
 qreal TrackLoader::durationAt(int index)
 {

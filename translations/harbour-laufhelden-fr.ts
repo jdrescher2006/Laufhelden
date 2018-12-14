@@ -200,15 +200,73 @@
         <translation>Activité:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Élevation +/-:</translation>
-    </message>
-    <message>
         <source>Send to Strava</source>
         <translation>Envoyer vers Strava</translation>
     </message>
     <message>
         <source>loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiagramViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation type="unfinished">Diagrammes</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished">Fréquence cardiaque</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished">Vitesse</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished">Heure: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished">Durée: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished">Élévation: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished">Cadence: </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished">Vitesse: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished">Fréq. cardiaque: </translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -462,6 +520,10 @@
         <source>mi</source>
         <translation>mi</translation>
     </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished">Carte</translation>
+    </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
@@ -556,8 +618,8 @@
         <translation>Rockpool doit être installé&lt;br&gt;version minimale: 1.4-1.&lt;br&gt;La version installée est: </translation>
     </message>
     <message>
-        <source>Empty</source>
-        <translation>Vide</translation>
+        <source>Choose the Pebble you want to use</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

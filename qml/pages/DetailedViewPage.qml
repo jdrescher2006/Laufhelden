@@ -110,8 +110,8 @@ Page
 
             for(var i=0; i<trackLength; i++)
             {
-                //heartrate,elevation,distance,time,speed,pace,paceimp,duration
-                JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), trackLoader.distanceAt(i), trackLoader.timeAt(i), trackLoader.speedAt(i), trackLoader.paceStrAt(i), trackLoader.paceImperialStrAt(i), trackLoader.durationAt(i));
+                //heartrate,elevation,distance,time,unixtime,speed,pace,paceimp,duration
+                JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), trackLoader.distanceAt(i), trackLoader.timeAt(i), trackLoader.unixTimeAt(i), trackLoader.speedAt(i), trackLoader.paceStrAt(i), trackLoader.paceImperialStrAt(i), trackLoader.durationAt(i));
                 JSTools.trackPointsAt.push(trackLoader.trackPointAt(i));
             }                    
 
@@ -129,11 +129,7 @@ Page
             iPausePositionsCount = trackLoader.pausePositionsCount();
 
             pageStack.pushAttached(Qt.resolvedUrl("MapViewPage.qml"),{ bHeartrateSupported: bHeartrateSupported, bPaceRelevantForWorkoutType: bPaceRelevantForWorkoutType});
-        }
-        onLoadedChanged:
-        {
-            gridContainer.opacity = 1.0
-        }
+        }       
     }
 
     BusyIndicator
@@ -300,15 +296,14 @@ Page
         Column
         {
             id: id_Column_Main
-
             anchors.top: parent.top
             width: parent.width
+            spacing: Theme.paddingMedium
 
             PageHeader
             {
                 id: header
-                title: ""
-                //title: trackLoader.name === "" ? "-" : trackLoader.name
+                title: qsTr("Overview")
             }
 
             Label
@@ -327,178 +322,124 @@ Page
                 height: Theme.paddingLarge
             }
 
-            Grid
+            Label
             {
-                id: gridContainer
-                x: Theme.paddingLarge
                 width: parent.width
-                spacing: Theme.paddingMedium
-                columns: 2
-                opacity: 0.2
-                Behavior on opacity
-                {
-                    FadeAnimation {}
-                }
+                horizontalAlignment: Text.AlignLeft
+                color: Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                text: qsTr("Description:")
+                visible: trackLoader.description !== ""
+            }
+            Label
+            {
+                id: descriptionData
+                width: parent.width
+                text: trackLoader.description
+                color: Theme.primaryColor
+                wrapMode: Text.WordWrap
+                visible: trackLoader.description !== ""
+            }
 
+            Row
+            {
+                spacing: Theme.paddingMedium
                 Label
                 {
-                    id: descriptionLabel
-                    width: hearRateLabel.width
-                    height:descriptionData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Description:")
-                    visible: trackLoader.description !== ""
-                }
-                Label
-                {
-                    id: descriptionData
-                    width: parent.width - descriptionLabel.width - 2*Theme.paddingLarge
-                    text: trackLoader.description
-                    wrapMode: Text.WordWrap
-                    visible: trackLoader.description !== ""
-                }
-                Label
-                {
-                    width: hearRateLabel.width
-                    height:timeData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Starting time:")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    id: timeData
-                    width: descriptionData.width
                     text: trackLoader.timeStr
+                    color: Theme.primaryColor
                 }
+            }
+            Row
+            {
+                spacing: Theme.paddingMedium
                 Label
                 {
-                    width: hearRateLabel.width
-                    height:durationData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Duration:")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    id: durationData
-                    width: descriptionData.width
                     text: trackLoader.durationStr
+                    color: Theme.primaryColor
                 }
+            }
+            Row
+            {
+                spacing: Theme.paddingMedium
                 Label
                 {
-                    width: hearRateLabel.width
-                    height:distanceData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Distance:")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    id: distanceData
-                    width: descriptionData.width
                     text: (settings.measureSystem === 0) ? ((trackLoader.distance/1000).toFixed(2) + " km") : (JSTools.fncConvertDistanceToImperial(trackLoader.distance/1000).toFixed(2) + " mi")
+                    color: Theme.primaryColor
                 }
+            }
+            Row
+            {
+                spacing: Theme.paddingMedium
                 Label
                 {
-                    width: hearRateLabel.width
-                    height:speedData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    id: avgSpeedLabel
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Speed max/⌀:")
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    id: speedData
-                    width: descriptionData.width
                     text: (settings.measureSystem === 0) ? (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(trackLoader.maxSpeed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(trackLoader.speed*3.6)).toFixed(1) + " mi/h"
+                    color: Theme.primaryColor
                 }
+            }
+            Row
+            {
+                spacing: Theme.paddingMedium
+                visible: bPaceRelevantForWorkoutType
                 Label
                 {
-                    id: paceLabel
-                    width: hearRateLabel.width
-                    height:paceData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Pace ⌀:")
-                    visible: bPaceRelevantForWorkoutType
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    id: paceData
-                    width: descriptionData.width
                     text: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
-                    visible: bPaceRelevantForWorkoutType
+                    color: Theme.primaryColor
                 }
+            }
+            Row
+            {
+                spacing: Theme.paddingMedium
+                visible: bHeartrateSupported
                 Label
                 {
-                    id: hearRateLabel
-                    height:heartRateData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Heart rate min/max/⌀:")
-                    visible: bHeartrateSupported
+                    color: Theme.secondaryColor
                 }
                 Label
                 {
-                    id: heartRateData
-                    width: descriptionData.width
                     text: trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
-                    visible: bHeartrateSupported
+                    color: Theme.primaryColor
                 }
+            }
+            Row
+            {
+                spacing: Theme.paddingMedium
+                visible: (iPausePositionsCount > 0)
                 Label
                 {
-                    width: hearRateLabel.width
-                    id: pauseLabel
-                    height:heartRateData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
                     text: qsTr("Pause number/duration:")
-                    visible: (iPausePositionsCount > 0)
-                }
-                Label
-                {
-                    id: pauseData
-                    width: descriptionData.width
-                    text: trackLoader.pauseDurationStr
-                    visible: (iPausePositionsCount > 0)
-                }
-                Label
-                {
-                    width: hearRateLabel.width
-                    id: elevationbLabel
-                    height:heartRateData.height
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignBottom
                     color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    text: qsTr("Elevation up/down:")
-                    visible: false
                 }
                 Label
                 {
-                    id: elevationData
-                    width: descriptionData.width
-                    text: trackLoader.elevationUp.toFixed(1) + "/" + trackLoader.elevationDown.toFixed(1)
-                    visible: false
+                    text: trackLoader.pauseDurationStr
+                    color: Theme.primaryColor
                 }
             }
         }
