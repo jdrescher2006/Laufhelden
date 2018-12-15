@@ -45,7 +45,7 @@
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Allemagne</translation>
     </message>
 </context>
 <context>
@@ -205,69 +205,69 @@
     </message>
     <message>
         <source>loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>chargement...</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Récapitulatif</translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Diagrammes</translation>
+        <translation>Diagrammes</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished">Fréquence cardiaque</translation>
+        <translation>Fréquence cardiaque</translation>
     </message>
     <message>
         <source>Elevation</source>
-        <translation type="unfinished"></translation>
+        <translation>Altitude</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Vitesse</translation>
+        <translation>Vitesse</translation>
     </message>
     <message>
         <source>Time: </source>
-        <translation type="unfinished">Heure: </translation>
+        <translation>Heure: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished">Durée: </translation>
+        <translation>Durée: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished">Élévation: </translation>
+        <translation>Altitude: </translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished">Cadence: </translation>
+        <translation>Cadence: </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished">Vitesse: </translation>
+        <translation>Vitesse: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished">Fréq. cardiaque: </translation>
+        <translation>Fréq. cardiaque: </translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
     </message>
 </context>
 <context>
     <name>GraphData</name>
     <message>
         <source>No data</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucune donnée</translation>
     </message>
 </context>
 <context>
@@ -498,7 +498,7 @@
     </message>
     <message>
         <source>Elevation: </source>
-        <translation>Élévation: </translation>
+        <translation>Altitude: </translation>
     </message>
     <message>
         <source>Pace: </source>
@@ -522,7 +522,7 @@
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Carte</translation>
+        <translation>Carte</translation>
     </message>
 </context>
 <context>
@@ -619,7 +619,7 @@
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner le Pebble que vous voulez utiliser</translation>
     </message>
 </context>
 <context>
@@ -1210,7 +1210,7 @@
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation>Dénivellé:</translation>
+        <translation>Dénivelé:</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
@@ -1243,7 +1243,7 @@
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation>Différentiel d&apos;élévation:</translation>
+        <translation>Dénivelé:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
