@@ -145,7 +145,7 @@ Page
         height: parent.width / 14
         width: (parent.width / 14) * 3
         anchors.bottomMargin: Theme.paddingSmall
-        source:"../img/pagelocator_2_3.png"
+        source:"../img/pagelocator_3_3.png"
     }
 
     PageHeader
