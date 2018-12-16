@@ -20,6 +20,7 @@ import Sailfish.Silica 1.0
 import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
 import "../graph/"
+import "../components/"
 
 Page
 {
@@ -255,52 +256,23 @@ Page
             height: parent.height
             anchors.left: parent.left
             anchors.top: parent.top
-
             anchors.topMargin: Theme.paddingMedium
-
             anchors.leftMargin: Theme.paddingSmall
-            Row
+
+            InfoItem
             {
-                Label
-                {
-                    text: qsTr("Time: ")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: sCurrentTime
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Time: ")
+                value: sCurrentTime
             }
-
-
-
-            Row
+            InfoItem
             {
-                Label
-                {
-                    text: qsTr("Duration: ")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: sCurrentDuration
-                    color: Theme.primaryColor
-
-                }
+                label: qsTr("Duration: ")
+                value: sCurrentDuration
             }
-            Row
+            InfoItem
             {
-                Label
-                {
-                    text: qsTr("Elevation: ")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: sCurrentElevation
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Elevation: ")
+                value: sCurrentElevation
             }
         }
 
@@ -311,45 +283,22 @@ Page
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.topMargin: Theme.paddingMedium
-            Row
+
+            InfoItem
             {
-                Label
-                {
-                    text: qsTr("Pace: ")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: sCurrentPace
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Pace: ")
+                value: sCurrentPace
             }
-            Row
+            InfoItem
             {
-                Label
-                {
-                    text: qsTr("Speed: ")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: sCurrentSpeed
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Speed: ")
+                value: sCurrentSpeed
             }
-            Row
+            InfoItem
             {
                 visible: bHeartrateSupported
-                Label
-                {
-                    text: qsTr("Heartrate: ")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: sCurrentHeartrate
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Heartrate: ")
+                value: sCurrentHeartrate
             }
         }
     }

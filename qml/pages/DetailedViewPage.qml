@@ -24,6 +24,7 @@ import "../tools/JSTools.js" as JSTools
 import "../tools/SportsTracker.js" as ST
 import "../tools/SharedResources.js" as SharedResources
 import com.pipacs.o2 1.0
+import "../components/"
 
 Page
 {
@@ -341,106 +342,43 @@ Page
                 visible: trackLoader.description !== ""
             }
 
-            Row
+            InfoItem
             {
-                spacing: Theme.paddingMedium
-                Label
-                {
-                    text: qsTr("Starting time:")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: trackLoader.timeStr
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Starting time:")
+                value: trackLoader.timeStr
             }
-            Row
+            InfoItem
             {
-                spacing: Theme.paddingMedium
-                Label
-                {
-                    text: qsTr("Duration:")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: trackLoader.durationStr
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Duration:")
+                value: trackLoader.durationStr
             }
-            Row
+            InfoItem
             {
-                spacing: Theme.paddingMedium
-                Label
-                {
-                    text: qsTr("Distance:")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: (settings.measureSystem === 0) ? ((trackLoader.distance/1000).toFixed(2) + " km") : (JSTools.fncConvertDistanceToImperial(trackLoader.distance/1000).toFixed(2) + " mi")
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Distance:")
+                value: (settings.measureSystem === 0) ? ((trackLoader.distance/1000).toFixed(2) + " km") : (JSTools.fncConvertDistanceToImperial(trackLoader.distance/1000).toFixed(2) + " mi")
             }
-            Row
+            InfoItem
             {
-                spacing: Theme.paddingMedium
-                Label
-                {
-                    text: qsTr("Speed max/⌀:")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: (settings.measureSystem === 0) ? (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(trackLoader.maxSpeed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(trackLoader.speed*3.6)).toFixed(1) + " mi/h"
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Speed max/⌀:")
+                value: (settings.measureSystem === 0) ? (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(trackLoader.maxSpeed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(trackLoader.speed*3.6)).toFixed(1) + " mi/h"
             }
-            Row
+            InfoItem
             {
-                spacing: Theme.paddingMedium
                 visible: bPaceRelevantForWorkoutType
-                Label
-                {
-                    text: qsTr("Pace ⌀:")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Pace ⌀:")
+                value: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
             }
-            Row
+            InfoItem
             {
-                spacing: Theme.paddingMedium
                 visible: bHeartrateSupported
-                Label
-                {
-                    text: qsTr("Heart rate min/max/⌀:")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Heart rate min/max/⌀:")
+                value: trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
             }
-            Row
+            InfoItem
             {
-                spacing: Theme.paddingMedium
                 visible: (iPausePositionsCount > 0)
-                Label
-                {
-                    text: qsTr("Pause number/duration:")
-                    color: Theme.secondaryColor
-                }
-                Label
-                {
-                    text: trackLoader.pauseDurationStr
-                    color: Theme.primaryColor
-                }
+                label: qsTr("Pause number/duration:")
+                value: trackLoader.pauseDurationStr
             }
         }
     }
