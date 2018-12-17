@@ -81,7 +81,7 @@ Device::Device():
     //connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::error,
     //        this, &Device::deviceScanError);
     connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::finished, this, &Device::deviceScanFinished);
-
+    startDeviceDiscovery();
 }
 
 Device::~Device()

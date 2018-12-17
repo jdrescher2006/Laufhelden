@@ -16,7 +16,7 @@ Page {
         SharedResources.fncDeleteDevices();
         id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
         id_Device.setBluetoothType(settings.bluetoothType);
-        id_Device.startDeviceDiscovery();
+        //id_Device.startDeviceDiscovery();
     }
 
     onStatusChanged:
