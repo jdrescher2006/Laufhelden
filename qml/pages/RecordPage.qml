@@ -527,7 +527,7 @@ Page
                         //console.log("arSoundArray.length: " + arSoundArray.length.toString());
                         //for (var i = 0; i < arSoundArray.length; i++)
                         //{
-                        //console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
+                          //  console.log("arSoundArray[" + i.toString() + "]: " + arSoundArray[i]);
                         //}
 
                         fncPlaySoundArray(arSoundArray);

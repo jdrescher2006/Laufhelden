@@ -220,16 +220,74 @@
         <translation>Träningspass:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Höjd upp/ner:</translation>
-    </message>
-    <message>
         <source>Send to Strava</source>
         <translation>Skicka till Strava</translation>
     </message>
     <message>
         <source>loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Läser in...</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation>Översikt</translation>
+    </message>
+</context>
+<context>
+    <name>DiagramViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation>Diagram</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation>Hjärtfrekvens</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation>Stigning</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>Hastighet</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation>Tid: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation>Varaktighet: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation>Stigning: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation>Tempo: </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation>Hastighet: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation>Hjärtfrekvens: </translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation>km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
+        <translation>Ingen data</translation>
     </message>
 </context>
 <context>
@@ -452,35 +510,39 @@
     <name>MapViewPage</name>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tid: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>Varaktighet: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Stigning: </translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo; </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hastighet: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hjärtfrekvens: </translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation>Karta</translation>
     </message>
 </context>
 <context>
@@ -576,8 +638,8 @@
         <translation>Rockpool måste vara installerat&lt;br&gt;lägst version 1.4-4&lt;br&gt;Installerad version är: </translation>
     </message>
     <message>
-        <source>Empty</source>
-        <translation type="unfinished">Tomt</translation>
+        <source>Choose the Pebble you want to use</source>
+        <translation>Välj den Pebble du vill använda</translation>
     </message>
 </context>
 <context>

@@ -42,7 +42,7 @@ var trackPointsAt = [];
 var trackPausePointsTemporary = [];
 
 
-function fncAddDataPoint(heartrate,elevation,distance,time,speed,pace,paceimp,duration)
+function fncAddDataPoint(heartrate,elevation,distance,time,unixtime,speed,pace,paceimp,duration)
 {
     var iPosition = arrayDataPoints.length;
 
@@ -51,6 +51,7 @@ function fncAddDataPoint(heartrate,elevation,distance,time,speed,pace,paceimp,du
     arrayDataPoints[iPosition]["elevation"] = elevation;
     arrayDataPoints[iPosition]["distance"] = distance;
     arrayDataPoints[iPosition]["time"] = time;
+    arrayDataPoints[iPosition]["unixtime"] = unixtime;
     arrayDataPoints[iPosition]["speed"] = speed;
     arrayDataPoints[iPosition]["pace"] = pace;
     arrayDataPoints[iPosition]["paceimp"] = paceimp;
@@ -392,9 +393,9 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance, bPla
     //We have a maximum of 4 voice messages to play
     for (var i = 1; i < 5; i++)
     {
-        //console.log("arrayLookUpArray[" + i.toString() + "].index: " + arrayLookUpArray[i].index.toString());
-        //console.log("arrayLookUpArray[" + i.toString() + "].fieldID_Distance: " + arrayLookUpArray[i].fieldID_Distance.toString());
-        //console.log("arrayLookUpArray[" + i.toString() + "] === undefined: " + (arrayLookUpArray[i] === undefined).toString());
+        console.log("arrayLookUpArray[" + i.toString() + "].index: " + arrayLookUpArray[i].index.toString());
+        console.log("arrayLookUpArray[" + i.toString() + "].fieldID_Duration: " + arrayLookUpArray[i].fieldID_Duration.toString());
+        console.log("arrayLookUpArray[" + i.toString() + "] === undefined: " + (arrayLookUpArray[i] === undefined).toString());
 
         //Check if index exists
         if (arrayLookUpArray[i] === undefined)
@@ -417,15 +418,37 @@ function fncPlayCyclicVoiceAnnouncement(bMetric, iVoiceLanguage, bDistance, bPla
             if (iNumber === 0)
                 continue;
 
+            //console.log("Duration playing iNumber: " + iNumber.toString());
+
             //value is something like >00h 00m 00s<
             //Separate the three values
             var sSplitArray = iNumber.split(" ");
-            //SplitArray must have 3 entries (h,m,s)
-            if (sSplitArray.length !== 3)
+
+            //TODO/DEBUG: SplitArray can consist of only 1 entry!!!
+            //console.log("sSplitArray.length: " + sSplitArray.length.toString());
+
+            var iHour = 0;
+            var iMinute = 0;
+            var iSecond = 0;
+
+            //SplitArray should have 3 entries (h,m,s)
+            if (sSplitArray.length === 1) //only seconds
+            {
+                iSecond = parseInt(sSplitArray[0]);
+            }
+            else if (sSplitArray.length === 2) //seconds and minutes
+            {
+                iMinute = parseInt(sSplitArray[0]);
+                iSecond = parseInt(sSplitArray[1]);
+            }
+            else if (sSplitArray.length === 3) //seconds and minutes and hours
+            {
+                iHour = parseInt(sSplitArray[0]);
+                iMinute = parseInt(sSplitArray[1]);
+                iSecond = parseInt(sSplitArray[2]);
+            }
+            else
                 continue;
-            var iHour = parseInt(sSplitArray[0]);
-            var iMinute = parseInt(sSplitArray[1]);
-            var iSecond = parseInt(sSplitArray[2]);
 
             var sUnitHour = (iHour === 1) ? "hour" : "hours";
             var sUnitMinute = (iMinute === 1) ? "minute" : "minutes";

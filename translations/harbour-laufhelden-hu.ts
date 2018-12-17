@@ -212,10 +212,6 @@
         <translation>Szünetek száma:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Szintkülönbség:</translation>
-    </message>
-    <message>
         <source>Workout name</source>
         <translation>Edzés neve</translation>
     </message>
@@ -229,6 +225,68 @@
     </message>
     <message>
         <source>loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiagramViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation type="unfinished">Grafikonok</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished">Pulzus</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished">Sebesség</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mérföld</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -482,6 +540,10 @@
         <source>mi</source>
         <translation type="unfinished">mérföld</translation>
     </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished">Térkép</translation>
+    </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
@@ -576,8 +638,8 @@
         <translation>3 lépés/sebesség:</translation>
     </message>
     <message>
-        <source>Empty</source>
-        <translation type="unfinished">Üres</translation>
+        <source>Choose the Pebble you want to use</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

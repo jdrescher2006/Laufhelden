@@ -69,6 +69,7 @@ class Settings : public QObject
     //Pebble specific setings
     Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
     Q_PROPERTY(QString valuePebbleFields READ valuePebbleFields WRITE setValuePebbleFields)
+    Q_PROPERTY(QString pebbleIDstring READ pebbleIDstring WRITE setPebbleIDstring)
 
     //Sports-Tracker.com specific settings
     Q_PROPERTY(QString stUsername READ stUsername WRITE setStUsername)
@@ -138,6 +139,9 @@ public:
 
     QString valuePebbleFields() const;
     void setValuePebbleFields(QString valuePebbleFields);
+
+    QString pebbleIDstring() const;
+    void setPebbleIDstring(QString pebbleIDstring);
 
     QString mapStyle() const;
     void setMapStyle(QString mapStyle);

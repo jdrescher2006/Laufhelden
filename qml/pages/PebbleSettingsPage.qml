@@ -23,41 +23,63 @@ Page
 {
     id: page
 
-    property bool bLockOnCompleted : false
+    property bool bLockOnCompleted : true
     property bool bLockFirstPageLoad: true
     property int iCheckPebbleStep: 0
     property var sPebbleListArray
     property variant arComboboxStringArray : []
 
-    
+
     onStatusChanged:
     {
         //This is loaded only the first time the page is displayed
         if (status === PageStatus.Active && bLockFirstPageLoad)
         {
-            bLockOnCompleted = true;
-
             bLockFirstPageLoad = false;
             console.log("First Active PebbleSettingsPage");
 
             //Check if a Pebble watch was found in Rockpool manager
             var sPebbleList = id_PebbleManagerComm.getListWatches();
-            var arComboarray = [qsTr("Empty")];
 
-            for (var i = 0; i < sPebbleList.count; i++)
+            //console.log("sPebbleList: " + sPebbleList);
+            //console.log("sPebbleList.length: " + sPebbleList.length.toString());
+
+            var arComboarray = [];
+
+            for (var i = 0; i < sPebbleList.length; i++)
             {
+                //console.log("Pebble: " + i.toString() + ", " + sPebbleList[i]);
                 arComboarray.push(sPebbleList[i]);
             }
             arComboboxStringArray = arComboarray;
 
+            //console.log("arComboarray: " + arComboarray.length.toString());
 
-            console.log("sPebbleList: " + sPebbleList);
+
 
             if (sPebbleList !== undefined && sPebbleList.length > 0)
             {
-                //A pebble was found, we have now a DBus path to it.
-                //If there are more than one pebble, use the first one.
-                sPebblePath = sPebbleList[1];
+                //There might be more than one pebble found
+                if (sPebbleList.length > 1)
+                {
+                    id_CMB_ChoosePebble.visible = true;
+
+                    //Now read the last used pebble string from settings
+                    var sLastUsedPebbleString = settings.pebbleIDstring;
+
+                    //Check if the last used pebble string is in the pebble list
+                    for (var j = 0; j < sPebbleList.length; j++)
+                    {
+                        if (sLastUsedPebbleString === sPebbleList[j])
+                           sPebblePath = sPebbleList[j];
+                    }
+                }
+                else
+                {
+                    //A pebble was found, we have now a DBus path to it.
+                    //If there are more than one pebble, use the first one.
+                    sPebblePath = sPebbleList[0];
+                }
 
                 //Read version of Rockpool and check if it is sufficient
                 fncCheckVersion(id_PebbleManagerComm.getRockpoolVersion());
@@ -73,7 +95,7 @@ Page
                 //Disable pebble support
                 settings.enablePebble = false;
 
-                //Disble this dialog
+                //Disable this dialog
                 id_TextSwitch_enablePebble.checked = false;
                 id_TextSwitch_enablePebble.enabled = false;
             }
@@ -334,17 +356,33 @@ Page
                 text: qsTr("Enable Pebble support")
                 description: qsTr("View workout data on Pebble Smartwatch.")
                 onCheckedChanged:
-                {
-                    console.log("Pressed...");
+                {                    
                     if (!bLockOnCompleted && !bLockFirstPageLoad)
+                    {
+                        console.log("Pressed...");
                         settings.enablePebble = checked;
+                    }
                 }                
             }
 
             ComboBox
             {
+                id: id_CMB_ChoosePebble
+                visible: false
                 width: parent.width
                 menu: ContextMenu { Repeater { model: arComboboxStringArray; MenuItem { text: modelData }}}
+                onCurrentItemChanged:
+                {
+                    if (!bLockOnCompleted && !bLockFirstPageLoad)
+                    {
+                        console.log("Combo pebble changed: " + arComboboxStringArray[currentIndex]);
+
+                        settings.pebbleIDstring = arComboboxStringArray[currentIndex];
+                        sPebblePath = arComboboxStringArray[currentIndex];
+                        id_PebbleWatchComm.setServicePath(sPebblePath);
+                    }
+                }
+                description: qsTr("Choose the Pebble you want to use")
             }
 
             Separator

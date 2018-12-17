@@ -220,15 +220,73 @@
         <translation>Harjoitus:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Korkeusero Ylös/Alas</translation>
-    </message>
-    <message>
         <source>Send to Strava</source>
         <translation>Lähetä Stravaan</translation>
     </message>
     <message>
         <source>loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DiagramViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation type="unfinished">Kuvaajat</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished">Syke</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished">Nopeus</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">Km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -482,6 +540,10 @@
         <source>mi</source>
         <translation type="unfinished">mi</translation>
     </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished">Kartta</translation>
+    </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
@@ -576,8 +638,8 @@
         <translation>Rockpool pitää olla asennettuna&lt;br&gt;vähintään versio 1.4-1.&lt;br&gt;Asennettu versio on: </translation>
     </message>
     <message>
-        <source>Empty</source>
-        <translation type="unfinished">Tyhjä</translation>
+        <source>Choose the Pebble you want to use</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

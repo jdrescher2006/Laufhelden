@@ -194,6 +194,14 @@ void Settings::setValuePebbleFields(QString valuePebbleFields)
 {
     m_settings->setValue("pebblesettings/valuePebbleFields", valuePebbleFields);
 }
+QString Settings::pebbleIDstring() const
+{
+    return m_settings->value("pebblesettings/pebbleIDstring", "").toString();
+}
+void Settings::setPebbleIDstring(QString pebbleIDstring)
+{
+    m_settings->setValue("pebblesettings/pebbleIDstring", pebbleIDstring);
+}
 
 QString Settings::mapStyle() const
 {

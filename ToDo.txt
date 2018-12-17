@@ -1,8 +1,10 @@
 ---- ToDo for next release to openrepos: 1.0.1-1 -----
 
 - add a combobox for multiple pebbles
-- 
+- Bug: if a workout starts with HR. And the HR device is not connected. Then there are too high values saved to the GPX file. Like this: <gpxtpx:TrackPointExtension><gpxtpx:hr>4294967295</gpxtpx:hr></gpxtpx:TrackPointExtension>
 
+- Bugs in voice output trainer:
+	- 
 
 - solved a bug in polish translation															-> OK
 

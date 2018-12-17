@@ -65,7 +65,6 @@ ApplicationWindow
     property int iPlayLoop: 0
     property variant arrayPlaySounds: 0
 
-
     //property bool bApplicationIsActive: fal
 
     //Init C++ classes, libraries

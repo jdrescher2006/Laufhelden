@@ -45,7 +45,7 @@
     </message>
     <message>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Allemagne</translation>
     </message>
 </context>
 <context>
@@ -88,7 +88,7 @@
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Équipement de fréquence cardiaque</translation>
+        <translation>Cardiofréquencemètre</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -193,7 +193,7 @@
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation>Fréquence cardiaque min/max/⌀:</translation>
+        <translation>Fréq. cardiaque min/max/⌀:</translation>
     </message>
     <message>
         <source>Pause number/duration:</source>
@@ -220,16 +220,74 @@
         <translation>Activité:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Élevation +/-:</translation>
-    </message>
-    <message>
         <source>Send to Strava</source>
         <translation>Envoyer vers Strava</translation>
     </message>
     <message>
         <source>loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>chargement...</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation>Récapitulatif</translation>
+    </message>
+</context>
+<context>
+    <name>DiagramViewPage</name>
+    <message>
+        <source>Diagrams</source>
+        <translation>Diagrammes</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation>Fréquence cardiaque</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation>Altitude</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>Vitesse</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation>Heure: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation>Durée: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation>Altitude: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation>Cadence: </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation>Vitesse: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation>Fréq. cardiaque: </translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation>km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
+        <translation>Aucune donnée</translation>
     </message>
 </context>
 <context>
@@ -452,35 +510,39 @@
     <name>MapViewPage</name>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>Heure: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>Durée: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Altitude: </translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>Cadence: </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Vitesse: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fréq. cardiaque: </translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation>Carte</translation>
     </message>
 </context>
 <context>
@@ -576,8 +638,8 @@
         <translation>Rockpool doit être installé&lt;br&gt;version minimale: 1.4-1.&lt;br&gt;La version installée est: </translation>
     </message>
     <message>
-        <source>Empty</source>
-        <translation>Vide</translation>
+        <source>Choose the Pebble you want to use</source>
+        <translation>Sélectionner le Pebble que vous voulez utiliser</translation>
     </message>
 </context>
 <context>
@@ -847,7 +909,7 @@
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Équipement de fréquence cardiaque</translation>
+        <translation>Cardiofréquencemètre</translation>
     </message>
     <message>
         <source>General</source>
@@ -1168,7 +1230,7 @@
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation>Dénivellé:</translation>
+        <translation>Dénivelé:</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
@@ -1201,7 +1263,7 @@
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation>Différentiel d&apos;élévation:</translation>
+        <translation>Dénivelé:</translation>
     </message>
     <message>
         <source>Climb Category:</source>

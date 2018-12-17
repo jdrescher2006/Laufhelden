@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Jens Drescher, Germany
+ * Copyright (C) 2018 Jens Drescher, Germany
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,97 +19,331 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import harbour.laufhelden 1.0
 import "../tools/JSTools.js" as JSTools
+import "../graph/"
+import "../components/"
 
 Page
 {
     id: page
 
-    allowedOrientations: Orientation.All
+    allowedOrientations: Orientation.Portrait
 
     property bool bLockFirstPageLoad: true
+    property bool bPaceRelevantForWorkoutType: true
+    property bool bHeartrateSupported: false
+    property variant arHeartrateData
+    property variant arElevationData
+    property variant arSpeedData
+    property variant arPaceData
+    property int iMinValueElevation: 0
+    property int iMaxValueElevation: 0
+    property int iMaxValueSpeed: 0
+    property int iMaxValueHeartrate: 0
+
+    property string sCurrentDistance: "0"
+    property string sCurrentTime: ""
+    property string sCurrentDuration: "0"
+    property string sCurrentHeartrate: "-"
+    property string sCurrentElevation: "-"
+    property string sCurrentSpeed: "0"
+    property string sCurrentPace: "0"
 
     onStatusChanged:
     {
         if (status === PageStatus.Active && bLockFirstPageLoad)
         {
-            bLockFirstPageLoad = false;
+            var iLastProperHeartRate = 0;
+            var arrayHeartrateData = [];
+            var arrayElevationData = [];
+            var arraySpeedData = [];
+            var arrayPaceData = [];
 
+            for (var i = 0; i < JSTools.arrayDataPoints.length; i++)
+            {
+                var iHeartrate = 0;
+                var iElevation = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[i].elevation : JSTools.fncConvertelevationToImperial(JSTools.arrayDataPoints[i].elevation);
+                var iSpeed = (settings.measureSystem === 0) ? (JSTools.arrayDataPoints[i].speed) : (JSTools.fncConvertSpeedToImperial(JSTools.arrayDataPoints[i].speed));
+
+                if (JSTools.arrayDataPoints[i].heartrate > 0)
+                {
+                    iHeartrate = JSTools.arrayDataPoints[i].heartrate;
+                    iLastProperHeartRate = JSTools.arrayDataPoints[i].heartrate;
+                }
+                else
+                {
+                    iHeartrate = iLastProperHeartRate;
+                }
+
+                //Calculate min/max values for elevation
+                if (iElevation > iMaxValueElevation)
+                    iMaxValueElevation = iElevation;
+                if (bLockFirstPageLoad || iElevation < iMinValueElevation)
+                    iMinValueElevation = iElevation;
+                //Calculate max value for speed
+                if (iSpeed > iMaxValueSpeed)
+                    iMaxValueSpeed = iSpeed;
+                //Calculate max value for speed
+                if (iHeartrate > iMaxValueHeartrate)
+                    iMaxValueHeartrate = iHeartrate;
+
+                arrayHeartrateData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iHeartrate});
+                arrayElevationData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iElevation});
+                arraySpeedData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iSpeed});
+                arrayPaceData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":JSTools.arrayDataPoints[i].pace});
+            }
+
+            //If min value for elevation is over 100 the diagram would not be painted :-(
+            if (iMinValueElevation > 100)
+                iMinValueElevation = 100;
+
+            arHeartrateData = arrayHeartrateData;
+            arElevationData = arrayElevationData;
+            arSpeedData = arraySpeedData;
+            arPaceData = arrayPaceData;
+
+            fncUpdateGraphs();
+
+            console.log("Ele Max/Min: " + iMaxValueElevation.toString() + "/" + iMinValueElevation.toString());
+
+            bLockFirstPageLoad = false;
         }
 
         if (status === PageStatus.Active)
         {
-            id_PlotWidgetHR.reset();
-            id_PlotWidgetELE.reset();
 
-            var iLastProperHeartRate = 0;
-
-            for (var i = 0; i < JSTools.arrayDataPoints.length; i++)
-            {
-                if (JSTools.arrayDataPoints[i].heartrate > 0)
-                {
-                    id_PlotWidgetHR.addValue(JSTools.arrayDataPoints[i].heartrate);
-                    iLastProperHeartRate = JSTools.arrayDataPoints[i].heartrate;
-                }
-                else
-                    id_PlotWidgetHR.addValue(iLastProperHeartRate);
-
-                id_PlotWidgetELE.addValue(JSTools.arrayDataPoints[i].elevation);
-
-
-
-                //if (i > 100)
-                  //  break;
-            }
-
-            id_PlotWidgetHR.update();
-            id_PlotWidgetELE.update();
         }
     }
 
-    SilicaFlickable
+    function fncUpdateGraphs()
     {
-        anchors.fill: parent
-        contentHeight: id_Column_Main.height
+        graphHeartrate.updateGraph();
+        graphElevation.updateGraph();
+        graphSpeed.updateGraph();
+    }
 
-        VerticalScrollDecorator {}
+    TimeFormatter
+    {
+        id: timeFormatter
+    }
+
+    ApplicationWindow
+    {
+        onApplicationActiveChanged:
+        {
+            console.log("applicationActive: " + applicationActive);
+            if (applicationActive)
+            {
+                fncUpdateGraphs();
+            }
+        }
+    }
+
+    Image
+    {
+        id: id_IMG_PageLocator
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        height: parent.width / 14
+        width: (parent.width / 14) * 3
+        anchors.bottomMargin: Theme.paddingSmall
+        source:"../img/pagelocator_3_3.png"
+    }
+
+    PageHeader
+    {
+        id: idHeader
+        title: qsTr("Diagrams")
+    }
+
+    Item
+    {
+        id: id_ITEM_Graphs
+        anchors.top: idHeader.bottom
+        width: parent.width
+        height: parent.height / 1.7        
+
+        GraphData
+        {
+            anchors.top: parent.top
+            visible: bHeartrateSupported
+            id: graphHeartrate
+            graphTitle: qsTr("Heartrate")
+            graphHeight: parent.height / 4.4
+
+            axisY.units: "bpm"
+
+            function updateGraph()
+            {
+                setPoints(arHeartrateData);
+            }
+
+            bShowCurrentLine: true
+            iCurrentLinePosition: ((100.0 / JSTools.trackPointsAt.length) * id_SliderMain.value);
+
+            lineWidth: 2
+            minY: 0
+            maxY: iMaxValueHeartrate
+            valueConverter: function(value)
+            {
+                return value.toFixed(0);
+            }
+            onClicked:
+            {
+                updateGraph();
+            }
+        }
+        GraphData
+        {
+            anchors.verticalCenter: parent.verticalCenter
+            id: graphElevation
+            graphTitle: qsTr("Elevation")
+            graphHeight: parent.height / 4.4
+
+            axisY.units: (settings.measureSystem === 0) ? "m" : "ft"
+
+            function updateGraph()
+            {
+                setPoints(arElevationData);
+            }
+
+            bShowCurrentLine: true
+            iCurrentLinePosition: ((100.0 / JSTools.trackPointsAt.length) * id_SliderMain.value);
+
+            lineWidth: 2
+            minY: 0
+            maxY: iMaxValueElevation
+            valueConverter: function(value)
+            {
+                return value.toFixed(0);
+            }
+            onClicked:
+            {
+                updateGraph();
+            }
+        }
+        GraphData
+        {
+            anchors.bottom: parent.bottom
+            visible: !bPaceRelevantForWorkoutType
+            id: graphSpeed
+            graphTitle: qsTr("Speed")
+            graphHeight: parent.height / 4.4
+
+            axisY.units: (settings.measureSystem === 0) ? "km/h" : "mi/h"
+
+            function updateGraph()
+            {
+                setPoints(arSpeedData);
+            }
+
+            bShowCurrentLine: true
+            iCurrentLinePosition: ((100.0 / JSTools.trackPointsAt.length) * id_SliderMain.value);
+
+            lineWidth: 2
+            minY: 0
+            maxY: iMaxValueSpeed
+            valueConverter: function(value)
+            {
+                return value.toFixed(1);
+            }
+            onClicked:
+            {
+                updateGraph();
+            }
+        }
+    }
+
+    Item
+    {
+        anchors.top: id_ITEM_Graphs.bottom
+        anchors.bottom: id_SliderMain.top
+        width: parent.width
 
         Column
         {
-            id: id_Column_Main
-
+            width: parent.width / 2
+            height: parent.height
+            anchors.left: parent.left
             anchors.top: parent.top
-            width: parent.width
+            anchors.topMargin: Theme.paddingMedium
+            anchors.leftMargin: Theme.paddingSmall
 
-            PageHeader
+            InfoItem
             {
-                title: ""
+                label: qsTr("Time: ")
+                value: sCurrentTime
             }
+            InfoItem
+            {
+                label: qsTr("Duration: ")
+                value: sCurrentDuration
+            }
+            InfoItem
+            {
+                label: qsTr("Elevation: ")
+                value: sCurrentElevation
+            }
+        }
 
-            PlotWidget
-            {
-                id: id_PlotWidgetHR
-                width: page.width
-                height: page.height / 3
-                plotColor: "blue"
-                scaleColor: "red"
-            }
-            Item
-            {
-                width: parent.width
-                height: Theme.paddingLarge
-            }
+        Column
+        {
+            width: parent.width / 2
+            height: parent.height
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.topMargin: Theme.paddingMedium
 
-            PlotWidget
+            InfoItem
             {
-                id: id_PlotWidgetELE
-                width: page.width
-                height: page.height / 3
-                plotColor: Theme.highlightColor
-                scaleColor: Theme.secondaryHighlightColor
+                label: qsTr("Pace: ")
+                value: sCurrentPace
             }
+            InfoItem
+            {
+                label: qsTr("Speed: ")
+                value: sCurrentSpeed
+            }
+            InfoItem
+            {
+                visible: bHeartrateSupported
+                label: qsTr("Heartrate: ")
+                value: sCurrentHeartrate
+            }
+        }
+    }
+    Slider
+    {
+        id: id_SliderMain
+        width: parent.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: id_IMG_PageLocator.top
+        valueText: sCurrentDistance
+        minimumValue: 0
+        maximumValue: JSTools.trackPointsAt.length
+        onValueChanged:
+        {
+            if (bLockFirstPageLoad)
+                return;
 
+            var dDate = new Date(JSTools.arrayDataPoints[value.toFixed(0)].time);
+            var sDate = dDate.getHours() + ":" + dDate.getMinutes() + ":" + dDate.getSeconds();
+            var iDistance = JSTools.arrayDataPoints[value.toFixed(0)].distance;
+            var iSpeed = JSTools.arrayDataPoints[value.toFixed(0)].speed;
+            var sPace = JSTools.arrayDataPoints[value.toFixed(0)].pace;
+            var sPaceImp = JSTools.arrayDataPoints[value.toFixed(0)].paceimp;
+
+            sCurrentTime = sDate;
+            sCurrentDistance= (settings.measureSystem === 0) ? (iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iDistance/1000).toFixed(2) + qsTr("mi");
+            sCurrentDuration = timeFormatter.formatHMS_fromSeconds(JSTools.arrayDataPoints[value.toFixed(0)].duration);
+            sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString() + " bpm";
+            sCurrentElevation = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0) + " m" : JSTools.fncConvertelevationToImperial(JSTools.arrayDataPoints[value.toFixed(0)].elevation).toFixed(0) + "ft";
+            sCurrentSpeed = (settings.measureSystem === 0) ? iSpeed.toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed)).toFixed(1) + " mi/h";
+            sCurrentPace = (settings.measureSystem === 0) ? sPace + " min/km" : sPaceImp + " min/mi";
+
+
+            //console.log("sCurrentDistance: " + sCurrentDidistancestance);sPace
+            //console.log("sCurrentHeartrate: " + sCurrentHeartrate);
+            //console.log("sCurrentElevation: " + sCurrentElevation);
         }
     }
 }
-
-

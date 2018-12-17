@@ -108,6 +108,7 @@ public:
     Q_INVOKABLE uint heartRateAt(int index);
     Q_INVOKABLE qreal elevationAt(int index);
     Q_INVOKABLE QDateTime timeAt(int index);
+    Q_INVOKABLE qint64 unixTimeAt(int index);
     Q_INVOKABLE qreal durationAt(int index);
     Q_INVOKABLE qreal distanceAt(int index);
     Q_INVOKABLE qreal speedAt(int index);
@@ -173,6 +174,7 @@ private:
     qreal m_elevationUp;
     qreal m_elevationDown;
     QList<qreal> m_distancearray;
+    QList<qreal> m_durationarray;
 };
 
 #endif // TRACKLOADER_H

@@ -25,6 +25,7 @@ import "../tools/JSTools.js" as JSTools
 import "../tools/SportsTracker.js" as ST
 import "../tools/SharedResources.js" as SharedResources
 import com.pipacs.o2 1.0
+import "../components/"
 
 Page
 {
@@ -158,7 +159,7 @@ Page
             }
             bLockOnCompleted = false;
 
-            pageStack.pushAttached(Qt.resolvedUrl("DiagramViewPage.qml"));
+            pageStack.pushAttached(Qt.resolvedUrl("DiagramViewPage.qml"),{ bHeartrateSupported: bHeartrateSupported, bPaceRelevantForWorkoutType: bPaceRelevantForWorkoutType});
         }
     } 
 
@@ -190,7 +191,7 @@ Page
     PageHeader
     {
         id: idHeader
-        title: ""
+        title: qsTr("Map")
         visible: !bMapMaximized
     }
 
@@ -467,67 +468,55 @@ Page
         anchors.bottom: id_SliderMain.top
         width: parent.width
 
-        Item
+        Column
         {
             width: parent.width / 2
             height: parent.height
             anchors.left: parent.left
             anchors.top: parent.top
 
-            Column
-            {
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                width: parent.width
+            anchors.topMargin: Theme.paddingMedium
+            anchors.leftMargin: Theme.paddingSmall
 
-                Label
-                {
-                    width: parent.width
-                    text: qsTr("Time: ") + sCurrentTime
-                    anchors.leftMargin: Theme.paddingSmall
-                }
-                Label
-                {
-                    width: parent.width
-                    text: qsTr("Duration: ") + sCurrentDuration
-                    anchors.leftMargin: Theme.paddingSmall
-                }
-                Label
-                {
-                    width: parent.width
-                    text: qsTr("Elevation: ") + sCurrentElevation
-                    anchors.leftMargin: Theme.paddingSmall
-                }
+            InfoItem
+            {
+                label: qsTr("Time: ")
+                value: sCurrentTime
+            }
+            InfoItem
+            {
+                label: qsTr("Duration: ")
+                value: sCurrentDuration
+            }
+            InfoItem
+            {
+                label: qsTr("Elevation: ")
+                value: sCurrentElevation
             }
         }
-        Item
+
+        Column
         {
             width: parent.width / 2
             height: parent.height
             anchors.right: parent.right
             anchors.top: parent.top
-
-            Column
+            anchors.topMargin: Theme.paddingMedium
+            InfoItem
             {
-                anchors.top: parent.top
-                anchors.topMargin: Theme.paddingMedium
-                width: parent.width
-
-                Label
-                {
-                    width: parent.width
-                    text: qsTr("Pace: ") + sCurrentPace
-                }
-                Label
-                {
-                    width: parent.width
-                    text: qsTr("Speed: ") + sCurrentSpeed
-                }
-                Label
-                {
-                    width: parent.width
-                    text: qsTr("Heartrate: ") + sCurrentHeartrate + " bmp"
-                }
+                label: qsTr("Pace: ")
+                value: sCurrentPace
+            }
+            InfoItem
+            {
+                label: qsTr("Speed: ")
+                value: sCurrentSpeed
+            }
+            InfoItem
+            {
+                visible: bHeartrateSupported
+                label: qsTr("Heartrate: ")
+                value: sCurrentHeartrate
             }
         }
     }
@@ -555,13 +544,12 @@ Page
             var sPace = JSTools.arrayDataPoints[value.toFixed(0)].pace;
             var sPaceImp = JSTools.arrayDataPoints[value.toFixed(0)].paceimp;
 
-
             sCurrentTime = sDate;
             sCurrentDistance= (settings.measureSystem === 0) ? (iDistance/1000).toFixed(2) + qsTr("km") : JSTools.fncConvertDistanceToImperial(iDistance/1000).toFixed(2) + qsTr("mi");
             sCurrentDuration = timeFormatter.formatHMS_fromSeconds(JSTools.arrayDataPoints[value.toFixed(0)].duration);
-            sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString();
-            sCurrentElevation = JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0);
-            sCurrentSpeed = (settings.measureSystem === 0) ? (iSpeed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed*3.6)).toFixed(1) + " mi/h";
+            sCurrentHeartrate = JSTools.arrayDataPoints[value.toFixed(0)].heartrate.toString() + " bpm";
+            sCurrentElevation = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[value.toFixed(0)].elevation.toFixed(0) + " m" : JSTools.fncConvertelevationToImperial(JSTools.arrayDataPoints[value.toFixed(0)].elevation).toFixed(0) + "ft";
+            sCurrentSpeed = (settings.measureSystem === 0) ? iSpeed.toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(iSpeed)).toFixed(1) + " mi/h";
             sCurrentPace = (settings.measureSystem === 0) ? sPace + " min/km" : sPaceImp + " min/mi";
 
 
