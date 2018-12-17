@@ -132,6 +132,7 @@ private slots:
     void batServiceStateChanged(QLowEnergyService::ServiceState s);
     void subscribeToHRM();
     void updateValues(const QLowEnergyCharacteristic &c, const QByteArray &value);
+    void updateBatteryData();
 
     //Classic Bluetooth
     void readData();
@@ -172,7 +173,7 @@ private:
     bool randomAddress;
     bool m_heartRateFound;
     bool m_batteryStateFound;
-    QTimer *m_hrmTimer;
+    QTimer *m_batTimer;
     int m_bluetoothType;
     // This is for classic Bluetooth
     QBluetoothSocket *m_socket;

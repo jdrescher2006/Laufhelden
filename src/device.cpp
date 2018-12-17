@@ -71,7 +71,7 @@
 #include <QtEndian>
 
 Device::Device():
-    connected(false), m_controller(0), m_deviceScanState(false),m_socket(0)
+    connected(false), m_controller(0), m_deviceScanState(false),m_socket(0), m_batTimer(0)
 {
     m_bluetoothType = Device::BLEPUBLIC;
     discoveryAgent = new QBluetoothDeviceDiscoveryAgent();
@@ -430,8 +430,16 @@ void Device::batServiceStateChanged(QLowEnergyService::ServiceState s)
             // subscribe to Battery level service
             connect(m_batService, &QLowEnergyService::characteristicChanged,
                     this, &Device::updateValues);
+            connect(m_batService, &QLowEnergyService::characteristicRead,
+                    this, &Device::updateValues );
 
             m_batService->writeDescriptor(notificationDesc, QByteArray::fromHex("0100"));
+            // Try to read battery data periodically for device not sending a signal
+            if (!m_batTimer)
+                m_batTimer = new QTimer(this);
+            connect(m_batTimer, SIGNAL(timeout()), this, SLOT(updateBatteryData()));
+            m_batTimer->start(10000);
+
         }
 
         break;
@@ -472,8 +480,17 @@ void Device::updateValues(const QLowEnergyCharacteristic &c, const QByteArray &v
         qDebug() << "Current battery Level " << (int)batvalue;
         emit this->sigBATDataReady(batvalue);
     }
+}
 
-
+void Device::updateBatteryData()
+{
+    if (m_batService)
+    {
+        qDebug() << "Polling battery status";
+        const QLowEnergyCharacteristic batChar = m_batService->characteristic(QBluetoothUuid(QBluetoothUuid::BatteryLevel));
+        m_batService->readCharacteristic(batChar);
+        if (m_batTimer) m_batTimer->start(10000);
+    }
 }
 
 void Device::deviceScanError(QBluetoothDeviceDiscoveryAgent::Error error)
