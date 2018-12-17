@@ -55,10 +55,8 @@ Item {
     }
     property bool noData: true
 
-    function setCurrentLinePosition()
-    {
-
-    }
+    property bool bShowCurrentLine: false
+    property int iCurrentLinePosition: 0
 
     function setPoints(data) {
         if (!data) return;
@@ -79,14 +77,7 @@ Item {
         }
         doubleAxisXLables = ((maxX - minX) > 129600); // 1,5 days
 
-
         canvas.requestPaint();
-
-        canvasCurrentLine.requestPaint();
-
-        //canvasCurrentLine.bShowCurrentPositionLine = true;
-        //canvasCurrentLine.iCurrentPosition = canvas.width/2;
-        //canvasCurrentLine.requestPaint();
     }
 
     function createYLabel(value) {
@@ -106,7 +97,7 @@ Item {
         anchors {
             top: parent.top
             left: parent.left
-            leftMargin: 3*Theme.paddingLarge
+            leftMargin: 2*Theme.paddingLarge
             right: parent.right
             rightMargin: Theme.paddingLarge
         }
@@ -135,6 +126,17 @@ Item {
             height: graphHeight
             border.color: Theme.secondaryHighlightColor
             color: "transparent"
+
+            Rectangle
+            {
+                visible: bShowCurrentLine
+                color: Theme.primaryColor
+                width: 3
+                height: parent.height
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.leftMargin: ((parent.width * iCurrentLinePosition)/100.0)
+            }
 
             BackgroundItem {
                 id: backgroundArea
@@ -198,34 +200,6 @@ Item {
                 visible: !noData
             }
 
-            Canvas
-            {
-                id: canvasCurrentLine
-                anchors.fill: parent
-
-                property real iCurrentPosition: 0
-                property bool bShowCurrentPositionLine: false
-
-                onPaint:
-                {
-                    var ctx = canvas.getContext("2d");
-                    ctx.globalCompositeOperation = "source-over";
-                    ctx.clearRect(0,0,width,height);
-
-                    ctx.save();
-
-                    ctx.lineWidth = 2;
-                    ctx.strokeStyle = "red";
-                    ctx.globalAlpha = 0.4;
-
-                    ctx.beginPath();
-                    ctx.moveTo(width/2, 0);
-                    ctx.lineTo(width/2, height);
-                    ctx.stroke();
-
-                    ctx.restore();
-                }
-            }
 
             Canvas
             {
@@ -253,23 +227,7 @@ Item {
                     }
 
                     ctx.restore();
-                }
-
-                function fncTester(ctx)
-                {
-                    ctx.save();
-
-                    ctx.lineWidth = 2;
-                    ctx.strokeStyle = "red";
-                    ctx.globalAlpha = 0.4;
-
-                    ctx.beginPath();
-                    ctx.moveTo(width/2, 0);
-                    ctx.lineTo(width/2, height);
-                    ctx.stroke();
-
-                    ctx.restore();
-                }
+                }                
 
 
                 //TODO: allow multiple lines to be drawn
@@ -287,8 +245,7 @@ Item {
 
                     if (end > 0)
                     {
-                        drawGrid(ctx);
-                        //fncTester(ctx);
+                        drawGrid(ctx);                 
                     }
 
                     ctx.save()

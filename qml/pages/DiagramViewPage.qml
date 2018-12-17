@@ -160,7 +160,7 @@ Page
         id: id_ITEM_Graphs
         anchors.top: idHeader.bottom
         width: parent.width
-        height: parent.height / 1.7
+        height: parent.height / 1.7        
 
         GraphData
         {
@@ -176,6 +176,9 @@ Page
             {
                 setPoints(arHeartrateData);
             }
+
+            bShowCurrentLine: true
+            iCurrentLinePosition: ((100.0 / JSTools.trackPointsAt.length) * id_SliderMain.value);
 
             lineWidth: 2
             minY: 0
@@ -203,6 +206,9 @@ Page
                 setPoints(arElevationData);
             }
 
+            bShowCurrentLine: true
+            iCurrentLinePosition: ((100.0 / JSTools.trackPointsAt.length) * id_SliderMain.value);
+
             lineWidth: 2
             minY: 0
             maxY: iMaxValueElevation
@@ -229,6 +235,9 @@ Page
             {
                 setPoints(arSpeedData);
             }
+
+            bShowCurrentLine: true
+            iCurrentLinePosition: ((100.0 / JSTools.trackPointsAt.length) * id_SliderMain.value);
 
             lineWidth: 2
             minY: 0
