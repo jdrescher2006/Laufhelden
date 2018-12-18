@@ -340,13 +340,25 @@ void Device::disconnectFromDevice()
     // TODO what is really needed is to extend state() to a multi value
     // and thus allowing UI to keep track of controller progress in addition to
     // device scan progress
+    // Check if we are using BLE
+    if ((m_controller)&&(m_bluetoothType!=Device::CLASSICBLUETOOTH))
+    {
+        if (m_controller->state() != QLowEnergyController::UnconnectedState)
+            m_controller->disconnectFromDevice();
+        else
+            deviceDisconnected();
+        m_controller->deleteLater();
+        m_controller=0;
+    }
+    if ((m_socket) && (m_bluetoothType==Device::CLASSICBLUETOOTH))
+    {
+        if(m_socket->isOpen())
+            m_socket->close();
+        else deviceDisconnected();
 
-    if (!m_controller)
-        return;
-    if (m_controller->state() != QLowEnergyController::UnconnectedState)
-        m_controller->disconnectFromDevice();
-    else
-        deviceDisconnected();
+        m_socket->deleteLater();
+        m_socket = 0;
+    }
 }
 
 void Device::deviceDisconnected()
@@ -380,8 +392,6 @@ void Device::hrmServiceStateChanged(QLowEnergyService::ServiceState s)
         //nothing for now
         break;
     }
-
-    //emit aliveChanged();
 }
 
 void Device::subscribeToHRM()
