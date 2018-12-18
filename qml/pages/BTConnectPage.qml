@@ -12,7 +12,7 @@ Page {
     property int iBluetoothType: settings.bluetoothType;
 
     Component.onCompleted:                 {
-        bBluetoothScanning = true;
+        //bBluetoothScanning = true;
         SharedResources.fncDeleteDevices();
         id_LV_Devices.model = iScannedDevicesCount = SharedResources.fncGetDevicesNumber();
         id_Device.setBluetoothType(settings.bluetoothType);
