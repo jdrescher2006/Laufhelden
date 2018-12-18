@@ -35,7 +35,7 @@ Page {
         }
         if (status === PageStatus.Inactive)
         {
-            if (bHRMConnected) {id_Device.disconnect();}
+            if (bHRMConnected) {id_Device.disconnectFromDevice();}
 
             sHeartRate: ""
             sBatteryLevel: ""
