@@ -347,6 +347,12 @@ void Device::disconnectFromDevice()
             m_controller->disconnectFromDevice();
         else
             deviceDisconnected();
+        if (m_batTimer)
+        {
+            m_batTimer->stop();
+            m_batTimer->deleteLater();
+            m_batTimer=0;
+        }
         m_controller->deleteLater();
         m_controller=0;
     }
