@@ -47,6 +47,7 @@ class Settings : public QObject
     Q_PROPERTY(QString valueCoverFields READ valueCoverFields WRITE setValueCoverFields)
     Q_PROPERTY(bool mapDisableRecordPage READ mapDisableRecordPage WRITE setMapDisableRecordPage)
     Q_PROPERTY(QString workoutTypeMainPage READ workoutTypeMainPage WRITE setWorkoutTypeMainPage)
+    Q_PROPERTY(int bluetoothType READ bluetoothType WRITE setBluetoothType)
 
     //Voice output
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
@@ -213,6 +214,10 @@ public:
 
     QString stSessionkey() const;
     void setStSessionkey(QString stSessionkey);
+
+    int bluetoothType() const;
+    void setBluetoothType(int stBluetoothType);
+
 
 signals:
     void updateIntervalChanged();

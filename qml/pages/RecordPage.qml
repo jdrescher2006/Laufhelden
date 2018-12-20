@@ -218,7 +218,8 @@ Page
 
             if (sHRMAddress !== "" && settings.useHRMdevice && bRecordDialogRequestHRM === false && !settings.useHRMservice)
             {
-                id_BluetoothData.connect(sHRMAddress, 1);
+                id_Device.setBluetoothType(settings.bluetoothType);
+                id_Device.scanServices(sHRMAddress);
                 bRecordDialogRequestHRM = true;
             }
 
@@ -1113,7 +1114,7 @@ Page
                 onClicked:
                 {
                     bRecordDialogRequestHRM = false;
-                    id_BluetoothData.disconnect();
+                    id_Device.disconnectFromDevice();
                 }
             }
             MenuItem
@@ -1122,7 +1123,7 @@ Page
                 visible: (sHRMAddress !== "" && settings.useHRMdevice)
                 onClicked:
                 {
-                    id_BluetoothData.connect(sHRMAddress, 1);
+                    id_Device.scanServices(sHRMAddress);
                     bRecordDialogRequestHRM = true;
                 }
             }

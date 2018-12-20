@@ -23,14 +23,15 @@ SOURCES += src/harbour-laufhelden.cpp \
     src/historymodel.cpp \
     src/trackloader.cpp \
     src/settings.cpp \
-    src/bluetoothconnection.cpp \
-    src/bluetoothdata.cpp \
     src/logwriter.cpp \
     src/plotwidget.cpp \
     src/light.cpp \
     src/pebblemanagercomm.cpp \
     src/pebblewatchcomm.cpp \
-    src/timeformatter.cpp
+    src/timeformatter.cpp \
+    src/device.cpp \
+    src/deviceinfo.cpp \
+    src/serviceinfo.cpp
 
 OTHER_FILES += qml/harbour-laufhelden.qml \
     qml/cover/CoverPage.qml \
@@ -65,14 +66,16 @@ HEADERS += \
     src/historymodel.h \
     src/trackloader.h \
     src/settings.h \
-    src/bluetoothconnection.h \
-    src/bluetoothdata.h \
     src/logwriter.h \
     src/plotwidget.h \
     src/light.h \
     src/pebblemanagercomm.h \
     src/pebblewatchcomm.h \
-    src/timeformatter.h
+    src/timeformatter.h \
+    src/device.h \
+    src/deviceinfo.h \
+    src/serviceinfo.h \
+    src/serviceinfo.h
 
 DISTFILES += \
     qml/pages/MainPage.qml \

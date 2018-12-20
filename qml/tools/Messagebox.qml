@@ -59,6 +59,7 @@ BackgroundItem
         messageboxVisibility.interval = (delay>0) ? delay : 3000;
         messageboxVisibility.restart();
 
+
         if (type === 0)//WARNING
         {
             idRectangleColor.color = "#DEB954";

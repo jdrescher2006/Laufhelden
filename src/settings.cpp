@@ -16,6 +16,7 @@
 */
 
 #include "settings.h"
+#include "device.h"
 
 Settings::Settings(QObject *parent) :
     QObject(parent)
@@ -401,4 +402,13 @@ void Settings::setStSessionkey(QString key)
 QString Settings::stSessionkey() const
 {
     return m_settings->value("sportstracker/sessionkey").toString();
+}
+
+int Settings::bluetoothType() const
+{
+    return m_settings->value("sportstracker/bluetoothtype", Device::BLEPUBLIC).toInt();
+}
+void Settings::setBluetoothType(int stBluetoothType)
+{
+    m_settings->setValue("sportstracker/bluetoothtype",stBluetoothType);
 }
