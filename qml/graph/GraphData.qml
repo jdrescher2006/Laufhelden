@@ -40,7 +40,8 @@ Item {
     property bool doubleAxisXLables: false
 
     property bool scale: false
-    property color lineColor: Theme.highlightColor
+    property color lineColor: Theme.primaryColor
+    property color gridColor: Theme.highlightColor
     property real lineWidth: 10 //TODO DEBUG
 
     property real minY: 0 //Always 0
@@ -216,7 +217,7 @@ Item {
                     ctx.save();
 
                     ctx.lineWidth = 1;
-                    ctx.strokeStyle = lineColor;
+                    ctx.strokeStyle = gridColor;
                     ctx.globalAlpha = 0.4;
                     //i=0 and i=axisY.grid skipped, top/bottom line
                     for (var i=1;i<axisY.grid;i++) {
@@ -253,7 +254,7 @@ Item {
                     //ctx.globalAlpha = 0.8;
 
                     //PGZ
-                    //lineWidth = width / end;
+                    lineWidth = width / end;
 
                     ctx.lineWidth = lineWidth;
                     ctx.beginPath();

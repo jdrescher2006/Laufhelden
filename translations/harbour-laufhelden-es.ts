@@ -282,6 +282,10 @@
         <source>mi</source>
         <translation type="unfinished">mi</translation>
     </message>
+    <message>
+        <source>Pace</source>
+        <translation type="unfinished">Ritmo</translation>
+    </message>
 </context>
 <context>
     <name>GraphData</name>
@@ -1682,6 +1686,17 @@
     <message>
         <source>Voice Coach Settings</source>
         <translation>Ajustes del entrenador por voz</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-laufhelden</name>
+    <message>
+        <source>Connecting to HR device...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HR error: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

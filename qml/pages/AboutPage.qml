@@ -113,7 +113,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeExtraSmall
                 color: Theme.secondaryColor
-                text: qsTr("Date: ") + "14.09.2018";
+                text: qsTr("Date: ") + "21.12.2018";
             }
             Label
             {
@@ -141,7 +141,7 @@ Page
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.secondaryColor
-                text: "niemisenjussi, piggz, atlochowski, eson57, martonmiklos, d9h20f, carmenfdezb, dikonov"
+                text: "niemisenjussi, piggz, atlochowski, eson57, martonmiklos, d9h20f, carmenfdezb, dikonov, thmichel, trouyer, ncartron"
             }            
             Item
             {

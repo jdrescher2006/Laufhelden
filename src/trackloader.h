@@ -112,6 +112,7 @@ public:
     Q_INVOKABLE qreal durationAt(int index);
     Q_INVOKABLE qreal distanceAt(int index);
     Q_INVOKABLE qreal speedAt(int index);
+    Q_INVOKABLE qreal paceAt(int index);
     Q_INVOKABLE QString paceStrAt(int index);
     Q_INVOKABLE QString paceImperialStrAt(int index);
 

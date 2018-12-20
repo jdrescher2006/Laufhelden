@@ -42,7 +42,7 @@ var trackPointsAt = [];
 var trackPausePointsTemporary = [];
 
 
-function fncAddDataPoint(heartrate,elevation,distance,time,unixtime,speed,pace,paceimp,duration)
+function fncAddDataPoint(heartrate,elevation,distance,time,unixtime,speed,pace,pacevalue,paceimp,duration)
 {
     var iPosition = arrayDataPoints.length;
 
@@ -54,6 +54,7 @@ function fncAddDataPoint(heartrate,elevation,distance,time,unixtime,speed,pace,p
     arrayDataPoints[iPosition]["unixtime"] = unixtime;
     arrayDataPoints[iPosition]["speed"] = speed;
     arrayDataPoints[iPosition]["pace"] = pace;
+    arrayDataPoints[iPosition]["pacevalue"] = pacevalue;
     arrayDataPoints[iPosition]["paceimp"] = paceimp;
     arrayDataPoints[iPosition]["duration"] = duration;
 }

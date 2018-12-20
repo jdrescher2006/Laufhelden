@@ -104,6 +104,7 @@ Page
         {
             var trackLength = trackLoader.trackPointCount();
             var pauseLength = trackLoader.pausePositionsCount();
+            var iLastProperHeartRate = 0;
 
             JSTools.arrayDataPoints = [];
             JSTools.trackPointsAt = [];
@@ -111,8 +112,20 @@ Page
 
             for(var i=0; i<trackLength; i++)
             {
-                //heartrate,elevation,distance,time,unixtime,speed,pace,paceimp,duration
-                JSTools.fncAddDataPoint(trackLoader.heartRateAt(i), trackLoader.elevationAt(i), trackLoader.distanceAt(i), trackLoader.timeAt(i), trackLoader.unixTimeAt(i), trackLoader.speedAt(i), trackLoader.paceStrAt(i), trackLoader.paceImperialStrAt(i), trackLoader.durationAt(i));
+                var iHeartrate = trackLoader.heartRateAt(i);
+
+                //Problem is there are often HR points with value 0. This will be solved.
+                if (iHeartrate > 0)
+                {
+                    iLastProperHeartRate = iHeartrate;
+                }
+                else
+                {
+                    iHeartrate = iLastProperHeartRate;
+                }
+
+                //heartrate,elevation,distance,time,unixtime,speed,pace,pacevalue,paceimp,duration
+                JSTools.fncAddDataPoint(iHeartrate, trackLoader.elevationAt(i), trackLoader.distanceAt(i), trackLoader.timeAt(i), trackLoader.unixTimeAt(i), trackLoader.speedAt(i), trackLoader.paceStrAt(i), trackLoader.paceAt(i), trackLoader.paceImperialStrAt(i), trackLoader.durationAt(i));
                 JSTools.trackPointsAt.push(trackLoader.trackPointAt(i));
             }                    
 
@@ -158,11 +171,11 @@ Page
         anchors.centerIn: detailPage
         running: !trackLoader.loaded
         size: BusyIndicatorSize.Large
-
     }       
 
     Image
     {
+        visible: trackLoader.loaded
         id: id_IMG_WorkoutIcon
         anchors.bottom: id_IMG_PageLocator.top
         anchors.horizontalCenter: parent.horizontalCenter
@@ -175,6 +188,7 @@ Page
     }
     Label
     {
+        visible: trackLoader.loaded
         anchors.horizontalCenter: id_IMG_WorkoutIcon.horizontalCenter
         anchors.verticalCenter: id_IMG_WorkoutIcon.verticalCenter
         horizontalAlignment: Label.AlignHCenter
@@ -187,6 +201,7 @@ Page
     Image
     {
         id: id_IMG_PageLocator
+        visible: trackLoader.loaded
         height: parent.width / 14
         width: (parent.width / 14) * 3
         anchors.bottom: parent.bottom
@@ -199,7 +214,7 @@ Page
     SilicaFlickable
     {
         id:detail_flick
-        visible: true
+        visible: trackLoader.loaded
         anchors.fill: parent
         clip: true
         contentHeight: id_Column_Main.height
