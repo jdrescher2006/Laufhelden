@@ -187,7 +187,7 @@ Page
             if (settings.enablePebble)
             {
                 var sPebbleList = id_PebbleManagerComm.getListWatches();
-                console.log("sPebbleList: " + sPebbleList);                                
+                console.log("sPebbleList: " + sPebbleList);                                                                             
 
                 if (sPebbleList !== undefined && sPebbleList.length > 0)
                 {
@@ -196,6 +196,8 @@ Page
                     {
                         //Now read the last used pebble string from settings
                         var sLastUsedPebbleString = settings.pebbleIDstring;
+
+                        console.log("sLastUsedPebbleString: " + sLastUsedPebbleString);
 
                         //Check if the last used pebble string is in the pebble list
                         for (var j = 0; j < sPebbleList.length; j++)
@@ -212,7 +214,7 @@ Page
                     }
 
                     //This sets the path with the BT address to the C++ class and inits the DBUS communication object
-                    id_PebbleWatchComm.setServicePath(sPebblePath);
+                    if (sPebblePath !== "") id_PebbleWatchComm.setServicePath(sPebblePath);
                 }
             }
 

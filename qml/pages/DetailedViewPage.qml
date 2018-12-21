@@ -29,7 +29,7 @@ import "../components/"
 Page
 {
     id: detailPage
-    allowedOrientations: Orientation.Portrait
+    allowedOrientations: Orientation.All
 
     property string filename
     property string name

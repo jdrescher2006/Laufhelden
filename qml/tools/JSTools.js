@@ -363,7 +363,7 @@ function fncConvertSaveStringToArrayCyclicVoiceDuration(sSaveString)
             arrayVoiceValueTypes[i].fieldID_Duration = 0;
     }
 
-    fncGenerateHelperArrayFieldIDDistance();
+    fncGenerateHelperArrayFieldIDDuration();
 }
 
 function fncConvertArrayToSaveStringCyclicVoiceDuration()

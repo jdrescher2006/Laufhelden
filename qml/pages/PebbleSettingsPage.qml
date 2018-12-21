@@ -85,7 +85,7 @@ Page
                 fncCheckVersion(id_PebbleManagerComm.getRockpoolVersion());
 
                 //This sets the path with the BT address to the C++ class and inits the DBUS communication object
-                id_PebbleWatchComm.setServicePath(sPebblePath);
+                if (sPebblePath !== "") id_PebbleWatchComm.setServicePath(sPebblePath);
             }
             else
             {

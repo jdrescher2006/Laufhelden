@@ -26,7 +26,7 @@ Page
 {
     id: page
 
-    allowedOrientations: Orientation.Portrait
+    allowedOrientations: Orientation.All
 
     property bool bLockFirstPageLoad: true
     property bool bPaceRelevantForWorkoutType: true
@@ -63,6 +63,7 @@ Page
                 var iHeartrate = 0;
                 var iElevation = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[i].elevation : JSTools.fncConvertelevationToImperial(JSTools.arrayDataPoints[i].elevation);
                 var iSpeed = (settings.measureSystem === 0) ? (JSTools.arrayDataPoints[i].speed) : (JSTools.fncConvertSpeedToImperial(JSTools.arrayDataPoints[i].speed));
+                var iPace = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[i].pacevalue : (JSTools.fncConvertPacetoImperial(JSTools.arrayDataPoints[i].pacevalue));
 
                 if (JSTools.arrayDataPoints[i].heartrate > 0)
                 {
@@ -90,7 +91,7 @@ Page
                 arrayElevationData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iElevation});
                 arraySpeedData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iSpeed});
                 //TODO/DEBUG: imperial conversion of pace value needs to be implememnted
-                arrayPaceData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":JSTools.arrayDataPoints[i].pacevalue});
+                arrayPaceData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iPace});
             }
 
             //If min value for elevation is over 100 the diagram would not be painted :-(
