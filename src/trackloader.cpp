@@ -1026,6 +1026,10 @@ qreal TrackLoader::speedAt(int index)
 {
     return m_points.at(index).speed;
 }
+qreal TrackLoader::paceAt(int index)
+{
+    return m_points.at(index).pace;
+}
 QString TrackLoader::paceStrAt(int index)
 {
     QString strPace = "";

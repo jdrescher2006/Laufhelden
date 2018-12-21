@@ -182,14 +182,14 @@ ApplicationWindow
         }
         onSigConnecting:
         {
-            fncShowMessage(2,"Connecting",2000);
+            fncShowMessage(2,qsTr("Connecting to HR device..."),2000);
             bHRMConnecting = true;
             bHRMConnected = false;
         }
 
         onSigError:
         {
-            fncShowMessage(3,sError, 5000);
+            fncShowMessage(3,qsTr("HR error: ") + sError, 5000);
             bHRMConnected = false;
             bHRMConnecting = false;
         }

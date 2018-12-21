@@ -89,12 +89,22 @@ Page
                 arrayHeartrateData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iHeartrate});
                 arrayElevationData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iElevation});
                 arraySpeedData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iSpeed});
-                arrayPaceData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":JSTools.arrayDataPoints[i].pace});
+                //TODO/DEBUG: imperial conversion of pace value needs to be implememnted
+                arrayPaceData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":JSTools.arrayDataPoints[i].pacevalue});
             }
 
             //If min value for elevation is over 100 the diagram would not be painted :-(
             if (iMinValueElevation > 100)
                 iMinValueElevation = 100;
+
+            //max value for elevation need to be rounded to the next 50'er step
+            console.log("Ele Max/Min: " + iMaxValueElevation.toString() + "/" + iMinValueElevation.toString());
+            iMaxValueElevation = Math.ceil(iMaxValueElevation/50)*50;
+            console.log("Ele Max/Min: " + iMaxValueElevation.toString() + "/" + iMinValueElevation.toString());
+
+            console.log("Speed Max: " + iMaxValueSpeed.toString());
+            iMaxValueSpeed = Math.ceil(iMaxValueSpeed/50)*50;
+            console.log("Speed Max/Min: " + iMaxValueSpeed.toString());
 
             arHeartrateData = arrayHeartrateData;
             arElevationData = arrayElevationData;
@@ -103,7 +113,6 @@ Page
 
             fncUpdateGraphs();
 
-            console.log("Ele Max/Min: " + iMaxValueElevation.toString() + "/" + iMinValueElevation.toString());
 
             bLockFirstPageLoad = false;
         }
@@ -118,7 +127,10 @@ Page
     {
         graphHeartrate.updateGraph();
         graphElevation.updateGraph();
-        graphSpeed.updateGraph();
+        if (bPaceRelevantForWorkoutType)
+            graphPace.updateGraph();
+        else
+            graphSpeed.updateGraph();
     }
 
     TimeFormatter
@@ -180,9 +192,9 @@ Page
             bShowCurrentLine: true
             iCurrentLinePosition: ((100.0 / JSTools.trackPointsAt.length) * id_SliderMain.value);
 
-            lineWidth: 2
+            lineWidth: 1
             minY: 0
-            maxY: iMaxValueHeartrate
+            maxY: 200
             valueConverter: function(value)
             {
                 return value.toFixed(0);
@@ -242,6 +254,36 @@ Page
             lineWidth: 2
             minY: 0
             maxY: iMaxValueSpeed
+            valueConverter: function(value)
+            {
+                return value.toFixed(1);
+            }
+            onClicked:
+            {
+                updateGraph();
+            }
+        }
+        GraphData
+        {
+            anchors.bottom: parent.bottom
+            visible: bPaceRelevantForWorkoutType
+            id: graphPace
+            graphTitle: qsTr("Pace")
+            graphHeight: parent.height / 4.4
+
+            axisY.units: (settings.measureSystem === 0) ? "min/km" : "min/mi"
+
+            function updateGraph()
+            {
+                setPoints(arPaceData);
+            }
+
+            bShowCurrentLine: true
+            iCurrentLinePosition: ((100.0 / JSTools.trackPointsAt.length) * id_SliderMain.value);
+
+            lineWidth: 2
+            minY: 0.0
+            maxY: 12.0
             valueConverter: function(value)
             {
                 return value.toFixed(1);

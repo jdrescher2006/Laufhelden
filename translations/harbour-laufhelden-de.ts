@@ -52,71 +52,71 @@
     <name>BTConnectPage</name>
     <message>
         <source>Heart rate device</source>
-        <translation type="unfinished">Herzfrequenzmesser</translation>
+        <translation>Herzfrequenzmesser</translation>
     </message>
     <message>
         <source>Scan for Bluetooth devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchen nach Bluetooth-Geräten</translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation type="unfinished"></translation>
+        <translation>Starte Suche...</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche Abbrechen</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelles BT-Gerät</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Keines</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenz: </translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation type="unfinished"></translation>
+        <translation> bpm</translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Batterie: </translation>
     </message>
     <message>
         <source>Connection Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Bluetooth-Typ</translation>
     </message>
     <message>
         <source>BLE Public Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE Public Adresse</translation>
     </message>
     <message>
         <source>BLE Random Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE Random Adresse</translation>
     </message>
     <message>
         <source>Classic Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>Classic Bluetooth</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinden</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Trennen</translation>
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation type="unfinished"></translation>
+        <translation>Gefundene Geräte (drücken zum Verbinden):</translation>
     </message>
     <message>
         <source>Cancel Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -225,69 +225,73 @@
     </message>
     <message>
         <source>loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>laden...</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Übersicht</translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Diagramme</translation>
+        <translation>Diagramme</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished">Herzfrequenz</translation>
+        <translation>Herzfrequenz</translation>
     </message>
     <message>
         <source>Elevation</source>
-        <translation type="unfinished"></translation>
+        <translation>Höhe</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Geschwindigkeit</translation>
+        <translation>Geschwindigkeit</translation>
     </message>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>Zeit: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dauer: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Höhe: </translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo: </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfreuenz: </translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">Km</translation>
+        <translation>Km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation>Tempo</translation>
     </message>
 </context>
 <context>
     <name>GraphData</name>
     <message>
         <source>No data</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Daten</translation>
     </message>
 </context>
 <context>
@@ -510,39 +514,39 @@
     <name>MapViewPage</name>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>Zeit: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>Dauer: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Höhe: </translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo: </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Geschwindigkeit: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Herzfrequenz: </translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">Km</translation>
+        <translation>Km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Karte</translation>
+        <translation>Karte</translation>
     </message>
 </context>
 <context>
@@ -639,7 +643,7 @@
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
-        <translation type="unfinished"></translation>
+        <translation>Pebble auswählen</translation>
     </message>
 </context>
 <context>
@@ -1682,6 +1686,17 @@
     <message>
         <source>Voice Coach Settings</source>
         <translation>Sprachtrainer Einstellungen</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-laufhelden</name>
+    <message>
+        <source>Connecting to HR device...</source>
+        <translation>Verbinde mit HR-Gerät...</translation>
+    </message>
+    <message>
+        <source>HR error: </source>
+        <translation>HR-Fehler: </translation>
     </message>
 </context>
 </TS>
