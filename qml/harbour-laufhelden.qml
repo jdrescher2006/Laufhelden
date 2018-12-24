@@ -65,13 +65,11 @@ ApplicationWindow
     property int iPlayLoop: 0
     property variant arrayPlaySounds: 0
 
-
     //property bool bApplicationIsActive: fal
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }
-    BluetoothConnection{ id: id_BluetoothConnection }
-    BluetoothData{ id: id_BluetoothData }
+    Device{ id: id_Device }
     LogWriter{ id: id_LogWriter }
     Settings{ id: settings }
     PlotWidget{ id: id_PlotWidget }
@@ -149,32 +147,51 @@ ApplicationWindow
     //These are connections to c++ events
     Connections
     {
-        target: id_BluetoothData        
+        target: id_Device
         onSigReadDataReady:     //This is called from C++ if there is data via bluetooth
         {
             fncCheckHeartrate(sData);
         }
+        onSigHRMDataReady:   // This gets HRM data from BTLE devices
+        {
+            fncCheckHeartrateBTLE(sData)
+        }
+        onSigBATDataReady:   // This gets battery data from BTLE devices
+        {
+            fncCheckBatteryLevelBTLE(sData)
+        }
+
         onSigConnected:
         {
             fncShowMessage(2,"HRM Connected", 4000);
             bHRMConnected = true;
+            bHRMConnecting = false;
         }
         onSigDisconnected:
         {
             fncShowMessage(1,"HRM Disconnected", 4000);
             sHeartRate = "";
             sBatteryLevel = "";
-            bHRMConnected = false;
+            bHRMConnected    = false;
+            bHRMConnecting = false;
             recorder.vSetCurrentHeartRate(-1);
-
             //if record dialog is opened, try to reconnect to HRM device
             if (bRecordDialogRequestHRM)
                 bReconnectHRMDevice = true;
 
         }
+        onSigConnecting:
+        {
+            fncShowMessage(2,qsTr("Connecting to HR device..."),2000);
+            bHRMConnecting = true;
+            bHRMConnected = false;
+        }
+
         onSigError:
         {
-            fncShowMessage(3,"HRM Error: " + sError, 10000);
+            fncShowMessage(3,qsTr("HR error: ") + sError, 5000);
+            bHRMConnected = false;
+            bHRMConnecting = false;
         }
     }
 
@@ -315,6 +332,17 @@ ApplicationWindow
         sBatteryLevel = sBatteryLevelTemp;
     }
 
+    function fncCheckHeartrateBTLE(sData)
+    {
+        //Send heart rate to trackrecorderiHeartRate so that it can be included into the gpx file.
+        recorder.vSetCurrentHeartRate(parseInt(sData));
+        sHeartRate = sData;
+   }
+
+    function fncCheckBatteryLevelBTLE(sData)
+    {
+        sBatteryLevel = sData;
+    }
 
     function fncShowMessage(iType ,sMessage, iTime)
     {
@@ -362,7 +390,8 @@ ApplicationWindow
         {
             //console.log("Timer for HRM reconnection is running.");
 
-            id_BluetoothData.connect(sHRMAddress, 1);
+            id_Device.scanServices(sHRMAddress);
+
 
             bReconnectHRMDevice = false;
         }

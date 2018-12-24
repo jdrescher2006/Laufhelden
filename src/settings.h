@@ -47,6 +47,7 @@ class Settings : public QObject
     Q_PROPERTY(QString valueCoverFields READ valueCoverFields WRITE setValueCoverFields)
     Q_PROPERTY(bool mapDisableRecordPage READ mapDisableRecordPage WRITE setMapDisableRecordPage)
     Q_PROPERTY(QString workoutTypeMainPage READ workoutTypeMainPage WRITE setWorkoutTypeMainPage)
+    Q_PROPERTY(int bluetoothType READ bluetoothType WRITE setBluetoothType)
 
     //Voice output
     Q_PROPERTY(int voiceLanguage READ voiceLanguage WRITE setVoiceLanguage)
@@ -68,6 +69,7 @@ class Settings : public QObject
     //Pebble specific setings
     Q_PROPERTY(bool enablePebble READ enablePebble WRITE setEnablePebble)
     Q_PROPERTY(QString valuePebbleFields READ valuePebbleFields WRITE setValuePebbleFields)
+    Q_PROPERTY(QString pebbleIDstring READ pebbleIDstring WRITE setPebbleIDstring)
 
     //Sports-Tracker.com specific settings
     Q_PROPERTY(QString stUsername READ stUsername WRITE setStUsername)
@@ -137,6 +139,9 @@ public:
 
     QString valuePebbleFields() const;
     void setValuePebbleFields(QString valuePebbleFields);
+
+    QString pebbleIDstring() const;
+    void setPebbleIDstring(QString pebbleIDstring);
 
     QString mapStyle() const;
     void setMapStyle(QString mapStyle);
@@ -209,6 +214,10 @@ public:
 
     QString stSessionkey() const;
     void setStSessionkey(QString stSessionkey);
+
+    int bluetoothType() const;
+    void setBluetoothType(int stBluetoothType);
+
 
 signals:
     void updateIntervalChanged();

@@ -51,52 +51,72 @@
 <context>
     <name>BTConnectPage</name>
     <message>
+        <source>Heart rate device</source>
+        <translation type="unfinished">Urządzenie do pomiaru tętna</translation>
+    </message>
+    <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Szukaj urządzeń Bluetooth</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Rozpocznij wyszukiwanie...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Przerwij wyszukiwanie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Aktualne urządzenie BT</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Nie ma żadnych urządzeń</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation>Tętno:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation> bpm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation>Poziom baterii:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Found BT devices (press to connect):</source>
-        <translation>Znaleziono urządzenia BT (dotknij aby połaczyć):</translation>
+        <source>Connection Type</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate device</source>
-        <translation>Urządzenie do pomiaru tętna</translation>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Połacz</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Rozłącz</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -200,19 +220,78 @@
         <translation>Trening:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Przewyższenie góra/dół</translation>
-    </message>
-    <message>
         <source>Send to Strava</source>
         <translation>Wyślij na Strava</translation>
+    </message>
+    <message>
+        <source>loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation>Driagramy</translation>
+        <translation type="unfinished">Driagramy</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished">Tętno</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished">Prędkość</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation type="unfinished">Tempo</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -432,6 +511,45 @@
     </message>
 </context>
 <context>
+    <name>MapViewPage</name>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">mi</translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished">Mapa</translation>
+    </message>
+</context>
+<context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
@@ -522,6 +640,10 @@
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
         <translation>Rockpool musi być zainstalowany&lt;br&gt;minimum w werji 1.4-1.&lt;lt;br&gt;Zainstalowana wersja to: </translation>
+    </message>
+    <message>
+        <source>Choose the Pebble you want to use</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1407,7 +1529,7 @@
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zanim wartość zostanie odtworzona, zostanie ogłoszony typ wartości np. &quot;Dystans:&quot;. Czyni to informacje głosową dłuższą.</translation>
     </message>
 </context>
 <context>
@@ -1478,7 +1600,7 @@
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zanim wartość zostanie odtworzona, zostanie ogłoszony typ wartości np. &quot;Dystans:&quot;. Czyni to informacje głosową dłuższą.</translation>
     </message>
 </context>
 <context>
@@ -1564,6 +1686,17 @@
     <message>
         <source>Voice Coach Settings</source>
         <translation>Ustawienia głosu trenera</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-laufhelden</name>
+    <message>
+        <source>Connecting to HR device...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HR error: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -167,13 +167,6 @@ bool TrackLoader::hasHeartRateData() const
     return !(m_heartRateMin == HEARTRATE_MIN_INIT && m_heartRateMax == HEARTRATE_MAX_INIT);
 }
 
-QString TrackLoader::pauseNumbersString() const
-{
-    if (m_pause_positions.count() == 0)
-        return QStringLiteral("-");
-    return QString("%1/%2").arg(m_pause_positions.count()).arg(m_pause_duration);
-}
-
 /**
  * @brief TrackLoader::paceRelevantForWorkoutType
  * @return Returns false if the workout type is biking (pace is not relevant for this sport)
@@ -299,15 +292,10 @@ void TrackLoader::load()
                                 point.heartrate = 0;
                                 point.latitude = xml.attributes().value("lat").toDouble();
                                 point.longitude = xml.attributes().value("lon").toDouble();
-
-                                //if a pause is right before this track point, we have to save the index of this track point
-                                if (bPauseFound)
-                                {
-                                    qDebug()<<"Pause found: "<<QString::number(m_points.length());
-
-                                    m_pause_positions.append(m_points.length()-1);
-                                    bPauseFound = false;
-                                }
+                                point.distance = 0;
+                                point.speed = 0;
+                                point.pace = 0;
+                                point.duration = 0;                                
 
                                 while(xml.readNextStartElement())
                                 {
@@ -359,6 +347,73 @@ void TrackLoader::load()
                                         }
                                     }
                                 }
+                                //Before the point is appended we need to calculate a few more things.
+                                //We need at least 2 points for that.
+                                if(m_points.size() > 0)
+                                {
+                                    QDateTime firstTime(m_points.at(0).time);
+                                    QDateTime secondTime(point.time);
+                                    point.duration = firstTime.secsTo(secondTime);
+
+                                    //If there was a pause before this trackpoint, do not calculate distance
+                                    if (bPauseFound)
+                                    {
+                                        point.speed = 0;
+                                        point.pace = 99;
+                                        m_distancearray.clear();
+                                        m_durationarray.clear();
+                                    }
+                                    else
+                                    {
+                                        //Fill distance array. Save the last few values to have a better speed/pace calculation.
+
+                                        //Calculate distance in meter [m] between last and this point
+                                        QGeoCoordinate first(m_points.at(m_points.size() - 1).latitude,m_points.at(m_points.size() - 1).longitude);
+                                        QGeoCoordinate second(point.latitude,point.longitude);
+                                        qreal rCurrentDistance = first.distanceTo(second);
+                                        m_distance += rCurrentDistance;
+
+                                        //Calculate time in seconds [s] between last and this point
+                                        qreal rCurrentDuration = 0;
+                                        QDateTime lastTime(m_points.at(m_points.size() - 1).time);
+                                        rCurrentDuration = lastTime.secsTo(secondTime);
+
+                                        //Fill distance array. Save the last few values to have a better speed/pace calculation.
+                                        if (m_distancearray.length() == 10)
+                                        {
+                                            m_distancearray.removeFirst();
+                                            m_durationarray.removeFirst();
+                                        }
+                                        m_distancearray.append(rCurrentDistance);
+                                        m_durationarray.append(rCurrentDuration);
+
+                                        rCurrentDistance = 0.0;
+                                        rCurrentDuration = 0;
+                                        //Calculate distance over the last few gps points
+                                        for(int i=0 ; i < m_distancearray.length(); i++)
+                                        {
+                                            rCurrentDistance += m_distancearray[i];
+                                            rCurrentDuration += m_durationarray[i];
+                                        }
+
+                                        //Calculate speed in [km/h]
+                                        point.speed = (rCurrentDistance / 1000.0) / (rCurrentDuration / 3600.0);
+
+                                        //Calculate pace in [min/km]
+                                        point.pace = (rCurrentDuration / 60.0) / (rCurrentDistance / 1000.0);
+                                    }
+                                    point.distance = m_distance;
+                                }
+
+                                //if a pause is right before this track point, we have to save the index of this track point
+                                if (bPauseFound)
+                                {
+                                    qDebug()<<"Pause found: "<<QString::number(m_points.length());
+
+                                    m_pause_positions.append(m_points.length()-1);
+                                    bPauseFound = false;
+                                }
+
                                 m_points.append(point);
                             }
                         }
@@ -377,15 +432,10 @@ void TrackLoader::load()
                         point.heartrate = 0;
                         point.latitude = xml.attributes().value("lat").toDouble();
                         point.longitude = xml.attributes().value("lon").toDouble();
-
-                        //if a pause is right before this track point, we have to save the index of this track point
-                        if (bPauseFound)
-                        {
-                            qDebug()<<"Pause found: "<<QString::number(m_points.length());
-
-                            m_pause_positions.append(m_points.length()-1);
-                            bPauseFound = false;
-                        }
+                        point.distance = 0;
+                        point.speed = 0;
+                        point.pace = 0;
+                        point.duration = 0;                      
 
                         while(xml.readNextStartElement())
                         {
@@ -437,6 +487,74 @@ void TrackLoader::load()
                                 }
                             }
                         }
+
+                        //Before the point is appended we need to calculate a few more things.
+                        //We need at least 2 points for that.
+                        if(m_points.size() > 0)
+                        {
+                            QDateTime firstTime(m_points.at(0).time);
+                            QDateTime secondTime(point.time);
+                            point.duration = firstTime.secsTo(secondTime);
+
+                            //If there was a pause before this trackpoint, do not calculate distance
+                            if (bPauseFound)
+                            {
+                                point.speed = 0;
+                                point.pace = 99;
+                                m_distancearray.clear();
+                                m_durationarray.clear();
+                            }
+                            else
+                            {
+                                //Fill distance array. Save the last few values to have a better speed/pace calculation.
+
+                                //Calculate distance in meter [m] between last and this point
+                                QGeoCoordinate first(m_points.at(m_points.size() - 1).latitude,m_points.at(m_points.size() - 1).longitude);
+                                QGeoCoordinate second(point.latitude,point.longitude);
+                                qreal rCurrentDistance = first.distanceTo(second);
+                                m_distance += rCurrentDistance;
+
+                                //Calculate time in seconds [s] between last and this point
+                                qreal rCurrentDuration = 0;
+                                QDateTime lastTime(m_points.at(m_points.size() - 1).time);
+                                rCurrentDuration = lastTime.secsTo(secondTime);
+
+                                //Fill distance array. Save the last few values to have a better speed/pace calculation.
+                                if (m_distancearray.length() == 10)
+                                {
+                                    m_distancearray.removeFirst();
+                                    m_durationarray.removeFirst();
+                                }
+                                m_distancearray.append(rCurrentDistance);
+                                m_durationarray.append(rCurrentDuration);
+
+                                rCurrentDistance = 0.0;
+                                rCurrentDuration = 0;
+                                //Calculate distance over the last few gps points
+                                for(int i=0 ; i < m_distancearray.length(); i++)
+                                {
+                                    rCurrentDistance += m_distancearray[i];
+                                    rCurrentDuration += m_durationarray[i];
+                                }
+
+                                //Calculate speed in [km/h]
+                                point.speed = (rCurrentDistance / 1000.0) / (rCurrentDuration / 3600.0);
+
+                                //Calculate pace in [min/km]
+                                point.pace = (rCurrentDuration / 60.0) / (rCurrentDistance / 1000.0);
+                            }
+                            point.distance = m_distance;
+                        }
+
+                        //if a pause is right before this track point, we have to save the index of this track point
+                        if (bPauseFound)
+                        {
+                            qDebug()<<"Pause found: "<<QString::number(m_points.length());
+
+                            m_pause_positions.append(m_points.length()-1);
+                            bPauseFound = false;
+                        }
+
                         m_points.append(point);
                     }
                 }
@@ -458,6 +576,8 @@ void TrackLoader::load()
 
         m_time = firstTime.toLocalTime();
 
+        qDebug()<<"m_distance first calculated: "<<QString::number(m_distance);
+
         m_distance = 0;
 
         int iPausePositionsIndex = 0;
@@ -469,10 +589,17 @@ void TrackLoader::load()
             //We need to find out if this point is the end of a pause
             if (this->pausePositionsCount() > 0 && i==(this->pausePositionAt(iPausePositionsIndex) + 1))
             {
+                qDebug()<<"Pause point: "<<QString::number(i);
+
                 //Here we are at a point where a pause ends. We can calculate the pause duration here
                 QDateTime firstTime(m_points.at(i-1).time);
                 QDateTime secondTime(m_points.at(i).time);
                 m_pause_duration = m_pause_duration + firstTime.secsTo(secondTime);
+
+                if ((iPausePositionsIndex + 1) < this->pausePositionsCount())
+                {
+                    iPausePositionsIndex++;
+                }
             }
             else
             {
@@ -519,6 +646,8 @@ void TrackLoader::load()
         m_pace = m_duration / m_distance * 1000 / 60;
         m_heartRate = m_heartRate / m_heartRatePoints;
 
+        qDebug()<<"m_distance second calculated: "<<QString::number(m_distance);
+
         emit paceChanged();
         emit heartRateChanged();
         emit speedChanged();
@@ -543,11 +672,6 @@ void TrackLoader::load()
     emit trackChanged();
 }
 
-QString TrackLoader::filename() const
-{
-    return m_filename;
-}
-
 void TrackLoader::setFilename(QString filename) {
     if((m_filename == filename)) {
         qDebug()<<"No change in filename";
@@ -560,6 +684,11 @@ void TrackLoader::setFilename(QString filename) {
     m_loaded = false;
     m_error = false;
     load();
+}
+
+QString TrackLoader::filename() const
+{
+    return m_filename;
 }
 
 QString TrackLoader::name() {
@@ -739,13 +868,14 @@ QString TrackLoader::pauseDurationStr() {
     }
 
     //If there is no pause, return
-    if (this->pausePositionsCount() == 0)
-        return QString();
+    if (this->m_pause_positions.count() == 0)
+        return QStringLiteral("-");
 
     uint hours = m_pause_duration / (60*60);
     uint minutes = (m_pause_duration - hours*60*60) / 60;
     uint seconds = m_pause_duration - hours*60*60 - minutes*60;
-    return TimeFormatter::formatHMS(hours, minutes, seconds);
+
+    return QString("%1/%2").arg(m_pause_positions.count()).arg(TimeFormatter::formatHMS(hours, minutes, seconds));
 }
 
 qreal TrackLoader::distance() {
@@ -871,10 +1001,58 @@ uint TrackLoader::heartRateAt(int index)
     return m_points.at(index).heartrate;
 }
 
-
 qreal TrackLoader::elevationAt(int index)
 {
     return m_points.at(index).elevation;
+}
+
+QDateTime TrackLoader::timeAt(int index)
+{
+    return m_points.at(index).time;
+}
+qint64 TrackLoader::unixTimeAt(int index)
+{
+    return m_points.at(index).time.toMSecsSinceEpoch() / 1000;
+}
+qreal TrackLoader::durationAt(int index)
+{
+    return m_points.at(index).duration;
+}
+qreal TrackLoader::distanceAt(int index)
+{
+    return m_points.at(index).distance;
+}
+qreal TrackLoader::speedAt(int index)
+{
+    return m_points.at(index).speed;
+}
+qreal TrackLoader::paceAt(int index)
+{
+    return m_points.at(index).pace;
+}
+QString TrackLoader::paceStrAt(int index)
+{
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_points.at(index).pace);
+    qreal rSeconds = qCeil((m_points.at(index).pace * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
+}
+QString TrackLoader::paceImperialStrAt(int index)
+{
+    qreal m_pace_imperial = m_points.at(index).pace * 1.609344;
+
+    QString strPace = "";
+
+    qreal rMinutes = qFloor(m_pace_imperial);
+    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
+
+    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+
+    return strPace;
 }
 
 int TrackLoader::fitZoomLevel(int width, int height) {

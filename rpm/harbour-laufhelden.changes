@@ -1,3 +1,13 @@
+* Fri Dec 21 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.3-1
+- BLE (bluetooth low energy) integration by @thmichel
+- reworked workout analysis pages, added diagrams
+- choose pebble if there are multiple ones
+- bug fixing audio coach
+- lot's of fixed and improvements by @martonmiklos and @trouyer
+- added French language by @ncartron and @trouyer
+- 4 pull requests by martonmiklos
+- translation updates
+
 * Fri Sep 14 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.2-1
 - view current week workouts and distance on main page
 - fixed a bug when uploading workouts to sports tracker by @niemisenjussi

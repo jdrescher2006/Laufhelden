@@ -51,24 +51,28 @@
 <context>
     <name>BTConnectPage</name>
     <message>
+        <source>Heart rate device</source>
+        <translation>Herzfrequenzmesser</translation>
+    </message>
+    <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Suche nach Bluetooth Geräten</translation>
+        <translation>Suchen nach Bluetooth-Geräten</translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Starte Scannen...</translation>
+        <translation>Starte Suche...</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Scannen abbrechen</translation>
+        <translation>Suche Abbrechen</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Aktuelles Gerät</translation>
+        <translation>Aktuelles BT-Gerät</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Keine</translation>
+        <translation>Keines</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
@@ -83,12 +87,20 @@
         <translation>Batterie: </translation>
     </message>
     <message>
-        <source>Found BT devices (press to connect):</source>
-        <translation>BT Gerät gefunden (zum Verbinden tippen):</translation>
+        <source>Connection Type</source>
+        <translation>Bluetooth-Typ</translation>
     </message>
     <message>
-        <source>Heart rate device</source>
-        <translation>Herzfrequenzmesser</translation>
+        <source>BLE Public Address</source>
+        <translation>BLE Public Adresse</translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation>BLE Random Adresse</translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation>Classic Bluetooth</translation>
     </message>
     <message>
         <source>Connect</source>
@@ -97,6 +109,14 @@
     <message>
         <source>Disconnect</source>
         <translation>Trennen</translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation>Gefundene Geräte (drücken zum Verbinden):</translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation>Verbindung Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -200,12 +220,16 @@
         <translation>Aktivität:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Höhe hoch/runter:</translation>
-    </message>
-    <message>
         <source>Send to Strava</source>
         <translation>Auf Strava hochladen</translation>
+    </message>
+    <message>
+        <source>loading...</source>
+        <translation>laden...</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation>Übersicht</translation>
     </message>
 </context>
 <context>
@@ -213,6 +237,61 @@
     <message>
         <source>Diagrams</source>
         <translation>Diagramme</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation>Herzfrequenz</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation>Höhe</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>Geschwindigkeit</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation>Zeit: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation>Dauer: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation>Höhe: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation>Tempo: </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation>Geschwindigkeit: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation>Herzfreuenz: </translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation>Km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation>Tempo</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
+        <translation>Keine Daten</translation>
     </message>
 </context>
 <context>
@@ -432,6 +511,45 @@
     </message>
 </context>
 <context>
+    <name>MapViewPage</name>
+    <message>
+        <source>Time: </source>
+        <translation>Zeit: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation>Dauer: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation>Höhe: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation>Tempo: </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation>Geschwindigkeit: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation>Herzfrequenz: </translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation>Km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation>Karte</translation>
+    </message>
+</context>
+<context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
@@ -522,6 +640,10 @@
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
         <translation>Rockpool muss installiert sein&lt;br&gt;mindestens in Version 1.4-1.&lt;br&gt;Installiert ist: </translation>
+    </message>
+    <message>
+        <source>Choose the Pebble you want to use</source>
+        <translation>Pebble auswählen</translation>
     </message>
 </context>
 <context>
@@ -1564,6 +1686,17 @@
     <message>
         <source>Voice Coach Settings</source>
         <translation>Sprachtrainer Einstellungen</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-laufhelden</name>
+    <message>
+        <source>Connecting to HR device...</source>
+        <translation>Verbinde mit HR-Gerät...</translation>
+    </message>
+    <message>
+        <source>HR error: </source>
+        <translation>HR-Fehler: </translation>
     </message>
 </context>
 </TS>

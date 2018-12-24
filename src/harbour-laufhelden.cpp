@@ -27,8 +27,7 @@
 #include "historymodel.h"
 #include "trackloader.h"
 #include "settings.h"
-#include "bluetoothconnection.h"
-#include "bluetoothdata.h"
+#include "device.h"
 #include "logwriter.h"
 #include "plotwidget.h"
 #include "light.h"
@@ -59,8 +58,7 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<HistoryModel>("harbour.laufhelden", 1, 0, "HistoryModel");
     qmlRegisterType<TrackLoader>("harbour.laufhelden", 1, 0, "TrackLoader");
     qmlRegisterType<Settings>("harbour.laufhelden", 1, 0, "Settings");
-    qmlRegisterType<BluetoothConnection,1>("harbour.laufhelden", 1, 0, "BluetoothConnection");
-    qmlRegisterType<BluetoothData,1>("harbour.laufhelden", 1, 0, "BluetoothData");
+    qmlRegisterType<Device,1>("harbour.laufhelden",1,0,"Device");
     qmlRegisterType<LogWriter,1>("harbour.laufhelden", 1, 0, "LogWriter");
     qmlRegisterType<PlotWidget,1>("harbour.laufhelden", 1, 0, "PlotWidget");
     qmlRegisterType<Light,1>("harbour.laufhelden", 1, 0, "Light");
@@ -68,6 +66,7 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<PebbleManagerComm,1>("harbour.laufhelden", 1, 0, "PebbleManagerComm");
     qmlRegisterType<PebbleWatchComm,1>("harbour.laufhelden", 1, 0, "PebbleWatchComm");
     qmlRegisterType<O2>("com.pipacs.o2", 1, 0, "O2");
+
 
     QQuickView *view = SailfishApp::createView();
     view->rootContext()->setContextProperty("appVersion", app->applicationVersion());

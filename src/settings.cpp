@@ -16,6 +16,7 @@
 */
 
 #include "settings.h"
+#include "device.h"
 
 Settings::Settings(QObject *parent) :
     QObject(parent)
@@ -62,20 +63,20 @@ void Settings::setWorkoutType(QString workoutType)
 
 bool Settings::useHRMdevice() const
 {
-    return m_settings->value("recordsettings/useHRMdevice", false).toBool();
+    return m_settings->value("hrm/useHRMdevice", false).toBool();
 }
 void Settings::setUseHRMdevice(bool useHRMdevice)
 {
-     m_settings->setValue("recordsettings/useHRMdevice", useHRMdevice);
+     m_settings->setValue("hrm/useHRMdevice", useHRMdevice);
 }
 
 bool Settings::useHRMservice() const
 {
-    return m_settings->value("recordsettings/useHRMservice", false).toBool();
+    return m_settings->value("hrm/useHRMservice", false).toBool();
 }
 void Settings::setUseHRMservice(bool useHRMservice)
 {
-     m_settings->setValue("recordsettings/useHRMservice", useHRMservice);
+     m_settings->setValue("hrm/useHRMservice", useHRMservice);
 }
 
 bool Settings::disableScreenBlanking() const
@@ -192,6 +193,14 @@ QString Settings::valuePebbleFields() const
 void Settings::setValuePebbleFields(QString valuePebbleFields)
 {
     m_settings->setValue("pebblesettings/valuePebbleFields", valuePebbleFields);
+}
+QString Settings::pebbleIDstring() const
+{
+    return m_settings->value("pebblesettings/pebbleIDstring", "").toString();
+}
+void Settings::setPebbleIDstring(QString pebbleIDstring)
+{
+    m_settings->setValue("pebblesettings/pebbleIDstring", pebbleIDstring);
 }
 
 QString Settings::mapStyle() const
@@ -393,4 +402,13 @@ void Settings::setStSessionkey(QString key)
 QString Settings::stSessionkey() const
 {
     return m_settings->value("sportstracker/sessionkey").toString();
+}
+
+int Settings::bluetoothType() const
+{
+    return m_settings->value("hrm/bluetoothtype", Device::BLEPUBLIC).toInt();
+}
+void Settings::setBluetoothType(int stBluetoothType)
+{
+    m_settings->setValue("hrm/bluetoothtype",stBluetoothType);
 }

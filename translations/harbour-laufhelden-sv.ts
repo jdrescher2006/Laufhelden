@@ -51,52 +51,72 @@
 <context>
     <name>BTConnectPage</name>
     <message>
+        <source>Heart rate device</source>
+        <translation type="unfinished">Hjärtfrekvensenhet</translation>
+    </message>
+    <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Sök efter bluetooth-enheter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Starta sökning...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Avbryt sökning</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Aktuell bt-enhet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Ingen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation>Hjärtfrekvens: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation> bpm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation>Batterinivå: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Found BT devices (press to connect):</source>
-        <translation>Hittade bt-enheter (tryck för att ansluta):</translation>
+        <source>Connection Type</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate device</source>
-        <translation>Hjärtfrekvensenhet</translation>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Anslut</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Koppla ifrån</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -200,12 +220,16 @@
         <translation>Träningspass:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Höjd upp/ner:</translation>
-    </message>
-    <message>
         <source>Send to Strava</source>
         <translation>Skicka till Strava</translation>
+    </message>
+    <message>
+        <source>loading...</source>
+        <translation>Läser in...</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation>Översikt</translation>
     </message>
 </context>
 <context>
@@ -213,6 +237,61 @@
     <message>
         <source>Diagrams</source>
         <translation>Diagram</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation>Hjärtfrekvens</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation>Stigning</translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation>Hastighet</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation>Tid: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation>Varaktighet: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation>Stigning: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation>Tempo: </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation>Hastighet: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation>Hjärtfrekvens: </translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation>km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation type="unfinished">Tempo</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
+        <translation>Ingen data</translation>
     </message>
 </context>
 <context>
@@ -432,6 +511,45 @@
     </message>
 </context>
 <context>
+    <name>MapViewPage</name>
+    <message>
+        <source>Time: </source>
+        <translation>Tid: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation>Varaktighet: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation>Stigning: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation>Tempo; </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation>Hastighet: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation>Hjärtfrekvens: </translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation>km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation>mi</translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation>Karta</translation>
+    </message>
+</context>
+<context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
@@ -522,6 +640,10 @@
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
         <translation>Rockpool måste vara installerat&lt;br&gt;lägst version 1.4-4&lt;br&gt;Installerad version är: </translation>
+    </message>
+    <message>
+        <source>Choose the Pebble you want to use</source>
+        <translation>Välj den Pebble du vill använda</translation>
     </message>
 </context>
 <context>
@@ -1564,6 +1686,17 @@
     <message>
         <source>Voice Coach Settings</source>
         <translation>Inställningar för tränarröst</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-laufhelden</name>
+    <message>
+        <source>Connecting to HR device...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HR error: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

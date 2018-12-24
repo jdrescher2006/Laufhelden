@@ -187,12 +187,37 @@ Page
             if (settings.enablePebble)
             {
                 var sPebbleList = id_PebbleManagerComm.getListWatches();
-                console.log("sPebbleList: " + sPebbleList);
+                console.log("sPebbleList: " + sPebbleList);                                                                             
 
                 if (sPebbleList !== undefined && sPebbleList.length > 0)
                 {
-                    sPebblePath = sPebbleList[0];
-                    id_PebbleWatchComm.setServicePath(sPebblePath); //This sets the path with the BT address to the C++ class and inits the DBUS communication object
+                    //There might be more than one pebble found
+                    if (sPebbleList.length > 1)
+                    {
+                        //Now read the last used pebble string from settings
+                        var sLastUsedPebbleString = settings.pebbleIDstring;
+
+                        console.log("sLastUsedPebbleString: " + sLastUsedPebbleString);
+
+                        //Check if the last used pebble string is in the pebble list
+                        for (var j = 0; j < sPebbleList.length; j++)
+                        {
+                            if (sLastUsedPebbleString === sPebbleList[j])
+                            {
+                                sPebblePath = sPebbleList[j];
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //A pebble was found, we have now a DBus path to it.
+                        //If there are more than one pebble, use the first one.
+                        sPebblePath = sPebbleList[0];
+                    }
+
+                    //This sets the path with the BT address to the C++ class and inits the DBUS communication object
+                    if (sPebblePath !== "") id_PebbleWatchComm.setServicePath(sPebblePath);
                 }
             }
 

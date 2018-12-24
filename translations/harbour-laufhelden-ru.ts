@@ -20,10 +20,6 @@
         <translation>Германия</translation>
     </message>
     <message>
-        <source>Version: </source>
-        <translation>Версия: </translation>
-    </message>
-    <message>
         <source>Date: </source>
         <translation>Релиз: </translation>
     </message>
@@ -36,52 +32,20 @@
         <translation>Исходный код:</translation>
     </message>
     <message>
-        <source>Credits for localization:</source>
-        <translation>Переводчики:</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <translation>Испанский</translation>
-    </message>
-    <message>
-        <source>Russian</source>
-        <translation>Русский</translation>
-    </message>
-    <message>
-        <source>Polish</source>
-        <translation>Польский</translation>
-    </message>
-    <message>
-        <source>Swedish</source>
-        <translation>Шведский</translation>
-    </message>
-    <message>
         <source>Feedback, bugs:</source>
         <translation>Отзывы, сообщения об ошибках:</translation>
-    </message>
-    <message>
-        <source>Credits for code contribution:</source>
-        <translation>Вклад в разработку внесли:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
         <translation>Пожертвование, если вам понравилась программа:</translation>
     </message>
     <message>
-        <source>Hungarian</source>
-        <translation>Венгерский</translation>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Finnish</source>
-        <translation>Финский</translation>
-    </message>
-    <message>
-        <source>Dutch</source>
-        <translation>Нидерландский</translation>
-    </message>
-    <message>
-        <source>Spanish-Spain</source>
-        <translation>Испанский (Испания)</translation>
+        <source>Contributors:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -133,6 +97,26 @@
     <message>
         <source>Disconnect</source>
         <translation>Отключить</translation>
+    </message>
+    <message>
+        <source>Connection Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BLE Random Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic Bluetooth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel Connect</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -201,18 +185,6 @@
         <translation>Расстояние:</translation>
     </message>
     <message>
-        <source>Speed max/?:</source>
-        <translation>Макс. скорость/?:</translation>
-    </message>
-    <message>
-        <source>Pace ?:</source>
-        <translation>Шаги ?:</translation>
-    </message>
-    <message>
-        <source>Heart rate min/max/?:</source>
-        <translation>Пульс мин/макс/?:</translation>
-    </message>
-    <message>
         <source>Pause number/duration:</source>
         <translation>Чило/длительность пауз:</translation>
     </message>
@@ -237,12 +209,28 @@
         <translation>Тренировка:</translation>
     </message>
     <message>
-        <source>Elevation up/down:</source>
-        <translation>Подъём/спуск:</translation>
-    </message>
-    <message>
         <source>Send to Strava</source>
         <translation>Отправить в Strava</translation>
+    </message>
+    <message>
+        <source>loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace ⌀:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heart rate min/max/⌀:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -250,6 +238,61 @@
     <message>
         <source>Diagrams</source>
         <translation>Графики</translation>
+    </message>
+    <message>
+        <source>Heartrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">км</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">миль</translation>
+    </message>
+</context>
+<context>
+    <name>GraphData</name>
+    <message>
+        <source>No data</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -368,6 +411,26 @@
         <source>workouts</source>
         <translation>тренировок</translation>
     </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">км</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">миль</translation>
+    </message>
+    <message>
+        <source>no workout this week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">км/ч</translation>
+    </message>
+    <message>
+        <source>mi/h</source>
+        <translation type="unfinished">миль/ч</translation>
+    </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
@@ -446,6 +509,45 @@
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
         <translation>Не показывать карту. Это полезно для телефонов Jolla 1 (из-за малой производительности ЦП), где карта может мешать работе программы.</translation>
+    </message>
+</context>
+<context>
+    <name>MapViewPage</name>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished">Карта</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">км</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished">миль</translation>
     </message>
 </context>
 <context>
@@ -539,6 +641,10 @@
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
         <translation>Необходимо установить Rockpool&lt;br&gt;версии не ниже 1.4-1.&lt;br&gt;Установлена версия: </translation>
+    </message>
+    <message>
+        <source>Choose the Pebble you want to use</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1120,10 +1226,6 @@
         <translation>Расстояние:</translation>
     </message>
     <message>
-        <source>Speed max/?:</source>
-        <translation>Макс. скорость/?:</translation>
-    </message>
-    <message>
         <source>Kudos:</source>
         <translation>Отклик:</translation>
     </message>
@@ -1138,6 +1240,10 @@
     <message>
         <source>Achievements/PRs:</source>
         <translation>Достижения:</translation>
+    </message>
+    <message>
+        <source>Speed max/⌀:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1189,6 +1295,26 @@
     <message>
         <source>Strava settings</source>
         <translation>Настройка Strava</translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1561,6 +1687,17 @@
     <message>
         <source>Voice Coach Settings</source>
         <translation>Настройка голоса</translation>
+    </message>
+</context>
+<context>
+    <name>harbour-laufhelden</name>
+    <message>
+        <source>Connecting to HR device...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HR error: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
