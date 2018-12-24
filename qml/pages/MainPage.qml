@@ -203,7 +203,10 @@ Page
                         for (var j = 0; j < sPebbleList.length; j++)
                         {
                             if (sLastUsedPebbleString === sPebbleList[j])
-                               sPebblePath = sPebbleList[j];
+                            {
+                                sPebblePath = sPebbleList[j];
+                                break;
+                            }
                         }
                     }
                     else

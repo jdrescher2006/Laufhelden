@@ -55,8 +55,6 @@ Page
 
             //console.log("arComboarray: " + arComboarray.length.toString());
 
-
-
             if (sPebbleList !== undefined && sPebbleList.length > 0)
             {
                 //There might be more than one pebble found
@@ -71,7 +69,12 @@ Page
                     for (var j = 0; j < sPebbleList.length; j++)
                     {
                         if (sLastUsedPebbleString === sPebbleList[j])
-                           sPebblePath = sPebbleList[j];
+                        {
+                            sPebblePath = sPebbleList[j];
+                            //Select item in combobox
+                            id_CMB_ChoosePebble.currentIndex = j;
+                            break;
+                        }
                     }
                 }
                 else
