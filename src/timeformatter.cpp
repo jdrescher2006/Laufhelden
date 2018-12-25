@@ -36,7 +36,7 @@ QString TimeFormatter::formatHMS(const uint hours, const uint minutes, const uin
                 .arg(minutes)
                 .arg(seconds, 2, 10, QLatin1Char('0'));
     }
-    return QString("%1h %2m %3s")
+    return QObject::tr("%1h %2m %3s")
             .arg(hours)
             .arg(minutes, 2, 10, QLatin1Char('0'))
             .arg(seconds, 2, 10, QLatin1Char('0'));
