@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>AboutPage</name>
     <message>
@@ -41,82 +41,82 @@
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzió</translation>
     </message>
     <message>
         <source>Contributors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Közreműködtek:</translation>
     </message>
 </context>
 <context>
     <name>BTConnectPage</name>
     <message>
         <source>Heart rate device</source>
-        <translation type="unfinished">Pulzusmérő</translation>
+        <translation>Pulzusmérő</translation>
     </message>
     <message>
         <source>Scan for Bluetooth devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Bluetooth eszközök keresése</translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés...</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés megszakítása</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenlegi BT eszköz</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzus: </translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation type="unfinished"></translation>
+        <translation>/perc</translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Akku: </translation>
     </message>
     <message>
         <source>Connection Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Csatlakozás típusa</translation>
     </message>
     <message>
         <source>BLE Public Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE publikus cím</translation>
     </message>
     <message>
         <source>BLE Random Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE véletlen cím</translation>
     </message>
     <message>
         <source>Classic Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>Klasszikus Bluetooth</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Found BT devices (press to connect):</source>
-        <translation type="unfinished"></translation>
+        <translation>Csatlakozás</translation>
     </message>
     <message>
         <source>Cancel Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Csatlakozás megszakítása</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation>Lecsatlakozás</translation>
+    </message>
+    <message>
+        <source>Found BT devices (press to connect):</source>
+        <translation>Elérhető BT eszközök:</translation>
     </message>
 </context>
 <context>
@@ -225,73 +225,73 @@
     </message>
     <message>
         <source>loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>betöltés...</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Általános</translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Grafikonok</translation>
+        <translation>DiagrammokGrafikonok</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished">Pulzus</translation>
-    </message>
-    <message>
-        <source>Elevation</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzus</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Sebesség</translation>
-    </message>
-    <message>
-        <source>Time: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Duration: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Elevation: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pace: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Speed: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>SebességSebesség</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mérföld</translation>
+        <translation>mérföld</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished">Lépés</translation>
+        <translation>Lépés</translation>
+    </message>
+    <message>
+        <source>Elevation</source>
+        <translation>Magasság</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation>Időpont: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation>Eltelt idő: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation>Magasság: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation>Lépés: </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation>Sebesség: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation>Pulzus: </translation>
     </message>
 </context>
 <context>
     <name>GraphData</name>
     <message>
         <source>No data</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs adat</translation>
     </message>
 </context>
 <context>
@@ -339,96 +339,96 @@
 <context>
     <name>MainPage</name>
     <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Settings</source>
-        <translation type="unfinished">Beállítások</translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Strava-ba feltöltött edzéseim</translation>
-    </message>
-    <message>
-        <source>Start new workout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Strava-ba feltöltött edzéseim</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">ennyiből</translation>
-    </message>
-    <message>
-        <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove workout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>ennyiből</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Edzésadatok szerkesztése</translation>
+        <translation>Edzésadatok szerkesztése</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Feltöltés a Sports-Tracker.com-ra</translation>
-    </message>
-    <message>
-        <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Feltöltés a Sports-Tracker.com-ra</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Edzés neve</translation>
+        <translation>Edzés neve</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Edzés leírása</translation>
+        <translation>Edzés leírása</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Edzés:</translation>
-    </message>
-    <message>
-        <source>workouts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>no workout this week</source>
-        <translation type="unfinished"></translation>
+        <translation>Edzés:</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mérföld</translation>
+        <translation>mérföld</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished">mérföld/ó</translation>
+        <translation>mérföld/ó</translation>
+    </message>
+    <message>
+        <source>workouts</source>
+        <translation>edzések</translation>
+    </message>
+    <message>
+        <source>no workout this week</source>
+        <translation>a héten nem volt</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>Az alkalmazásról</translation>
+    </message>
+    <message>
+        <source>Start new workout</source>
+        <translation>Új edzés</translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation>Szűrés:</translation>
+    </message>
+    <message>
+        <source>Loading GPX files...</source>
+        <translation>GPX fájlok betöltése...</translation>
+    </message>
+    <message>
+        <source>Remove workout</source>
+        <translation>Edzés törlése</translation>
+    </message>
+    <message>
+        <source>Removing workout...</source>
+        <translation>Edzés törlése...</translation>
+    </message>
+    <message>
+        <source>(Unnamed track)</source>
+        <translation>(Névtelen adatok)</translation>
+    </message>
+    <message>
+        <source>Uncompleted workout found!</source>
+        <translation>Befejezetlen edzést találtam!</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation>Folytatás</translation>
     </message>
 </context>
 <context>
@@ -513,40 +513,40 @@
 <context>
     <name>MapViewPage</name>
     <message>
-        <source>Time: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Duration: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Elevation: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pace: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Speed: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mérföld</translation>
+        <translation>mérföld</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Térkép</translation>
+        <translation>Térkép</translation>
+    </message>
+    <message>
+        <source>Time: </source>
+        <translation>Időpont: </translation>
+    </message>
+    <message>
+        <source>Duration: </source>
+        <translation>Eltelt idő: </translation>
+    </message>
+    <message>
+        <source>Elevation: </source>
+        <translation>Magasság: </translation>
+    </message>
+    <message>
+        <source>Pace: </source>
+        <translation>Lépés: </translation>
+    </message>
+    <message>
+        <source>Speed: </source>
+        <translation>Sebesség: </translation>
+    </message>
+    <message>
+        <source>Heartrate: </source>
+        <translation>Pulzus: </translation>
     </message>
 </context>
 <context>
@@ -643,7 +643,7 @@
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
-        <translation type="unfinished"></translation>
+        <translation>Válaszd ki a használni kívánt Pebble-t</translation>
     </message>
 </context>
 <context>
@@ -678,11 +678,11 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzusmérés használata ha elérhető</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzus adatok átvétele másik alkalmazásból (pld. Amazfish)</translation>
     </message>
 </context>
 <context>
@@ -902,7 +902,7 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Kilépés mentés nélkül</translation>
     </message>
 </context>
 <context>
@@ -1035,7 +1035,7 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Minden adat</translation>
     </message>
 </context>
 <context>
@@ -1293,23 +1293,23 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Kijelentkezés</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejelentkezés</translation>
     </message>
     <message>
         <source>User Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Felhasználónév:</translation>
     </message>
     <message>
         <source>Email: </source>
-        <translation type="unfinished"></translation>
+        <translation>E-mail:</translation>
     </message>
     <message>
         <source>Country: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ország:</translation>
     </message>
 </context>
 <context>
@@ -1654,7 +1654,7 @@
     </message>
     <message>
         <source>Russian male</source>
-        <translation type="unfinished"></translation>
+        <translation>Orosz férfi</translation>
     </message>
 </context>
 <context>
@@ -1688,11 +1688,11 @@
     <name>harbour-laufhelden</name>
     <message>
         <source>Connecting to HR device...</source>
-        <translation type="unfinished"></translation>
+        <translation>Csatlakozás a pulzusmérőhöz...</translation>
     </message>
     <message>
         <source>HR error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Pulzusmérő hiba: </translation>
     </message>
 </context>
 </TS>
