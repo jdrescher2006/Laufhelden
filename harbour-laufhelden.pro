@@ -75,7 +75,6 @@ HEADERS += \
     src/timeformatter.h \
     src/device.h \
     src/deviceinfo.h \
-    src/serviceinfo.h \
     src/serviceinfo.h
 
 DISTFILES += \
