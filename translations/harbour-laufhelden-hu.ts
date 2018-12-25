@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="hu_HU">
+<TS version="2.1" language="hu_HU">
 <context>
     <name>AboutPage</name>
     <message>
@@ -236,7 +236,7 @@
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation>DiagrammokGrafikonok</translation>
+        <translation>Grafikonok</translation>
     </message>
     <message>
         <source>Heartrate</source>
@@ -244,7 +244,7 @@
     </message>
     <message>
         <source>Speed</source>
-        <translation>SebességSebesség</translation>
+        <translation>Sebesség</translation>
     </message>
     <message>
         <source>km</source>
@@ -388,11 +388,11 @@
     </message>
     <message>
         <source>workouts</source>
-        <translation>edzések</translation>
+        <translation>edzés</translation>
     </message>
     <message>
         <source>no workout this week</source>
-        <translation>a héten nem volt</translation>
+        <translation>0 ezen a héten</translation>
     </message>
     <message>
         <source>About</source>
@@ -694,6 +694,10 @@
     <message>
         <source>%1m %2s</source>
         <translation>%1 p %2 mp</translation>
+    </message>
+    <message>
+        <source>%1h %2m %3s</source>
+        <translation>%1ó %2p %3mp</translation>
     </message>
 </context>
 <context>
