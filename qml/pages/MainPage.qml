@@ -323,6 +323,13 @@ Page
 
             filterProxyModel.sourceModel = id_HistoryModel;
 
+            // reset distance and duration in arrayLookupWorkoutFilterMainPageTableByName
+            for (var type in SharedResources.arrayLookupWorkoutFilterMainPageTableByName){
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName[type].iDistance = 0;
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName[type].iDuration = 0;
+            }
+
+
             var sWorkoutCurrent, fDistanceCurrent, iDurationCurrent
             //Go through all workouts
             for (var i = 0; i < id_HistoryModel.rowCount(); i++)
