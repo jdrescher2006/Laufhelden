@@ -63,20 +63,20 @@ void Settings::setWorkoutType(QString workoutType)
 
 bool Settings::useHRMdevice() const
 {
-    return m_settings->value("recordsettings/useHRMdevice", false).toBool();
+    return m_settings->value("hrm/useHRMdevice", false).toBool();
 }
 void Settings::setUseHRMdevice(bool useHRMdevice)
 {
-     m_settings->setValue("recordsettings/useHRMdevice", useHRMdevice);
+     m_settings->setValue("hrm/useHRMdevice", useHRMdevice);
 }
 
 bool Settings::useHRMservice() const
 {
-    return m_settings->value("recordsettings/useHRMservice", false).toBool();
+    return m_settings->value("hrm/useHRMservice", false).toBool();
 }
 void Settings::setUseHRMservice(bool useHRMservice)
 {
-     m_settings->setValue("recordsettings/useHRMservice", useHRMservice);
+     m_settings->setValue("hrm/useHRMservice", useHRMservice);
 }
 
 bool Settings::disableScreenBlanking() const
@@ -406,9 +406,9 @@ QString Settings::stSessionkey() const
 
 int Settings::bluetoothType() const
 {
-    return m_settings->value("sportstracker/bluetoothtype", Device::BLEPUBLIC).toInt();
+    return m_settings->value("hrm/bluetoothtype", Device::BLEPUBLIC).toInt();
 }
 void Settings::setBluetoothType(int stBluetoothType)
 {
-    m_settings->setValue("sportstracker/bluetoothtype",stBluetoothType);
+    m_settings->setValue("hrm/bluetoothtype",stBluetoothType);
 }

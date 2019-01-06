@@ -187,7 +187,7 @@ Page
             if (settings.enablePebble)
             {
                 var sPebbleList = id_PebbleManagerComm.getListWatches();
-                console.log("sPebbleList: " + sPebbleList);                                
+                console.log("sPebbleList: " + sPebbleList);                                                                             
 
                 if (sPebbleList !== undefined && sPebbleList.length > 0)
                 {
@@ -197,11 +197,16 @@ Page
                         //Now read the last used pebble string from settings
                         var sLastUsedPebbleString = settings.pebbleIDstring;
 
+                        console.log("sLastUsedPebbleString: " + sLastUsedPebbleString);
+
                         //Check if the last used pebble string is in the pebble list
                         for (var j = 0; j < sPebbleList.length; j++)
                         {
                             if (sLastUsedPebbleString === sPebbleList[j])
-                               sPebblePath = sPebbleList[j];
+                            {
+                                sPebblePath = sPebbleList[j];
+                                break;
+                            }
                         }
                     }
                     else
@@ -212,7 +217,7 @@ Page
                     }
 
                     //This sets the path with the BT address to the C++ class and inits the DBUS communication object
-                    id_PebbleWatchComm.setServicePath(sPebblePath);
+                    if (sPebblePath !== "") id_PebbleWatchComm.setServicePath(sPebblePath);
                 }
             }
 
@@ -317,6 +322,13 @@ Page
             //historyList.model = id_HistoryModel;
 
             filterProxyModel.sourceModel = id_HistoryModel;
+
+            // reset distance and duration in arrayLookupWorkoutFilterMainPageTableByName
+            for (var type in SharedResources.arrayLookupWorkoutFilterMainPageTableByName){
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName[type].iDistance = 0;
+                SharedResources.arrayLookupWorkoutFilterMainPageTableByName[type].iDuration = 0;
+            }
+
 
             var sWorkoutCurrent, fDistanceCurrent, iDurationCurrent
             //Go through all workouts

@@ -30,7 +30,7 @@ import "../components/"
 Page
 {
     id: detailMapPage
-    allowedOrientations: bMapMaximized ? Orientation.All : Orientation.Portrait
+    allowedOrientations: Orientation.All
     //No back navigation if the map is big
     backNavigation: !bMapMaximized    
     forwardNavigation: !bMapMaximized
