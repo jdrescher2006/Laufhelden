@@ -220,15 +220,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Speed max/?:</source>
+        <source>Speed max/⌀:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pace ?:</source>
+        <source>Pace ⌀:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heart rate min/max/?:</source>
+        <source>Heart rate min/max/⌀:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -240,7 +240,7 @@
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">心率 </translation>
     </message>
     <message>
         <source>Elevation</source>
@@ -252,7 +252,7 @@
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">步数 </translation>
     </message>
     <message>
         <source>Time: </source>
@@ -695,6 +695,10 @@
         <source>%1m %2s</source>
         <translation>%1м %2с</translation>
     </message>
+    <message>
+        <source>%1h %2m %3s</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>
@@ -889,10 +893,6 @@
         <translation>储存轨迹</translation>
     </message>
     <message>
-        <source>保存</source>
-        <translation>保存</translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>名称</translation>
     </message>
@@ -903,6 +903,10 @@
     <message>
         <source>Quit without saving</source>
         <translation>退出而不保存</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1241,7 +1245,7 @@
         <translation>成就/PRs:</translation>
     </message>
     <message>
-        <source>Speed max/?:</source>
+        <source>Speed max/⌀:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
