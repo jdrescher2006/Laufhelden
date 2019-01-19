@@ -52,71 +52,71 @@
     <name>BTConnectPage</name>
     <message>
         <source>Heart rate device</source>
-        <translation type="unfinished">Hjärtfrekvensenhet</translation>
+        <translation>Hjärtfrekvensenhet</translation>
     </message>
     <message>
         <source>Scan for Bluetooth devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök efter Bluetooth-enheter</translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation type="unfinished"></translation>
+        <translation>Starta sökning...</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt sökning</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuell Bluetooth-enhet</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hjärtfrekvens: </translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation type="unfinished"></translation>
+        <translation> bpm</translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Batterinivå: </translation>
     </message>
     <message>
         <source>Connection Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslutningstyp</translation>
     </message>
     <message>
         <source>BLE Public Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE publik adress</translation>
     </message>
     <message>
         <source>BLE Random Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE slumpmässig adress</translation>
     </message>
     <message>
         <source>Classic Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>Klassisk Bluetooth</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslut</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Koppla ifrån</translation>
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation type="unfinished"></translation>
+        <translation>Hittade BT-enheter (tryck för att ansluta):</translation>
     </message>
     <message>
         <source>Cancel Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt anslutning</translation>
     </message>
 </context>
 <context>
@@ -284,7 +284,7 @@
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished">Tempo</translation>
+        <translation>Tempo</translation>
     </message>
 </context>
 <context>
@@ -694,6 +694,10 @@
     <message>
         <source>%1m %2s</source>
         <translation>%1m %2s</translation>
+    </message>
+    <message>
+        <source>%1h %2m %3s</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1692,11 +1696,11 @@
     <name>harbour-laufhelden</name>
     <message>
         <source>Connecting to HR device...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ansluter hjärtfrekvensenhet...</translation>
     </message>
     <message>
         <source>HR error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hjärtfrekvensfel: </translation>
     </message>
 </context>
 </TS>

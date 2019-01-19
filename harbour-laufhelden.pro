@@ -60,7 +60,8 @@ TRANSLATIONS += translations/harbour-laufhelden-de.ts \
                 translations/harbour-laufhelden-nl_BE.ts \
                 translations/harbour-laufhelden-es.ts \
                 translations/harbour-laufhelden-ru.ts \
-                translations/harbour-laufhelden-fr.ts
+                translations/harbour-laufhelden-fr.ts \
+                translations/harbour-laufhelden-zh_cn.ts
 
 HEADERS += \
     src/trackrecorder.h \
@@ -75,7 +76,6 @@ HEADERS += \
     src/timeformatter.h \
     src/device.h \
     src/deviceinfo.h \
-    src/serviceinfo.h \
     src/serviceinfo.h
 
 DISTFILES += \

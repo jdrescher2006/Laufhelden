@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<TS version="2.1" language="zh_cn">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation>О программе Laufhelden</translation>
+        <translation>关于 Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation>Ваш персональный тренер для ОС Sailfish</translation>
+        <translation>旗鱼系统运动轨迹记录应用</translation>
     </message>
     <message>
         <source>Copyright</source>
-        <translation>Разработка</translation>
+        <translation>版权</translation>
     </message>
     <message>
         <source>Germany</source>
-        <translation>Германия</translation>
+        <translation>德语</translation>
     </message>
     <message>
         <source>Date: </source>
-        <translation>Релиз: </translation>
+        <translation>日期: </translation>
     </message>
     <message>
         <source>License: GPLv3</source>
-        <translation>Лицензия: GPLv3</translation>
+        <translation>许可证: GPLv3</translation>
     </message>
     <message>
         <source>Source code:</source>
-        <translation>Исходный код:</translation>
+        <translation>源代码:</translation>
     </message>
     <message>
         <source>Feedback, bugs:</source>
-        <translation>Отзывы, сообщения об ошибках:</translation>
+        <translation>反馈,缺陷:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation>Пожертвование, если вам понравилась программа:</translation>
+        <translation>如果你喜欢本应用不妨考虑捐赠:</translation>
     </message>
     <message>
         <source>Version</source>
@@ -52,51 +52,51 @@
     <name>BTConnectPage</name>
     <message>
         <source>Scan for Bluetooth devices</source>
-        <translation>Поиск Bluetooth устройств</translation>
+        <translation>搜索蓝牙设备</translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>Сканировать ...</translation>
+        <translation>开始扫描 ...</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation>Отменить сканирование</translation>
+        <translation>取消扫描</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation>Подключенное устройство</translation>
+        <translation>当前蓝牙设备</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Пусто</translation>
+        <translation>无</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation>Пульс:</translation>
+        <translation>心率:</translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation> уд/мин</translation>
+        <translation> bpm </translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation>Заряд батареи:</translation>
+        <translation>电量:</translation>
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation>Найденные устройства (коснитесь чтобы подключить):</translation>
+        <translation>发现蓝牙设备 (按压以连接):</translation>
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Пульсометр</translation>
+        <translation>心率设备</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation>Подключить</translation>
+        <translation>连接</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation>Отключить</translation>
+        <translation>断开</translation>
     </message>
     <message>
         <source>Connection Type</source>
@@ -123,94 +123,93 @@
     <name>CoverPage</name>
     <message>
         <source>Recording</source>
-        <translation>Запись</translation>
+        <translation>记录中</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Остановка</translation>
+        <translation>停止</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Пауза</translation>
+        <translation>暂停</translation>
     </message>
 </context>
 <context>
     <name>CoverSettingsPage</name>
     <message>
         <source>This value is already assigned!</source>
-        <translation>Этот параметр уже выбран!</translation>
+        <translation>该值已赋值!</translation>
     </message>
     <message>
         <source>First field:</source>
-        <translation>Первое:</translation>
+        <translation>第一个区域:</translation>
     </message>
     <message>
         <source>Second field:</source>
-        <translation>Второе:</translation>
+        <translation>第二个区域:</translation>
     </message>
     <message>
         <source>Third field:</source>
-        <translation>Третье:</translation>
+        <translation>第三个区域:</translation>
     </message>
     <message>
         <source>App cover settings</source>
-        <translation>Настройка обложки</translation>
+        <translation>应用封面设置</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation>Выберите параметры, которые будут отображаться на обложке приложения.
-Они также используются на экране блокировки во время записи данных.</translation>
+        <translation>选择要在应用封面上显示的值。这些值也用于记录页上的锁屏。</translation>
     </message>
 </context>
 <context>
     <name>DetailedViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation>Графики</translation>
+        <translation>示意图</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Описание:</translation>
+        <translation>描述:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation>Начало:</translation>
+        <translation>开始时间:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Длительность:</translation>
+        <translation>间隔:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation>Расстояние:</translation>
+        <translation>距离:</translation>
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation>Чило/длительность пауз:</translation>
+        <translation>停止数字/间隔:</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Отправить на Sports-Tracker.com</translation>
+        <translation>发送到 Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Редактировать тренировку</translation>
+        <translation>修改锻炼</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation>Имя тренировки</translation>
+        <translation>锻炼名称</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation>Описание тренировки</translation>
+        <translation>锻炼描述</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Тренировка:</translation>
+        <translation>锻炼:</translation>
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation>Отправить в Strava</translation>
+        <translation>发送到 Strava</translation>
     </message>
     <message>
         <source>loading...</source>
@@ -237,11 +236,11 @@
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation>Графики</translation>
+        <translation>示意图</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">心率 </translation>
     </message>
     <message>
         <source>Elevation</source>
@@ -253,7 +252,7 @@
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">步数 </translation>
     </message>
     <message>
         <source>Time: </source>
@@ -281,11 +280,11 @@
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">км</translation>
+        <translation type="unfinished">千米</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">миль</translation>
+        <translation type="unfinished">米</translation>
     </message>
 </context>
 <context>
@@ -299,125 +298,125 @@
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation>--ч --м --с</translation>
+        <translation>--小时 --分钟 --秒</translation>
     </message>
 </context>
 <context>
     <name>JSTools</name>
     <message>
         <source>Empty</source>
-        <translation>Пусто</translation>
+        <translation>空</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation>Пульс </translation>
+        <translation>心率 </translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation>Шаги </translation>
+        <translation>步数 </translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation>Скорость </translation>
+        <translation>速度</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation>Высота </translation>
+        <translation>海拔</translation>
     </message>
     <message>
         <source>Distance</source>
-        <translation>Расстояние </translation>
+        <translation>距离</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Пауза </translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <source>Duration</source>
-        <translation>Длительность </translation>
+        <translation>间隔</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation>О программе</translation>
+        <translation>关于</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Настройка</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation>Моя активность на Strava</translation>
+        <translation>我的Strava动态</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation>Новая тренировка</translation>
+        <translation>开始新锻炼</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation>Фильтр:</translation>
+        <translation>筛选:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation>из</translation>
+        <translation>of</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation>Загрузка файлов GPX...</translation>
+        <translation>正在加载GPX文件...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation>Удалить тренировку</translation>
+        <translation>移除锻炼</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation>Удаление тренировки...</translation>
+        <translation>正在移除锻炼...</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation>Редактировать тренировку</translation>
+        <translation>编辑锻炼</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Отправить на Sports-Tracker.com</translation>
+        <translation>发送到Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation>(безымянный путь)</translation>
+        <translation>(未命名轨迹)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation>Найдена незаконченная тренировка!</translation>
+        <translation>你有未完成的锻炼!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation>Продолжить</translation>
+        <translation>继续</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation>Имя тренировки</translation>
+        <translation>锻炼名称</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation>Описание тренировки</translation>
+        <translation>锻炼描述</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Тренировка:</translation>
+        <translation>锻炼:</translation>
     </message>
     <message>
         <source>workouts</source>
-        <translation>тренировок</translation>
+        <translation>锻炼</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">км</translation>
+        <translation type="unfinished">千米</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">миль</translation>
+        <translation type="unfinished">米</translation>
     </message>
     <message>
         <source>no workout this week</source>
@@ -425,90 +424,90 @@
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">км/ч</translation>
+        <translation type="unfinished">千米/小时</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished">миль/ч</translation>
+        <translation type="unfinished">米/小时</translation>
     </message>
 </context>
 <context>
     <name>MapSettingsPage</name>
     <message>
         <source>Map settings</source>
-        <translation>Настройка карты</translation>
+        <translation>地图设置</translation>
     </message>
     <message>
         <source>Optimize screen in map mode</source>
-        <translation>Оптимальный режим экрана</translation>
+        <translation>在地图模式下优化屏幕</translation>
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation>Показывать только 4 параметра из 6 когда используется карта.</translation>
+        <translation>显示地图时, 仅显示4个值字段 (而不是 6个)</translation>
     </message>
     <message>
         <source>Map center mode</source>
-        <translation>Центрирование карты</translation>
+        <translation>地图集中模式</translation>
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation>Текущее положение</translation>
+        <translation>在地图集中当前位置</translation>
     </message>
     <message>
         <source>Center track on map</source>
-        <translation>Пройденный путь</translation>
+        <translation>在地图集中轨迹</translation>
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation>Ограничение кеширования обеспечит самые свежие карты и экономит место в памяти, но загрузка карт происходит медленнее, а объём передачи данных растёт. Учтите, что размер кеша изменится только после перезапуска программы.</translation>
+        <translation>限制磁贴缓存可确保最新的地图并使磁盘的使用处于控制之下, 但加载地图的速度会变慢, 并导致更多的数据流量。请注意, 应用缓存大小设置将在应用程序重新启动后生效。</translation>
     </message>
     <message>
         <source>Cache size</source>
-        <translation>Размер кеша</translation>
+        <translation>缓存大小</translation>
     </message>
     <message>
         <source>Choose map style.</source>
-        <translation>Выберите стиль карты.</translation>
+        <translation>选择地图风格。</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation>Карта</translation>
+        <translation>地图</translation>
     </message>
     <message>
         <source>Streets</source>
-        <translation>Улицы</translation>
+        <translation>街道</translation>
     </message>
     <message>
         <source>Outdoors</source>
-        <translation>На природе</translation>
+        <translation>户外</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation>Светлый</translation>
+        <translation>亮色</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation>Тёмный</translation>
+        <translation>黑暗</translation>
     </message>
     <message>
         <source>Satellite</source>
-        <translation>Спутник</translation>
+        <translation>卫星</translation>
     </message>
     <message>
         <source>Satellite Streets</source>
-        <translation>Спутник + улицы</translation>
+        <translation>卫星街道</translation>
     </message>
     <message>
         <source>OSM Scout Server</source>
-        <translation>Сервер OSM Scout</translation>
+        <translation>OSM Scout服务</translation>
     </message>
     <message>
         <source>Disable map</source>
-        <translation>Отключить карту</translation>
+        <translation>禁用地图</translation>
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>Не показывать карту. Это полезно для телефонов Jolla 1 (из-за малой производительности ЦП), где карта может мешать работе программы.</translation>
+        <translation>地图将不再显示。这在 jolla 1 (gpu 较弱) 上很有用, 因为地图可能会使应用程序崩溃。</translation>
     </message>
 </context>
 <context>
@@ -543,104 +542,104 @@
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">км</translation>
+        <translation type="unfinished">千米</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">миль</translation>
+        <translation type="unfinished">米</translation>
     </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation>Моя активность на Strava</translation>
+        <translation>我的 Strava动态</translation>
     </message>
 </context>
 <context>
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
-        <translation>Часы Pebble подключены</translation>
+        <translation> Pebble已连接</translation>
     </message>
     <message>
         <source>Pebble disconnected</source>
-        <translation>Часы Pebble отключены</translation>
+        <translation>Pebble已断开连接</translation>
     </message>
 </context>
 <context>
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation>выбор единиц</translation>
+        <translation>设置公制单位</translation>
     </message>
     <message>
         <source>sending data 1</source>
-        <translation>передача данных 1</translation>
+        <translation>正在发送数据1</translation>
     </message>
     <message>
         <source>sending data 2</source>
-        <translation>передача данных 2</translation>
+        <translation>正在发送数据2</translation>
     </message>
     <message>
         <source>sending data 3</source>
-        <translation>передача данных 3</translation>
+        <translation>正在发送数据3</translation>
     </message>
     <message>
         <source>closing sport app</source>
-        <translation>закрытие спортивного приложения</translation>
+        <translation>关闭运动应用</translation>
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation>Настройка Pebble</translation>
+        <translation>Pebble设置</translation>
     </message>
     <message>
         <source>Test Pebble</source>
-        <translation>Проверить Pebble</translation>
+        <translation>测试Pebble</translation>
     </message>
     <message>
         <source>starting sport app</source>
-        <translation>запуск спортивного приложения</translation>
+        <translation>开启运动应用</translation>
     </message>
     <message>
         <source>Connected:</source>
-        <translation>Подключено:</translation>
+        <translation>已连接:</translation>
     </message>
     <message>
         <source>Enable Pebble support</source>
-        <translation>Включить поддержку Pebble</translation>
+        <translation>启用Pebble支持</translation>
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation>1 поле DURATION:</translation>
+        <translation>1 间隔字段:</translation>
     </message>
     <message>
         <source>2 DISTANCE field:</source>
-        <translation>2 поле DISTANCE:</translation>
+        <translation>2 距离字段:</translation>
     </message>
     <message>
         <source>3 PACE/SPEED field:</source>
-        <translation>3 поле PACE/SPEED:</translation>
+        <translation>3 步数/速度字段:</translation>
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation>Показать данные тренировки на часах Pebble.</translation>
+        <translation>查看Pebble智能手表上的锻炼数据.</translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>Часы Pebble не найдены.&lt;br&gt;Установите Rockpool и&lt;br&gt; подключите Pebble!</translation>
+        <translation>未发现Pebble。&lt;br&gt;安装 Rockpool 和&lt;br&gt;然后连接Pebble</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>Этот параметр уже выбран!</translation>
+        <translation>该值已赋值!</translation>
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
-        <translation>Выберите параметры для Pebble!</translation>
+        <translation>为Pebble字段选值!</translation>
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation>Необходимо установить Rockpool&lt;br&gt;версии не ниже 1.4-1.&lt;br&gt;Установлена версия: </translation>
+        <translation>必须安装Rockpool &lt;br&gt;版本号至少需是 1.4-1.&lt;br&gt;安装的版本是: </translation>
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
@@ -651,39 +650,39 @@
     <name>PreRecordPage</name>
     <message>
         <source>Let&apos;s go!</source>
-        <translation>Старт! </translation>
+        <translation>让我们开始吧! </translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Тренировка:</translation>
+        <translation>锻炼:</translation>
     </message>
     <message>
         <source>Use HRM device</source>
-        <translation>Пульсометр</translation>
+        <translation>使用HRM设备</translation>
     </message>
     <message>
         <source>Use heart rate monitor in this workout.</source>
-        <translation>Использовать пульсометр во время тренировки.</translation>
+        <translation>在本次锻炼中使用心率监测器</translation>
     </message>
     <message>
         <source>Disable screen blanking</source>
-        <translation>Запретить гашение экрана</translation>
+        <translation>禁止屏幕熄灭</translation>
     </message>
     <message>
         <source>Disable screen blanking when recording.</source>
-        <translation>Отключить гашение экрана во время тренировки.</translation>
+        <translation>当记录时禁止屏幕熄灭</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation>Профиль пороговых значений</translation>
+        <translation>选择阈值配置文件</translation>
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation>Использовать сервер данных пульса</translation>
+        <translation> 如果可用则使用HRM</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation>Использовать данные пульса из другого приложения, например Amazfish</translation>
+        <translation>从另一个软件使用心率监测器，例如Amazfish</translation>
     </message>
 </context>
 <context>
@@ -705,23 +704,23 @@
     <name>RecordPage</name>
     <message>
         <source>AMOLED mode</source>
-        <translation>Режим AMOLED</translation>
+        <translation>AMOLED模式</translation>
     </message>
     <message>
         <source>LCD mode</source>
-        <translation>Режим ЖК</translation>
+        <translation>LCD模式</translation>
     </message>
     <message>
         <source>Night mode</source>
-        <translation>Ночной режим</translation>
+        <translation>夜间模式</translation>
     </message>
     <message>
         <source>Silica mode</source>
-        <translation>Режим Silica</translation>
+        <translation>Silica模式</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Настройка</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Hide Map</source>
@@ -729,150 +728,150 @@
     </message>
     <message>
         <source>Show Map</source>
-        <translation>Показать карту</translation>
+        <translation>隐藏地图</translation>
     </message>
     <message>
         <source>Disconnect HRM</source>
-        <translation>Отключить пульсометр</translation>
+        <translation>断开HRM连接</translation>
     </message>
     <message>
         <source>Reconnect HRM</source>
-        <translation>Переподключить пульсометр</translation>
+        <translation>重新连接HRM</translation>
     </message>
     <message>
         <source>Switch display mode</source>
-        <translation>Сменить режим отображения</translation>
+        <translation>转换显示模式</translation>
     </message>
     <message>
         <source>GPS accuracy:</source>
-        <translation>Точность GPS:</translation>
+        <translation>GPS精度:</translation>
     </message>
     <message>
         <source>No position</source>
-        <translation>Нет координат</translation>
+        <translation>无位置</translation>
     </message>
     <message>
         <source>too low: </source>
-        <translation>плохо: </translation>
+        <translation>过慢: </translation>
     </message>
     <message>
         <source>Recording</source>
-        <translation>Запись</translation>
+        <translation>记录中</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Остановка</translation>
+        <translation>停止</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Пауза</translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation> Длительность:</translation>
+        <translation> 间隔:</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Пауза</translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation>Продолжить</translation>
+        <translation>继续</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Старт</translation>
+        <translation>开始</translation>
     </message>
     <message>
         <source>End</source>
-        <translation>Финиш</translation>
+        <translation>结束</translation>
     </message>
     <message>
         <source>keep tapping button: </source>
-        <translation>продолжайте нажимать кнопку: </translation>
+        <translation>保持点击按钮: </translation>
     </message>
     <message>
         <source>Accept</source>
-        <translation>Принять</translation>
+        <translation>接受</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Отменить</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Select value!</source>
-        <translation>Выберите параметр!</translation>
+        <translation>选取值</translation>
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation>Перезапустить приложение Pebble</translation>
+        <translation>重启Pebble应用</translation>
     </message>
     <message>
         <source>Lock screen</source>
-        <translation>Заблокировать экран</translation>
+        <translation>锁屏</translation>
     </message>
     <message>
         <source>hold button for: %1 s</source>
-        <translation>удерживайте кнопку: %1 с</translation>
+        <translation>保持按钮: %1 с</translation>
     </message>
 </context>
 <context>
     <name>RecordPageDisplay</name>
     <message>
         <source>Distance</source>
-        <translation> Расстояние </translation>
+        <translation> 距离</translation>
     </message>
     <message>
         <source>km</source>
-        <translation>км</translation>
+        <translation>千米</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation> Пульс </translation>
+        <translation>心率 </translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation>уд/мин</translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation> Шаги </translation>
+        <translation>步数 </translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation>мин/км</translation>
+        <translation>分钟/千米</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation> Скорость </translation>
+        <translation> 速度 </translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation>км/ч</translation>
+        <translation>千米/小时</translation>
     </message>
     <message>
         <source>m</source>
-        <translation>м</translation>
+        <translation>米</translation>
     </message>
     <message>
         <source>Altitude</source>
-        <translation> Высота </translation>
+        <translation>海拔 </translation>
     </message>
     <message>
         <source>Bat.:</source>
-        <translation>Бат.:</translation>
+        <translation>bat.:</translation>
     </message>
     <message>
         <source>Empty</source>
-        <translation>Пусто</translation>
+        <translation>空</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Пауза</translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <source>min/mi</source>
-        <translation>мин/миль</translation>
+        <translation>分钟/米</translation>
     </message>
     <message>
         <source>mi/h</source>
@@ -880,167 +879,167 @@
     </message>
     <message>
         <source>ft</source>
-        <translation>фт</translation>
+        <translation>英尺</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation>миль</translation>
+        <translation>米</translation>
     </message>
 </context>
 <context>
     <name>SaveDialog</name>
     <message>
         <source>Save track</source>
-        <translation>Сохранить путь</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation>储存轨迹</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Имя</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Описание</translation>
+        <translation>描述</translation>
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation>Выйти без сохранения</translation>
+        <translation>退出而不保存</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SettingsMenu</name>
     <message>
         <source>Settings</source>
-        <translation>Настройка</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Heart rate device</source>
-        <translation>Пульсометр</translation>
+        <translation>心率设备</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Общие настройки</translation>
+        <translation>常规</translation>
     </message>
     <message>
         <source>Voice coach</source>
-        <translation>Голосовые подсказки</translation>
+        <translation>语音教练</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation>Карта</translation>
+        <translation>地图</translation>
     </message>
     <message>
         <source>App cover</source>
-        <translation>Обложка приложения</translation>
+        <translation>应用封面</translation>
     </message>
     <message>
         <source>Pebble</source>
-        <translation>Часы Pebble</translation>
+        <translation>Pebble</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Отправка данных</translation>
+        <translation>分享锻炼</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
         <source>General settings</source>
-        <translation>Общие настройки</translation>
+        <translation>常规设置</translation>
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>Экран тренировки всегда будет в портретном режиме.</translation>
+        <translation>记录页保持竖屏模式</translation>
     </message>
     <message>
         <source>Write log file</source>
-        <translation>Вести журнал сообщений</translation>
+        <translation>日志消息</translation>
     </message>
     <message>
         <source>File: $HOME/Laufhelden/log.txt</source>
-        <translation>Файл: $HOME/Laufhelden/log.txt</translation>
+        <translation>文件: $HOME/Laufhelden/log.txt</translation>
     </message>
     <message>
         <source>Record page portrait mode</source>
-        <translation>Запись в портретном режиме</translation>
+        <translation>记录页竖屏模式</translation>
     </message>
     <message>
         <source>Show grid lines</source>
-        <translation>Показывать решетку</translation>
+        <translation>显示网格线</translation>
     </message>
     <message>
         <source>Show grid lines on record page.</source>
-        <translation>Показывать линии на экране тренировки.</translation>
+        <translation>在记录页显示网格线</translation>
     </message>
     <message>
         <source>Enable autosave</source>
-        <translation>Автосохранение</translation>
+        <translation>启用自动保存</translation>
     </message>
     <message>
         <source>No need to enter workout name on end of workout.</source>
-        <translation>Не требовать ввести имя тренировки в конце.</translation>
+        <translation>结束锻炼之后无需输入锻炼名称</translation>
     </message>
     <message>
         <source>Automatic night mode</source>
-        <translation>Автоматический ночной режим</translation>
+        <translation>自动启用夜间模式</translation>
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation>Переключаться в ночной режим при низкой освещенности.</translation>
+        <translation>如果氛围亮度很低，则调整到夜间模式</translation>
     </message>
     <message>
         <source>Unit of measurement</source>
-        <translation>Единицы измерения</translation>
+        <translation>计量单位</translation>
     </message>
     <message>
         <source>Metric</source>
-        <translation>Метрические</translation>
+        <translation>度量</translation>
     </message>
     <message>
         <source>Imperial</source>
-        <translation>Британские</translation>
+        <translation>英制</translation>
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation>Учтите, что эта настройка начнёт действовать только после перезапуска.</translation>
+        <translation>注意设置将在重启应用之后生效</translation>
     </message>
 </context>
 <context>
     <name>SharedResources</name>
     <message>
         <source>Running</source>
-        <translation>Бег</translation>
+        <translation>跑步中</translation>
     </message>
     <message>
         <source>Roadbike</source>
-        <translation>Шоссейный велосипед</translation>
+        <translation>越野车</translation>
     </message>
     <message>
         <source>Mountainbike</source>
-        <translation>Горный велосипед</translation>
+        <translation>山地自行车</translation>
     </message>
     <message>
         <source>Walking</source>
-        <translation>Ходьба</translation>
+        <translation>步行中</translation>
     </message>
     <message>
         <source>Inline skating</source>
-        <translation>Роликовые коньки</translation>
+        <translation>滑冰</translation>
     </message>
     <message>
         <source>Skiing</source>
-        <translation>Лыжи</translation>
+        <translation>滑雪</translation>
     </message>
     <message>
         <source>Hiking</source>
-        <translation>Поход</translation>
+        <translation>徒步旅行</translation>
     </message>
     <message>
         <source>All activities</source>
-        <translation>Все виды активности</translation>
+        <translation>所有运动</translation>
     </message>
 </context>
 <context>
@@ -1055,65 +1054,65 @@
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Поделиться данными тренировки</translation>
+        <translation>分享锻炼</translation>
     </message>
 </context>
 <context>
     <name>SportsTracker</name>
     <message>
         <source>Oops, username or password error</source>
-        <translation>Неверное имя или пароль</translation>
+        <translation>抱歉，用户名或密码错误</translation>
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation>Ошибка импорта GPX файла</translation>
+        <translation>GPX输入时发送某种错误</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
-        <translation>Тренировка отправлена!</translation>
+        <translation>锻炼已上传!</translation>
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
-        <translation>Ошибка при сохранениии данных</translation>
+        <translation>保存数据时发生某种错误</translation>
     </message>
     <message>
         <source>Logging in...</source>
-        <translation>Вход на...</translation>
+        <translation>登录中...</translation>
     </message>
     <message>
         <source>Uploading...</source>
-        <translation>Отправка...</translation>
+        <translation>上传中...</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerSettingsPage</name>
     <message>
         <source>Sports-Tracker.com settings</source>
-        <translation>Настройка Sports-Tracker.com</translation>
+        <translation>Sports-Tracker.com设置</translation>
     </message>
     <message>
         <source>Auto upload</source>
-        <translation>Автоматическая оправка</translation>
+        <translation>自动上传</translation>
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation>Автоматически отправлять данные о тренировке на Sports-Tracker.com после её окончания</translation>
+        <translation>锻炼之后自动将锻炼发送到Sports-Tracker.com </translation>
     </message>
     <message>
         <source>Enter Username</source>
-        <translation>Введите имя пользователя</translation>
+        <translation>输入用户名</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Имя</translation>
+        <translation>用户名</translation>
     </message>
     <message>
         <source>Enter Password</source>
-        <translation>Введите пароль</translation>
+        <translation>输入密码</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Пароль</translation>
+        <translation>密码</translation>
     </message>
     <message>
         <source></source>
@@ -1121,129 +1120,129 @@
     </message>
     <message>
         <source>Default Sharing option</source>
-        <translation>Режим публикации данных</translation>
+        <translation>默认分享操作</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation>Приватный</translation>
+        <translation>隐私</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation>Для друзей</translation>
+        <translation>关注者</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation>Публичный</translation>
+        <translation>公共</translation>
     </message>
     <message>
         <source>Test login...</source>
-        <translation>Проверка подключения...</translation>
+        <translation>尝试登录...</translation>
     </message>
     <message>
         <source>Already authenticated</source>
-        <translation>Вход уже выполнен</translation>
+        <translation>已授权</translation>
     </message>
     <message>
         <source>Login success!</source>
-        <translation>Успешный вход!</translation>
+        <translation>登陆成功!</translation>
     </message>
     <message>
         <source>Login error, Check username or password</source>
-        <translation>Ошибка входа. Проверьте имя и пароль</translation>
+        <translation>登陆错误，请检测用户名或密码</translation>
     </message>
     <message>
         <source>Loading workouts...</source>
-        <translation>Загрузка тренировок...</translation>
+        <translation>正在记载锻炼...</translation>
     </message>
     <message>
         <source>of</source>
-        <translation>из</translation>
+        <translation>of</translation>
     </message>
     <message>
         <source> unique workout downloaded!</source>
-        <translation> тренировок загружено!</translation>
+        <translation>已下载你的锻炼数据!</translation>
     </message>
     <message>
         <source>Test login</source>
-        <translation>Проверить вход</translation>
+        <translation>尝试登录</translation>
     </message>
     <message>
         <source>Download workouts</source>
-        <translation>Загрузить данные</translation>
+        <translation>下载锻炼</translation>
     </message>
     <message>
         <source>Maximum number to download</source>
-        <translation>Предельное число загрузок</translation>
+        <translation>最大下载数</translation>
     </message>
     <message>
         <source>Downloading GPX files</source>
-        <translation>Загрузка GPX файлов</translation>
+        <translation>正在下载GPX文件</translation>
     </message>
     <message>
         <source>Track write error</source>
-        <translation>Ошибка записи пути</translation>
+        <translation>轨迹写入错误</translation>
     </message>
 </context>
 <context>
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation>Передать описание тренировки на Sports-Tracker.com</translation>
+        <translation>给Sports-Tracker.com添加锻炼描述</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Описание</translation>
+        <translation>描述</translation>
     </message>
     <message>
         <source>Share workout</source>
-        <translation>Поделиться данными тренировки</translation>
+        <translation>分享锻炼</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation>Приватный</translation>
+        <translation>隐私</translation>
     </message>
     <message>
         <source>Followers</source>
-        <translation>Для друзей</translation>
+        <translation>关注者</translation>
     </message>
     <message>
         <source>Public</source>
-        <translation>Публичный</translation>
+        <translation>公共</translation>
     </message>
 </context>
 <context>
     <name>StravaActivityPage</name>
     <message>
         <source>Description:</source>
-        <translation>Описание:</translation>
+        <translation>描述:</translation>
     </message>
     <message>
         <source>Starting time:</source>
-        <translation>Начало:</translation>
+        <translation>开始时间:</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Длительность:</translation>
+        <translation>持续时间:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation>Расстояние:</translation>
+        <translation>距离:</translation>
     </message>
     <message>
         <source>Kudos:</source>
-        <translation>Отклик:</translation>
+        <translation>荣誉:</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation>Комментарии:</translation>
+        <translation>评论:</translation>
     </message>
     <message>
         <source>Elevation Gain:</source>
-        <translation>Набор высоты:</translation>
+        <translation>海拔获取:</translation>
     </message>
     <message>
         <source>Achievements/PRs:</source>
-        <translation>Достижения:</translation>
+        <translation>成就/PRs:</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
@@ -1254,51 +1253,51 @@
     <name>StravaComments</name>
     <message>
         <source>Comments</source>
-        <translation>Комментарии</translation>
+        <translation>评论</translation>
     </message>
 </context>
 <context>
     <name>StravaKudos</name>
     <message>
         <source>Kudos</source>
-        <translation>Отклик</translation>
+        <translation>荣誉</translation>
     </message>
 </context>
 <context>
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation>Длительность:</translation>
+        <translation>间隔:</translation>
     </message>
     <message>
         <source>Distance:</source>
-        <translation>Расстояние:</translation>
+        <translation>距离:</translation>
     </message>
     <message>
         <source>Elevation Diff:</source>
-        <translation>Разность высоты:</translation>
+        <translation>海拔差:</translation>
     </message>
     <message>
         <source>Climb Category:</source>
-        <translation>Категория подъёма:</translation>
+        <translation>增加分类:</translation>
     </message>
     <message>
         <source>Best Effort:</source>
-        <translation>Лучший результат:</translation>
+        <translation>尽力而为:</translation>
     </message>
 </context>
 <context>
     <name>StravaSegments</name>
     <message>
         <source>Segments</source>
-        <translation>Сегменты</translation>
+        <translation>片段</translation>
     </message>
 </context>
 <context>
     <name>StravaSettingsPage</name>
     <message>
         <source>Strava settings</source>
-        <translation>Настройка Strava</translation>
+        <translation>Strava设置</translation>
     </message>
     <message>
         <source>Logout</source>
@@ -1325,271 +1324,271 @@
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation>Имя активности для Strava</translation>
+        <translation> Strava活动名称</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Описание</translation>
+        <translation>描述</translation>
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation>Описание активности для Strava</translation>
+        <translation>Strava活动描述</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation>Приватный</translation>
+        <translation>隐私</translation>
     </message>
     <message>
         <source>Commute</source>
-        <translation>Поездка</translation>
+        <translation>上下班</translation>
     </message>
     <message>
         <source>Uploading data...</source>
-        <translation>Отправка данных...</translation>
+        <translation>正在上传数据...</translation>
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation>Проверка...</translation>
+        <translation>检测上传中...</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
-        <translation>Неизвестная ошибка</translation>
+        <translation>发生一个未知错误</translation>
     </message>
     <message>
         <source>Activity upload complete</source>
-        <translation>Отправка данных завершена</translation>
+        <translation>运动已上传完毕</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Тип</translation>
+        <translation>类型</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Имя</translation>
+        <translation>名称</translation>
     </message>
 </context>
 <context>
     <name>ThresholdSettingsPage</name>
     <message>
         <source>Upper heart rate limit</source>
-        <translation>Верхний порог частоты пульса</translation>
+        <translation>心率上限</translation>
     </message>
     <message>
         <source>Alarm if limit is exceeded.</source>
-        <translation>Предупреждать о превышении порога.</translation>
+        <translation>超过时发出警报</translation>
     </message>
     <message>
         <source>bpm</source>
-        <translation>уд/мин</translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Lower heart rate limit</source>
-        <translation>Нижний порог частоты пульса</translation>
+        <translation>心率下限</translation>
     </message>
     <message>
         <source>Upper pace limit</source>
-        <translation>Верхний порог частоты шага</translation>
+        <translation>步频下限</translation>
     </message>
     <message>
         <source>min/km</source>
-        <translation>мин/км</translation>
+        <translation>分钟/千米</translation>
     </message>
     <message>
         <source>Lower pace limit</source>
-        <translation>Нижний порог частоты шага</translation>
+        <translation>最低步数限制</translation>
     </message>
     <message>
         <source>Edit profile name</source>
-        <translation>Изменить имя профиля</translation>
+        <translation>编辑概述名称</translation>
     </message>
     <message>
         <source>Only text, no special characters!</source>
-        <translation>Не используйте спец. знаки!</translation>
+        <translation>仅限文本，无特殊字符!</translation>
     </message>
     <message>
         <source>Threshold profile name</source>
-        <translation>Имя профиля пороговых значений</translation>
+        <translation>阈值配置文件名称</translation>
     </message>
     <message>
         <source>Add profile</source>
-        <translation>Добавить профиль</translation>
+        <translation>添加概述</translation>
     </message>
     <message>
         <source>Rename profile</source>
-        <translation>Переименовать профиль</translation>
+        <translation>重命名概述</translation>
     </message>
     <message>
         <source>Remove profile</source>
-        <translation>Удалить профиль</translation>
+        <translation>移除概述</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation>Выбрать профиль пороговых значений</translation>
+        <translation>选取阈值配置文件</translation>
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
-        <translation>Предупреждать о низком значении.</translation>
+        <translation>如果限制不足, 请报警</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation>Пороговые значения</translation>
+        <translation>阈值警报</translation>
     </message>
     <message>
         <source>min/mi</source>
-        <translation>мин/миль</translation>
+        <translation>分钟/米</translation>
     </message>
 </context>
 <context>
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
-        <translation>Без пороговых значений</translation>
+        <translation>阈值关闭</translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation>Каждые </translation>
+        <translation>每次 </translation>
     </message>
     <message>
         <source>500 meters</source>
-        <translation>500 метров</translation>
+        <translation>500米</translation>
     </message>
     <message>
         <source>0.5 mi</source>
-        <translation>0,5 миль</translation>
+        <translation>0.5米</translation>
     </message>
     <message>
         <source>1 km</source>
-        <translation>1000 метров</translation>
+        <translation>1千米</translation>
     </message>
     <message>
         <source>1 mi</source>
-        <translation>1 милю</translation>
+        <translation>1分钟</translation>
     </message>
     <message>
         <source>2 km</source>
-        <translation>2 км</translation>
+        <translation>2千米</translation>
     </message>
     <message>
         <source>2 mi</source>
-        <translation>2 мили</translation>
+        <translation>2米</translation>
     </message>
     <message>
         <source>5 km</source>
-        <translation>5 км</translation>
+        <translation>5千米</translation>
     </message>
     <message>
         <source>5 mi</source>
-        <translation>5 миль</translation>
+        <translation>5米</translation>
     </message>
     <message>
         <source>10 km</source>
-        <translation>10 км</translation>
+        <translation>10千米</translation>
     </message>
     <message>
         <source>10 mi</source>
-        <translation>10 миль</translation>
+        <translation>10千米</translation>
     </message>
     <message>
         <source>20 km</source>
-        <translation>20 км</translation>
+        <translation>20千米</translation>
     </message>
     <message>
         <source>20 mi</source>
-        <translation>20 миль</translation>
+        <translation>20米</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>Сообщения о длине пути</translation>
+        <translation>路径长度消息</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation>Включено</translation>
+        <translation>已启用</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>1-е сообщение:</translation>
+        <translation>1则消息:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>2-е сообщение:</translation>
+        <translation>2则消息:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>3-е сообщение:</translation>
+        <translation>3则消息:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>4-е сообщение:</translation>
+        <translation>4则消息:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>Этот параметр уже выбран!</translation>
+        <translation>该值已赋值!</translation>
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>Объявлять параметры</translation>
+        <translation>播放数值消息</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>Перед озвучиванием значения называть параметр, например &quot;Расстояние&quot;. Это удлиняет сообщения.</translation>
+        <translation>在播放数值消息之前, 宣布值的类型。e.g &quot;Distance:&quot;. 这使得语音公告持续的时间更长。</translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation>Каждые </translation>
+        <translation>每次 </translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation>2 минуты</translation>
+        <translation>2分钟</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation>5 минут</translation>
+        <translation>5分钟т</translation>
     </message>
     <message>
         <source>10 minutes</source>
-        <translation>10 минут</translation>
+        <translation>10分钟</translation>
     </message>
     <message>
         <source>20 minutes</source>
-        <translation>20 минут</translation>
+        <translation>20分钟</translation>
     </message>
     <message>
         <source>hour</source>
-        <translation>60 минут</translation>
+        <translation>60分钟</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>Сообщения о времени</translation>
+        <translation>持续时间消息</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation>Включено</translation>
+        <translation>已启用</translation>
     </message>
     <message>
         <source>30 seconds</source>
-        <translation>30 секунд</translation>
+        <translation>30秒</translation>
     </message>
     <message>
         <source>1 minute</source>
-        <translation>60 секунд</translation>
+        <translation>1分钟</translation>
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>1-е сообщение:</translation>
+        <translation>1则消息:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>2-е сообщение:</translation>
+        <translation>2则消息:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>3-е сообщение:</translation>
+        <translation>3则消息:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
@@ -1597,65 +1596,65 @@
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>Этот параметр уже выбран!</translation>
+        <translation>该值已赋值!</translation>
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>Объявлять параметры</translation>
+        <translation>播放数值消息</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>Перед озвучиванием значения называть параметр, например &quot;Расстояние&quot;. Это удлиняет сообщения.</translation>
+        <translation>在播放数值消息之前, 宣布值的类型。e.g &quot;Distance:&quot;. 这使得语音公告持续的时间更长。</translation>
     </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
-        <translation>Начало/конец тренировки</translation>
+        <translation>开始/结束 锻炼</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation>Пауза/продолжение тренировки</translation>
+        <translation>停止/继续 锻炼</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation>Подключение/отключение GPS</translation>
+        <translation>连接/断开 GPS</translation>
     </message>
     <message>
         <source>Voice coach events settings</source>
-        <translation>Объявления о событиях</translation>
+        <translation>语音教练事项设置</translation>
     </message>
 </context>
 <context>
     <name>VoiceGeneralSettingsPage</name>
     <message>
         <source>Voice language</source>
-        <translation>Язык и голос</translation>
+        <translation>语音语言</translation>
     </message>
     <message>
         <source>English male</source>
-        <translation>Английский, мужчина</translation>
+        <translation>英语男性</translation>
     </message>
     <message>
         <source>German male</source>
-        <translation>Немецкий, мужчина</translation>
+        <translation>德语男性</translation>
     </message>
     <message>
         <source>Russian male</source>
-        <translation>Русский, мужчина</translation>
+        <translation>俄语男性</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Проверка</translation>
+        <translation>尝试</translation>
     </message>
     <message>
         <source>Voice coach general settings</source>
-        <translation>Общая настройка голоса</translation>
+        <translation>语音教练常规设置</translation>
     </message>
     <message>
         <source>Pause/resume music player</source>
-        <translation>Приостанавливать музыку</translation>
+        <translation>停止/恢复 语音播放</translation>
     </message>
     <message>
         <source></source>
@@ -1663,34 +1662,34 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
-        <translation>Если включено, то во время голосовых сообщений музыка будет ставиться на паузу.</translation>
+        <translation>如果启用, 则在播放语音消息时暂停音乐播放器, 之后恢复播放。</translation>
     </message>
 </context>
 <context>
     <name>VoiceSettingsPage</name>
     <message>
         <source>General</source>
-        <translation>Общая</translation>
+        <translation>常规</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation>Пороговые значения</translation>
+        <translation>报警阈值</translation>
     </message>
     <message>
         <source>Event announcements</source>
-        <translation>Объявления о событиях</translation>
+        <translation>事项消息</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>Сообщения о длине пути</translation>
+        <translation>距离消息</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>Регулярные сообщения о времени</translation>
+        <translation>持续时间消息</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
-        <translation>Настройка голоса</translation>
+        <translation>语音教练设置</translation>
     </message>
 </context>
 <context>
