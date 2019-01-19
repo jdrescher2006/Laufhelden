@@ -697,7 +697,7 @@
     </message>
     <message>
         <source>%1h %2m %3s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1h %2m %3s</translation>
     </message>
 </context>
 <context>
