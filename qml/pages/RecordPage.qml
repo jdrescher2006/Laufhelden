@@ -2165,11 +2165,11 @@ Page
                         if (!recorder.running && recorder.isEmpty)
                         {
                             //Check accuracy
-                            if (recorder.accuracy > 0 && recorder.accuracy < 30)
-                            {
+                            //if (recorder.accuracy > 0 && recorder.accuracy < 30)
+                            //{
                                 //Start workout
                                 recorder.running = true;
-                            }
+                            //}
                         }
                         else
                         {
