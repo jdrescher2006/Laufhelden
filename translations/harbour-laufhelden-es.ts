@@ -695,6 +695,10 @@
         <source>%1m %2s</source>
         <translation>%1m %2s</translation>
     </message>
+    <message>
+        <source>%1h %2m %3s</source>
+        <translation>%1h %2m %3s</translation>
+    </message>
 </context>
 <context>
     <name>RecordPage</name>

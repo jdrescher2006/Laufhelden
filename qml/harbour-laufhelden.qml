@@ -65,7 +65,7 @@ ApplicationWindow
     property int iPlayLoop: 0
     property variant arrayPlaySounds: 0
 
-    //property bool bApplicationIsActive: fal
+    //property bool bApplicationIsActive: fal    
 
     //Init C++ classes, libraries
     HistoryModel{ id: id_HistoryModel }
@@ -587,6 +587,8 @@ ApplicationWindow
         }
     }
 
+
+
 	function fncPlaySound(sFile)
     {
         //Check if a sound is already playing. If so, return!
@@ -594,6 +596,9 @@ ApplicationWindow
             return;
         else
             bPlayingSound = true;
+
+        sFile = "usr/share/harbour-laufhelden/voicefiles/" + sFile;
+        console.log(sFile);
 
 		var arTemp = [];
 		arrayPlaySounds = arTemp;

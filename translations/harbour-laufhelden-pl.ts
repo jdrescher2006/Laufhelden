@@ -112,7 +112,7 @@
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translationZnaleziono urządzenia BT (naciśnij aby połączyć):></translation>
+        <translation>Znaleziono urządzenia BT (naciśnij aby połączyć):</translation>
     </message>
     <message>
         <source>Cancel Connect</source>
@@ -694,6 +694,10 @@
     <message>
         <source>%1m %2s</source>
         <translation>%1m %2s</translation>
+    </message>
+    <message>
+        <source>%1h %2m %3s</source>
+        <translation>%1h %2m %3s</translation>
     </message>
 </context>
 <context>
