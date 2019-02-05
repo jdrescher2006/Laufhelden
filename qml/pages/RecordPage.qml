@@ -596,6 +596,13 @@ Page
                 {
                     showSaveDialog();
                 }
+                else
+                {
+                    recorder.clearTrack();
+                    pageStack.pop(vMainPageObject, PageStackAction.Immediate);
+                    // Workout was started but is empty e.g. due to no GPS
+                    // so return to main window
+                }
             }
         }
     }
@@ -2151,7 +2158,8 @@ Page
                     anchors.rightMargin: Theme.paddingMedium
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: Theme.fontSizeLarge
-                    color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
+                    //color: (recorder.isEmpty && (recorder.accuracy >= 30 || recorder.accuracy < 0)) ? "grey" : "white"
+                    color: "white"
                     text: !recorder.running && recorder.isEmpty ? qsTr("Start") : qsTr("End")
                 }
                 MouseArea
@@ -2169,6 +2177,7 @@ Page
                             //{
                                 //Start workout
                                 recorder.running = true;
+                                qDebug() << "Workout szarted";
                             //}
                         }
                         else
