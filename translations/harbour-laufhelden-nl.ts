@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation>Sporttrackertoepassing voor Sailfish OS</translation>
+        <translation>Sporttracker voor Sailfish OS</translation>
     </message>
     <message>
         <source>Copyright</source>
@@ -37,86 +37,86 @@
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation>Als je deze app leuk vindt, kan je een donatie geven:</translation>
+        <translation>Als je deze app leuk vindt, kun je doneren:</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versie</translation>
     </message>
     <message>
         <source>Contributors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Met bijdragen van:</translation>
     </message>
 </context>
 <context>
     <name>BTConnectPage</name>
     <message>
         <source>Heart rate device</source>
-        <translation type="unfinished">Hartslagapparaat</translation>
+        <translation>Hartslagmeter</translation>
     </message>
     <message>
         <source>Scan for Bluetooth devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Bluetoothapparaten zoeken</translation>
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation type="unfinished"></translation>
+        <translation>Begin zoeken...</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoeken annuleren</translation>
     </message>
     <message>
         <source>Current BT device</source>
-        <translation type="unfinished"></translation>
+        <translation>Huidig apparaat</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen</translation>
     </message>
     <message>
         <source>Heart Rate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hartslag:</translation>
     </message>
     <message>
         <source> bpm</source>
-        <translation type="unfinished"></translation>
+        <translation> slagen per minuut</translation>
     </message>
     <message>
         <source>Battery Level: </source>
-        <translation type="unfinished"></translation>
+        <translation>Accuniveau</translation>
     </message>
     <message>
         <source>Connection Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindingstype</translation>
     </message>
     <message>
         <source>BLE Public Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE omroep</translation>
     </message>
     <message>
         <source>BLE Random Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE willekeurig adres</translation>
     </message>
     <message>
         <source>Classic Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaard Bluetooth</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinden</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished"></translation>
+        <translation>Ontkoppelen</translation>
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation type="unfinished"></translation>
+        <translation>BT-apparaten gevonden (druk om te verbinden):</translation>
     </message>
     <message>
         <source>Cancel Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinden annuleren</translation>
     </message>
 </context>
 <context>
@@ -165,7 +165,7 @@
     <name>DetailedViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation>Diagrammen</translation>
+        <translation>Grafieken</translation>
     </message>
     <message>
         <source>Description:</source>
@@ -201,7 +201,7 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>Sturen naar Sports-Tracker.com</translation>
+        <translation>Verzenden naar Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Edit workout</source>
@@ -221,84 +221,84 @@
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation>Sturen naar Strava</translation>
+        <translation>Verzenden naar Strava</translation>
     </message>
     <message>
         <source>loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>laden...</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Overzicht</translation>
     </message>
 </context>
 <context>
     <name>DiagramViewPage</name>
     <message>
         <source>Diagrams</source>
-        <translation type="unfinished">Diagrammen</translation>
+        <translation>Grafieken</translation>
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished">Hartslag</translation>
+        <translation>Hartslag</translation>
     </message>
     <message>
         <source>Elevation</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoogte</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished">Snelheid</translation>
+        <translation>Snelheid</translation>
     </message>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tijd: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>Duur: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hoogte: </translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo: </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Snelheid: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hartslag</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mi</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished">Tempo</translation>
+        <translation>Tempo</translation>
     </message>
 </context>
 <context>
     <name>GraphData</name>
     <message>
         <source>No data</source>
-        <translation type="unfinished"></translation>
+        <translation>Geen data</translation>
     </message>
 </context>
 <context>
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation type="unfinished"></translation>
+        <translation>--u --m --s</translation>
     </message>
 </context>
 <context>
@@ -340,95 +340,95 @@
     <name>MainPage</name>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Over</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">Instellingen</translation>
+        <translation>Instellingen</translation>
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation type="unfinished">Mijn Strava-activiteiten</translation>
+        <translation>Mijn Strava-activiteiten</translation>
     </message>
     <message>
         <source>Start new workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Begin nieuwe training</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished">van</translation>
+        <translation>van</translation>
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation type="unfinished"></translation>
+        <translation>GPX bestanden laden...</translation>
     </message>
     <message>
         <source>Remove workout</source>
-        <translation type="unfinished"></translation>
+        <translation>Training verwijderen</translation>
     </message>
     <message>
         <source>Removing workout...</source>
-        <translation type="unfinished"></translation>
+        <translation>Training verwijderen</translation>
     </message>
     <message>
         <source>Edit workout</source>
-        <translation type="unfinished">Training bewerken</translation>
+        <translation>Training bewerken</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation type="unfinished">Sturen naar Sports-Tracker.com</translation>
+        <translation>Versturen naar Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Route zonder naam)</translation>
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Onafgemaakte training gevonden!</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Hervatten</translation>
     </message>
     <message>
         <source>Workout name</source>
-        <translation type="unfinished">Naam voor training</translation>
+        <translation>Naam voor training</translation>
     </message>
     <message>
         <source>Workout description</source>
-        <translation type="unfinished">Beschrijving voor training</translation>
+        <translation>Beschrijving voor training</translation>
     </message>
     <message>
         <source>Workout:</source>
-        <translation type="unfinished">Training:</translation>
+        <translation>Training:</translation>
     </message>
     <message>
         <source>workouts</source>
-        <translation type="unfinished"></translation>
+        <translation>trainingen</translation>
     </message>
     <message>
         <source>no workout this week</source>
-        <translation type="unfinished"></translation>
+        <translation>geen training deze week</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mij</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/u</translation>
+        <translation>km/u</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished">mi/u</translation>
+        <translation>mij/u</translation>
     </message>
 </context>
 <context>
@@ -447,19 +447,19 @@
     </message>
     <message>
         <source>Map center mode</source>
-        <translation>Kaartcentrummodus</translation>
+        <translation>Kaartcentreerummodus</translation>
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation>Huidige positie centreren op kaart</translation>
+        <translation>Huidige positie op kaart centreren</translation>
     </message>
     <message>
         <source>Center track on map</source>
-        <translation>Route centreren op kaart</translation>
+        <translation>Route op kaart centreren</translation>
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation>Inperken van tegelcache zorgt ervoor dat je kaarten up-to-date blijven en houdt het geheugengebruik onder controle, maar zorgt er ook voor dat kaarten minder snel laden en verhoogt het gegevensverbruik. Let op: de cachegrootteinstelling wordt pas toegepast na herstarten van de app.</translation>
+        <translation>Inperken van tegelcache zorgt ervoor dat je kaarten up-to-date blijven en beperkt het geheugengebruik, maar zorgt er ook voor dat kaarten minder snel laden en verhoogt het dataverbruik. Let op: de cachegrootteinstelling wordt pas toegepast na herstarten van de app.</translation>
     </message>
     <message>
         <source>Cache size</source>
@@ -514,39 +514,39 @@
     <name>MapViewPage</name>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tijd: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>Duur: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hoogte</translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo: </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Snelheid: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Hartslag; </translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">mi</translation>
+        <translation>mij</translation>
     </message>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Kaart</translation>
+        <translation>Kaart</translation>
     </message>
 </context>
 <context>
@@ -627,7 +627,7 @@
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>Geen Pebble gevonden.&lt;br&gt;Installeer Rockpool en&lt;br&gt;verbind je Pebble!</translation>
+        <translation>Geen Pebble gevonden.&lt;br&gt;Installeer Rockpool en&lt;br&gt;verbind dan je Pebble!</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -643,7 +643,7 @@
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
-        <translation type="unfinished"></translation>
+        <translation>Kies de Pebble die je gebruiken wilt.</translation>
     </message>
 </context>
 <context>
@@ -678,26 +678,26 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik hartslagmonitor indien beschikbaar.</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruik hartslagmonitor van een andere app zoals Amazfish</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>%1s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1s</translation>
     </message>
     <message>
         <source>%1m %2s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1m %2s</translation>
     </message>
     <message>
         <source>%1h %2m %3s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1h %2m %3s</translation>
     </message>
 </context>
 <context>
@@ -744,7 +744,7 @@
     </message>
     <message>
         <source>GPS accuracy:</source>
-        <translation>Nauwkeurigheid van gps:</translation>
+        <translation>Nauwkeurigheid van GPS:</translation>
     </message>
     <message>
         <source>No position</source>
@@ -812,7 +812,7 @@
     </message>
     <message>
         <source>hold button for: %1 s</source>
-        <translation type="unfinished"></translation>
+        <translation>druk de knop %1 s ingedrukt</translation>
     </message>
 </context>
 <context>
@@ -879,11 +879,11 @@
     </message>
     <message>
         <source>ft</source>
-        <translation>ft</translation>
+        <translation>voet</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation>mi</translation>
+        <translation>mij</translation>
     </message>
 </context>
 <context>
@@ -906,7 +906,7 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Afsluiten zonder op te slaan</translation>
     </message>
 </context>
 <context>
@@ -1039,7 +1039,7 @@
     </message>
     <message>
         <source>All activities</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle activiteiten</translation>
     </message>
 </context>
 <context>
@@ -1081,7 +1081,7 @@
     </message>
     <message>
         <source>Uploading...</source>
-        <translation>Bezig met uploaden…</translation>
+        <translation>Bezig met uploaden...</translation>
     </message>
 </context>
 <context>
@@ -1136,7 +1136,7 @@
     </message>
     <message>
         <source>Test login...</source>
-        <translation>Aanmelden testen…</translation>
+        <translation>Aanmelden testen...</translation>
     </message>
     <message>
         <source>Already authenticated</source>
@@ -1152,7 +1152,7 @@
     </message>
     <message>
         <source>Loading workouts...</source>
-        <translation>Trainingen laden…</translation>
+        <translation>Trainingen laden...</translation>
     </message>
     <message>
         <source>of</source>
@@ -1301,23 +1301,23 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitloggen</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Inloggen</translation>
     </message>
     <message>
         <source>User Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruikersnaam: </translation>
     </message>
     <message>
         <source>Email: </source>
-        <translation type="unfinished"></translation>
+        <translation>Email: </translation>
     </message>
     <message>
         <source>Country: </source>
-        <translation type="unfinished"></translation>
+        <translation>Land</translation>
     </message>
 </context>
 <context>
@@ -1340,15 +1340,15 @@
     </message>
     <message>
         <source>Commute</source>
-        <translation>Pendelen</translation>
+        <translation>Woon/werk</translation>
     </message>
     <message>
         <source>Uploading data...</source>
-        <translation>Gegevens uploaden…</translation>
+        <translation>Gegevens uploaden...</translation>
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation>Upload controleren…</translation>
+        <translation>Upload controleren...</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
@@ -1379,7 +1379,7 @@
     </message>
     <message>
         <source>bpm</source>
-        <translation>bpm</translation>
+        <translation>slagen per minuut</translation>
     </message>
     <message>
         <source>Lower heart rate limit</source>
@@ -1403,7 +1403,7 @@
     </message>
     <message>
         <source>Only text, no special characters!</source>
-        <translation>Enkel tekst, geen speciale tekens!</translation>
+        <translation>Enkel tekst, geen bijzondere tekens!</translation>
     </message>
     <message>
         <source>Threshold profile name</source>
@@ -1529,11 +1529,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>Speel waarde aankondiging</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Voordat een waarde wordt gemeld, wordt de soort aangekondigd, bijvoorbeeld &quot;Afstand:&quot;. Hierdoor duurt de aankondiging langer.</translation>
     </message>
 </context>
 <context>
@@ -1600,11 +1600,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>Speel aankondiging waarde</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Voordat een waarde wordt gemeld, wordt de soort aangekondigd, bijvoorbeeld &quot;Afstand:&quot;. Hierdoor duurt de aankondiging langer.</translation>
     </message>
 </context>
 <context>
@@ -1650,7 +1650,7 @@
     </message>
     <message>
         <source>Pause/resume music player</source>
-        <translation type="unfinished"></translation>
+        <translation>Muziek pauzeren/hervatten</translation>
     </message>
     <message>
         <source></source>
@@ -1658,11 +1658,11 @@
     </message>
     <message>
         <source>If enabled, the music player is paused when a voice message is played and afterwards resumed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Indien aan, wordt muziek gestopt tijdens een aankondiging, en daarna weer hervat.</translation>
     </message>
     <message>
         <source>Russian male</source>
-        <translation type="unfinished"></translation>
+        <translation>Russische man</translation>
     </message>
 </context>
 <context>
@@ -1696,11 +1696,11 @@
     <name>harbour-laufhelden</name>
     <message>
         <source>Connecting to HR device...</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbinding maken met hartslagapparaat...</translation>
     </message>
     <message>
         <source>HR error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fout bij hartslag: </translation>
     </message>
 </context>
 </TS>

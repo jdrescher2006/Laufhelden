@@ -1,14 +1,16 @@
 Laufhelden
 ==========
 
-Laufhelden is a sport tracking application for Sailfish OS. Laufhelden is german, meaning run heros.
+Laufhelden is a sport tracking application for Sailfish OS. Laufhelden means "Running Heroes" in Germans.
 Features are:
 - recording tracks
-- view recorded track and show statistics
+- voice coach
+- view recorded track on a map and show statistics
 - save track as GPX file
 - connecting to bluetooth heart rate device
-- ...
-
+- uploading to Strava and Sport-Tracker.com
+- Pebble support (needs Rockpool)
+- and more...
 
 This application orginates from a fork of Rena by Simoma: https://github.com/Simoma/rena
 
