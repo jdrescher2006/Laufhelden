@@ -5,7 +5,7 @@
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation>关于 Laufhelden</translation>
+        <translation>关于Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>License: GPLv3</source>
-        <translation>许可证: GPLv3</translation>
+        <translation>许可协议:GPLv3</translation>
     </message>
     <message>
         <source>Source code:</source>
@@ -41,11 +41,11 @@
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>版本</translation>
     </message>
     <message>
         <source>Contributors:</source>
-        <translation type="unfinished"></translation>
+        <translation>贡献者：</translation>
     </message>
 </context>
 <context>
@@ -76,7 +76,7 @@
     </message>
     <message>
         <source> bpm</source>
-        <translation> bpm </translation>
+        <translation>bpm</translation>
     </message>
     <message>
         <source>Battery Level: </source>
@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Found BT devices (press to connect):</source>
-        <translation>发现蓝牙设备 (按压以连接):</translation>
+        <translation>发现蓝牙设备(按压以连接):</translation>
     </message>
     <message>
         <source>Heart rate device</source>
@@ -100,23 +100,23 @@
     </message>
     <message>
         <source>Connection Type</source>
-        <translation type="unfinished"></translation>
+        <translation>连接类型</translation>
     </message>
     <message>
         <source>BLE Public Address</source>
-        <translation type="unfinished"></translation>
+        <translation>蓝牙低功耗播音</translation>
     </message>
     <message>
         <source>BLE Random Address</source>
-        <translation type="unfinished"></translation>
+        <translation>蓝牙低功耗播音</translation>
     </message>
     <message>
         <source>Classic Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>经典蓝牙</translation>
     </message>
     <message>
         <source>Cancel Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>取消连接</translation>
     </message>
 </context>
 <context>
@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>发送到 Sports-Tracker.com</translation>
+        <translation>发送到Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Edit workout</source>
@@ -209,27 +209,27 @@
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation>发送到 Strava</translation>
+        <translation>发送到Strava</translation>
     </message>
     <message>
         <source>loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>加载中……</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>概况</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>最大速率/⌀:</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>步数⌀:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>最低/最高心率/⌀:</translation>
     </message>
 </context>
 <context>
@@ -240,58 +240,58 @@
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished">心率 </translation>
+        <translation>心率</translation>
     </message>
     <message>
         <source>Elevation</source>
-        <translation type="unfinished"></translation>
+        <translation>海拔</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>速度</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished">步数 </translation>
+        <translation>步数</translation>
     </message>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>时间：</translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>持续时间：</translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>海拔；</translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>步数：</translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>速度；</translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>心率：</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">千米</translation>
+        <translation>千米</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">米</translation>
+        <translation>米</translation>
     </message>
 </context>
 <context>
     <name>GraphData</name>
     <message>
         <source>No data</source>
-        <translation type="unfinished"></translation>
+        <translation>无数据</translation>
     </message>
 </context>
 <context>
@@ -321,7 +321,7 @@
     </message>
     <message>
         <source>Altitude</source>
-        <translation>海拔</translation>
+        <translation>高度</translation>
     </message>
     <message>
         <source>Distance</source>
@@ -380,7 +380,7 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>发送到Sports-Tracker.com</translation>
+        <translation>发送到 Sports-Tracker.com</translation>
     </message>
     <message>
         <source>(Unnamed track)</source>
@@ -412,23 +412,23 @@
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">千米</translation>
+        <translation>千米</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">米</translation>
+        <translation>米</translation>
     </message>
     <message>
         <source>no workout this week</source>
-        <translation type="unfinished"></translation>
+        <translation>本周暂无锻炼</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">千米/小时</translation>
+        <translation>千米/小时</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished">米/小时</translation>
+        <translation>米/小时</translation>
     </message>
 </context>
 <context>
@@ -507,60 +507,60 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>地图将不再显示。这在 jolla 1 (gpu 较弱) 上很有用, 因为地图可能会使应用程序崩溃。</translation>
+        <translation>地图将不再显示。这在 jolla 1(gpu较弱)上很有用, 因为地图可能会使应用程序崩溃。</translation>
     </message>
 </context>
 <context>
     <name>MapViewPage</name>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Карта</translation>
+        <translation>地图</translation>
     </message>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>时间：</translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>持续时间：</translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>海拔：</translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>步数;</translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>速率：</translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>心率</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">千米</translation>
+        <translation>千米</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">米</translation>
+        <translation>米</translation>
     </message>
 </context>
 <context>
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation>我的 Strava动态</translation>
+        <translation>我的Strava动态</translation>
     </message>
 </context>
 <context>
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
-        <translation> Pebble已连接</translation>
+        <translation>Pebble已连接</translation>
     </message>
     <message>
         <source>Pebble disconnected</source>
@@ -571,19 +571,19 @@
     <name>PebbleSettingsPage</name>
     <message>
         <source>set metric units</source>
-        <translation>设置公制单位</translation>
+        <translation>设置度量单位</translation>
     </message>
     <message>
         <source>sending data 1</source>
-        <translation>正在发送数据1</translation>
+        <translation>正在发送数据 1</translation>
     </message>
     <message>
         <source>sending data 2</source>
-        <translation>正在发送数据2</translation>
+        <translation>正在发送数据 2</translation>
     </message>
     <message>
         <source>sending data 3</source>
-        <translation>正在发送数据3</translation>
+        <translation>正在发送数据 3</translation>
     </message>
     <message>
         <source>closing sport app</source>
@@ -627,7 +627,7 @@
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>未发现Pebble。&lt;br&gt;安装 Rockpool 和&lt;br&gt;然后连接Pebble</translation>
+        <translation>未找到Pebble请安装Rockpool然后连接到 Pebble</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -635,15 +635,15 @@
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
-        <translation>为Pebble字段选值!</translation>
+        <translation>为 Pebble 字段选值!</translation>
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation>必须安装Rockpool &lt;br&gt;版本号至少需是 1.4-1.&lt;br&gt;安装的版本是: </translation>
+        <translation>必须安装 Rockpool并且版本号至少需是 1.4-1。当前安装版本为: </translation>
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
-        <translation type="unfinished"></translation>
+        <translation>选择你想使用的Pebble</translation>
     </message>
 </context>
 <context>
@@ -658,7 +658,7 @@
     </message>
     <message>
         <source>Use HRM device</source>
-        <translation>使用HRM设备</translation>
+        <translation>使用心率监测设备</translation>
     </message>
     <message>
         <source>Use heart rate monitor in this workout.</source>
@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Disable screen blanking</source>
-        <translation>禁止屏幕熄灭</translation>
+        <translation>禁用屏幕熄灭</translation>
     </message>
     <message>
         <source>Disable screen blanking when recording.</source>
-        <translation>当记录时禁止屏幕熄灭</translation>
+        <translation>当记录时禁用屏幕熄灭</translation>
     </message>
     <message>
         <source>Select thresholds profile</source>
@@ -678,26 +678,26 @@
     </message>
     <message>
         <source>Use HRM service if available</source>
-        <translation> 如果可用则使用HRM</translation>
+        <translation> 如果可用则使用心率监测器</translation>
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation>从另一个软件使用心率监测器，例如Amazfish</translation>
+        <translation>通过另一个软件使用心率监测器，例如Amazfish</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>%1s</source>
-        <translation>%1с</translation>
+        <translation>%1s</translation>
     </message>
     <message>
         <source>%1m %2s</source>
-        <translation>%1м %2с</translation>
+        <translation>%1m %2с</translation>
     </message>
     <message>
         <source>%1h %2m %3s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1h %2m %3s</translation>
     </message>
 </context>
 <context>
@@ -724,7 +724,7 @@
     </message>
     <message>
         <source>Hide Map</source>
-        <translation>Скрыть карту</translation>
+        <translation>隐藏地图</translation>
     </message>
     <message>
         <source>Show Map</source>
@@ -732,11 +732,11 @@
     </message>
     <message>
         <source>Disconnect HRM</source>
-        <translation>断开HRM连接</translation>
+        <translation>断开心率监测器连接</translation>
     </message>
     <message>
         <source>Reconnect HRM</source>
-        <translation>重新连接HRM</translation>
+        <translation>重新连接到心率监测器</translation>
     </message>
     <message>
         <source>Switch display mode</source>
@@ -819,7 +819,7 @@
     <name>RecordPageDisplay</name>
     <message>
         <source>Distance</source>
-        <translation> 距离</translation>
+        <translation>距离</translation>
     </message>
     <message>
         <source>km</source>
@@ -875,7 +875,7 @@
     </message>
     <message>
         <source>mi/h</source>
-        <translation>миль/ч</translation>
+        <translation>米/小时</translation>
     </message>
     <message>
         <source>ft</source>
@@ -902,11 +902,11 @@
     </message>
     <message>
         <source>Quit without saving</source>
-        <translation>退出而不保存</translation>
+        <translation>退出且不保存</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
 </context>
 <context>
@@ -996,7 +996,7 @@
     </message>
     <message>
         <source>Metric</source>
-        <translation>度量</translation>
+        <translation>公制</translation>
     </message>
     <message>
         <source>Imperial</source>
@@ -1246,7 +1246,7 @@
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>最大速率x/⌀：</translation>
     </message>
 </context>
 <context>
@@ -1267,7 +1267,7 @@
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation>间隔:</translation>
+        <translation>持续时间:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -1301,30 +1301,30 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>登出</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>登陆</translation>
     </message>
     <message>
         <source>User Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>用户名：</translation>
     </message>
     <message>
         <source>Email: </source>
-        <translation type="unfinished"></translation>
+        <translation>电子邮件；</translation>
     </message>
     <message>
         <source>Country: </source>
-        <translation type="unfinished"></translation>
+        <translation>国家；</translation>
     </message>
 </context>
 <context>
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation> Strava活动名称</translation>
+        <translation>Strava活动名称</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1340,7 +1340,7 @@
     </message>
     <message>
         <source>Commute</source>
-        <translation>上下班</translation>
+        <translation>通勤</translation>
     </message>
     <message>
         <source>Uploading data...</source>
@@ -1449,7 +1449,7 @@
     <name>VoiceCycleDistanceSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation>每次 </translation>
+        <translation>每次</translation>
     </message>
     <message>
         <source>500 meters</source>
@@ -1509,19 +1509,19 @@
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>1则消息:</translation>
+        <translation>1 则消息:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>2则消息:</translation>
+        <translation>2 则消息:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>3则消息:</translation>
+        <translation>3 则消息:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>4则消息:</translation>
+        <translation>4 则消息:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -1533,18 +1533,18 @@
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>在播放数值消息之前, 宣布值的类型。e.g &quot;Distance:&quot;. 这使得语音公告持续的时间更长。</translation>
+        <translation>在播放数值消息之前, 宣布值的类型。 例如“距离”，这使得语音公的告持续时间更长。</translation>
     </message>
 </context>
 <context>
     <name>VoiceCycleDurationSettingsPage</name>
     <message>
         <source>Every </source>
-        <translation>每次 </translation>
+        <translation>每次</translation>
     </message>
     <message>
         <source>2 minutes</source>
-        <translation>2分钟</translation>
+        <translation>2 分钟</translation>
     </message>
     <message>
         <source>5 minutes</source>
@@ -1564,7 +1564,7 @@
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>持续时间消息</translation>
+        <translation>公告持续时间</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -1580,19 +1580,19 @@
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>1则消息:</translation>
+        <translation>1 则消息:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>2则消息:</translation>
+        <translation>2 则消息:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>3则消息:</translation>
+        <translation>3 则消息:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>4-е сообщение:</translation>
+        <translation>4 则消息:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -1600,11 +1600,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>播放数值消息</translation>
+        <translation>播放数值公告</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>在播放数值消息之前, 宣布值的类型。e.g &quot;Distance:&quot;. 这使得语音公告持续的时间更长。</translation>
+        <translation>在播放数值消息之前, 宣布值的类型。例如“距离”，这使得语音公告的持续时间更长。</translation>
     </message>
 </context>
 <context>
@@ -1677,15 +1677,15 @@
     </message>
     <message>
         <source>Event announcements</source>
-        <translation>事项消息</translation>
+        <translation>事项公告</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>距离消息</translation>
+        <translation>距离公告</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>持续时间消息</translation>
+        <translation>持续时间公告</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
@@ -1696,11 +1696,11 @@
     <name>harbour-laufhelden</name>
     <message>
         <source>Connecting to HR device...</source>
-        <translation type="unfinished"></translation>
+        <translation>正在连接到心率设备</translation>
     </message>
     <message>
         <source>HR error: </source>
-        <translation type="unfinished"></translation>
+        <translation>心率记录出错：</translation>
     </message>
 </context>
 </TS>
