@@ -41,11 +41,11 @@
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Версия</translation>
     </message>
     <message>
         <source>Contributors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Участники проекта:</translation>
     </message>
 </context>
 <context>
@@ -100,23 +100,23 @@
     </message>
     <message>
         <source>Connection Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип подключения</translation>
     </message>
     <message>
         <source>BLE Public Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE зарегистрированный адрес</translation>
     </message>
     <message>
         <source>BLE Random Address</source>
-        <translation type="unfinished"></translation>
+        <translation>BLE случайный адрес</translation>
     </message>
     <message>
         <source>Classic Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>Обычный Bluetooth</translation>
     </message>
     <message>
         <source>Cancel Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Прервать подключение</translation>
     </message>
 </context>
 <context>
@@ -214,23 +214,23 @@
     </message>
     <message>
         <source>loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>загрузка...</translation>
     </message>
     <message>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation>Обзор</translation>
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Скорость макс/средн:</translation>
     </message>
     <message>
         <source>Pace ⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаг средн:</translation>
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Пульс мин/макс/средн:</translation>
     </message>
 </context>
 <context>
@@ -241,58 +241,58 @@
     </message>
     <message>
         <source>Heartrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Пульс</translation>
     </message>
     <message>
         <source>Elevation</source>
-        <translation type="unfinished"></translation>
+        <translation>Подъём</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>Скорость</translation>
     </message>
     <message>
         <source>Pace</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаг</translation>
     </message>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>Время: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>Длительность: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Подъём: </translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>Шаг: </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Скорость: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Пульс: </translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">км</translation>
+        <translation>км</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">миль</translation>
+        <translation>миль</translation>
     </message>
 </context>
 <context>
     <name>GraphData</name>
     <message>
         <source>No data</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет данных</translation>
     </message>
 </context>
 <context>
@@ -413,23 +413,23 @@
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">км</translation>
+        <translation>км</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">миль</translation>
+        <translation>миль</translation>
     </message>
     <message>
         <source>no workout this week</source>
-        <translation type="unfinished"></translation>
+        <translation>неделя без тренировки</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">км/ч</translation>
+        <translation>км/ч</translation>
     </message>
     <message>
         <source>mi/h</source>
-        <translation type="unfinished">миль/ч</translation>
+        <translation>миль/ч</translation>
     </message>
 </context>
 <context>
@@ -515,39 +515,39 @@
     <name>MapViewPage</name>
     <message>
         <source>Map</source>
-        <translation type="unfinished">Карта</translation>
+        <translation>Карта</translation>
     </message>
     <message>
         <source>Time: </source>
-        <translation type="unfinished"></translation>
+        <translation>Время: </translation>
     </message>
     <message>
         <source>Duration: </source>
-        <translation type="unfinished"></translation>
+        <translation>Длительность: </translation>
     </message>
     <message>
         <source>Elevation: </source>
-        <translation type="unfinished"></translation>
+        <translation>Подъём: </translation>
     </message>
     <message>
         <source>Pace: </source>
-        <translation type="unfinished"></translation>
+        <translation>Шаг: </translation>
     </message>
     <message>
         <source>Speed: </source>
-        <translation type="unfinished"></translation>
+        <translation>Скорость: </translation>
     </message>
     <message>
         <source>Heartrate: </source>
-        <translation type="unfinished"></translation>
+        <translation>Пульс: </translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">км</translation>
+        <translation>км</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished">миль</translation>
+        <translation>миль</translation>
     </message>
 </context>
 <context>
@@ -644,7 +644,7 @@
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите модель Pebble</translation>
     </message>
 </context>
 <context>
@@ -698,7 +698,7 @@
     </message>
     <message>
         <source>%1h %2m %3s</source>
-        <translation type="unfinished"></translation>
+        <translation>>%1ч %2м %3с</translation>
     </message>
 </context>
 <context>
@@ -1247,7 +1247,7 @@
     </message>
     <message>
         <source>Speed max/⌀:</source>
-        <translation type="unfinished"></translation>
+        <translation>Скорость макс/средн:</translation>
     </message>
 </context>
 <context>
@@ -1302,23 +1302,23 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation>Выйти</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation>Войти</translation>
     </message>
     <message>
         <source>User Name: </source>
-        <translation type="unfinished"></translation>
+        <translation>Пользователь: </translation>
     </message>
     <message>
         <source>Email: </source>
-        <translation type="unfinished"></translation>
+        <translation>Э-почта: </translation>
     </message>
     <message>
         <source>Country: </source>
-        <translation type="unfinished"></translation>
+        <translation>Страна: </translation>
     </message>
 </context>
 <context>
@@ -1697,11 +1697,11 @@
     <name>harbour-laufhelden</name>
     <message>
         <source>Connecting to HR device...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подключение пульсометра</translation>
     </message>
     <message>
         <source>HR error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка измерения пульса:</translation>
     </message>
 </context>
 </TS>
