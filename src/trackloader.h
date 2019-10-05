@@ -149,6 +149,7 @@ public slots:
 
 private:
     void load();
+    QString paceToStr(qreal pace);
 
     QList<TrackPoint> m_points;
     QList<int> m_pause_positions;
