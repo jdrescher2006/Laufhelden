@@ -1010,47 +1010,48 @@ QDateTime TrackLoader::timeAt(int index)
 {
     return m_points.at(index).time;
 }
+
 qint64 TrackLoader::unixTimeAt(int index)
 {
     return m_points.at(index).time.toMSecsSinceEpoch() / 1000;
 }
+
 qreal TrackLoader::durationAt(int index)
 {
     return m_points.at(index).duration;
 }
+
 qreal TrackLoader::distanceAt(int index)
 {
     return m_points.at(index).distance;
 }
+
 qreal TrackLoader::speedAt(int index)
 {
     return m_points.at(index).speed;
 }
+
 qreal TrackLoader::paceAt(int index)
 {
     return m_points.at(index).pace;
 }
+
 QString TrackLoader::paceStrAt(int index)
 {
-    QString strPace = "";
-
-    qreal rMinutes = qFloor(m_points.at(index).pace);
-    qreal rSeconds = qCeil((m_points.at(index).pace * 60) - (rMinutes * 60));
-
-    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
-
-    return strPace;
+    return paceToStr(m_points.at(index).pace);
 }
+
 QString TrackLoader::paceImperialStrAt(int index)
 {
-    qreal m_pace_imperial = m_points.at(index).pace * 1.609344;
+    return paceToStr(m_points.at(index).pace * 1.609344);
+}
 
-    QString strPace = "";
+QString TrackLoader::paceToStr(qreal pace)
+{
+    int rMinutes = qFloor(pace);
+    int rSeconds = qCeil((pace * 60) - (rMinutes * 60));
 
-    qreal rMinutes = qFloor(m_pace_imperial);
-    qreal rSeconds = qCeil((m_pace_imperial * 60) - (rMinutes * 60));
-
-    strPace = QString::number(rMinutes) + ":" + QString::number(rSeconds);
+    QString strPace = QString::number(rMinutes) + ":" + QString("%1").arg(rSeconds, 2, 10, QChar('0'));
 
     return strPace;
 }
