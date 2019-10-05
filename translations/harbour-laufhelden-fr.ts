@@ -100,23 +100,23 @@
     </message>
     <message>
         <source>Connection Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Type de connection</translation>
     </message>
     <message>
         <source>BLE Public Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresse publique BLE</translation>
     </message>
     <message>
         <source>BLE Random Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresse aléatoire BLE</translation>
     </message>
     <message>
         <source>Classic Bluetooth</source>
-        <translation type="unfinished"></translation>
+        <translation>Bluetooth classique</translation>
     </message>
     <message>
         <source>Cancel Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler la connexion</translation>
     </message>
 </context>
 <context>
@@ -697,7 +697,7 @@
     </message>
     <message>
         <source>%1h %2m %3s</source>
-        <translation type="unfinished"></translation>
+        <translation>%1h %2m %3s</translation>
     </message>
 </context>
 <context>
@@ -1692,11 +1692,11 @@
     <name>harbour-laufhelden</name>
     <message>
         <source>Connecting to HR device...</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion à l&apos;équipement HR</translation>
     </message>
     <message>
         <source>HR error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur HR: </translation>
     </message>
 </context>
 </TS>
