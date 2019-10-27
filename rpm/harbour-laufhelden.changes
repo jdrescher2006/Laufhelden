@@ -1,6 +1,12 @@
-* Fri Jan 25 2019 Jens Drescher <jens.drescher.lippe@web.de> 1.1.4-1
-- new icons (more Silica like)
+* Sun Oct 27 2019 Jens Drescher <jens.drescher.lippe@web.de> 1.1.4-1
 - added Chinese language by @dashinfantry
+- new icons (more Silica like)
+- added leading zero to pace string by @trouyer
+- enable start of activity when no GPS is available by @thmichel
+- removed voice files from RPM. They need to be manually copied to /home/nemo/Laufhelden/voicefiles/
+- translation updates
+- reset global workgout data on mainpage after modifying a workout by @Karry
+- some small fixes
 
 * Fri Dec 21 2018 Jens Drescher <jens.drescher.lippe@web.de> 1.1.3-1
 - BLE (bluetooth low energy) integration by @thmichel

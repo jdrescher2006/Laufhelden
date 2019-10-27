@@ -464,7 +464,7 @@ ApplicationWindow
     Media.Audio
     {
         id: playSoundEffect
-        source: "audio/hr_toohigh_de_male.wav"
+        source: StandardPaths.home + "/Laufhelden/voicefiles/audio/hr_toohigh_de_male.wav"
 
         onPlaybackStateChanged:
         {
@@ -597,7 +597,8 @@ ApplicationWindow
         else
             bPlayingSound = true;
 
-        sFile = "usr/share/harbour-laufhelden/voicefiles/" + sFile;
+
+        sFile = StandardPaths.home + "/Laufhelden/voicefiles/" + sFile;
         console.log(sFile);
 
 		var arTemp = [];

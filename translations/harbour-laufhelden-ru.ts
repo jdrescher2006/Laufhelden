@@ -698,7 +698,7 @@
     </message>
     <message>
         <source>%1h %2m %3s</source>
-        <translation>>%1ч %2м %3с</translation>
+        <translation>&gt;%1ч %2м %3с</translation>
     </message>
 </context>
 <context>
