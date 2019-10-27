@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_cn">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>AboutPage</name>
     <message>
         <source>About Laufhelden</source>
-        <translation>关于Laufhelden</translation>
+        <translation>关于 Laufhelden</translation>
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>License: GPLv3</source>
-        <translation>许可协议:GPLv3</translation>
+        <translation>许可协议: GPLv3</translation>
     </message>
     <message>
         <source>Source code:</source>
@@ -364,7 +364,7 @@
     </message>
     <message>
         <source>Loading GPX files...</source>
-        <translation>正在加载GPX文件...</translation>
+        <translation>正在加载 GPX 文件...</translation>
     </message>
     <message>
         <source>Remove workout</source>
@@ -553,18 +553,18 @@
     <name>MyStravaActivities</name>
     <message>
         <source>My Strava Activities</source>
-        <translation>我的Strava动态</translation>
+        <translation>我的 Strava 动态</translation>
     </message>
 </context>
 <context>
     <name>PebbleComm</name>
     <message>
         <source>Pebble connected</source>
-        <translation>Pebble已连接</translation>
+        <translation>Pebble 已连接</translation>
     </message>
     <message>
         <source>Pebble disconnected</source>
-        <translation>Pebble已断开连接</translation>
+        <translation>Pebble 已断开连接</translation>
     </message>
 </context>
 <context>
@@ -591,11 +591,11 @@
     </message>
     <message>
         <source>Pebble settings</source>
-        <translation>Pebble设置</translation>
+        <translation>Pebble 设置</translation>
     </message>
     <message>
         <source>Test Pebble</source>
-        <translation>测试Pebble</translation>
+        <translation>测试，Pebble</translation>
     </message>
     <message>
         <source>starting sport app</source>
@@ -607,7 +607,7 @@
     </message>
     <message>
         <source>Enable Pebble support</source>
-        <translation>启用Pebble支持</translation>
+        <translation>开启 Pebble 支持</translation>
     </message>
     <message>
         <source>1 DURATION field:</source>
@@ -623,11 +623,11 @@
     </message>
     <message>
         <source>View workout data on Pebble Smartwatch.</source>
-        <translation>查看Pebble智能手表上的锻炼数据.</translation>
+        <translation>查看 Pebble 智能手表上的锻炼数据.</translation>
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>未找到Pebble请安装Rockpool然后连接到 Pebble</translation>
+        <translation>未找到 Pebble ，请安装，Rockpool 然后连接到 Pebble</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -643,7 +643,7 @@
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
-        <translation>选择你想使用的Pebble</translation>
+        <translation>选择你想使用的 Pebble</translation>
     </message>
 </context>
 <context>
@@ -682,7 +682,7 @@
     </message>
     <message>
         <source>Use heart rate monitor from another application e.g. Amazfish</source>
-        <translation>通过另一个软件使用心率监测器，例如Amazfish</translation>
+        <translation>通过另一个软件使用心率监测器，例如 Amazfish</translation>
     </message>
 </context>
 <context>
@@ -704,11 +704,11 @@
     <name>RecordPage</name>
     <message>
         <source>AMOLED mode</source>
-        <translation>AMOLED模式</translation>
+        <translation>AMOLED 模式</translation>
     </message>
     <message>
         <source>LCD mode</source>
-        <translation>LCD模式</translation>
+        <translation>LCD 模式</translation>
     </message>
     <message>
         <source>Night mode</source>
@@ -716,7 +716,7 @@
     </message>
     <message>
         <source>Silica mode</source>
-        <translation>Silica模式</translation>
+        <translation>Silica 模式</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -744,7 +744,7 @@
     </message>
     <message>
         <source>GPS accuracy:</source>
-        <translation>GPS精度:</translation>
+        <translation>GPS 精度:</translation>
     </message>
     <message>
         <source>No position</source>
@@ -812,7 +812,7 @@
     </message>
     <message>
         <source>hold button for: %1 s</source>
-        <translation>保持按钮: %1 с</translation>
+        <translation>保持按钮: %1 s</translation>
     </message>
 </context>
 <context>
@@ -859,7 +859,7 @@
     </message>
     <message>
         <source>Bat.:</source>
-        <translation>bat.:</translation>
+        <translation>Bat.:</translation>
     </message>
     <message>
         <source>Empty</source>
@@ -1065,7 +1065,7 @@
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation>GPX输入时发送某种错误</translation>
+        <translation>GPX 输入时发送某种错误</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
@@ -1096,7 +1096,7 @@
     </message>
     <message>
         <source>Send workout automatically to Sports-Tracker.com after exercise</source>
-        <translation>锻炼之后自动将锻炼发送到Sports-Tracker.com </translation>
+        <translation>锻炼之后自动将锻炼发送到 Sports-Tracker.com </translation>
     </message>
     <message>
         <source>Enter Username</source>
@@ -1187,7 +1187,7 @@
     <name>SportsTrackerUploadPage</name>
     <message>
         <source>Give workout description to Sports-Tracker.com</source>
-        <translation>给Sports-Tracker.com添加锻炼描述</translation>
+        <translation>在 Sports-Tracker.com 添加锻炼描述</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1313,7 +1313,7 @@
     </message>
     <message>
         <source>Email: </source>
-        <translation>电子邮件；</translation>
+        <translation>电子邮件：</translation>
     </message>
     <message>
         <source>Country: </source>
@@ -1324,7 +1324,7 @@
     <name>StravaUploadPage</name>
     <message>
         <source>Activity name for Strava</source>
-        <translation>Strava活动名称</translation>
+        <translation>Strava 活动名称</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1332,7 +1332,7 @@
     </message>
     <message>
         <source>Activity description for Strava</source>
-        <translation>Strava活动描述</translation>
+        <translation>Strava 活动描述</translation>
     </message>
     <message>
         <source>Private</source>
@@ -1533,7 +1533,7 @@
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>在播放数值消息之前, 宣布值的类型。 例如“距离”，这使得语音公的告持续时间更长。</translation>
+        <translation>在播放数值消息之前, 宣布值的类型。 例如“距离”，这使得语音报告的持续时间更长。</translation>
     </message>
 </context>
 <context>
@@ -1564,7 +1564,7 @@
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>公告持续时间</translation>
+        <translation>报告持续时间</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -1600,11 +1600,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>播放数值公告</translation>
+        <translation>播放数值报告</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>在播放数值消息之前, 宣布值的类型。例如“距离”，这使得语音公告的持续时间更长。</translation>
+        <translation>在播放数值消息之前, 宣布值的类型。例如“距离”，这使得语音报告的持续时间更长。</translation>
     </message>
 </context>
 <context>
