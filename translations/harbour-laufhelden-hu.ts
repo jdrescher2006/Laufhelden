@@ -1308,10 +1308,6 @@
         <translation>Felhasználónév:</translation>
     </message>
     <message>
-        <source>Email: </source>
-        <translation>E-mail:</translation>
-    </message>
-    <message>
         <source>Country: </source>
         <translation>Ország:</translation>
     </message>

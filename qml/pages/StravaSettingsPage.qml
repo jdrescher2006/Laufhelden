@@ -53,7 +53,7 @@ Page {
         id: o2strava
         clientId: STRAVA_CLIENT_ID
         clientSecret: STRAVA_CLIENT_SECRET
-        scope: "view_private,write"
+        scope: "activity:read_all,activity:write,profile:read_all"
         requestUrl: "https://www.strava.com/oauth/authorize"
         tokenUrl: "https://www.strava.com/oauth/token"
 
@@ -73,11 +73,9 @@ Page {
                 var tokens = o2strava.extraTokens;
                 athlete = tokens["athlete"];
                 page.username = (athlete["username"] === undefined) ? athlete["firstname"] + " " +  athlete["lastname"] : athlete["username"];
-                page.email = athlete["email"];
                 page.country = athlete["country"];
             } else {
                 page.username = "not logged in";
-                page.email = "";
                 page.country = "";
             }
         }
@@ -130,12 +128,6 @@ Page {
                     horizontalAlignment: Text.AlignHCenter
                     width: parent.width
                     text: qsTr("User Name: ") + username
-                }
-                Label{
-                    id: lblEmail
-                    horizontalAlignment: Text.AlignHCenter
-                    width: parent.width
-                    text: qsTr("Email: ") + email
                 }
                 Label{
                     id: lblCountry

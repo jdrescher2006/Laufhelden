@@ -1313,10 +1313,6 @@
         <translation>Пользователь: </translation>
     </message>
     <message>
-        <source>Email: </source>
-        <translation>Э-почта: </translation>
-    </message>
-    <message>
         <source>Country: </source>
         <translation>Страна: </translation>
     </message>

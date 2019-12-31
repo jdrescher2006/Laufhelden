@@ -1312,10 +1312,6 @@
         <translation>Gebruikersnaam: </translation>
     </message>
     <message>
-        <source>Email: </source>
-        <translation>Email: </translation>
-    </message>
-    <message>
         <source>Country: </source>
         <translation>Land</translation>
     </message>

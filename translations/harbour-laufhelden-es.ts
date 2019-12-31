@@ -1312,10 +1312,6 @@
         <translation>Nombre de usuario: </translation>
     </message>
     <message>
-        <source>Email: </source>
-        <translation>Correo electrónico: </translation>
-    </message>
-    <message>
         <source>Country: </source>
         <translation>País: </translation>
     </message>

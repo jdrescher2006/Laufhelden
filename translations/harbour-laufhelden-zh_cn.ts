@@ -1312,10 +1312,6 @@
         <translation>用户名：</translation>
     </message>
     <message>
-        <source>Email: </source>
-        <translation>电子邮件；</translation>
-    </message>
-    <message>
         <source>Country: </source>
         <translation>国家；</translation>
     </message>

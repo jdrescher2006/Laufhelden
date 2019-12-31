@@ -1308,10 +1308,6 @@
         <translation>Nom d&apos;utilisateur: </translation>
     </message>
     <message>
-        <source>Email: </source>
-        <translation>Adresse Email: </translation>
-    </message>
-    <message>
         <source>Country: </source>
         <translation>Pays: </translation>
     </message>

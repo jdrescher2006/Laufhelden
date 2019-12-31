@@ -1312,10 +1312,6 @@
         <translation>Användarnamn: </translation>
     </message>
     <message>
-        <source>Email: </source>
-        <translation>E-post: </translation>
-    </message>
-    <message>
         <source>Country: </source>
         <translation>Land: </translation>
     </message>
