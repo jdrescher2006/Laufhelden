@@ -251,28 +251,28 @@
         <translation>Vitesse</translation>
     </message>
     <message>
-        <source>Time: </source>
-        <translation>Heure: </translation>
+        <source>Time:</source>
+        <translation>Heure:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Durée: </translation>
+        <source>Duration:</source>
+        <translation>Durée:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Altitude: </translation>
+        <source>Elevation:</source>
+        <translation>Altitude:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Cadence: </translation>
+        <source>Pace:</source>
+        <translation>Cadence:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Vitesse: </translation>
+        <source>Speed:</source>
+        <translation>Vitesse:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Fréq. cardiaque: </translation>
+        <source>Heartrate:</source>
+        <translation>Fréq. cardiaque:</translation>
     </message>
     <message>
         <source>km</source>
@@ -513,28 +513,28 @@
 <context>
     <name>MapViewPage</name>
     <message>
-        <source>Time: </source>
-        <translation>Heure: </translation>
+        <source>Time:</source>
+        <translation>Heure:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Durée: </translation>
+        <source>Duration:</source>
+        <translation>Durée:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Altitude: </translation>
+        <source>Elevation:</source>
+        <translation>Altitude:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Cadence: </translation>
+        <source>Pace:</source>
+        <translation>Cadence:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Vitesse: </translation>
+        <source>Speed:</source>
+        <translation>Vitesse:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Fréq. cardiaque: </translation>
+        <source>Heartrate:</source>
+        <translation>Fréq. cardiaque:</translation>
     </message>
     <message>
         <source>km</source>

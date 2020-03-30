@@ -361,39 +361,46 @@ Page
             {
                 label: qsTr("Starting time:")
                 value: trackLoader.timeStr
+                leftPadding: Theme.paddingMedium
             }
             InfoItem
             {
                 label: qsTr("Duration:")
                 value: trackLoader.durationStr
+                leftPadding: Theme.paddingMedium
             }
             InfoItem
             {
                 label: qsTr("Distance:")
                 value: (settings.measureSystem === 0) ? ((trackLoader.distance/1000).toFixed(2) + " km") : (JSTools.fncConvertDistanceToImperial(trackLoader.distance/1000).toFixed(2) + " mi")
+                leftPadding: Theme.paddingMedium
             }
             InfoItem
             {
                 label: qsTr("Speed max/⌀:")
                 value: (settings.measureSystem === 0) ? (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(trackLoader.maxSpeed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(trackLoader.speed*3.6)).toFixed(1) + " mi/h"
+                leftPadding: Theme.paddingMedium
             }
             InfoItem
             {
                 visible: bPaceRelevantForWorkoutType
                 label: qsTr("Pace ⌀:")
                 value: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
+                leftPadding: Theme.paddingMedium
             }
             InfoItem
             {
                 visible: bHeartrateSupported
                 label: qsTr("Heart rate min/max/⌀:")
                 value: trackLoader.heartRateMin + "/" + trackLoader.heartRateMax + "/" + trackLoader.heartRate.toFixed(1) + " bpm"
+                leftPadding: Theme.paddingMedium
             }
             InfoItem
             {
                 visible: (iPausePositionsCount > 0)
                 label: qsTr("Pause number/duration:")
                 value: trackLoader.pauseDurationStr
+                leftPadding: Theme.paddingMedium
             }
         }
     }

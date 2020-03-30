@@ -256,28 +256,28 @@
         <translation>Шаг</translation>
     </message>
     <message>
-        <source>Time: </source>
-        <translation>Время: </translation>
+        <source>Time:</source>
+        <translation>Время:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Длительность: </translation>
+        <source>Duration:</source>
+        <translation>Длительность:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Подъём: </translation>
+        <source>Elevation:</source>
+        <translation>Подъём:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Шаг: </translation>
+        <source>Pace:</source>
+        <translation>Шаг:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Скорость: </translation>
+        <source>Speed:</source>
+        <translation>Скорость:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Пульс: </translation>
+        <source>Heartrate:</source>
+        <translation>Пульс:</translation>
     </message>
     <message>
         <source>km</source>
@@ -518,28 +518,28 @@
         <translation>Карта</translation>
     </message>
     <message>
-        <source>Time: </source>
-        <translation>Время: </translation>
+        <source>Time:</source>
+        <translation>Время:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Длительность: </translation>
+        <source>Duration:</source>
+        <translation>Длительность:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Подъём: </translation>
+        <source>Elevation:</source>
+        <translation>Подъём:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Шаг: </translation>
+        <source>Pace:</source>
+        <translation>Шаг:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Скорость: </translation>
+        <source>Speed:</source>
+        <translation>Скорость:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Пульс: </translation>
+        <source>Heartrate:</source>
+        <translation>Пульс:</translation>
     </message>
     <message>
         <source>km</source>

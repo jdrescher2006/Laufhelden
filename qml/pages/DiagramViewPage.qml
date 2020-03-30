@@ -309,21 +309,21 @@ Page
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.topMargin: Theme.paddingMedium
-            anchors.leftMargin: Theme.paddingSmall
+            anchors.leftMargin: Theme.paddingMedium
 
             InfoItem
             {
-                label: qsTr("Time: ")
+                label: qsTr("Time:")
                 value: sCurrentTime
             }
             InfoItem
             {
-                label: qsTr("Duration: ")
+                label: qsTr("Duration:")
                 value: sCurrentDuration
             }
             InfoItem
             {
-                label: qsTr("Elevation: ")
+                label: qsTr("Elevation:")
                 value: sCurrentElevation
             }
         }
@@ -338,18 +338,18 @@ Page
 
             InfoItem
             {
-                label: qsTr("Pace: ")
+                label: qsTr("Pace:")
                 value: sCurrentPace
             }
             InfoItem
             {
-                label: qsTr("Speed: ")
+                label: qsTr("Speed:")
                 value: sCurrentSpeed
             }
             InfoItem
             {
                 visible: bHeartrateSupported
-                label: qsTr("Heartrate: ")
+                label: qsTr("Heartrate:")
                 value: sCurrentHeartrate
             }
         }
