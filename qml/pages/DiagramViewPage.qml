@@ -209,6 +209,7 @@ Page
         {
             anchors.verticalCenter: parent.verticalCenter
             id: graphElevation
+            displayLastValue: true
             graphTitle: qsTr("Elevation")
             graphHeight: parent.height / 4.4
 

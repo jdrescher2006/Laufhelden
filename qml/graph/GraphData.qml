@@ -33,7 +33,8 @@ Item {
     }
 
     property var valueConverter
-    property bool valueTotal: false
+
+    property bool displayLastValue: false
 
     property int graphHeight: 250
     property int graphWidth: canvas.width / canvas.stepX
@@ -118,7 +119,7 @@ Item {
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.Wrap
-                visible: !noData
+                visible: !noData && displayLastValue
             }
         }
 
@@ -236,6 +237,8 @@ Item {
                 }
 
                 onPaint: {
+                    if (!visible)
+                        return;
                     var ctx = canvas.getContext("2d");
                     ctx.globalCompositeOperation = "source-over";
                     ctx.clearRect(0,0,width,height);
@@ -273,13 +276,12 @@ Item {
                     ctx.stroke();
                     ctx.restore();
 
-                    if (end > 0) {
-                        var lastValue = valueSum;
-                        if (!root.valueTotal) {
-                            lastValue = points[end-1].y;
-                        }
-                        if (lastValue) {
-                            labelLastValue.text = root.createYLabel(lastValue)+root.axisY.units;
+                    if (displayLastValue) {
+                        if (end > 0) {
+                            var lastValue = points[end-1].y;
+                            if (lastValue)
+                                labelLastValue.text = root.createYLabel(lastValue)+root.axisY.units;
+                            console.log(root.createYLabel(lastValue)+root.axisY.units);
                         }
                     }
                 }
