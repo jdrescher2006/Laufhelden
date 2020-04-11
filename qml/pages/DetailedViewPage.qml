@@ -45,6 +45,7 @@ Page
     property bool bPaceRelevantForWorkoutType: true
     property int iPausePositionsCount: 0
 
+    property TrackLoader trackLoader
 
     onStatusChanged:
     {
@@ -142,7 +143,12 @@ Page
             bPaceRelevantForWorkoutType = trackLoader.paceRelevantForWorkoutType();
             iPausePositionsCount = trackLoader.pausePositionsCount();
 
-            pageStack.pushAttached(Qt.resolvedUrl("MapViewPage.qml"),{ bHeartrateSupported: bHeartrateSupported, bPaceRelevantForWorkoutType: bPaceRelevantForWorkoutType});
+            pageStack.pushAttached(Qt.resolvedUrl("MapViewPage.qml"),
+                                   {
+                                       bHeartrateSupported: bHeartrateSupported,
+                                       bPaceRelevantForWorkoutType: bPaceRelevantForWorkoutType,
+                                       trackLoader: trackLoader
+                                   });
         }       
     }
 
@@ -378,8 +384,10 @@ Page
             InfoItem
             {
                 label: qsTr("Speed max/⌀:")
-                value: (settings.measureSystem === 0) ? (trackLoader.maxSpeed*3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h" : (JSTools.fncConvertSpeedToImperial(trackLoader.maxSpeed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(trackLoader.speed*3.6)).toFixed(1) + " mi/h"
                 leftPadding: Theme.paddingMedium
+                value: (settings.measureSystem === 0)
+                       ? (trackLoader.maxGroundSpeed * 3.6).toFixed(1) + "/" + (trackLoader.speed*3.6).toFixed(1) + " km/h"
+                       : (JSTools.fncConvertSpeedToImperial(trackLoader.maxGroundSpeed*3.6)).toFixed(1) + "/" + (JSTools.fncConvertSpeedToImperial(trackLoader.speed*3.6)).toFixed(1) + " mi/h"
             }
             InfoItem
             {

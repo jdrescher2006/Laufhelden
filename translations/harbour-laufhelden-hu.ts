@@ -169,7 +169,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Időtartam:</translation>
+        <translation>Menetidő:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -221,7 +221,7 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Edzés:</translation>
+        <translation>Edzés típusa:</translation>
     </message>
     <message>
         <source>loading...</source>
@@ -268,7 +268,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Eltelt idő:</translation>
+        <translation>Menetidő:</translation>
     </message>
     <message>
         <source>Elevation:</source>
@@ -333,7 +333,7 @@
     </message>
     <message>
         <source>Duration</source>
-        <translation>Időtartam</translation>
+        <translation>Menetidő</translation>
     </message>
 </context>
 <context>
@@ -368,7 +368,7 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Edzés:</translation>
+        <translation>Edzés típusa:</translation>
     </message>
     <message>
         <source>km</source>
@@ -529,8 +529,13 @@
         <translation>Időpont:</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Duration:</source>
         <translation>Eltelt idő:</translation>
+=======
+        <source>Duration: </source>
+        <translation>Menetidő: </translation>
+>>>>>>> upstream/master
     </message>
     <message>
         <source>Elevation:</source>
@@ -627,7 +632,7 @@
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation>1 időtartam mező:</translation>
+        <translation>1 menetidő mező:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -654,7 +659,7 @@
     </message>
     <message>
         <source>Workout:</source>
-        <translation>Edzés:</translation>
+        <translation>Edzés típusa:</translation>
     </message>
     <message>
         <source>Use HRM device</source>
@@ -768,7 +773,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Időtartam:</translation>
+        <translation>Menetidő:</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -1218,7 +1223,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Időtartam:</translation>
+        <translation>Menetidő:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -1263,7 +1268,7 @@
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation>Időtartam:</translation>
+        <translation>Menetidő:</translation>
     </message>
     <message>
         <source>Distance:</source>

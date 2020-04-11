@@ -44,6 +44,7 @@ class TrackLoader : public QObject
     Q_PROPERTY(qreal distance READ distance NOTIFY distanceChanged)
     Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
     Q_PROPERTY(qreal maxSpeed READ maxSpeed NOTIFY maxSpeedChanged)
+    Q_PROPERTY(qreal maxGroundSpeed READ maxGroundSpeed NOTIFY maxSpeedChanged)
     Q_PROPERTY(qreal pace READ pace NOTIFY paceChanged)
     Q_PROPERTY(QString paceStr READ paceStr NOTIFY paceChanged)
     Q_PROPERTY(QString paceImperialStr READ paceImperialStr NOTIFY paceChanged)
@@ -53,6 +54,8 @@ class TrackLoader : public QObject
     Q_PROPERTY(bool loaded READ loaded NOTIFY loadedChanged)
     Q_PROPERTY(qreal elevationUp READ elevationUp NOTIFY elevationChanged)
     Q_PROPERTY(qreal elevationDown READ elevationDown NOTIFY elevationChanged)
+    Q_PROPERTY(qreal elevationMin READ elevationMin NOTIFY elevationChanged)
+    Q_PROPERTY(qreal elevationMax READ elevationMax NOTIFY elevationChanged)
 
 public:
     struct TrackPoint
@@ -89,6 +92,7 @@ public:
     qreal distance();
     qreal speed();
     qreal maxSpeed();
+    qreal maxGroundSpeed();
     qreal pace();
     QString paceStr();    
     QString paceImperialStr();
@@ -97,6 +101,8 @@ public:
     uint heartRateMax();
     qreal elevationUp();
     qreal elevationDown();
+    qreal elevationMin() const;
+    qreal elevationMax() const;
     bool loaded();
 
     Q_INVOKABLE QString readGpx();
@@ -166,6 +172,7 @@ private:
     qreal m_distance;
     qreal m_speed;
     qreal m_maxSpeed;
+    qreal m_maxGroundSpeed = 0.0;
     qreal m_pace;
     qreal m_heartRate;
     qreal m_heartRatePoints;
@@ -175,6 +182,8 @@ private:
     QGeoCoordinate m_center;
     qreal m_elevationUp;
     qreal m_elevationDown;
+    qreal m_elevationMin = 0.0;
+    qreal m_elevationMax = 0.0;
     QList<qreal> m_distancearray;
     QList<qreal> m_durationarray;
 };
