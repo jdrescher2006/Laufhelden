@@ -35,10 +35,6 @@ Page
     property variant arElevationData
     property variant arSpeedData
     property variant arPaceData
-    property int iMinValueElevation: 0
-    property int iMaxValueElevation: 0
-    property int iMaxValueSpeed: 0
-    property int iMaxValueHeartrate: 0
 
     // Elevation + speed/pace always visible heart rate just when supported
     property int iVisibleGraphCount: (2 + (bHeartrateSupported ? 1 : 0))
@@ -53,6 +49,8 @@ Page
     property string sCurrentSpeed: "0"
     property string sCurrentPace: "0"
 
+    property TrackLoader trackLoader
+
     onStatusChanged:
     {
         if (status === PageStatus.Active && bLockFirstPageLoad)
@@ -65,52 +63,31 @@ Page
 
             for (var i = 0; i < JSTools.arrayDataPoints.length; i++)
             {
-                var iHeartrate = 0;
                 var iElevation = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[i].elevation : JSTools.fncConvertelevationToImperial(JSTools.arrayDataPoints[i].elevation);
-                var iSpeed = (settings.measureSystem === 0) ? (JSTools.arrayDataPoints[i].speed) : (JSTools.fncConvertSpeedToImperial(JSTools.arrayDataPoints[i].speed));
-                var iPace = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[i].pacevalue : (JSTools.fncConvertPacetoImperial(JSTools.arrayDataPoints[i].pacevalue));
-
-                if (JSTools.arrayDataPoints[i].heartrate > 0)
-                {
-                    iHeartrate = JSTools.arrayDataPoints[i].heartrate;
-                    iLastProperHeartRate = JSTools.arrayDataPoints[i].heartrate;
-                }
-                else
-                {
-                    iHeartrate = iLastProperHeartRate;
-                }
-
-                //Calculate min/max values for elevation
-                if (iElevation > iMaxValueElevation)
-                    iMaxValueElevation = iElevation;
-                if (bLockFirstPageLoad || iElevation < iMinValueElevation)
-                    iMinValueElevation = iElevation;
-                //Calculate max value for speed
-                if (iSpeed > iMaxValueSpeed)
-                    iMaxValueSpeed = iSpeed;
-                //Calculate max value for speed
-                if (iHeartrate > iMaxValueHeartrate)
-                    iMaxValueHeartrate = iHeartrate;
-
-                arrayHeartrateData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iHeartrate});
                 arrayElevationData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iElevation});
-                arraySpeedData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iSpeed});
-                //TODO/DEBUG: imperial conversion of pace value needs to be implememnted
-                arrayPaceData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iPace});
+
+                if (!bPaceRelevantForWorkoutType) {
+                    var iSpeed = (settings.measureSystem === 0) ? (JSTools.arrayDataPoints[i].speed) : (JSTools.fncConvertSpeedToImperial(JSTools.arrayDataPoints[i].speed));
+                    arraySpeedData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iSpeed});
+                } else {
+                    var iPace = (settings.measureSystem === 0) ? JSTools.arrayDataPoints[i].pacevalue : (JSTools.fncConvertPacetoImperial(JSTools.arrayDataPoints[i].pacevalue));
+                    arrayPaceData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iPace});
+                }
+
+                if (bHeartrateSupported) {
+                    var iHeartrate = 0;
+                    if (JSTools.arrayDataPoints[i].heartrate > 0)
+                    {
+                        iHeartrate = JSTools.arrayDataPoints[i].heartrate;
+                        iLastProperHeartRate = JSTools.arrayDataPoints[i].heartrate;
+                    }
+                    else
+                    {
+                        iHeartrate = iLastProperHeartRate;
+                    }
+                    arrayHeartrateData.push({"x":JSTools.arrayDataPoints[i].unixtime,"y":iHeartrate});
+                }
             }
-
-            //If min value for elevation is over 100 the diagram would not be painted :-(
-            if (iMinValueElevation > 100)
-                iMinValueElevation = 100;
-
-            //max value for elevation need to be rounded to the next 50'er step
-            console.log("Ele Max/Min: " + iMaxValueElevation.toString() + "/" + iMinValueElevation.toString());
-            iMaxValueElevation = Math.ceil(iMaxValueElevation/50)*50;
-            console.log("Ele Max/Min: " + iMaxValueElevation.toString() + "/" + iMinValueElevation.toString());
-
-            console.log("Speed Max: " + iMaxValueSpeed.toString());
-            iMaxValueSpeed = Math.ceil(iMaxValueSpeed/50)*50;
-            console.log("Speed Max/Min: " + iMaxValueSpeed.toString());
 
             arHeartrateData = arrayHeartrateData;
             arElevationData = arrayElevationData;
@@ -118,8 +95,6 @@ Page
             arPaceData = arrayPaceData;
 
             fncUpdateGraphs();
-
-
             bLockFirstPageLoad = false;
         }
 
@@ -131,7 +106,8 @@ Page
 
     function fncUpdateGraphs()
     {
-        graphHeartrate.updateGraph();
+        if (bHeartrateSupported)
+            graphHeartrate.updateGraph();
         graphElevation.updateGraph();
         if (bPaceRelevantForWorkoutType)
             graphPace.updateGraph();
@@ -230,7 +206,7 @@ Page
 
             lineWidth: 2
             minY: 0
-            maxY: iMaxValueElevation
+            maxY: trackLoader.elevationMax
             valueConverter: function(value)
             {
                 return value.toFixed(0);
@@ -260,7 +236,7 @@ Page
 
             lineWidth: 2
             minY: 0
-            maxY: iMaxValueSpeed
+            maxY: 1.1 * ((settings.measureSystem === 0) ? (trackLoader.maxSpeed) : (JSTools.fncConvertSpeedToImperial(trackLoader.maxSpeed * 3.6)));
             valueConverter: function(value)
             {
                 return value.toFixed(1);

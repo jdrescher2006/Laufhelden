@@ -583,7 +583,9 @@ void TrackLoader::load()
         int iPausePositionsIndex = 0;
 
         qreal rElevationLastValue = 0;
-
+        // shall not be deeper than the Mariana trench, shall not be higher than the Himalaja
+        m_elevationMin = 20000;
+        m_elevationMax = -20000;
         for(int i=1;i<m_points.size();i++)
         {
             //We need to find out if this point is the end of a pause
@@ -609,10 +611,12 @@ void TrackLoader::load()
                 m_distance += first.distanceTo(second);
             }
 
-            if(m_points.at(i).groundSpeed > m_maxSpeed)
-            {
-                m_maxSpeed = m_points.at(i).groundSpeed;
-            }
+            if (m_points.at(i).speed > m_maxSpeed)
+                m_maxSpeed = m_points.at(i).speed;
+
+            if (m_points.at(i).groundSpeed > m_maxGroundSpeed)
+                m_maxGroundSpeed = m_points.at(i).groundSpeed;
+
             //If this point has a heart rate
             if (m_points.at(i).heartrate > 0)
             {
@@ -634,6 +638,11 @@ void TrackLoader::load()
                 if (m_points.at(i).elevation < rElevationLastValue)
                     m_elevationDown = m_elevationDown + (rElevationLastValue - m_points.at(i).elevation);
             }
+
+            if (m_points.at(i).elevation < m_elevationMin)
+                m_elevationMin = m_points.at(i).elevation;
+            if (m_points.at(i).elevation > m_elevationMax)
+                m_elevationMax = m_points.at(i).elevation;
 
             //Save this elevation value for next iteration
             rElevationLastValue = m_points.at(i).elevation;
@@ -1054,6 +1063,28 @@ QString TrackLoader::paceToStr(qreal pace)
     return QString("%1:%2")
             .arg(minutes)
             .arg(seconds, 2, 10, QLatin1Char('0'));
+}
+
+qreal TrackLoader::maxGroundSpeed()
+{
+    if(!m_loaded && !m_error) {
+        load();
+    }
+    if(!m_loaded || m_error) {
+        // Nothing to load or error in loading
+        return 0;
+    }
+    return m_maxGroundSpeed;
+}
+
+qreal TrackLoader::elevationMax() const
+{
+    return m_elevationMax;
+}
+
+qreal TrackLoader::elevationMin() const
+{
+    return m_elevationMin;
 }
 
 int TrackLoader::fitZoomLevel(int width, int height) {

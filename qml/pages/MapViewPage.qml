@@ -59,6 +59,8 @@ Page
 
     property int iCurrentWorkout: 0
 
+    property TrackLoader trackLoader
+
     onStatusChanged:
     {
         if (status === PageStatus.Active)
@@ -159,7 +161,12 @@ Page
             }
             bLockOnCompleted = false;
 
-            pageStack.pushAttached(Qt.resolvedUrl("DiagramViewPage.qml"),{ bHeartrateSupported: bHeartrateSupported, bPaceRelevantForWorkoutType: bPaceRelevantForWorkoutType});
+            pageStack.pushAttached(Qt.resolvedUrl("DiagramViewPage.qml"),
+                                   {
+                                       bHeartrateSupported: bHeartrateSupported,
+                                       bPaceRelevantForWorkoutType: bPaceRelevantForWorkoutType,
+                                       trackLoader: trackLoader
+                                   });
         }
     } 
 
