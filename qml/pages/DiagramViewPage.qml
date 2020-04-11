@@ -40,6 +40,11 @@ Page
     property int iMaxValueSpeed: 0
     property int iMaxValueHeartrate: 0
 
+    // Elevation + speed/pace always visible heart rate just when supported
+    property int iVisibleGraphCount: (2 + (bHeartrateSupported ? 1 : 0))
+
+    property real rGraphHeight: (id_ITEM_Graphs.height/(iVisibleGraphCount *(4.4/3.0)))
+
     property string sCurrentDistance: "0"
     property string sCurrentTime: ""
     property string sCurrentDuration: "0"
@@ -173,7 +178,7 @@ Page
         id: id_ITEM_Graphs
         anchors.top: idHeader.bottom
         width: parent.width
-        height: parent.height / 1.7        
+        height: parent.height / 1.7
 
         GraphData
         {
@@ -181,7 +186,7 @@ Page
             visible: bHeartrateSupported
             id: graphHeartrate
             graphTitle: qsTr("Heartrate")
-            graphHeight: parent.height / 4.4
+            graphHeight: rGraphHeight
 
             axisY.units: "bpm"
 
@@ -207,10 +212,10 @@ Page
         }
         GraphData
         {
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.top: bHeartrateSupported ? graphHeartrate.bottom : parent.top
             id: graphElevation
             graphTitle: qsTr("Elevation")
-            graphHeight: parent.height / 4.4
+            graphHeight: rGraphHeight
 
             axisY.units: (settings.measureSystem === 0) ? "m" : "ft"
 
@@ -236,11 +241,11 @@ Page
         }
         GraphData
         {
-            anchors.bottom: parent.bottom
+            anchors.top: graphElevation.bottom
             visible: !bPaceRelevantForWorkoutType
             id: graphSpeed
             graphTitle: qsTr("Speed")
-            graphHeight: parent.height / 4.4
+            graphHeight: rGraphHeight
 
             axisY.units: (settings.measureSystem === 0) ? "km/h" : "mi/h"
 
@@ -266,11 +271,11 @@ Page
         }
         GraphData
         {
-            anchors.bottom: parent.bottom
+            anchors.top: graphElevation.bottom
             visible: bPaceRelevantForWorkoutType
             id: graphPace
             graphTitle: qsTr("Pace")
-            graphHeight: parent.height / 4.4
+            graphHeight: rGraphHeight
 
             axisY.units: (settings.measureSystem === 0) ? "min/km" : "min/mi"
 
