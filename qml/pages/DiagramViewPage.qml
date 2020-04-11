@@ -214,6 +214,7 @@ Page
         {
             anchors.top: bHeartrateSupported ? graphHeartrate.bottom : parent.top
             id: graphElevation
+            displayLastValue: true
             graphTitle: qsTr("Elevation")
             graphHeight: rGraphHeight
 
