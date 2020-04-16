@@ -142,6 +142,7 @@ Page
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.secondaryColor
                 text: "niemisenjussi, piggz, atlochowski, eson57, martonmiklos, d9h20f, carmenfdezb, dikonov, thmichel, trouyer, ncartron"
+                leftPadding: Theme.paddingMedium
             }            
             Item
             {

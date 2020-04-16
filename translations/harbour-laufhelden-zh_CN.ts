@@ -255,27 +255,27 @@
         <translation>步数</translation>
     </message>
     <message>
-        <source>Time: </source>
+        <source>Time:</source>
         <translation>时间：</translation>
     </message>
     <message>
-        <source>Duration: </source>
+        <source>Duration:</source>
         <translation>持续时间：</translation>
     </message>
     <message>
-        <source>Elevation: </source>
+        <source>Elevation:</source>
         <translation>海拔；</translation>
     </message>
     <message>
-        <source>Pace: </source>
+        <source>Pace:</source>
         <translation>步数：</translation>
     </message>
     <message>
-        <source>Speed: </source>
+        <source>Speed:</source>
         <translation>速度；</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
+        <source>Heartrate:</source>
         <translation>心率：</translation>
     </message>
     <message>
@@ -517,27 +517,27 @@
         <translation>地图</translation>
     </message>
     <message>
-        <source>Time: </source>
+        <source>Time:</source>
         <translation>时间：</translation>
     </message>
     <message>
-        <source>Duration: </source>
+        <source>Duration:</source>
         <translation>持续时间：</translation>
     </message>
     <message>
-        <source>Elevation: </source>
+        <source>Elevation:</source>
         <translation>海拔：</translation>
     </message>
     <message>
-        <source>Pace: </source>
+        <source>Pace:</source>
         <translation>步数;</translation>
     </message>
     <message>
-        <source>Speed: </source>
+        <source>Speed:</source>
         <translation>速率：</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
+        <source>Heartrate:</source>
         <translation>心率</translation>
     </message>
     <message>

@@ -251,28 +251,28 @@
         <translation>Velocidad</translation>
     </message>
     <message>
-        <source>Time: </source>
-        <translation>Hora: </translation>
+        <source>Time:</source>
+        <translation>Hora:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Duración: </translation>
+        <source>Duration:</source>
+        <translation>Duración:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Altitud: </translation>
+        <source>Elevation:</source>
+        <translation>Altitud:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Ritmo: </translation>
+        <source>Pace:</source>
+        <translation>Ritmo:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Velocidad: </translation>
+        <source>Speed:</source>
+        <translation>Velocidad:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Frec. card: </translation>
+        <source>Heartrate:</source>
+        <translation>Frec. card:</translation>
     </message>
     <message>
         <source>km</source>
@@ -513,28 +513,28 @@
 <context>
     <name>MapViewPage</name>
     <message>
-        <source>Time: </source>
-        <translation>Hora: </translation>
+        <source>Time:</source>
+        <translation>Hora:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Duración: </translation>
+        <source>Duration:</source>
+        <translation>Duración:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Altitud: </translation>
+        <source>Elevation:</source>
+        <translation>Altitud:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Ritmo: </translation>
+        <source>Pace:</source>
+        <translation>Ritmo:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Velocidad: </translation>
+        <source>Speed:</source>
+        <translation>Velocidad:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Frec. card.: </translation>
+        <source>Heartrate:</source>
+        <translation>Frec. card.:</translation>
     </message>
     <message>
         <source>km</source>

@@ -263,28 +263,28 @@
         <translation>Magasság</translation>
     </message>
     <message>
-        <source>Time: </source>
-        <translation>Időpont: </translation>
+        <source>Time:</source>
+        <translation>Időpont:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Menetidő: </translation>
+        <source>Duration:</source>
+        <translation>Menetidő:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Magasság: </translation>
+        <source>Elevation:</source>
+        <translation>Magasság:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Lépés: </translation>
+        <source>Pace:</source>
+        <translation>Lépés:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Sebesség: </translation>
+        <source>Speed:</source>
+        <translation>Sebesség:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Pulzus: </translation>
+        <source>Heartrate:</source>
+        <translation>Pulzus:</translation>
     </message>
 </context>
 <context>
@@ -525,28 +525,33 @@
         <translation>Térkép</translation>
     </message>
     <message>
-        <source>Time: </source>
-        <translation>Időpont: </translation>
+        <source>Time:</source>
+        <translation>Időpont:</translation>
     </message>
     <message>
+<<<<<<< HEAD
+        <source>Duration:</source>
+        <translation>Eltelt idő:</translation>
+=======
         <source>Duration: </source>
         <translation>Menetidő: </translation>
+>>>>>>> upstream/master
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Magasság: </translation>
+        <source>Elevation:</source>
+        <translation>Magasság:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Lépés: </translation>
+        <source>Pace:</source>
+        <translation>Lépés:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Sebesség: </translation>
+        <source>Speed:</source>
+        <translation>Sebesség:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Pulzus: </translation>
+        <source>Heartrate:</source>
+        <translation>Pulzus:</translation>
     </message>
 </context>
 <context>
