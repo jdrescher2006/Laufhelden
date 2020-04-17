@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 Item {
     property alias label: label.text
     property alias value: value.text
+    property alias leftPadding: label.leftPadding
     anchors.left: parent.left
     anchors.right: parent.right
     height: value.height
@@ -11,6 +12,7 @@ Item {
         id: label
         color: Theme.secondaryColor
         text: "Label"
+        rightPadding: Theme.paddingSmall
     }
     Label {
         id: value

@@ -251,27 +251,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Time: </source>
+        <source>Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Duration: </source>
+        <source>Duration:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Elevation: </source>
+        <source>Elevation:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pace: </source>
+        <source>Pace:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Speed: </source>
+        <source>Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heartrate: </source>
+        <source>Heartrate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -513,27 +513,27 @@
 <context>
     <name>MapViewPage</name>
     <message>
-        <source>Time: </source>
+        <source>Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Duration: </source>
+        <source>Duration:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Elevation: </source>
+        <source>Elevation:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Pace: </source>
+        <source>Pace:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Speed: </source>
+        <source>Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Heartrate: </source>
+        <source>Heartrate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

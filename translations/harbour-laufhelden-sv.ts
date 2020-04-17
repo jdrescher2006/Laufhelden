@@ -251,28 +251,28 @@
         <translation>Hastighet</translation>
     </message>
     <message>
-        <source>Time: </source>
-        <translation>Tid: </translation>
+        <source>Time:</source>
+        <translation>Tid:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Varaktighet: </translation>
+        <source>Duration:</source>
+        <translation>Varaktighet:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Stigning: </translation>
+        <source>Elevation:</source>
+        <translation>Stigning:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Tempo: </translation>
+        <source>Pace:</source>
+        <translation>Tempo:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Hastighet: </translation>
+        <source>Speed:</source>
+        <translation>Hastighet:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Hjärtfrekvens: </translation>
+        <source>Heartrate:</source>
+        <translation>Hjärtfrekvens:</translation>
     </message>
     <message>
         <source>km</source>
@@ -513,28 +513,28 @@
 <context>
     <name>MapViewPage</name>
     <message>
-        <source>Time: </source>
-        <translation>Tid: </translation>
+        <source>Time:</source>
+        <translation>Tid:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Varaktighet: </translation>
+        <source>Duration:</source>
+        <translation>Varaktighet:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Stigning: </translation>
+        <source>Elevation:</source>
+        <translation>Stigning:</translation>
     </message>
     <message>
-        <source>Pace: </source>
+        <source>Pace:</source>
         <translation>Tempo; </translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Hastighet: </translation>
+        <source>Speed:</source>
+        <translation>Hastighet:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
-        <translation>Hjärtfrekvens: </translation>
+        <source>Heartrate:</source>
+        <translation>Hjärtfrekvens:</translation>
     </message>
     <message>
         <source>km</source>

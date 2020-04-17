@@ -251,27 +251,27 @@
         <translation>Snelheid</translation>
     </message>
     <message>
-        <source>Time: </source>
-        <translation>Tijd: </translation>
+        <source>Time:</source>
+        <translation>Tijd:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Duur: </translation>
+        <source>Duration:</source>
+        <translation>Duur:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
-        <translation>Hoogte: </translation>
+        <source>Elevation:</source>
+        <translation>Hoogte:</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Tempo: </translation>
+        <source>Pace:</source>
+        <translation>Tempo:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Snelheid: </translation>
+        <source>Speed:</source>
+        <translation>Snelheid:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
+        <source>Heartrate:</source>
         <translation>Hartslag</translation>
     </message>
     <message>
@@ -513,27 +513,27 @@
 <context>
     <name>MapViewPage</name>
     <message>
-        <source>Time: </source>
-        <translation>Tijd: </translation>
+        <source>Time:</source>
+        <translation>Tijd:</translation>
     </message>
     <message>
-        <source>Duration: </source>
-        <translation>Duur: </translation>
+        <source>Duration:</source>
+        <translation>Duur:</translation>
     </message>
     <message>
-        <source>Elevation: </source>
+        <source>Elevation:</source>
         <translation>Hoogte</translation>
     </message>
     <message>
-        <source>Pace: </source>
-        <translation>Tempo: </translation>
+        <source>Pace:</source>
+        <translation>Tempo:</translation>
     </message>
     <message>
-        <source>Speed: </source>
-        <translation>Snelheid: </translation>
+        <source>Speed:</source>
+        <translation>Snelheid:</translation>
     </message>
     <message>
-        <source>Heartrate: </source>
+        <source>Heartrate:</source>
         <translation>Hartslag; </translation>
     </message>
     <message>
