@@ -391,6 +391,16 @@ Page
             }
             InfoItem
             {
+                label: qsTr("Elevation min/max:")
+                value: ((settings.measureSystem === 0) ? trackLoader.elevationMin.toFixed(1) : JSTools.fncConvertelevationToImperial(trackLoader.elevationMin).toFixed(1))
+                         + ((settings.measureSystem === 0) ? " m" : " feet")
+                         + "/"
+                         + ((settings.measureSystem === 0) ? trackLoader.elevationMax.toFixed(1) : JSTools.fncConvertelevationToImperial(trackLoader.elevationMax).toFixed(1))
+                         + ((settings.measureSystem === 0) ? " m" : " feet")
+                leftPadding: Theme.paddingMedium
+            }
+            InfoItem
+            {
                 visible: bPaceRelevantForWorkoutType
                 label: qsTr("Pace ⌀:")
                 value: (settings.measureSystem === 0) ? trackLoader.paceStr + " min/km" : trackLoader.paceImperialStr + " min/mi"
