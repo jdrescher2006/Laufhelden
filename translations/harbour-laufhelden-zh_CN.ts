@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>Sport tracker application for Sailfish OS</source>
-        <translation>旗鱼系统运动轨迹记录应用</translation>
+        <translation>旗鱼系统运动轨迹记录软件</translation>
     </message>
     <message>
         <source>Copyright</source>
@@ -33,11 +33,11 @@
     </message>
     <message>
         <source>Feedback, bugs:</source>
-        <translation>反馈,缺陷:</translation>
+        <translation>反馈，缺陷:</translation>
     </message>
     <message>
         <source>If you like this app you can donate for it:</source>
-        <translation>如果你喜欢本应用不妨考虑捐赠:</translation>
+        <translation>如果你喜欢本软件不妨考虑捐赠:</translation>
     </message>
     <message>
         <source>Version</source>
@@ -45,7 +45,7 @@
     </message>
     <message>
         <source>Contributors:</source>
-        <translation>贡献者：</translation>
+        <translation>贡献者:</translation>
     </message>
 </context>
 <context>
@@ -104,11 +104,11 @@
     </message>
     <message>
         <source>BLE Public Address</source>
-        <translation>蓝牙低功耗播音</translation>
+        <translation>蓝牙公开地址</translation>
     </message>
     <message>
         <source>BLE Random Address</source>
-        <translation>蓝牙低功耗播音</translation>
+        <translation>蓝牙随机地址</translation>
     </message>
     <message>
         <source>Classic Bluetooth</source>
@@ -158,7 +158,7 @@
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation>选择要在应用封面上显示的值。这些值也用于记录页上的锁屏。</translation>
+        <translation>选择要在软件封面上显示的值。这些值也用于记录页上的锁屏。</translation>
     </message>
 </context>
 <context>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation>间隔:</translation>
+        <translation>时长:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -185,7 +185,7 @@
     </message>
     <message>
         <source>Pause number/duration:</source>
-        <translation>停止数字/间隔:</translation>
+        <translation>停止数字/时长:</translation>
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
@@ -213,7 +213,7 @@
     </message>
     <message>
         <source>loading...</source>
-        <translation>加载中……</translation>
+        <translation>加载中...</translation>
     </message>
     <message>
         <source>Overview</source>
@@ -229,7 +229,7 @@
     </message>
     <message>
         <source>Heart rate min/max/⌀:</source>
-        <translation>最低/最高心率/⌀:</translation>
+        <translation>心率最低/最高/⌀:</translation>
     </message>
 </context>
 <context>
@@ -255,28 +255,28 @@
         <translation>步数</translation>
     </message>
     <message>
-        <source>Time:</source>
-        <translation>时间：</translation>
+        <source>Time: </source>
+        <translation>时间:</translation>
     </message>
     <message>
-        <source>Duration:</source>
-        <translation>持续时间：</translation>
+        <source>Duration: </source>
+        <translation>持续时间:</translation>
     </message>
     <message>
-        <source>Elevation:</source>
-        <translation>海拔；</translation>
+        <source>Elevation: </source>
+        <translation>海拔:</translation>
     </message>
     <message>
-        <source>Pace:</source>
-        <translation>步数：</translation>
+        <source>Pace: </source>
+        <translation>步数:</translation>
     </message>
     <message>
-        <source>Speed:</source>
-        <translation>速度；</translation>
+        <source>Speed: </source>
+        <translation>速度:</translation>
     </message>
     <message>
-        <source>Heartrate:</source>
-        <translation>心率：</translation>
+        <source>Heartrate: </source>
+        <translation>心率:</translation>
     </message>
     <message>
         <source>km</source>
@@ -298,7 +298,7 @@
     <name>HistoryModel</name>
     <message>
         <source>--h --m --s</source>
-        <translation>--小时 --分钟 --秒</translation>
+        <translation>--h --m --s</translation>
     </message>
 </context>
 <context>
@@ -333,7 +333,7 @@
     </message>
     <message>
         <source>Duration</source>
-        <translation>间隔</translation>
+        <translation>时长</translation>
     </message>
 </context>
 <context>
@@ -388,7 +388,7 @@
     </message>
     <message>
         <source>Uncompleted workout found!</source>
-        <translation>你有未完成的锻炼!</translation>
+        <translation>你有未完成的锻炼！</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -451,7 +451,7 @@
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation>在地图集中当前位置</translation>
+        <translation>在地图集中到当前位置</translation>
     </message>
     <message>
         <source>Center track on map</source>
@@ -459,7 +459,7 @@
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
-        <translation>限制磁贴缓存可确保最新的地图并使磁盘的使用处于控制之下, 但加载地图的速度会变慢, 并导致更多的数据流量。请注意, 应用缓存大小设置将在应用程序重新启动后生效。</translation>
+        <translation>限制磁贴缓存可确保显示最新的地图数据并使磁盘的使用处于控制之下, 但加载地图的速度会变慢, 并产生更多的数据流量。请注意, 应用缓存大小设置将在软件重启后生效。</translation>
     </message>
     <message>
         <source>Cache size</source>
@@ -507,7 +507,7 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>地图将不再显示。这在 jolla 1(gpu较弱)上很有用, 因为地图可能会使应用程序崩溃。</translation>
+        <translation>地图将不再显示。这对Jolla 1(gpu较弱)很有用, 因为地图可能会使软件崩溃。</translation>
     </message>
 </context>
 <context>
@@ -517,28 +517,28 @@
         <translation>地图</translation>
     </message>
     <message>
-        <source>Time:</source>
-        <translation>时间：</translation>
+        <source>Time: </source>
+        <translation>时间:</translation>
     </message>
     <message>
-        <source>Duration:</source>
-        <translation>持续时间：</translation>
+        <source>Duration: </source>
+        <translation>持续时间:</translation>
     </message>
     <message>
-        <source>Elevation:</source>
-        <translation>海拔：</translation>
+        <source>Elevation: </source>
+        <translation>海拔:</translation>
     </message>
     <message>
-        <source>Pace:</source>
-        <translation>步数;</translation>
+        <source>Pace: </source>
+        <translation>步数:</translation>
     </message>
     <message>
-        <source>Speed:</source>
-        <translation>速率：</translation>
+        <source>Speed: </source>
+        <translation>速率:</translation>
     </message>
     <message>
-        <source>Heartrate:</source>
-        <translation>心率</translation>
+        <source>Heartrate: </source>
+        <translation>心率:</translation>
     </message>
     <message>
         <source>km</source>
@@ -599,7 +599,7 @@
     </message>
     <message>
         <source>starting sport app</source>
-        <translation>开启运动应用</translation>
+        <translation>开启运动软件</translation>
     </message>
     <message>
         <source>Connected:</source>
@@ -611,7 +611,7 @@
     </message>
     <message>
         <source>1 DURATION field:</source>
-        <translation>1 间隔字段:</translation>
+        <translation>1 时长字段:</translation>
     </message>
     <message>
         <source>2 DISTANCE field:</source>
@@ -635,7 +635,7 @@
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
-        <translation>为 Pebble 字段选值!</translation>
+        <translation>为 Pebble 字段选值！</translation>
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
@@ -650,7 +650,7 @@
     <name>PreRecordPage</name>
     <message>
         <source>Let&apos;s go!</source>
-        <translation>让我们开始吧! </translation>
+        <translation>让我们开始吧！</translation>
     </message>
     <message>
         <source>Workout:</source>
@@ -768,7 +768,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation> 间隔:</translation>
+        <translation>时长:</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -800,11 +800,11 @@
     </message>
     <message>
         <source>Select value!</source>
-        <translation>选取值</translation>
+        <translation>选取值！</translation>
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation>重启Pebble应用</translation>
+        <translation>重启Pebble软件</translation>
     </message>
     <message>
         <source>Lock screen</source>
@@ -812,7 +812,7 @@
     </message>
     <message>
         <source>hold button for: %1 s</source>
-        <translation>保持按钮: %1 s</translation>
+        <translation>按住按钮: %1 s</translation>
     </message>
 </context>
 <context>
@@ -933,7 +933,7 @@
     </message>
     <message>
         <source>App cover</source>
-        <translation>应用封面</translation>
+        <translation>软件封面</translation>
     </message>
     <message>
         <source>Pebble</source>
@@ -988,7 +988,7 @@
     </message>
     <message>
         <source>Switch display to night mode if ambiance light is low.</source>
-        <translation>如果氛围亮度很低，则调整到夜间模式</translation>
+        <translation>如果氛围亮度很低，则调至夜间模式</translation>
     </message>
     <message>
         <source>Unit of measurement</source>
@@ -1004,7 +1004,7 @@
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation>注意设置将在重启应用之后生效</translation>
+        <translation>请记住设置将在重启软件之后生效</translation>
     </message>
 </context>
 <context>
@@ -1035,7 +1035,7 @@
     </message>
     <message>
         <source>Hiking</source>
-        <translation>徒步旅行</translation>
+        <translation>徒步</translation>
     </message>
     <message>
         <source>All activities</source>
@@ -1065,11 +1065,11 @@
     </message>
     <message>
         <source>Some kind of error happened on GPX import</source>
-        <translation>GPX 输入时发送某种错误</translation>
+        <translation>GPX 输入时发生某种错误</translation>
     </message>
     <message>
         <source>Workout uploaded!</source>
-        <translation>锻炼已上传!</translation>
+        <translation>锻炼已上传！</translation>
     </message>
     <message>
         <source>Some kind of error happened on Saving data</source>
@@ -1164,7 +1164,7 @@
     </message>
     <message>
         <source>Test login</source>
-        <translation>尝试登录</translation>
+        <translation>测试登录</translation>
     </message>
     <message>
         <source>Download workouts</source>
@@ -1222,7 +1222,7 @@
     </message>
     <message>
         <source>Duration:</source>
-        <translation>持续时间:</translation>
+        <translation>时长:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -1230,7 +1230,7 @@
     </message>
     <message>
         <source>Kudos:</source>
-        <translation>荣誉:</translation>
+        <translation>Kudos:</translation>
     </message>
     <message>
         <source>Comments:</source>
@@ -1267,7 +1267,7 @@
     <name>StravaSegment</name>
     <message>
         <source>Duration:</source>
-        <translation>持续时间:</translation>
+        <translation>时长:</translation>
     </message>
     <message>
         <source>Distance:</source>
@@ -1309,15 +1309,15 @@
     </message>
     <message>
         <source>User Name: </source>
-        <translation>用户名：</translation>
+        <translation>用户名:</translation>
     </message>
     <message>
         <source>Email: </source>
-        <translation>电子邮件：</translation>
+        <translation>电子邮件:</translation>
     </message>
     <message>
         <source>Country: </source>
-        <translation>国家；</translation>
+        <translation>国家:</translation>
     </message>
 </context>
 <context>
@@ -1348,7 +1348,7 @@
     </message>
     <message>
         <source>Checking upload...</source>
-        <translation>检测上传中...</translation>
+        <translation>正在检测上传...</translation>
     </message>
     <message>
         <source>An unknown error occurred</source>
@@ -1403,7 +1403,7 @@
     </message>
     <message>
         <source>Only text, no special characters!</source>
-        <translation>仅限文本，无特殊字符!</translation>
+        <translation>仅限文本，不能带有特殊字符！</translation>
     </message>
     <message>
         <source>Threshold profile name</source>
@@ -1427,7 +1427,7 @@
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
-        <translation>如果限制不足, 请报警</translation>
+        <translation>如果超出限值，则发出警报信息。</translation>
     </message>
     <message>
         <source>Alarm thresholds</source>
@@ -1501,7 +1501,7 @@
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>路径长度消息</translation>
+        <translation>按距离定期播报</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -1509,19 +1509,19 @@
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>1 则消息:</translation>
+        <translation>1播报:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>2 则消息:</translation>
+        <translation>2播报:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>3 则消息:</translation>
+        <translation>3播报:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>4 则消息:</translation>
+        <translation>4播报:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
@@ -1529,11 +1529,11 @@
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>播放数值消息</translation>
+        <translation>播放数值</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>在播放数值消息之前, 宣布值的类型。 例如“距离”，这使得语音报告的持续时间更长。</translation>
+        <translation>在播报数值消息之前, 说明值的类型。例如“距离”，这会使语音播报的时间加长。</translation>
     </message>
 </context>
 <context>
@@ -1544,11 +1544,11 @@
     </message>
     <message>
         <source>2 minutes</source>
-        <translation>2 分钟</translation>
+        <translation>2分钟</translation>
     </message>
     <message>
         <source>5 minutes</source>
-        <translation>5分钟т</translation>
+        <translation>5分钟</translation>
     </message>
     <message>
         <source>10 minutes</source>
@@ -1564,7 +1564,7 @@
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>报告持续时间</translation>
+        <translation>按时长定期播报</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -1580,46 +1580,46 @@
     </message>
     <message>
         <source>1 announcement:</source>
-        <translation>1 则消息:</translation>
+        <translation>1播报:</translation>
     </message>
     <message>
         <source>2 announcement:</source>
-        <translation>2 则消息:</translation>
+        <translation>2播报:</translation>
     </message>
     <message>
         <source>3 announcement:</source>
-        <translation>3 则消息:</translation>
+        <translation>3播报:</translation>
     </message>
     <message>
         <source>4 announcement:</source>
-        <translation>4 则消息:</translation>
+        <translation>4播报:</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>该值已赋值!</translation>
+        <translation>该值已赋值！</translation>
     </message>
     <message>
         <source>Play value announcement</source>
-        <translation>播放数值报告</translation>
+        <translation>播报数值</translation>
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>在播放数值消息之前, 宣布值的类型。例如“距离”，这使得语音报告的持续时间更长。</translation>
+        <translation>在播报之前, 说明值的类型。例如“距离”，这会使语音播报的时间加长。</translation>
     </message>
 </context>
 <context>
     <name>VoiceEventsSettingsPage</name>
     <message>
         <source>Start/end workout</source>
-        <translation>开始/结束 锻炼</translation>
+        <translation>开始/结束锻炼</translation>
     </message>
     <message>
         <source>Pause/continue workout</source>
-        <translation>停止/继续 锻炼</translation>
+        <translation>停止/继续锻炼</translation>
     </message>
     <message>
         <source>Connect/disconnect GPS</source>
-        <translation>连接/断开 GPS</translation>
+        <translation>连接/断开GPS</translation>
     </message>
     <message>
         <source>Voice coach events settings</source>
@@ -1654,7 +1654,7 @@
     </message>
     <message>
         <source>Pause/resume music player</source>
-        <translation>停止/恢复 语音播放</translation>
+        <translation>停止/恢复语音播报</translation>
     </message>
     <message>
         <source></source>
@@ -1677,15 +1677,15 @@
     </message>
     <message>
         <source>Event announcements</source>
-        <translation>事项公告</translation>
+        <translation>事件播报</translation>
     </message>
     <message>
         <source>Regular announcements by distance</source>
-        <translation>距离公告</translation>
+        <translation>按距离定期播报</translation>
     </message>
     <message>
         <source>Regular announcements by duration</source>
-        <translation>持续时间公告</translation>
+        <translation>按时长定期播报</translation>
     </message>
     <message>
         <source>Voice Coach Settings</source>
@@ -1700,7 +1700,7 @@
     </message>
     <message>
         <source>HR error: </source>
-        <translation>心率记录出错：</translation>
+        <translation>心率出错:</translation>
     </message>
 </context>
 </TS>
