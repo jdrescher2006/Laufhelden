@@ -56,7 +56,7 @@
     </message>
     <message>
         <source>Start scanning...</source>
-        <translation>开始扫描 ...</translation>
+        <translation>开始扫描...</translation>
     </message>
     <message>
         <source>Cancel scanning</source>
@@ -123,7 +123,7 @@
     <name>CoverPage</name>
     <message>
         <source>Recording</source>
-        <translation>记录中</translation>
+        <translation>正在记录</translation>
     </message>
     <message>
         <source>Stopped</source>
@@ -138,27 +138,27 @@
     <name>CoverSettingsPage</name>
     <message>
         <source>This value is already assigned!</source>
-        <translation>该值已赋值!</translation>
+        <translation>该值已被赋值!</translation>
     </message>
     <message>
         <source>First field:</source>
-        <translation>第一个区域:</translation>
+        <translation>区域:一</translation>
     </message>
     <message>
         <source>Second field:</source>
-        <translation>第二个区域:</translation>
+        <translation>区域二:</translation>
     </message>
     <message>
         <source>Third field:</source>
-        <translation>第三个区域:</translation>
+        <translation>区域三:</translation>
     </message>
     <message>
         <source>App cover settings</source>
-        <translation>应用封面设置</translation>
+        <translation>软件封面设置</translation>
     </message>
     <message>
         <source>Select values to be shown on the App cover. The values are also used for the lock screen on the record page.</source>
-        <translation>选择要在软件封面上显示的值。这些值也用于记录页上的锁屏。</translation>
+        <translation>选择要在软件封面上显示的值。这些值也用于记录页面上的锁屏。</translation>
     </message>
 </context>
 <context>
@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>Send to Sports-Tracker.com</source>
-        <translation>发送到Sports-Tracker.com</translation>
+        <translation>发送到 Sports-Tracker.com</translation>
     </message>
     <message>
         <source>Edit workout</source>
@@ -209,7 +209,7 @@
     </message>
     <message>
         <source>Send to Strava</source>
-        <translation>发送到Strava</translation>
+        <translation>发送到 Strava</translation>
     </message>
     <message>
         <source>loading...</source>
@@ -348,7 +348,7 @@
     </message>
     <message>
         <source>My Strava Activities</source>
-        <translation>我的Strava动态</translation>
+        <translation>我的 Strava 动态</translation>
     </message>
     <message>
         <source>Start new workout</source>
@@ -443,7 +443,7 @@
     </message>
     <message>
         <source>Show only 4 value fields (instead of 6) when map is shown</source>
-        <translation>显示地图时, 仅显示4个值字段 (而不是 6个)</translation>
+        <translation>显示地图时, 仅显示4个值区间 (而不是 6个)</translation>
     </message>
     <message>
         <source>Map center mode</source>
@@ -451,11 +451,11 @@
     </message>
     <message>
         <source>Center current position on map</source>
-        <translation>在地图集中到当前位置</translation>
+        <translation>在地图上集中到当前位置</translation>
     </message>
     <message>
         <source>Center track on map</source>
-        <translation>在地图集中轨迹</translation>
+        <translation>在地图上集中轨迹</translation>
     </message>
     <message>
         <source>Limiting tile caching ensures up-to-date maps and keeps disk use under control, but loads maps slower and causes more data traffic. Note that the cache size settings will be applied after restart of the application.</source>
@@ -499,7 +499,7 @@
     </message>
     <message>
         <source>OSM Scout Server</source>
-        <translation>OSM Scout服务</translation>
+        <translation>OSM Scout 服务</translation>
     </message>
     <message>
         <source>Disable map</source>
@@ -507,7 +507,7 @@
     </message>
     <message>
         <source>Map will not be shown anymore. This is useful on Jolla 1 phones (with weak GPU) because the map may crash the app.</source>
-        <translation>地图将不再显示。这对Jolla 1(gpu较弱)很有用, 因为地图可能会使软件崩溃。</translation>
+        <translation>地图将不再显示。这对 Jolla 1(gpu较弱)很有用, 因为地图可能会使软件崩溃。</translation>
     </message>
 </context>
 <context>
@@ -627,11 +627,11 @@
     </message>
     <message>
         <source>No Pebble found.&lt;br&gt;Install Rockpool and&lt;br&gt;then connect Pebble!</source>
-        <translation>未找到 Pebble ，请安装，Rockpool 然后连接到 Pebble</translation>
+        <translation>未找到 Pebble ，请安装Rockpool 然后连接到 Pebble</translation>
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>该值已赋值!</translation>
+        <translation>该值已被赋值!</translation>
     </message>
     <message>
         <source>Choose values for Pebble fields!</source>
@@ -639,7 +639,7 @@
     </message>
     <message>
         <source>Rockpool must be installed&lt;br&gt;at least in version 1.4-1.&lt;br&gt;Installed version is: </source>
-        <translation>必须安装 Rockpool并且版本号至少需是 1.4-1。当前安装版本为: </translation>
+        <translation>必须安装 Rockpool 并且版本必须高于 1.4-1。当前安装版本为: </translation>
     </message>
     <message>
         <source>Choose the Pebble you want to use</source>
@@ -674,7 +674,7 @@
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation>选择阈值配置文件</translation>
+        <translation>选择区间配置文件</translation>
     </message>
     <message>
         <source>Use HRM service if available</source>
@@ -756,11 +756,11 @@
     </message>
     <message>
         <source>Recording</source>
-        <translation>记录中</translation>
+        <translation>正在记录</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>停止</translation>
+        <translation>已停止</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -804,7 +804,7 @@
     </message>
     <message>
         <source>Restart Pebble App</source>
-        <translation>重启Pebble软件</translation>
+        <translation>重启 Pebble 软件</translation>
     </message>
     <message>
         <source>Lock screen</source>
@@ -952,7 +952,7 @@
     </message>
     <message>
         <source>Keep record page in portrait mode.</source>
-        <translation>记录页保持竖屏模式</translation>
+        <translation>记录页面保持竖屏模式</translation>
     </message>
     <message>
         <source>Write log file</source>
@@ -964,7 +964,7 @@
     </message>
     <message>
         <source>Record page portrait mode</source>
-        <translation>记录页竖屏模式</translation>
+        <translation>记录页面竖屏模式</translation>
     </message>
     <message>
         <source>Show grid lines</source>
@@ -972,7 +972,7 @@
     </message>
     <message>
         <source>Show grid lines on record page.</source>
-        <translation>在记录页显示网格线</translation>
+        <translation>在记录页面显示网格线</translation>
     </message>
     <message>
         <source>Enable autosave</source>
@@ -1004,14 +1004,14 @@
     </message>
     <message>
         <source>Note that this setting will be applied after restart of the application.</source>
-        <translation>请记住设置将在重启软件之后生效</translation>
+        <translation>请记住设置将在重启软件之后生效。</translation>
     </message>
 </context>
 <context>
     <name>SharedResources</name>
     <message>
         <source>Running</source>
-        <translation>跑步中</translation>
+        <translation>跑步</translation>
     </message>
     <message>
         <source>Roadbike</source>
@@ -1023,7 +1023,7 @@
     </message>
     <message>
         <source>Walking</source>
-        <translation>步行中</translation>
+        <translation>步行</translation>
     </message>
     <message>
         <source>Inline skating</source>
@@ -1407,7 +1407,7 @@
     </message>
     <message>
         <source>Threshold profile name</source>
-        <translation>阈值配置文件名称</translation>
+        <translation>区间配置文件名称</translation>
     </message>
     <message>
         <source>Add profile</source>
@@ -1423,7 +1423,7 @@
     </message>
     <message>
         <source>Select thresholds profile</source>
-        <translation>选取阈值配置文件</translation>
+        <translation>选取区间配置文件</translation>
     </message>
     <message>
         <source>Alarm if limit is undershot.</source>
@@ -1431,7 +1431,7 @@
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation>阈值警报</translation>
+        <translation>区间警报</translation>
     </message>
     <message>
         <source>min/mi</source>
@@ -1442,7 +1442,7 @@
     <name>Thresholds</name>
     <message>
         <source>Thresholds off</source>
-        <translation>阈值关闭</translation>
+        <translation>区间关闭</translation>
     </message>
 </context>
 <context>
@@ -1533,7 +1533,7 @@
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>在播报数值消息之前, 说明值的类型。例如“距离”，这会使语音播报的时间加长。</translation>
+        <translation>在播报数值消息之前, 说明值的类型。例如“距离”，这会加长语音播报的时间。</translation>
     </message>
 </context>
 <context>
@@ -1596,7 +1596,7 @@
     </message>
     <message>
         <source>This value is already assigned!</source>
-        <translation>该值已赋值！</translation>
+        <translation>该值已被赋值！</translation>
     </message>
     <message>
         <source>Play value announcement</source>
@@ -1604,7 +1604,7 @@
     </message>
     <message>
         <source>Before a value is played, the type of value is announced e.g &quot;Distance:&quot;. This makes the voice announcement last longer.</source>
-        <translation>在播报之前, 说明值的类型。例如“距离”，这会使语音播报的时间加长。</translation>
+        <translation>在播报之前, 说明值的类型。例如“距离”，这会加长语音播报的时间。</translation>
     </message>
 </context>
 <context>
@@ -1673,7 +1673,7 @@
     </message>
     <message>
         <source>Alarm thresholds</source>
-        <translation>报警阈值</translation>
+        <translation>提醒区间</translation>
     </message>
     <message>
         <source>Event announcements</source>
